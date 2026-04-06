@@ -1,0 +1,21 @@
+# Core
+numpy==2.4.0
+pandas==2.3.3
+
+# Visualization - exploratory
+matplotlib==3.10.8
+seaborn==0.13.2
+
+# Visualization - interactive
+plotly==6.5.1
+dash==3.3.0
+
+# Network analysis
+networkx>=3.2
+
+# Data processing
+scipy==1.16.3
+scikit-learn==1.8.0
+
+# Notebook
+jupyter>=1.0

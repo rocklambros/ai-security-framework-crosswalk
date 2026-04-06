@@ -1,0 +1,3438 @@
+{
+  "standard": "AIUC-1",
+  "version": "1.0",
+  "url": "https://www.aiuc-1.com",
+  "scraped_at": "2026-03-03T20:16:37.170248+00:00",
+  "domains": [
+    {
+      "id": "A",
+      "name": "Data & Privacy",
+      "url": "https://www.aiuc-1.com/data-and-privacy",
+      "description": "Protect against data leakage, IP leakage, and training on user data without consent",
+      "controls": [
+        {
+          "id": "A001",
+          "title": "Establish input data policy",
+          "url": "https://www.aiuc-1.com/data-and-privacy/establish-data-use-policy",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish and communicate AI input data policies covering how customer data is used for model training, inference processing, data retention periods, and customer data rights.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "A001.1",
+              "description": "Define and communicate input data usage policies including how customer data is used for inference and model training, establishing data retention periods, and documenting customer data rights.",
+              "category": "Core",
+              "evidence_types": [
+                "Terms of Service",
+                "Privacy Policy",
+                "Data Processing Agreement"
+              ]
+            },
+            {
+              "id": "A001.2",
+              "description": "Implement technical controls to enforce data retention and deletion policies through automating data deletion based on retention schedules.",
+              "category": "Core",
+              "evidence_types": [
+                "Automated deletion implementation"
+              ]
+            },
+            {
+              "id": "A001.3",
+              "description": "Document processes for handling end-user data subject rights including opt-in/opt-out rights, access, portability, or deletion of input data.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "DPA",
+                "GDPR appendix",
+                "Privacy Policy"
+              ]
+            }
+          ],
+          "keywords": [
+            "Data Retention",
+            "Model Training Data",
+            "Opt-Out"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 11"
+            ],
+            "iso_42001": [
+              "A.7.2",
+              "A.7.3"
+            ],
+            "nist_ai_rmf": [
+              "MEASURE 2.10"
+            ],
+            "csa_aicm": [
+              "DSP-11",
+              "DSP-12",
+              "DSP-13",
+              "DSP-14",
+              "DSP-15",
+              "DSP-16",
+              "DSP-09",
+              "DSP-20",
+              "DSP-23"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "A002",
+          "title": "Establish output data policy",
+          "url": "https://www.aiuc-1.com/data-and-privacy/define-output-rights",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish AI output ownership, usage, opt-out and deletion policies to customers and communicate these policies.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "A002.1",
+              "description": "Establishing output ownership and usage rights policies, specifying customer ownership of AI-generated outputs, defining permitted uses, documenting usage restrictions, and disclosing opt-out and deletion procedures.",
+              "category": "Core",
+              "evidence_types": [
+                "Terms of Service"
+              ]
+            }
+          ],
+          "keywords": [
+            "Data Ownership",
+            "Usage",
+            "Deletion",
+            "Consent",
+            "Opt-Out"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [],
+            "csa_aicm": [
+              "DSP-16",
+              "DSP-08"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "A003",
+          "title": "Limit AI agent data collection",
+          "url": "https://www.aiuc-1.com/data-and-privacy/implement-contextual-data-safeguards",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards to limit AI agent data access to task-relevant information based on user roles and context.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "A003.1",
+              "description": "Configuring data collection limits to reduce data and privacy exposure, limiting data collection to task-relevant information based on context.",
+              "category": "Core",
+              "evidence_types": [
+                "Code implementing data collection restrictions"
+              ]
+            },
+            {
+              "id": "A003.2",
+              "description": "Deploying monitoring mechanisms ensuring AI systems only perform necessary inference and logging deviations from defined operational scope.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Alert/error handling code"
+              ]
+            },
+            {
+              "id": "A003.3",
+              "description": "Integrating with existing authorization systems to align agent access permissions with organizational policies.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Authorization system code"
+              ]
+            }
+          ],
+          "keywords": [
+            "Data Collection",
+            "Data Access",
+            "Agent Permissions",
+            "Access Permissions"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MAP 2.1"
+            ],
+            "csa_aicm": [
+              "DSP-07",
+              "AIS-11",
+              "DSP-08",
+              "DSP-22",
+              "IAM-17",
+              "IAM-19",
+              "MDS-04"
+            ],
+            "owasp_llm_top10": [
+              "LLM06",
+              "LLM08",
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agent Access Control Violation"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "A004",
+          "title": "Protect IP & trade secrets",
+          "url": "https://www.aiuc-1.com/data-and-privacy/protect-ip-trade-secrets",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "A004.1",
+              "description": "Providing user guidance on protecting confidential information.",
+              "category": "Core",
+              "evidence_types": [
+                "Policy document",
+                "Training materials"
+              ]
+            },
+            {
+              "id": "A004.2",
+              "description": "Leveraging foundation model provider protections with zero data retention policies.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Provider contracts"
+              ]
+            },
+            {
+              "id": "A004.3",
+              "description": "Implementing technical controls to detect proprietary information in outputs.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "IP detection code"
+              ]
+            },
+            {
+              "id": "A004.4",
+              "description": "Establishing output monitoring for high-risk IP scenarios.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Audit trails",
+                "Review workflows"
+              ]
+            }
+          ],
+          "keywords": [
+            "Intellectual Property",
+            "Confidential Information",
+            "Data Protections"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 72"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [],
+            "csa_aicm": [
+              "DSP-01",
+              "DSP-10",
+              "DSP-02",
+              "DSP-07",
+              "DSP-08",
+              "DSP-16",
+              "UEM-08",
+              "DSP-12"
+            ],
+            "owasp_llm_top10": [
+              "LLM03",
+              "LLM05",
+              "LLM08"
+            ],
+            "owasp_aivss": [
+              "Insecure Agent Critical Systems Interaction"
+            ],
+            "mitre_atlas": [
+              "AML-M0020"
+            ]
+          }
+        },
+        {
+          "id": "A005",
+          "title": "Prevent cross-customer data exposure",
+          "url": "https://www.aiuc-1.com/data-and-privacy/prevent-cross-customer-data-exposure",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards to prevent cross-customer data exposure when combining customer data from multiple sources.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "A005.1",
+              "description": "Establishing explicit consent and disclosure for combined data usage.",
+              "category": "Core",
+              "evidence_types": [
+                "Data Processing Agreement",
+                "Terms of Service"
+              ]
+            },
+            {
+              "id": "A005.2",
+              "description": "Implementing customer data isolation controls with strict logical and physical separation.",
+              "category": "Core",
+              "evidence_types": [
+                "Database schema screenshots"
+              ]
+            },
+            {
+              "id": "A005.3",
+              "description": "Implementing privacy-enhancing technologies to reduce competitive exposure.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Tokenization",
+                "Differential privacy"
+              ]
+            }
+          ],
+          "keywords": [
+            "Cross-Customer Data",
+            "Model Training",
+            "Data Rights"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MEASURE 2.10"
+            ],
+            "csa_aicm": [
+              "I&S-06",
+              "DSP-22"
+            ],
+            "owasp_llm_top10": [
+              "LLM02",
+              "LLM05",
+              "LLM08"
+            ],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "A006",
+          "title": "Prevent PII leakage",
+          "url": "https://www.aiuc-1.com/data-and-privacy/prevent-pii-leakage",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish safeguards to prevent personal data leakage through AI outputs and logs.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "A006.1",
+              "description": "Implementing safeguards to prevent personal data leakage through AI system outputs and logs, filtering prompts and outputs for personal identifiers.",
+              "category": "Core",
+              "evidence_types": [
+                "PII filtering code"
+              ]
+            },
+            {
+              "id": "A006.2",
+              "description": "Requiring authentication and authorization for PII access with role-based access controls.",
+              "category": "Core",
+              "evidence_types": [
+                "IAM configuration"
+              ]
+            },
+            {
+              "id": "A006.3",
+              "description": "Integrating with existing data loss prevention (DLP) systems to monitor and block outputs containing personal data.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "DLP integration code"
+              ]
+            }
+          ],
+          "keywords": [
+            "Personal Data Leakage"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 72"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MEASURE 2.10"
+            ],
+            "csa_aicm": [
+              "DSP-10",
+              "DSP-17",
+              "HRS-12",
+              "DSP-13",
+              "UEM-08",
+              "DSP-12"
+            ],
+            "owasp_llm_top10": [
+              "LLM02",
+              "LLM05",
+              "LLM08"
+            ],
+            "owasp_aivss": [],
+            "mitre_atlas": [
+              "AML-M0020"
+            ]
+          }
+        },
+        {
+          "id": "A007",
+          "title": "Prevent IP violations",
+          "url": "https://www.aiuc-1.com/data-and-privacy/prevent-ip-violations",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards and technical controls to prevent AI outputs from violating copyrights, trademarks, or other third-party intellectual property rights.",
+          "applicable_capabilities": [
+            "External-facing"
+          ],
+          "activities": [
+            {
+              "id": "A007.1",
+              "description": "Documenting foundation model provider IP protections including indemnification clauses.",
+              "category": "Core",
+              "evidence_types": [
+                "Foundation model provider contract"
+              ]
+            },
+            {
+              "id": "A007.2",
+              "description": "Establishing supplementary content filtering mechanisms for IP screening.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "IP filtering code"
+              ]
+            },
+            {
+              "id": "A007.3",
+              "description": "Implementing user guidance and guardrails to reduce IP risk.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "UI screenshots"
+              ]
+            }
+          ],
+          "keywords": [
+            "Intellectual Property",
+            "Copyright Protection"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.7.5"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 6.1",
+              "MAP 4.1"
+            ],
+            "csa_aicm": [
+              "AIS-09"
+            ],
+            "owasp_llm_top10": [
+              "LLM03",
+              "LLM05"
+            ],
+            "owasp_aivss": [],
+            "mitre_atlas": [
+              "AML-M0020"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Security",
+      "url": "https://www.aiuc-1.com/security",
+      "description": "Protect AI systems against adversarial attacks, unauthorized access, and data exposure",
+      "controls": [
+        {
+          "id": "B001",
+          "title": "Third-party testing of adversarial robustness",
+          "url": "https://www.aiuc-1.com/security/test-adversarial-robustness",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Implement adversarial testing program to validate system resilience against adversarial inputs and prompt injection attempts.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "B001.1",
+              "description": "Third-party evaluation report demonstrating adversarial robustness testing including risk taxonomy, methodology, findings, and remediation timelines.",
+              "category": "Core",
+              "evidence_types": [
+                "Third-party evaluation report"
+              ]
+            },
+            {
+              "id": "B001.2",
+              "description": "Penetration test reports incorporating AI-specific test cases, shared threat models, and testing calendars.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Engineering Practice"
+              ]
+            }
+          ],
+          "keywords": [
+            "Adversarial Testing",
+            "Red Teaming",
+            "Prompt Injection",
+            "Jailbreak"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MEASURE 2.1",
+              "MEASURE 2.6",
+              "MEASURE 2.7"
+            ],
+            "csa_aicm": [
+              "AIS-07",
+              "AIS-08",
+              "MDS-06",
+              "MDS-07",
+              "TVM-01",
+              "TVM-03",
+              "TVM-05",
+              "TVM-06",
+              "TVM-07",
+              "TVM-08",
+              "TVM-12",
+              "TVM-13"
+            ],
+            "owasp_llm_top10": [
+              "LLM01",
+              "LLM04",
+              "LLM05",
+              "LLM08"
+            ],
+            "owasp_aivss": [
+              "Agent Cascading Failures",
+              "Agent Goal and Instruction Manipulation"
+            ],
+            "mitre_atlas": [
+              "AML-M0003",
+              "AML-M0004"
+            ]
+          }
+        },
+        {
+          "id": "B002",
+          "title": "Detect adversarial input",
+          "url": "https://www.aiuc-1.com/security/detect-adversarial-input",
+          "classification": "Optional",
+          "type": "Detective",
+          "frequency": "Every 3 months",
+          "description": "Implement monitoring capabilities to detect and respond to adversarial inputs and prompt injection attempts.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "B002.1",
+              "description": "Implementing monitoring for prompt injection patterns, jailbreak techniques, adversarial input attempts.",
+              "category": "Core",
+              "evidence_types": [
+                "Monitoring system screenshots"
+              ]
+            },
+            {
+              "id": "B002.2",
+              "description": "Logging suspected adversarial attacks with relevant context and escalating based on severity.",
+              "category": "Core",
+              "evidence_types": [
+                "Incident management system"
+              ]
+            },
+            {
+              "id": "B002.3",
+              "description": "Updating detection rules based on emerging adversarial techniques quarterly.",
+              "category": "Core",
+              "evidence_types": [
+                "Quarterly review documentation"
+              ]
+            },
+            {
+              "id": "B002.4",
+              "description": "Implementing adversarial input detection prior to AI model processing.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Pre-processing filtering logic"
+              ]
+            },
+            {
+              "id": "B002.5",
+              "description": "Integrating adversarial input detection into existing security operations tooling.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "SIEM platform screenshots"
+              ]
+            }
+          ],
+          "keywords": [
+            "Monitor",
+            "Adversarial",
+            "Jailbreak",
+            "Prompt Injection"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 15",
+              "Article 72"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "GOVERN 1.5",
+              "MEASURE 2.4",
+              "MEASURE 2.7",
+              "MEASURE 3.1"
+            ],
+            "csa_aicm": [
+              "AIS-08",
+              "AIS-10",
+              "LOG-14",
+              "MDS-07",
+              "TVM-01",
+              "TVM-02",
+              "TVM-04",
+              "UEM-09"
+            ],
+            "owasp_llm_top10": [
+              "LLM01",
+              "LLM08",
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agent Goal and Instruction Manipulation"
+            ],
+            "mitre_atlas": [
+              "AML-M0003",
+              "AML-M0015",
+              "AML-M0021",
+              "AML-M0024"
+            ]
+          }
+        },
+        {
+          "id": "B003",
+          "title": "Manage public release of technical details",
+          "url": "https://www.aiuc-1.com/security/limit-technical-over-disclosure",
+          "classification": "Optional",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement controls to prevent over-disclosure of technical information about AI systems.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "B003.1",
+              "description": "Policy document defining limitations and approval requirements for publicly sharing AI system technical details.",
+              "category": "Core",
+              "evidence_types": [
+                "Internal policies"
+              ]
+            },
+            {
+              "id": "B003.2",
+              "description": "Approval records for public AI communications.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Internal processes"
+              ]
+            }
+          ],
+          "keywords": [
+            "Public Disclosure",
+            "Open-Source",
+            "External Threats"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [],
+            "csa_aicm": [
+              "AIS-09",
+              "AIS-15"
+            ],
+            "owasp_llm_top10": [
+              "LLM02",
+              "LLM07"
+            ],
+            "owasp_aivss": [],
+            "mitre_atlas": [
+              "AML-M0000",
+              "AML-M0001"
+            ]
+          }
+        },
+        {
+          "id": "B004",
+          "title": "Prevent AI endpoint scraping",
+          "url": "https://www.aiuc-1.com/security/prevent-ai-endpoint-scraping",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards to prevent probing or scraping of external AI endpoints.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "B004.1",
+              "description": "Implementing systems distinguishing between high-volume legitimate usage and adversarial behavior.",
+              "category": "Core",
+              "evidence_types": [
+                "Anomaly detection system"
+              ]
+            },
+            {
+              "id": "B004.2",
+              "description": "Implementing rate limiting and query restrictions.",
+              "category": "Core",
+              "evidence_types": [
+                "Rate limiting configuration"
+              ]
+            },
+            {
+              "id": "B004.3",
+              "description": "Conducting simulated external attack testing of AI endpoints.",
+              "category": "Core",
+              "evidence_types": [
+                "Penetration test report"
+              ]
+            },
+            {
+              "id": "B004.4",
+              "description": "Tracking identified vulnerabilities and implementing protective measures.",
+              "category": "Core",
+              "evidence_types": [
+                "Issue tracking system"
+              ]
+            }
+          ],
+          "keywords": [
+            "Scraping",
+            "Probing",
+            "Rate Limiting",
+            "Query Quotas",
+            "Zero Trust"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 15"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MEASURE 2.7"
+            ],
+            "csa_aicm": [
+              "AIS-10",
+              "TVM-06",
+              "UEM-01",
+              "UEM-05",
+              "UEM-09",
+              "UEM-10",
+              "UEM-11",
+              "UEM-14"
+            ],
+            "owasp_llm_top10": [
+              "LLM02",
+              "LLM05",
+              "LLM08",
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agentic AI Tool Misuse"
+            ],
+            "mitre_atlas": [
+              "AML-M0003",
+              "AML-M0004"
+            ]
+          }
+        },
+        {
+          "id": "B005",
+          "title": "Implement real-time input filtering",
+          "url": "https://www.aiuc-1.com/security/implement-real-time-input-filtering",
+          "classification": "Optional",
+          "type": "Detective",
+          "frequency": "Every 12 months",
+          "description": "Implement real-time input filtering using automated moderation tools.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation",
+            "Image-generation"
+          ],
+          "activities": [
+            {
+              "id": "B005.1",
+              "description": "Integration of automated moderation tools to filter inputs before reaching the foundation model.",
+              "category": "Core",
+              "evidence_types": [
+                "Configuration screenshots"
+              ]
+            },
+            {
+              "id": "B005.2",
+              "description": "Documentation explaining moderation approach including tool selection rationale and threshold settings.",
+              "category": "Core",
+              "evidence_types": [
+                "Internal documentation"
+              ]
+            },
+            {
+              "id": "B005.3",
+              "description": "User-facing communication when inputs are blocked.",
+              "category": "Core",
+              "evidence_types": [
+                "UI screenshots"
+              ]
+            },
+            {
+              "id": "B005.4",
+              "description": "Logging system capturing flagged inputs with metadata tracking.",
+              "category": "Core",
+              "evidence_types": [
+                "Logging system screenshots"
+              ]
+            },
+            {
+              "id": "B005.5",
+              "description": "Analysis of filter performance metrics with documented threshold adjustments.",
+              "category": "Core",
+              "evidence_types": [
+                "Performance reports"
+              ]
+            }
+          ],
+          "keywords": [
+            "Prompt Injection",
+            "Jailbreak",
+            "Adversarial Input Protection"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MEASURE 2.7"
+            ],
+            "csa_aicm": [
+              "AIS-08",
+              "AIS-15",
+              "LOG-14"
+            ],
+            "owasp_llm_top10": [
+              "LLM01",
+              "LLM04",
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agent Goal and Instruction Manipulation"
+            ],
+            "mitre_atlas": [
+              "AML-M0015",
+              "AML-M0021"
+            ]
+          }
+        },
+        {
+          "id": "B006",
+          "title": "Prevent unauthorized AI agent actions",
+          "url": "https://www.aiuc-1.com/security/enforce-contextual-access-controls",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges.",
+          "applicable_capabilities": [
+            "Automation"
+          ],
+          "activities": [
+            {
+              "id": "B006.1",
+              "description": "Restricting agent access to approved backend services and APIs, enforcing network segmentation or API gateway rules.",
+              "category": "Core",
+              "evidence_types": [
+                "Agent backend access limits configuration"
+              ]
+            },
+            {
+              "id": "B006.2",
+              "description": "Deploying monitoring and alerting for agent actions that exceed security boundaries.",
+              "category": "Core",
+              "evidence_types": [
+                "Monitoring configuration"
+              ]
+            }
+          ],
+          "keywords": [
+            "Access Permissions",
+            "Agent Permissions"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MAP 2.1"
+            ],
+            "csa_aicm": [
+              "AIS-11",
+              "IAM-19",
+              "DSP-07"
+            ],
+            "owasp_llm_top10": [
+              "LLM08",
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agent Access Control Violation",
+              "Agent Orchestration and Multi-Agent Exploitation"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "B007",
+          "title": "Enforce user access privileges to AI systems",
+          "url": "https://www.aiuc-1.com/security/enforce-ai-access-privileges",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Establish and maintain user access controls and admin privileges for AI systems in line with policy.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "B007.1",
+              "description": "System-level access controls tailored to AI systems using role-based or attribute-based access.",
+              "category": "Core",
+              "evidence_types": [
+                "IAM platform screenshots"
+              ]
+            },
+            {
+              "id": "B007.2",
+              "description": "Conducting access reviews and updates at least quarterly.",
+              "category": "Core",
+              "evidence_types": [
+                "Quarterly access review documentation"
+              ]
+            }
+          ],
+          "keywords": [
+            "Access Controls",
+            "Organizational Policy"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [],
+            "csa_aicm": [
+              "DSP-07",
+              "DSP-08",
+              "IAM-01",
+              "IAM-02",
+              "IAM-03",
+              "IAM-04",
+              "IAM-05",
+              "IAM-06",
+              "IAM-07",
+              "IAM-08",
+              "IAM-09",
+              "IAM-10",
+              "IAM-13",
+              "IAM-14",
+              "IAM-15",
+              "IAM-16",
+              "IAM-17",
+              "IAM-18",
+              "LOG-04",
+              "LOG-09",
+              "LOG-12"
+            ],
+            "owasp_llm_top10": [
+              "LLM02",
+              "LLM06",
+              "LLM10"
+            ],
+            "owasp_aivss": [],
+            "mitre_atlas": [
+              "AML-M0005",
+              "AML-M0019"
+            ]
+          }
+        },
+        {
+          "id": "B008",
+          "title": "Protect model deployment environment",
+          "url": "https://www.aiuc-1.com/security/protect-model-deployment-environment",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement security measures for AI model deployment environments including encryption, access controls and authorization.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "B008.1",
+              "description": "Restricting access to production AI models based on job function.",
+              "category": "Core",
+              "evidence_types": [
+                "IAM configuration"
+              ]
+            },
+            {
+              "id": "B008.2",
+              "description": "Applying scoped API tokens, TLS for all endpoint traffic, schema validation.",
+              "category": "Core",
+              "evidence_types": [
+                "API security configuration"
+              ]
+            },
+            {
+              "id": "B008.3",
+              "description": "Securing model hosting environments with minimal container images.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Container configuration"
+              ]
+            },
+            {
+              "id": "B008.4",
+              "description": "Verifying model integrity before deployment using cryptographic checksums.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Deployment pipeline"
+              ]
+            }
+          ],
+          "keywords": [
+            "Model Environment",
+            "Encryption",
+            "Access Controls"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 15"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [],
+            "csa_aicm": [
+              "AIS-02",
+              "AIS-06",
+              "AIS-14",
+              "DSP-07",
+              "IAM-04",
+              "IAM-14",
+              "MDS-01",
+              "MDS-02",
+              "MDS-08",
+              "MDS-09",
+              "UEM-08"
+            ],
+            "owasp_llm_top10": [
+              "LLM07"
+            ],
+            "owasp_aivss": [
+              "Agent Memory and Context Manipulation"
+            ],
+            "mitre_atlas": [
+              "AML-M0005",
+              "AML-M0012",
+              "AML-M0019"
+            ]
+          }
+        },
+        {
+          "id": "B009",
+          "title": "Limit output over-exposure",
+          "url": "https://www.aiuc-1.com/security/limit-output-over-exposure",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement output limitations and obfuscation techniques to safeguard against information leakage.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation"
+          ],
+          "activities": [
+            {
+              "id": "B009.1",
+              "description": "Reducing or limiting the number of results shown in outputs to relevant only.",
+              "category": "Core",
+              "evidence_types": [
+                "Output restriction code"
+              ]
+            },
+            {
+              "id": "B009.2",
+              "description": "Providing user-facing notices about output limitations.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Product interface screenshots"
+              ]
+            },
+            {
+              "id": "B009.3",
+              "description": "Limiting the fidelity of model outputs with rounding, threshold bands, or obfuscation.",
+              "category": "Core",
+              "evidence_types": [
+                "Fidelity limitation code"
+              ]
+            }
+          ],
+          "keywords": [
+            "Output Obfuscation",
+            "Fidelity Reduction",
+            "Information Leakage",
+            "Response Filtering"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MEASURE 2.10"
+            ],
+            "csa_aicm": [
+              "AIS-09"
+            ],
+            "owasp_llm_top10": [
+              "LLM02",
+              "LLM05",
+              "LLM08",
+              "LLM09"
+            ],
+            "owasp_aivss": [],
+            "mitre_atlas": [
+              "AML-M0002"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Safety",
+      "url": "https://www.aiuc-1.com/safety",
+      "description": "Prevent harmful AI outputs and brand risk through testing, monitoring and safeguards",
+      "controls": [
+        {
+          "id": "C001",
+          "title": "Define AI risk taxonomy",
+          "url": "https://www.aiuc-1.com/safety/define-ai-risk-taxonomy",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Establish a risk taxonomy that categorizes risks within harmful, out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific usage.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "C001.1",
+              "description": "Internal policy document or risk framework defining AI risk categories with severity levels and examples.",
+              "category": "Core",
+              "evidence_types": [
+                "Risk taxonomy document"
+              ]
+            },
+            {
+              "id": "C001.2",
+              "description": "Quarterly reviews of risk taxonomy with review dates, participants, decisions, and version history.",
+              "category": "Core",
+              "evidence_types": [
+                "Review documentation"
+              ]
+            }
+          ],
+          "keywords": [
+            "Risk Taxonomy",
+            "Severity Rating",
+            "Application"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 9"
+            ],
+            "iso_42001": [
+              "A.5.2",
+              "A.5.3",
+              "A.5.4",
+              "A.5.5"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 1.3",
+              "GOVERN 1.4",
+              "GOVERN 4.2",
+              "GOVERN 6.1",
+              "MANAGE 1.2",
+              "MANAGE 1.3",
+              "MANAGE 1.4",
+              "MAP 1.5",
+              "MAP 5.1",
+              "MEASURE 1.1",
+              "MEASURE 2.10",
+              "MEASURE 2.11",
+              "MEASURE 3.1"
+            ],
+            "csa_aicm": [
+              "A&A-05",
+              "A&A-06",
+              "BCR-02",
+              "CEK-07",
+              "DSP-09",
+              "GRC-02",
+              "MDS-11",
+              "MDS-12",
+              "CCC-03"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "C002",
+          "title": "Conduct pre-deployment testing",
+          "url": "https://www.aiuc-1.com/safety/conduct-pre-deployment-testing",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Conduct internal testing of AI systems prior to deployment across risk categories.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "C002.1",
+              "description": "Conducting pre-deployment testing with documented results, risk assessments, and approval sign-offs.",
+              "category": "Core",
+              "evidence_types": [
+                "Test results",
+                "Risk assessments"
+              ]
+            },
+            {
+              "id": "C002.2",
+              "description": "Integrating AI system testing into established SDLC gates.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "CI/CD pipeline configuration"
+              ]
+            },
+            {
+              "id": "C002.3",
+              "description": "Implementing pre-deployment vulnerability scanning of AI artifacts and dependencies.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Vulnerability scan results"
+              ]
+            }
+          ],
+          "keywords": [
+            "Internal Testing",
+            "Pre-Deployment Testing"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 9",
+              "Article 27"
+            ],
+            "iso_42001": [
+              "A.6.2.4",
+              "A.6.2.5"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MANAGE 1.1",
+              "MAP 4.2",
+              "MEASURE 2.1",
+              "MEASURE 2.3",
+              "MEASURE 2.5",
+              "MEASURE 4.3"
+            ],
+            "csa_aicm": [
+              "AIS-04",
+              "AIS-05",
+              "AIS-06",
+              "AIS-07",
+              "AIS-12",
+              "CCC-02",
+              "TVM-05"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": [
+              "AML-M0016"
+            ]
+          }
+        },
+        {
+          "id": "C003",
+          "title": "Prevent harmful outputs",
+          "url": "https://www.aiuc-1.com/safety/prevent-harmful-outputs",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards to prevent harmful outputs including distressed outputs, angry responses, high-risk advice, offensive content, bias, and deception.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation",
+            "Image-generation"
+          ],
+          "activities": [
+            {
+              "id": "C003.1",
+              "description": "Detecting and blocking harmful output types through content filtering systems.",
+              "category": "Core",
+              "evidence_types": [
+                "Content filtering rules"
+              ]
+            },
+            {
+              "id": "C003.2",
+              "description": "Restricting high-risk recommendations in sensitive domains with disclaimers.",
+              "category": "Core",
+              "evidence_types": [
+                "System prompts",
+                "Guardrail rules"
+              ]
+            },
+            {
+              "id": "C003.3",
+              "description": "Monitoring for discriminatory patterns and implementing fairness checks.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Bias evaluation results"
+              ]
+            },
+            {
+              "id": "C003.4",
+              "description": "Evaluating harm mitigation controls using performance metrics.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Performance metrics dashboard"
+              ]
+            }
+          ],
+          "keywords": [
+            "Harmful Outputs",
+            "Distressed",
+            "Angry",
+            "Advice",
+            "Offensive",
+            "Bias"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 9"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MEASURE 2.11"
+            ],
+            "csa_aicm": [
+              "AIS-09",
+              "GRC-11",
+              "GRC-09",
+              "LOG-15",
+              "TVM-11"
+            ],
+            "owasp_llm_top10": [
+              "LLM05",
+              "LLM09"
+            ],
+            "owasp_aivss": [
+              "Agent Goal and Instruction Manipulation"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "C004",
+          "title": "Prevent out-of-scope outputs",
+          "url": "https://www.aiuc-1.com/safety/prevent-out-of-scope-outputs",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards to prevent out-of-scope outputs.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation"
+          ],
+          "activities": [
+            {
+              "id": "C004.1",
+              "description": "Blocking rules, defensive prompting, or filtering for out-of-scope requests.",
+              "category": "Core",
+              "evidence_types": [
+                "Technical configuration"
+              ]
+            },
+            {
+              "id": "C004.2",
+              "description": "Logs showing out-of-scope attempts with frequency data and boundary updates.",
+              "category": "Core",
+              "evidence_types": [
+                "Log output"
+              ]
+            },
+            {
+              "id": "C004.3",
+              "description": "User-facing guidance explaining system capabilities and limitations.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "UI screenshots"
+              ]
+            }
+          ],
+          "keywords": [
+            "Out-of-Scope",
+            "Political Discussion",
+            "Technical Controls"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 72"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MAP 2.2",
+              "MAP 3.4"
+            ],
+            "csa_aicm": [
+              "AIS-09",
+              "GRC-09",
+              "LOG-15",
+              "TVM-11"
+            ],
+            "owasp_llm_top10": [
+              "LLM05"
+            ],
+            "owasp_aivss": [
+              "Agent Goal and Instruction Manipulation"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "C005",
+          "title": "Prevent customer-defined high risk outputs",
+          "url": "https://www.aiuc-1.com/safety/prevent-other-high-risk-outputs",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards to prevent additional high risk outputs as defined in risk taxonomy.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "C005.1",
+              "description": "Implementing detection and blocking mechanisms aligned with organizational risk taxonomy.",
+              "category": "Core",
+              "evidence_types": [
+                "Filtering rules"
+              ]
+            },
+            {
+              "id": "C005.2",
+              "description": "Establishing escalation procedures for flagged high-risk content.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Workflow configuration"
+              ]
+            },
+            {
+              "id": "C005.3",
+              "description": "Implementing automated real-time interventions.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Automated response configuration"
+              ]
+            }
+          ],
+          "keywords": [
+            "High-Risk Outputs",
+            "Risk Taxonomy",
+            "Technical Controls"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 9"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MANAGE 1.4"
+            ],
+            "csa_aicm": [
+              "GRC-09",
+              "LOG-15",
+              "TVM-11",
+              "STA-10"
+            ],
+            "owasp_llm_top10": [
+              "LLM05"
+            ],
+            "owasp_aivss": [
+              "Agent Goal and Instruction Manipulation"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "C006",
+          "title": "Prevent output vulnerabilities",
+          "url": "https://www.aiuc-1.com/safety/prevent-output-vulnerabilities",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Implement safeguards to prevent security vulnerabilities in outputs from impacting users.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "C006.1",
+              "description": "Establishing output sanitization and validation procedures before presenting content to users.",
+              "category": "Core",
+              "evidence_types": [
+                "Output sanitization code"
+              ]
+            },
+            {
+              "id": "C006.2",
+              "description": "Implementing security labeling and content handling based on trust level.",
+              "category": "Core",
+              "evidence_types": [
+                "Trust-based content handling"
+              ]
+            },
+            {
+              "id": "C006.3",
+              "description": "Detecting advanced output-based attack patterns.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Detection rules"
+              ]
+            }
+          ],
+          "keywords": [
+            "Harmful Outputs",
+            "Code Injection",
+            "Data Exfiltration",
+            "Application"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 72"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [],
+            "csa_aicm": [
+              "AIS-09",
+              "TVM-02",
+              "AIS-07"
+            ],
+            "owasp_llm_top10": [
+              "LLM05"
+            ],
+            "owasp_aivss": [
+              "Insecure Agent Critical Systems Interaction"
+            ],
+            "mitre_atlas": [
+              "AML-M0020"
+            ]
+          }
+        },
+        {
+          "id": "C007",
+          "title": "Flag high risk outputs",
+          "url": "https://www.aiuc-1.com/safety/flag-high-risk-recommendations",
+          "classification": "Optional",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement an alerting system that flags high-risk outputs for human review.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "C007.1",
+              "description": "Document or policy defining high-risk outputs requiring human review.",
+              "category": "Core",
+              "evidence_types": [
+                "Legal Policies"
+              ]
+            },
+            {
+              "id": "C007.2",
+              "description": "Detection code, configuration, or rules engine showing high-risk output filtering.",
+              "category": "Core",
+              "evidence_types": [
+                "Technical Implementation"
+              ]
+            },
+            {
+              "id": "C007.3",
+              "description": "Workflow documentation for human review process for flagged outputs.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Operational Practices"
+              ]
+            }
+          ],
+          "keywords": [
+            "Human Review",
+            "Escalation"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.6.1.2",
+              "A.9.3",
+              "A.9.2"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 3.2",
+              "MAP 3.5"
+            ],
+            "csa_aicm": [
+              "GRC-15"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [
+              "Agent Untraceability"
+            ],
+            "mitre_atlas": [
+              "AML-M0020"
+            ]
+          }
+        },
+        {
+          "id": "C008",
+          "title": "Monitor AI risk categories",
+          "url": "https://www.aiuc-1.com/safety/monitor-ai-risk-categories",
+          "classification": "Optional",
+          "type": "Detective",
+          "frequency": "Every 12 months",
+          "description": "Implement monitoring of AI systems across risk categories.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "C008.1",
+              "description": "Establish ongoing monitoring of AI outputs across risk categories through regular evaluations.",
+              "category": "Core",
+              "evidence_types": [
+                "Monitoring dashboard"
+              ]
+            },
+            {
+              "id": "C008.2",
+              "description": "Maintain documentation recording identified risk scenarios with examples.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Document/change log"
+              ]
+            },
+            {
+              "id": "C008.4",
+              "description": "Integrate AI output monitoring with existing security tools.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "SIEM integration"
+              ]
+            }
+          ],
+          "keywords": [
+            "Monitoring",
+            "High-Risk Outputs"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 72"
+            ],
+            "iso_42001": [
+              "A.5.4",
+              "A.6.2.6",
+              "A.9.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 1.5",
+              "MANAGE 3.1",
+              "MANAGE 4.1",
+              "MEASURE 2.4",
+              "MEASURE 4.3"
+            ],
+            "csa_aicm": [
+              "GRC-02",
+              "MDS-11",
+              "TVM-03",
+              "MDS-12",
+              "TVM-07"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [
+              "Agent Untraceability"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "C009",
+          "title": "Enable real-time feedback and intervention",
+          "url": "https://www.aiuc-1.com/safety/collect-real-time-feedback",
+          "classification": "Optional",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Implement mechanisms to enable real-time user feedback collection and intervention mechanisms.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "C009.1",
+              "description": "Enable user intervention capabilities such as pause, stop, or redirect system behavior.",
+              "category": "Core",
+              "evidence_types": [
+                "Intervention controls screenshots"
+              ]
+            },
+            {
+              "id": "C009.2",
+              "description": "Review user feedback and intervention logs regularly.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Feedback review reports"
+              ]
+            }
+          ],
+          "keywords": [
+            "Feedback",
+            "Intervention",
+            "User Control",
+            "Transparency"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 14"
+            ],
+            "iso_42001": [
+              "A.8.3"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 3.2",
+              "MAP 3.5",
+              "MEASURE 3.3"
+            ],
+            "csa_aicm": [
+              "GRC-15"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "C010",
+          "title": "Third-party testing for harmful outputs",
+          "url": "https://www.aiuc-1.com/safety/3rd-party-testing-for-harmful-outputs",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Appoint expert third parties to evaluate system robustness to harmful outputs at least every 3 months.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation",
+            "Image-generation"
+          ],
+          "activities": [
+            {
+              "id": "C010.1",
+              "description": "Third-party evaluation report showing harmful output testing.",
+              "category": "Core",
+              "evidence_types": [
+                "Third-party evaluation report"
+              ]
+            }
+          ],
+          "keywords": [
+            "Harmful Outputs",
+            "Third-Party Testing"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 9"
+            ],
+            "iso_42001": [
+              "A.6.2.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MANAGE 2.2",
+              "MEASURE 1.3",
+              "MEASURE 2.1",
+              "MEASURE 2.6",
+              "MEASURE 2.11",
+              "MEASURE 4.1",
+              "MEASURE 4.2"
+            ],
+            "csa_aicm": [
+              "GRC-11",
+              "A&A-02",
+              "TVM-06"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "C011",
+          "title": "Third-party testing for out-of-scope outputs",
+          "url": "https://www.aiuc-1.com/safety/3rd-party-testing-for-out-of-scope-outputs",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Appoint expert third parties to evaluate system robustness to out-of-scope outputs at least every 3 months.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation"
+          ],
+          "activities": [
+            {
+              "id": "C011.1",
+              "description": "Third-party evaluation report showing out-of-scope output testing.",
+              "category": "Core",
+              "evidence_types": [
+                "Third-party evaluation report"
+              ]
+            }
+          ],
+          "keywords": [
+            "Out-of-Scope",
+            "Third-Party Testing"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.6.2.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MANAGE 2.2",
+              "MAP 2.2",
+              "MEASURE 1.3",
+              "MEASURE 2.1",
+              "MEASURE 2.6",
+              "MEASURE 4.1",
+              "MEASURE 4.2"
+            ],
+            "csa_aicm": [],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "C012",
+          "title": "Third-party testing for customer-defined risk",
+          "url": "https://www.aiuc-1.com/safety/3rd-party-testing-for-other-risk",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Appoint expert third-parties to evaluate system robustness to additional high-risk outputs as defined in risk taxonomy.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "C012.1",
+              "description": "Third-party evaluation report showing testing of customer-defined risk.",
+              "category": "Core",
+              "evidence_types": [
+                "Third-party evaluation report"
+              ]
+            }
+          ],
+          "keywords": [
+            "High-Risk Outputs",
+            "Risk Taxonomy",
+            "Third-Party Testing"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.6.2.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MANAGE 2.2",
+              "MEASURE 1.3",
+              "MEASURE 2.1",
+              "MEASURE 2.6",
+              "MEASURE 4.1",
+              "MEASURE 4.2"
+            ],
+            "csa_aicm": [
+              "A&A-02",
+              "TVM-06"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [
+              "Agent Cascading Failures"
+            ],
+            "mitre_atlas": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "name": "Reliability",
+      "url": "https://www.aiuc-1.com/reliability",
+      "description": "Ensure AI system outputs are accurate, grounded, and tool calls are safe",
+      "controls": [
+        {
+          "id": "D001",
+          "title": "Prevent hallucinated outputs",
+          "url": "https://www.aiuc-1.com/reliability/prevent-hallucinated-outputs",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards or technical controls to prevent hallucinated outputs.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation"
+          ],
+          "activities": [
+            {
+              "id": "D001.1",
+              "description": "Implementing factual accuracy controls via fact-checking mechanisms, flagging uncertain responses.",
+              "category": "Core",
+              "evidence_types": [
+                "Groundedness validation screenshots"
+              ]
+            },
+            {
+              "id": "D001.2",
+              "description": "Requiring citations for factual claims, implementing source reliability checks.",
+              "category": "Core",
+              "evidence_types": [
+                "UI citation screenshots"
+              ]
+            },
+            {
+              "id": "D001.3",
+              "description": "Maintaining uncertainty communication through confidence levels and disclaimers.",
+              "category": "Core",
+              "evidence_types": [
+                "Confidence display screenshots"
+              ]
+            }
+          ],
+          "keywords": [
+            "Hallucinations",
+            "Technical Controls"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MEASURE 2.5"
+            ],
+            "csa_aicm": [
+              "AIS-09",
+              "MDS-10",
+              "MDS-11"
+            ],
+            "owasp_llm_top10": [
+              "LLM05",
+              "LLM09"
+            ],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "D002",
+          "title": "Third-party testing for hallucinations",
+          "url": "https://www.aiuc-1.com/reliability/3rd-party-testing-for-hallucinations",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Appoint expert third-parties to evaluate hallucinated outputs at least every 3 months.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation"
+          ],
+          "activities": [
+            {
+              "id": "D002.1",
+              "description": "Third-party evaluation report showing hallucination testing results.",
+              "category": "Core",
+              "evidence_types": [
+                "Third-party evaluation report"
+              ]
+            }
+          ],
+          "keywords": [
+            "Hallucinations",
+            "Third-Party Testing"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.6.2.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MANAGE 2.2",
+              "MEASURE 1.3",
+              "MEASURE 2.1",
+              "MEASURE 2.5",
+              "MEASURE 4.1",
+              "MEASURE 4.2"
+            ],
+            "csa_aicm": [
+              "AIS-09",
+              "AIS-05",
+              "MDS-06",
+              "MDS-07"
+            ],
+            "owasp_llm_top10": [
+              "LLM09"
+            ],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "D003",
+          "title": "Restrict unsafe tool calls",
+          "url": "https://www.aiuc-1.com/reliability/restrict-unsafe-tool-calls",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "D003.1",
+              "description": "Function call validation and authorization, restricting tool access to approved functions, validating parameters before execution.",
+              "category": "Core",
+              "evidence_types": [
+                "Function allowlists",
+                "Parameter validation code"
+              ]
+            },
+            {
+              "id": "D003.2",
+              "description": "Enforcing rate limits and transaction caps for autonomous tool use.",
+              "category": "Core",
+              "evidence_types": [
+                "Rate limit configuration"
+              ]
+            },
+            {
+              "id": "D003.3",
+              "description": "Execution monitoring and logging; tracking all tool calls, monitoring for unauthorized access attempts.",
+              "category": "Core",
+              "evidence_types": [
+                "Logging configuration",
+                "Audit logs"
+              ]
+            },
+            {
+              "id": "D003.4",
+              "description": "Requiring human approval for sensitive tool operations.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Workflow screenshots"
+              ]
+            },
+            {
+              "id": "D003.5",
+              "description": "Reviewing patterns of AI tool usage; identifying anomalies, updating tool permissions.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Usage review reports"
+              ]
+            }
+          ],
+          "keywords": [
+            "Tool Calls",
+            "Tool Selection",
+            "Technical Controls"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 72"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "GOVERN 6.1"
+            ],
+            "csa_aicm": [
+              "AIS-10",
+              "AIS-06",
+              "AIS-13",
+              "AIS-11",
+              "MDS-10",
+              "MDS-11",
+              "TVM-11",
+              "TVM-12"
+            ],
+            "owasp_llm_top10": [
+              "LLM06",
+              "LLM08",
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agentic AI Tool Misuse"
+            ],
+            "mitre_atlas": [
+              "AML-M0004",
+              "AML-M0024"
+            ]
+          }
+        },
+        {
+          "id": "D004",
+          "title": "Third-party testing of tool calls",
+          "url": "https://www.aiuc-1.com/reliability/3rd-party-testing-of-tool-calls",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 3 months",
+          "description": "Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "D004.1",
+              "description": "Third-party evaluation report showing tool call testing results.",
+              "category": "Core",
+              "evidence_types": [
+                "Third-party evaluation report"
+              ]
+            }
+          ],
+          "keywords": [
+            "Tool Calls",
+            "Tool Selection",
+            "Third-Party Testing"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.6.2.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 6.1",
+              "GOVERN 4.3",
+              "MANAGE 2.2",
+              "MEASURE 1.3",
+              "MEASURE 2.1",
+              "MEASURE 2.6",
+              "MEASURE 4.1",
+              "MEASURE 4.2"
+            ],
+            "csa_aicm": [
+              "AIS-05"
+            ],
+            "owasp_llm_top10": [
+              "LLM06"
+            ],
+            "owasp_aivss": [
+              "Agentic AI Tool Misuse"
+            ],
+            "mitre_atlas": []
+          }
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "name": "Accountability",
+      "url": "https://www.aiuc-1.com/accountability",
+      "description": "Ensure AI systems have clear ownership, oversight, and governance processes",
+      "controls": [
+        {
+          "id": "E001",
+          "title": "AI failure plan for security breaches",
+          "url": "https://www.aiuc-1.com/accountability/ai-failure-plan-for-security-breaches",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Document an AI failure plan addressing privacy and security breaches by assigning accountable owners and establishing notification and remediation procedures.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E001.1",
+              "description": "Assign breach response lead and document incident response procedures.",
+              "category": "Core",
+              "evidence_types": [
+                "AI failure plan"
+              ]
+            },
+            {
+              "id": "E001.2",
+              "description": "Define procedures for customer communications, regulatory reporting, and vendor notifications.",
+              "category": "Core",
+              "evidence_types": [
+                "AI failure plan"
+              ]
+            },
+            {
+              "id": "E001.3",
+              "description": "Implement system freeze capabilities, vulnerability fixes, access control updates.",
+              "category": "Core",
+              "evidence_types": [
+                "AI failure plan"
+              ]
+            },
+            {
+              "id": "E001.4",
+              "description": "Establish guidance on preserving evidence for legal review.",
+              "category": "Core",
+              "evidence_types": [
+                "AI failure plan"
+              ]
+            }
+          ],
+          "keywords": [
+            "Incident Response",
+            "Security",
+            "Privacy"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 20",
+              "Article 73"
+            ],
+            "iso_42001": [
+              "A.8.4",
+              "A.8.5"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MANAGE 1.3",
+              "MANAGE 4.3"
+            ],
+            "csa_aicm": [
+              "BCR-09",
+              "BCR-10",
+              "SEF-01",
+              "SEF-02",
+              "SEF-03",
+              "SEF-04",
+              "SEF-05",
+              "SEF-07",
+              "SEF-08",
+              "SEF-09"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E002",
+          "title": "AI failure plan for harmful outputs",
+          "url": "https://www.aiuc-1.com/accountability/ai-failure-plan-for-harmful-outputs",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Document AI failure plan for harmful AI outputs that cause significant customer harm.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation",
+            "Image-generation"
+          ],
+          "activities": [
+            {
+              "id": "E002.1",
+              "description": "Implementing customer communication protocols and immediate mitigation steps.",
+              "category": "Core",
+              "evidence_types": [
+                "AI failure plan"
+              ]
+            },
+            {
+              "id": "E002.2",
+              "description": "Defining harmful output category definitions and external support engagement.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "AI failure plan"
+              ]
+            }
+          ],
+          "keywords": [
+            "Incident Response",
+            "Emergency Response",
+            "Harmful Outputs"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 20",
+              "Article 73"
+            ],
+            "iso_42001": [
+              "A.8.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MANAGE 1.3",
+              "MANAGE 4.3"
+            ],
+            "csa_aicm": [
+              "BCR-09",
+              "BCR-10",
+              "SEF-09"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E003",
+          "title": "AI failure plan for hallucinations",
+          "url": "https://www.aiuc-1.com/accountability/ai-failure-plan-for-hallucinations",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Document AI failure plan for hallucinated AI outputs that cause substantial customer financial loss.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation"
+          ],
+          "activities": [
+            {
+              "id": "E003.1",
+              "description": "Establishing compensation assessment procedures and remediation measures.",
+              "category": "Core",
+              "evidence_types": [
+                "AI failure plan"
+              ]
+            },
+            {
+              "id": "E003.2",
+              "description": "Defining hallucination incident types and external support coordination.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "AI failure plan"
+              ]
+            }
+          ],
+          "keywords": [
+            "Hallucinations",
+            "Incident Response",
+            "Customer Loss"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 20",
+              "Article 73"
+            ],
+            "iso_42001": [
+              "A.8.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 4.3",
+              "MANAGE 1.3",
+              "MANAGE 4.3"
+            ],
+            "csa_aicm": [
+              "BCR-09",
+              "BCR-10",
+              "SEF-09"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E004",
+          "title": "Assign accountability",
+          "url": "https://www.aiuc-1.com/accountability/assign-accountability",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Document which AI system changes require formal review or approval, assign a lead accountable for each, and document their approval.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E004.1",
+              "description": "Documentation defining which AI system changes require approval with assigned leads, plus approval records.",
+              "category": "Core",
+              "evidence_types": [
+                "Change management policies"
+              ]
+            },
+            {
+              "id": "E004.2",
+              "description": "Implementing code signing and verification processes for AI models and deployment artifacts.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Code signing configuration"
+              ]
+            }
+          ],
+          "keywords": [
+            "Decision Owners",
+            "Deployment"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 17",
+              "Article 18"
+            ],
+            "iso_42001": [
+              "A.3.2",
+              "A.4.6",
+              "A.6.2.2",
+              "A.10.2"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 2.1",
+              "GOVERN 2.3",
+              "MAP 3.5",
+              "MEASURE 2.8"
+            ],
+            "csa_aicm": [
+              "AIS-01",
+              "AIS-04",
+              "CCC-05",
+              "CCC-03",
+              "GRC-06",
+              "CCC-01",
+              "MDS-09"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": [
+              "AML-M0013"
+            ]
+          }
+        },
+        {
+          "id": "E005",
+          "title": "Assess cloud vs on-prem processing",
+          "url": "https://www.aiuc-1.com/accountability/assess-cloud-vs-on-prem-processing",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish criteria for selecting cloud provider and circumstances for on-premises processing.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E005.1",
+              "description": "Risk assessment and decision record evaluating cloud vs. on-premises factors.",
+              "category": "Core",
+              "evidence_types": [
+                "Deployment decision memos"
+              ]
+            }
+          ],
+          "keywords": [
+            "Deployment",
+            "Cloud Security",
+            "Data Residency"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "MAP 4.2"
+            ],
+            "csa_aicm": [
+              "AIS-05"
+            ],
+            "owasp_llm_top10": [
+              "LLM03"
+            ],
+            "owasp_aivss": [
+              "Agent Supply Chain and Dependency Risk"
+            ],
+            "mitre_atlas": [
+              "AML-M0017"
+            ]
+          }
+        },
+        {
+          "id": "E006",
+          "title": "Conduct vendor due diligence",
+          "url": "https://www.aiuc-1.com/accountability/conduct-vendor-due-diligence",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish AI vendor due diligence processes for foundation and upstream model providers.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E006.1",
+              "description": "Vendor assessment records showing evaluation criteria, scoring, verification, and approval decisions.",
+              "category": "Core",
+              "evidence_types": [
+                "Vendor assessment documentation"
+              ]
+            }
+          ],
+          "keywords": [
+            "Vendor Due Diligence",
+            "Foundation Models"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 23",
+              "Article 24"
+            ],
+            "iso_42001": [
+              "A.10.3"
+            ],
+            "nist_ai_rmf": [
+              "MAP 4.2"
+            ],
+            "csa_aicm": [
+              "STA-01"
+            ],
+            "owasp_llm_top10": [
+              "LLM03"
+            ],
+            "owasp_aivss": [
+              "Agent Supply Chain and Dependency Risk"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E007",
+          "title": "Document system change approvals",
+          "url": "https://www.aiuc-1.com/accountability/document-system-change-approvals",
+          "classification": "Optional",
+          "type": "Detective",
+          "frequency": "Every 12 months",
+          "description": "RETIRED - Merged with E004 at Q1 2026 update.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E007.1",
+              "description": "RETIRED - merged into E004.",
+              "category": "Core",
+              "evidence_types": []
+            }
+          ],
+          "keywords": [
+            "Approvals",
+            "Workflows"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 17",
+              "Article 18"
+            ],
+            "iso_42001": [
+              "A.6.2.2",
+              "A.6.2.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 2.1",
+              "GOVERN 2.3",
+              "MANAGE 1.1",
+              "MAP 3.5",
+              "MEASURE 2.8",
+              "MEASURE 4.3"
+            ],
+            "csa_aicm": [
+              "CCC-01",
+              "CCC-03",
+              "CCC-04",
+              "CCC-05",
+              "CCC-06",
+              "AIS-01"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E008",
+          "title": "Review internal processes",
+          "url": "https://www.aiuc-1.com/accountability/review-internal-processes",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish regular internal reviews of key processes and document review records and approvals.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E008.1",
+              "description": "Quarterly reviews of decision processes including AI system changes, foundational model selection.",
+              "category": "Core",
+              "evidence_types": [
+                "Meeting notes",
+                "Decision logs"
+              ]
+            },
+            {
+              "id": "E008.2",
+              "description": "Collect and implement external feedback on AI systems.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Security advisories",
+                "External input records"
+              ]
+            }
+          ],
+          "keywords": [
+            "Internal Reviews",
+            "Documentation"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 43"
+            ],
+            "iso_42001": [
+              "A.3.3",
+              "A.2.3",
+              "A.2.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 1.7",
+              "GOVERN 5.2",
+              "GOVERN 5.1",
+              "MANAGE 4.2",
+              "MEASURE 1.2",
+              "MEASURE 2.13"
+            ],
+            "csa_aicm": [
+              "A&A-02",
+              "A&A-03",
+              "A&A-05",
+              "A&A-06",
+              "BCR-01",
+              "DSP-09",
+              "GRC-03"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E009",
+          "title": "Monitor third-party access",
+          "url": "https://www.aiuc-1.com/accountability/monitor-3rd-party-access",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement systems to monitor third-party access to AI systems.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E009.1",
+              "description": "Configuring logging for third-party interactions with captured metadata.",
+              "category": "Core",
+              "evidence_types": [
+                "Logging system screenshots"
+              ]
+            }
+          ],
+          "keywords": [
+            "Access",
+            "Logins"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 72"
+            ],
+            "iso_42001": [],
+            "nist_ai_rmf": [
+              "GOVERN 1.5",
+              "MANAGE 4.1"
+            ],
+            "csa_aicm": [
+              "AIS-10",
+              "LOG-05",
+              "UEM-14",
+              "TVM-05"
+            ],
+            "owasp_llm_top10": [
+              "LLM03",
+              "LLM05",
+              "LLM06",
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agent Supply Chain and Dependency Risk"
+            ],
+            "mitre_atlas": [
+              "AML-M0024"
+            ]
+          }
+        },
+        {
+          "id": "E010",
+          "title": "Establish AI acceptable use policy",
+          "url": "https://www.aiuc-1.com/accountability/establish-ai-acceptable-use-policy",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish and implement an AI acceptable use policy defining prohibited AI usage for end-users.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E010.1",
+              "description": "Policy document defining acceptable and prohibited AI usage.",
+              "category": "Core",
+              "evidence_types": [
+                "Acceptable Use Policy"
+              ]
+            },
+            {
+              "id": "E010.2",
+              "description": "Implementation of detection and monitoring systems for AUP violations.",
+              "category": "Core",
+              "evidence_types": [
+                "Detection system code"
+              ]
+            },
+            {
+              "id": "E010.3",
+              "description": "User-facing alerts when acceptable use policy is violated.",
+              "category": "Core",
+              "evidence_types": [
+                "UI screenshots"
+              ]
+            },
+            {
+              "id": "E010.4",
+              "description": "Real-time blocking/alerting capabilities and violation tracking.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Enforcement configuration"
+              ]
+            }
+          ],
+          "keywords": [
+            "Acceptable Use",
+            "Breach"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.2.2",
+              "A.9.2",
+              "A.9.4",
+              "A.2.4",
+              "A.9.3"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 1.2",
+              "MAP 1.6",
+              "MAP 3.3",
+              "MAP 3.4",
+              "MEASURE 2.4"
+            ],
+            "csa_aicm": [
+              "GRC-09"
+            ],
+            "owasp_llm_top10": [
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agent Orchestration and Multi-Agent Exploitation"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E011",
+          "title": "Record processing locations",
+          "url": "https://www.aiuc-1.com/accountability/record-processing-locations",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Document AI data processing locations covering geographic locations of processing and inference endpoints.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E011.1",
+              "description": "Maintaining AI infrastructure location documentation.",
+              "category": "Core",
+              "evidence_types": [
+                "Subprocessor list"
+              ]
+            },
+            {
+              "id": "E011.2",
+              "description": "Implementing transfer compliance procedures.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "DPA",
+                "Transfer impact assessments"
+              ]
+            }
+          ],
+          "keywords": [
+            "Data Processing",
+            "Storage Location"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 11"
+            ],
+            "iso_42001": [
+              "A.7.5"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 1.6"
+            ],
+            "csa_aicm": [
+              "DSP-13",
+              "DSP-19",
+              "UEM-04"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E012",
+          "title": "Document regulatory compliance",
+          "url": "https://www.aiuc-1.com/accountability/document-regulatory-compliance",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 6 months",
+          "description": "Document applicable AI laws and standards, required data protections, and strategies for compliance.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E012.1",
+              "description": "Identify applicable regulations, document compliance procedures, and review every 6 months.",
+              "category": "Core",
+              "evidence_types": [
+                "Compliance register"
+              ]
+            }
+          ],
+          "keywords": [
+            "Regulatory",
+            "EU",
+            "GDPR",
+            "NIST",
+            "ISO"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 16",
+              "Article 18",
+              "Article 21",
+              "Article 25",
+              "Article 26",
+              "Article 43",
+              "Article 47",
+              "Article 48",
+              "Article 49"
+            ],
+            "iso_42001": [
+              "A.2.3",
+              "A.8.5"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 1.1",
+              "GOVERN 1.7",
+              "MAP 1.1",
+              "MAP 4.1"
+            ],
+            "csa_aicm": [
+              "A&A-04",
+              "DSP-10",
+              "DSP-18",
+              "GRC-07",
+              "HRS-10"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E013",
+          "title": "Implement quality management system",
+          "url": "https://www.aiuc-1.com/accountability/implement-quality-management-system",
+          "classification": "Optional",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish a quality management system for AI systems proportionate to the size of the organization.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E013.1",
+              "description": "Defining quality objectives, metrics, and risk management approach.",
+              "category": "Core",
+              "evidence_types": [
+                "Quality metrics dashboards"
+              ]
+            },
+            {
+              "id": "E013.2",
+              "description": "Establishing change management, approval processes.",
+              "category": "Core",
+              "evidence_types": [
+                "Change approval workflows"
+              ]
+            },
+            {
+              "id": "E013.3",
+              "description": "Implementing defect tracking, continuous improvement, and post-market monitoring.",
+              "category": "Core",
+              "evidence_types": [
+                "Issue trackers"
+              ]
+            },
+            {
+              "id": "E013.4",
+              "description": "Establishing data management and record-keeping systems.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Data governance policies"
+              ]
+            },
+            {
+              "id": "E013.5",
+              "description": "Documenting communication procedures with regulatory authorities.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Incident reporting templates"
+              ]
+            }
+          ],
+          "keywords": [
+            "Quality management",
+            "Regulatory"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 9",
+              "Article 10",
+              "Article 11",
+              "Article 12",
+              "Article 16",
+              "Article 17",
+              "Article 18",
+              "Article 19",
+              "Article 26",
+              "Article 43",
+              "Article 72",
+              "Article 73"
+            ],
+            "iso_42001": [
+              "A.5.2",
+              "A.6.2.7",
+              "A.5.3",
+              "A.5.4",
+              "A.4.2"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 1.4",
+              "GOVERN 1.3"
+            ],
+            "csa_aicm": [
+              "AIS-01",
+              "AIS-03",
+              "BCR-02",
+              "DSP-09",
+              "GRC-02",
+              "GRC-10",
+              "MDS-02",
+              "A&A-05",
+              "CCC-02",
+              "TVM-01",
+              "TVM-02",
+              "SEF-01"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [
+              "Agent Supply Chain and Dependency Risk"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E014",
+          "title": "Share transparency reports",
+          "url": "https://www.aiuc-1.com/accountability/share-transparency-reports",
+          "classification": "Optional",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "RETIRED - Merged into E017 at Q1 2026 update.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E014.1",
+              "description": "RETIRED - merged into E017.",
+              "category": "Core",
+              "evidence_types": []
+            }
+          ],
+          "keywords": [
+            "Transparency"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 11"
+            ],
+            "iso_42001": [
+              "A.6.2.7",
+              "A.8.2",
+              "A.8.5"
+            ],
+            "nist_ai_rmf": [
+              "MANAGE 4.2",
+              "MANAGE 4.3",
+              "MAP 1.6",
+              "MAP 5.2",
+              "MEASURE 2.8",
+              "MEASURE 2.9",
+              "MEASURE 4.2"
+            ],
+            "csa_aicm": [
+              "GRC-14",
+              "TVM-09",
+              "TVM-10",
+              "A&A-06",
+              "LOG-13",
+              "LOG-10",
+              "SEF-05",
+              "SEF-07"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E015",
+          "title": "Log model activity",
+          "url": "https://www.aiuc-1.com/accountability/log-model-activity",
+          "classification": "Mandatory",
+          "type": "Detective",
+          "frequency": "Every 12 months",
+          "description": "Maintain logs of AI system processes, actions, and model outputs to support incident investigation, auditing, and explanation.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E015.1",
+              "description": "Capture system activity details including inputs, processing steps, outputs, and metadata.",
+              "category": "Core",
+              "evidence_types": [
+                "Logging system screenshots"
+              ]
+            },
+            {
+              "id": "E015.2",
+              "description": "Implement storage with retention policies, access controls, and data sanitation.",
+              "category": "Core",
+              "evidence_types": [
+                "Log management platform"
+              ]
+            },
+            {
+              "id": "E015.3",
+              "description": "Ensure logs are tamper-evident and independently verifiable.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "WORM storage",
+                "Cryptographic hashing"
+              ]
+            }
+          ],
+          "keywords": [
+            "Explainability",
+            "Logs",
+            "Audit Trail"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 12",
+              "Article 19"
+            ],
+            "iso_42001": [
+              "A.6.2.8"
+            ],
+            "nist_ai_rmf": [
+              "MEASURE 2.4",
+              "MEASURE 2.8"
+            ],
+            "csa_aicm": [
+              "LOG-01",
+              "MDS-10",
+              "SEF-05",
+              "SEF-07"
+            ],
+            "owasp_llm_top10": [
+              "LLM10"
+            ],
+            "owasp_aivss": [
+              "Agent Untraceability"
+            ],
+            "mitre_atlas": [
+              "AML-M0024"
+            ]
+          }
+        },
+        {
+          "id": "E016",
+          "title": "Implement AI disclosure mechanisms",
+          "url": "https://www.aiuc-1.com/accountability/implement-ai-disclosure-mechanisms",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement clear disclosure mechanisms to inform users when they are interacting with AI systems.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E016.1",
+              "description": "Display clear notices when users interact with AI chatbots.",
+              "category": "Core",
+              "evidence_types": [
+                "Text AI disclosure screenshots"
+              ]
+            },
+            {
+              "id": "E016.2",
+              "description": "Provide audio notifications at the beginning of voice calls.",
+              "category": "Core",
+              "evidence_types": [
+                "Voice AI disclosure transcripts"
+              ]
+            },
+            {
+              "id": "E016.3",
+              "description": "Mark AI-generated content with metadata, watermarks, or labels.",
+              "category": "Core",
+              "evidence_types": [
+                "Content labeling screenshots"
+              ]
+            },
+            {
+              "id": "E016.4",
+              "description": "Notify users when autonomous AI agents perform actions.",
+              "category": "Core",
+              "evidence_types": [
+                "Automation disclosure screenshots"
+              ]
+            },
+            {
+              "id": "E016.5",
+              "description": "Systems respond to user questions about whether they are interacting with AI.",
+              "category": "Core",
+              "evidence_types": [
+                "AI inquiry response screenshots"
+              ]
+            }
+          ],
+          "keywords": [
+            "Labelling",
+            "Transparency"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 13",
+              "Article 50"
+            ],
+            "iso_42001": [
+              "A.8.2"
+            ],
+            "nist_ai_rmf": [
+              "MAP 2.2",
+              "MAP 3.4",
+              "MEASURE 2.8"
+            ],
+            "csa_aicm": [
+              "GRC-15"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [
+              "Agent Identity Impersonation"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "E017",
+          "title": "Document system transparency policy",
+          "url": "https://www.aiuc-1.com/accountability/document-system-transparency-policy",
+          "classification": "Optional",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Establish a system transparency policy and maintain a repository of model cards, datasheets, and interpretability reports.",
+          "applicable_capabilities": [
+            "Universal"
+          ],
+          "activities": [
+            {
+              "id": "E017.1",
+              "description": "Policy document defining transparency documentation requirements.",
+              "category": "Core",
+              "evidence_types": [
+                "Transparency policy"
+              ]
+            },
+            {
+              "id": "E017.2",
+              "description": "Transparency documentation artifacts: model cards, datasheets, interpretability reports, AI Bill of Materials.",
+              "category": "Core",
+              "evidence_types": [
+                "Model cards",
+                "AIBOM"
+              ]
+            },
+            {
+              "id": "E017.3",
+              "description": "Policy defining transparency sharing practices with stakeholder categories.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Sharing policy"
+              ]
+            }
+          ],
+          "keywords": [
+            "Transparency",
+            "System Cards"
+          ],
+          "framework_references": {
+            "eu_ai_act": [
+              "Article 11"
+            ],
+            "iso_42001": [
+              "A.4.2",
+              "A.4.3",
+              "A.4.4",
+              "A.4.5",
+              "A.6.2.3",
+              "A.2.2",
+              "A.2.4"
+            ],
+            "nist_ai_rmf": [
+              "GOVERN 1.2",
+              "GOVERN 1.6",
+              "MAP 1.6",
+              "MEASURE 2.8",
+              "MEASURE 2.9",
+              "MEASURE 4.3"
+            ],
+            "csa_aicm": [
+              "GRC-13",
+              "GRC-14",
+              "MDS-03",
+              "MDS-04",
+              "MDS-05",
+              "STA-16",
+              "DSP-20"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": [
+              "AML-M0023",
+              "AML-M0025"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Society",
+      "url": "https://www.aiuc-1.com/society",
+      "description": "Prevent AI from enabling societal harm through cyberattacks or catastrophic misuse",
+      "controls": [
+        {
+          "id": "F001",
+          "title": "Prevent AI cyber misuse",
+          "url": "https://www.aiuc-1.com/society/prevent-ai-cyber-misuse",
+          "classification": "Mandatory",
+          "type": "Preventative",
+          "frequency": "Every 12 months",
+          "description": "Implement or document guardrails to prevent AI-enabled misuse for cyber attacks and exploitation.",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Automation",
+            "Voice-generation"
+          ],
+          "activities": [
+            {
+              "id": "F001.1",
+              "description": "Provider model cards and documentation describing offensive cyber capabilities and mitigation strategies.",
+              "category": "Core",
+              "evidence_types": [
+                "Vendor documentation"
+              ]
+            },
+            {
+              "id": "F001.2",
+              "description": "Deploy content filtering to detect requests for malicious code generation and vulnerability exploitation.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Content filtering rules"
+              ]
+            }
+          ],
+          "keywords": [
+            "Cyber Attacks"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.5.5"
+            ],
+            "nist_ai_rmf": [
+              "MEASURE 2.7"
+            ],
+            "csa_aicm": [
+              "GRC-02",
+              "GRC-09",
+              "GRC-10",
+              "GRC-12",
+              "TVM-11"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [
+              "Agent Identity Impersonation"
+            ],
+            "mitre_atlas": []
+          }
+        },
+        {
+          "id": "F002",
+          "title": "Prevent catastrophic misuse",
+          "url": "https://www.aiuc-1.com/society/prevent-catastrophic-misuse",
+          "classification": "Mandatory",
+          "type": "Detective",
+          "frequency": "Every 12 months",
+          "description": "Implement or document guardrails to prevent AI-enabled catastrophic system misuse (chemical / bio / radio / nuclear).",
+          "applicable_capabilities": [
+            "Text-generation",
+            "Voice-generation",
+            "Image-generation"
+          ],
+          "activities": [
+            {
+              "id": "F002.1",
+              "description": "List of foundation models with CBRN capability information and risk evaluations.",
+              "category": "Core",
+              "evidence_types": [
+                "Vendor documentation"
+              ]
+            },
+            {
+              "id": "F002.2",
+              "description": "Monitoring dashboard or alert configuration for catastrophic misuse patterns.",
+              "category": "Supplemental",
+              "evidence_types": [
+                "Monitoring configuration"
+              ]
+            }
+          ],
+          "keywords": [
+            "CBRN",
+            "Chemical",
+            "Bioweapon",
+            "Radioactive",
+            "Nuclear"
+          ],
+          "framework_references": {
+            "eu_ai_act": [],
+            "iso_42001": [
+              "A.5.5"
+            ],
+            "nist_ai_rmf": [],
+            "csa_aicm": [
+              "GRC-02",
+              "GRC-09",
+              "GRC-10",
+              "GRC-12",
+              "TVM-11"
+            ],
+            "owasp_llm_top10": [],
+            "owasp_aivss": [],
+            "mitre_atlas": []
+          }
+        }
+      ]
+    }
+  ]
+}

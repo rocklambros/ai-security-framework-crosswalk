@@ -1,0 +1,2818 @@
+{
+  "metadata": {
+    "schema_version": "2.0",
+    "generated_at": "2026-04-06T18:27:47.114568+00:00",
+    "methodology": "manual-expert-crosswalk",
+    "source_standard": {
+      "name": "AIUC-1",
+      "version": "1.0",
+      "url": "https://www.aiuc-1.com",
+      "controls": 51,
+      "domains": 6
+    },
+    "target_standard": {
+      "name": "OWASP Top 10 for Agentic Applications",
+      "version": "2026",
+      "url": "https://owasp.org/www-project-top-10-for-agentic-applications/",
+      "entries": 10
+    },
+    "pipeline": {
+      "signals": {
+        "expert_judgment": {
+          "weight": 1.0,
+          "technique": "Manual expert mapping from Appendix A of the AIUC-OWASP crosswalk document"
+        }
+      },
+      "thresholds": {
+        "direct": 1.0,
+        "related": 1.0
+      }
+    },
+    "classification": {
+      "rationale_taxonomy": {
+        "PREV": "Prevent",
+        "SCOPE": "Constrain scope",
+        "GATE": "Human gate",
+        "DETECT": "Detect and trace",
+        "VALID": "Validate and test",
+        "GOVERN": "Policy and governance",
+        "ISOLATE": "Isolate and contain",
+        "DISCLOSE": "Disclose and calibrate"
+      },
+      "relevance_levels": [
+        "Primary",
+        "Secondary"
+      ],
+      "classification_accuracy": {
+        "training": {
+          "standard": "AIUC-1",
+          "mappings": 119,
+          "rationale_accuracy": 1.0,
+          "relevance_accuracy": 1.0
+        }
+      }
+    }
+  },
+  "summary": {
+    "controls_mapped": "43 / 51",
+    "controls_unmapped": 8,
+    "owasp_entries_with_matches": 10,
+    "total_mappings": 119,
+    "primary_mappings": 55,
+    "secondary_mappings": 64,
+    "rationale_distribution": {
+      "SCOPE": 33,
+      "ISOLATE": 8,
+      "VALID": 16,
+      "PREV": 24,
+      "GATE": 8,
+      "DETECT": 17,
+      "GOVERN": 10,
+      "DISCLOSE": 3
+    }
+  },
+  "control_level": {
+    "source_to_owasp": [
+      {
+        "control_id": "A001",
+        "control_title": "Establish input data policy",
+        "domain": "Data & Privacy",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "A002",
+        "control_title": "Establish output data policy",
+        "domain": "Data & Privacy",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "A003",
+        "control_title": "Limit AI agent data collection",
+        "domain": "Data & Privacy",
+        "function_class": "SCOPE",
+        "mapping_count": 3,
+        "primary_count": 2,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          }
+        ]
+      },
+      {
+        "control_id": "A004",
+        "control_title": "Protect IP & trade secrets",
+        "domain": "Data & Privacy",
+        "function_class": "SCOPE",
+        "mapping_count": 4,
+        "primary_count": 0,
+        "secondary_count": 4,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          }
+        ]
+      },
+      {
+        "control_id": "A005",
+        "control_title": "Prevent cross-customer data exposure",
+        "domain": "Data & Privacy",
+        "function_class": "ISOLATE",
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          }
+        ]
+      },
+      {
+        "control_id": "A006",
+        "control_title": "Prevent PII leakage",
+        "domain": "Data & Privacy",
+        "function_class": "ISOLATE",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          }
+        ]
+      },
+      {
+        "control_id": "A007",
+        "control_title": "Prevent IP violations",
+        "domain": "Data & Privacy",
+        "function_class": "SCOPE",
+        "mapping_count": 3,
+        "primary_count": 0,
+        "secondary_count": 3,
+        "mappings": [
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          }
+        ]
+      },
+      {
+        "control_id": "B001",
+        "control_title": "Third-party testing of adversarial robustness",
+        "domain": "Security",
+        "function_class": "VALID",
+        "mapping_count": 4,
+        "primary_count": 2,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          }
+        ]
+      },
+      {
+        "control_id": "B002",
+        "control_title": "Detect adversarial input",
+        "domain": "Security",
+        "function_class": "PREV",
+        "mapping_count": 3,
+        "primary_count": 2,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "B003",
+        "control_title": "Manage public release of technical details",
+        "domain": "Security",
+        "function_class": "PREV",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "B004",
+        "control_title": "Prevent AI endpoint scraping",
+        "domain": "Security",
+        "function_class": "PREV",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "B005",
+        "control_title": "Implement real-time input filtering",
+        "domain": "Security",
+        "function_class": "PREV",
+        "mapping_count": 4,
+        "primary_count": 2,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "B006",
+        "control_title": "Prevent unauthorized AI agent actions",
+        "domain": "Security",
+        "function_class": "SCOPE",
+        "mapping_count": 8,
+        "primary_count": 6,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          }
+        ]
+      },
+      {
+        "control_id": "B007",
+        "control_title": "Enforce user access privileges to AI systems",
+        "domain": "Security",
+        "function_class": "SCOPE",
+        "mapping_count": 4,
+        "primary_count": 2,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          }
+        ]
+      },
+      {
+        "control_id": "B008",
+        "control_title": "Protect model deployment environment",
+        "domain": "Security",
+        "function_class": "ISOLATE",
+        "mapping_count": 6,
+        "primary_count": 5,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          }
+        ]
+      },
+      {
+        "control_id": "B009",
+        "control_title": "Limit output over-exposure",
+        "domain": "Security",
+        "function_class": "SCOPE",
+        "mapping_count": 4,
+        "primary_count": 0,
+        "secondary_count": 4,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          }
+        ]
+      },
+      {
+        "control_id": "C001",
+        "control_title": "Define AI risk taxonomy",
+        "domain": "Safety",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "C002",
+        "control_title": "Conduct pre-deployment testing",
+        "domain": "Safety",
+        "function_class": "VALID",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          }
+        ]
+      },
+      {
+        "control_id": "C003",
+        "control_title": "Prevent harmful outputs",
+        "domain": "Safety",
+        "function_class": "PREV",
+        "mapping_count": 3,
+        "primary_count": 1,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "C004",
+        "control_title": "Prevent out-of-scope outputs",
+        "domain": "Safety",
+        "function_class": "PREV",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "C005",
+        "control_title": "Prevent customer-defined high risk outputs",
+        "domain": "Safety",
+        "function_class": "PREV",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "C006",
+        "control_title": "Prevent output vulnerabilities",
+        "domain": "Safety",
+        "function_class": "PREV",
+        "mapping_count": 3,
+        "primary_count": 1,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "C007",
+        "control_title": "Flag high risk outputs",
+        "domain": "Safety",
+        "function_class": "GATE",
+        "mapping_count": 3,
+        "primary_count": 1,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          }
+        ]
+      },
+      {
+        "control_id": "C008",
+        "control_title": "Monitor AI risk categories",
+        "domain": "Safety",
+        "function_class": "DETECT",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      },
+      {
+        "control_id": "C009",
+        "control_title": "Enable real-time feedback and intervention",
+        "domain": "Safety",
+        "function_class": "GATE",
+        "mapping_count": 5,
+        "primary_count": 2,
+        "secondary_count": 3,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          }
+        ]
+      },
+      {
+        "control_id": "C010",
+        "control_title": "Third-party testing for harmful outputs",
+        "domain": "Safety",
+        "function_class": "VALID",
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          }
+        ]
+      },
+      {
+        "control_id": "C011",
+        "control_title": "Third-party testing for out-of-scope outputs",
+        "domain": "Safety",
+        "function_class": "VALID",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          }
+        ]
+      },
+      {
+        "control_id": "C012",
+        "control_title": "Third-party testing for customer-defined risk",
+        "domain": "Safety",
+        "function_class": "VALID",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "D001",
+        "control_title": "Prevent hallucinated outputs",
+        "domain": "Reliability",
+        "function_class": "PREV",
+        "mapping_count": 2,
+        "primary_count": 2,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "D002",
+        "control_title": "Third-party testing for hallucinations",
+        "domain": "Reliability",
+        "function_class": "VALID",
+        "mapping_count": 3,
+        "primary_count": 2,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          }
+        ]
+      },
+      {
+        "control_id": "D003",
+        "control_title": "Restrict unsafe tool calls",
+        "domain": "Reliability",
+        "function_class": "SCOPE",
+        "mapping_count": 7,
+        "primary_count": 6,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          }
+        ]
+      },
+      {
+        "control_id": "D004",
+        "control_title": "Third-party testing of tool calls",
+        "domain": "Reliability",
+        "function_class": "VALID",
+        "mapping_count": 4,
+        "primary_count": 3,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          }
+        ]
+      },
+      {
+        "control_id": "E001",
+        "control_title": "AI failure plan for security breaches",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 2,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Primary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Primary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          }
+        ]
+      },
+      {
+        "control_id": "E002",
+        "control_title": "AI failure plan for harmful outputs",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Primary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          }
+        ]
+      },
+      {
+        "control_id": "E003",
+        "control_title": "AI failure plan for hallucinations",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Primary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          }
+        ]
+      },
+      {
+        "control_id": "E004",
+        "control_title": "Assign accountability",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          }
+        ]
+      },
+      {
+        "control_id": "E005",
+        "control_title": "Assess cloud vs on-prem processing",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          }
+        ]
+      },
+      {
+        "control_id": "E006",
+        "control_title": "Conduct vendor due diligence",
+        "domain": "Accountability",
+        "function_class": "VALID",
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          }
+        ]
+      },
+      {
+        "control_id": "E007",
+        "control_title": "Document system change approvals",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          }
+        ]
+      },
+      {
+        "control_id": "E008",
+        "control_title": "Review internal processes",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          }
+        ]
+      },
+      {
+        "control_id": "E009",
+        "control_title": "Monitor third-party access",
+        "domain": "Accountability",
+        "function_class": "DETECT",
+        "mapping_count": 5,
+        "primary_count": 4,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      },
+      {
+        "control_id": "E010",
+        "control_title": "Establish AI acceptable use policy",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          }
+        ]
+      },
+      {
+        "control_id": "E011",
+        "control_title": "Record processing locations",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "E012",
+        "control_title": "Document regulatory compliance",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "E013",
+        "control_title": "Implement quality management system",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "E014",
+        "control_title": "Share transparency reports",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "E015",
+        "control_title": "Log model activity",
+        "domain": "Accountability",
+        "function_class": "DETECT",
+        "mapping_count": 10,
+        "primary_count": 4,
+        "secondary_count": 6,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      },
+      {
+        "control_id": "E016",
+        "control_title": "Implement AI disclosure mechanisms",
+        "domain": "Accountability",
+        "function_class": "DISCLOSE",
+        "mapping_count": 2,
+        "primary_count": 1,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Primary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate"
+          }
+        ]
+      },
+      {
+        "control_id": "E017",
+        "control_title": "Document system transparency policy",
+        "domain": "Accountability",
+        "function_class": "DISCLOSE",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate"
+          }
+        ]
+      },
+      {
+        "control_id": "F001",
+        "control_title": "Prevent AI cyber misuse",
+        "domain": "Society",
+        "function_class": "PREV",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "control_id": "F002",
+        "control_title": "Prevent catastrophic misuse",
+        "domain": "Society",
+        "function_class": "DETECT",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      }
+    ],
+    "owasp_to_source": [
+      {
+        "owasp_id": "ASI01",
+        "owasp_title": "Agent Goal Hijack",
+        "owasp_rank": 1,
+        "mapping_count": 15,
+        "primary_count": 6,
+        "secondary_count": 9,
+        "function_coverage": {
+          "VALID": 3,
+          "PREV": 5,
+          "SCOPE": 3,
+          "GATE": 1,
+          "GOVERN": 2,
+          "DETECT": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "ISOLATE"
+        ],
+        "mappings": [
+          {
+            "control_id": "B001",
+            "control_title": "Third-party testing of adversarial robustness",
+            "domain": "Security",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "B002",
+            "control_title": "Detect adversarial input",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "B005",
+            "control_title": "Implement real-time input filtering",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "B006",
+            "control_title": "Prevent unauthorized AI agent actions",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "C009",
+            "control_title": "Enable real-time feedback and intervention",
+            "domain": "Safety",
+            "function_class": "GATE",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "control_id": "D003",
+            "control_title": "Restrict unsafe tool calls",
+            "domain": "Reliability",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "A004",
+            "control_title": "Protect IP & trade secrets",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "C002",
+            "control_title": "Conduct pre-deployment testing",
+            "domain": "Safety",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "C003",
+            "control_title": "Prevent harmful outputs",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "C004",
+            "control_title": "Prevent out-of-scope outputs",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "C006",
+            "control_title": "Prevent output vulnerabilities",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "C011",
+            "control_title": "Third-party testing for out-of-scope outputs",
+            "domain": "Safety",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "E008",
+            "control_title": "Review internal processes",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E010",
+            "control_title": "Establish AI acceptable use policy",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI02",
+        "owasp_title": "Tool Misuse and Exploitation",
+        "owasp_rank": 2,
+        "mapping_count": 11,
+        "primary_count": 6,
+        "secondary_count": 5,
+        "function_coverage": {
+          "SCOPE": 6,
+          "VALID": 1,
+          "DETECT": 2,
+          "ISOLATE": 1,
+          "GATE": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GOVERN",
+          "PREV"
+        ],
+        "mappings": [
+          {
+            "control_id": "A003",
+            "control_title": "Limit AI agent data collection",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B006",
+            "control_title": "Prevent unauthorized AI agent actions",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B007",
+            "control_title": "Enforce user access privileges to AI systems",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "D003",
+            "control_title": "Restrict unsafe tool calls",
+            "domain": "Reliability",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "D004",
+            "control_title": "Third-party testing of tool calls",
+            "domain": "Reliability",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "E009",
+            "control_title": "Monitor third-party access",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "A004",
+            "control_title": "Protect IP & trade secrets",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "A007",
+            "control_title": "Prevent IP violations",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B008",
+            "control_title": "Protect model deployment environment",
+            "domain": "Security",
+            "function_class": "ISOLATE",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "control_id": "C009",
+            "control_title": "Enable real-time feedback and intervention",
+            "domain": "Safety",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI03",
+        "owasp_title": "Identity and PrivilegeAbuse",
+        "owasp_rank": 3,
+        "mapping_count": 11,
+        "primary_count": 5,
+        "secondary_count": 6,
+        "function_coverage": {
+          "SCOPE": 5,
+          "ISOLATE": 1,
+          "DETECT": 2,
+          "PREV": 1,
+          "VALID": 1,
+          "GOVERN": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE"
+        ],
+        "mappings": [
+          {
+            "control_id": "B006",
+            "control_title": "Prevent unauthorized AI agent actions",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B007",
+            "control_title": "Enforce user access privileges to AI systems",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B008",
+            "control_title": "Protect model deployment environment",
+            "domain": "Security",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "control_id": "D003",
+            "control_title": "Restrict unsafe tool calls",
+            "domain": "Reliability",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "E009",
+            "control_title": "Monitor third-party access",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "A004",
+            "control_title": "Protect IP & trade secrets",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "A007",
+            "control_title": "Prevent IP violations",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B003",
+            "control_title": "Manage public release of technical details",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "D004",
+            "control_title": "Third-party testing of tool calls",
+            "domain": "Reliability",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "E010",
+            "control_title": "Establish AI acceptable use policy",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI04",
+        "owasp_title": "Agentic Supply ChainVulnerabilities",
+        "owasp_rank": 4,
+        "mapping_count": 8,
+        "primary_count": 3,
+        "secondary_count": 5,
+        "function_coverage": {
+          "ISOLATE": 1,
+          "VALID": 1,
+          "DETECT": 2,
+          "SCOPE": 2,
+          "GOVERN": 2
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "PREV"
+        ],
+        "mappings": [
+          {
+            "control_id": "B008",
+            "control_title": "Protect model deployment environment",
+            "domain": "Security",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "control_id": "E006",
+            "control_title": "Conduct vendor due diligence",
+            "domain": "Accountability",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "E009",
+            "control_title": "Monitor third-party access",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "A004",
+            "control_title": "Protect IP & trade secrets",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "A007",
+            "control_title": "Prevent IP violations",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "E005",
+            "control_title": "Assess cloud vs on-prem processing",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E007",
+            "control_title": "Document system change approvals",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI05",
+        "owasp_title": "Unexpected CodeExecution (RCE)",
+        "owasp_rank": 5,
+        "mapping_count": 14,
+        "primary_count": 5,
+        "secondary_count": 9,
+        "function_coverage": {
+          "SCOPE": 3,
+          "ISOLATE": 1,
+          "PREV": 6,
+          "VALID": 3,
+          "DETECT": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "GOVERN"
+        ],
+        "mappings": [
+          {
+            "control_id": "B006",
+            "control_title": "Prevent unauthorized AI agent actions",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B008",
+            "control_title": "Protect model deployment environment",
+            "domain": "Security",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "control_id": "C006",
+            "control_title": "Prevent output vulnerabilities",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "D003",
+            "control_title": "Restrict unsafe tool calls",
+            "domain": "Reliability",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "D004",
+            "control_title": "Third-party testing of tool calls",
+            "domain": "Reliability",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "B001",
+            "control_title": "Third-party testing of adversarial robustness",
+            "domain": "Security",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "B002",
+            "control_title": "Detect adversarial input",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "B005",
+            "control_title": "Implement real-time input filtering",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "B009",
+            "control_title": "Limit output over-exposure",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "C002",
+            "control_title": "Conduct pre-deployment testing",
+            "domain": "Safety",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "C004",
+            "control_title": "Prevent out-of-scope outputs",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "C005",
+            "control_title": "Prevent customer-defined high risk outputs",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "F001",
+            "control_title": "Prevent AI cyber misuse",
+            "domain": "Society",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI06",
+        "owasp_title": "Memory & Context Poisoning",
+        "owasp_rank": 6,
+        "mapping_count": 10,
+        "primary_count": 6,
+        "secondary_count": 4,
+        "function_coverage": {
+          "SCOPE": 4,
+          "ISOLATE": 2,
+          "VALID": 1,
+          "PREV": 2,
+          "DETECT": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "GOVERN"
+        ],
+        "mappings": [
+          {
+            "control_id": "A003",
+            "control_title": "Limit AI agent data collection",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "A005",
+            "control_title": "Prevent cross-customer data exposure",
+            "domain": "Data & Privacy",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "control_id": "B001",
+            "control_title": "Third-party testing of adversarial robustness",
+            "domain": "Security",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "B002",
+            "control_title": "Detect adversarial input",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "B005",
+            "control_title": "Implement real-time input filtering",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "A006",
+            "control_title": "Prevent PII leakage",
+            "domain": "Data & Privacy",
+            "function_class": "ISOLATE",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "control_id": "B006",
+            "control_title": "Prevent unauthorized AI agent actions",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B009",
+            "control_title": "Limit output over-exposure",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "D003",
+            "control_title": "Restrict unsafe tool calls",
+            "domain": "Reliability",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI07",
+        "owasp_title": "Insecure Inter-AgentCommunication",
+        "owasp_rank": 7,
+        "mapping_count": 4,
+        "primary_count": 4,
+        "secondary_count": 0,
+        "function_coverage": {
+          "SCOPE": 1,
+          "ISOLATE": 1,
+          "DETECT": 2
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "PREV",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "B006",
+            "control_title": "Prevent unauthorized AI agent actions",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B008",
+            "control_title": "Protect model deployment environment",
+            "domain": "Security",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "control_id": "E009",
+            "control_title": "Monitor third-party access",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI08",
+        "owasp_title": "Cascading Failures",
+        "owasp_rank": 8,
+        "mapping_count": 12,
+        "primary_count": 7,
+        "secondary_count": 5,
+        "function_coverage": {
+          "PREV": 3,
+          "VALID": 1,
+          "SCOPE": 2,
+          "GOVERN": 3,
+          "DETECT": 1,
+          "GATE": 2
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "ISOLATE"
+        ],
+        "mappings": [
+          {
+            "control_id": "D001",
+            "control_title": "Prevent hallucinated outputs",
+            "domain": "Reliability",
+            "function_class": "PREV",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "D002",
+            "control_title": "Third-party testing for hallucinations",
+            "domain": "Reliability",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "D003",
+            "control_title": "Restrict unsafe tool calls",
+            "domain": "Reliability",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "E001",
+            "control_title": "AI failure plan for security breaches",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Primary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E002",
+            "control_title": "AI failure plan for harmful outputs",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Primary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E003",
+            "control_title": "AI failure plan for hallucinations",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Primary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "B005",
+            "control_title": "Implement real-time input filtering",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "B006",
+            "control_title": "Prevent unauthorized AI agent actions",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "C003",
+            "control_title": "Prevent harmful outputs",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "C007",
+            "control_title": "Flag high risk outputs",
+            "domain": "Safety",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "control_id": "C009",
+            "control_title": "Enable real-time feedback and intervention",
+            "domain": "Safety",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI09",
+        "owasp_title": "Human-Agent TrustExploitation",
+        "owasp_rank": 9,
+        "mapping_count": 17,
+        "primary_count": 7,
+        "secondary_count": 10,
+        "function_coverage": {
+          "PREV": 5,
+          "GATE": 2,
+          "VALID": 2,
+          "DISCLOSE": 2,
+          "SCOPE": 3,
+          "GOVERN": 1,
+          "DETECT": 2
+        },
+        "uncovered_functions": [
+          "ISOLATE"
+        ],
+        "mappings": [
+          {
+            "control_id": "C003",
+            "control_title": "Prevent harmful outputs",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "C007",
+            "control_title": "Flag high risk outputs",
+            "domain": "Safety",
+            "function_class": "GATE",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "control_id": "C009",
+            "control_title": "Enable real-time feedback and intervention",
+            "domain": "Safety",
+            "function_class": "GATE",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "control_id": "C010",
+            "control_title": "Third-party testing for harmful outputs",
+            "domain": "Safety",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "D001",
+            "control_title": "Prevent hallucinated outputs",
+            "domain": "Reliability",
+            "function_class": "PREV",
+            "relevance": "Primary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "D002",
+            "control_title": "Third-party testing for hallucinations",
+            "domain": "Reliability",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "E016",
+            "control_title": "Implement AI disclosure mechanisms",
+            "domain": "Accountability",
+            "function_class": "DISCLOSE",
+            "relevance": "Primary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate"
+          },
+          {
+            "control_id": "A003",
+            "control_title": "Limit AI agent data collection",
+            "domain": "Data & Privacy",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B004",
+            "control_title": "Prevent AI endpoint scraping",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "B007",
+            "control_title": "Enforce user access privileges to AI systems",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B009",
+            "control_title": "Limit output over-exposure",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "C005",
+            "control_title": "Prevent customer-defined high risk outputs",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "C006",
+            "control_title": "Prevent output vulnerabilities",
+            "domain": "Safety",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "E004",
+            "control_title": "Assign accountability",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E009",
+            "control_title": "Monitor third-party access",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "E017",
+            "control_title": "Document system transparency policy",
+            "domain": "Accountability",
+            "function_class": "DISCLOSE",
+            "relevance": "Secondary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate"
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI10",
+        "owasp_title": "Rogue Agents",
+        "owasp_rank": 10,
+        "mapping_count": 17,
+        "primary_count": 6,
+        "secondary_count": 11,
+        "function_coverage": {
+          "SCOPE": 4,
+          "ISOLATE": 1,
+          "VALID": 3,
+          "GOVERN": 1,
+          "DETECT": 3,
+          "PREV": 2,
+          "GATE": 2,
+          "DISCLOSE": 1
+        },
+        "uncovered_functions": [],
+        "mappings": [
+          {
+            "control_id": "B006",
+            "control_title": "Prevent unauthorized AI agent actions",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B008",
+            "control_title": "Protect model deployment environment",
+            "domain": "Security",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain"
+          },
+          {
+            "control_id": "D003",
+            "control_title": "Restrict unsafe tool calls",
+            "domain": "Reliability",
+            "function_class": "SCOPE",
+            "relevance": "Primary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "D004",
+            "control_title": "Third-party testing of tool calls",
+            "domain": "Reliability",
+            "function_class": "VALID",
+            "relevance": "Primary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "E001",
+            "control_title": "AI failure plan for security breaches",
+            "domain": "Accountability",
+            "function_class": "GOVERN",
+            "relevance": "Primary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance"
+          },
+          {
+            "control_id": "E015",
+            "control_title": "Log model activity",
+            "domain": "Accountability",
+            "function_class": "DETECT",
+            "relevance": "Primary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "B001",
+            "control_title": "Third-party testing of adversarial robustness",
+            "domain": "Security",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "B003",
+            "control_title": "Manage public release of technical details",
+            "domain": "Security",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "B007",
+            "control_title": "Enforce user access privileges to AI systems",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "B009",
+            "control_title": "Limit output over-exposure",
+            "domain": "Security",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope"
+          },
+          {
+            "control_id": "C007",
+            "control_title": "Flag high risk outputs",
+            "domain": "Safety",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "control_id": "C008",
+            "control_title": "Monitor AI risk categories",
+            "domain": "Safety",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          },
+          {
+            "control_id": "C009",
+            "control_title": "Enable real-time feedback and intervention",
+            "domain": "Safety",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate"
+          },
+          {
+            "control_id": "D002",
+            "control_title": "Third-party testing for hallucinations",
+            "domain": "Reliability",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test"
+          },
+          {
+            "control_id": "E016",
+            "control_title": "Implement AI disclosure mechanisms",
+            "domain": "Accountability",
+            "function_class": "DISCLOSE",
+            "relevance": "Secondary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate"
+          },
+          {
+            "control_id": "F001",
+            "control_title": "Prevent AI cyber misuse",
+            "domain": "Society",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent"
+          },
+          {
+            "control_id": "F002",
+            "control_title": "Prevent catastrophic misuse",
+            "domain": "Society",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace"
+          }
+        ]
+      }
+    ]
+  },
+  "gap_analysis": {
+    "unmapped_controls": [
+      {
+        "control_id": "A001",
+        "control_title": "Establish input data policy",
+        "domain": "Data & Privacy",
+        "function_class": "GOVERN",
+        "gap_reason": "Not included in Appendix A authoritative mapping"
+      },
+      {
+        "control_id": "A002",
+        "control_title": "Establish output data policy",
+        "domain": "Data & Privacy",
+        "function_class": "GOVERN",
+        "gap_reason": "Not included in Appendix A authoritative mapping"
+      },
+      {
+        "control_id": "C001",
+        "control_title": "Define AI risk taxonomy",
+        "domain": "Safety",
+        "function_class": "GOVERN",
+        "gap_reason": "Not included in Appendix A authoritative mapping"
+      },
+      {
+        "control_id": "C012",
+        "control_title": "Third-party testing for customer-defined risk",
+        "domain": "Safety",
+        "function_class": "VALID",
+        "gap_reason": "Not included in Appendix A authoritative mapping"
+      },
+      {
+        "control_id": "E011",
+        "control_title": "Record processing locations",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "gap_reason": "Not included in Appendix A authoritative mapping"
+      },
+      {
+        "control_id": "E012",
+        "control_title": "Document regulatory compliance",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "gap_reason": "Not included in Appendix A authoritative mapping"
+      },
+      {
+        "control_id": "E013",
+        "control_title": "Implement quality management system",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "gap_reason": "Not included in Appendix A authoritative mapping"
+      },
+      {
+        "control_id": "E014",
+        "control_title": "Share transparency reports",
+        "domain": "Accountability",
+        "function_class": "GOVERN",
+        "gap_reason": "Not included in Appendix A authoritative mapping"
+      }
+    ],
+    "unmapped_count": 8,
+    "note": "Controls not included in the authoritative Appendix A crosswalk. May have agentic relevance not yet assessed."
+  }
+}

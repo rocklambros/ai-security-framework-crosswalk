@@ -1,0 +1,289 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rocklambros/AIUC_2_OWASP_Agentic_Top_10/schemas/crosswalk-mapping-v2.schema.json",
+  "title": "OWASP Agentic Top 10 Crosswalk Mapping",
+  "description": "Schema for bi-directional mappings between any source standard and the OWASP Top 10 for Agentic Applications (ASI01-ASI10). Supports rationale taxonomy, relevance classification, function coverage analysis, and gap reporting. Designed for reuse across AIUC-1, NIST AI RMF, ISO 42001, EU AI Act, and other source frameworks.",
+  "type": "object",
+  "required": ["metadata", "summary", "control_level"],
+  "additionalProperties": false,
+  "properties": {
+    "metadata": { "$ref": "#/$defs/Metadata" },
+    "summary": { "$ref": "#/$defs/Summary" },
+    "control_level": { "$ref": "#/$defs/ControlLevel" },
+    "gap_analysis": { "$ref": "#/$defs/GapAnalysis" }
+  },
+  "$defs": {
+    "RationaleCode": {
+      "type": "string",
+      "enum": ["PREV", "SCOPE", "GATE", "DETECT", "VALID", "GOVERN", "ISOLATE", "DISCLOSE"],
+      "description": "Control function class from the rationale taxonomy. PREV: Directly blocks the core attack mechanism. SCOPE: Limits blast radius after compromise. GATE: Enforces human approval or intervention. DETECT: Provides runtime detection or forensic traceability. VALID: Tests or audits that other controls function effectively. GOVERN: Establishes organizational policy or accountability. ISOLATE: Enforces architectural separation preventing propagation. DISCLOSE: Provides transparency enabling humans to calibrate trust."
+    },
+    "Relevance": {
+      "type": "string",
+      "enum": ["Primary", "Secondary"],
+      "description": "Primary: directly mitigates the core risk. Secondary: addresses a related consequence or provides a supporting control. Determined by threat context, not rationale code alone."
+    },
+    "OwaspId": {
+      "type": "string",
+      "pattern": "^ASI(0[1-9]|10)$",
+      "description": "OWASP Agentic Top 10 entry identifier (ASI01 through ASI10)."
+    },
+    "Metadata": {
+      "type": "object",
+      "required": ["schema_version", "generated_at", "methodology", "source_standard", "target_standard", "pipeline", "classification"],
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "2.0",
+          "description": "Schema version. Increment on breaking changes."
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of generation."
+        },
+        "methodology": {
+          "type": "string",
+          "description": "Short identifier for the mapping methodology (e.g., multi-signal-hybrid-v2)."
+        },
+        "source_standard": {
+          "$ref": "#/$defs/StandardInfo",
+          "description": "The standard being mapped FROM (e.g., AIUC-1, NIST AI RMF, ISO 42001)."
+        },
+        "target_standard": {
+          "$ref": "#/$defs/StandardInfo",
+          "description": "The standard being mapped TO. Always the OWASP Agentic Top 10 in this schema."
+        },
+        "pipeline": { "$ref": "#/$defs/PipelineConfig" },
+        "classification": { "$ref": "#/$defs/ClassificationConfig" }
+      }
+    },
+    "StandardInfo": {
+      "type": "object",
+      "required": ["name", "version"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "description": "Full name of the standard." },
+        "version": { "type": "string", "description": "Version or year of the standard." },
+        "url": { "type": "string", "format": "uri", "description": "Canonical URL." },
+        "controls": { "type": "integer", "minimum": 1, "description": "Total number of controls or requirements in the source standard." },
+        "entries": { "type": "integer", "minimum": 1, "description": "Total number of entries in the target standard." },
+        "domains": { "type": "integer", "minimum": 1, "description": "Number of top-level domains or categories." }
+      }
+    },
+    "PipelineConfig": {
+      "type": "object",
+      "required": ["signals", "thresholds"],
+      "additionalProperties": false,
+      "properties": {
+        "signals": {
+          "type": "object",
+          "description": "Named signals with their weights and technique descriptions. Weights should sum to 1.0.",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["weight", "technique"],
+            "additionalProperties": false,
+            "properties": {
+              "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+              "technique": { "type": "string" }
+            }
+          }
+        },
+        "thresholds": {
+          "type": "object",
+          "required": ["direct", "related"],
+          "additionalProperties": false,
+          "properties": {
+            "direct": { "type": "number", "description": "Minimum composite score for Direct confidence tier." },
+            "related": { "type": "number", "description": "Minimum composite score for Related confidence tier." },
+            "governance_floor": { "type": "number", "description": "Reduced threshold for GOVERN and DISCLOSE controls with function_match = 1.0." },
+            "tangential": { "type": "number", "description": "Below this score, no mapping is produced." }
+          }
+        }
+      }
+    },
+    "ClassificationConfig": {
+      "type": "object",
+      "required": ["rationale_taxonomy", "relevance_levels"],
+      "additionalProperties": false,
+      "properties": {
+        "rationale_taxonomy": {
+          "type": "object",
+          "description": "Map of rationale code to human-readable label.",
+          "propertyNames": { "$ref": "#/$defs/RationaleCode" },
+          "additionalProperties": { "type": "string" }
+        },
+        "relevance_levels": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Relevance" },
+          "description": "Ordered list of relevance levels (Primary, Secondary)."
+        },
+        "classification_accuracy": {
+          "type": "object",
+          "description": "Accuracy metrics from training and validation sets.",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "standard": { "type": "string" },
+              "mappings": { "type": "integer" },
+              "rationale_accuracy": { "type": "number", "minimum": 0, "maximum": 1 },
+              "relevance_accuracy": { "type": "number", "minimum": 0, "maximum": 1 }
+            }
+          }
+        }
+      }
+    },
+    "Summary": {
+      "type": "object",
+      "required": ["controls_mapped", "controls_unmapped", "owasp_entries_with_matches", "total_mappings", "primary_mappings", "secondary_mappings", "rationale_distribution"],
+      "additionalProperties": false,
+      "properties": {
+        "controls_mapped": {
+          "type": "string",
+          "pattern": "^\\d+ / \\d+$",
+          "description": "Fraction of source controls that have at least one mapping (e.g., '43 / 51')."
+        },
+        "controls_unmapped": { "type": "integer", "minimum": 0 },
+        "owasp_entries_with_matches": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "total_mappings": { "type": "integer", "minimum": 0 },
+        "primary_mappings": { "type": "integer", "minimum": 0 },
+        "secondary_mappings": { "type": "integer", "minimum": 0 },
+        "rationale_distribution": {
+          "type": "object",
+          "description": "Count of mappings per rationale code.",
+          "propertyNames": { "$ref": "#/$defs/RationaleCode" },
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "ControlLevel": {
+      "type": "object",
+      "required": ["source_to_owasp", "owasp_to_source"],
+      "additionalProperties": false,
+      "properties": {
+        "source_to_owasp": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SourceControlEntry" },
+          "description": "One entry per source control. Controls with no mappings have an empty mappings array."
+        },
+        "owasp_to_source": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/OwaspEntry" },
+          "minItems": 10,
+          "maxItems": 10,
+          "description": "Exactly 10 entries, one per OWASP ASI entry."
+        }
+      }
+    },
+    "SourceControlEntry": {
+      "type": "object",
+      "required": ["control_id", "control_title", "domain", "function_class", "mapping_count", "primary_count", "secondary_count", "mappings"],
+      "additionalProperties": false,
+      "properties": {
+        "control_id": { "type": "string", "description": "Source standard control identifier (e.g., B006, GV.3.2, A.8.22)." },
+        "control_title": { "type": "string" },
+        "domain": { "type": "string", "description": "Top-level domain or category in the source standard." },
+        "function_class": { "$ref": "#/$defs/RationaleCode" },
+        "mapping_count": { "type": "integer", "minimum": 0 },
+        "primary_count": { "type": "integer", "minimum": 0 },
+        "secondary_count": { "type": "integer", "minimum": 0 },
+        "mappings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/SourceToOwaspMapping" }
+        }
+      }
+    },
+    "SourceToOwaspMapping": {
+      "type": "object",
+      "required": ["owasp_id", "owasp_title", "relevance", "rationale_code", "rationale_label"],
+      "additionalProperties": false,
+      "properties": {
+        "owasp_id": { "$ref": "#/$defs/OwaspId" },
+        "owasp_title": { "type": "string" },
+        "relevance": { "$ref": "#/$defs/Relevance" },
+        "rationale_code": { "$ref": "#/$defs/RationaleCode" },
+        "rationale_label": { "type": "string", "description": "Human-readable label for the rationale code." },
+        "score": { "type": "number", "minimum": 0, "maximum": 1, "description": "Optional. Composite pipeline score. Include for auditability, omit for published crosswalks." },
+        "signals": {
+          "type": "object",
+          "description": "Optional. Per-signal sub-scores. Include for auditability, omit for published crosswalks.",
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "OwaspEntry": {
+      "type": "object",
+      "required": ["owasp_id", "owasp_title", "owasp_rank", "mapping_count", "primary_count", "secondary_count", "function_coverage", "uncovered_functions", "mappings"],
+      "additionalProperties": false,
+      "properties": {
+        "owasp_id": { "$ref": "#/$defs/OwaspId" },
+        "owasp_title": { "type": "string" },
+        "owasp_rank": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "mapping_count": { "type": "integer", "minimum": 0 },
+        "primary_count": { "type": "integer", "minimum": 0 },
+        "secondary_count": { "type": "integer", "minimum": 0 },
+        "function_coverage": {
+          "type": "object",
+          "description": "Count of mapped controls per rationale code for this threat. Shows defense-in-depth coverage.",
+          "propertyNames": { "$ref": "#/$defs/RationaleCode" },
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        },
+        "uncovered_functions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/RationaleCode" },
+          "description": "Rationale codes with zero mapped controls for this threat. Highlights gaps in defense-in-depth."
+        },
+        "mappings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/OwaspToSourceMapping" }
+        }
+      }
+    },
+    "OwaspToSourceMapping": {
+      "type": "object",
+      "required": ["control_id", "control_title", "domain", "function_class", "relevance", "rationale_code", "rationale_label"],
+      "additionalProperties": false,
+      "properties": {
+        "control_id": { "type": "string" },
+        "control_title": { "type": "string" },
+        "domain": { "type": "string" },
+        "function_class": { "$ref": "#/$defs/RationaleCode" },
+        "relevance": { "$ref": "#/$defs/Relevance" },
+        "rationale_code": { "$ref": "#/$defs/RationaleCode" },
+        "rationale_label": { "type": "string" },
+        "score": { "type": "number", "minimum": 0, "maximum": 1, "description": "Optional. Composite pipeline score." },
+        "signals": {
+          "type": "object",
+          "description": "Optional. Per-signal sub-scores.",
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    },
+    "GapAnalysis": {
+      "type": "object",
+      "required": ["unmapped_controls", "unmapped_count"],
+      "additionalProperties": false,
+      "properties": {
+        "unmapped_controls": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/UnmappedControl" }
+        },
+        "unmapped_count": { "type": "integer", "minimum": 0 },
+        "note": { "type": "string", "description": "Explanatory note about why controls may be unmapped." }
+      }
+    },
+    "UnmappedControl": {
+      "type": "object",
+      "required": ["control_id", "control_title", "domain", "function_class"],
+      "additionalProperties": false,
+      "properties": {
+        "control_id": { "type": "string" },
+        "control_title": { "type": "string" },
+        "domain": { "type": "string" },
+        "function_class": { "$ref": "#/$defs/RationaleCode" },
+        "gap_reason": { "type": "string", "description": "Why this control has no mapping. E.g., 'No agentic-security-specific relevance identified' or 'Pipeline coverage gap: governance control below threshold'." }
+      }
+    }
+  }
+}

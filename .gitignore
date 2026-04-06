@@ -7,3 +7,5 @@ dist/
 build/
 .venv/
 venv/
+data/frameworks/csa-aicm/*.xlsx
+.DS_Store

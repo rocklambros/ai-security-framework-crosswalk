@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rocklambros/ai-security-framework-crosswalk/schema/node.schema.json",
+  "title": "Crosswalk Graph Node",
+  "description": "A single entry from any AI security framework: control, risk, technique, mitigation, requirement, function, subcategory, or commitment. Nodes are the vertices in the crosswalk graph. Every framework contributes nodes; edges connect them across frameworks.",
+  "type": "object",
+  "required": ["node_id", "framework", "local_id", "name", "entry_type"],
+  "additionalProperties": false,
+  "properties": {
+    "node_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+:[A-Za-z0-9._-]+$",
+      "description": "Globally unique identifier. Format: {framework_key}:{local_id}. Examples: aiuc_1:B006, mitre_atlas:AML.T0051, owasp_llm:LLM01, cosai_rm:R-001, csa_aicm:DSP-11, nist_rmf:GOVERN-1.1, eu_gpai_cop:Commitment-3.1, owasp_agentic:ASI01"
+    },
+    "framework": {
+      "type": "string",
+      "enum": [
+        "aiuc_1",
+        "owasp_llm",
+        "owasp_agentic",
+        "mitre_atlas",
+        "nist_rmf",
+        "nist_600_1",
+        "csa_aicm",
+        "cosai_rm",
+        "eu_gpai_cop",
+        "owasp_ai_exchange"
+      ],
+      "description": "Framework key. Must match a key in the frameworks registry."
+    },
+    "local_id": {
+      "type": "string",
+      "description": "The identifier as it appears in the source framework. Examples: B006, AML.T0051, LLM01, GOVERN 1.1, DSP-11, Commitment 3.1, ASI01."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable title. Example: Prevent unauthorized AI agent actions."
+    },
+    "entry_type": {
+      "type": "string",
+      "enum": ["control", "risk", "technique", "mitigation", "tactic", "requirement", "function", "subcategory", "commitment", "measure", "activity"],
+      "description": "What kind of entry this is. Controls mitigate risks. Techniques exploit risks. Mitigations counter techniques. Functions and subcategories are hierarchical groupings. Commitments and measures come from the EU GPAI Code of Practice. Activities are sub-tasks of controls (AIUC-1)."
+    },
+    "domain": {
+      "type": "string",
+      "description": "Top-level grouping within the framework. AIUC-1: Data & Privacy, Security, Safety, Reliability, Accountability, Society. CSA AICM: one of 18 domains. NIST AI RMF: GOVERN, MAP, MEASURE, MANAGE. MITRE ATLAS: tactic name. EU GPAI CoP: Transparency, Copyright, Safety and Security."
+    },
+    "parent_node_id": {
+      "type": ["string", "null"],
+      "description": "For hierarchical frameworks, the node_id of the parent entry. AIUC-1 activity A001.1 has parent aiuc_1:A001. NIST subcategory GOVERN-1.1 has parent nist_rmf:GOVERN. MITRE subtechnique AML.T0051.001 has parent mitre_atlas:AML.T0051. Null for top-level entries."
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description from the source framework. Truncated to 2000 characters if longer."
+    },
+    "function_class": {
+      "type": ["string", "null"],
+      "enum": ["PREV", "SCOPE", "GATE", "DETECT", "VALID", "GOVERN", "ISOLATE", "DISCLOSE", null],
+      "description": "Rationale taxonomy classification of this entry's primary defensive function. Required for AIUC-1 controls. Optional for other frameworks. Null when not classified."
+    },
+    "classification": {
+      "type": ["string", "null"],
+      "enum": ["Mandatory", "Optional", null],
+      "description": "AIUC-1 specific: whether this control is mandatory or optional for certification. Null for other frameworks."
+    },
+    "control_type": {
+      "type": ["string", "null"],
+      "enum": ["Preventative", "Detective", null],
+      "description": "AIUC-1 specific: whether this control prevents or detects. Null for other frameworks."
+    },
+    "frequency": {
+      "type": ["string", "null"],
+      "description": "AIUC-1 specific: review frequency (e.g., Every 3 months, Every 12 months). Null for other frameworks."
+    },
+    "applicable_capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Universal", "Text-generation", "Voice-generation", "Image-generation", "Automation", "External-facing"]
+      },
+      "description": "AIUC-1 specific: which AI capabilities this control applies to. Empty array for other frameworks.",
+      "default": []
+    },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tags from the source framework. Supports search and filtering in the Dash app. Empty array if none.",
+      "default": []
+    },
+    "url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Canonical URL for this entry in the source framework. Null if not available."
+    },
+    "retired": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if this entry has been merged into another or deprecated. AIUC-1 examples: E007 (merged into E004), E014 (merged into E017)."
+    }
+  }
+}

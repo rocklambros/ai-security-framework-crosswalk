@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rocklambros/ai-security-framework-crosswalk/schema/edge.schema.json",
+  "title": "Crosswalk Graph Edge",
+  "description": "A mapping relationship between two nodes in the crosswalk graph. Edges are directional: source_node_id maps TO target_node_id. The same pair of nodes may have multiple edges if they relate through different rationale codes or different provenance sources. Edges carry the rich metadata from the v2 pairwise schema (rationale taxonomy, relevance, confidence) while enabling any-to-any framework queries.",
+  "type": "object",
+  "required": ["source_node_id", "target_node_id", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "edge_id": {
+      "type": "string",
+      "description": "Optional deterministic ID. Generated as {source_node_id}--{target_node_id}--{rationale_code}--{provenance} to enable deduplication. Not required for ingestion; the build script generates it."
+    },
+    "source_node_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+:[A-Za-z0-9._-]+$",
+      "description": "The node_id of the entry this mapping originates from. Must exist in nodes.json."
+    },
+    "target_node_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+:[A-Za-z0-9._-]+$",
+      "description": "The node_id of the entry this mapping points to. Must exist in nodes.json."
+    },
+    "source_framework": {
+      "type": "string",
+      "description": "Framework key of the source node. Denormalized for fast filtering without joining to nodes.json."
+    },
+    "target_framework": {
+      "type": "string",
+      "description": "Framework key of the target node. Denormalized for fast filtering."
+    },
+    "rationale_code": {
+      "type": ["string", "null"],
+      "enum": ["PREV", "SCOPE", "GATE", "DETECT", "VALID", "GOVERN", "ISOLATE", "DISCLOSE", "PARENT", null],
+      "description": "Why this mapping exists, from the rationale taxonomy. The 8 codes from the v2 schema (PREV through DISCLOSE) describe defensive function. PARENT indicates a hierarchical relationship within a framework (domain to control, control to activity, function to subcategory, technique to subtechnique). Null when the source data provides no rationale (markdown crosswalks, embedded framework_references)."
+    },
+    "rationale_label": {
+      "type": ["string", "null"],
+      "description": "Human-readable label for the rationale code. Null when rationale_code is null."
+    },
+    "relevance": {
+      "type": ["string", "null"],
+      "enum": ["Primary", "Secondary", null],
+      "description": "Primary: directly mitigates the core risk. Secondary: addresses a related consequence or supporting concern. Null when unknown (markdown crosswalks, embedded references)."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["authoritative", "expert", "inferred", "unvalidated"],
+      "default": "unvalidated",
+      "description": "How this mapping was produced. authoritative: from the framework's own published crosswalk (AIUC-1 standard JSON framework_references, CoSAI frameworks.yaml). expert: from a manually curated expert crosswalk (aiuc_owasp_agentic_top10_mapping_v2.json). inferred: derived by the build script from overlapping keywords, shared MITRE technique references, or other heuristics. unvalidated: from a markdown crosswalk or web scrape with no rationale data."
+    },
+    "provenance": {
+      "type": "string",
+      "description": "Which source file or process produced this edge. Examples: aiuc-1-standard.json, aiuc_owasp_agentic_top10_mapping_v2.json, owasp-top-10-crosswalk.md, cosai/risk-map/risks.yaml, build_script_inference. Enables traceability and allows filtering by data quality."
+    },
+    "score": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Optional composite pipeline score from the v2 mapping pipeline. Null for edges not produced by the pipeline."
+    },
+    "signals": {
+      "type": ["object", "null"],
+      "description": "Optional per-signal sub-scores from the v2 mapping pipeline. Null for edges not produced by the pipeline.",
+      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Optional free text annotation. Used for gap reasons on unmapped controls or editorial notes on contested mappings."
+    }
+  }
+}

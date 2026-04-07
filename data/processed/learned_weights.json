@@ -1,25 +1,37 @@
 {
   "best_model": "Hand-tuned",
   "logistic_coefficients": {
-    "bridge_score": 4.656765485989415,
-    "semantic_score": 0.013540168330904856,
-    "keyword_score": 1.2965666786473524,
-    "function_match": 2.5336621063095968,
-    "node2vec_score": 6.045526108330011,
-    "intercept": -7.03808053780218
+    "bridge_score": 3.4468487022768666,
+    "semantic_score": 0.8593944972676805,
+    "keyword_score": 0.981569492603976,
+    "function_match": 2.2570791726997324,
+    "node2vec_score": 7.914174552013244,
+    "intercept": -6.203218698010023
   },
   "lightgbm_feature_importance": {
-    "bridge_score": 5579.089225775824,
-    "semantic_score": 167.8456957516173,
-    "keyword_score": 31.076725650578737,
-    "function_match": 17.662449955940247,
-    "node2vec_score": 2201.3956201944384
+    "bridge_score": 2180.547638248827,
+    "semantic_score": 96.00232063170552,
+    "keyword_score": 352.75821733273915,
+    "function_match": 0.0,
+    "node2vec_score": 5172.152205194434
   },
   "ordinal_coefficients": {
-    "bridge_score": 71.72549109277087,
-    "semantic_score": -0.05007245534987721,
-    "keyword_score": 7.905017850451938,
-    "function_match": 0.4739256671934569,
-    "node2vec_score": 48.6169391414557
+    "bridge_score": 59.21849608445663,
+    "semantic_score": 1.07838760936272,
+    "keyword_score": 22.668433017288805,
+    "function_match": 0.6042666177770974,
+    "node2vec_score": 26.31338842578054
+  },
+  "cv_accuracy": {
+    "hand_tuned": 0.0,
+    "logistic": 0.6,
+    "lightgbm": 0.3,
+    "ordinal": 0.1
+  },
+  "calibrated_thresholds": {
+    "direct": 0.45,
+    "related_primary": 0.25,
+    "method": "cv-youden-j-on-masked-anchors",
+    "n_folds": 5
   }
 }

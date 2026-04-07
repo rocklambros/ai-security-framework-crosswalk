@@ -100,6 +100,28 @@ def _load_learned_weights() -> dict[str, float] | None:
     return {k: v / total for k, v in mapping.items()}
 
 
+def _load_calibrated_thresholds() -> dict[str, float] | None:
+    """Load Phase C calibrated thresholds from learned_weights.json.
+
+    Returns ``None`` unless a ``calibrated_thresholds`` block is present AND
+    its ``method`` indicates a CV-based sweep. Callers still must honor the
+    ``use_learned_weights`` gate.
+    """
+    if not LEARNED_WEIGHTS_PATH.exists():
+        return None
+    try:
+        data = json.loads(LEARNED_WEIGHTS_PATH.read_text())
+    except Exception:
+        return None
+    ct = data.get("calibrated_thresholds") or {}
+    if not ct or "direct" not in ct or "related_primary" not in ct:
+        return None
+    return {
+        "direct": float(ct["direct"]),
+        "related_primary": float(ct["related_primary"]),
+    }
+
+
 class PairMapper:
     """Run the full signal pipeline for a single framework pair."""
 
@@ -131,6 +153,11 @@ class PairMapper:
                 merged = dict(self.config["weights"])
                 merged.update(learned)
                 self.config["weights"] = merged
+            calibrated = _load_calibrated_thresholds()
+            if calibrated:
+                merged_th = dict(self.config["thresholds"])
+                merged_th.update(calibrated)
+                self.config["thresholds"] = merged_th
 
     def _select_nodes(self) -> tuple[list[str], list[str]]:
         src = get_framework_nodes(

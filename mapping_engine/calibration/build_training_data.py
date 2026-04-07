@@ -23,10 +23,12 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from mapping_engine.config import load_pair_config
 from mapping_engine.engine.bridge import graph_bridge_scores
 from mapping_engine.engine.function_match import compute_function_match
 from mapping_engine.engine.graph import get_framework_nodes, load_graph
 from mapping_engine.engine.keyword import compute_keyword_similarity
+from mapping_engine.engine.node2vec_signal import compute_node2vec_similarity
 from mapping_engine.engine.semantic import compute_semantic_similarity
 
 REPO = Path(__file__).resolve().parents[2]
@@ -50,6 +52,21 @@ def _expert_tier(rel: str | None) -> str:
     return "None"
 
 
+def _mask_anchor_edges(G, anchor_pairs: list[tuple[str, str]]):
+    """Return a copy of G with authoritative/expert edges removed for the
+    given anchor pairs (both directions). Used for leave-one-out anchor
+    feature generation to prevent anchor-label leakage via bridge edges.
+    """
+    H = G.copy()
+    for src, tgt in anchor_pairs:
+        for a, b in ((src, tgt), (tgt, src)):
+            if H.has_edge(a, b):
+                data = H.get_edge_data(a, b) or {}
+                if data.get("confidence") in ("authoritative", "expert"):
+                    H.remove_edge(a, b)
+    return H
+
+
 def _build_pairs(
     G,
     sources: list[str],
@@ -57,11 +74,32 @@ def _build_pairs(
     expert: dict[str, dict[str, dict]],
     target_local_id_to_node: dict[str, str],
     source_local_id_to_node: dict[str, str],
+    anchor_pairs: list[tuple[str, str]] | None = None,
 ) -> pd.DataFrame:
     bridge = graph_bridge_scores(G, sources, targets)
     semantic = compute_semantic_similarity(G, sources, targets)
     keyword = compute_keyword_similarity(G, sources, targets)
     fm = compute_function_match(G, sources, targets)
+    try:
+        n2v = np.clip(compute_node2vec_similarity(sources, targets), 0.0, 1.0)
+    except Exception:
+        n2v = np.zeros((len(sources), len(targets)), dtype=np.float64)
+
+    # Leave-one-out anchor masking: for each anchor (s,t) pair, recompute the
+    # bridge signal on a graph where that anchor's expert/authoritative edges
+    # are removed. Only bridge traverses edges; semantic/keyword/fm/node2vec
+    # are edge-independent, so they need no masking.
+    anchor_pairs = anchor_pairs or []
+    src_idx = {s: i for i, s in enumerate(sources)}
+    tgt_idx = {t: j for j, t in enumerate(targets)}
+    for (asrc, atgt) in anchor_pairs:
+        i = src_idx.get(asrc)
+        j = tgt_idx.get(atgt)
+        if i is None or j is None:
+            continue
+        H = _mask_anchor_edges(G, [(asrc, atgt)])
+        cell = graph_bridge_scores(H, [asrc], [atgt])
+        bridge[i, j] = float(cell[0, 0])
 
     # Build expert lookup keyed by (source_node_id, target_node_id)
     expert_map: dict[tuple[str, str], dict] = {}
@@ -93,6 +131,7 @@ def _build_pairs(
                     "expert_tier": _expert_tier(rel),
                     "relevance": rel or "None",
                     "rationale": rat or "None",
+                    "node2vec_score": float(n2v[i, j]),
                 }
             )
     return pd.DataFrame(rows)
@@ -108,9 +147,15 @@ def main() -> None:
     owasp_lid = {G.nodes[n]["local_id"]: n for n in owasp_targets}
     aiuc_lid = {G.nodes[n]["local_id"]: n for n in aiuc_sources}
 
+    # Load anchor pairs so bridge features for those rows are computed on
+    # LOO-masked graphs (prevents anchor-label leakage via expert edges).
+    pair_cfg = load_pair_config("aiuc_1__owasp_agentic", validate_anchors_in=G)
+    anchor_pairs = [(p.source, p.target) for p in pair_cfg.anchors.pairs]
+
     train_df = _build_pairs(
         G, aiuc_sources, owasp_targets,
         data["training"]["mappings"], owasp_lid, aiuc_lid,
+        anchor_pairs=anchor_pairs,
     )
     train_path = REPO / "data" / "processed" / "training_data.csv"
     train_df.to_csv(train_path, index=False)

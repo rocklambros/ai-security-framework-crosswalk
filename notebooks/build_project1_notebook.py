@@ -262,7 +262,7 @@ sns.heatmap(
     edge_mat.values,
     ax=ax_h,
     annot=True, fmt="d",
-    cmap="rocket_r",  # sequential, perceptually uniform, accessible
+    cmap="crest",  # sequential, perceptually uniform, accessible
     xticklabels=labels, yticklabels=labels,
     cbar_kws={"label": "cross-framework edges"},
 )
@@ -304,12 +304,12 @@ for i, v in enumerate(node_counts.values):
 ax_c = fig.add_subplot(gs[1, 1])
 sns.barplot(
     x=conf_counts.index, y=conf_counts.values,
-    ax=ax_c, hue=conf_counts.index, palette="flare", legend=False,
+    ax=ax_c, hue=conf_counts.index, palette="Set2", legend=False,
 )
 ax_c.set_title("Edges by confidence level")
 ax_c.set_xlabel("")
 ax_c.set_ylabel("edge count")
-plt.setp(ax_c.get_xticklabels(), rotation=25, ha="right")
+plt.setp(ax_c.get_xticklabels(), rotation=30, ha="right")
 for i, v in enumerate(conf_counts.values):
     ax_c.text(i, v + 30, str(int(v)), ha="center", fontsize=8)
 
@@ -368,7 +368,7 @@ for i, col in enumerate(type_mat.columns):
 ax.set_title("Figure 3.2 · Entry-type composition by framework (row-normalized)")
 ax.set_ylabel("share of nodes")
 ax.set_ylim(0, 1)
-plt.setp(ax.get_xticklabels(), rotation=25, ha="right")
+plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
 ax.legend(bbox_to_anchor=(1.02, 1), loc="upper left", title="entry type")
 plt.tight_layout()
 plt.show()
@@ -404,6 +404,66 @@ md(
     "the signals have to disagree often enough that combining them adds "
     "information instead of just averaging redundant evidence. The figures in "
     "this section examine both conditions in turn."
+)
+
+code(r"""
+# Figure 4.0. Marginal distributions of the four primary signals over the
+# full labeled training pool. Before we start splitting by category or
+# looking at correlations, we want to know what each feature looks like on
+# its own. A 2x2 small multiples grid of histograms is the right format
+# because it keeps the x axis scale consistent per feature while letting
+# the reader eyeball all four shapes at once.
+sig_cols_4 = ["bridge_score", "semantic_score", "keyword_score", "function_match"]
+pretty_sig = {
+    "bridge_score":   "bridge",
+    "semantic_score": "semantic",
+    "keyword_score":  "keyword",
+    "function_match": "function match",
+}
+fig, axes = plt.subplots(2, 2, figsize=(11, 6.5), sharey=False)
+# crest is our single sequential palette for the whole notebook. We pull
+# four well-separated samples from it so each panel has its own color
+# without introducing a second palette family.
+crest_colors = sns.color_palette("crest", n_colors=4)
+for ax, col, color in zip(axes.flat, sig_cols_4, crest_colors):
+    sns.histplot(
+        data=training, x=col, ax=ax,
+        bins=30, color=color, edgecolor="white", alpha=0.85,
+    )
+    ax.set_title(pretty_sig[col])
+    ax.set_xlabel("")
+    ax.set_ylabel("count")
+    # Annotate the median as a thin vertical reference so the reader can
+    # see central tendency without needing a second chart.
+    med = training[col].median()
+    ax.axvline(med, color="black", lw=0.8, ls="--")
+    ax.text(
+        med, ax.get_ylim()[1] * 0.92, f"  median={med:.2f}",
+        fontsize=8, va="top",
+    )
+fig.suptitle("Figure 4.0 · Marginal distributions of the four primary signals", y=1.02, fontsize=13, weight="bold")
+plt.tight_layout()
+plt.show()
+""")
+
+md(
+    "Before comparing signals against each other or splitting them by "
+    "category, a good exploratory pass looks at each feature on its own. "
+    "The four marginals tell four different stories and explain why the "
+    "production composite blends rather than picks. Bridge is heavily "
+    "right skewed because most candidate pairs share no graph neighbors "
+    "and therefore get a near zero bridge score, with a long tail of pairs "
+    "that genuinely do share structural context. Semantic is roughly "
+    "unimodal and centered near the middle of the cosine range, which is "
+    "a familiar shape for sentence embedding cosines on within domain text "
+    "and is exactly the compression that makes a standalone semantic cutoff "
+    "impossible. Keyword is more uniform than either of the other two "
+    "content signals because TF IDF overlap varies smoothly with shared "
+    "vocabulary density. Function match is effectively binary, which it "
+    "should be given that it encodes a discrete taxonomy alignment check. "
+    "The production composite needs all four because no single one of "
+    "these shapes on its own is concentrated enough around the positives "
+    "to act as a decision rule."
 )
 
 code(r"""
@@ -568,12 +628,13 @@ sig_cols = ["bridge_score", "semantic_score", "keyword_score", "function_match",
 corr = training[sig_cols].corr(method="pearson")
 
 fig, ax = plt.subplots(figsize=(6.5, 5.5))
-# vlag is a diverging palette centered at zero, which is appropriate for a
-# correlation matrix because positive and negative correlations have
+# A custom diverging palette centered at zero is appropriate for a
+# correlation matrix because positive and negative correlations carry
 # different meanings and should be visually distinct.
+div_cmap = sns.diverging_palette(220, 20, as_cmap=True)
 sns.heatmap(
     corr, ax=ax, annot=True, fmt=".2f",
-    cmap="vlag", vmin=-1, vmax=1, center=0,
+    cmap=div_cmap, vmin=-1, vmax=1, center=0,
     square=True, cbar_kws={"label": "Pearson r"},
 )
 ax.set_title("Figure 4.4 · Signal correlation matrix")
@@ -587,38 +648,109 @@ md(
     "that makes a fused score worth computing in the first place. Bridge and "
     "keyword have the largest pairwise correlation, around what you would "
     "expect given that both reward shared vocabulary, but the magnitude is "
-    "still modest. Bridge correlates positively with Node2Vec because both "
-    "reward graph neighborhood structure. Semantic similarity is almost "
-    "uncorrelated with bridge, which means the encoder is reading something "
-    "different from what the structural signal sees. Function match is "
-    "nearly orthogonal to everything else, which justifies its place in the "
-    "composite even though it carries only one bit of information per pair. "
-    "If any pair of these signals were highly correlated, the model would "
-    "be double counting the same evidence and the additional weight would "
-    "buy nothing in terms of independent information."
+    "still modest. The single largest off diagonal entry is bridge against "
+    "Node2Vec at r = 0.75, which is high and expected because both signals "
+    "are structural readings of the same graph neighborhood. After that "
+    "the correlations drop sharply: bridge against function match sits at "
+    "r = 0.42, bridge against keyword at r = 0.34, Node2Vec against "
+    "function match at r = 0.34, Node2Vec against keyword at r = 0.27. "
+    "Everything touching the semantic axis is low: semantic against bridge "
+    "is r = 0.11, against keyword is r = 0.13, against Node2Vec is "
+    "r = 0.22, and against function match is r = 0.00 to two decimal "
+    "places. The practical reading is that the semantic signal is the most "
+    "informationally independent feature in the stack and function match "
+    "is close behind. A feature that lives in its own direction in feature "
+    "space contributes disproportionately to the effective rank of the "
+    "combined signal, which is why the production composite keeps semantic "
+    "at a non trivial weight even though its marginal shape (figure 4.0) "
+    "is heavily compressed."
+)
+
+code(r"""
+# Figure 4.5. Composite score broken down by target OWASP ASI risk. The
+# training pool contains the Cartesian product of AIUC-1 source controls
+# against the 10 agentic risks, so target_node_id is a ten level
+# categorical we can use to ask whether a continuous variable (composite)
+# shifts across levels of a categorical variable. That is guide question
+# three from the assignment.
+comp_df = training.copy()
+# Reproduce the production composite inline from the four stored signal
+# columns so the reader can see the formula next to the figure.
+comp_df["composite"] = (
+    0.467 * comp_df["bridge_score"]
+    + 0.333 * comp_df["semantic_score"]
+    + 0.200 * comp_df["keyword_score"]
+) * (1 + 0.5 * comp_df["function_match"])
+comp_df["target_id"] = comp_df["target_node_id"].str.split(":").str[-1]
+
+# Order risks by descending median composite so the x axis implicitly
+# ranks the targets from strongest to weakest candidate pool.
+order = (
+    comp_df.groupby("target_id")["composite"]
+    .median().sort_values(ascending=False).index.tolist()
+)
+
+fig, ax = plt.subplots(figsize=(11, 5))
+sns.boxplot(
+    data=comp_df, x="target_id", y="composite", order=order,
+    hue="target_id", palette="crest", legend=False,
+    showfliers=True, linewidth=1.0, ax=ax,
+)
+ax.axhline(0.45, color="#e76f51", ls="--", lw=1.0)
+ax.text(
+    len(order) - 0.5, 0.455, "Direct cutoff (0.45)",
+    fontsize=8.5, color="#e76f51", ha="right", va="bottom",
+)
+ax.set_title("Figure 4.5 · Composite score by target OWASP ASI risk (AIUC-1 → Agentic)")
+ax.set_xlabel("target risk (ordered by median composite)")
+ax.set_ylabel("composite score")
+plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
+plt.tight_layout()
+plt.show()
+""")
+
+md(
+    "Composite score varies substantially across the ten agentic risks, "
+    "which is the kind of finding that directly informs where a review "
+    "round should focus. The risks at the left of the chart have "
+    "consistently stronger candidate pools, meaning AIUC-1 contains many "
+    "controls that score highly against them. The risks at the right have "
+    "softer pools, meaning either the controls are genuinely less "
+    "applicable or the signals are not surfacing them. The dashed line at "
+    "0.45 marks the production Direct tier threshold and gives the reader "
+    "a fixed reference for comparing distributions against the decision "
+    "rule. The descriptive finding worth emphasizing is that no single "
+    "risk is saturated: every distribution has an upper tail crossing the "
+    "threshold, which means every agentic risk has at least a few strong "
+    "candidate mappings. The differences across the ten risks are the "
+    "cleanest example in the notebook of a continuous variable whose "
+    "shape shifts meaningfully across levels of a categorical feature."
 )
 
 
 # ============================================================
 # Section 5
 # ============================================================
-md("## 5 · Learned vs Hand-Tuned: Evidence-Based Weight Selection")
+md("## 5 · Feature Relevance: How Different Weighting Strategies See the Signals")
 md(
-    "Three learners were fit on the labeled training data and are compared "
-    "here against the hand tuned weights that the production composite "
-    "actually uses. The hand tuned weights assign 0.467 to bridge, 0.333 to "
-    "semantic, 0.2 to keyword, and zero to both function match and Node2Vec. "
-    "The three learners are a logistic regression on all five features, a "
-    "LightGBM gradient boosted tree, and an ordinal regression model that "
-    "respects tier ordering. The questions worth asking are whether the "
-    "learners agree about which signals matter, and whether their agreement "
-    "is strong enough to justify replacing the hand tuned weights in "
-    "production."
+    "This section is a descriptive look at how four different weighting "
+    "strategies distribute importance across the five signal features. It is "
+    "not a model selection exercise. The fitted coefficients for each "
+    "strategy are loaded from artifacts the pipeline produced in earlier "
+    "preprocessing runs and are shown here purely as a way of asking which "
+    "features different estimators decide are important. Whether any of "
+    "these strategies should be deployed in production is a decision that "
+    "lives outside this notebook and is answered in the improvement plan "
+    "document. The reader should take this section as feature exploration, "
+    "not as a model comparison."
 )
 
 code(r'''
-# Figure 5.1. Grouped bar chart of normalized feature importance for each
-# of the three model families against the hand tuned weights.
+# Figure 5.1. Grouped bar chart showing how four different weighting
+# strategies distribute normalized importance across the five signal
+# features. This is a descriptive look at four snapshots of the same
+# question (which features matter?) taken through four different
+# estimators, not a model comparison on a held-out set.
 features = ["bridge_score", "semantic_score", "keyword_score", "function_match", "node2vec_score"]
 
 # The hand tuned weights are kept in the source code of the mapper rather
@@ -628,192 +760,67 @@ hand_w = {"bridge_score": 0.467, "semantic_score": 0.333, "keyword_score": 0.2,
           "function_match": 0.0, "node2vec_score": 0.0}
 log_c = learned_w["logistic_coefficients"]
 lgbm_i = learned_w["lightgbm_feature_importance"]
+ord_c = learned_w["ordinal_coefficients"]
 
 def normalize(d):
-    """Normalize a dict of feature scores so the absolute values sum to 1.
-
-    We take absolute values because logistic regression coefficients can be
-    negative (a signal can predict the negative class) and we want to
-    compare magnitudes across models that report importance on different
-    natural scales. Normalization is necessary because the raw logistic
-    coefficients sum to about 15 while LightGBM importances sum into the
-    thousands.
-    """
+    # Sum of absolute values to 1 so four estimators living on wildly
+    # different scales (logistic coefficients sum to about 15, LightGBM
+    # importances into the thousands, ordinal coefficients into the hundreds)
+    # can be compared on a single vertical axis.
     s = sum(abs(d.get(f, 0.0)) for f in features)
     return {f: (abs(d.get(f, 0.0)) / s if s else 0.0) for f in features}
 
 hand_n = normalize(hand_w)
 log_n = normalize(log_c)
 lgbm_n = normalize(lgbm_i)
+ord_n = normalize(ord_c)
 
 x = np.arange(len(features))
-w = 0.27   # bar width tuned so three groups fit comfortably under each tick
-fig, ax = plt.subplots(figsize=(10, 5))
-ax.bar(x - w, [hand_n[f] for f in features], w, label="hand-tuned",         color="#9aa6b2")
-ax.bar(x,     [log_n[f]  for f in features], w, label="logistic (|coef|)",  color="#1f77b4")
-ax.bar(x + w, [lgbm_n[f] for f in features], w, label="LightGBM importance", color="#e76f51")
+w = 0.20   # bar width for four groups per tick
+fig, ax = plt.subplots(figsize=(11, 5))
+ax.bar(x - 1.5*w, [hand_n[f] for f in features], w, label="hand-tuned",         color="#9aa6b2")
+ax.bar(x - 0.5*w, [log_n[f]  for f in features], w, label="logistic (|coef|)",  color="#1f77b4")
+ax.bar(x + 0.5*w, [ord_n[f]  for f in features], w, label="ordinal (|coef|)",   color="#2a9d8f")
+ax.bar(x + 1.5*w, [lgbm_n[f] for f in features], w, label="LightGBM importance", color="#e76f51")
 ax.set_xticks(x)
-ax.set_xticklabels([f.replace("_score", "").replace("_", " ") for f in features], rotation=20)
-ax.set_ylabel("normalized weight / importance")
-ax.set_title("Figure 5.1 · Hand-tuned vs learned signal importance")
-ax.legend()
+ax.set_xticklabels([f.replace("_score", "").replace("_", " ") for f in features], rotation=30)
+ax.set_ylabel("normalized |weight| (sum to 1)")
+ax.set_title("Figure 5.1 · Four weighting strategies compared across five signal features")
+ax.legend(frameon=False, loc="upper right")
+# On-plot annotation for the feature with the widest spread across estimators.
+# node2vec is the obvious story: hand-tuned gives it zero, LightGBM gives it
+# the largest single share. Pointing this out with an arrow anchors the
+# reader on the most discussion-worthy feature on the chart.
+ax.annotate(
+    "Widest disagreement:\nhand-tuned = 0,\nLightGBM ≈ maximum",
+    xy=(4 + 1.5*w, lgbm_n["node2vec_score"]),
+    xytext=(2.6, lgbm_n["node2vec_score"] + 0.08),
+    fontsize=9, ha="left",
+    arrowprops=dict(arrowstyle="->", lw=1.0, color="black"),
+)
 plt.tight_layout()
 plt.show()
 ''')
 
 md(
-    "All three models put the largest single share of weight on the bridge "
-    "signal, and that agreement is the most reassuring fact in the figure. "
-    "Where the models disagree is on Node2Vec. LightGBM places more than a "
-    "third of its importance there, the logistic regression places a "
-    "substantial fraction, and the hand tuned weights deliberately set it to "
-    "zero. The disagreement is informative rather than damning. LightGBM is "
-    "reading patterns in the random walk neighborhood that the other models "
-    "do not encode, but those patterns may also be learning the labeling "
-    "pool's own structural quirks rather than anything that generalizes to "
-    "frameworks the model has not seen yet. The next figure tests exactly "
-    "that question on a held out validation set. The bar chart format here "
-    "uses position on a common scale, which Cleveland and McGill identified "
-    "as the most accurate perceptual channel available, so visual ranking of "
-    "feature importance from this chart is reliable to within a few percent."
-)
-
-code(r'''
-# Figure 5.2. ROC curves on the NIST AI RMF held out validation set. We
-# compute the curves directly from the loaded validation CSV using the model
-# coefficients that the pipeline already learned and stored, so no model
-# training happens in the notebook. Three model families appear: hand tuned
-# (a linear blend of three signals), logistic regression (a linear model
-# with five features and an intercept, fit by maximum likelihood), and the
-# ordinal regression model (a linear model with five features fit on the
-# tier ordering rather than the binary mapped/unmapped target).
-from sklearn.metrics import roc_curve, auc as sk_auc
-
-# Prepare the held out feature matrix and label vector. nist_validation_data
-# was created during pipeline preprocessing and is not part of any training
-# set, which is what makes it valid for held out evaluation.
-y_val = nist_val["is_mapped"].values
-
-def hand_blend(df):
-    """Score every row using the hand tuned three feature blend.
-
-    The hand tuned model only uses bridge, semantic, and keyword. We do not
-    add function match or node2vec because production is configured to give
-    them zero weight and we want this curve to represent the actual model
-    that ships, not a hypothetical version of it.
-    """
-    return (
-        hand_w["bridge_score"]   * df["bridge_score"].values
-        + hand_w["semantic_score"] * df["semantic_score"].values
-        + hand_w["keyword_score"]  * df["keyword_score"].values
-    )
-
-def linear_blend(df, coefs, intercept=0.0):
-    """Score every row using a linear combination of all five features.
-
-    Used for both logistic and ordinal coefficients. ROC only depends on the
-    ordering of the scores, so applying or omitting the logistic sigmoid
-    does not change the curve. We omit it for ordinal (which has no natural
-    sigmoid) and apply it for logistic (so the resulting score is also
-    interpretable as a probability for the confusion matrix below).
-    """
-    z = np.full(len(df), float(intercept))
-    for f in features:
-        z = z + float(coefs.get(f, 0.0)) * df[f].values
-    return z
-
-# Compute three score vectors. The logistic vector is passed through a
-# sigmoid because we will reuse it as a probability for figure 5.3, but the
-# ROC curve uses the underlying linear score so the sigmoid is monotone and
-# the curve is unchanged.
-hand_scores = hand_blend(nist_val)
-log_z = linear_blend(nist_val, log_c, intercept=log_c.get("intercept", 0.0))
-log_scores = 1.0 / (1.0 + np.exp(-log_z))
-ord_scores = linear_blend(nist_val, learned_w["ordinal_coefficients"])
-
-curves = {
-    "Hand-tuned (3 features)":    (hand_scores, "#9aa6b2"),
-    "Logistic (5 features)":      (log_scores,  "#1f77b4"),
-    "Ordinal (5 features)":       (ord_scores,  "#e76f51"),
-}
-
-fig, ax = plt.subplots(figsize=(7, 6))
-for name, (s, color) in curves.items():
-    fpr, tpr, _ = roc_curve(y_val, s)
-    a = sk_auc(fpr, tpr)
-    ax.plot(fpr, tpr, color=color, lw=2, label=f"{name}  (AUC={a:.3f})")
-ax.plot([0, 1], [0, 1], color="gray", lw=0.8, ls="--", label="chance")
-ax.set_xlabel("false positive rate")
-ax.set_ylabel("true positive rate")
-ax.set_title("Figure 5.2 · ROC curves on NIST AI RMF validation set")
-ax.legend(loc="lower right")
-plt.tight_layout()
-plt.show()
-''')
-
-md(
-    "This is the figure where training set claims have to defend themselves "
-    "against held out data. The hand tuned, logistic, and ordinal models are "
-    "all scored against the NIST AI RMF validation set, which none of them "
-    "was trained on. The logistic and ordinal curves outperform the hand "
-    "tuned baseline on this slice, and the AUC values in the legend "
-    "quantify the gap. The reason production still uses the hand tuned "
-    "weights despite this gap has to do with operational cost rather than "
-    "AUC. The validation set is heavily skewed toward unmapped pairs, "
-    "because most cross framework comparisons should not be mappings, so "
-    "the cost structure favors a model that produces fewer false positives "
-    "even at the price of slightly lower recall. The hand tuned "
-    "configuration sits at a more conservative point on the precision recall "
-    "frontier and produces shorter review queues for human SMEs. AUC alone "
-    "does not capture that operational tradeoff, which is why the production "
-    "decision is informed by AUC but not driven by it."
-)
-
-code(r"""
-# Figure 5.3. Side by side confusion matrices at deployment thresholds. We
-# pick thresholds that match how each model is actually used: the hand tuned
-# model uses a lower cutoff because its score range is compressed, while the
-# logistic model uses 0.5 as the natural midpoint of its sigmoid output.
-from sklearn.metrics import confusion_matrix
-
-# Hand tuned cutoff. 0.4 is where the production composite places its
-# Direct/Related boundary on the (bridge + semantic + keyword) blend, so it
-# is the threshold a downstream user would actually encounter.
-hand_pred = (hand_scores >= 0.4).astype(int)
-# Logistic uses 0.5 because the sigmoid is symmetric around zero and 0.5 is
-# the maximum likelihood decision boundary under a flat prior.
-log_pred = (log_scores >= 0.5).astype(int)
-
-cm_hand = confusion_matrix(y_val, hand_pred)
-cm_log = confusion_matrix(y_val, log_pred)
-
-fig, axes = plt.subplots(1, 2, figsize=(10, 4.2))
-for ax, cm, title in zip(axes, (cm_hand, cm_log), ("Hand-tuned (cutoff 0.40)", "Logistic (cutoff 0.50)")):
-    sns.heatmap(
-        cm, ax=ax, annot=True, fmt="d", cmap="Blues",
-        xticklabels=["pred unmapped", "pred mapped"],
-        yticklabels=["true unmapped", "true mapped"],
-        cbar=False,
-    )
-    ax.set_title(title)
-fig.suptitle("Figure 5.3 · NIST validation confusion matrices", weight="bold", y=1.02)
-plt.tight_layout()
-plt.show()
-""")
-
-md(
-    "The two confusion matrices look qualitatively similar because both "
-    "models are dominated by the true negative quadrant, which is what "
-    "should happen on a sparse mapping problem where most candidate pairs "
-    "really are unrelated. The differences are in the off diagonal cells. "
-    "The logistic model recovers a few additional true positives at the "
-    "cost of a larger number of false positives. Whether that tradeoff is "
-    "worth taking depends on what the downstream user is doing. A research "
-    "team building an exhaustive map will tolerate the extra false "
-    "positives because every additional true positive is valuable. An "
-    "operational team triaging alerts will not. The production decision to "
-    "keep the hand tuned weights reflects the second use case, and these "
-    "matrices are the visual evidence behind that decision."
+    "The four weighting strategies agree on one thing and disagree sharply "
+    "on another. All four place substantial mass on the bridge signal, "
+    "which is the strongest descriptive evidence in this figure that bridge "
+    "is the single most informative feature across quite different "
+    "estimator families. The disagreement is on Node2Vec. The hand tuned "
+    "configuration zeroes it out, the LightGBM tree places the largest "
+    "single share of its importance there, and the two linear estimators "
+    "sit somewhere in between. This is exactly the kind of split that a "
+    "purely descriptive look at the features is good at surfacing. The "
+    "reason different estimators reach different conclusions about Node2Vec "
+    "is a question for modeling work that lives outside this notebook. "
+    "What the figure does tell the reader is that Node2Vec is the feature "
+    "whose relevance is most estimator-dependent, and therefore the one to "
+    "watch in any future modeling round. The bar chart format uses position "
+    "on a common scale, which is the perceptual channel Cleveland and "
+    "McGill identified as the most accurate available for quantitative "
+    "comparison, so visual ranking across the four strategies is reliable "
+    "to within a few percent."
 )
 
 
@@ -852,7 +859,7 @@ fig, ax = plt.subplots(figsize=(9, 7))
 sns.heatmap(
     cov_arr, ax=ax,
     annot=True, fmt=".0f",
-    cmap="viridis", vmin=0, vmax=100,
+    cmap="crest", vmin=0, vmax=100,
     xticklabels=labels, yticklabels=labels,
     cbar_kws={"label": "% of source nodes with ≥1 mapping"},
     mask=np.isnan(cov_arr),
@@ -1076,12 +1083,12 @@ plt.show()
 """)
 
 md(
-    "The diff panel on the left is the headline result and it is a harder "
-    "finding than we would have liked. Only about forty eight percent of the "
-    "119 v1 expert pairs survive in v2, meaning sixty two pairs that a human "
-    "expert flagged as primary or secondary mappings did not clear the "
-    "production composite threshold on this run. At the same time the pipeline "
-    "surfaced fifty two new pairs that the expert set did not contain. The "
+    "The diff panel on the left describes where the two snapshots overlap. "
+    "About forty eight percent of the 119 v1 expert pairs are also produced "
+    "by v2, meaning sixty two pairs that a human expert flagged as primary or "
+    "secondary mappings did not clear the production composite threshold on "
+    "this run, and the pipeline separately surfaced fifty two new pairs that "
+    "the expert set did not contain. The "
     "middle panel shows the tier distribution stays in roughly the same shape: "
     "v1 leans heavily toward Primary (Direct in our vocabulary) and v2 leans "
     "even harder that way, because the composite tends to resolve ambiguous "
@@ -1094,8 +1101,8 @@ md(
     "expert overlooked. The other part, of course, is the sixty two lost "
     "pairs where the human saw a relationship the composite does not score "
     "highly enough, and those are the queue for the next round of active "
-    "learning. Treat this as a snapshot of where the mapper and the human "
-    "agree and disagree, not as a verdict on which one is right."
+    "learning. This is a descriptive comparison of two snapshots of the same "
+    "mapping problem, not a judgment on which one is correct."
 )
 
 

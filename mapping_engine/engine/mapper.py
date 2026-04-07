@@ -42,6 +42,8 @@ from mapping_engine.engine.taxonomy import classify_function, classify_relevance
 
 REPO = Path(__file__).resolve().parents[2]
 LEARNED_WEIGHTS_PATH = REPO / "data" / "processed" / "learned_weights.json"
+CALIBRATED_THRESHOLDS_B2_PATH = REPO / "data" / "processed" / "calibrated_thresholds_b2.json"
+LEARNED_WEIGHTS_B2_PATH = REPO / "data" / "processed" / "learned_weights_b2.json"
 
 TIER_NAMES = {
     TIER_NONE: "None",
@@ -79,6 +81,15 @@ class MappingResult:
 
 
 def _load_learned_weights() -> dict[str, float] | None:
+    # B-2 verdict overrides B-1: if the multi-pair selection chose hand_tuned,
+    # do not swap in any learned weights regardless of the older file.
+    if LEARNED_WEIGHTS_B2_PATH.exists():
+        try:
+            b2 = json.loads(LEARNED_WEIGHTS_B2_PATH.read_text())
+            if str(b2.get("best_model", "")).lower().startswith("hand"):
+                return None
+        except Exception:
+            pass
     if not LEARNED_WEIGHTS_PATH.exists():
         return None
     try:
@@ -101,12 +112,25 @@ def _load_learned_weights() -> dict[str, float] | None:
 
 
 def _load_calibrated_thresholds() -> dict[str, float] | None:
-    """Load Phase C calibrated thresholds from learned_weights.json.
+    """Load calibrated thresholds, preferring the B-2 multi-pair sweep.
 
-    Returns ``None`` unless a ``calibrated_thresholds`` block is present AND
-    its ``method`` indicates a CV-based sweep. Callers still must honor the
-    ``use_learned_weights`` gate.
+    Resolution order:
+      1. ``calibrated_thresholds_b2.json`` (B2.9 NDCG@10 sweep over 5 pairs)
+      2. ``learned_weights.json``'s ``calibrated_thresholds`` block (B-1 era)
+
+    Callers still must honor the ``use_learned_weights`` gate.
     """
+    if CALIBRATED_THRESHOLDS_B2_PATH.exists():
+        try:
+            data = json.loads(CALIBRATED_THRESHOLDS_B2_PATH.read_text())
+            opt = data.get("ndcg_optimal") or {}
+            if "direct" in opt and "related_primary" in opt:
+                return {
+                    "direct": float(opt["direct"]),
+                    "related_primary": float(opt["related_primary"]),
+                }
+        except Exception:
+            pass
     if not LEARNED_WEIGHTS_PATH.exists():
         return None
     try:

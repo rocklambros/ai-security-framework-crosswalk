@@ -1,0 +1,158 @@
+{
+  "rows": [
+    {
+      "pair": "aiuc_1__csa_aicm",
+      "n_mappings": 65,
+      "tier_counts": {
+        "Direct": 48,
+        "Related": 17,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 12,
+      "n_anchors_scored": 257,
+      "mrr": 0.4389992777277294,
+      "mrr_ci": [
+        0.3945771303412422,
+        0.48392170432841636
+      ],
+      "recall_at_5": 0.669260700389105,
+      "roc_auc": 0.756221895865191,
+      "sampler_error": null
+    },
+    {
+      "pair": "aiuc_1__eu_gpai_cop",
+      "n_mappings": 2,
+      "tier_counts": {
+        "Direct": 2,
+        "Related": 0,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 1,
+      "n_anchors_scored": 60,
+      "mrr": 0.12017580931280623,
+      "mrr_ci": [
+        0.10088713820292768,
+        0.1424388046146463
+      ],
+      "recall_at_5": 0.11666666666666667,
+      "roc_auc": 0.5229722222222222,
+      "sampler_error": null
+    },
+    {
+      "pair": "aiuc_1__mitre_atlas",
+      "n_mappings": 37,
+      "tier_counts": {
+        "Direct": 31,
+        "Related": 6,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 7,
+      "n_anchors_scored": 32,
+      "mrr": 0.41449598504672996,
+      "mrr_ci": [
+        0.2792890980218343,
+        0.5692223832440672
+      ],
+      "recall_at_5": 0.5,
+      "roc_auc": 0.58662109375,
+      "sampler_error": null
+    },
+    {
+      "pair": "aiuc_1__nist_rmf",
+      "n_mappings": 19,
+      "tier_counts": {
+        "Direct": 13,
+        "Related": 6,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 6,
+      "n_anchors_scored": 152,
+      "mrr": 0.3000854060856403,
+      "mrr_ci": [
+        0.25672294812996194,
+        0.3496687582867147
+      ],
+      "recall_at_5": 0.5,
+      "roc_auc": 0.6537699099722992,
+      "sampler_error": null
+    },
+    {
+      "pair": "aiuc_1__owasp_agentic",
+      "n_mappings": 60,
+      "tier_counts": {
+        "Direct": 5,
+        "Related": 55,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 26,
+      "n_anchors_scored": 109,
+      "mrr": 0.4568661715450707,
+      "mrr_ci": [
+        0.3996174639580603,
+        0.5225182029998544
+      ],
+      "recall_at_5": 0.7614678899082569,
+      "roc_auc": 0.6161473278637729,
+      "sampler_error": null
+    },
+    {
+      "pair": "aiuc_1__owasp_llm",
+      "n_mappings": 8,
+      "tier_counts": {
+        "Direct": 6,
+        "Related": 2,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 2,
+      "n_anchors_scored": 60,
+      "mrr": 0.3486706349206348,
+      "mrr_ci": [
+        0.28555357142857146,
+        0.4195525793650794
+      ],
+      "recall_at_5": 0.6666666666666666,
+      "roc_auc": 0.5171274961597542,
+      "sampler_error": null
+    },
+    {
+      "pair": "cosai_rm__mitre_atlas",
+      "n_mappings": 17,
+      "tier_counts": {
+        "Direct": 16,
+        "Related": 1,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 4,
+      "n_anchors_scored": 0,
+      "mrr": null,
+      "mrr_ci": null,
+      "recall_at_5": null,
+      "roc_auc": null,
+      "sampler_error": null
+    },
+    {
+      "pair": "cosai_rm__owasp_llm",
+      "n_mappings": 2,
+      "tier_counts": {
+        "Direct": 1,
+        "Related": 1,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 0,
+      "n_anchors_scored": 0,
+      "mrr": null,
+      "mrr_ci": null,
+      "recall_at_5": null,
+      "roc_auc": null,
+      "sampler_error": null
+    }
+  ]
+}

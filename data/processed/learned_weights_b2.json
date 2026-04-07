@@ -231,5 +231,44 @@
       "n_resamples": 1000,
       "alpha": 0.05
     }
+  },
+  "best_model": "hand_tuned",
+  "model_comparison": {
+    "schema_version": "b2.10",
+    "variants_compared": [
+      "hand_tuned",
+      "logistic"
+    ],
+    "variants_skipped": [
+      "lightgbm",
+      "ordinal"
+    ],
+    "skip_reason": "lightgbm and ordinal models from learn_weights.py are not wired into PairMapper composite scoring; they would require a separate scoring shim. The current pipeline only supports hand-tuned and logistic via use_learned_weights. Documented as deferred.",
+    "hand_tuned_ndcg_at_10_ci": {
+      "point": 0.9510907186004265,
+      "lo": 0.842063127520229,
+      "hi": 1.0,
+      "mean": 0.9582795699570856,
+      "std": 0.046918224413543916,
+      "n_resamples": 1000,
+      "alpha": 0.05
+    },
+    "logistic_ndcg_at_10_ci": {
+      "point": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "mean": 0.9999575861412007,
+      "std": 0.00134124398162566,
+      "n_resamples": 1000,
+      "alpha": 0.05
+    },
+    "paired_delta_logistic_minus_hand": {
+      "point": 0.041678016184115055,
+      "lo": 0.0,
+      "hi": 0.15793687247977095,
+      "ci_excludes_zero": false
+    },
+    "decision": "hand_tuned",
+    "decision_rule": "Switch to alternative model only if its paired-bootstrap delta vs hand-tuned has CI excluding 0 in the positive direction."
   }
 }

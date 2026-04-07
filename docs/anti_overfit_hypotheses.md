@@ -55,7 +55,7 @@ Persisted to data/processed/b1_discriminative_eval.json. The discriminative metr
 
 **Frozen test pairs.** Excluded.
 
-**Result.** _to be filled in after S6 runs_
+**Result.** REJECTED — and decisively. Post-S5 baseline MRR is 0.3402 (the S5 mitigation_lexical_match adoption visibly lifted the baseline from S3's 0.3143). reranker_v2 MRR drops to 0.2337; per-pair regressions are uniform: aiuc_1__eu_gpai_cop 0.1202→0.0678, aiuc_1__nist_rmf 0.3135→0.1620, aiuc_1__owasp_agentic 0.4546→0.3530, aiuc_1__owasp_llm 0.4201→0.3645. Paired-bootstrap delta = -0.1065 [-0.1269, -0.0875] — CI excludes zero in the WRONG direction. The fine-tune learned in-domain reranking that helps the val NDCG@10 (0.673 → 0.720) but hurts narrow-band rerank decisions on novel cross-framework pairs, presumably by sharpening false-positive distractors. reranker_v2 stays DROPPED and defaults.yaml is unchanged. Persisted to data/processed/reranker_v2_discriminative_eval.json.
 
 ## 2026-04-07 — H_S7: frozen-test re-test under discriminative metric
 

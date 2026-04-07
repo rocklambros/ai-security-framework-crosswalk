@@ -78,6 +78,10 @@ def _source_entries(
                     if 0.0 <= float(v) <= 1.0
                 },
             }
+            if "confidence_gap" in m:
+                entry["confidence_gap"] = round(float(m["confidence_gap"]), 4)
+            if "needs_review" in m:
+                entry["needs_review"] = bool(m["needs_review"])
             v2_mappings.append(entry)
 
         primary = sum(1 for vm in v2_mappings if vm["relevance"] == "Primary")
@@ -117,7 +121,7 @@ def _target_entries(
                 fc = "GOVERN"
             rc = m["rationale_code"]
             coverage[rc] = coverage.get(rc, 0) + 1
-            v2_mappings.append({
+            entry_t = {
                 "control_id": s_node.get("local_id") or m["source_node_id"].split(":", 1)[-1],
                 "control_title": s_node.get("name") or m["source_node_id"],
                 "domain": s_node.get("domain") or "",
@@ -131,7 +135,12 @@ def _target_entries(
                     for k, v in m["signals"].items()
                     if 0.0 <= float(v) <= 1.0
                 },
-            })
+            }
+            if "confidence_gap" in m:
+                entry_t["confidence_gap"] = round(float(m["confidence_gap"]), 4)
+            if "needs_review" in m:
+                entry_t["needs_review"] = bool(m["needs_review"])
+            v2_mappings.append(entry_t)
         all_codes = set(RATIONALE_LABELS.keys())
         uncovered = sorted(all_codes - set(coverage.keys()))
         primary = sum(1 for vm in v2_mappings if vm["relevance"] == "Primary")
@@ -233,10 +242,26 @@ def _build_document(
         for s in source_entries
         if s["mapping_count"] == 0
     ]
+    review_items = [
+        {
+            "source_node_id": m["source_node_id"],
+            "target_node_id": m["target_node_id"],
+            "score": round(float(m["score"]), 4),
+            "tier": m["tier"],
+            "confidence_gap": round(float(m.get("confidence_gap", 0.0)), 4),
+        }
+        for m in result.mappings
+        if m.get("needs_review")
+    ]
+    if len(review_items) > 100:
+        review_items = sorted(review_items, key=lambda x: abs(x["confidence_gap"]))[:100]
+
     gap = {
         "unmapped_controls": unmapped,
         "unmapped_count": len(unmapped),
         "note": "Unmapped controls did not reach the Related threshold under the current pipeline.",
+        "needs_review_count": sum(1 for m in result.mappings if m.get("needs_review")),
+        "needs_review": review_items,
     }
 
     return {

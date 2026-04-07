@@ -466,6 +466,9 @@ class PairMapper:
         rationale_codes: list[str],
         signal_matrices: dict[str, np.ndarray],
     ) -> list[dict[str, Any]]:
+        thresholds = self.config.get("thresholds") or {}
+        thr_direct = float(thresholds.get("direct", 0.55))
+        thr_related = float(thresholds.get("related_primary", 0.35))
         out: list[dict[str, Any]] = []
         for i, s in enumerate(source_nodes):
             for j, t in enumerate(target_nodes):
@@ -473,18 +476,24 @@ class PairMapper:
                 if tier < TIER_RELATED:
                     continue
                 rc = rationale_codes[i]
+                score_val = float(composite[i, j])
+                assigned_thr = thr_direct if tier == TIER_DIRECT else thr_related
+                confidence_gap = score_val - assigned_thr
+                needs_review = bool(abs(confidence_gap) < 0.05)
                 out.append({
                     "source_node_id": s,
                     "target_node_id": t,
                     "source_framework": self.G.nodes[s].get("framework"),
                     "target_framework": self.G.nodes[t].get("framework"),
-                    "score": float(composite[i, j]),
+                    "score": score_val,
                     "tier": TIER_NAMES[tier],
                     "tier_int": tier,
                     "relevance": "Primary" if relevance[i, j] == 1 else "Secondary",
                     "rationale_code": rc,
                     "rationale_label": RATIONALE_LABELS.get(rc, rc),
                     "signals": {k: float(M[i, j]) for k, M in signal_matrices.items()},
+                    "confidence_gap": float(confidence_gap),
+                    "needs_review": needs_review,
                 })
         return out
 

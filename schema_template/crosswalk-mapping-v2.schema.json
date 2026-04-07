@@ -209,7 +209,9 @@
           "type": "object",
           "description": "Optional. Per-signal sub-scores. Include for auditability, omit for published crosswalks.",
           "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
-        }
+        },
+        "confidence_gap": { "type": "number", "description": "score minus threshold for assigned tier." },
+        "needs_review": { "type": "boolean", "description": "True when |confidence_gap| < 0.05." }
       }
     },
     "OwaspEntry": {
@@ -257,7 +259,9 @@
           "type": "object",
           "description": "Optional. Per-signal sub-scores.",
           "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
-        }
+        },
+        "confidence_gap": { "type": "number", "description": "score minus threshold for assigned tier." },
+        "needs_review": { "type": "boolean", "description": "True when |confidence_gap| < 0.05." }
       }
     },
     "GapAnalysis": {
@@ -270,7 +274,24 @@
           "items": { "$ref": "#/$defs/UnmappedControl" }
         },
         "unmapped_count": { "type": "integer", "minimum": 0 },
-        "note": { "type": "string", "description": "Explanatory note about why controls may be unmapped." }
+        "note": { "type": "string", "description": "Explanatory note about why controls may be unmapped." },
+        "needs_review_count": { "type": "integer", "minimum": 0, "description": "Number of mappings flagged for human review (low confidence margin)." },
+        "needs_review": {
+          "type": "array",
+          "description": "Mappings within |0.05| of the tier boundary. Capped at 100 by smallest |confidence_gap|.",
+          "items": {
+            "type": "object",
+            "required": ["source_node_id", "target_node_id", "score", "tier", "confidence_gap"],
+            "additionalProperties": false,
+            "properties": {
+              "source_node_id": { "type": "string" },
+              "target_node_id": { "type": "string" },
+              "score": { "type": "number", "minimum": 0, "maximum": 1 },
+              "tier": { "type": "string" },
+              "confidence_gap": { "type": "number" }
+            }
+          }
+        }
       }
     },
     "UnmappedControl": {

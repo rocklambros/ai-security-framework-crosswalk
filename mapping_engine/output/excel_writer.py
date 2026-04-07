@@ -21,6 +21,7 @@ HEADER_FILL = PatternFill(start_color="1F4E79", end_color="1F4E79", fill_type="s
 HEADER_FONT = Font(color="FFFFFF", bold=True, size=11)
 DIRECT_FILL = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
 RELATED_FILL = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")
+NEEDS_REVIEW_FILL = PatternFill(start_color="D9E1F2", end_color="D9E1F2", fill_type="solid")
 PRIMARY_FILL = PatternFill(start_color="4472C4", end_color="4472C4", fill_type="solid")
 PRIMARY_FONT = Font(color="FFFFFF")
 SECONDARY_FILL = PatternFill(start_color="D9D9D9", end_color="D9D9D9", fill_type="solid")
@@ -53,11 +54,14 @@ def _auto_width(ws, n_cols: int, max_rows: int) -> None:
         ws.column_dimensions[get_column_letter(col)].width = min(mx + 2, 50)
 
 
-def _tier_fill(ws, col: int, start: int, end: int) -> None:
+def _tier_fill(ws, col: int, start: int, end: int, review_rows: set[int] | None = None) -> None:
+    review_rows = review_rows or set()
     for r in range(start, end + 1):
         c = ws.cell(row=r, column=col)
         v = str(c.value or "")
-        if v == "Direct":
+        if r in review_rows:
+            c.fill = NEEDS_REVIEW_FILL
+        elif v == "Direct":
             c.fill = DIRECT_FILL
         elif v == "Related":
             c.fill = RELATED_FILL
@@ -93,8 +97,10 @@ def _write_readme(wb: Workbook, pair_config: PairConfig, result: MappingResult) 
     ws.cell(row=8, column=2, value="Strong, well-supported connection (composite >= direct threshold)")
     ws.cell(row=9, column=1, value="Related").fill = RELATED_FILL
     ws.cell(row=9, column=2, value="Meaningful but less direct connection")
+    ws.cell(row=10, column=1, value="Needs review").fill = NEEDS_REVIEW_FILL
+    ws.cell(row=10, column=2, value="Low confidence margin (|score - tier threshold| < 0.05) — human review recommended")
 
-    ws.cell(row=11, column=1, value="Rationale codes:").font = Font(bold=True)
+    ws.cell(row=12, column=1, value="Rationale codes:").font = Font(bold=True)
     rows = [
         ("PREV", "Prevent — blocks the core attack mechanism"),
         ("SCOPE", "Constrain scope — limits blast radius"),
@@ -105,7 +111,7 @@ def _write_readme(wb: Workbook, pair_config: PairConfig, result: MappingResult) 
         ("ISOLATE", "Isolate and contain"),
         ("DISCLOSE", "Disclose and calibrate"),
     ]
-    for i, (code, desc) in enumerate(rows, start=12):
+    for i, (code, desc) in enumerate(rows, start=13):
         ws.cell(row=i, column=1, value=code).font = Font(bold=True)
         ws.cell(row=i, column=2, value=desc)
 
@@ -131,11 +137,14 @@ def _write_source_to_target(
     _style_header(ws, len(headers))
 
     row = 2
+    review_rows: set[int] = set()
     for m in result.mappings:
         s_node = G.nodes[m["source_node_id"]]
         t_node = G.nodes[m["target_node_id"]]
         if entry_types is not None and s_node.get("entry_type") not in entry_types:
             continue
+        if m.get("needs_review"):
+            review_rows.add(row)
         ws.cell(row=row, column=1, value=s_node.get("local_id") or m["source_node_id"])
         ws.cell(row=row, column=2, value=s_node.get("name") or "")
         ws.cell(row=row, column=3, value=s_node.get("domain") or "")
@@ -152,7 +161,7 @@ def _write_source_to_target(
         ws.cell(row=row, column=13, value=round(sig.get("keyword", 0.0), 4))
         ws.cell(row=row, column=14, value=round(sig.get("function_match", 0.0), 4))
         row += 1
-    _tier_fill(ws, 10, 2, row - 1)
+    _tier_fill(ws, 10, 2, row - 1, review_rows)
     _relevance_fill(ws, 8, 2, row - 1)
     _auto_width(ws, len(headers), row - 1)
 
@@ -184,6 +193,7 @@ def _write_target_to_source(
         by_tgt.setdefault(m["target_node_id"], []).append(m)
 
     row = 2
+    review_rows: set[int] = set()
     for t in result.target_nodes:
         t_node = G.nodes[t]
         ms = sorted(by_tgt.get(t, []), key=lambda x: -x["score"])
@@ -199,6 +209,8 @@ def _write_target_to_source(
             continue
         for m in ms:
             s_node = G.nodes[m["source_node_id"]]
+            if m.get("needs_review"):
+                review_rows.add(row)
             ws.cell(row=row, column=1, value=t_node.get("local_id") or t)
             ws.cell(row=row, column=2, value=t_node.get("name") or "")
             ws.cell(row=row, column=3, value=cov_str)
@@ -210,7 +222,7 @@ def _write_target_to_source(
             ws.cell(row=row, column=9, value=round(m["score"], 4))
             ws.cell(row=row, column=10, value=m["tier"])
             row += 1
-    _tier_fill(ws, 10, 2, row - 1)
+    _tier_fill(ws, 10, 2, row - 1, review_rows)
     _relevance_fill(ws, 8, 2, row - 1)
     _auto_width(ws, len(headers), row - 1)
 

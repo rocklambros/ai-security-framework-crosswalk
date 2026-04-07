@@ -10,6 +10,62 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 <!-- Append new entries below this line. Do not edit prior entries except to fill in their result. -->
 
+## 2026-04-07 — H_S4: discriminative-metric threshold re-sweep
+
+**Hypothesis.** Re-sweeping (direct, related_primary) thresholds against the anchors-vs-distractors discriminative metric (mean reciprocal rank of each positive anchor against 20 sampled non-mapped distractors per anchor) improves aggregate MRR over the 5 expanded non-frozen pairs by ≥ 0.03 vs the current (0.45, 0.20) thresholds, with paired-bootstrap 95% CI on the delta excluding 0.
+
+**Predicted direction.** Positive — current thresholds were tuned against saturated NDCG@10 and are effectively arbitrary; an objective that actually moves should produce a measurable improvement.
+
+**Minimum effect size.** Δ MRR ≥ 0.03 paired-bootstrap CI excluding 0.
+
+**Metric.** Aggregate MRR across 420 anchors (5 non-frozen pairs), distractor pool = 20 stratified non-mapped (src,tgt') and (src',tgt) cells per anchor, seed=20260407. Companion metrics Recall@5 and ROC-AUC reported but not gate-bearing.
+
+**Frozen test pairs.** Excluded; touched only once in S7 with whatever thresholds S4 ships.
+
+**Result.** _to be filled in after S4 runs_
+
+## 2026-04-07 — H_S5: B-1 structural features re-eval under discriminative metric
+
+**Hypothesis.** Each of the three B-1 structural features that previously had non-zero coverage but failed the saturated NDCG@10 gate (`mitigation_lexical_match` 23%, `source_out_degree_ratio` 93%, `mutual_reciprocal_rank` 93%) improves aggregate MRR by ≥ 0.02 with paired-bootstrap 95% CI excluding 0 AND has permutation-importance CI excluding 0 when re-evaluated under the anchors-vs-distractors metric.
+
+**Predicted direction.** Positive for at least one of the three (the metric saturation was the dominant blocker; with a discriminating metric, real signal should now be measurable).
+
+**Minimum effect size.** Δ MRR ≥ 0.02 paired-bootstrap CI excluding 0; perm-importance CI excluding 0.
+
+**Metric.** Same as H_S4. Per-anchor LOO masking retained.
+
+**Frozen test pairs.** Excluded.
+
+**Result.** _to be filled in after S5 runs_
+
+## 2026-04-07 — H_S6: reranker_v2 re-eval under discriminative metric
+
+**Hypothesis.** The fine-tuned `BAAI/bge-reranker-base` (reranker_v2) improves aggregate MRR by ≥ 0.03 over the post-S5 pipeline, with paired-bootstrap 95% CI on the delta excluding 0, when re-evaluated under the anchors-vs-distractors metric.
+
+**Predicted direction.** Positive — A4 training-time validation showed real per-epoch lift (val NDCG@10 0.673 → 0.720), which the saturated A5 gate could not detect.
+
+**Minimum effect size.** Δ MRR ≥ 0.03 paired-bootstrap CI excluding 0.
+
+**Metric.** Same as H_S4 / H_S5.
+
+**Frozen test pairs.** Excluded.
+
+**Result.** _to be filled in after S6 runs_
+
+## 2026-04-07 — H_S7: frozen-test re-test under discriminative metric
+
+**Hypothesis.** Under the anchors-vs-distractors metric and any S4-adopted thresholds, the three frozen pairs achieve aggregate MRR ≥ 0.50 AND tier_acc ≥ 0.30, both substantially above the prior (1.0000-saturated NDCG, 0.0000 tier_acc) baseline, demonstrating that the rebuild's gating harness now generalizes to abstract cross-framework targets.
+
+**Predicted direction.** Positive — current frozen scores are degenerate, any non-trivial discriminative score is an improvement.
+
+**Minimum effect size.** Aggregate MRR ≥ 0.50 across the three frozen pairs combined; tier_acc ≥ 0.30.
+
+**Metric.** Per-pair MRR + tier_acc; aggregate weighted by anchor count. Each frozen pair touched ONCE in S7, never retuned regardless of result.
+
+**Frozen test pairs.** This IS the frozen test step.
+
+**Result.** _to be filled in after S7 runs_
+
 ## 2026-04-07 — A0: cross-encoder fine-tune (BAAI/bge-reranker-base)
 
 **Hypothesis.** Fine-tuning `BAAI/bge-reranker-base` on graded triples derived from expert/authoritative cross-framework edges (Direct=2, Related=1, None=0), with hard negatives sampled from high-bridge-but-unmapped pairs and easy negatives sampled randomly, beats the off-the-shelf MS MARCO MiniLM cross-encoder currently wired into `defaults.yaml` on aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.05 with paired-bootstrap 95% CI excluding 0.

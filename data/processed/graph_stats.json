@@ -1,0 +1,105 @@
+{
+  "generated_at": "2026-04-07T00:30:18.735775+00:00",
+  "node_count": 895,
+  "edge_count": 1790,
+  "frameworks": {
+    "aiuc_1": {
+      "nodes": 189,
+      "outbound_edges": 929,
+      "inbound_edges": 183
+    },
+    "owasp_agentic": {
+      "nodes": 10,
+      "outbound_edges": 0,
+      "inbound_edges": 119
+    },
+    "owasp_llm": {
+      "nodes": 10,
+      "outbound_edges": 0,
+      "inbound_edges": 78
+    },
+    "mitre_atlas": {
+      "nodes": 218,
+      "outbound_edges": 421,
+      "inbound_edges": 482
+    },
+    "nist_rmf": {
+      "nodes": 76,
+      "outbound_edges": 0,
+      "inbound_edges": 152
+    },
+    "csa_aicm": {
+      "nodes": 261,
+      "outbound_edges": 243,
+      "inbound_edges": 566
+    },
+    "eu_gpai_cop": {
+      "nodes": 70,
+      "outbound_edges": 32,
+      "inbound_edges": 92
+    },
+    "cosai_rm": {
+      "nodes": 61,
+      "outbound_edges": 165,
+      "inbound_edges": 118
+    }
+  },
+  "edge_confidence_distribution": {
+    "authoritative": 1605,
+    "expert": 119,
+    "unvalidated": 66
+  },
+  "rationale_distribution": {
+    "PARENT": 664,
+    "null": 763,
+    "SCOPE": 33,
+    "ISOLATE": 8,
+    "VALID": 16,
+    "PREV": 268,
+    "GATE": 8,
+    "DETECT": 17,
+    "GOVERN": 10,
+    "DISCLOSE": 3
+  },
+  "cross_framework_pairs": {
+    "aiuc_1 → csa_aicm": 323,
+    "aiuc_1 → nist_rmf": 152,
+    "aiuc_1 → owasp_agentic": 119,
+    "aiuc_1 → eu_gpai_cop": 60,
+    "aiuc_1 → owasp_llm": 60,
+    "aiuc_1 → mitre_atlas": 32,
+    "cosai_rm → mitre_atlas": 29,
+    "cosai_rm → owasp_llm": 18
+  },
+  "stub_nodes": [],
+  "orphan_nodes": [
+    "eu_gpai_cop:Article-22",
+    "eu_gpai_cop:Article-44",
+    "eu_gpai_cop:Article-46",
+    "nist_rmf:GOVERN",
+    "nist_rmf:GOVERN-2.2",
+    "nist_rmf:GOVERN-3.1",
+    "nist_rmf:GOVERN-4.1",
+    "nist_rmf:GOVERN-6.2",
+    "nist_rmf:MANAGE",
+    "nist_rmf:MANAGE-2.1",
+    "nist_rmf:MANAGE-2.3",
+    "nist_rmf:MANAGE-2.4",
+    "nist_rmf:MANAGE-3.2",
+    "nist_rmf:MAP",
+    "nist_rmf:MAP-1.2",
+    "nist_rmf:MAP-1.3",
+    "nist_rmf:MAP-1.4",
+    "nist_rmf:MAP-2.3",
+    "nist_rmf:MAP-3.1",
+    "nist_rmf:MAP-3.2",
+    "nist_rmf:MEASURE",
+    "nist_rmf:MEASURE-2.12",
+    "nist_rmf:MEASURE-2.2",
+    "nist_rmf:MEASURE-3.2"
+  ],
+  "validation_warnings": [
+    "TODO: NIST AI 600-1 node extraction from prose markdown",
+    "TODO: OWASP AI Exchange node extraction skipped"
+  ]
+}

@@ -57,3 +57,68 @@ Recorded once. NOT to be retuned for B-1.
 Recorded once. NOT to be retuned for Phase A.
 
 ---
+
+## Session 7.5 — Discriminative re-test (one-shot, S7)
+
+After Session 7.5 shipped the anchors-vs-distractors gate (S2), froze
+the B-2 baseline under it (S3), and adopted `mitigation_lexical_match`
+into the production composite (S5), the three frozen pairs were each
+touched ONCE under the new metric. Same pipeline as production:
+mitigation_lexical_match blended at weight=0.10, reranker_v2 dropped per
+S6, calibrated thresholds unchanged (0.45 / 0.20) per S4. Distractors:
+20 per anchor, seed=20260407.
+
+| Phase | Pair | n | MRR [95% CI] | Recall@5 | ROC-AUC | Tier accuracy | TNR |
+|---|---|---|---|---|---|---|---|
+| B-2 | `aiuc_1 -> csa_aicm`     | 257 | 0.4354 [0.3912, 0.4794] | 0.6693 | 0.7564 | **0.7938** | 0.5660 |
+| B-1 | `aiuc_1 -> mitre_atlas`  |  32 | 0.4379 [0.2953, 0.5869] | 0.5000 | 0.5889 | **0.5938** | 0.3781 |
+| A   | `cosai_rm -> owasp_llm`  |   0 | n/a | n/a | n/a | n/a | n/a |
+
+Aggregate over the 289 in-scope frozen anchors (B-2 + B-1):
+weighted MRR ≈ 0.4357, weighted tier accuracy ≈ 0.7716.
+
+**Comparison vs prior frozen state.**
+
+| Pair | Prior (saturated NDCG / tier) | Discriminative re-test |
+|---|---|---|
+| B-2 | NDCG=1.0000 (saturated), tier_acc=0.0000 | MRR=0.4354 (informative), **tier_acc=0.7938** |
+| B-1 | NDCG=1.0000 (saturated), tier_acc=0.0000 | MRR=0.4379 (informative), **tier_acc=0.5938** |
+| A   | NDCG=1.0000 (saturated), tier_acc=0.0000 | n=0 (anchor-skipping bug — see below) |
+
+The tier_accuracy=0 result was the headline failure of the prior
+rebuild; under the discriminative gate it climbs to 0.7938 / 0.5938 with
+no threshold retuning, no rationale-code population, no graph surgery.
+The composite scores were never the problem — the GATE was. Once the
+gate is informative, the existing pipeline reveals that it correctly
+mass-classifies the majority of frozen-pair positives as Direct/Related
+and rejects ~57 % of distractors at the same threshold floor.
+
+**Hypothesis H_S7 outcome (pre-registered).** The pre-registered bar
+was aggregate MRR ≥ 0.50 AND tier_acc ≥ 0.30. Tier_acc dramatically
+clears the bar (0.7716 vs 0.30); MRR (0.4357) is below the 0.50 target.
+**PARTIALLY CONFIRMED**: the rebuild's classification capability was
+real and was being masked by the saturated metric, but pure ranking
+remains imperfect — distractors still overlap positives in the [0.20,
+0.45] range. This is a known limitation and the path forward is the
+same three unblockers (rationale codes, cross-framework category links,
+or richer per-pair calibration) — none of which was on the table for
+this loop.
+
+**Phase A pair (cosai_rm -> owasp_llm) anchor-skipping limitation.**
+All 18 anchors of this pair are skipped by the discriminative
+collection harness because cosai_rm source nodes do not appear in
+PairMapper's `anchor_validation` masked records. The same skip-pattern
+hit `cosai_rm -> mitre_atlas` in S3 (n=0). Root cause is in the
+masked-validation path when the source framework is cosai_rm — the
+`source_node_id` keys do not survive the round-trip into the
+`training_anchors` / `holdout_anchors` dicts. This is a pre-existing
+infrastructure bug, not something this loop's metric can mask. The B-2
+and B-1 frozen pairs both use `aiuc_1` as source and are unaffected.
+Filed for Session 8 follow-up.
+
+**Decision (NO retuning).** All three frozen results are recorded
+verbatim. No threshold or feature decisions are revisited based on
+these numbers. The discriminative gate is now demonstrated to work
+end-to-end on the frozen sets.
+
+Recorded once. NOT to be retuned.

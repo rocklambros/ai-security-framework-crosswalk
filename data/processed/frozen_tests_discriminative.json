@@ -1,0 +1,118 @@
+{
+  "rng_seed": 20260407,
+  "n_per_anchor": 20,
+  "thresholds": {
+    "direct": 0.45,
+    "related_primary": 0.2
+  },
+  "pairs": {
+    "aiuc_1__csa_aicm": {
+      "phase": "B-2",
+      "n_anchors_scored": 257,
+      "n_distractors_total": 5140,
+      "score": {
+        "mrr": 0.4354324813593766,
+        "recall_at_5": 0.669260700389105,
+        "roc_auc": 0.7563846538176202,
+        "n_anchors": 257
+      },
+      "ci": {
+        "mrr": [
+          0.43545484893165837,
+          0.39121986538611664,
+          0.4794479462850183
+        ],
+        "recall_at_5": [
+          0.6682645914396886,
+          0.6108949416342413,
+          0.7276264591439688
+        ],
+        "roc_auc": [
+          0.7561312086481249,
+          0.7241039796211903,
+          0.7866993444261079
+        ],
+        "n_resamples": 1000
+      },
+      "tier_classification": {
+        "positive_direct": 7,
+        "positive_related": 197,
+        "positive_none": 53,
+        "tier_accuracy": 0.7937743190661478,
+        "true_negative_rate": 0.5659533073929961
+      }
+    },
+    "aiuc_1__mitre_atlas": {
+      "phase": "B-1",
+      "n_anchors_scored": 32,
+      "n_distractors_total": 640,
+      "score": {
+        "mrr": 0.43793348504672996,
+        "recall_at_5": 0.5,
+        "roc_auc": 0.588916015625,
+        "n_anchors": 32
+      },
+      "ci": {
+        "mrr": [
+          0.4414582680712337,
+          0.29527858040021226,
+          0.5869287883115766
+        ],
+        "recall_at_5": [
+          0.503625,
+          0.3125,
+          0.6875
+        ],
+        "roc_auc": [
+          0.591306640625,
+          0.46786865234375,
+          0.713048095703125
+        ],
+        "n_resamples": 1000
+      },
+      "tier_classification": {
+        "positive_direct": 2,
+        "positive_related": 17,
+        "positive_none": 13,
+        "tier_accuracy": 0.59375,
+        "true_negative_rate": 0.378125
+      }
+    },
+    "cosai_rm__owasp_llm": {
+      "phase": "A",
+      "n_anchors_scored": 0,
+      "n_distractors_total": 0,
+      "score": {
+        "mrr": 0.0,
+        "recall_at_5": 0.0,
+        "roc_auc": 0.0,
+        "n_anchors": 0
+      },
+      "ci": {
+        "mrr": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "recall_at_5": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "roc_auc": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "n_resamples": 1000
+      },
+      "tier_classification": {
+        "positive_direct": 0,
+        "positive_related": 0,
+        "positive_none": 0,
+        "tier_accuracy": 0.0,
+        "true_negative_rate": 0.0
+      }
+    }
+  }
+}

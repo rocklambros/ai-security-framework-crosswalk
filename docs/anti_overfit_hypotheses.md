@@ -69,7 +69,7 @@ Persisted to data/processed/b1_discriminative_eval.json. The discriminative metr
 
 **Frozen test pairs.** This IS the frozen test step.
 
-**Result.** _to be filled in after S7 runs_
+**Result.** PARTIALLY CONFIRMED. B-2 aiuc_1__csa_aicm n=257: MRR=0.4354 [0.3912, 0.4794], tier_acc=0.7938 (was 0.0000), AUC=0.7564. B-1 aiuc_1__mitre_atlas n=32: MRR=0.4379 [0.2953, 0.5869], tier_acc=0.5938 (was 0.0000), AUC=0.5889. Phase A cosai_rm__owasp_llm n=0 (cosai_rm source-side anchor-skipping infrastructure bug — same as S3's cosai_rm__mitre_atlas miss). Aggregate over the 289 in-scope frozen anchors: weighted MRR ≈ 0.4357, weighted tier_acc ≈ 0.7716. Tier_acc gate (≥ 0.30) DRAMATICALLY CLEARED — the rebuild's classification ability was always there, just hidden behind the saturated NDCG@10 metric. MRR gate (≥ 0.50) NOT cleared (0.4357 < 0.50) — distractors still overlap positives in the [0.20, 0.45] range. NO retuning. Persisted to data/processed/frozen_tests_discriminative.json.
 
 ## 2026-04-07 — A0: cross-encoder fine-tune (BAAI/bge-reranker-base)
 

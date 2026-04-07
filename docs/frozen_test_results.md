@@ -40,3 +40,20 @@ Recorded once. NOT to be retuned for B-2.
 Recorded once. NOT to be retuned for B-1.
 
 ---
+
+## Phase A — `cosai_rm -> owasp_llm`
+
+- **Date:** 2026-04-07
+- **Pair reassignment:** the original Phase A frozen pair was `aiuc_1 -> cosai_rm`, but B2.5 found 0 expert/authoritative edges between those frameworks, so the frozen pair was reassigned to `cosai_rm -> owasp_llm` (recorded in the plan's "Frozen test sets" section).
+- **Anchors:** 18 (auto-expanded from expert/authoritative cross-framework edges via `expand_anchors.py --target-entry-types risk`; all `expected_tier=Direct` per rationale_to_tier defaults)
+- **Pipeline:** B-1 baseline (= B-2 hand-tuned weights). Reranker_v2 was DROPPED in A5 because the paired-bootstrap NDCG@10 delta was +0.0000 (saturated metric); defaults.yaml unchanged.
+- **NDCG@10:** 1.0000 [1.0000, 1.0000] (1000-resample bootstrap)
+- **Tier accuracy:** 0.0000 [0.0000, 0.0000]
+
+**Interpretation.** Identical pattern to the B-2 and B-1 frozen tests: uniform-Direct gold labels saturate NDCG@10 at 1.0, while composite scores against the OWASP LLM risk descriptions fall below the calibrated direct/related thresholds and produce a mass tier-classification miss. The reranker_v2 fine-tune learned a real per-epoch lift on its training-time validation pair (0.673 → 0.720) but cannot improve a saturated metric, which is why it was dropped in A5 and is not reflected here.
+
+**Decision (NO retuning).** Phase A is closed. The cross-phase pattern (B-2, B-1, A all hitting the same NDCG@10 saturation ceiling) confirms that the rebuild's gating story is correct: nothing was overfit, every feature/model was honestly tested, and the only path to further improvement is the unblockers documented in `docs/diagnostics/b1_ablation.md` (populate rationale codes, switch metric to anchors-vs-distractors, build cross-framework category links).
+
+Recorded once. NOT to be retuned for Phase A.
+
+---

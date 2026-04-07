@@ -1,0 +1,74 @@
+{
+  "cosai_rm:DMS->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:DP->owasp_llm:LLM04": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:EDH->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:EDH-I->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:IIC->owasp_llm:LLM03": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:IIC->owasp_llm:LLM06": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:IMO->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:IMO->owasp_llm:LLM09": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:ISD->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:ISD->owasp_llm:LLM09": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MDT->owasp_llm:LLM01": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MDT->owasp_llm:LLM03": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MEV->owasp_llm:LLM01": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MST->owasp_llm:LLM03": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:PIJ->owasp_llm:LLM01": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:RA->owasp_llm:LLM06": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:SDD->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:SDD->owasp_llm:LLM07": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  }
+}

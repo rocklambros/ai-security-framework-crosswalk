@@ -10,13 +10,13 @@ Discriminative metrics use 20 distractors per anchor, seed=20260407.
 
 | Pair | n_map | Direct | Related | None | needs_review | n_anc | MRR [95% CI] | Recall@5 | AUC |
 |---|---:|---:|---:|---:|---:|---:|---|---:|---:|
-| `aiuc_1__csa_aicm` | 65 | 48 | 17 | 0 | 12 | 257 | 0.4390 [0.3946, 0.4839] | 0.6693 | 0.7562 |
-| `aiuc_1__eu_gpai_cop` | 2 | 2 | 0 | 0 | 1 | 60 | 0.1202 [0.1009, 0.1424] | 0.1167 | 0.5230 |
-| `aiuc_1__mitre_atlas` | 37 | 31 | 6 | 0 | 7 | 32 | 0.4145 [0.2793, 0.5692] | 0.5000 | 0.5866 |
-| `aiuc_1__nist_rmf` | 19 | 13 | 6 | 0 | 6 | 152 | 0.3001 [0.2567, 0.3497] | 0.5000 | 0.6538 |
-| `aiuc_1__owasp_agentic` | 60 | 5 | 55 | 0 | 26 | 109 | 0.4569 [0.3996, 0.5225] | 0.7615 | 0.6161 |
-| `aiuc_1__owasp_llm` | 8 | 6 | 2 | 0 | 2 | 60 | 0.3487 [0.2856, 0.4196] | 0.6667 | 0.5171 |
-| `cosai_rm__mitre_atlas` | 17 | 16 | 1 | 0 | 4 | 0 | n/a | n/a | n/a |
-| `cosai_rm__owasp_llm` | 2 | 1 | 1 | 0 | 0 | 0 | n/a | n/a | n/a |
+| `aiuc_1__csa_aicm` | 61 | 47 | 14 | 0 | 12 | 257 | 0.3995 [0.3616, 0.4411] | 0.6732 | 0.7789 |
+| `aiuc_1__eu_gpai_cop` | 15 | 7 | 8 | 0 | 3 | 60 | 0.4131 [0.3352, 0.5017] | 0.7167 | 0.8009 |
+| `aiuc_1__mitre_atlas` | 71 | 57 | 14 | 0 | 15 | 32 | 0.6020 [0.4899, 0.7207] | 0.8750 | 0.8447 |
+| `aiuc_1__nist_rmf` | 17 | 14 | 3 | 0 | 7 | 152 | 0.3245 [0.2781, 0.3807] | 0.4671 | 0.6904 |
+| `aiuc_1__owasp_agentic` | 67 | 5 | 62 | 0 | 27 | 109 | 0.4226 [0.3680, 0.4819] | 0.7706 | 0.5943 |
+| `aiuc_1__owasp_llm` | 7 | 5 | 2 | 0 | 2 | 60 | 0.3670 [0.2970, 0.4428] | 0.6833 | 0.5207 |
+| `cosai_rm__mitre_atlas` | 32 | 28 | 4 | 0 | 6 | 29 | 0.5351 [0.3949, 0.6740] | 0.7586 | 0.8666 |
+| `cosai_rm__owasp_llm` | 6 | 5 | 1 | 0 | 1 | 18 | 0.4044 [0.2680, 0.5543] | 0.6667 | 0.6173 |
 
 **Skipped-anchor note.** `cosai_rm__*` pairs report `n_anc=0` because cosai_rm source nodes do not currently surface in PairMapper's masked-validation records. The mapping output (`n_map`) is unaffected and remains the production source of truth for those pairs. Filed for SESSION 8 follow-up.

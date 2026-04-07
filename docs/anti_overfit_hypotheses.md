@@ -22,7 +22,7 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 **Mask discipline.** Feature computation must accept a `mask_pairs` set of edges to exclude, so leave-one-out anchor masking (B2.7) can drop the held-out anchor's own edge contribution before feature generation.
 
-**Result.** _to be filled in by B1.2_
+**Result.** REJECTED. shared_parent_centrality is structurally zero for every cross-framework anchor pair (verified directly: aiuc_1 -> owasp_agentic 43x10 matrix has 0 nonzero entries). The current unified graph is leaf-level bipartite across frameworks — source and target nodes share no graph neighbors because the only shared parents would be within-framework category nodes, not cross-framework. n=420 anchors, baseline NDCG@10 = 1.0000 (saturated), blended NDCG@10 = 1.0000, paired delta = +0.0000 [0.0000, 0.0000], permutation importance = +0.0000 [0.0000, 0.0000]. Both gate criteria fail. Feature DROPPED. To resurrect this idea would require either (a) building cross-framework parent-category links during graph build, or (b) reframing as "shared 2-hop neighbor", which is what the existing bridge feature already captures. Persisted to data/processed/b1_eval_shared_parent_centrality.json.
 
 ## 2026-04-06 — B2.9: NDCG@10 threshold-sweep objective
 

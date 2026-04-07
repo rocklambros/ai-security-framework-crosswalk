@@ -304,7 +304,7 @@ so n=20 is a sufficient operating point.
 **Rollback.** If n=20 fails the 1.5x ratio, adopt the smallest n whose
 ratio vs n=80 is ≤ 1.2.
 
-**Result.** _Pending S12._
+**Result.** KEEP n=20. Sweep over n ∈ {10,20,40,80}: width(n=10)=0.0606, width(n=20)=0.0654, width(n=40)=0.0622, width(n=80)=0.0607. n=20 width 0.0654 ≤ 1.5 × 0.0607 = 0.0911 → keep n=20 as canonical. MRR drops monotonically with n (0.4627→0.2854) as expected since larger distractor pools make the discrimination task harder, but CI widths are essentially flat (~0.06 across all n) — the bottleneck is anchor count (410), not distractor count. Diagnostic: `docs/diagnostics/distractor_count_sweep.md`.
 
 ## 2026-04-07 — H_76_S13: per-pair threshold calibration
 

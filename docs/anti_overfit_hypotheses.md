@@ -10,6 +10,20 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 <!-- Append new entries below this line. Do not edit prior entries except to fill in their result. -->
 
+## 2026-04-07 — A0: cross-encoder fine-tune (BAAI/bge-reranker-base)
+
+**Hypothesis.** Fine-tuning `BAAI/bge-reranker-base` on graded triples derived from expert/authoritative cross-framework edges (Direct=2, Related=1, None=0), with hard negatives sampled from high-bridge-but-unmapped pairs and easy negatives sampled randomly, beats the off-the-shelf MS MARCO MiniLM cross-encoder currently wired into `defaults.yaml` on aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.05 with paired-bootstrap 95% CI excluding 0.
+
+**Predicted direction.** Positive (in-domain fine-tune > general MS MARCO weights for AI-security framework text).
+
+**Minimum effect size.** Δ aggregate NDCG@10 ≥ 0.05 with paired-bootstrap CI excluding 0.
+
+**Metric.** Aggregate NDCG@10 across 420 anchors from the 5 expanded non-frozen pairs (B2.7 protocol), computed via leave-one-out anchor masking and the existing PairMapper pipeline with `reranker.model` swapped.
+
+**Training discipline.** Triples generation EXCLUDES: (a) all anchor-pair edges, (b) all three frozen-test pairs (`aiuc_1__csa_aicm`, `aiuc_1__mitre_atlas`, `cosai_rm__owasp_llm`), (c) all 1-hop graph neighbors of either side of any anchor or frozen-test pair. Training/validation split = leave-one-framework-pair-out CV across the surviving training pairs. Frozen test pairs are NEVER seen during training, validation, or model selection.
+
+**Result.** TBD — fill in after A5.
+
 ## 2026-04-07 — B1.7: mutual reciprocal rank
 
 **Hypothesis.** Adding `mutual_reciprocal_rank` (harmonic mean of reciprocal rank of source in target's neighbor list AND target in source's neighbor list, where neighbors are scored via token-Jaccard similarity over name+description text) improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired CI excluding 0 AND perm-importance CI excluding 0.

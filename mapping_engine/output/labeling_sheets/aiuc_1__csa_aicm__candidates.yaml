@@ -1,0 +1,947 @@
+candidates:
+- source_node_id: aiuc_1:F002
+  target_node_id: csa_aicm:DSP-13
+  composite_score: 0.2
+  uncertainty_score: 1.9998
+  signals:
+    bridge: 0.0
+    semantic: 0.4528
+    keyword: 0.0076
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Catastrophic-misuse prevention is unrelated to personal-data sub-processing
+    controls.
+  source_name: Prevent catastrophic misuse
+  source_description: Implement or document guardrails to prevent AI-enabled catastrophic
+    system misuse (chemical / bio / radio / nuclear).
+  target_name: Personal Data Sub-processing
+  target_description: Define, implement and evaluate processes, procedures and technical
+    measures for the transfer and sub-processing of personal data within the service
+    supply chain, according to any applicable laws and regulations.
+- source_node_id: aiuc_1:C008.1
+  target_node_id: csa_aicm:BCR-01
+  composite_score: 0.35
+  uncertainty_score: 1.9995
+  signals:
+    bridge: 0.0
+    semantic: 0.9347
+    keyword: 0.0219
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Output monitoring is operationally adjacent to BCM but BCM is not the canonical
+    control.
+  source_name: Establish ongoing monitoring of AI outputs across risk categories through
+    regular evaluations.
+  source_description: Establish ongoing monitoring of AI outputs across risk categories
+    through regular evaluations.
+  target_name: Business Continuity Management Policy
+  target_description: Establish, document, approve, communicate, apply, evaluate and
+    maintain business continuity management and operational resilience policies and
+    procedures. Review and update the policies and procedures at least annually, or
+    when significant changes occur that could impact risk exposure.
+- source_node_id: aiuc_1:B002.3
+  target_node_id: csa_aicm:A-A-05
+  composite_score: 0.2
+  uncertainty_score: 1.9993
+  signals:
+    bridge: 0.0
+    semantic: 0.381
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Detection-rule updates are weakly related to audit-management process.
+  source_name: Updating detection rules based on emerging adversarial techniques quarterly.
+  source_description: Updating detection rules based on emerging adversarial techniques
+    quarterly.
+  target_name: Audit Management Process
+  target_description: Define and implement an Audit Management process aligned with
+    global auditing standards, to support audit planning, risk analysis, security
+    control assessment, conclusion, remediation schedules, report generation, and
+    review of past reports and supporting evidence.
+- source_node_id: aiuc_1:E013.3
+  target_node_id: csa_aicm:STA-01
+  composite_score: 0.35
+  uncertainty_score: 1.9984
+  signals:
+    bridge: 0.0
+    semantic: 0.6666
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Defect tracking and continuous improvement is a core supply-chain risk-management
+    practice.
+  source_name: Implementing defect tracking, continuous improvement, and post-market
+    monitoring.
+  source_description: Implementing defect tracking, continuous improvement, and post-market
+    monitoring.
+  target_name: Supply Chain Risk Management Policies and Procedures
+  target_description: Establish, document, approve, communicate, apply, evaluate,
+    and maintain policies and procedures for supply chain risk management. Review
+    and update the policies and procedures at least annually or upon significant changes.
+- source_node_id: aiuc_1:D004.1
+  target_node_id: csa_aicm:UEM-14
+  composite_score: 0.35
+  uncertainty_score: 1.998
+  signals:
+    bridge: 0.0
+    semantic: 0.7933
+    keyword: 0.1289
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Third-party tool-call evaluation maps to third-party endpoint security posture.
+  source_name: Third-party evaluation report showing tool call testing results.
+  source_description: Third-party evaluation report showing tool call testing results.
+  target_name: Third-Party Endpoint Security Posture
+  target_description: Define, implement and evaluate processes, procedures and technical
+    and/or contractual measures to maintain proper security of third-party endpoints
+    with access to organizational assets.
+- source_node_id: aiuc_1:E006
+  target_node_id: csa_aicm:DSP-13
+  composite_score: 0.3501
+  uncertainty_score: 1.9973
+  signals:
+    bridge: 0.0
+    semantic: 0.6745
+    keyword: 0.1198
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Vendor due diligence is unrelated to personal-data sub-processing.
+  source_name: Conduct vendor due diligence
+  source_description: Establish AI vendor due diligence processes for foundation and
+    upstream model providers.
+  target_name: Personal Data Sub-processing
+  target_description: Define, implement and evaluate processes, procedures and technical
+    measures for the transfer and sub-processing of personal data within the service
+    supply chain, according to any applicable laws and regulations.
+- source_node_id: aiuc_1:E006.1
+  target_node_id: csa_aicm:UEM-02
+  composite_score: 0.3499
+  uncertainty_score: 1.9966
+  signals:
+    bridge: 0.0
+    semantic: 0.9175
+    keyword: 0.0207
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Vendor assessment records map directly to application/service approval gates.
+  source_name: Vendor assessment records showing evaluation criteria, scoring, verification,
+    and approval decisions.
+  source_description: Vendor assessment records showing evaluation criteria, scoring,
+    verification, and approval decisions.
+  target_name: Application and Service Approval
+  target_description: Define, document, apply and evaluate a list of approved services,
+    applications and sources of applications (stores) acceptable for use by  endpoints
+    when accessing or storing organization-managed data.
+- source_node_id: aiuc_1:B001.1
+  target_node_id: csa_aicm:MDS-05
+  composite_score: 0.3501
+  uncertainty_score: 1.9963
+  signals:
+    bridge: 0.0
+    semantic: 0.6668
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Third-party model evaluation aligns with model documentation validation.
+  source_name: Third-party evaluation report demonstrating adversarial robustness
+    testing including risk taxonomy, methodology, finding
+  source_description: Third-party evaluation report demonstrating adversarial robustness
+    testing including risk taxonomy, methodology, findings, and remediation timelines.
+  target_name: Model Documentation Validation
+  target_description: Define, implement, and evaluate processes, procedures, and technical
+    measures for the validation of the Model documentation aligned with the current
+    model.
+- source_node_id: aiuc_1:F002.2
+  target_node_id: csa_aicm:LOG-13
+  composite_score: 0.3501
+  uncertainty_score: 1.9958
+  signals:
+    bridge: 0.0
+    semantic: 0.8858
+    keyword: 0.1161
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Catastrophic-misuse monitoring dashboards are exactly failures/anomalies
+    reporting.
+  source_name: Monitoring dashboard or alert configuration for catastrophic misuse
+    patterns.
+  source_description: Monitoring dashboard or alert configuration for catastrophic
+    misuse patterns.
+  target_name: Failures and Anomalies Reporting
+  target_description: Define, implement and evaluate processes, procedures and technical
+    measures for the reporting of anomalies and failures of the monitoring  system
+    and provide immediate notification to the accountable party.
+- source_node_id: aiuc_1:E015.3
+  target_node_id: csa_aicm:TVM-10
+  composite_score: 0.3501
+  uncertainty_score: 1.9954
+  signals:
+    bridge: 0.0
+    semantic: 0.6669
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Tamper-evident logs are weakly related to vulnerability-management metrics.
+  source_name: Ensure logs are tamper-evident and independently verifiable.
+  source_description: Ensure logs are tamper-evident and independently verifiable.
+  target_name: Vulnerability Management Metrics
+  target_description: Establish, monitor and report metrics for vulnerability identification
+    and remediation at defined intervals.
+- source_node_id: aiuc_1:B005.5
+  target_node_id: csa_aicm:CEK-09
+  composite_score: 0.3501
+  uncertainty_score: 1.9945
+  signals:
+    bridge: 0.0
+    semantic: 0.6669
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Filter-performance analysis is unrelated to encryption/key-management audit.
+  source_name: Analysis of filter performance metrics with documented threshold adjustments.
+  source_description: Analysis of filter performance metrics with documented threshold
+    adjustments.
+  target_name: Encryption and Key Management Audit
+  target_description: Audit encryption and key management systems, policies, and processes
+    with a frequency that is proportional to the risk exposure of the system  with
+    audit occurring preferably continuously but at least annually and after  any security
+    event(s).
+- source_node_id: aiuc_1:B004.3
+  target_node_id: csa_aicm:DSP-22
+  composite_score: 0.3501
+  uncertainty_score: 1.9943
+  signals:
+    bridge: 0.0
+    semantic: 0.6669
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Simulated attack tests touch privacy-enhancing tech only obliquely.
+  source_name: Conducting simulated external attack testing of AI endpoints.
+  source_description: Conducting simulated external attack testing of AI endpoints.
+  target_name: Privacy Enhancing Technologies
+  target_description: Use Privacy Enhancing Technologies for training data, informed
+    by risk and privacy impact analysis and business use cases.
+- source_node_id: aiuc_1:C007.1
+  target_node_id: csa_aicm:STA-16
+  composite_score: 0.1999
+  uncertainty_score: 1.9941
+  signals:
+    bridge: 0.0
+    semantic: 0.3745
+    keyword: 0.0108
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: High-risk output policy weakly relates to service BOM.
+  source_name: Document or policy defining high-risk outputs requiring human review.
+  source_description: Document or policy defining high-risk outputs requiring human
+    review.
+  target_name: Service Bill of Material (BOM)
+  target_description: Define, implement, and enforce a process for establishing a
+    Bill of Material for the service supply chain. Review and update the Bill of Material
+    at least annually or upon significant changes.
+- source_node_id: aiuc_1:C011
+  target_node_id: csa_aicm:GRC-01
+  composite_score: 0.3499
+  uncertainty_score: 1.9941
+  signals:
+    bridge: 0.0
+    semantic: 0.739
+    keyword: 0.0063
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Out-of-scope output testing is weakly related to governance program policy.
+  source_name: Third-party testing for out-of-scope outputs
+  source_description: Appoint expert third parties to evaluate system robustness to
+    out-of-scope outputs at least every 3 months.
+  target_name: Governance Program Policy and Procedures
+  target_description: Establish, document, approve, communicate, apply, evaluate and
+    maintain policies and procedures for an information governance program, which
+    is sponsored by the leadership of the organization and related to AI systems as
+    well. Review and update the policies and procedures at least annually.
+- source_node_id: aiuc_1:E015.1
+  target_node_id: csa_aicm:CEK-07
+  composite_score: 0.2002
+  uncertainty_score: 1.9918
+  signals:
+    bridge: 0.0
+    semantic: 0.3813
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: System activity logging supports encryption risk management evidence.
+  source_name: Capture system activity details including inputs, processing steps,
+    outputs, and metadata.
+  source_description: Capture system activity details including inputs, processing
+    steps, outputs, and metadata.
+  target_name: Encryption Risk Management
+  target_description: Establish and maintain an encryption and key management risk
+    program that includes provisions for risk assessment, risk treatment, risk context,
+    monitoring, and feedback.
+- source_node_id: aiuc_1:B006.2
+  target_node_id: csa_aicm:LOG-08
+  composite_score: 0.3502
+  uncertainty_score: 1.9917
+  signals:
+    bridge: 0.0
+    semantic: 0.8828
+    keyword: 0.1217
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Agent monitoring and alerting maps directly to log records control.
+  source_name: Deploying monitoring and alerting for agent actions that exceed security
+    boundaries.
+  source_description: Deploying monitoring and alerting for agent actions that exceed
+    security boundaries.
+  target_name: Log Records
+  target_description: Generate audit records containing relevant security information.
+- source_node_id: aiuc_1:E010.3
+  target_node_id: csa_aicm:SEF-02
+  composite_score: 0.3502
+  uncertainty_score: 1.9915
+  signals:
+    bridge: 0.0
+    semantic: 0.6545
+    keyword: 0.0221
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: User-facing AUP alerts weakly relate to service-management policy.
+  source_name: User-facing alerts when acceptable use policy is violated.
+  source_description: User-facing alerts when acceptable use policy is violated.
+  target_name: Service Management Policy and Procedures
+  target_description: Establish, document, approve, communicate, apply, evaluate and  maintain
+    policies and procedures for the timely management of  security incidents. Review
+    and update the policies and procedures at  least annually, or upon significant  changes.
+- source_node_id: aiuc_1:A004.4
+  target_node_id: csa_aicm:UEM-01
+  composite_score: 0.2002
+  uncertainty_score: 1.9909
+  signals:
+    bridge: 0.0
+    semantic: 0.3814
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Output monitoring for high-risk AI is unrelated to endpoint device policy.
+  source_name: Establishing output monitoring for high-risk IP scenarios.
+  source_description: Establishing output monitoring for high-risk IP scenarios.
+  target_name: Endpoint Devices Policy and Procedures
+  target_description: Establish, document, approve, communicate, apply, evaluate and  maintain
+    policies and procedures for all endpoints. Review and  update the policies and
+    procedures at least annually or upon significant system changes.
+- source_node_id: aiuc_1:B001.2
+  target_node_id: csa_aicm:LOG-08
+  composite_score: 0.3502
+  uncertainty_score: 1.9908
+  signals:
+    bridge: 0.0
+    semantic: 0.6671
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Pen-test reports generate log records as evidence.
+  source_name: Penetration test reports incorporating AI-specific test cases, shared
+    threat models, and testing calendars.
+  source_description: Penetration test reports incorporating AI-specific test cases,
+    shared threat models, and testing calendars.
+  target_name: Log Records
+  target_description: Generate audit records containing relevant security information.
+- source_node_id: aiuc_1:B001
+  target_node_id: csa_aicm:DCS-04
+  composite_score: 0.1998
+  uncertainty_score: 1.9907
+  signals:
+    bridge: 0.0
+    semantic: 0.4567
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Adversarial robustness testing is unrelated to secure media transportation.
+  source_name: Third-party testing of adversarial robustness
+  source_description: Implement adversarial testing program to validate system resilience
+    against adversarial inputs and prompt injection attempts.
+  target_name: Secure Media Transportation Policy
+  target_description: Establish, document, approve, communicate, apply, evaluate and
+    maintain policies and procedures for the secure transportation of physical media.
+    Review and update the policies and procedures at least annually, or upon significant
+    changes.
+- source_node_id: aiuc_1:C002.2
+  target_node_id: csa_aicm:UEM-01
+  composite_score: 0.1998
+  uncertainty_score: 1.9901
+  signals:
+    bridge: 0.0
+    semantic: 0.3805
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: AI testing integration is unrelated to endpoint device policy.
+  source_name: Integrating AI system testing into established SDLC gates.
+  source_description: Integrating AI system testing into established SDLC gates.
+  target_name: Endpoint Devices Policy and Procedures
+  target_description: Establish, document, approve, communicate, apply, evaluate and  maintain
+    policies and procedures for all endpoints. Review and  update the policies and
+    procedures at least annually or upon significant system changes.
+- source_node_id: aiuc_1:B001.2
+  target_node_id: csa_aicm:MDS-11
+  composite_score: 0.3502
+  uncertainty_score: 1.99
+  signals:
+    bridge: 0.0
+    semantic: 0.6639
+    keyword: 0.0056
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: AI pen-test reports map to model-failure documentation.
+  source_name: Penetration test reports incorporating AI-specific test cases, shared
+    threat models, and testing calendars.
+  source_description: Penetration test reports incorporating AI-specific test cases,
+    shared threat models, and testing calendars.
+  target_name: Model Failure
+  target_description: Perform a risk-based evaluation of the model and model serving
+    infrastructure for model failure. Define and implement measures to mitigate model
+    and model serving infrastructure failures, and regularly evaluate throughout the
+    AI system's lifecycle.
+- source_node_id: aiuc_1:C010.1
+  target_node_id: csa_aicm:CEK-21
+  composite_score: 0.1997
+  uncertainty_score: 1.9899
+  signals:
+    bridge: 0.0
+    semantic: 0.3634
+    keyword: 0.0299
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Hallucination evaluation is unrelated to key inventory management.
+  source_name: Third-party evaluation report showing harmful output testing.
+  source_description: Third-party evaluation report showing harmful output testing.
+  target_name: Key Inventory Management
+  target_description: Define, implement and evaluate processes, procedures and technical
+    measures in order for the key management system to track and report  all cryptographic
+    materials and changes in status, which include provisions  for legal and regulatory
+    requirements.
+- source_node_id: aiuc_1:D004
+  target_node_id: csa_aicm:HRS-03
+  composite_score: 0.2003
+  uncertainty_score: 1.9899
+  signals:
+    bridge: 0.0
+    semantic: 0.4547
+    keyword: 0.0051
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Tool-call testing is unrelated to clean-desk policy.
+  source_name: Third-party testing of tool calls
+  source_description: Appoint expert third-parties to evaluate tool calls in AI systems
+    at least every 3 months.
+  target_name: Clean Desk Policy and Procedures
+  target_description: Establish, document, approve, communicate, apply, evaluate and
+    maintain policies and procedures that require unattended workspaces to not have
+    openly visible confidential data. Review and update the policies and procedures
+    at least annually.
+- source_node_id: aiuc_1:D004.1
+  target_node_id: csa_aicm:LOG-13
+  composite_score: 0.3497
+  uncertainty_score: 1.9886
+  signals:
+    bridge: 0.0
+    semantic: 0.9372
+    keyword: 0.0209
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Tool-call evaluation reports are canonical failure/anomaly reporting evidence.
+  source_name: Third-party evaluation report showing tool call testing results.
+  source_description: Third-party evaluation report showing tool call testing results.
+  target_name: Failures and Anomalies Reporting
+  target_description: Define, implement and evaluate processes, procedures and technical
+    measures for the reporting of anomalies and failures of the monitoring  system
+    and provide immediate notification to the accountable party.
+- source_node_id: aiuc_1:C005.3
+  target_node_id: csa_aicm:DSP-05
+  composite_score: 0.1997
+  uncertainty_score: 1.9876
+  signals:
+    bridge: 0.0
+    semantic: 0.3804
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Real-time intervention weakly relates to data-flow documentation.
+  source_name: Implementing automated real-time interventions.
+  source_description: Implementing automated real-time interventions.
+  target_name: Data Flow Documentation
+  target_description: Create data flow documentation to identify what data is processed,
+    stored or transmitted where. Review data flow documentation at defined intervals,
+    at least annually, and after any change.
+- source_node_id: aiuc_1:E013.2
+  target_node_id: csa_aicm:TVM-09
+  composite_score: 0.3497
+  uncertainty_score: 1.9869
+  signals:
+    bridge: 0.0
+    semantic: 0.6514
+    keyword: 0.0256
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Change-management approval is the canonical vulnerability-management reporting
+    input.
+  source_name: Establishing change management, approval processes.
+  source_description: Establishing change management, approval processes.
+  target_name: Vulnerability Management Reporting
+  target_description: Define and implement a process for tracking and reporting  vulnerability
+    identification and remediation activities that includes  stakeholder notification.
+- source_node_id: aiuc_1:B006.2
+  target_node_id: csa_aicm:I-S-02
+  composite_score: 0.3497
+  uncertainty_score: 1.9865
+  signals:
+    bridge: 0.0
+    semantic: 0.666
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Agent monitoring is unrelated to capacity/resource planning.
+  source_name: Deploying monitoring and alerting for agent actions that exceed security
+    boundaries.
+  source_description: Deploying monitoring and alerting for agent actions that exceed
+    security boundaries.
+  target_name: Capacity and Resource Planning
+  target_description: Plan and monitor the availability, quality, and adequate capacity
+    of resources in order to deliver the required system performance as determined
+    by the business.
+- source_node_id: aiuc_1:C006.3
+  target_node_id: csa_aicm:LOG-01
+  composite_score: 0.2004
+  uncertainty_score: 1.986
+  signals:
+    bridge: 0.0
+    semantic: 0.3816
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Output-attack detection is exactly logging/monitoring policy scope.
+  source_name: Detecting advanced output-based attack patterns.
+  source_description: Detecting advanced output-based attack patterns.
+  target_name: Logging and Monitoring Policy and Procedures
+  target_description: Establish, document, approve, communicate, apply, evaluate and  maintain
+    policies and procedures for logging and monitoring. Review  and update the policies
+    and procedures at least annually, or upon significant changes.
+- source_node_id: aiuc_1:B002.3
+  target_node_id: csa_aicm:LOG-01
+  composite_score: 0.2004
+  uncertainty_score: 1.9859
+  signals:
+    bridge: 0.0
+    semantic: 0.3816
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Detection-rule updates are exactly logging/monitoring policy scope.
+  source_name: Updating detection rules based on emerging adversarial techniques quarterly.
+  source_description: Updating detection rules based on emerging adversarial techniques
+    quarterly.
+  target_name: Logging and Monitoring Policy and Procedures
+  target_description: Establish, document, approve, communicate, apply, evaluate and  maintain
+    policies and procedures for logging and monitoring. Review  and update the policies
+    and procedures at least annually, or upon significant changes.
+- source_node_id: aiuc_1:B008.1
+  target_node_id: csa_aicm:LOG-04
+  composite_score: 0.3496
+  uncertainty_score: 1.9851
+  signals:
+    bridge: 0.0
+    semantic: 0.6478
+    keyword: 0.0318
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Restricting model access maps to audit-log access/accountability.
+  source_name: Restricting access to production AI models based on job function.
+  source_description: Restricting access to production AI models based on job function.
+  target_name: Audit Logs Access and Accountability
+  target_description: Restrict access to audit logs and maintain records of access
+    to logs.
+- source_node_id: aiuc_1:B008.4
+  target_node_id: csa_aicm:CEK-17
+  composite_score: 0.2004
+  uncertainty_score: 1.985
+  signals:
+    bridge: 0.0
+    semantic: 0.3817
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Model-integrity verification is unrelated to crypto-key deactivation.
+  source_name: Verifying model integrity before deployment using cryptographic checksums.
+  source_description: Verifying model integrity before deployment using cryptographic
+    checksums.
+  target_name: Key Deactivation
+  target_description: Define, implement and evaluate processes, procedures and technical
+    measures to deactivate keys at the time of their expiration date, which  include
+    provisions for legal and regulatory requirements.
+- source_node_id: aiuc_1:A005.2
+  target_node_id: csa_aicm:DSP-20
+  composite_score: 0.3496
+  uncertainty_score: 1.9848
+  signals:
+    bridge: 0.0
+    semantic: 0.9426
+    keyword: 0.015
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Customer data isolation weakly relates to data provenance/transparency.
+  source_name: Implementing customer data isolation controls with strict logical and
+    physical separation.
+  source_description: Implementing customer data isolation controls with strict logical
+    and physical separation.
+  target_name: Data Provenance and Transparency
+  target_description: 'Define, implement and evaluate processes, procedures and technical
+    measures to:  1) Document and trace data sources, and 2) Make the data source
+    available according to legal and regulatory requirements'
+- source_node_id: aiuc_1:B001.1
+  target_node_id: csa_aicm:DCS-14
+  composite_score: 0.1996
+  uncertainty_score: 1.9839
+  signals:
+    bridge: 0.0
+    semantic: 0.3802
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Adversarial robustness testing is unrelated to secure utilities.
+  source_name: Third-party evaluation report demonstrating adversarial robustness
+    testing including risk taxonomy, methodology, finding
+  source_description: Third-party evaluation report demonstrating adversarial robustness
+    testing including risk taxonomy, methodology, findings, and remediation timelines.
+  target_name: Secure Utilities
+  target_description: Secure, monitor, maintain, and test utilities services for continual
+    effectiveness at planned intervals.
+- source_node_id: aiuc_1:A005.2
+  target_node_id: csa_aicm:LOG-08
+  composite_score: 0.1996
+  uncertainty_score: 1.9835
+  signals:
+    bridge: 0.0
+    semantic: 0.3802
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Customer data isolation generates log records as evidence.
+  source_name: Implementing customer data isolation controls with strict logical and
+    physical separation.
+  source_description: Implementing customer data isolation controls with strict logical
+    and physical separation.
+  target_name: Log Records
+  target_description: Generate audit records containing relevant security information.
+- source_node_id: aiuc_1:C007
+  target_node_id: csa_aicm:BCR-10
+  composite_score: 0.1996
+  uncertainty_score: 1.9833
+  signals:
+    bridge: 0.0602
+    semantic: 0.2265
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Flagging high-risk outputs weakly relates to BC response-plan exercise.
+  source_name: Flag high risk outputs
+  source_description: Implement an alerting system that flags high-risk outputs for
+    human review.
+  target_name: Response Plan Exercise
+  target_description: Exercise the disaster response plan annually or upon significant
+    changes, including, if possible, participation of local emergency authorities.
+- source_node_id: aiuc_1:C010.1
+  target_node_id: csa_aicm:BCR-06
+  composite_score: 0.2004
+  uncertainty_score: 1.983
+  signals:
+    bridge: 0.0
+    semantic: 0.3818
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Hallucination evaluation is unrelated to BC exercises.
+  source_name: Third-party evaluation report showing harmful output testing.
+  source_description: Third-party evaluation report showing harmful output testing.
+  target_name: Business Continuity Exercises
+  target_description: Follow a structured approach to evaluate the effectiveness of
+    the business continuity and operational resilience plans at planned intervals
+    or upon significant changes.
+- source_node_id: aiuc_1:B008.1
+  target_node_id: csa_aicm:LOG-09
+  composite_score: 0.3496
+  uncertainty_score: 1.9827
+  signals:
+    bridge: 0.0
+    semantic: 0.6558
+    keyword: 0.0176
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Restricting production access maps to log-protection control.
+  source_name: Restricting access to production AI models based on job function.
+  source_description: Restricting access to production AI models based on job function.
+  target_name: Log Protection
+  target_description: Protect audit records from unauthorized access, modification,
+    and  deletion.
+- source_node_id: aiuc_1:B009.3
+  target_node_id: csa_aicm:I-S-03
+  composite_score: 0.3505
+  uncertainty_score: 1.9812
+  signals:
+    bridge: 0.0
+    semantic: 0.6676
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Output-fidelity limiting weakly relates to network security.
+  source_name: Limiting the fidelity of model outputs with rounding, threshold bands,
+    or obfuscation.
+  source_description: Limiting the fidelity of model outputs with rounding, threshold
+    bands, or obfuscation.
+  target_name: Network Security
+  target_description: Monitor, encrypt and restrict communications between environments
+    to only authenticated and authorized connections, as justified by the  business.
+    Review these configurations at least annually, and support them by a  documented
+    justification of all allowed services, protocols, ports, and  compensating controls.
+- source_node_id: aiuc_1:A004.4
+  target_node_id: csa_aicm:GRC-10
+  composite_score: 0.1995
+  uncertainty_score: 1.9808
+  signals:
+    bridge: 0.0
+    semantic: 0.38
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Output monitoring for high-risk AI is a key input to AI impact assessment.
+  source_name: Establishing output monitoring for high-risk IP scenarios.
+  source_description: Establishing output monitoring for high-risk IP scenarios.
+  target_name: AI Impact Assessment
+  target_description: Establish, document, and communicate to all relevant stakeholders
+    an AI Impact Assessment process and its criteria to regularly evaluate the ethical,
+    societal, operational, legal, and security impacts of the AI system throughout
+    its lifecycle.
+- source_node_id: aiuc_1:E010.4
+  target_node_id: csa_aicm:AIS-08
+  composite_score: 0.3505
+  uncertainty_score: 1.9806
+  signals:
+    bridge: 0.0
+    semantic: 0.6676
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Real-time blocking maps to input validation control.
+  source_name: Real-time blocking/alerting capabilities and violation tracking.
+  source_description: Real-time blocking/alerting capabilities and violation tracking.
+  target_name: Input Validation
+  target_description: Validate, filter, modify or block, as necessary, input against
+    adversarial patterns, failure patterns and unwanted behaviour according to organisational
+    policies and applicable laws and regulations.
+- source_node_id: aiuc_1:C007.3
+  target_node_id: csa_aicm:GRC-04
+  composite_score: 0.3505
+  uncertainty_score: 1.9805
+  signals:
+    bridge: 0.0
+    semantic: 0.6435
+    keyword: 0.0421
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Human-review workflow weakly relates to policy exception process.
+  source_name: Workflow documentation for human review process for flagged outputs.
+  source_description: Workflow documentation for human review process for flagged
+    outputs.
+  target_name: Policy Exception Process
+  target_description: Establish and follow an approved exception process as mandated
+    by the governance program whenever a deviation from an established policy occurs.
+- source_node_id: aiuc_1:E017.3
+  target_node_id: csa_aicm:GRC-07
+  composite_score: 0.3495
+  uncertainty_score: 1.9801
+  signals:
+    bridge: 0.0
+    semantic: 0.6657
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Transparency policy weakly relates to information-system regulatory mapping.
+  source_name: Policy defining transparency sharing practices with stakeholder categories.
+  source_description: Policy defining transparency sharing practices with stakeholder
+    categories.
+  target_name: Information System Regulatory Mapping
+  target_description: Identify and document all relevant standards, regulations,  legal/contractual,
+    and statutory requirements, which are applicable to  your organization.  Review
+    at least annually or when a substantial change occurs within  the organization.
+- source_node_id: aiuc_1:C012
+  target_node_id: csa_aicm:CCC-07
+  composite_score: 0.2005
+  uncertainty_score: 1.9799
+  signals:
+    bridge: 0.0
+    semantic: 0.4581
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Customer-defined output testing weakly relates to baseline-deviation detection.
+  source_name: Third-party testing for customer-defined risk
+  source_description: Appoint expert third-parties to evaluate system robustness to
+    additional high-risk outputs as defined in risk taxonomy.
+  target_name: Detection of Baseline Deviation
+  target_description: Implement detection measures with proactive notification in
+    case of changes deviating from the established baseline.
+- source_node_id: aiuc_1:B004
+  target_node_id: csa_aicm:LOG-11
+  composite_score: 0.1995
+  uncertainty_score: 1.9791
+  signals:
+    bridge: 0.0085
+    semantic: 0.2929
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Endpoint scrape prevention generates transaction/activity logs.
+  source_name: Prevent AI endpoint scraping
+  source_description: Implement safeguards to prevent probing or scraping of external
+    AI endpoints.
+  target_name: Transaction / Activity Logging
+  target_description: Log and monitor key lifecycle management events to enable auditing
+    and reporting on usage of cryptographic keys.
+- source_node_id: aiuc_1:A004.3
+  target_node_id: csa_aicm:I-S-02
+  composite_score: 0.2005
+  uncertainty_score: 1.9791
+  signals:
+    bridge: 0.0
+    semantic: 0.3819
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Output detection controls are unrelated to capacity/resource planning.
+  source_name: Implementing technical controls to detect proprietary information in
+    outputs.
+  source_description: Implementing technical controls to detect proprietary information
+    in outputs.
+  target_name: Capacity and Resource Planning
+  target_description: Plan and monitor the availability, quality, and adequate capacity
+    of resources in order to deliver the required system performance as determined
+    by the business.
+- source_node_id: aiuc_1:E003.1
+  target_node_id: csa_aicm:UEM-13
+  composite_score: 0.3505
+  uncertainty_score: 1.979
+  signals:
+    bridge: 0.0
+    semantic: 0.6496
+    keyword: 0.0317
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Compensation assessment is unrelated to remote wipe.
+  source_name: Establishing compensation assessment procedures and remediation measures.
+  source_description: Establishing compensation assessment procedures and remediation
+    measures.
+  target_name: Remote Wipe
+  target_description: Define, implement and evaluate processes, procedures and technical
+    measures to enable the deletion of company data remotely on managed endpoint devices.
+- source_node_id: aiuc_1:E014
+  target_node_id: csa_aicm:CCC-02
+  composite_score: 0.1995
+  uncertainty_score: 1.9789
+  signals:
+    bridge: 0.0211
+    semantic: 0.429
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Transparency-report sharing weakly relates to quality testing.
+  source_name: Share transparency reports
+  source_description: RETIRED - Merged into E017 at Q1 2026 update.
+  target_name: Quality Testing
+  target_description: Establish, maintain and implement a defined quality change  control,
+    approval and testing process incorporating baselines,  testing, and release standards.
+- source_node_id: aiuc_1:A004.3
+  target_node_id: csa_aicm:TVM-03
+  composite_score: 0.2005
+  uncertainty_score: 1.9783
+  signals:
+    bridge: 0.0
+    semantic: 0.3716
+    keyword: 0.0181
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Output detection controls support vulnerability remediation evidence.
+  source_name: Implementing technical controls to detect proprietary information in
+    outputs.
+  source_description: Implementing technical controls to detect proprietary information
+    in outputs.
+  target_name: Vulnerability Remediation
+  target_description: Define, implement and evaluate processes, procedures and technical
+    measures to enable both scheduled and emergency responses to vulnerability identifications,
+    based on the identified risk.
+- source_node_id: aiuc_1:C004.2
+  target_node_id: csa_aicm:LOG-12
+  composite_score: 0.3494
+  uncertainty_score: 1.9775
+  signals:
+    bridge: 0.0
+    semantic: 0.9215
+    keyword: 0.0332
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Out-of-scope attempt logs are exactly access-control logs.
+  source_name: Logs showing out-of-scope attempts with frequency data and boundary
+    updates.
+  source_description: Logs showing out-of-scope attempts with frequency data and boundary
+    updates.
+  target_name: Access Control Logs
+  target_description: Monitor and log physical access using an auditable access  control
+    system.

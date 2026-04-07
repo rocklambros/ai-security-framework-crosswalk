@@ -1460,6 +1460,77 @@ def _create_eu_gpai_cop_nodes(nodes, edges, warnings):
         ))
 
 
+_CATEGORY_KEYWORDS = {
+    "privacy": ("privacy", "data protection", "personal data", "dsp"),
+    "security": ("security", "cryptograph", "encryption", "key management",
+                 "iam", "identity", "access management", "infosec"),
+    "governance": ("governance", "grc", "compliance", "policy", "accountability"),
+    "robustness": ("robustness", "reliability", "resilience", "safety"),
+    "supply_chain": ("supply chain", "third party", "transparency", "sta"),
+    "input_threat": ("input threat", "prompt", "injection"),
+    "runtime_threat": ("runtime", "operations"),
+    "dev_threat": ("development-time", "development time", "training"),
+}
+
+
+def _node_categories(node):
+    """Map a node to a set of normalized categories using domain text + keywords."""
+    cats: set = set()
+    haystack = ((node.get("domain") or "") + " "
+                + " ".join(node.get("keywords") or []) + " "
+                + (node.get("classification") or "")).lower()
+    if not haystack.strip():
+        return cats
+    for cat, kws in _CATEGORY_KEYWORDS.items():
+        if any(k in haystack for k in kws):
+            cats.add(cat)
+    return cats
+
+
+def create_cross_framework_category_edges(nodes, edges, warnings):
+    """Emit `cross_framework_category` edges between nodes that share a
+    normalized category across frameworks. Categories are derived from
+    each node's `domain`, `keywords`, and `classification` fields via
+    `_CATEGORY_KEYWORDS`. Edges are emitted in both directions so the
+    structural-feature module sees them regardless of traversal order.
+    Skips intra-framework pairs.
+    """
+    by_cat: dict = {}
+    for nid, node in nodes.items():
+        for cat in _node_categories(node):
+            by_cat.setdefault(cat, []).append((nid, node.get("framework")))
+    n_added = 0
+    for cat, members in by_cat.items():
+        # Sort to keep diff stable
+        members.sort()
+        # Limit to avoid quadratic blowup: cap per-category to 60 members
+        # (covers all real frameworks; oversampled categories pick the
+        # first 60 alphabetically — deterministic).
+        members = members[:60]
+        for i, (a_nid, a_fw) in enumerate(members):
+            for b_nid, b_fw in members[i + 1:]:
+                if a_fw == b_fw:
+                    continue
+                add_edge(edges, make_edge(
+                    source_node_id=a_nid,
+                    target_node_id=b_nid,
+                    rationale_code="CROSS_FRAMEWORK_CATEGORY",
+                    rationale_label=f"shared category: {cat}",
+                    confidence="suggestive",
+                    provenance="build_graph::create_cross_framework_category_edges",
+                ))
+                add_edge(edges, make_edge(
+                    source_node_id=b_nid,
+                    target_node_id=a_nid,
+                    rationale_code="CROSS_FRAMEWORK_CATEGORY",
+                    rationale_label=f"shared category: {cat}",
+                    confidence="suggestive",
+                    provenance="build_graph::create_cross_framework_category_edges",
+                ))
+                n_added += 2
+    logging.info(f"Cross-framework category edges added: {n_added}")
+
+
 def create_stub_nodes(nodes, edges, warnings):
     """Task 7: Create stub nodes for frameworks with only markdown sources."""
     _create_owasp_llm_nodes(nodes, warnings)
@@ -1629,6 +1700,9 @@ def main():
 
     # Task 7: Stub nodes for remaining frameworks
     create_stub_nodes(nodes, edges, warnings)
+
+    # Session 7.6 S9: cross-framework category links
+    create_cross_framework_category_edges(nodes, edges, warnings)
 
     # Task 8: Write output (includes dedup and validation)
     write_output(nodes, edges, warnings)

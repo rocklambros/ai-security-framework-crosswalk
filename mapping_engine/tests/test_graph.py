@@ -25,7 +25,8 @@ def G():
 
 def test_load_counts(G):
     assert G.number_of_nodes() == 983
-    assert G.number_of_edges() == 1883
+    # 1883 expert + 3884 cross_framework_category (S9, after multi-edge dedup)
+    assert G.number_of_edges() == 5767
 
 
 def test_aiuc_nodes(G):

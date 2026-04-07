@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-04-07T13:06:37.225293+00:00",
+  "generated_at": "2026-04-07T13:41:09.381950+00:00",
   "node_count": 983,
-  "edge_count": 1883,
+  "edge_count": 5813,
   "frameworks": {
     "aiuc_1": {
       "nodes": 189,
-      "outbound_edges": 929,
-      "inbound_edges": 183
+      "outbound_edges": 2894,
+      "inbound_edges": 2148
     },
     "owasp_agentic": {
       "nodes": 10,
@@ -30,8 +30,8 @@
     },
     "csa_aicm": {
       "nodes": 261,
-      "outbound_edges": 243,
-      "inbound_edges": 566
+      "outbound_edges": 2012,
+      "inbound_edges": 2335
     },
     "eu_gpai_cop": {
       "nodes": 70,
@@ -45,14 +45,15 @@
     },
     "owasp_ai_exchange": {
       "nodes": 88,
-      "outbound_edges": 93,
-      "inbound_edges": 93
+      "outbound_edges": 289,
+      "inbound_edges": 289
     }
   },
   "edge_confidence_distribution": {
     "authoritative": 1698,
     "expert": 119,
-    "unvalidated": 66
+    "unvalidated": 66,
+    "suggestive": 3930
   },
   "rationale_distribution": {
     "PARENT": 679,
@@ -64,10 +65,14 @@
     "GATE": 8,
     "DETECT": 17,
     "GOVERN": 10,
-    "DISCLOSE": 3
+    "DISCLOSE": 3,
+    "CROSS_FRAMEWORK_CATEGORY": 3930
   },
   "cross_framework_pairs": {
-    "aiuc_1 → csa_aicm": 323,
+    "aiuc_1 → csa_aicm": 2092,
+    "csa_aicm → aiuc_1": 1769,
+    "aiuc_1 → owasp_ai_exchange": 196,
+    "owasp_ai_exchange → aiuc_1": 196,
     "aiuc_1 → nist_rmf": 152,
     "aiuc_1 → owasp_agentic": 119,
     "aiuc_1 → eu_gpai_cop": 60,
@@ -103,32 +108,21 @@
     "nist_rmf:MEASURE-2.2",
     "nist_rmf:MEASURE-3.2",
     "owasp_ai_exchange:1.1",
-    "owasp_ai_exchange:2.0",
-    "owasp_ai_exchange:3.0",
     "owasp_ai_exchange:4.1",
     "owasp_ai_exchange:4.6",
     "owasp_ai_exchange:4.7",
     "owasp_ai_exchange:AIPROGRAM",
     "owasp_ai_exchange:AITRANSPARENCY",
-    "owasp_ai_exchange:ALLOWEDDATA",
     "owasp_ai_exchange:AUGMENTATIONDATACONFIDENTIALITY",
     "owasp_ai_exchange:AUGMENTATIONDATAINTEGRITY",
     "owasp_ai_exchange:CHECKCOMPLIANCE",
-    "owasp_ai_exchange:CONFCOMPUTE",
-    "owasp_ai_exchange:CONTINUOUSVALIDATION",
-    "owasp_ai_exchange:DATAMINIMIZE",
     "owasp_ai_exchange:DEVPROGRAM",
-    "owasp_ai_exchange:DISCRETE",
     "owasp_ai_exchange:EXPLAINABILITY",
     "owasp_ai_exchange:LEASTMODELPRIVILEGE",
-    "owasp_ai_exchange:MODELWATERMARKING",
-    "owasp_ai_exchange:OBFUSCATETRAININGDATA",
     "owasp_ai_exchange:OVERSIGHT",
     "owasp_ai_exchange:SECDEVPROGRAM",
     "owasp_ai_exchange:SECEDUCATE",
-    "owasp_ai_exchange:SECPROGRAM",
-    "owasp_ai_exchange:SHORTRETAIN",
-    "owasp_ai_exchange:UNWANTEDBIASTESTING"
+    "owasp_ai_exchange:SECPROGRAM"
   ],
   "validation_warnings": [
     "TODO: NIST AI 600-1 node extraction from prose markdown"

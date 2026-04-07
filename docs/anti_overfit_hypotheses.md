@@ -258,7 +258,7 @@ increase > 0 and node count unchanged.
 
 **Metric.** Aggregate MRR paired Δ CI; graph build diagnostics.
 
-**Result.** _Pending S9._
+**Result.** PASS (small lift, no regression). Added `create_cross_framework_category_edges` mapping nodes to a normalized 8-category vocabulary (privacy, security, governance, robustness, supply_chain, input_threat, runtime_threat, dev_threat) via domain/keywords/classification. Added 3884 directed cross_framework_category edges (after dedup); node count unchanged at 983; total edges 1883→5767. Aggregate non-frozen MRR 0.3831→0.3880 [0.3570, 0.4205], well above the −0.005 cap (Δ +0.0049). Per-pair: eu_gpai_cop +0.0125, owasp_llm +0.0280, nist_rmf −0.0015, owasp_agentic −0.0061, cosai_rm__mitre_atlas 0. None breach the −0.02 per-pair cap. Updated `test_load_counts` to assert 5767 edges. SEMANTIC_TEXT_VERSION bumped to v8. Unblocks S10 re-eval of shared_parent_centrality + confidence_weighted_bridge_depth.
 
 ## 2026-04-07 — H_76_S10: shared_parent_centrality + confidence_weighted_bridge_depth re-eval
 

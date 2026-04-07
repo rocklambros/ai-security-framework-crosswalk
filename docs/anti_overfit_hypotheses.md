@@ -322,4 +322,4 @@ resamples); aggregate MRR per-pair regression monitor.
 **Rollback.** Any pair failing the regression cap is reverted to the
 global (0.45, 0.20) thresholds.
 
-**Result.** _Pending S13._
+**Result.** REJECT — structural invariance (kept global thresholds). Per-pair sweep over direct ∈ {0.30,0.40,0.45,0.55,0.65} × related_primary ∈ {0.10,0.15,0.20,0.25,0.30} for all 5 non-frozen pairs returned exactly Δ MRR = 0.0000 for every pair. Reason: the discriminative metric is computed on the composite score (a weighted blend of bridge / semantic / keyword / function-match), which does NOT depend on the (direct, related_primary) thresholds — those thresholds are consumed only by the downstream classification step that buckets edges into direct/related/none. Therefore swapping thresholds cannot move masked composites or distractor cells, and no per-pair CI can exclude zero. Per-pair threshold calibration belongs to a classification metric (precision/recall on direct/related buckets), which is a separate exercise deferred past Session 7.6 hardening. Diagnostic: `docs/diagnostics/per_pair_threshold_sweep.md`.

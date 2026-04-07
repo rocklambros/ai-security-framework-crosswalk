@@ -10,6 +10,18 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 <!-- Append new entries below this line. Do not edit prior entries except to fill in their result. -->
 
+## 2026-04-07 — B1.3: source out-degree ratio structural feature
+
+**Hypothesis.** Adding `source_out_degree_ratio` (source node's out-degree divided by the source framework's mean out-degree) to the calibration feature set improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired-bootstrap 95% CI excluding 0, AND has permutation-importance CI excluding 0.
+
+**Predicted direction.** Positive (high-out-degree source nodes are "anchor controls" that have many curated mappings, so any candidate target is more likely to be a real link).
+
+**Minimum effect size.** Δ NDCG@10 ≥ 0.03 with paired-bootstrap CI excluding 0; permutation importance CI excluding 0.
+
+**Metric.** Aggregate NDCG@10 across non-frozen pairs (B2.7 protocol) plus permutation importance via the eval_b1_feature harness.
+
+**Result.** REJECTED. n=420 anchors, feature_nonzero_frac=0.931 (the feature does carry signal across nodes, unlike shared_parent_centrality). baseline NDCG@10 = 1.0000 [1.0000, 1.0000], blended NDCG@10 = 1.0000 [0.9576, 1.0000], paired delta = -0.0015 [-0.0424, 0.0000], permutation importance = +0.0000 [0.0000, 0.0000]. Both gate criteria fail. Direction is mildly NEGATIVE (blending the feature in slightly hurts the saturated NDCG@10). Feature DROPPED. As with B1.2, the all-Direct anchor mix means NDCG@10 saturates at 1.0 and any positive lift is unmeasurable; the discriminating gate cannot be passed until rationale codes are populated for non-owasp_agentic frameworks or until the metric switches to one that doesn't degenerate on uniform-relevance vectors. Persisted to data/processed/b1_eval_source_out_degree_ratio.json.
+
 ## 2026-04-06 — B1.1: shared-parent centrality structural feature
 
 **Hypothesis.** Adding a confidence-weighted shared-neighbor count between source and target nodes (`shared_parent_centrality`) to the calibration feature set improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired-bootstrap 95% CI excluding 0, AND has permutation importance with CI excluding 0.

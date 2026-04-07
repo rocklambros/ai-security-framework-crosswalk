@@ -92,6 +92,50 @@ def shared_parent_centrality(
     return M
 
 
+def source_out_degree_ratio(
+    G: nx.DiGraph,
+    source_nodes: list[str],
+    target_nodes: list[str],
+    mask_pairs: Iterable[tuple[str, str]] | None = None,
+) -> np.ndarray:
+    """For each (source, target), the source node's out-degree divided by
+    its framework's mean out-degree. Constant across the target axis but
+    still emitted as an (n_src, n_tgt) matrix for shape compatibility.
+
+    ``mask_pairs`` excludes specific (u, v) edges from the out-degree
+    count so leave-one-out anchor masking can drop the held-out anchor's
+    own contribution to the source's degree.
+    """
+    mask = set(mask_pairs or ())
+
+    def _out_deg(u: str) -> int:
+        return sum(1 for v in G.successors(u) if (u, v) not in mask)
+
+    # Group source nodes by framework to compute the per-framework mean.
+    by_fw: dict[str, list[str]] = {}
+    for s in source_nodes:
+        fw = G.nodes[s].get("framework") if s in G else None
+        by_fw.setdefault(fw or "_unknown", []).append(s)
+
+    src_deg = {s: _out_deg(s) for s in source_nodes}
+    fw_mean: dict[str, float] = {}
+    for fw, members in by_fw.items():
+        degs = [src_deg[s] for s in members]
+        fw_mean[fw] = float(np.mean(degs)) if degs else 0.0
+
+    n_t = len(target_nodes)
+    M = np.zeros((len(source_nodes), n_t), dtype=float)
+    for i, s in enumerate(source_nodes):
+        fw = G.nodes[s].get("framework") if s in G else None
+        denom = fw_mean.get(fw or "_unknown", 0.0)
+        if denom <= 0:
+            ratio = 0.0
+        else:
+            ratio = src_deg[s] / denom
+        M[i, :] = ratio
+    return M
+
+
 def compute_structural_features(
     G: nx.DiGraph,
     source_nodes: list[str],
@@ -104,8 +148,16 @@ def compute_structural_features(
     anti-overfit gate it gets added to this dict.
     """
     mask = set(mask_pairs or ())
+    # Both shared_parent_centrality (B1.2) and source_out_degree_ratio (B1.3)
+    # were dropped after failing their anti-overfit gates. They remain
+    # implemented as standalone helpers above so eval_b1_feature can re-test
+    # them under future graph topologies, but they are NOT exported via
+    # compute_structural_features.
     return {
         "shared_parent_centrality": shared_parent_centrality(
+            G, source_nodes, target_nodes, mask
+        ),
+        "source_out_degree_ratio": source_out_degree_ratio(
             G, source_nodes, target_nodes, mask
         ),
     }

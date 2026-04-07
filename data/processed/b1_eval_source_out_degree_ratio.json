@@ -1,0 +1,37 @@
+{
+  "feature": "source_out_degree_ratio",
+  "blend": 0.1,
+  "n": 420,
+  "feature_nonzero_frac": 0.930952380952381,
+  "baseline_ndcg_at_10": {
+    "point": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "mean": 0.9999575861412007,
+    "std": 0.00134124398162566,
+    "n_resamples": 1000,
+    "alpha": 0.05
+  },
+  "blended_ndcg_at_10": {
+    "point": 1.0,
+    "lo": 0.9575861412006988,
+    "hi": 1.0,
+    "mean": 0.9985045023611203,
+    "std": 0.009785960522580076,
+    "n_resamples": 1000,
+    "alpha": 0.05
+  },
+  "paired_delta": {
+    "point": -0.0014530837800803998,
+    "lo": -0.04241385879930115,
+    "hi": 0.0,
+    "ci_excludes_zero": false
+  },
+  "permutation_importance": {
+    "mean": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "ci_excludes_zero": false
+  },
+  "decision": "drop"
+}

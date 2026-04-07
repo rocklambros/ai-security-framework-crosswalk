@@ -10,6 +10,18 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 <!-- Append new entries below this line. Do not edit prior entries except to fill in their result. -->
 
+## 2026-04-07 — B1.5: mitigation lexical match structural feature
+
+**Hypothesis.** Adding `mitigation_lexical_match` (token Jaccard between source node's full semantic text and target node's `mitigation_text`) improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired-bootstrap 95% CI excluding 0, AND has permutation-importance CI excluding 0.
+
+**Predicted direction.** Positive (controls that share vocabulary with a risk's official mitigation guidance are more likely to *be* a mitigation).
+
+**Minimum effect size.** Δ NDCG@10 ≥ 0.03 with paired-bootstrap CI excluding 0; permutation importance CI excluding 0.
+
+**Coverage caveat.** mitigation_text is currently populated only on owasp_agentic targets (8/10), so the feature is non-zero on only ~119/420 anchors (the aiuc_1 -> owasp_agentic pair). Per-pair NDCG@10 on owasp_agentic is the primary signal; aggregate is reported but expected to under-represent the effect.
+
+**Result.** REJECTED. n=420, feature_nonzero_frac=0.231 (97 of the 119 owasp_agentic anchors carry signal — coverage is real). baseline NDCG@10 = 1.0000 [1.0000, 1.0000], blended NDCG@10 = 1.0000 [1.0000, 1.0000], paired delta = +0.0000 [0.0000, 0.0000], permutation importance = +0.0000 [0.0000, 0.0000]. NDCG@10 saturated at 1.0; no movement possible. Feature DROPPED. Same metric-saturation root cause as B1.2/B1.3. Helper retained in structural.py for re-test under a non-degenerate anchor mix. Persisted to data/processed/b1_eval_mitigation_lexical_match.json.
+
 ## 2026-04-07 — B1.3: source out-degree ratio structural feature
 
 **Hypothesis.** Adding `source_out_degree_ratio` (source node's out-degree divided by the source framework's mean out-degree) to the calibration feature set improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired-bootstrap 95% CI excluding 0, AND has permutation-importance CI excluding 0.

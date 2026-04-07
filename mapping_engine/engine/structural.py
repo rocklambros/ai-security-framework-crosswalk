@@ -136,6 +136,76 @@ def source_out_degree_ratio(
     return M
 
 
+_TOKEN_RE = None
+
+
+def _tokenize(text: str) -> set[str]:
+    """Lowercase token set, alphabetic-only, length >= 3, with a tiny stoplist."""
+    import re
+
+    global _TOKEN_RE
+    if _TOKEN_RE is None:
+        _TOKEN_RE = re.compile(r"[A-Za-z]{3,}")
+    stop = {
+        "the", "and", "for", "with", "that", "this", "are", "not", "you",
+        "your", "from", "use", "using", "any", "may", "all", "but", "can",
+        "should", "must", "have", "has", "their", "they", "such", "into",
+        "across", "based", "via", "non", "per",
+    }
+    return {t.lower() for t in _TOKEN_RE.findall(text or "") if t.lower() not in stop}
+
+
+def mitigation_lexical_match(
+    G: nx.DiGraph,
+    source_nodes: list[str],
+    target_nodes: list[str],
+    mask_pairs: Iterable[tuple[str, str]] | None = None,
+) -> np.ndarray:
+    """Token Jaccard between source node's combined text and target's
+    ``mitigation_text``. Targets without ``mitigation_text`` contribute 0.
+
+    ``mask_pairs`` is accepted for API uniformity but unused: this feature
+    only reads node attributes, not edges, so masking has no effect.
+    """
+    _ = mask_pairs
+    src_tokens: dict[str, set[str]] = {}
+    for s in source_nodes:
+        if s not in G:
+            src_tokens[s] = set()
+            continue
+        d = G.nodes[s]
+        parts = []
+        for k in ("name", "title", "description", "objective", "intent", "body"):
+            v = d.get(k)
+            if v:
+                parts.append(str(v))
+        src_tokens[s] = _tokenize(" ".join(parts))
+
+    tgt_tokens: dict[str, set[str]] = {}
+    for t in target_nodes:
+        if t not in G:
+            tgt_tokens[t] = set()
+            continue
+        mt = G.nodes[t].get("mitigation_text") or ""
+        tgt_tokens[t] = _tokenize(mt)
+
+    M = np.zeros((len(source_nodes), len(target_nodes)), dtype=float)
+    for j, t in enumerate(target_nodes):
+        tt = tgt_tokens[t]
+        if not tt:
+            continue
+        for i, s in enumerate(source_nodes):
+            st = src_tokens[s]
+            if not st:
+                continue
+            inter = len(st & tt)
+            if inter == 0:
+                continue
+            union = len(st | tt)
+            M[i, j] = inter / union
+    return M
+
+
 def compute_structural_features(
     G: nx.DiGraph,
     source_nodes: list[str],
@@ -158,6 +228,9 @@ def compute_structural_features(
             G, source_nodes, target_nodes, mask
         ),
         "source_out_degree_ratio": source_out_degree_ratio(
+            G, source_nodes, target_nodes, mask
+        ),
+        "mitigation_lexical_match": mitigation_lexical_match(
             G, source_nodes, target_nodes, mask
         ),
     }

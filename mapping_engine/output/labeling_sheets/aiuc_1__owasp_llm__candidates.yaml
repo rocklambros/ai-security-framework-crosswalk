@@ -1,0 +1,863 @@
+candidates:
+- source_node_id: aiuc_1:B002.1
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.55
+  uncertainty_score: 1.9981
+  signals:
+    bridge: 0.0
+    semantic: 0.8429
+    keyword: 0.4183
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Prompt-injection monitoring is canonical LLM01 defense.
+  source_name: Implementing monitoring for prompt injection patterns, jailbreak techniques,
+    adversarial input attempts.
+  source_description: Implementing monitoring for prompt injection patterns, jailbreak
+    techniques, adversarial input attempts.
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: aiuc_1:E004.1
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.1999
+  uncertainty_score: 1.995
+  signals:
+    bridge: 0.0
+    semantic: 0.3807
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Change-control documentation weakly relates to misinformation.
+  source_name: Documentation defining which AI system changes require approval with
+    assigned leads, plus approval records.
+  source_description: Documentation defining which AI system changes require approval
+    with assigned leads, plus approval records.
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: aiuc_1:B007
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.2002
+  uncertainty_score: 1.994
+  signals:
+    bridge: 0.065
+    semantic: 0.2215
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: User access enforcement supports supply-chain isolation.
+  source_name: Enforce user access privileges to AI systems
+  source_description: Establish and maintain user access controls and admin privileges
+    for AI systems in line with policy.
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: aiuc_1:E009.1
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.1998
+  uncertainty_score: 1.9936
+  signals:
+    bridge: 0.0
+    semantic: 0.2524
+    keyword: 0.2244
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Third-party interaction logging directly supports supply-chain monitoring.
+  source_name: Configuring logging for third-party interactions with captured metadata.
+  source_description: Configuring logging for third-party interactions with captured
+    metadata.
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: aiuc_1:B002.5
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.2002
+  uncertainty_score: 1.9934
+  signals:
+    bridge: 0.0
+    semantic: 0.3813
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Adversarial input detection helps reduce misinformation outputs.
+  source_name: Integrating adversarial input detection into existing security operations
+    tooling.
+  source_description: Integrating adversarial input detection into existing security
+    operations tooling.
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: aiuc_1:B006
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3503
+  uncertainty_score: 1.9883
+  signals:
+    bridge: 0.0995
+    semantic: 0.7477
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Preventing unauthorized agent actions reduces sensitive-info disclosure.
+  source_name: Prevent unauthorized AI agent actions
+  source_description: Implement safeguards to prevent AI agents from performing actions
+    beyond intended scope and authorized privileges.
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: aiuc_1:D004
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3497
+  uncertainty_score: 1.9864
+  signals:
+    bridge: 0.1424
+    semantic: 0.8205
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Tool-call testing directly addresses excessive agency.
+  source_name: Third-party testing of tool calls
+  source_description: Appoint expert third-parties to evaluate tool calls in AI systems
+    at least every 3 months.
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: aiuc_1:C002
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3504
+  uncertainty_score: 1.985
+  signals:
+    bridge: 0.0102
+    semantic: 0.7305
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Pre-deployment testing supports sensitive-info disclosure prevention.
+  source_name: Conduct pre-deployment testing
+  source_description: Conduct internal testing of AI systems prior to deployment across
+    risk categories.
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: aiuc_1:C005.2
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.2005
+  uncertainty_score: 1.9815
+  signals:
+    bridge: 0.0
+    semantic: 0.3818
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Escalation procedures help contain misinformation incidents.
+  source_name: Establishing escalation procedures for flagged high-risk content.
+  source_description: Establishing escalation procedures for flagged high-risk content.
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: aiuc_1:C004.1
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3495
+  uncertainty_score: 1.9814
+  signals:
+    bridge: 0.0
+    semantic: 0.6658
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Defensive prompting/blocking is canonical excessive agency mitigation.
+  source_name: Blocking rules, defensive prompting, or filtering for out-of-scope
+    requests.
+  source_description: Blocking rules, defensive prompting, or filtering for out-of-scope
+    requests.
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: aiuc_1:D002.1
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.1995
+  uncertainty_score: 1.9787
+  signals:
+    bridge: 0.0
+    semantic: 0.3799
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Hallucination evaluation reports support system-prompt leakage testing.
+  source_name: Third-party evaluation report showing hallucination testing results.
+  source_description: Third-party evaluation report showing hallucination testing
+    results.
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: aiuc_1:A005.2
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.1993
+  uncertainty_score: 1.9737
+  signals:
+    bridge: 0.0
+    semantic: 0.3797
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Customer data isolation reduces system-prompt leakage cross-tenant risk.
+  source_name: Implementing customer data isolation controls with strict logical and
+    physical separation.
+  source_description: Implementing customer data isolation controls with strict logical
+    and physical separation.
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: aiuc_1:E010.1
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3493
+  uncertainty_score: 1.9721
+  signals:
+    bridge: 0.0
+    semantic: 0.6653
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: AUP defines prohibited inputs that cause data/model poisoning.
+  source_name: Policy document defining acceptable and prohibited AI usage.
+  source_description: Policy document defining acceptable and prohibited AI usage.
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: aiuc_1:B001.1
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.3507
+  uncertainty_score: 1.972
+  signals:
+    bridge: 0.0
+    semantic: 0.668
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Adversarial robustness testing addresses vector/embedding weaknesses.
+  source_name: Third-party evaluation report demonstrating adversarial robustness
+    testing including risk taxonomy, methodology, finding
+  source_description: Third-party evaluation report demonstrating adversarial robustness
+    testing including risk taxonomy, methodology, findings, and remediation timelines.
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: aiuc_1:B004.2
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.2008
+  uncertainty_score: 1.968
+  signals:
+    bridge: 0.0
+    semantic: 0.3825
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Rate limiting and query restriction directly mitigate prompt-injection volume
+    attacks.
+  source_name: Implementing rate limiting and query restrictions.
+  source_description: Implementing rate limiting and query restrictions.
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: aiuc_1:A006.2
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3492
+  uncertainty_score: 1.9666
+  signals:
+    bridge: 0.0
+    semantic: 0.6651
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Authn/authz for sensitive actions is canonical excessive agency mitigation.
+  source_name: Requiring authentication and authorization for PII access with role-based
+    access controls.
+  source_description: Requiring authentication and authorization for PII access with
+    role-based access controls.
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: aiuc_1:C004
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3508
+  uncertainty_score: 1.9665
+  signals:
+    bridge: 0.0499
+    semantic: 0.5279
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Out-of-scope output prevention helps detect downstream poisoning effects.
+  source_name: Prevent out-of-scope outputs
+  source_description: Implement safeguards to prevent out-of-scope outputs.
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: aiuc_1:B009.1
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.2009
+  uncertainty_score: 1.9632
+  signals:
+    bridge: 0.0
+    semantic: 0.3827
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Limiting result count directly mitigates unbounded consumption.
+  source_name: Reducing or limiting the number of results shown in outputs to relevant
+    only.
+  source_description: Reducing or limiting the number of results shown in outputs
+    to relevant only.
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: aiuc_1:A006.1
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.1991
+  uncertainty_score: 1.9624
+  signals:
+    bridge: 0.0
+    semantic: 0.3792
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Personal-data safeguards constrain agent action authority.
+  source_name: Implementing safeguards to prevent personal data leakage through AI
+    system outputs and logs, filtering prompts and outpu
+  source_description: Implementing safeguards to prevent personal data leakage through
+    AI system outputs and logs, filtering prompts and outputs for personal identifiers.
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: aiuc_1:E001.3
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.199
+  uncertainty_score: 1.9597
+  signals:
+    bridge: 0.0
+    semantic: 0.379
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: System freeze controls support misinformation incident response.
+  source_name: Implement system freeze capabilities, vulnerability fixes, access control
+    updates.
+  source_description: Implement system freeze capabilities, vulnerability fixes, access
+    control updates.
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: aiuc_1:C005
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.2011
+  uncertainty_score: 1.9577
+  signals:
+    bridge: 0.0414
+    semantic: 0.2536
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Customer high-risk output prevention reduces prompt-injection blast radius.
+  source_name: Prevent customer-defined high risk outputs
+  source_description: Implement safeguards to prevent additional high risk outputs
+    as defined in risk taxonomy.
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: aiuc_1:E010
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.3489
+  uncertainty_score: 1.9576
+  signals:
+    bridge: 0.0293
+    semantic: 0.7031
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: AUP supports system-prompt leakage policy framing.
+  source_name: Establish AI acceptable use policy
+  source_description: Establish and implement an AI acceptable use policy defining
+    prohibited AI usage for end-users.
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: aiuc_1:A006.1
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.2011
+  uncertainty_score: 1.9555
+  signals:
+    bridge: 0.0
+    semantic: 0.3831
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Personal-data safeguards reduce misinformation about individuals.
+  source_name: Implementing safeguards to prevent personal data leakage through AI
+    system outputs and logs, filtering prompts and outpu
+  source_description: Implementing safeguards to prevent personal data leakage through
+    AI system outputs and logs, filtering prompts and outputs for personal identifiers.
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: aiuc_1:A001.3
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.1987
+  uncertainty_score: 1.9483
+  signals:
+    bridge: 0.0
+    semantic: 0.3785
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: End-user data handling supports unbounded consumption controls.
+  source_name: Document processes for handling end-user data subject rights including
+    opt-in/opt-out rights, access, portability, or de
+  source_description: Document processes for handling end-user data subject rights
+    including opt-in/opt-out rights, access, portability, or deletion of input data.
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: aiuc_1:E005.1
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.3513
+  uncertainty_score: 1.9474
+  signals:
+    bridge: 0.0
+    semantic: 0.6692
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Risk assessment for tool decisions evaluates vector/embedding risks.
+  source_name: Risk assessment and decision record evaluating cloud vs. on-premises
+    factors.
+  source_description: Risk assessment and decision record evaluating cloud vs. on-premises
+    factors.
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: aiuc_1:F002.2
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.3514
+  uncertainty_score: 1.944
+  signals:
+    bridge: 0.0
+    semantic: 0.6693
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Catastrophic-misuse monitoring dashboards directly address unbounded consumption.
+  source_name: Monitoring dashboard or alert configuration for catastrophic misuse
+    patterns.
+  source_description: Monitoring dashboard or alert configuration for catastrophic
+    misuse patterns.
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: aiuc_1:C003.1
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3486
+  uncertainty_score: 1.9424
+  signals:
+    bridge: 0.0
+    semantic: 0.6639
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Detecting/blocking harmful outputs is canonical sensitive-info disclosure
+    defense.
+  source_name: Detecting and blocking harmful output types through content filtering
+    systems.
+  source_description: Detecting and blocking harmful output types through content
+    filtering systems.
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: aiuc_1:B002.3
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.1985
+  uncertainty_score: 1.9401
+  signals:
+    bridge: 0.0
+    semantic: 0.3385
+    keyword: 0.0692
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Detection-rule updates are canonical prompt-injection defense.
+  source_name: Updating detection rules based on emerging adversarial techniques quarterly.
+  source_description: Updating detection rules based on emerging adversarial techniques
+    quarterly.
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: aiuc_1:A006
+  target_node_id: owasp_llm:LLM05
+  composite_score: 0.3484
+  uncertainty_score: 1.9373
+  signals:
+    bridge: 0.1545
+    semantic: 0.3888
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: PII leakage prevention is canonical improper output handling defense.
+  source_name: Prevent PII leakage
+  source_description: Establish safeguards to prevent personal data leakage through
+    AI outputs and logs.
+  target_name: Improper Output Handling
+  target_description: ''
+- source_node_id: aiuc_1:B004.3
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3484
+  uncertainty_score: 1.935
+  signals:
+    bridge: 0.0
+    semantic: 0.9313
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Simulated attack testing addresses data/model poisoning.
+  source_name: Conducting simulated external attack testing of AI endpoints.
+  source_description: Conducting simulated external attack testing of AI endpoints.
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: aiuc_1:E008.1
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.3517
+  uncertainty_score: 1.9305
+  signals:
+    bridge: 0.0
+    semantic: 0.67
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Quarterly decision reviews support supply-chain governance.
+  source_name: Quarterly reviews of decision processes including AI system changes,
+    foundational model selection.
+  source_description: Quarterly reviews of decision processes including AI system
+    changes, foundational model selection.
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: aiuc_1:B005
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3518
+  uncertainty_score: 1.9272
+  signals:
+    bridge: 0.1218
+    semantic: 0.7245
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Real-time input filtering directly mitigates data/model poisoning.
+  source_name: Implement real-time input filtering
+  source_description: Implement real-time input filtering using automated moderation
+    tools.
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: aiuc_1:B008
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.2019
+  uncertainty_score: 1.9227
+  signals:
+    bridge: 0.0239
+    semantic: 0.2777
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Deployment environment protection weakly relates to misinformation.
+  source_name: Protect model deployment environment
+  source_description: Implement security measures for AI model deployment environments
+    including encryption, access controls and authorization.
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: aiuc_1:E017.1
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.202
+  uncertainty_score: 1.9199
+  signals:
+    bridge: 0.0
+    semantic: 0.3848
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Transparency documentation supports vector/embedding weakness disclosure.
+  source_name: Policy document defining transparency documentation requirements.
+  source_description: Policy document defining transparency documentation requirements.
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: aiuc_1:E010.4
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.202
+  uncertainty_score: 1.9185
+  signals:
+    bridge: 0.0
+    semantic: 0.3848
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Real-time blocking is canonical sensitive-info disclosure defense.
+  source_name: Real-time blocking/alerting capabilities and violation tracking.
+  source_description: Real-time blocking/alerting capabilities and violation tracking.
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: aiuc_1:E016
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3479
+  uncertainty_score: 1.9179
+  signals:
+    bridge: 0.0453
+    semantic: 0.6807
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: AI disclosure mechanisms reduce excessive agency by setting expectations.
+  source_name: Implement AI disclosure mechanisms
+  source_description: Implement clear disclosure mechanisms to inform users when they
+    are interacting with AI systems.
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: aiuc_1:E008.1
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.3522
+  uncertainty_score: 1.9138
+  signals:
+    bridge: 0.0
+    semantic: 0.6708
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Quarterly reviews support unbounded consumption monitoring.
+  source_name: Quarterly reviews of decision processes including AI system changes,
+    foundational model selection.
+  source_description: Quarterly reviews of decision processes including AI system
+    changes, foundational model selection.
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: aiuc_1:B005.1
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.1978
+  uncertainty_score: 1.9114
+  signals:
+    bridge: 0.0
+    semantic: 0.3767
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Automated moderation supports vector/embedding weakness mitigation.
+  source_name: Integration of automated moderation tools to filter inputs before reaching
+    the foundation model.
+  source_description: Integration of automated moderation tools to filter inputs before
+    reaching the foundation model.
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: aiuc_1:C001
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.1977
+  uncertainty_score: 1.9096
+  signals:
+    bridge: 0.0305
+    semantic: 0.4137
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Risk taxonomy informs unbounded consumption categorization.
+  source_name: Define AI risk taxonomy
+  source_description: Establish a risk taxonomy that categorizes risks within harmful,
+    out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
+    usage.
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: aiuc_1:B002.5
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.1976
+  uncertainty_score: 1.9045
+  signals:
+    bridge: 0.0
+    semantic: 0.3764
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Adversarial input detection reduces unbounded consumption attacks.
+  source_name: Integrating adversarial input detection into existing security operations
+    tooling.
+  source_description: Integrating adversarial input detection into existing security
+    operations tooling.
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: aiuc_1:A006.1
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3524
+  uncertainty_score: 1.9038
+  signals:
+    bridge: 0.0
+    semantic: 0.6417
+    keyword: 0.0517
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Personal-data safeguards reduce data poisoning impact.
+  source_name: Implementing safeguards to prevent personal data leakage through AI
+    system outputs and logs, filtering prompts and outpu
+  source_description: Implementing safeguards to prevent personal data leakage through
+    AI system outputs and logs, filtering prompts and outputs for personal identifiers.
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: aiuc_1:C010
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3475
+  uncertainty_score: 1.9
+  signals:
+    bridge: 0.0881
+    semantic: 0.6249
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Harmful output testing addresses excessive agency outcomes.
+  source_name: Third-party testing for harmful outputs
+  source_description: Appoint expert third parties to evaluate system robustness to
+    harmful outputs at least every 3 months.
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: aiuc_1:E017.3
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3526
+  uncertainty_score: 1.8979
+  signals:
+    bridge: 0.0
+    semantic: 0.8796
+    keyword: 0.1342
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Transparency policy weakly relates to sensitive-info disclosure.
+  source_name: Policy defining transparency sharing practices with stakeholder categories.
+  source_description: Policy defining transparency sharing practices with stakeholder
+    categories.
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: aiuc_1:B002.4
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3474
+  uncertainty_score: 1.8951
+  signals:
+    bridge: 0.0
+    semantic: 0.9121
+    keyword: 0.0522
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Adversarial input detection directly mitigates data/model poisoning.
+  source_name: Implementing adversarial input detection prior to AI model processing.
+  source_description: Implementing adversarial input detection prior to AI model processing.
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: aiuc_1:F001
+  target_node_id: owasp_llm:LLM05
+  composite_score: 0.2027
+  uncertainty_score: 1.8921
+  signals:
+    bridge: 0.0879
+    semantic: 0.1969
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Cyber misuse prevention addresses improper output handling consequences.
+  source_name: Prevent AI cyber misuse
+  source_description: Implement or document guardrails to prevent AI-enabled misuse
+    for cyber attacks and exploitation.
+  target_name: Improper Output Handling
+  target_description: ''
+- source_node_id: aiuc_1:D003.4
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3528
+  uncertainty_score: 1.8895
+  signals:
+    bridge: 0.0
+    semantic: 0.8835
+    keyword: 0.0927
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Human approval for sensitive tools directly mitigates sensitive-info disclosure.
+  source_name: Requiring human approval for sensitive tool operations.
+  source_description: Requiring human approval for sensitive tool operations.
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: aiuc_1:B003.2
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.3528
+  uncertainty_score: 1.8878
+  signals:
+    bridge: 0.0
+    semantic: 0.672
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Public communication approvals reduce system-prompt leakage exposure.
+  source_name: Approval records for public AI communications.
+  source_description: Approval records for public AI communications.
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: aiuc_1:A005.3
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3472
+  uncertainty_score: 1.8871
+  signals:
+    bridge: 0.0
+    semantic: 0.9107
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Privacy-enhancing technologies are canonical sensitive-info disclosure defense.
+  source_name: Implementing privacy-enhancing technologies to reduce competitive exposure.
+  source_description: Implementing privacy-enhancing technologies to reduce competitive
+    exposure.
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: aiuc_1:A004.4
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.2029
+  uncertainty_score: 1.8851
+  signals:
+    bridge: 0.0
+    semantic: 0.3864
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Output monitoring for high-risk AI addresses excessive agency.
+  source_name: Establishing output monitoring for high-risk IP scenarios.
+  source_description: Establishing output monitoring for high-risk IP scenarios.
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: aiuc_1:C006
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.1971
+  uncertainty_score: 1.8843
+  signals:
+    bridge: 0.0871
+    semantic: 0.1872
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Output vulnerability prevention addresses supply-chain vulnerabilities.
+  source_name: Prevent output vulnerabilities
+  source_description: Implement safeguards to prevent security vulnerabilities in
+    outputs from impacting users.
+  target_name: Supply Chain
+  target_description: ''

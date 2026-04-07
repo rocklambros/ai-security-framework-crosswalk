@@ -1,0 +1,9 @@
+{
+  "n_sources": 51,
+  "n_targets": 10,
+  "tier_changes": 267,
+  "promotions": 0,
+  "demotions": 267,
+  "anchor_accuracy_before": 0.4,
+  "anchor_accuracy_after": 0.2
+}

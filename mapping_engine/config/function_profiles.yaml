@@ -1,1 +1,199 @@
-# Function profile definitions. Populated in a later session.
+# Control-function classifications and threat profiles.
+#
+# Migrated verbatim from AIUC_2_OWASP_Agentic_Top_10/aiuc/taxonomy.py so that
+# `mapping_engine.engine.taxonomy` can apply the v1 classification logic
+# without hard-coded constants. New framework pairs add their own blocks
+# under `frameworks:` and `threat_profiles:`.
+
+frameworks:
+  aiuc_1:
+    control_functions:
+      A001: GOVERN
+      A002: GOVERN
+      A003: SCOPE
+      A004: SCOPE
+      A005: ISOLATE
+      A006: ISOLATE
+      A007: SCOPE
+      B001: VALID
+      B002: PREV
+      B003: PREV
+      B004: PREV
+      B005: PREV
+      B006: SCOPE
+      B007: SCOPE
+      B008: ISOLATE
+      B009: SCOPE
+      C001: GOVERN
+      C002: VALID
+      C003: PREV
+      C004: PREV
+      C005: PREV
+      C006: PREV
+      C007: GATE
+      C008: DETECT
+      C009: GATE
+      C010: VALID
+      C011: VALID
+      C012: VALID
+      D001: PREV
+      D002: VALID
+      D003: SCOPE
+      D004: VALID
+      E001: GOVERN
+      E002: GOVERN
+      E003: GOVERN
+      E004: GOVERN
+      E005: GOVERN
+      E006: VALID
+      E007: GOVERN
+      E008: GOVERN
+      E009: DETECT
+      E010: GOVERN
+      E011: GOVERN
+      E012: GOVERN
+      E013: GOVERN
+      E014: GOVERN
+      E015: DETECT
+      E016: DISCLOSE
+      E017: DISCLOSE
+      F001: PREV
+      F002: DETECT
+    specific_detect: [E009, C008]
+    generic_detect: [E015, F002]
+    overrides:
+      E015__ASI06: Primary
+      E015__ASI07: Primary
+      E015__ASI08: Primary
+      E015__ASI10: Primary
+      A006__ASI06: Secondary
+      E001__ASI08: Primary
+      E002__ASI08: Primary
+      E003__ASI08: Primary
+      E001__ASI10: Primary
+      C007__ASI09: Primary
+      C009__ASI09: Primary
+      C009__ASI01: Primary
+      C007__ASI01: Primary
+
+threat_profiles:
+  owasp_agentic:
+    ASI01:
+      primary_functions: [GATE]
+      primary_topics:
+        - "adversarial"
+        - "goal hijack"
+        - "input filter"
+        - "unauthorized.*action"
+        - "unsafe tool call"
+      detect_rule: never
+    ASI02:
+      primary_functions: []
+      primary_topics:
+        - "tool call"
+        - "data collection"
+        - "access privilege"
+        - "unauthorized.*action"
+        - "third-party.*access"
+        - "security.*resilience"
+        - "data distribution"
+        - "post-deployment.*monitoring.*plan"
+      detect_rule: specific_only
+    ASI03:
+      primary_functions: [ISOLATE]
+      primary_topics:
+        - "access privilege"
+        - "unauthorized.*action"
+        - "unsafe tool call"
+        - "third-party.*access"
+        - "security.*resilience"
+        - "data distribution"
+        - "post-deployment.*monitoring"
+      detect_rule: specific_only
+    ASI04:
+      primary_functions: [ISOLATE]
+      primary_topics:
+        - "vendor"
+        - "due diligence"
+        - "scientific integrity"
+        - "TEVV"
+      detect_rule: specific_only
+    ASI05:
+      primary_functions: [ISOLATE]
+      primary_topics:
+        - "output vulnerabilit"
+        - "unauthorized.*action"
+        - "unsafe tool call"
+        - "deployment environment"
+        - "tool call.*test"
+        - "testing.*tool call"
+        - "security.*resilience"
+        - "TEVV"
+        - "scientific integrity"
+      detect_rule: never
+    ASI06:
+      primary_functions: []
+      primary_topics:
+        - "adversarial"
+        - "input filter"
+        - "data collection"
+        - "cross-customer"
+        - "data distribution"
+        - "security.*resilience"
+        - "measurement.*risk"
+      detect_rule: specific_only
+    ASI07:
+      primary_functions: [ISOLATE]
+      primary_topics:
+        - "unauthorized.*action"
+        - "deployment environment"
+        - "security.*resilience"
+      detect_rule: all
+    ASI08:
+      primary_functions: []
+      primary_topics:
+        - "hallucin"
+        - "unsafe tool call"
+        - "appeal.*override"
+        - "decommission"
+        - "post-deployment.*monitoring.*plan"
+        - "failure plan"
+        - "sustain.*value.*manage.*risk"
+      detect_rule: generic_only
+    ASI09:
+      primary_functions: []
+      primary_topics:
+        - "harmful output"
+        - "hallucin"
+        - "testing.*harmful"
+        - "fairness.*bias"
+        - "human.*oversight"
+        - "roles.*responsibilities.*human"
+      detect_rule: never
+      disclose_primary: [E016]
+    ASI10:
+      primary_functions: [ISOLATE]
+      primary_topics:
+        - "unauthorized.*action"
+        - "unsafe tool call"
+        - "deployment environment"
+        - "tool call.*test"
+        - "testing.*tool call"
+        - "security.*resilience"
+        - "appeal.*override"
+        - "decommission"
+        - "failure plan"
+      detect_rule: generic_only
+
+threat_function_profiles:
+  owasp_agentic:
+    ASI01: [PREV, SCOPE, GATE, VALID, DETECT, GOVERN]
+    ASI02: [SCOPE, VALID, DETECT, GATE, ISOLATE]
+    ASI03: [SCOPE, ISOLATE, DETECT, VALID, GOVERN]
+    ASI04: [ISOLATE, VALID, DETECT, SCOPE, GOVERN]
+    ASI05: [SCOPE, ISOLATE, PREV, VALID, DETECT]
+    ASI06: [PREV, SCOPE, ISOLATE, VALID, DETECT]
+    ASI07: [SCOPE, ISOLATE, DETECT]
+    ASI08: [PREV, SCOPE, GOVERN, DETECT, GATE, VALID]
+    ASI09: [PREV, GATE, VALID, DISCLOSE, SCOPE, DETECT]
+    ASI10: [SCOPE, ISOLATE, VALID, GOVERN, DETECT, GATE, PREV, DISCLOSE]

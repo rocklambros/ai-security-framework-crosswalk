@@ -1192,10 +1192,18 @@ def _enrich_owasp_agentic_from_markdown(nodes, warnings):
         if desc:
             nodes[nid]["description"] = desc[:2000]
             filled += 1
-        # Note: examples/mitigations are intentionally NOT stored on the node
-        # because get_node_semantic_text concatenates them into the embedding
-        # text, and the scenario/mitigation language dilutes topical match
-        # for anchor validation. Description alone is the right signal.
+        # Note: examples are intentionally NOT stored on the node because
+        # get_node_semantic_text would concatenate them into the embedding
+        # text, and the scenario language dilutes topical match for anchor
+        # validation. Description alone is the right signal for embeddings.
+        # Mitigations ARE stored, but under the dedicated key 'mitigation_text'
+        # rather than 'mitigations', so get_node_semantic_text (which only
+        # picks up the latter via its keys list) does not embed them. The
+        # B1.5 mitigation_lexical_match feature reads 'mitigation_text'
+        # directly for token-level matching only.
+        mit = data.get("mitigations")
+        if mit:
+            nodes[nid]["mitigation_text"] = mit[:4000]
 
     log.info("OWASP Agentic enrichment: %d/10 risks got descriptions", filled)
     if filled < 10:

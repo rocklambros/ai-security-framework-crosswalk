@@ -1,0 +1,14 @@
+{
+  "csa_aicm__owasp_agentic": {
+    "n": 50,
+    "tier_acc": 0.22
+  },
+  "mitre_atlas__owasp_llm": {
+    "n": 50,
+    "tier_acc": 0.2
+  },
+  "nist_rmf__owasp_agentic": {
+    "n": 50,
+    "tier_acc": 0.3
+  }
+}

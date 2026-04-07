@@ -1,0 +1,108 @@
+{
+  "rows": [
+    {
+      "pair": "aiuc_1__csa_aicm",
+      "n": 50,
+      "tier_acc": 0.34,
+      "kappa": 0.03565166569257749,
+      "auroc_direct": 0.5133333333333333,
+      "p_direct": NaN,
+      "r_direct": 0.0
+    },
+    {
+      "pair": "aiuc_1__eu_gpai_cop",
+      "n": 50,
+      "tier_acc": 0.6,
+      "kappa": -0.03305785123966951,
+      "auroc_direct": 0.59,
+      "p_direct": NaN,
+      "r_direct": 0.0
+    },
+    {
+      "pair": "aiuc_1__mitre_atlas",
+      "n": 50,
+      "tier_acc": 0.32,
+      "kappa": 0.0011750881316099043,
+      "auroc_direct": 0.6074561403508771,
+      "p_direct": NaN,
+      "r_direct": 0.0
+    },
+    {
+      "pair": "aiuc_1__nist_rmf",
+      "n": 50,
+      "tier_acc": 0.7,
+      "kappa": 0.09747292418772557,
+      "auroc_direct": 0.6311111111111111,
+      "p_direct": NaN,
+      "r_direct": 0.0
+    },
+    {
+      "pair": "aiuc_1__owasp_agentic",
+      "n": 50,
+      "tier_acc": 0.46,
+      "kappa": 0.11184210526315791,
+      "auroc_direct": 0.6369047619047619,
+      "p_direct": NaN,
+      "r_direct": 0.0
+    },
+    {
+      "pair": "aiuc_1__owasp_llm",
+      "n": 50,
+      "tier_acc": 0.54,
+      "kappa": 0.006050129645635317,
+      "auroc_direct": 0.6239035087719298,
+      "p_direct": 1.0,
+      "r_direct": 0.08333333333333333
+    },
+    {
+      "pair": "cosai_rm__mitre_atlas",
+      "n": 50,
+      "tier_acc": 0.44,
+      "kappa": -0.03321033210332106,
+      "auroc_direct": 0.6573426573426573,
+      "p_direct": NaN,
+      "r_direct": 0.0
+    },
+    {
+      "pair": "cosai_rm__owasp_llm",
+      "n": 50,
+      "tier_acc": 0.44,
+      "kappa": -0.1111111111111111,
+      "auroc_direct": 0.6478174603174603,
+      "p_direct": NaN,
+      "r_direct": 0.0
+    },
+    {
+      "pair": "csa_aicm__owasp_agentic",
+      "n": 50,
+      "tier_acc": 0.22,
+      "kappa": -0.03174603174603177,
+      "auroc_direct": 0.9184397163120568,
+      "p_direct": 0.5,
+      "r_direct": 0.6666666666666666
+    },
+    {
+      "pair": "mitre_atlas__owasp_llm",
+      "n": 50,
+      "tier_acc": 0.2,
+      "kappa": 0.020568070519098935,
+      "auroc_direct": 0.9183673469387755,
+      "p_direct": 0.0,
+      "r_direct": 0.0
+    },
+    {
+      "pair": "nist_rmf__owasp_agentic",
+      "n": 50,
+      "tier_acc": 0.3,
+      "kappa": 0.06115879828326184,
+      "auroc_direct": NaN,
+      "p_direct": 0.0,
+      "r_direct": NaN
+    }
+  ],
+  "overall": {
+    "n": 550,
+    "tier_acc": 0.41454545454545455,
+    "kappa": 0.03266860023705359
+  }
+}

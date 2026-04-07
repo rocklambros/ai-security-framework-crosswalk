@@ -289,7 +289,7 @@ ax_h.annotate(
 ax_n = fig.add_subplot(gs[1, 0])
 sns.barplot(
     x=node_counts.values, y=node_counts.index,
-    ax=ax_n, palette="crest",
+    ax=ax_n, hue=node_counts.index, palette="crest", legend=False,
 )
 ax_n.set_title("Nodes per framework")
 ax_n.set_xlabel("node count")
@@ -304,7 +304,7 @@ for i, v in enumerate(node_counts.values):
 ax_c = fig.add_subplot(gs[1, 1])
 sns.barplot(
     x=conf_counts.index, y=conf_counts.values,
-    ax=ax_c, palette="flare",
+    ax=ax_c, hue=conf_counts.index, palette="flare", legend=False,
 )
 ax_c.set_title("Edges by confidence level")
 ax_c.set_xlabel("")
@@ -421,8 +421,9 @@ fig, ax = plt.subplots(figsize=(8, 5))
 # kernel density tails from extending past the actual data range, which
 # would be misleading because cosine similarity is bounded.
 sns.violinplot(
-    data=sem, x="label", y="semantic_score",
-    ax=ax, inner="quartile", cut=0, palette=["#9aa6b2", "#1f77b4"],
+    data=sem, x="label", y="semantic_score", hue="label",
+    ax=ax, inner="quartile", cut=0,
+    palette=["#9aa6b2", "#1f77b4"], legend=False,
 )
 # Overlay the actual data points at low alpha. Violin plots can hide multi
 # modality if the kernel bandwidth is wide, and the strip plot underneath
@@ -1005,11 +1006,10 @@ v1_only = c["lost_from_v1"]
 both = c["preserved"]
 v2_only = c["new_in_v2"]
 
-fig = plt.figure(figsize=(13, 5))
+fig = plt.figure(figsize=(13, 5), constrained_layout=True)
 gs = gridspec.GridSpec(
-    nrows=1, ncols=3,
+    nrows=1, ncols=3, figure=fig,
     width_ratios=[1.5, 1.1, 1.4],   # left panel wider because it is the headline
-    wspace=0.35,
 )
 axA = fig.add_subplot(gs[0, 0])
 axB = fig.add_subplot(gs[0, 1])
@@ -1072,7 +1072,6 @@ axC.set_title("Figure 6.4C · Score distribution of new-in-v2 pairs")
 axC.set_xlabel("v2 composite score")
 axC.set_ylabel("count")
 
-plt.tight_layout()
 plt.show()
 """)
 

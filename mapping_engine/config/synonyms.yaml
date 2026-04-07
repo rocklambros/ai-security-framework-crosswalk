@@ -1,0 +1,38 @@
+# Domain-specific synonym groups for keyword expansion.
+#
+# Format: a YAML list of lists. Each inner list is a set of terms considered
+# equivalent for the purpose of keyword/TF-IDF overlap. During signal
+# computation, if any term in a group is present in a document's text, the
+# other terms in the group are appended to expand recall.
+#
+# To add a new group: append a new `- [term1, term2, ...]` entry below. Keep
+# terms lowercase and prefer short noun phrases. Avoid overly broad groups
+# that would cause unrelated documents to collide.
+#
+# Source: migrated from aiuc/signals.py SYNONYM_GROUPS (v1 pipeline).
+
+- ["tool call", "tool misuse", "tool invocation", "tool use", "tool execution"]
+- ["prompt injection", "adversarial input", "adversarial prompt", "goal hijack"]
+- ["privilege", "access control", "authorization", "permission", "least privilege"]
+- ["supply chain", "third party", "dependency", "vendor", "third-party"]
+- ["code execution", "rce", "remote code execution", "code injection"]
+- ["hallucination", "confabulation", "fabricated output", "false output"]
+- ["memory", "context", "conversation history", "session state"]
+- ["agent communication", "inter-agent", "agent-to-agent", "a2a", "multi-agent"]
+- ["cascading failure", "error propagation", "chain failure", "systemic failure"]
+- ["trust", "human oversight", "human-in-the-loop", "deception", "social engineering"]
+- ["rogue agent", "misalignment", "autonomous misalignment", "uncontrolled agent"]
+- ["data privacy", "pii", "personal data", "data leakage", "data protection"]
+- ["encryption", "cryptography", "data at rest", "data in transit"]
+- ["logging", "audit", "monitoring", "observability", "audit trail"]
+- ["identity", "authentication", "credential", "token", "session"]
+- ["sandbox", "isolation", "containment", "sandboxing"]
+- ["output validation", "output filtering", "output safety", "harmful output"]
+- ["input filtering", "input validation", "content filtering"]
+- ["adversarial testing", "red team", "penetration testing", "adversarial robustness"]
+- ["disclosure", "transparency", "explainability", "labelling"]
+- ["incident response", "failure plan", "breach response"]
+- ["vendor due diligence", "third-party assessment", "supply chain risk"]
+- ["acceptable use", "usage policy", "terms of use"]
+- ["ip protection", "intellectual property", "trade secret", "copyright"]
+- ["regulatory compliance", "gdpr", "eu ai act", "regulation"]

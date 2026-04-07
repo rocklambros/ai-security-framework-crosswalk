@@ -1,0 +1,50 @@
+weights:
+  bridge: 0.45
+  semantic: 0.35
+  keyword: 0.20
+  boost: 0.50
+
+thresholds:
+  direct: 0.55
+  related_primary: 0.35
+  related_secondary: 0.50
+  gov_floor: 0.22
+  tangential: 0.20
+
+semantic:
+  model: BAAI/bge-large-en-v1.5
+  z_normalize: true
+  prevention_boost: true
+
+bridge:
+  max_hops: 2
+  confidence_weights:
+    authoritative: 1.0
+    expert: 0.8
+    inferred: 0.4
+    unvalidated: 0.2
+
+reranker:
+  enabled: false
+  model: cross-encoder/ms-marco-MiniLM-L-6-v2
+  top_k: 50
+  blend_weight: 0.30
+
+active_learning:
+  uncertainty_band: 0.05
+  max_candidates: 20
+
+function_match:
+  modes:
+    control_to_risk:
+      boost: 1.50
+    control_to_control:
+      same_class_boost: 1.30
+      complementary_boost: 1.15
+      complementary_pairs:
+        - [PREV, DETECT]
+        - [SCOPE, ISOLATE]
+        - [GATE, GOVERN]
+        - [VALID, DETECT]
+    technique_to_risk:
+      boost: 1.30

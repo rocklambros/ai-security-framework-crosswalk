@@ -1,0 +1,1 @@
+"""weight_stability module."""

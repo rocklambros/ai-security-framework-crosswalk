@@ -1,0 +1,23 @@
+source_framework: aiuc_1
+target_framework: owasp_agentic
+source_entry_types: [control, activity]
+target_entry_types: [risk]
+match_mode: control_to_risk
+
+# Override defaults if needed (otherwise inherits from defaults.yaml)
+# weights:
+#   bridge: 0.45
+
+anchors:
+  pairs:
+    - {source: "aiuc_1:D004", target: "owasp_agentic:ASI02", expected_tier: "Direct"}
+    - {source: "aiuc_1:E006", target: "owasp_agentic:ASI04", expected_tier: "Direct"}
+    - {source: "aiuc_1:B005", target: "owasp_agentic:ASI01", expected_tier: "Direct"}
+    - {source: "aiuc_1:B002", target: "owasp_agentic:ASI06", expected_tier: "Direct"}
+    - {source: "aiuc_1:C006", target: "owasp_agentic:ASI05", expected_tier: "Direct"}
+    - {source: "aiuc_1:B001", target: "owasp_agentic:ASI01", expected_tier: "Related"}
+    - {source: "aiuc_1:A003", target: "owasp_agentic:ASI06", expected_tier: "Related"}
+    - {source: "aiuc_1:B006", target: "owasp_agentic:ASI03", expected_tier: "Related"}
+    - {source: "aiuc_1:E001", target: "owasp_agentic:ASI08", expected_tier: "Related"}
+    - {source: "aiuc_1:D003", target: "owasp_agentic:ASI02", expected_tier: "Direct"}
+  holdout_indices: [2, 5, 8]

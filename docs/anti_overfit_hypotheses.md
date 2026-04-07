@@ -22,7 +22,7 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 **Frozen test pairs.** Excluded; touched only once in S7 with whatever thresholds S4 ships.
 
-**Result.** _to be filled in after S4 runs_
+**Result.** REJECTED. Sweep best on the 4 training pairs: direct=0.35, related_primary=0.30 (train Youden=0.1887, balanced_acc=0.5943). Held-out pair aiuc_1__nist_rmf actually REGRESSES under the swept thresholds (Youden 0.2240 → 0.1786) — the sweep is overfitting the training pairs. Aggregate Youden across all 5 pairs: B-2 (0.45/0.20)=0.2094, swept (0.35/0.30)=0.2026. Per-anchor paired-bootstrap delta = +0.0068 [-0.0419, +0.0533] — CI crosses zero, direction is technically positive but the holdout regression confirms this is noise. Thresholds UNCHANGED at (0.45, 0.20). Persisted to data/processed/threshold_sweep_discriminative.json. Note: the sweep gate is now non-degenerate (it produces real numbers, not ties at 1.0), so this is an honest negative — the B-2 thresholds are well-calibrated for the discriminative metric within the noise floor. Real improvement here would require either rationale-code population (gives the sweep an additional Direct/Related signal beyond positive/negative) or a richer threshold parameterization (per-pair thresholds, calibrated probabilities, etc.) — both out of scope.
 
 ## 2026-04-07 — H_S5: B-1 structural features re-eval under discriminative metric
 

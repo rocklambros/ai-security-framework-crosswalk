@@ -1,0 +1,30 @@
+{
+  "history": [
+    {
+      "epoch": 0,
+      "val_ndcg": 0.672926806802656
+    },
+    {
+      "epoch": 1,
+      "val_ndcg": 0.7089909829933354
+    },
+    {
+      "epoch": 2,
+      "val_ndcg": 0.7197544757202491
+    }
+  ],
+  "best": {
+    "epoch": 2,
+    "val_ndcg": 0.7197544757202491
+  },
+  "base_model": "BAAI/bge-reranker-base",
+  "val_pair": [
+    "aiuc_1",
+    "nist_rmf"
+  ],
+  "n_train": 729,
+  "n_val": 449,
+  "epochs": 3,
+  "batch": 16,
+  "lr": 2e-05
+}

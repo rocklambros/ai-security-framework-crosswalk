@@ -208,8 +208,13 @@ class PairMapper:
                 self.config["weights"] = merged
             calibrated = _load_calibrated_thresholds()
             if calibrated:
-                merged_th = dict(self.config["thresholds"])
-                merged_th.update(calibrated)
+                # Merge order: calibrated (global) underneath, pair YAML on top.
+                # Pair-level thresholds override calibrated globals, so the
+                # `thresholds:` block in a pair config actually takes effect
+                # (s8-np: required for csa_aicm__owasp_agentic per-pair calibration).
+                pair_overrides = dict(self.config["thresholds"])
+                merged_th = dict(calibrated)
+                merged_th.update(pair_overrides)
                 self.config["thresholds"] = merged_th
 
     def _select_nodes(self) -> tuple[list[str], list[str]]:

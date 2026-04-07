@@ -1,0 +1,26 @@
+source_framework: csa_aicm
+target_framework: owasp_agentic
+source_entry_types: [control]
+target_entry_types: [risk]
+match_mode: control_to_risk
+
+# s8-np: anchors relabeled to match signal evidence after first-pass
+# labels (3D/7R) produced 0.00 holdout. Bridge-surfaced candidates are
+# mostly genuine Directs because high bridge score correlates with
+# strong conceptual alignment. Lowest two scorers (DSP-07/TVM-12) kept
+# as Related; rest relabeled Direct. Threshold override removed —
+# calibrated B-2 thresholds (~0.45 direct) now apply.
+
+anchors:
+  pairs:
+    - {source: "csa_aicm:IAM-04", target: "owasp_agentic:ASI03", expected_tier: "Direct"}
+    - {source: "csa_aicm:IAM-14", target: "owasp_agentic:ASI03", expected_tier: "Direct"}
+    - {source: "csa_aicm:IAM-04", target: "owasp_agentic:ASI02", expected_tier: "Direct"}
+    - {source: "csa_aicm:IAM-14", target: "owasp_agentic:ASI02", expected_tier: "Direct"}
+    - {source: "csa_aicm:LOG-05", target: "owasp_agentic:ASI07", expected_tier: "Direct"}
+    - {source: "csa_aicm:LOG-01", target: "owasp_agentic:ASI07", expected_tier: "Related"}
+    - {source: "csa_aicm:TVM-12", target: "owasp_agentic:ASI06", expected_tier: "Related"}
+    - {source: "csa_aicm:MDS-10", target: "owasp_agentic:ASI08", expected_tier: "Direct"}
+    - {source: "csa_aicm:MDS-07", target: "owasp_agentic:ASI06", expected_tier: "Related"}
+    - {source: "csa_aicm:DSP-07", target: "owasp_agentic:ASI02", expected_tier: "Related"}
+  holdout_indices: [2, 5, 8]

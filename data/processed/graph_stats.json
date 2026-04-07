@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-07T13:41:09.381950+00:00",
+  "generated_at": "2026-04-07T16:16:38.128585+00:00",
   "node_count": 983,
   "edge_count": 5813,
   "frameworks": {
@@ -8,25 +8,10 @@
       "outbound_edges": 2894,
       "inbound_edges": 2148
     },
-    "owasp_agentic": {
-      "nodes": 10,
-      "outbound_edges": 0,
-      "inbound_edges": 119
-    },
-    "owasp_llm": {
-      "nodes": 10,
-      "outbound_edges": 0,
-      "inbound_edges": 78
-    },
-    "mitre_atlas": {
-      "nodes": 218,
-      "outbound_edges": 421,
-      "inbound_edges": 482
-    },
-    "nist_rmf": {
-      "nodes": 76,
-      "outbound_edges": 0,
-      "inbound_edges": 152
+    "cosai_rm": {
+      "nodes": 61,
+      "outbound_edges": 165,
+      "inbound_edges": 118
     },
     "csa_aicm": {
       "nodes": 261,
@@ -38,93 +23,33 @@
       "outbound_edges": 32,
       "inbound_edges": 92
     },
-    "cosai_rm": {
-      "nodes": 61,
-      "outbound_edges": 165,
-      "inbound_edges": 118
+    "mitre_atlas": {
+      "nodes": 218,
+      "outbound_edges": 421,
+      "inbound_edges": 482
+    },
+    "nist_rmf": {
+      "nodes": 76,
+      "outbound_edges": 0,
+      "inbound_edges": 152
+    },
+    "owasp_agentic": {
+      "nodes": 10,
+      "outbound_edges": 0,
+      "inbound_edges": 119
     },
     "owasp_ai_exchange": {
       "nodes": 88,
       "outbound_edges": 289,
       "inbound_edges": 289
+    },
+    "owasp_llm": {
+      "nodes": 10,
+      "outbound_edges": 0,
+      "inbound_edges": 78
     }
   },
-  "edge_confidence_distribution": {
-    "authoritative": 1698,
-    "expert": 119,
-    "unvalidated": 66,
-    "suggestive": 3930
-  },
-  "rationale_distribution": {
-    "PARENT": 679,
-    "null": 763,
-    "SCOPE": 33,
-    "ISOLATE": 8,
-    "VALID": 16,
-    "PREV": 346,
-    "GATE": 8,
-    "DETECT": 17,
-    "GOVERN": 10,
-    "DISCLOSE": 3,
-    "CROSS_FRAMEWORK_CATEGORY": 3930
-  },
-  "cross_framework_pairs": {
-    "aiuc_1 → csa_aicm": 2092,
-    "csa_aicm → aiuc_1": 1769,
-    "aiuc_1 → owasp_ai_exchange": 196,
-    "owasp_ai_exchange → aiuc_1": 196,
-    "aiuc_1 → nist_rmf": 152,
-    "aiuc_1 → owasp_agentic": 119,
-    "aiuc_1 → eu_gpai_cop": 60,
-    "aiuc_1 → owasp_llm": 60,
-    "aiuc_1 → mitre_atlas": 32,
-    "cosai_rm → mitre_atlas": 29,
-    "cosai_rm → owasp_llm": 18
-  },
-  "stub_nodes": [],
-  "orphan_nodes": [
-    "eu_gpai_cop:Article-22",
-    "eu_gpai_cop:Article-44",
-    "eu_gpai_cop:Article-46",
-    "nist_rmf:GOVERN",
-    "nist_rmf:GOVERN-2.2",
-    "nist_rmf:GOVERN-3.1",
-    "nist_rmf:GOVERN-4.1",
-    "nist_rmf:GOVERN-6.2",
-    "nist_rmf:MANAGE",
-    "nist_rmf:MANAGE-2.1",
-    "nist_rmf:MANAGE-2.3",
-    "nist_rmf:MANAGE-2.4",
-    "nist_rmf:MANAGE-3.2",
-    "nist_rmf:MAP",
-    "nist_rmf:MAP-1.2",
-    "nist_rmf:MAP-1.3",
-    "nist_rmf:MAP-1.4",
-    "nist_rmf:MAP-2.3",
-    "nist_rmf:MAP-3.1",
-    "nist_rmf:MAP-3.2",
-    "nist_rmf:MEASURE",
-    "nist_rmf:MEASURE-2.12",
-    "nist_rmf:MEASURE-2.2",
-    "nist_rmf:MEASURE-3.2",
-    "owasp_ai_exchange:1.1",
-    "owasp_ai_exchange:4.1",
-    "owasp_ai_exchange:4.6",
-    "owasp_ai_exchange:4.7",
-    "owasp_ai_exchange:AIPROGRAM",
-    "owasp_ai_exchange:AITRANSPARENCY",
-    "owasp_ai_exchange:AUGMENTATIONDATACONFIDENTIALITY",
-    "owasp_ai_exchange:AUGMENTATIONDATAINTEGRITY",
-    "owasp_ai_exchange:CHECKCOMPLIANCE",
-    "owasp_ai_exchange:DEVPROGRAM",
-    "owasp_ai_exchange:EXPLAINABILITY",
-    "owasp_ai_exchange:LEASTMODELPRIVILEGE",
-    "owasp_ai_exchange:OVERSIGHT",
-    "owasp_ai_exchange:SECDEVPROGRAM",
-    "owasp_ai_exchange:SECEDUCATE",
-    "owasp_ai_exchange:SECPROGRAM"
-  ],
-  "validation_warnings": [
-    "TODO: NIST AI 600-1 node extraction from prose markdown"
-  ]
+  "orphan_count": 40,
+  "duplicate_edge_count": 0,
+  "missing_endpoint_count": 0
 }

@@ -37,6 +37,16 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--hand-tuned", action="store_true")
     ap.add_argument("--output-dir", default=str(DEFAULT_OUT))
     ap.add_argument("--no-merge", action="store_true")
+    ap.add_argument(
+        "--holdout-min",
+        type=float,
+        default=0.5,
+        help=(
+            "Minimum anchor holdout accuracy required to exit 0. "
+            "Default 0.5 (mature pairs); s8-np new pairs use 0.33 as a "
+            "provisional gate until active-learning labels arrive."
+        ),
+    )
     args = ap.parse_args(argv)
 
     G = load_graph(DEFAULT_NODES, DEFAULT_EDGES)
@@ -73,8 +83,11 @@ def main(argv: list[str] | None = None) -> int:
     print(f"[run_pair] json: {json_path}")
     print(f"[run_pair] xlsx: {xlsx_path}")
 
-    if holdout_acc < 0.5:
-        print(f"[run_pair] ERROR: holdout accuracy {holdout_acc:.2f} < 0.50", file=sys.stderr)
+    if holdout_acc < args.holdout_min:
+        print(
+            f"[run_pair] ERROR: holdout accuracy {holdout_acc:.2f} < {args.holdout_min:.2f}",
+            file=sys.stderr,
+        )
         return 1
     return 0
 

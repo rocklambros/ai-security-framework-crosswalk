@@ -1,0 +1,5436 @@
+{
+  "metadata": {
+    "schema_version": "2.0",
+    "generated_at": "2026-04-07T16:04:12.906629+00:00",
+    "methodology": "multi-signal-hybrid-v2",
+    "source_standard": {
+      "name": "csa_aicm",
+      "version": "unknown",
+      "controls": 243
+    },
+    "target_standard": {
+      "name": "OWASP Top 10 for Agentic Applications",
+      "version": "2026",
+      "url": "https://owasp.org/",
+      "entries": 10
+    },
+    "pipeline": {
+      "signals": {
+        "bridge": {
+          "weight": 0.45,
+          "technique": "2-hop weighted Jaccard on crosswalk graph"
+        },
+        "semantic": {
+          "weight": 0.35,
+          "technique": "Sentence-transformer cosine (BAAI/bge-large-en-v1.5)"
+        },
+        "keyword": {
+          "weight": 0.2,
+          "technique": "TF-IDF cosine with synonym expansion"
+        },
+        "function_match": {
+          "weight": 0.5,
+          "technique": "Multiplicative boost when function class matches target profile"
+        }
+      },
+      "thresholds": {
+        "direct": 0.55,
+        "related": 0.35,
+        "governance_floor": 0.22,
+        "tangential": 0.2
+      }
+    },
+    "classification": {
+      "rationale_taxonomy": {
+        "PREV": "Prevent",
+        "SCOPE": "Constrain scope",
+        "GATE": "Human gate",
+        "DETECT": "Detect and trace",
+        "VALID": "Validate and test",
+        "GOVERN": "Policy and governance",
+        "ISOLATE": "Isolate and contain",
+        "DISCLOSE": "Disclose and calibrate"
+      },
+      "relevance_levels": [
+        "Primary",
+        "Secondary"
+      ]
+    }
+  },
+  "summary": {
+    "controls_mapped": "25 / 243",
+    "controls_unmapped": 218,
+    "owasp_entries_with_matches": 7,
+    "total_mappings": 33,
+    "primary_mappings": 6,
+    "secondary_mappings": 27,
+    "rationale_distribution": {
+      "GATE": 1,
+      "ISOLATE": 5,
+      "VALID": 9,
+      "DETECT": 3,
+      "SCOPE": 14,
+      "GOVERN": 1
+    }
+  },
+  "control_level": {
+    "source_to_target": [
+      {
+        "control_id": "A-A-01",
+        "control_title": "Audit and Assurance Policy and Procedures",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "A-A-02",
+        "control_title": "Independent Assessments",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "A-A-03",
+        "control_title": "Risk Based Planning Assessment",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "A-A-04",
+        "control_title": "Requirements Compliance",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "A-A-05",
+        "control_title": "Audit Management Process",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "A-A-06",
+        "control_title": "Remediation",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-01",
+        "control_title": "Application and Interface Security Policy",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-02",
+        "control_title": "Application Security Baseline Requirements",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-03",
+        "control_title": "Application Security Metrics",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-04",
+        "control_title": "Secure Application Development Lifecycle",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-05",
+        "control_title": "Application Security Testing",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-06",
+        "control_title": "Secure Application Deployment",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-07",
+        "control_title": "Application Vulnerability Remediation",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-08",
+        "control_title": "Input Validation",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-09",
+        "control_title": "Output Validation",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-10",
+        "control_title": "API Security",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-11",
+        "control_title": "Agents Security Boundaries",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-12",
+        "control_title": "Source Code Management",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-13",
+        "control_title": "AI Sandboxing",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-14",
+        "control_title": "AI Cache Protection",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AIS-15",
+        "control_title": "Prompt Differentiation",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-01",
+        "control_title": "Business Continuity Management Policy",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-02",
+        "control_title": "Risk Assessment and Impact Analysis",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-03",
+        "control_title": "Business Continuity Strategy",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-04",
+        "control_title": "Business Continuity Planning",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-05",
+        "control_title": "Documentation",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-06",
+        "control_title": "Business Continuity Exercises",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-07",
+        "control_title": "Communication",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-08",
+        "control_title": "Backup",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-09",
+        "control_title": "Disaster Response Plan",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-10",
+        "control_title": "Response Plan Exercise",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "BCR-11",
+        "control_title": "Equipment Redundancy",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-01",
+        "control_title": "Change Management Policy and Procedures",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-02",
+        "control_title": "Quality Testing",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-03",
+        "control_title": "Change Management Technology",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-04",
+        "control_title": "Change Authorization",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-05",
+        "control_title": "Change Agreements",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-06",
+        "control_title": "Change Management Baseline",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-07",
+        "control_title": "Detection of Baseline Deviation",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-08",
+        "control_title": "Exception Management",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CCC-09",
+        "control_title": "Change Restoration",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-01",
+        "control_title": "Encryption and Key Management Policy",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-02",
+        "control_title": "CEK Roles and Responsibilities",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-03",
+        "control_title": "Data Encryption",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-04",
+        "control_title": "Encryption Algorithm",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-05",
+        "control_title": "Encryption Change Management",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-06",
+        "control_title": "Encryption Change Cost Benefit Analysis",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-07",
+        "control_title": "Encryption Risk Management",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-08",
+        "control_title": "Customer Key Management Capability",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-09",
+        "control_title": "Encryption and Key Management Audit",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-10",
+        "control_title": "Key Generation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-11",
+        "control_title": "Key Purpose",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-12",
+        "control_title": "Key Rotation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-13",
+        "control_title": "Key Revocation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-14",
+        "control_title": "Key Destruction",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-15",
+        "control_title": "Key Activation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-16",
+        "control_title": "Key Suspension",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-17",
+        "control_title": "Key Deactivation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-18",
+        "control_title": "Key Archival",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-19",
+        "control_title": "Key Compromise",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-20",
+        "control_title": "Key Recovery",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "CEK-21",
+        "control_title": "Key Inventory Management",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-01",
+        "control_title": "Off-Site Equipment Disposal Policy",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-02",
+        "control_title": "Off-Site Transfer Authorization Policy",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-03",
+        "control_title": "Secure Area Policy and Procedures",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-04",
+        "control_title": "Secure Media Transportation Policy",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-05",
+        "control_title": "Assets Classification",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-06",
+        "control_title": "Assets Cataloguing and Tracking",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-07",
+        "control_title": "Controlled Physical Access Points",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-08",
+        "control_title": "Equipment Identification",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-09",
+        "control_title": "Secure Area Authorization",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-10",
+        "control_title": "Surveillance System",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-11",
+        "control_title": "Adverse Event Response Training",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-12",
+        "control_title": "Cabling Security",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-13",
+        "control_title": "Environmental Systems",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-14",
+        "control_title": "Secure Utilities",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DCS-15",
+        "control_title": "Equipment Location",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-01",
+        "control_title": "Security and Privacy Policy and Procedures",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-02",
+        "control_title": "Secure Disposal",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-03",
+        "control_title": "Data Inventory",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-04",
+        "control_title": "Data Classification",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-05",
+        "control_title": "Data Flow Documentation",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-06",
+        "control_title": "Data Ownership and Stewardship",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-07",
+        "control_title": "Data Protection by Design and Default",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-08",
+        "control_title": "Data Privacy by Design and Default",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-09",
+        "control_title": "Data Protection Impact Assessment",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-10",
+        "control_title": "Sensitive Data Transfer",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-11",
+        "control_title": "Personal Data Access, Reversal, Rectification and Deletion",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-12",
+        "control_title": "Limitation of Purpose in Personal Data Processing",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-13",
+        "control_title": "Personal Data Sub-processing",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-14",
+        "control_title": "Disclosure of Data Sub-processors",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-15",
+        "control_title": "Limitation of Production Data Use",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-16",
+        "control_title": "Data Retention and Deletion",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-17",
+        "control_title": "Sensitive Data Protection",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-18",
+        "control_title": "Disclosure Notification",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-19",
+        "control_title": "Data Location",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-20",
+        "control_title": "Data Provenance and Transparency",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-21",
+        "control_title": "Data Poisoning Prevention & Detection",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-22",
+        "control_title": "Privacy Enhancing Technologies",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-23",
+        "control_title": "Data Integrity Check",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "DSP-24",
+        "control_title": "Data Differentiation and Relevance",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-01",
+        "control_title": "Governance Program Policy and Procedures",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-02",
+        "control_title": "Risk Management Program",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-03",
+        "control_title": "Organizational Policy Reviews",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-04",
+        "control_title": "Policy Exception Process",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-05",
+        "control_title": "Information Security Program",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-06",
+        "control_title": "Governance Responsibility Model",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-07",
+        "control_title": "Information System Regulatory Mapping",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-08",
+        "control_title": "Special Interest Groups",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-09",
+        "control_title": "Acceptable Use of the AI Service",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-10",
+        "control_title": "AI Impact Assessment",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-11",
+        "control_title": "Bias and Fairness Assessment",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-12",
+        "control_title": "Ethics Committee",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-13",
+        "control_title": "Explainability Requirement",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-14",
+        "control_title": "Explainability Evaluation",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GRC-15",
+        "control_title": "Human Supervision",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.3564,
+            "signals": {
+              "bridge": 0.1937,
+              "semantic": 0.7128,
+              "keyword": 0.0134,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0064,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "HRS-01",
+        "control_title": "Background Screening Policy and Procedures",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-02",
+        "control_title": "Acceptable Use of Technology Policy and Procedures",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-03",
+        "control_title": "Clean Desk Policy and Procedures",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-04",
+        "control_title": "Remote and Home Working Policy and Procedures",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-05",
+        "control_title": "Asset Returns",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-06",
+        "control_title": "Employment Termination",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-07",
+        "control_title": "Employment Agreement Process",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-08",
+        "control_title": "Employment Agreement Content",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-09",
+        "control_title": "Personnel Roles and Responsibilities",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-10",
+        "control_title": "Non-Disclosure Agreements",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-11",
+        "control_title": "Security Awareness Training",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-12",
+        "control_title": "Personal and Sensitive Data Awareness and Training",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-13",
+        "control_title": "Compliance User Responsibility",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-14",
+        "control_title": "AI Competency Training",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "HRS-15",
+        "control_title": "AI Acceptable Use",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "I-S-01",
+        "control_title": "Infrastructure and Virtualization Security Policy",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "I-S-02",
+        "control_title": "Capacity and Resource Planning",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "I-S-03",
+        "control_title": "Network Security",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "I-S-04",
+        "control_title": "OS Hardening and Base Controls",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "I-S-05",
+        "control_title": "Production and Non-Production Environments",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 5,
+        "primary_count": 5,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.4409,
+            "signals": {
+              "bridge": 0.1732,
+              "semantic": 0.6172,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0909,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.4095,
+            "signals": {
+              "bridge": 0.1975,
+              "semantic": 0.5262,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0595,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.3936,
+            "signals": {
+              "bridge": 0.1744,
+              "semantic": 0.5254,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0436,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.382,
+            "signals": {
+              "bridge": 0.1989,
+              "semantic": 0.7838,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.032,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.3802,
+            "signals": {
+              "bridge": 0.2128,
+              "semantic": 0.761,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0302,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "I-S-06",
+        "control_title": "Segmentation and Segregation",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "I-S-07",
+        "control_title": "Migration to Hosted Environments",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "I-S-08",
+        "control_title": "Network Architecture Documentation",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "I-S-09",
+        "control_title": "Network Defense",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IAM-01",
+        "control_title": "Identity and Access Management Policy and Procedures",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6926,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.8905,
+              "keyword": 0.0527,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1426,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-02",
+        "control_title": "Strong Password Policy and Procedures",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6572,
+            "signals": {
+              "bridge": 0.2918,
+              "semantic": 0.8765,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1072,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-03",
+        "control_title": "Identity Inventory",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.71,
+            "signals": {
+              "bridge": 0.3135,
+              "semantic": 0.9255,
+              "keyword": 0.0418,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.16,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-04",
+        "control_title": "Separation of Duties",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IAM-05",
+        "control_title": "Least Privilege",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7195,
+            "signals": {
+              "bridge": 0.3346,
+              "semantic": 0.9037,
+              "keyword": 0.064,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1695,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-06",
+        "control_title": "User Access Provisioning",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6935,
+            "signals": {
+              "bridge": 0.2918,
+              "semantic": 0.9155,
+              "keyword": 0.0529,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1435,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-07",
+        "control_title": "User Access Changes and Revocation",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IAM-08",
+        "control_title": "User Access Review",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7122,
+            "signals": {
+              "bridge": 0.3272,
+              "semantic": 0.9035,
+              "keyword": 0.0568,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1622,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-09",
+        "control_title": "Segregation of Privileged Access Roles",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6985,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.9097,
+              "keyword": 0.0388,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1485,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-10",
+        "control_title": "Management of Privileged Access Roles",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IAM-11",
+        "control_title": "Customers' Approval for Agreed Privileged Access Roles",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IAM-12",
+        "control_title": "Safeguard Logs Integrity",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IAM-13",
+        "control_title": "Uniquely Identifiable Users",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6766,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.8901,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1266,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-14",
+        "control_title": "Strong Authentication",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7755,
+            "signals": {
+              "bridge": 0.417,
+              "semantic": 0.9017,
+              "keyword": 0.0687,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.2255,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7025,
+            "signals": {
+              "bridge": 0.4005,
+              "semantic": 0.7854,
+              "keyword": 0.066,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1525,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-15",
+        "control_title": "Passwords and Secrets Management",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6662,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.8703,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1162,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-16",
+        "control_title": "Authorization Mechanisms",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6741,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.8547,
+              "keyword": 0.0535,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1241,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-17",
+        "control_title": "Knowledge Access Control - Need to Know",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7273,
+            "signals": {
+              "bridge": 0.3575,
+              "semantic": 0.8778,
+              "keyword": 0.0838,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1773,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6708,
+            "signals": {
+              "bridge": 0.3099,
+              "semantic": 0.7963,
+              "keyword": 0.1452,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1208,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IAM-18",
+        "control_title": "Output Modification and Special Authorization",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IAM-19",
+        "control_title": "Agent Access Restriction",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6751,
+            "signals": {
+              "bridge": 0.2796,
+              "semantic": 0.8815,
+              "keyword": 0.0785,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1251,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "IPY-01",
+        "control_title": "Interoperability and Portability Policy and Procedures",
+        "domain": "Interoperability & Portability - IPY",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IPY-02",
+        "control_title": "Application Interface Availability",
+        "domain": "Interoperability & Portability - IPY",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IPY-03",
+        "control_title": "Secure Interoperability and Portability Management",
+        "domain": "Interoperability & Portability - IPY",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "IPY-04",
+        "control_title": "Data Portability Contractual Obligations",
+        "domain": "Interoperability & Portability - IPY",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-01",
+        "control_title": "Logging and Monitoring Policy and Procedures",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6907,
+            "signals": {
+              "bridge": 0.3918,
+              "semantic": 0.8119,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1407,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "LOG-02",
+        "control_title": "Audit Logs Protection",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-03",
+        "control_title": "Security Monitoring and Alerting",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-04",
+        "control_title": "Audit Logs Access and Accountability",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7153,
+            "signals": {
+              "bridge": 0.3571,
+              "semantic": 0.8954,
+              "keyword": 0.0136,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1653,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "LOG-05",
+        "control_title": "Audit Logs Monitoring and Response",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-06",
+        "control_title": "Clock Synchronization",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-07",
+        "control_title": "Logging Scope",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-08",
+        "control_title": "Log Records",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-09",
+        "control_title": "Log Protection",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7051,
+            "signals": {
+              "bridge": 0.3712,
+              "semantic": 0.8568,
+              "keyword": 0.0157,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1551,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "LOG-10",
+        "control_title": "Encryption Monitoring and Reporting",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-11",
+        "control_title": "Transaction / Activity Logging",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-12",
+        "control_title": "Access Control Logs",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7432,
+            "signals": {
+              "bridge": 0.3712,
+              "semantic": 0.9063,
+              "keyword": 0.0561,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1932,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6513,
+            "signals": {
+              "bridge": 0.3393,
+              "semantic": 0.7792,
+              "keyword": 0.0439,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1013,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "LOG-13",
+        "control_title": "Failures and Anomalies Reporting",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-14",
+        "control_title": "Input Monitoring",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "LOG-15",
+        "control_title": "Output Monitoring",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-01",
+        "control_title": "Training Pipeline Security",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-02",
+        "control_title": "Model Artifact Scanning",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-03",
+        "control_title": "Model Documentation",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-04",
+        "control_title": "Model Documentation Requirements",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-05",
+        "control_title": "Model Documentation Validation",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-06",
+        "control_title": "Adversarial Attack Analysis",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-07",
+        "control_title": "Robustness against Adversarial Attack / Model Hardening",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6666,
+            "signals": {
+              "bridge": 0.3863,
+              "semantic": 0.7587,
+              "keyword": 0.0251,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1166,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MDS-08",
+        "control_title": "Model Integrity Checks",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6772,
+            "signals": {
+              "bridge": 0.3725,
+              "semantic": 0.8027,
+              "keyword": 0.0142,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1272,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MDS-09",
+        "control_title": "Model Signing/Ownership Verification",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-10",
+        "control_title": "Model Continuous Monitoring",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6551,
+            "signals": {
+              "bridge": 0.356,
+              "semantic": 0.7781,
+              "keyword": 0.0211,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1051,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MDS-11",
+        "control_title": "Model Failure",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6665,
+            "signals": {
+              "bridge": 0.2871,
+              "semantic": 0.8783,
+              "keyword": 0.0387,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1165,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MDS-12",
+        "control_title": "Open Model Risk Assessment",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MDS-13",
+        "control_title": "Secure Model Format",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-01",
+        "control_title": "Security Incident Management Policy and Procedures",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-02",
+        "control_title": "Service Management Policy and Procedures",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-03",
+        "control_title": "Incident Response Plans",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-04",
+        "control_title": "Incident Response Testing",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-05",
+        "control_title": "Incident Response Metrics",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-06",
+        "control_title": "Event Triage Processes",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-07",
+        "control_title": "Security Breach Notification",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-08",
+        "control_title": "Points of Contact Maintenance",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "SEF-09",
+        "control_title": "Incident Response",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-01",
+        "control_title": "Supply Chain Risk Management Policies and Procedures",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-02",
+        "control_title": "SSRM Policy and Procedures",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-03",
+        "control_title": "SSRM Supply Chain",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-04",
+        "control_title": "SSRM Guidance",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-05",
+        "control_title": "SSRM Control Ownership",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-06",
+        "control_title": "SSRM Documentation Review",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-07",
+        "control_title": "SSRM Control Implementation",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-08",
+        "control_title": "Supply Chain Inventory",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-09",
+        "control_title": "Supply Chain Risk Management",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-10",
+        "control_title": "Primary Service and Contractual Agreement",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-11",
+        "control_title": "Supply Chain Agreement Review",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-12",
+        "control_title": "Supply Chain Compliance Assessment",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-13",
+        "control_title": "Supply Chain Service Agreement Compliance",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-14",
+        "control_title": "Third Party Risk Management",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-15",
+        "control_title": "Supply Chain Data Security Assessment",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "STA-16",
+        "control_title": "Service Bill of Material (BOM)",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-01",
+        "control_title": "Threat and Vulnerability Management Policy and Procedures",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-02",
+        "control_title": "Vulnerability Assessment and Reporting",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-03",
+        "control_title": "Vulnerability Remediation",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-04",
+        "control_title": "Detection Updates",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-05",
+        "control_title": "External Library Vulnerabilities",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI04",
+            "owasp_title": "Agentic Supply ChainVulnerabilities",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6771,
+            "signals": {
+              "bridge": 0.2559,
+              "semantic": 0.8791,
+              "keyword": 0.1425,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1271,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "TVM-06",
+        "control_title": "Penetration Testing",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-07",
+        "control_title": "Vulnerability Remediation Schedule",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-08",
+        "control_title": "Vulnerability Prioritization",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-09",
+        "control_title": "Vulnerability Management Reporting",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-10",
+        "control_title": "Vulnerability Management Metrics",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-11",
+        "control_title": "Guardrails",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-12",
+        "control_title": "Threat Analysis and Modelling",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "TVM-13",
+        "control_title": "Threat Response",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-01",
+        "control_title": "Endpoint Devices Policy and Procedures",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-02",
+        "control_title": "Application and Service Approval",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-03",
+        "control_title": "Compatibility",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-04",
+        "control_title": "Endpoint Inventory",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-05",
+        "control_title": "Endpoint Management",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-06",
+        "control_title": "Automatic Lock Screen",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-07",
+        "control_title": "Operating Systems",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-08",
+        "control_title": "Storage Encryption",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI07",
+            "owasp_title": "Insecure Inter-AgentCommunication",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7511,
+            "signals": {
+              "bridge": 0.4248,
+              "semantic": 0.8825,
+              "keyword": 0.0035,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.2011,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI03",
+            "owasp_title": "Identity and PrivilegeAbuse",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6877,
+            "signals": {
+              "bridge": 0.3659,
+              "semantic": 0.8094,
+              "keyword": 0.0529,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1377,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "UEM-09",
+        "control_title": "Anti-Malware Detection and Prevention",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-10",
+        "control_title": "Software Firewall",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-11",
+        "control_title": "Data Loss Prevention",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-12",
+        "control_title": "Remote Locate",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-13",
+        "control_title": "Remote Wipe",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "UEM-14",
+        "control_title": "Third-Party Endpoint Security Posture",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      }
+    ],
+    "target_to_source": [
+      {
+        "owasp_id": "ASI01",
+        "owasp_title": "Agent Goal Hijack",
+        "owasp_rank": 1,
+        "mapping_count": 2,
+        "primary_count": 1,
+        "secondary_count": 1,
+        "function_coverage": {
+          "VALID": 1,
+          "GATE": 1
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE"
+        ],
+        "mappings": [
+          {
+            "control_id": "MDS-07",
+            "control_title": "Robustness against Adversarial Attack / Model Hardening",
+            "domain": "Model Security - MDS",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6666,
+            "signals": {
+              "bridge": 0.3863,
+              "semantic": 0.7587,
+              "keyword": 0.0251,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1166,
+            "needs_review": false
+          },
+          {
+            "control_id": "GRC-15",
+            "control_title": "Human Supervision",
+            "domain": "Governance, Risk and Compliance - GRC",
+            "function_class": "GATE",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.3564,
+            "signals": {
+              "bridge": 0.1937,
+              "semantic": 0.7128,
+              "keyword": 0.0134,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0064,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI02",
+        "owasp_title": "Tool Misuse and Exploitation",
+        "owasp_rank": 2,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "ASI03",
+        "owasp_title": "Identity and PrivilegeAbuse",
+        "owasp_rank": 3,
+        "mapping_count": 18,
+        "primary_count": 1,
+        "secondary_count": 17,
+        "function_coverage": {
+          "SCOPE": 9,
+          "DETECT": 1,
+          "VALID": 6,
+          "GOVERN": 1,
+          "ISOLATE": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "PREV"
+        ],
+        "mappings": [
+          {
+            "control_id": "IAM-14",
+            "control_title": "Strong Authentication",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7755,
+            "signals": {
+              "bridge": 0.417,
+              "semantic": 0.9017,
+              "keyword": 0.0687,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.2255,
+            "needs_review": false
+          },
+          {
+            "control_id": "LOG-12",
+            "control_title": "Access Control Logs",
+            "domain": "Logging and Monitoring - LOG",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7432,
+            "signals": {
+              "bridge": 0.3712,
+              "semantic": 0.9063,
+              "keyword": 0.0561,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1932,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-17",
+            "control_title": "Knowledge Access Control - Need to Know",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7273,
+            "signals": {
+              "bridge": 0.3575,
+              "semantic": 0.8778,
+              "keyword": 0.0838,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1773,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-05",
+            "control_title": "Least Privilege",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7195,
+            "signals": {
+              "bridge": 0.3346,
+              "semantic": 0.9037,
+              "keyword": 0.064,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1695,
+            "needs_review": false
+          },
+          {
+            "control_id": "LOG-04",
+            "control_title": "Audit Logs Access and Accountability",
+            "domain": "Logging and Monitoring - LOG",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7153,
+            "signals": {
+              "bridge": 0.3571,
+              "semantic": 0.8954,
+              "keyword": 0.0136,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1653,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-08",
+            "control_title": "User Access Review",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7122,
+            "signals": {
+              "bridge": 0.3272,
+              "semantic": 0.9035,
+              "keyword": 0.0568,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1622,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-03",
+            "control_title": "Identity Inventory",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.71,
+            "signals": {
+              "bridge": 0.3135,
+              "semantic": 0.9255,
+              "keyword": 0.0418,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.16,
+            "needs_review": false
+          },
+          {
+            "control_id": "LOG-09",
+            "control_title": "Log Protection",
+            "domain": "Logging and Monitoring - LOG",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7051,
+            "signals": {
+              "bridge": 0.3712,
+              "semantic": 0.8568,
+              "keyword": 0.0157,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1551,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-09",
+            "control_title": "Segregation of Privileged Access Roles",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6985,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.9097,
+              "keyword": 0.0388,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1485,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-06",
+            "control_title": "User Access Provisioning",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6935,
+            "signals": {
+              "bridge": 0.2918,
+              "semantic": 0.9155,
+              "keyword": 0.0529,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1435,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-01",
+            "control_title": "Identity and Access Management Policy and Procedures",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6926,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.8905,
+              "keyword": 0.0527,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1426,
+            "needs_review": false
+          },
+          {
+            "control_id": "UEM-08",
+            "control_title": "Storage Encryption",
+            "domain": "Universal Endpoint Management - UEM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6877,
+            "signals": {
+              "bridge": 0.3659,
+              "semantic": 0.8094,
+              "keyword": 0.0529,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1377,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-13",
+            "control_title": "Uniquely Identifiable Users",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6766,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.8901,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1266,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-19",
+            "control_title": "Agent Access Restriction",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6751,
+            "signals": {
+              "bridge": 0.2796,
+              "semantic": 0.8815,
+              "keyword": 0.0785,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1251,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-16",
+            "control_title": "Authorization Mechanisms",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6741,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.8547,
+              "keyword": 0.0535,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1241,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-15",
+            "control_title": "Passwords and Secrets Management",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6662,
+            "signals": {
+              "bridge": 0.3101,
+              "semantic": 0.8703,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1162,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-02",
+            "control_title": "Strong Password Policy and Procedures",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6572,
+            "signals": {
+              "bridge": 0.2918,
+              "semantic": 0.8765,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1072,
+            "needs_review": false
+          },
+          {
+            "control_id": "I-S-05",
+            "control_title": "Production and Non-Production Environments",
+            "domain": "Infrastructure Security - I&S",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.4095,
+            "signals": {
+              "bridge": 0.1975,
+              "semantic": 0.5262,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0595,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI04",
+        "owasp_title": "Agentic Supply ChainVulnerabilities",
+        "owasp_rank": 4,
+        "mapping_count": 2,
+        "primary_count": 1,
+        "secondary_count": 1,
+        "function_coverage": {
+          "VALID": 1,
+          "ISOLATE": 1
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "PREV",
+          "SCOPE"
+        ],
+        "mappings": [
+          {
+            "control_id": "TVM-05",
+            "control_title": "External Library Vulnerabilities",
+            "domain": "Threat & Vulnerability Management - TVM",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6771,
+            "signals": {
+              "bridge": 0.2559,
+              "semantic": 0.8791,
+              "keyword": 0.1425,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1271,
+            "needs_review": false
+          },
+          {
+            "control_id": "I-S-05",
+            "control_title": "Production and Non-Production Environments",
+            "domain": "Infrastructure Security - I&S",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.3936,
+            "signals": {
+              "bridge": 0.1744,
+              "semantic": 0.5254,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0436,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI05",
+        "owasp_title": "Unexpected CodeExecution (RCE)",
+        "owasp_rank": 5,
+        "mapping_count": 2,
+        "primary_count": 1,
+        "secondary_count": 1,
+        "function_coverage": {
+          "DETECT": 1,
+          "ISOLATE": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "MDS-10",
+            "control_title": "Model Continuous Monitoring",
+            "domain": "Model Security - MDS",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6551,
+            "signals": {
+              "bridge": 0.356,
+              "semantic": 0.7781,
+              "keyword": 0.0211,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1051,
+            "needs_review": false
+          },
+          {
+            "control_id": "I-S-05",
+            "control_title": "Production and Non-Production Environments",
+            "domain": "Infrastructure Security - I&S",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.4409,
+            "signals": {
+              "bridge": 0.1732,
+              "semantic": 0.6172,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0909,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI06",
+        "owasp_title": "Memory & Context Poisoning",
+        "owasp_rank": 6,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "ASI07",
+        "owasp_title": "Insecure Inter-AgentCommunication",
+        "owasp_rank": 7,
+        "mapping_count": 7,
+        "primary_count": 1,
+        "secondary_count": 6,
+        "function_coverage": {
+          "SCOPE": 5,
+          "DETECT": 1,
+          "ISOLATE": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "PREV",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "UEM-08",
+            "control_title": "Storage Encryption",
+            "domain": "Universal Endpoint Management - UEM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7511,
+            "signals": {
+              "bridge": 0.4248,
+              "semantic": 0.8825,
+              "keyword": 0.0035,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.2011,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-14",
+            "control_title": "Strong Authentication",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.7025,
+            "signals": {
+              "bridge": 0.4005,
+              "semantic": 0.7854,
+              "keyword": 0.066,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1525,
+            "needs_review": false
+          },
+          {
+            "control_id": "LOG-01",
+            "control_title": "Logging and Monitoring Policy and Procedures",
+            "domain": "Logging and Monitoring - LOG",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6907,
+            "signals": {
+              "bridge": 0.3918,
+              "semantic": 0.8119,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1407,
+            "needs_review": false
+          },
+          {
+            "control_id": "MDS-08",
+            "control_title": "Model Integrity Checks",
+            "domain": "Model Security - MDS",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6772,
+            "signals": {
+              "bridge": 0.3725,
+              "semantic": 0.8027,
+              "keyword": 0.0142,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1272,
+            "needs_review": false
+          },
+          {
+            "control_id": "IAM-17",
+            "control_title": "Knowledge Access Control - Need to Know",
+            "domain": "Identity & Access Management - IAM",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6708,
+            "signals": {
+              "bridge": 0.3099,
+              "semantic": 0.7963,
+              "keyword": 0.1452,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1208,
+            "needs_review": false
+          },
+          {
+            "control_id": "LOG-12",
+            "control_title": "Access Control Logs",
+            "domain": "Logging and Monitoring - LOG",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6513,
+            "signals": {
+              "bridge": 0.3393,
+              "semantic": 0.7792,
+              "keyword": 0.0439,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1013,
+            "needs_review": false
+          },
+          {
+            "control_id": "I-S-05",
+            "control_title": "Production and Non-Production Environments",
+            "domain": "Infrastructure Security - I&S",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.3802,
+            "signals": {
+              "bridge": 0.2128,
+              "semantic": 0.761,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0302,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI08",
+        "owasp_title": "Cascading Failures",
+        "owasp_rank": 8,
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "function_coverage": {
+          "VALID": 1
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE"
+        ],
+        "mappings": [
+          {
+            "control_id": "MDS-11",
+            "control_title": "Model Failure",
+            "domain": "Model Security - MDS",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6665,
+            "signals": {
+              "bridge": 0.2871,
+              "semantic": 0.8783,
+              "keyword": 0.0387,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1165,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI09",
+        "owasp_title": "Human-Agent TrustExploitation",
+        "owasp_rank": 9,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "ASI10",
+        "owasp_title": "Rogue Agents",
+        "owasp_rank": 10,
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "function_coverage": {
+          "ISOLATE": 1
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "I-S-05",
+            "control_title": "Production and Non-Production Environments",
+            "domain": "Infrastructure Security - I&S",
+            "function_class": "ISOLATE",
+            "relevance": "Primary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.382,
+            "signals": {
+              "bridge": 0.1989,
+              "semantic": 0.7838,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.032,
+            "needs_review": true
+          }
+        ]
+      }
+    ]
+  },
+  "gap_analysis": {
+    "unmapped_controls": [
+      {
+        "control_id": "A-A-01",
+        "control_title": "Audit and Assurance Policy and Procedures",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "A-A-02",
+        "control_title": "Independent Assessments",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "A-A-03",
+        "control_title": "Risk Based Planning Assessment",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "A-A-04",
+        "control_title": "Requirements Compliance",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "A-A-05",
+        "control_title": "Audit Management Process",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "A-A-06",
+        "control_title": "Remediation",
+        "domain": "Audit & Assurance - A&A",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-01",
+        "control_title": "Application and Interface Security Policy",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-02",
+        "control_title": "Application Security Baseline Requirements",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-03",
+        "control_title": "Application Security Metrics",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-04",
+        "control_title": "Secure Application Development Lifecycle",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-05",
+        "control_title": "Application Security Testing",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-06",
+        "control_title": "Secure Application Deployment",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-07",
+        "control_title": "Application Vulnerability Remediation",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-08",
+        "control_title": "Input Validation",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-09",
+        "control_title": "Output Validation",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-10",
+        "control_title": "API Security",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-11",
+        "control_title": "Agents Security Boundaries",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-12",
+        "control_title": "Source Code Management",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-13",
+        "control_title": "AI Sandboxing",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-14",
+        "control_title": "AI Cache Protection",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AIS-15",
+        "control_title": "Prompt Differentiation",
+        "domain": "Application & Interface Security - AIS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-01",
+        "control_title": "Business Continuity Management Policy",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-02",
+        "control_title": "Risk Assessment and Impact Analysis",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-03",
+        "control_title": "Business Continuity Strategy",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-04",
+        "control_title": "Business Continuity Planning",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-05",
+        "control_title": "Documentation",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-06",
+        "control_title": "Business Continuity Exercises",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-07",
+        "control_title": "Communication",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-08",
+        "control_title": "Backup",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-09",
+        "control_title": "Disaster Response Plan",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-10",
+        "control_title": "Response Plan Exercise",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "BCR-11",
+        "control_title": "Equipment Redundancy",
+        "domain": "Business Continuity Management and Operational Resilience - BCR",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-01",
+        "control_title": "Change Management Policy and Procedures",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-02",
+        "control_title": "Quality Testing",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-03",
+        "control_title": "Change Management Technology",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-04",
+        "control_title": "Change Authorization",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-05",
+        "control_title": "Change Agreements",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-06",
+        "control_title": "Change Management Baseline",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-07",
+        "control_title": "Detection of Baseline Deviation",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-08",
+        "control_title": "Exception Management",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CCC-09",
+        "control_title": "Change Restoration",
+        "domain": "Change Control and Configuration Management - CCC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-01",
+        "control_title": "Encryption and Key Management Policy",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-02",
+        "control_title": "CEK Roles and Responsibilities",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-03",
+        "control_title": "Data Encryption",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-04",
+        "control_title": "Encryption Algorithm",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-05",
+        "control_title": "Encryption Change Management",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-06",
+        "control_title": "Encryption Change Cost Benefit Analysis",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-07",
+        "control_title": "Encryption Risk Management",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-08",
+        "control_title": "Customer Key Management Capability",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-09",
+        "control_title": "Encryption and Key Management Audit",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-10",
+        "control_title": "Key Generation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-11",
+        "control_title": "Key Purpose",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-12",
+        "control_title": "Key Rotation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-13",
+        "control_title": "Key Revocation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-14",
+        "control_title": "Key Destruction",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-15",
+        "control_title": "Key Activation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-16",
+        "control_title": "Key Suspension",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-17",
+        "control_title": "Key Deactivation",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-18",
+        "control_title": "Key Archival",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-19",
+        "control_title": "Key Compromise",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-20",
+        "control_title": "Key Recovery",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "CEK-21",
+        "control_title": "Key Inventory Management",
+        "domain": "Cryptography, Encryption & Key Management - CEK",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-01",
+        "control_title": "Off-Site Equipment Disposal Policy",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-02",
+        "control_title": "Off-Site Transfer Authorization Policy",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-03",
+        "control_title": "Secure Area Policy and Procedures",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-04",
+        "control_title": "Secure Media Transportation Policy",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-05",
+        "control_title": "Assets Classification",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-06",
+        "control_title": "Assets Cataloguing and Tracking",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-07",
+        "control_title": "Controlled Physical Access Points",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-08",
+        "control_title": "Equipment Identification",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-09",
+        "control_title": "Secure Area Authorization",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-10",
+        "control_title": "Surveillance System",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-11",
+        "control_title": "Adverse Event Response Training",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-12",
+        "control_title": "Cabling Security",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-13",
+        "control_title": "Environmental Systems",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-14",
+        "control_title": "Secure Utilities",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DCS-15",
+        "control_title": "Equipment Location",
+        "domain": "Datacenter Security - DCS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-01",
+        "control_title": "Security and Privacy Policy and Procedures",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-02",
+        "control_title": "Secure Disposal",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-03",
+        "control_title": "Data Inventory",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-04",
+        "control_title": "Data Classification",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-05",
+        "control_title": "Data Flow Documentation",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-06",
+        "control_title": "Data Ownership and Stewardship",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-07",
+        "control_title": "Data Protection by Design and Default",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-08",
+        "control_title": "Data Privacy by Design and Default",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-09",
+        "control_title": "Data Protection Impact Assessment",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-10",
+        "control_title": "Sensitive Data Transfer",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-11",
+        "control_title": "Personal Data Access, Reversal, Rectification and Deletion",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-12",
+        "control_title": "Limitation of Purpose in Personal Data Processing",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-13",
+        "control_title": "Personal Data Sub-processing",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-14",
+        "control_title": "Disclosure of Data Sub-processors",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-15",
+        "control_title": "Limitation of Production Data Use",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-16",
+        "control_title": "Data Retention and Deletion",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-17",
+        "control_title": "Sensitive Data Protection",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-18",
+        "control_title": "Disclosure Notification",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-19",
+        "control_title": "Data Location",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-20",
+        "control_title": "Data Provenance and Transparency",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-21",
+        "control_title": "Data Poisoning Prevention & Detection",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-22",
+        "control_title": "Privacy Enhancing Technologies",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-23",
+        "control_title": "Data Integrity Check",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "DSP-24",
+        "control_title": "Data Differentiation and Relevance",
+        "domain": "Data Security and Privacy Lifecycle Management - DSP",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-01",
+        "control_title": "Governance Program Policy and Procedures",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-02",
+        "control_title": "Risk Management Program",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-03",
+        "control_title": "Organizational Policy Reviews",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-04",
+        "control_title": "Policy Exception Process",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-05",
+        "control_title": "Information Security Program",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-06",
+        "control_title": "Governance Responsibility Model",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-07",
+        "control_title": "Information System Regulatory Mapping",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-08",
+        "control_title": "Special Interest Groups",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-09",
+        "control_title": "Acceptable Use of the AI Service",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-10",
+        "control_title": "AI Impact Assessment",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-11",
+        "control_title": "Bias and Fairness Assessment",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-12",
+        "control_title": "Ethics Committee",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-13",
+        "control_title": "Explainability Requirement",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GRC-14",
+        "control_title": "Explainability Evaluation",
+        "domain": "Governance, Risk and Compliance - GRC",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-01",
+        "control_title": "Background Screening Policy and Procedures",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-02",
+        "control_title": "Acceptable Use of Technology Policy and Procedures",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-03",
+        "control_title": "Clean Desk Policy and Procedures",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-04",
+        "control_title": "Remote and Home Working Policy and Procedures",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-05",
+        "control_title": "Asset Returns",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-06",
+        "control_title": "Employment Termination",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-07",
+        "control_title": "Employment Agreement Process",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-08",
+        "control_title": "Employment Agreement Content",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-09",
+        "control_title": "Personnel Roles and Responsibilities",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-10",
+        "control_title": "Non-Disclosure Agreements",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-11",
+        "control_title": "Security Awareness Training",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-12",
+        "control_title": "Personal and Sensitive Data Awareness and Training",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-13",
+        "control_title": "Compliance User Responsibility",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-14",
+        "control_title": "AI Competency Training",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "HRS-15",
+        "control_title": "AI Acceptable Use",
+        "domain": "Human Resources - HRS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "I-S-01",
+        "control_title": "Infrastructure and Virtualization Security Policy",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "I-S-02",
+        "control_title": "Capacity and Resource Planning",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "I-S-03",
+        "control_title": "Network Security",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "I-S-04",
+        "control_title": "OS Hardening and Base Controls",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "I-S-06",
+        "control_title": "Segmentation and Segregation",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "I-S-07",
+        "control_title": "Migration to Hosted Environments",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "I-S-08",
+        "control_title": "Network Architecture Documentation",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "I-S-09",
+        "control_title": "Network Defense",
+        "domain": "Infrastructure Security - I&S",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IAM-04",
+        "control_title": "Separation of Duties",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IAM-07",
+        "control_title": "User Access Changes and Revocation",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IAM-10",
+        "control_title": "Management of Privileged Access Roles",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IAM-11",
+        "control_title": "Customers' Approval for Agreed Privileged Access Roles",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IAM-12",
+        "control_title": "Safeguard Logs Integrity",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IAM-18",
+        "control_title": "Output Modification and Special Authorization",
+        "domain": "Identity & Access Management - IAM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IPY-01",
+        "control_title": "Interoperability and Portability Policy and Procedures",
+        "domain": "Interoperability & Portability - IPY",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IPY-02",
+        "control_title": "Application Interface Availability",
+        "domain": "Interoperability & Portability - IPY",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IPY-03",
+        "control_title": "Secure Interoperability and Portability Management",
+        "domain": "Interoperability & Portability - IPY",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "IPY-04",
+        "control_title": "Data Portability Contractual Obligations",
+        "domain": "Interoperability & Portability - IPY",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-02",
+        "control_title": "Audit Logs Protection",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-03",
+        "control_title": "Security Monitoring and Alerting",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-05",
+        "control_title": "Audit Logs Monitoring and Response",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-06",
+        "control_title": "Clock Synchronization",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-07",
+        "control_title": "Logging Scope",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-08",
+        "control_title": "Log Records",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-10",
+        "control_title": "Encryption Monitoring and Reporting",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-11",
+        "control_title": "Transaction / Activity Logging",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-13",
+        "control_title": "Failures and Anomalies Reporting",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-14",
+        "control_title": "Input Monitoring",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "LOG-15",
+        "control_title": "Output Monitoring",
+        "domain": "Logging and Monitoring - LOG",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-01",
+        "control_title": "Training Pipeline Security",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-02",
+        "control_title": "Model Artifact Scanning",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-03",
+        "control_title": "Model Documentation",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-04",
+        "control_title": "Model Documentation Requirements",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-05",
+        "control_title": "Model Documentation Validation",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-06",
+        "control_title": "Adversarial Attack Analysis",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-09",
+        "control_title": "Model Signing/Ownership Verification",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-12",
+        "control_title": "Open Model Risk Assessment",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MDS-13",
+        "control_title": "Secure Model Format",
+        "domain": "Model Security - MDS",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-01",
+        "control_title": "Security Incident Management Policy and Procedures",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-02",
+        "control_title": "Service Management Policy and Procedures",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-03",
+        "control_title": "Incident Response Plans",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-04",
+        "control_title": "Incident Response Testing",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-05",
+        "control_title": "Incident Response Metrics",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-06",
+        "control_title": "Event Triage Processes",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-07",
+        "control_title": "Security Breach Notification",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-08",
+        "control_title": "Points of Contact Maintenance",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "SEF-09",
+        "control_title": "Incident Response",
+        "domain": "Security Incident Management, E-Discovery, & Cloud Forensics - SEF",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-01",
+        "control_title": "Supply Chain Risk Management Policies and Procedures",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-02",
+        "control_title": "SSRM Policy and Procedures",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-03",
+        "control_title": "SSRM Supply Chain",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-04",
+        "control_title": "SSRM Guidance",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-05",
+        "control_title": "SSRM Control Ownership",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-06",
+        "control_title": "SSRM Documentation Review",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-07",
+        "control_title": "SSRM Control Implementation",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-08",
+        "control_title": "Supply Chain Inventory",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-09",
+        "control_title": "Supply Chain Risk Management",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-10",
+        "control_title": "Primary Service and Contractual Agreement",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-11",
+        "control_title": "Supply Chain Agreement Review",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-12",
+        "control_title": "Supply Chain Compliance Assessment",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-13",
+        "control_title": "Supply Chain Service Agreement Compliance",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-14",
+        "control_title": "Third Party Risk Management",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-15",
+        "control_title": "Supply Chain Data Security Assessment",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "STA-16",
+        "control_title": "Service Bill of Material (BOM)",
+        "domain": "Supply Chain Management, Transparency, and Accountability - STA",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-01",
+        "control_title": "Threat and Vulnerability Management Policy and Procedures",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-02",
+        "control_title": "Vulnerability Assessment and Reporting",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-03",
+        "control_title": "Vulnerability Remediation",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-04",
+        "control_title": "Detection Updates",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-06",
+        "control_title": "Penetration Testing",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-07",
+        "control_title": "Vulnerability Remediation Schedule",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-08",
+        "control_title": "Vulnerability Prioritization",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-09",
+        "control_title": "Vulnerability Management Reporting",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-10",
+        "control_title": "Vulnerability Management Metrics",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-11",
+        "control_title": "Guardrails",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-12",
+        "control_title": "Threat Analysis and Modelling",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "TVM-13",
+        "control_title": "Threat Response",
+        "domain": "Threat & Vulnerability Management - TVM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-01",
+        "control_title": "Endpoint Devices Policy and Procedures",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-02",
+        "control_title": "Application and Service Approval",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-03",
+        "control_title": "Compatibility",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-04",
+        "control_title": "Endpoint Inventory",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-05",
+        "control_title": "Endpoint Management",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-06",
+        "control_title": "Automatic Lock Screen",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-07",
+        "control_title": "Operating Systems",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-09",
+        "control_title": "Anti-Malware Detection and Prevention",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-10",
+        "control_title": "Software Firewall",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-11",
+        "control_title": "Data Loss Prevention",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-12",
+        "control_title": "Remote Locate",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-13",
+        "control_title": "Remote Wipe",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "UEM-14",
+        "control_title": "Third-Party Endpoint Security Posture",
+        "domain": "Universal Endpoint Management - UEM",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      }
+    ],
+    "unmapped_count": 218,
+    "note": "Unmapped controls did not reach the Related threshold under the current pipeline.",
+    "needs_review_count": 4,
+    "needs_review": [
+      {
+        "source_node_id": "csa_aicm:GRC-15",
+        "target_node_id": "owasp_agentic:ASI01",
+        "score": 0.3564,
+        "tier": "Related",
+        "confidence_gap": 0.0064
+      },
+      {
+        "source_node_id": "csa_aicm:I-S-05",
+        "target_node_id": "owasp_agentic:ASI04",
+        "score": 0.3936,
+        "tier": "Related",
+        "confidence_gap": 0.0436
+      },
+      {
+        "source_node_id": "csa_aicm:I-S-05",
+        "target_node_id": "owasp_agentic:ASI07",
+        "score": 0.3802,
+        "tier": "Related",
+        "confidence_gap": 0.0302
+      },
+      {
+        "source_node_id": "csa_aicm:I-S-05",
+        "target_node_id": "owasp_agentic:ASI10",
+        "score": 0.382,
+        "tier": "Related",
+        "confidence_gap": 0.032
+      }
+    ]
+  }
+}

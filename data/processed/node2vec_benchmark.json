@@ -1,0 +1,79 @@
+{
+  "spearman_bridge_node2vec": 0.7828162044447505,
+  "pearson_bridge_node2vec": 0.7652035398622906,
+  "bridge_separation": 0.0713971832146598,
+  "node2vec_separation": 0.08887893574028904,
+  "anchors": [
+    {
+      "source": "aiuc_1:D004",
+      "target": "owasp_agentic:ASI02",
+      "expected": "Direct",
+      "bridge": 0.13798008534850648,
+      "node2vec": 0.7530945584913058
+    },
+    {
+      "source": "aiuc_1:E006",
+      "target": "owasp_agentic:ASI04",
+      "expected": "Direct",
+      "bridge": 0.12291666666666673,
+      "node2vec": 0.8339861265242847
+    },
+    {
+      "source": "aiuc_1:B005",
+      "target": "owasp_agentic:ASI01",
+      "expected": "Direct",
+      "bridge": 0.126874279123414,
+      "node2vec": 0.7432905132002703
+    },
+    {
+      "source": "aiuc_1:B002",
+      "target": "owasp_agentic:ASI06",
+      "expected": "Direct",
+      "bridge": 0.1690997566909976,
+      "node2vec": 0.7661177938690147
+    },
+    {
+      "source": "aiuc_1:C006",
+      "target": "owasp_agentic:ASI05",
+      "expected": "Direct",
+      "bridge": 0.11848958333333336,
+      "node2vec": 0.7535625455640376
+    },
+    {
+      "source": "aiuc_1:B001",
+      "target": "owasp_agentic:ASI01",
+      "expected": "Related",
+      "bridge": 0.16403162055335962,
+      "node2vec": 0.7303710292497643
+    },
+    {
+      "source": "aiuc_1:A003",
+      "target": "owasp_agentic:ASI06",
+      "expected": "Related",
+      "bridge": 0.16220735785953205,
+      "node2vec": 0.7928083276096428
+    },
+    {
+      "source": "aiuc_1:B006",
+      "target": "owasp_agentic:ASI03",
+      "expected": "Related",
+      "bridge": 0.1426512968299713,
+      "node2vec": 0.7794110643450809
+    },
+    {
+      "source": "aiuc_1:E001",
+      "target": "owasp_agentic:ASI08",
+      "expected": "Related",
+      "bridge": 0.18729096989966584,
+      "node2vec": 0.8305260079578546
+    },
+    {
+      "source": "aiuc_1:D003",
+      "target": "owasp_agentic:ASI02",
+      "expected": "Direct",
+      "bridge": 0.1463146314631463,
+      "node2vec": 0.7680359902506548
+    }
+  ],
+  "decision": "useful"
+}

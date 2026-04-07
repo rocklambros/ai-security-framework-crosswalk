@@ -2,6 +2,7 @@ weights:
   bridge: 0.45
   semantic: 0.35
   keyword: 0.20
+  node2vec: 0.00   # optional 5th signal; rebalance bridge/semantic/keyword to use it
   boost: 0.50
 
 thresholds:

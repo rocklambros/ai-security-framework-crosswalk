@@ -31,6 +31,7 @@ def compose_scores(
     keyword: np.ndarray,
     function_match: np.ndarray,
     config: dict[str, Any],
+    node2vec: np.ndarray | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Combine signals into composite score + tier matrix.
 
@@ -55,9 +56,12 @@ def compose_scores(
     wb = float(w.get("bridge", 0.45))
     ws = float(w.get("semantic", 0.35))
     wk = float(w.get("keyword", 0.20))
+    wn = float(w.get("node2vec", 0.0))
     boost = float(w.get("boost", 0.50))
 
     composite = wb * bridge + ws * semantic + wk * keyword
+    if node2vec is not None and wn > 0.0:
+        composite = composite + wn * node2vec
     composite = composite * (1.0 + boost * function_match)
     composite = np.clip(composite, 0.0, 1.0)
 

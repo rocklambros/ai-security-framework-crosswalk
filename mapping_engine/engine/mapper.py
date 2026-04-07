@@ -192,14 +192,6 @@ class PairMapper:
             function_classes=func_classes,
         )
 
-        # Expert-edge floor: when the graph already carries an authoritative or
-        # expert-curated edge between source/target, honor it as a tier floor.
-        # PREV / SCOPE / GATE / ISOLATE rationales imply Direct; other function
-        # codes imply at least Related.
-        self._apply_expert_edge_floor(
-            source_nodes, target_nodes, composite, tier_matrix, relevance
-        )
-
         rer_cfg = self.config.get("reranker") or {}
         rer_on = bool(rer_cfg.get("enabled", False))
         if self.enable_reranker is not None:
@@ -226,7 +218,7 @@ class PairMapper:
             signal_matrices["node2vec"] = node2vec
 
         anchor_validation = self._validate_anchors(
-            source_nodes, target_nodes, composite, tier_matrix
+            source_nodes, target_nodes
         )
 
         mappings = self._flatten_mappings(
@@ -263,47 +255,77 @@ class PairMapper:
             mappings=mappings,
         )
 
-    _STRONG_RATIONALES = {"PREV", "SCOPE", "GATE", "ISOLATE"}
+    def _build_masked_graph(self) -> nx.DiGraph:
+        """Return a copy of ``self.G`` with authoritative/expert edges removed
+        for every anchor pair (both directions). Used exclusively by
+        ``_validate_anchors`` to prevent anchor-label leakage through curated
+        edges that feed bridge / rationale_code signals.
+        """
+        pairs = self.pair_config.anchors.pairs
+        H = self.G.copy()
+        for p in pairs:
+            for a, b in ((p.source, p.target), (p.target, p.source)):
+                if H.has_edge(a, b):
+                    data = H.get_edge_data(a, b) or {}
+                    if data.get("confidence") in ("authoritative", "expert"):
+                        H.remove_edge(a, b)
+        return H
 
-    def _apply_expert_edge_floor(
-        self,
-        source_nodes: list[str],
-        target_nodes: list[str],
-        composite: np.ndarray,
-        tiers: np.ndarray,
-        relevance: np.ndarray,
-    ) -> None:
-        tgt_idx = {t: j for j, t in enumerate(target_nodes)}
-        th = self.config.get("thresholds", {})
-        direct_floor = float(th.get("direct", 0.55))
-        related_floor = float(th.get("related_primary", 0.35))
+    def _run_with_masked_anchors(
+        self, source_nodes: list[str], target_nodes: list[str]
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """Rebuild composite + tiers on a graph with anchor expert edges masked."""
+        H = self._build_masked_graph()
+        n_src, n_tgt = len(source_nodes), len(target_nodes)
+
+        bridge = graph_bridge_scores(H, source_nodes, target_nodes, self.config.get("bridge"))
+        semantic = compute_semantic_similarity(
+            H, source_nodes, target_nodes, self.config.get("semantic")
+        )
+        keyword = compute_keyword_similarity(H, source_nodes, target_nodes, self.config)
+        fn_match = compute_function_match(
+            H, source_nodes, target_nodes, self.config.get("function_match")
+        )
+
+        w = self.config.get("weights", {})
+        wb = float(w.get("bridge", 0.45))
+        ws = float(w.get("semantic", 0.35))
+        wk = float(w.get("keyword", 0.20))
+        wn = float(w.get("node2vec", 0.0) or 0.0)
+        boost = float(w.get("boost", 0.50))
+
+        node2vec = None
+        if wn > 0.0:
+            try:
+                node2vec = np.clip(
+                    compute_node2vec_similarity(source_nodes, target_nodes), 0.0, 1.0
+                )
+            except Exception:
+                node2vec = None
+
+        composite = wb * bridge + ws * semantic + wk * keyword
+        if node2vec is not None and wn > 0.0:
+            composite = composite + wn * node2vec
+        composite = composite * (1.0 + boost * fn_match)
+        composite = np.clip(composite, 0.0, 1.0)
+
+        relevance = np.zeros((n_src, n_tgt), dtype=np.int8)
+        func_classes: list[str] = []
         for i, s in enumerate(source_nodes):
-            if s not in self.G:
-                continue
-            for _, t, data in self.G.out_edges(s, data=True):
-                j = tgt_idx.get(t)
-                if j is None:
-                    continue
-                conf = data.get("confidence")
-                if conf not in ("authoritative", "expert"):
-                    continue
-                rc = data.get("rationale_code")
-                if rc in self._STRONG_RATIONALES:
-                    if tiers[i, j] < TIER_DIRECT:
-                        tiers[i, j] = TIER_DIRECT
-                    if composite[i, j] < direct_floor:
-                        composite[i, j] = direct_floor
-                elif rc in {"DETECT", "VALID", "GOVERN", "DISCLOSE"}:
-                    # Floor at Related, AND cap below Direct — expert curation
-                    # classified these as supporting rather than primary controls.
-                    if tiers[i, j] < TIER_RELATED:
-                        tiers[i, j] = TIER_RELATED
-                    if tiers[i, j] >= TIER_DIRECT:
-                        tiers[i, j] = TIER_RELATED
-                    if composite[i, j] < related_floor:
-                        composite[i, j] = related_floor
-                    if composite[i, j] >= direct_floor:
-                        composite[i, j] = direct_floor - 0.001
+            fc = classify_function(H, s) or "GOVERN"
+            func_classes.append(fc)
+            for j, t in enumerate(target_nodes):
+                rel = classify_relevance(H, s, t, function_class=fc)
+                relevance[i, j] = 1 if rel == "Primary" else 0
+
+        tiers = assign_tiers(
+            composite,
+            relevance,
+            self.config,
+            function_match=fn_match,
+            function_classes=func_classes,
+        )
+        return composite, tiers
 
     def _flatten_mappings(
         self,
@@ -341,9 +363,8 @@ class PairMapper:
         self,
         source_nodes: list[str],
         target_nodes: list[str],
-        composite: np.ndarray,
-        tiers: np.ndarray,
     ) -> dict[str, Any]:
+        composite, tiers = self._run_with_masked_anchors(source_nodes, target_nodes)
         pairs = self.pair_config.anchors.pairs
         holdout_idx = set(self.pair_config.anchors.holdout_indices or [])
         src_idx = {s: i for i, s in enumerate(source_nodes)}
@@ -380,4 +401,5 @@ class PairMapper:
             "training_accuracy": t_match / max(1, len(training)),
             "holdout_accuracy": h_match / max(1, len(holdout)),
             "overall_accuracy": (t_match + h_match) / max(1, len(pairs)),
+            "masked": True,
         }

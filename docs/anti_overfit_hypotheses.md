@@ -10,6 +10,20 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 <!-- Append new entries below this line. Do not edit prior entries except to fill in their result. -->
 
+## 2026-04-06 — B1.1: shared-parent centrality structural feature
+
+**Hypothesis.** Adding a confidence-weighted shared-neighbor count between source and target nodes (`shared_parent_centrality`) to the calibration feature set improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired-bootstrap 95% CI excluding 0, AND has permutation importance with CI excluding 0.
+
+**Predicted direction.** Positive (controls and risks that share many high-confidence neighbors are more likely to be related).
+
+**Minimum effect size.** Δ NDCG@10 ≥ 0.03 paired-bootstrap CI excluding 0; permutation importance CI excluding 0.
+
+**Metric.** Aggregate NDCG@10 across non-frozen pairs (B2.7 protocol) plus permutation importance from `mapping_engine.calibration.diagnostics.permutation_importance_ci`.
+
+**Mask discipline.** Feature computation must accept a `mask_pairs` set of edges to exclude, so leave-one-out anchor masking (B2.7) can drop the held-out anchor's own edge contribution before feature generation.
+
+**Result.** _to be filled in by B1.2_
+
 ## 2026-04-06 — B2.9: NDCG@10 threshold-sweep objective
 
 **Hypothesis.** Switching the threshold-sweep objective from Youden's J (binary mapped/unmapped accuracy) to aggregate NDCG@10 over all expanded non-frozen pairs improves aggregate honest CV NDCG@10 by ≥ 0.05 with bootstrap 95% CI on the delta excluding 0.

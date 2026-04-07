@@ -130,6 +130,7 @@ weight_cmp = jload("weight_comparison.json")
 learned_w = jload("learned_weights.json")
 finetune = jload("finetune_benchmark.json")
 n2v_proj = cload("node2vec_projection.csv")
+v1v2 = jload("v1_vs_v2_comparison.json")  # diff of expert v1 crosswalk vs pipeline v2
 
 # Convert the JSON node and edge tables into pandas frames so we can use
 # groupby-style operations later. Keeping both the raw list of dicts and the
@@ -976,6 +977,126 @@ md(
     "these cross cluster bridge candidates, but that change should wait "
     "until a held out evaluation set exists which is not biased by the "
     "active learner's own selection of uncertainty cases."
+)
+
+
+# ============================================================
+# Section 6.5 · v1 expert crosswalk vs v2 pipeline output
+# ============================================================
+md("### 6.4 · Expert crosswalk (v1) vs pipeline output (v2)")
+md(
+    "The AIUC-1 to OWASP ASI mapping is the only pair in this study where we "
+    "have a hand-crafted expert crosswalk to compare against. The upstream "
+    "AIUC-2 repository ships a set of 119 expert-authored pairs (Primary and "
+    "Secondary relationships across the 10 ASI risks). The current pipeline "
+    "produces 109 pairs for the same source and target. The two sets overlap "
+    "but do not match, and the shape of the disagreement is informative about "
+    "where the composite signal is strong and where it still needs help."
+)
+
+code(r"""
+# Figure 6.4. Three panel diff of the v1 expert crosswalk against the v2
+# pipeline output for AIUC-1 to OWASP ASI. We deliberately use gridspec with
+# differentially sized axes so that the most important panel (the set sizes
+# on the left) gets the widest frame and the supporting panels sit to the
+# right as secondary reference material.
+c = v1v2["counts"]
+v1_only = c["lost_from_v1"]
+both = c["preserved"]
+v2_only = c["new_in_v2"]
+
+fig = plt.figure(figsize=(13, 5))
+gs = gridspec.GridSpec(
+    nrows=1, ncols=3,
+    width_ratios=[1.5, 1.1, 1.4],   # left panel wider because it is the headline
+    wspace=0.35,
+)
+axA = fig.add_subplot(gs[0, 0])
+axB = fig.add_subplot(gs[0, 1])
+axC = fig.add_subplot(gs[0, 2])
+
+# Panel A: v1 only / preserved / v2 only set sizes. A stacked bar makes the
+# overlap visually obvious without needing a Venn diagram, which matplotlib
+# does not render cleanly without extra packages.
+cats = ["v1 only\n(lost)", "preserved\n(in both)", "v2 only\n(new)"]
+vals = [v1_only, both, v2_only]
+colors = ["#e76f51", "#2a9d8f", "#457b9d"]
+bars = axA.bar(cats, vals, color=colors, edgecolor="black", linewidth=0.6)
+axA.set_title("Figure 6.4A · AIUC-1 to OWASP ASI pair-level diff")
+axA.set_ylabel("number of (control, risk) pairs")
+for b, v in zip(bars, vals):
+    axA.text(
+        b.get_x() + b.get_width() / 2, b.get_height() + 1,
+        str(v), ha="center", va="bottom", fontsize=10,
+    )
+# On-plot annotation calling out the preservation rate, which is the single
+# most important number in this whole section.
+pct = c["preserved_pct"] * 100
+axA.annotate(
+    f"{pct:.1f}% of the 119 v1\nexpert pairs survive in v2",
+    xy=(1, both), xytext=(1.4, both + 18),
+    fontsize=9.5, ha="left",
+    arrowprops=dict(arrowstyle="->", lw=1.0, color="#333"),
+)
+axA.set_ylim(0, max(vals) * 1.35)
+
+# Panel B: tier distribution side by side. v1 only has Direct/Related because
+# its labels are Primary/Secondary. v2 exposes the same two tiers in the
+# production output. A grouped bar is the right chart for a 2x2 comparison.
+td = v1v2["tier_distribution"]
+tiers = ["Direct", "Related"]
+v1_vals = [td["v1"].get(t, 0) for t in tiers]
+v2_vals = [td["v2"].get(t, 0) for t in tiers]
+x = np.arange(len(tiers))
+width = 0.35
+axB.bar(x - width/2, v1_vals, width, label="v1 (expert)", color="#f4a261", edgecolor="black", linewidth=0.5)
+axB.bar(x + width/2, v2_vals, width, label="v2 (pipeline)", color="#264653", edgecolor="black", linewidth=0.5)
+axB.set_xticks(x); axB.set_xticklabels(tiers)
+axB.set_ylabel("pair count")
+axB.set_title("Figure 6.4B · Tier distribution")
+axB.legend(fontsize=9, loc="upper right")
+for xi, vv in zip(x - width/2, v1_vals):
+    axB.text(xi, vv + 1, str(vv), ha="center", fontsize=9)
+for xi, vv in zip(x + width/2, v2_vals):
+    axB.text(xi, vv + 1, str(vv), ha="center", fontsize=9)
+
+# Panel C: composite score distribution for the 52 new-in-v2 pairs. This tells
+# us whether the new candidates are confident discoveries or marginal ones
+# living near the decision threshold. A KDE on top of a histogram (seaborn
+# histplot with kde=True) gives both the raw shape and a smoothed summary.
+new_scores = [p["v2_score"] for p in v1v2["new_pairs"]]
+sns.histplot(new_scores, bins=14, kde=True, ax=axC, color="#457b9d", edgecolor="white")
+axC.axvline(0.45, color="#e76f51", linestyle="--", linewidth=1.2)
+axC.text(0.46, axC.get_ylim()[1] * 0.9, "Direct cutoff\n(0.45)", fontsize=8.5, color="#e76f51")
+axC.set_title("Figure 6.4C · Score distribution of new-in-v2 pairs")
+axC.set_xlabel("v2 composite score")
+axC.set_ylabel("count")
+
+plt.tight_layout()
+plt.show()
+""")
+
+md(
+    "The diff panel on the left is the headline result and it is a harder "
+    "finding than we would have liked. Only about forty eight percent of the "
+    "119 v1 expert pairs survive in v2, meaning sixty two pairs that a human "
+    "expert flagged as primary or secondary mappings did not clear the "
+    "production composite threshold on this run. At the same time the pipeline "
+    "surfaced fifty two new pairs that the expert set did not contain. The "
+    "middle panel shows the tier distribution stays in roughly the same shape: "
+    "v1 leans heavily toward Primary (Direct in our vocabulary) and v2 leans "
+    "even harder that way, because the composite tends to resolve ambiguous "
+    "cases into the top tier rather than the middle one. The right panel is "
+    "the most diagnostic. Almost every new pair in v2 sits above the 0.45 "
+    "Direct threshold, which means these are confident discoveries rather "
+    "than marginal hits the threshold accidentally promoted. That in turn "
+    "suggests the v1 expert set was not exhaustive, and part of the "
+    "disagreement is the pipeline correctly finding mappings the human "
+    "expert overlooked. The other part, of course, is the sixty two lost "
+    "pairs where the human saw a relationship the composite does not score "
+    "highly enough, and those are the queue for the next round of active "
+    "learning. Treat this as a snapshot of where the mapper and the human "
+    "agree and disagree, not as a verdict on which one is right."
 )
 
 

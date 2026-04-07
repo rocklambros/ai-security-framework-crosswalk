@@ -1,6 +1,36 @@
 # Mapping Engine: ML Improvement Plan
 
-Last updated: April 6, 2026
+Last updated: April 7, 2026
+
+## Results Summary (Session 11)
+
+| item | value |
+|---|---|
+| Best weight method | **Hand-tuned kept** (logistic/LightGBM evaluated, rejected on FP tradeoff) |
+| NIST validation: hand-tuned | see Figure 5.3 of Project 1 notebook |
+| NIST validation: logistic | equal or marginally better recall, worse precision |
+| Frozen pair tier_acc (SME) | csa_aicm 0.22, mitre_atlas 0.20, nist_rmf 0.30 |
+| Total mappings (4 pairs) | 109 (AIUC→ASI) + 3 other pair outputs in `mapping_engine/output/results/` |
+| v1 vs v2 preservation | 57/119 (47.9%) — flagged regression, lost set is next AL queue |
+| Reranker | rejected (ms-marco + bge-v2-m3 both non-inferior at best) |
+| Node2Vec | committed opt-in, production weight 0.0 |
+| Fine-tune | base model kept |
+| LambdaMART | rejected (overfit gate) |
+| Highest-impact change | graph bridge (NetworkX 2-hop weighted Jaccard) — unblocked non-AIUC pairs |
+
+## Phase status (Session 11)
+
+- **Phase 1.1 — Embedding upgrade**: COMPLETE. sentence-transformers with per-pair Z-norm. Fine-tune benchmark evaluated; base model retained.
+- **Phase 1.2 — Learned weights**: COMPLETE. Logistic + LightGBM trained and compared against hand-tuned. Production keeps hand-tuned weights. Coefficients preserved for the notebook ROC curves.
+- **Phase 1.3 — Graph bridge**: COMPLETE. 2-hop weighted Jaccard via NetworkX. Highest-impact change in the program.
+- **Phase 2.1 — Cross-encoder reranker**: COMPLETE, rejected. Both ms-marco-MiniLM-L-6-v2 and BAAI/bge-reranker-v2-m3 failed non-inferiority on the 550 SME pool.
+- **Phase 2.2 — Active learning**: COMPLETE (rounds 1–2). 550 SME labels across 4 pair sheets, frozen in `test_s9_s8_parity.py`.
+- **Phase 3.1 — Contrastive fine-tuning**: COMPLETE, rejected.
+- **Phase 3.2 — Node2Vec**: COMPLETE, committed opt-in at weight 0.0.
+- **Phase 4 — Negative signals**: DEFERRED. The v1-vs-v2 lost set (62 pairs) is the natural positive queue for the next labeling round; negative signal work moves after that.
+
+---
+
 
 ## Approved Library Stack
 

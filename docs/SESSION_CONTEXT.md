@@ -1,6 +1,58 @@
 # Session Context: AI Security Framework Crosswalk
 
-Last updated: April 6, 2026
+Last updated: April 7, 2026
+
+## Session 11 Status Snapshot (current)
+
+**Project 1: COMPLETE.** Notebook executed cleanly, zipped, pushed. Deliverable lives at `notebooks/project1_lambros.zip` (15 files, ~5.49 MB). Sections cover framework landscape, signal analysis, learned-vs-hand-tuned weights with three-curve ROC, coverage/gaps, v1-vs-v2 expert diff, and analytical next steps. Meets all COMP 4433 requirements (gridspec multipanel, 3+ plot types, on-plot annotations, narrative throughout).
+
+**Project 2: NOT STARTED.** Design direction below.
+
+### Shipped work (sessions 1–11)
+
+1. Graph: 983 nodes, 1883 edges, 9 frameworks.
+2. Mapping engine: pair-agnostic, 4 content signals (bridge, semantic, keyword, function_match) + composite blend with calibrated thresholds 0.45 / 0.20 / 0.10.
+3. Semantic signal: sentence-transformers with per-pair Z-normalization. Fine-tune benchmark evaluated and base model kept.
+4. Learned weights: logistic regression + LightGBM both evaluated against hand-tuned. Production keeps hand-tuned (bridge 0.467, semantic 0.333, keyword 0.200, function_match multiplicative) because the logistic model trades false-positive rate for a marginal true-positive gain that doesn't clear the operational bar. Coefficients archived in `data/processed/learned_weights.json` for the notebook ROC.
+5. Graph bridge: 2-hop weighted Jaccard via NetworkX replaces the OWASP-LLM-specific bridge from v1. Coverage improved, v2 value visible in `bridge_comparison.csv`.
+6. Cross-encoder reranking: ms-marco-MiniLM and BAAI/bge-reranker-v2-m3 evaluated on 550 SME labels (session 9 phase D). Both rejected for global adoption per non-inferiority rule.
+7. Node2Vec: committed as opt-in with production weight 0.0. Bridge already captures the structural signal.
+8. Contrastive fine-tuning: base model retained.
+9. Active learning (session 7–9): 550 SME labels across 4 pair sheets (400 S7 + 150 S8), frozen as parity targets in `test_s9_s8_parity.py` (csa_aicm 0.22, mitre_atlas 0.20, nist_rmf 0.30).
+10. Pipeline runs: 4 pairs mapped (`aiuc_1__owasp_agentic`, `csa_aicm__owasp_agentic`, `mitre_atlas__owasp_llm`, `nist_rmf__owasp_agentic`) plus exploratory sheets for 7 more pairs.
+11. Cross-pair CV: see `data/processed/session8_cross_pair_validation.json`. Per-pair thresholds kept after CI gates failed for per-pair weights.
+12. LambdaMART (session 9 phase E): rejected per overfit gate (delta < +0.02 on held-out pool).
+13. v1 vs v2 diff (session 11): 119 expert AIUC→ASI pairs compared against the 109 v2 production pairs. 57 preserved (47.9%), 62 lost, 52 new, 0 tier flips among preserved. Flagged as regression by the 5% rule; the lost set is the next active-learning queue. Full report at `data/processed/V1_VS_V2_COMPARISON_REPORT.md`.
+
+### Current graph state
+
+- Nodes: 983 across 9 frameworks (AIUC-1 and CSA AICM dominate).
+- Edges: 1883 (mix of intra-framework parent/child and cross-framework inferred mappings).
+- Orphans: concentrated in NIST AI RMF and OWASP AI Exchange (see Figure 6.2 of the notebook).
+- Cross-framework coverage: AIUC-1 row is dense; NIST/OWASP rows are empty because those frameworks act as targets only in the current pipeline.
+
+### Library stack (approved)
+
+numpy, pandas, matplotlib, seaborn, statsmodels, scikit-learn, networkx, sentence-transformers, lightgbm. For Project 2: plotly, dash (already in `requirements.txt`).
+
+### Project 2 design direction (pick up next)
+
+- Interactive crosswalk explorer: source-framework + target-framework selectors, mapping table, signal breakdown panel.
+- Network view: Plotly network visualization filtered by framework pair with hover on nodes showing description + function class.
+- Sankey: flow from source controls to target risks, width by composite score.
+- Heatmap: domain × domain mapping density.
+- Gap view: orphan controls and thin-coverage risks surfaced from the v1-vs-v2 lost set.
+- Active-learning queue: surface `needs_review=true` pairs for SME triage.
+- Deployment: Render or Railway (local-run fallback is fine). GitHub repo with requirements.txt + Procfile.
+
+### Key decisions pending for Project 2
+
+- Layout: tabs vs sidebar. Leaning tabs for separation of concerns.
+- Include signal-decomposition view? Probably yes, it is the most unique affordance the project has.
+- Color/theme: match the paper-context seaborn palette from Project 1 for visual continuity.
+
+---
+
 
 ## Project Overview
 

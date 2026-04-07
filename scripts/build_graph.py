@@ -110,12 +110,24 @@ def edge_key(e):
 
 
 def add_node(nodes, node):
-    """Add node to dict, merging if exists (prefer non-null values)."""
+    """Add node to dict, merging if exists (prefer non-null non-empty values).
+
+    Earlier versions treated only ``None`` as "missing", so when a stub
+    loader pre-created a node with ``description=""`` (the default in
+    make_node) a later real loader's non-empty description was silently
+    dropped — the root cause of csa_aicm, nist_rmf, and other
+    frameworks shipping empty descriptions for every control (S7.6 S5
+    fix). We now treat empty string / empty list as "missing" too, so
+    the later loader can fill them in.
+    """
     nid = node["node_id"]
     if nid in nodes:
         existing = nodes[nid]
         for k, v in node.items():
-            if v is not None and existing.get(k) is None:
+            if v in (None, "", []):
+                continue
+            cur = existing.get(k)
+            if cur in (None, "", []):
                 existing[k] = v
     else:
         nodes[nid] = node

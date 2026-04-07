@@ -1120,6 +1120,90 @@ def _create_owasp_agentic_nodes(nodes, warnings):
             ))
 
 
+def _enrich_owasp_agentic_from_markdown(nodes, warnings):
+    """Parse descriptions out of the OWASP Agentic Top 10 2026 PDF-sourced markdown.
+
+    The document has irregular PDF-extracted layout but contains exactly ten
+    ``###### **Description**`` sections, one per risk, in ASI01..ASI10 order.
+    For each, we capture the text until the next ``######`` heading and also
+    the subsequent "Common Examples of the Vulnerability", "Example Attack
+    Scenarios", and "Prevention and Mitigation Guidelines" sections when
+    present. Markdown syntax is stripped; missing sections are left absent.
+    """
+    path = os.path.join(
+        FRAMEWORKS_DIR, "owasp-agentic-top10", "owasp_agentic_top10_2026.md"
+    )
+    text = read_text(path)
+    if not text:
+        warnings.append("OWASP Agentic Top 10 markdown not found")
+        return
+
+    # Split on ###### headings, keeping the heading text.
+    parts = re.split(r"^######\s+\*\*([^*]+)\*\*\s*$", text, flags=re.MULTILINE)
+    # parts[0] preamble, then (heading, body, heading, body, ...)
+    sections = []
+    for i in range(1, len(parts) - 1, 2):
+        sections.append((parts[i].strip(), parts[i + 1]))
+
+    def _clean(body: str) -> str:
+        # Drop page footers and stray markers.
+        body = re.sub(r"genai\.owasp\.org Page \d+", " ", body)
+        # Strip bold/italic markers.
+        body = re.sub(r"\*\*", " ", body)
+        body = re.sub(r"(?<!\w)_([^_]+)_(?!\w)", r"\1", body)
+        # Remove markdown links [text](url) -> text
+        body = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", body)
+        # Strip leading list markers/numbering at line start.
+        body = re.sub(r"^\s*(?:[-*]|\d+\.)\s+", " ", body, flags=re.MULTILINE)
+        # Collapse whitespace.
+        body = re.sub(r"\s+", " ", body).strip()
+        return body
+
+    # Walk sections in order. Each Description begins a risk block.
+    asi_ids = [f"ASI{n:02d}" for n in range(1, 11)]
+    risk_idx = -1
+    buckets: dict[str, dict[str, str]] = {aid: {} for aid in asi_ids}
+    for heading, body in sections:
+        h = heading.strip()
+        if h == "Description":
+            risk_idx += 1
+            if risk_idx >= len(asi_ids):
+                break
+            buckets[asi_ids[risk_idx]]["description"] = _clean(body)
+        elif risk_idx < 0 or risk_idx >= len(asi_ids):
+            continue
+        elif h == "Common Examples of the Vulnerability":
+            buckets[asi_ids[risk_idx]]["examples"] = _clean(body)
+        elif h == "Example Attack Scenarios":
+            buckets[asi_ids[risk_idx]].setdefault("examples", "")
+            ex = buckets[asi_ids[risk_idx]]["examples"]
+            scen = _clean(body)
+            buckets[asi_ids[risk_idx]]["examples"] = (ex + " " + scen).strip()
+        elif h == "Prevention and Mitigation Guidelines":
+            buckets[asi_ids[risk_idx]]["mitigations"] = _clean(body)
+
+    filled = 0
+    for aid in asi_ids:
+        nid = f"owasp_agentic:{aid}"
+        if nid not in nodes:
+            continue
+        data = buckets.get(aid, {})
+        desc = data.get("description")
+        if desc:
+            nodes[nid]["description"] = desc[:2000]
+            filled += 1
+        # Note: examples/mitigations are intentionally NOT stored on the node
+        # because get_node_semantic_text concatenates them into the embedding
+        # text, and the scenario/mitigation language dilutes topical match
+        # for anchor validation. Description alone is the right signal.
+
+    log.info("OWASP Agentic enrichment: %d/10 risks got descriptions", filled)
+    if filled < 10:
+        warnings.append(
+            f"OWASP Agentic enrichment only populated {filled}/10 risks"
+        )
+
+
 def _create_nist_rmf_nodes(nodes, warnings):
     """Create NIST AI RMF function and subcategory nodes."""
     functions = {
@@ -1217,6 +1301,7 @@ def create_stub_nodes(nodes, edges, warnings):
     """Task 7: Create stub nodes for frameworks with only markdown sources."""
     _create_owasp_llm_nodes(nodes, warnings)
     _create_owasp_agentic_nodes(nodes, warnings)
+    _enrich_owasp_agentic_from_markdown(nodes, warnings)
 
     # NIST RMF needs edges dict passed through - use a workaround
     global edges_placeholder

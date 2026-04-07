@@ -36,7 +36,12 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 **Frozen test pairs.** Excluded.
 
-**Result.** _to be filled in after S5 runs_
+**Result.** PARTIALLY ACCEPTED. Of the three coverage>0 features:
+- `mitigation_lexical_match` (23% non-zero, owasp_agentic only): blended MRR 0.3259, paired delta +0.0116 [+0.0042, +0.0208], permutation-importance observed +0.0116 vs sign-shuffled null [-0.0080, +0.0079] — **BOTH GATES PASS** → ADOPTED at weight=0.10. First B-1 feature in the entire rebuild to clear discipline. Wired into mapper.py for both production `run()` and `_run_with_masked_anchors`.
+- `source_out_degree_ratio` (93% non-zero): paired delta +0.0020 [-0.0007, +0.0066] — CI crosses zero → DROP.
+- `mutual_reciprocal_rank` (93% non-zero): paired delta +0.0084 [+0.0007, +0.0173] excludes zero, but perm observed +0.0084 sits inside null [-0.0100, +0.0092] → DROP (gate requires BOTH).
+
+Persisted to data/processed/b1_discriminative_eval.json. The discriminative metric was the unblock — under the saturated NDCG@10 gate, all three features tied at delta +0.0000.
 
 ## 2026-04-07 — H_S6: reranker_v2 re-eval under discriminative metric
 

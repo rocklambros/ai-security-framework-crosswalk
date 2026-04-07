@@ -58,3 +58,26 @@ the methodology doc.
 `FEATURES` in `weight_learner.py` is left unchanged (B-2 hand-tuned
 weights remain canonical). No code prunes are needed because nothing
 was wired in.
+
+---
+
+## Session 7.5 follow-up — discriminative re-evaluation (S5, 2026-04-07)
+
+After Session 7.5's S2/S3 shipped the anchors-vs-distractors gate (path
+#2 in "What would unblock B-1" above), the three coverage>0 features
+were re-run under MRR with paired-bootstrap delta and a sign-shuffled
+permutation-importance test. n=381 anchors, 20 distractors per anchor,
+seed=20260407, blend=0.10.
+
+| Feature | Coverage | Δ MRR (paired) | Perm observed vs null | Decision |
+|---|---|---|---|---|
+| `mitigation_lexical_match` | 23 % | **+0.0116 [+0.0042, +0.0208]** | **+0.0116 vs [-0.0080, +0.0079]** | **KEEP** |
+| `source_out_degree_ratio` | 93 % | +0.0020 [-0.0007, +0.0066] | +0.0020 vs [-0.0026, +0.0026] | DROP |
+| `mutual_reciprocal_rank` | 93 % | +0.0084 [+0.0007, +0.0173] | +0.0084 vs [-0.0100, +0.0092] | DROP (perm fails) |
+
+`mitigation_lexical_match` is the first B-1 feature to clear both gates
+in the entire rebuild. It is wired into both the production
+`PairMapper.run` composite and the masked-validation
+`_run_with_masked_anchors` composite at weight 0.10 via the new
+`_blend_mitigation_lexical` helper. Persisted to
+`data/processed/b1_discriminative_eval.json`.

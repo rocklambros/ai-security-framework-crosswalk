@@ -38,6 +38,7 @@ from mapping_engine.engine.reranker import (
 )
 from mapping_engine.engine.graph import get_node_text as _get_node_text
 from mapping_engine.engine.semantic import compute_semantic_similarity
+from mapping_engine.engine.structural import compute_structural_features
 from mapping_engine.engine.taxonomy import classify_function, classify_relevance
 
 REPO = Path(__file__).resolve().parents[2]
@@ -146,6 +147,34 @@ def _load_calibrated_thresholds() -> dict[str, float] | None:
     }
 
 
+def _blend_mitigation_lexical(
+    G: nx.DiGraph,
+    composite: np.ndarray,
+    source_nodes: list[str],
+    target_nodes: list[str],
+    weight: float,
+) -> np.ndarray:
+    """S5 (session 7.5): blend min/max-normalized mitigation_lexical_match
+    into the composite at ``weight``. This is the only B-1 structural
+    feature that survived the discriminative re-evaluation gates
+    (paired-bootstrap MRR delta +0.0116 [+0.0042, +0.0208], permutation
+    importance CI excluding zero). Catches and ignores any feature
+    computation error so the production path stays robust.
+    """
+    if weight <= 0.0:
+        return composite
+    try:
+        feats = compute_structural_features(G, source_nodes, target_nodes)
+        M = np.asarray(feats.get("mitigation_lexical_match"), dtype=float)
+        if M.size == 0 or float(M.max() - M.min()) < 1e-9:
+            return composite
+        Mn = (M - float(M.min())) / float(M.max() - M.min())
+        out = (1.0 - weight) * composite + weight * Mn
+        return np.clip(out, 0.0, 1.0)
+    except Exception:
+        return composite
+
+
 class PairMapper:
     """Run the full signal pipeline for a single framework pair."""
 
@@ -231,6 +260,10 @@ class PairMapper:
         composite = composite * (1.0 + boost * fn_match)
         composite = self._apply_function_class_prior(composite, source_nodes)
         composite = np.clip(composite, 0.0, 1.0)
+        composite = _blend_mitigation_lexical(
+            self.G, composite, source_nodes, target_nodes,
+            float(w.get("mitigation_lexical_match", 0.10)),
+        )
 
         # Narrow-band cross-encoder rerank runs by default; disabled only
         # when the caller explicitly sets ``enable_reranker=False`` (or via
@@ -458,6 +491,10 @@ class PairMapper:
         composite = composite * (1.0 + boost * fn_match)
         composite = self._apply_function_class_prior(composite, source_nodes)
         composite = np.clip(composite, 0.0, 1.0)
+        composite = _blend_mitigation_lexical(
+            H, composite, source_nodes, target_nodes,
+            float(w.get("mitigation_lexical_match", 0.10)),
+        )
 
         if self.enable_reranker is not False:
             composite = self._narrow_band_rerank(composite, source_nodes, target_nodes)

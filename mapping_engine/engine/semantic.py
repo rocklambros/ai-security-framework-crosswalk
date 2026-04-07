@@ -27,12 +27,15 @@ import networkx as nx
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
-from mapping_engine.engine.graph import get_node_text
+from mapping_engine.engine.graph import (
+    SEMANTIC_TEXT_VERSION,
+    get_node_semantic_text,
+)
 
 DEFAULT_MODEL = "BAAI/bge-large-en-v1.5"
 
 # Module-level embedding cache: {(model_name, node_id): np.ndarray}
-_EMBEDDING_CACHE: dict[tuple[str, str], np.ndarray] = {}
+_EMBEDDING_CACHE: dict[tuple[str, str, str], np.ndarray] = {}
 
 # Cache loaded models so repeated calls don't re-download/re-init.
 _MODEL_CACHE: dict[str, Any] = {}
@@ -89,17 +92,17 @@ def compute_embeddings(
     missing_texts: list[str] = []
     out: list[np.ndarray | None] = [None] * len(node_ids)
     for i, nid in enumerate(node_ids):
-        key = (model_name, nid)
+        key = (model_name, SEMANTIC_TEXT_VERSION, nid)
         if key in _EMBEDDING_CACHE:
             out[i] = _EMBEDDING_CACHE[key]
         else:
             missing_idx.append(i)
-            missing_texts.append(get_node_text(G, nid))
+            missing_texts.append(get_node_semantic_text(G, nid))
     if missing_texts:
         encoded = model.encode(missing_texts, show_progress_bar=False, normalize_embeddings=False)
         for k, i in enumerate(missing_idx):
             vec = np.asarray(encoded[k], dtype=np.float64)
-            _EMBEDDING_CACHE[(model_name, node_ids[i])] = vec
+            _EMBEDDING_CACHE[(model_name, SEMANTIC_TEXT_VERSION, node_ids[i])] = vec
             out[i] = vec
     return np.vstack([o for o in out if o is not None])
 

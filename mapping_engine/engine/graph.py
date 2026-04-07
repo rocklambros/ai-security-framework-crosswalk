@@ -78,6 +78,59 @@ def get_node_text(G: nx.DiGraph, node_id: str) -> str:
     return " ".join(parts).strip()
 
 
+# Bump this whenever ``get_node_semantic_text`` changes so cached embeddings
+# auto-invalidate on next load.
+SEMANTIC_TEXT_VERSION = "v2-2026-04-06-longform"
+
+
+def get_node_semantic_text(G: nx.DiGraph, node_id: str) -> str:
+    """Build a richer text blob for semantic embedding.
+
+    Includes name/title, description, objective/intent, domain, keywords,
+    applicable_capabilities, control_type, classification, and — for
+    control nodes — the concatenated descriptions of their child activity
+    nodes (which carry most of the long-form text in aiuc_1). Missing
+    fields are silently skipped. Whitespace is collapsed.
+    """
+    import re as _re
+
+    d = G.nodes[node_id]
+    parts: list[str] = []
+    for k in ("name", "title", "description", "objective", "intent", "body",
+              "examples", "mitigations", "controls"):
+        v = d.get(k)
+        if v:
+            parts.append(str(v))
+    dom = d.get("domain")
+    if dom:
+        parts.append(f"Domain: {dom}")
+    kws = d.get("keywords") or []
+    if isinstance(kws, list) and kws:
+        parts.append("Keywords: " + ", ".join(str(k) for k in kws if k))
+    caps = d.get("applicable_capabilities") or []
+    if isinstance(caps, list) and caps:
+        parts.append("Applicable to: " + ", ".join(str(c) for c in caps if c))
+    ct = d.get("control_type")
+    if ct:
+        parts.append(f"Control type: {ct}")
+    cl = d.get("classification")
+    if cl:
+        parts.append(f"Classification: {cl}")
+
+    # Pull in child activity descriptions for control nodes. Activity node ids
+    # follow the pattern ``<framework>:<ctrl_id>.<n>`` in the aiuc_1 loader.
+    if d.get("entry_type") == "control":
+        for succ in G.successors(node_id):
+            sd = G.nodes[succ]
+            if sd.get("entry_type") == "activity":
+                ad = sd.get("description")
+                if ad:
+                    parts.append(str(ad))
+
+    text = " ".join(parts)
+    return _re.sub(r"\s+", " ", text).strip()
+
+
 def get_cross_framework_edges(
     G: nx.DiGraph, source_fw: str, target_fw: str
 ) -> list[dict]:

@@ -31,7 +31,7 @@ def test_aiuc_owasp_agentic_end_to_end(tmp_path: Path) -> None:
     G = load_graph(NODES, EDGES)
     pair_cfg = load_pair_config("aiuc_1__owasp_agentic", validate_anchors_in=G)
 
-    mapper = PairMapper(G, pair_cfg, enable_reranker=False)
+    mapper = PairMapper(G, pair_cfg, enable_reranker=None)
     result = mapper.run()
 
     assert len(result.mappings) > 0, "expected non-empty mappings list"

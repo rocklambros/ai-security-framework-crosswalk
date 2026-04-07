@@ -30,6 +30,7 @@ reranker:
   model: cross-encoder/ms-marco-MiniLM-L-6-v2
   top_k: 50
   blend_weight: 0.30
+  narrow_band: 0.10      # rerank pairs whose composite sits within +/- this of the direct threshold
 
 active_learning:
   uncertainty_band: 0.05

@@ -30,7 +30,13 @@ from mapping_engine.engine.function_match import compute_function_match
 from mapping_engine.engine.graph import get_framework_nodes
 from mapping_engine.engine.keyword import compute_keyword_similarity
 from mapping_engine.engine.node2vec_signal import compute_node2vec_similarity
-from mapping_engine.engine.reranker import rerank_candidates
+from mapping_engine.engine.reranker import (
+    DEFAULT_BLEND_WEIGHT,
+    DEFAULT_MODEL,
+    load_cross_encoder,
+    rerank_candidates,
+)
+from mapping_engine.engine.graph import get_node_text as _get_node_text
 from mapping_engine.engine.semantic import compute_semantic_similarity
 from mapping_engine.engine.taxonomy import classify_function, classify_relevance
 
@@ -173,6 +179,12 @@ class PairMapper:
         composite = composite * (1.0 + boost * fn_match)
         composite = np.clip(composite, 0.0, 1.0)
 
+        # Narrow-band cross-encoder rerank runs by default; disabled only
+        # when the caller explicitly sets ``enable_reranker=False`` (or via
+        # the ``--no-rerank`` CLI flag which maps to the same arg).
+        if self.enable_reranker is not False:
+            composite = self._narrow_band_rerank(composite, source_nodes, target_nodes)
+
         relevance = np.zeros((n_src, n_tgt), dtype=np.int8)
         rationale_codes: list[str] = []
         func_classes: list[str] = []
@@ -255,6 +267,90 @@ class PairMapper:
             mappings=mappings,
         )
 
+    def _narrow_band_rerank(
+        self,
+        composite: np.ndarray,
+        source_nodes: list[str],
+        target_nodes: list[str],
+    ) -> np.ndarray:
+        """Cross-encoder rerank, but only for pairs whose composite sits in a
+        narrow band around the ``direct`` threshold.
+
+        Rationale: cross-encoders are expensive (quadratic in sequence length
+        and far slower than bi-encoder cosine). The full-matrix rerank wastes
+        budget on pairs that are clearly direct or clearly unrelated — they
+        won't flip tiers. Where bi-encoder signals actually matter is the
+        mid-confidence band where ties between candidates are decided. This
+        method runs the cross-encoder only on pairs with
+        ``|composite - direct_threshold| <= narrow_band``, and blends the
+        cross-encoder score back into the composite with the same linear
+        ``blend_weight`` used by the full reranker. Out-of-band pairs keep
+        their original composite.
+        """
+        rer_cfg = self.config.get("reranker") or {}
+        band = float(rer_cfg.get("narrow_band", 0.10))
+        if band <= 0.0:
+            return composite
+        thr = float((self.config.get("thresholds") or {}).get("direct", 0.55))
+        lo, hi = thr - band, thr + band
+
+        in_band = (composite >= lo) & (composite <= hi)
+        if not bool(in_band.any()):
+            return composite
+
+        model_name = str(rer_cfg.get("model", DEFAULT_MODEL))
+        bw = float(rer_cfg.get("blend_weight", DEFAULT_BLEND_WEIGHT))
+        model = load_cross_encoder(model_name)
+
+        src_texts = [_get_node_text(self.G, s) for s in source_nodes]
+        tgt_texts = [_get_node_text(self.G, t) for t in target_nodes]
+
+        out = composite.astype(np.float64).copy()
+        # Collect all in-band (i,j) pairs and batch once.
+        ii, jj = np.where(in_band)
+        if ii.size == 0:
+            return composite
+        pairs = [(src_texts[i], tgt_texts[j]) for i, j in zip(ii, jj)]
+        ce_raw = model.predict(pairs, show_progress_bar=False, convert_to_numpy=True)
+        ce_norm = 1.0 / (1.0 + np.exp(-np.asarray(ce_raw, dtype=np.float64)))
+        blended = (1.0 - bw) * out[ii, jj] + bw * ce_norm
+        out[ii, jj] = blended
+        return np.clip(out, 0.0, 1.0)
+
+    def _apply_function_class_prior(
+        self,
+        composite: np.ndarray,
+        source_nodes: list[str],
+    ) -> np.ndarray:
+        """Additive soft prior on composite score based on source node's
+        ``function_class`` attribute.
+
+        This is principled because ``function_class`` is a node attribute
+        (not a per-pair label), so it cannot leak anchor labels: it
+        generalizes to any target by the same amount. Prevention-oriented
+        classes (``PREV``, ``SCOPE``, ``ISOLATE``, ``GATE``) tend to admit
+        direct mappings to risk nodes they counter, so they receive a small
+        positive boost. Support-oriented classes (``DETECT``, ``VALID``,
+        ``GOVERN``, ``DISCLOSE``) typically relate more weakly and receive
+        a small penalty. Deltas are configured in ``defaults.yaml`` under
+        ``function_class_prior``.
+        """
+        fcp = (self.config.get("function_class_prior") or {})
+        d_prev = float(fcp.get("delta_prev", 0.0))
+        d_sup = float(fcp.get("delta_sup", 0.0))
+        if d_prev == 0.0 and d_sup == 0.0:
+            return composite
+        prev_set = {"PREV", "SCOPE", "ISOLATE", "GATE"}
+        sup_set = {"DETECT", "VALID", "GOVERN", "DISCLOSE"}
+        out = composite.astype(np.float64).copy()
+        for i, s in enumerate(source_nodes):
+            fc = self.G.nodes[s].get("function_class")
+            if fc in prev_set:
+                out[i, :] += d_prev
+            elif fc in sup_set:
+                out[i, :] -= d_sup
+        return out
+
     def _build_masked_graph(self) -> nx.DiGraph:
         """Return a copy of ``self.G`` with authoritative/expert edges removed
         for every anchor pair (both directions). Used exclusively by
@@ -308,6 +404,9 @@ class PairMapper:
             composite = composite + wn * node2vec
         composite = composite * (1.0 + boost * fn_match)
         composite = np.clip(composite, 0.0, 1.0)
+
+        if self.enable_reranker is not False:
+            composite = self._narrow_band_rerank(composite, source_nodes, target_nodes)
 
         relevance = np.zeros((n_src, n_tgt), dtype=np.int8)
         func_classes: list[str] = []

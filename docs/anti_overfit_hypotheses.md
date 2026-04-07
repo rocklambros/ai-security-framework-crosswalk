@@ -194,7 +194,7 @@ without aggregate regression on the other 6 non-frozen pairs beyond −0.005.
 **Metric.** Per-anchor MRR on `aiuc_1__eu_gpai_cop` (paired bootstrap) plus
 aggregate MRR across 7 non-frozen pairs (regression cap).
 
-**Result.** _Pending S4._
+**Result.** **ACCEPTED (decisively).** Pre-enrichment: MRR=0.1202, 28/28 anchor-relevant Article nodes had empty description. Enrichment parses "Article NN: Title\n\nBody" blocks from the aiuc-1 EU AI Act crosswalk (primary) and supplementary sentences from the GPAI CoP combined/safety/transparency/copyright markdown (secondary). All 28 article nodes now carry descriptions (median 672 chars, min 478). Post-enrichment: eu_gpai_cop MRR=**0.4125** (Recall@5=0.70, AUC=0.80). Paired Δ MRR on eu_gpai_cop = **+0.2923 [+0.2040, +0.3734]** — CI excludes 0 by ~6x the minimum effect size. Aggregate paired Δ MRR = +0.0438 [+0.0287, +0.0624], excluding 0. Per-pair regression check: no pair regressed (max drift +0.0069 on owasp_llm, within noise). `SEMANTIC_TEXT_VERSION` bumped to v5. pytest 88 passed.
 
 ## 2026-04-07 — H_76_S5: csa_aicm target-description enrichment
 

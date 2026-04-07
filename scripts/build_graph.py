@@ -1212,6 +1212,116 @@ def _enrich_owasp_agentic_from_markdown(nodes, warnings):
         )
 
 
+def _enrich_eu_gpai_cop_from_markdown(nodes, warnings):
+    """Populate descriptions for eu_gpai_cop nodes (S7.6 S4 fix).
+
+    Two classes of nodes need enrichment:
+
+    1. ``Article-NN`` requirement nodes (created by the aiuc-1 crosswalk
+       loader) — stub nodes with empty description. We extract sentences
+       that mention "Article NN" from all data/frameworks/ markdown
+       sources and concatenate the top unique sentences per article.
+
+    2. ``Commitment_N`` and ``Measure_N.M`` nodes (created by
+       ``_create_eu_gpai_cop_nodes``) — we walk the safety-and-security
+       markdown and extract the body text under each heading.
+    """
+    # --- Part 1: Commitment / Measure bodies from safety & security ----
+    ss_path = os.path.join(
+        FRAMEWORKS_DIR, "eu-gpai-code-of-practice", "gpai_cop_safety_and_security.md"
+    )
+    ss_text = read_text(ss_path)
+    cm_filled = 0
+    if ss_text:
+        heading_re = re.compile(
+            r"^(#{2,3})\s+(Commitment\s+\d+|Measure\s+\d+\.\d+)([^\n]*)$",
+            re.MULTILINE,
+        )
+        matches = list(heading_re.finditer(ss_text))
+        for i, m in enumerate(matches):
+            label = m.group(2)
+            body_start = m.end()
+            body_end = matches[i + 1].start() if i + 1 < len(matches) else len(ss_text)
+            body = ss_text[body_start:body_end]
+            body = re.sub(r"\*\*", " ", body)
+            body = re.sub(
+                r"The text of the Commitments and Measures takes precedence\.",
+                " ", body,
+            )
+            body = re.sub(r"\s+", " ", body).strip()
+            if len(body) < 40:
+                continue
+            if label.startswith("Commitment"):
+                cnum = label.split()[1]
+                nid = f"eu_gpai_cop:Commitment_{cnum}"
+            else:
+                mnum = label.split()[1]
+                nid = f"eu_gpai_cop:Measure_{mnum}"
+            if nid in nodes:
+                nodes[nid]["description"] = body[:4000]
+                cm_filled += 1
+
+    # --- Part 2: Article-NN sentence extraction ------------------------
+    sources: list[str] = []
+    for candidate in (
+        os.path.join(FRAMEWORKS_DIR, "aiuc-1", "www_aiuc-1_com_crosswalks_eu-ai-act.md"),
+        os.path.join(FRAMEWORKS_DIR, "eu-gpai-code-of-practice", "gpai_code_of_practice_combined.md"),
+        os.path.join(FRAMEWORKS_DIR, "eu-gpai-code-of-practice", "gpai_cop_safety_and_security.md"),
+        os.path.join(FRAMEWORKS_DIR, "eu-gpai-code-of-practice", "gpai_cop_transparency.md"),
+        os.path.join(FRAMEWORKS_DIR, "eu-gpai-code-of-practice", "gpai_cop_copyright.md"),
+    ):
+        txt = read_text(candidate)
+        if txt:
+            sources.append(txt)
+    combined = "\n".join(sources)
+    per_art: dict[str, list[str]] = {}
+    # Primary source: the aiuc-1 EU AI Act crosswalk has a clean
+    # "Article NN: Title\n\n<paragraph body>" layout. Extract the
+    # title + paragraph body for each article directly.
+    art_block_re = re.compile(
+        r"^Article\s+(\d+):\s*([^\n]+)\n\n([^\n][^\n]+(?:\n[^\n]+)*)",
+        re.MULTILINE,
+    )
+    for m in art_block_re.finditer(combined):
+        num = m.group(1)
+        title = m.group(2).strip()
+        body = re.sub(r"\s+", " ", m.group(3)).strip()
+        blob = f"{title}. {body}"
+        per_art.setdefault(num, [])
+        if blob not in per_art[num]:
+            per_art[num].append(blob)
+
+    # Secondary source: any other sentence mentioning "Article NN"
+    # anywhere in the corpus. These are appended after the primary
+    # block so long-form articles dominate.
+    for m in re.finditer(r"([^.!?\n]*Article\s+(\d+)[^.!?\n]*[.!?])", combined):
+        sent = re.sub(r"\s+", " ", m.group(1)).strip()
+        n = m.group(2)
+        if 30 <= len(sent) <= 900:
+            per_art.setdefault(n, [])
+            if sent not in per_art[n]:
+                per_art[n].append(sent)
+    art_filled = 0
+    for nid in list(nodes):
+        if not nid.startswith("eu_gpai_cop:Article-"):
+            continue
+        num = nid.rsplit("-", 1)[-1]
+        sents = per_art.get(num, [])
+        if not sents:
+            continue
+        desc = " ".join(sents[:5])[:4000]
+        if len(desc) >= 40:
+            nodes[nid]["description"] = desc
+            art_filled += 1
+
+    log.info(
+        "EU GPAI CoP enrichment: %d commitment+measure nodes, %d article nodes",
+        cm_filled, art_filled,
+    )
+    if art_filled == 0 and cm_filled == 0:
+        warnings.append("EU GPAI CoP enrichment filled zero nodes")
+
+
 def _create_nist_rmf_nodes(nodes, warnings):
     """Create NIST AI RMF function and subcategory nodes."""
     functions = {
@@ -1317,6 +1427,7 @@ def create_stub_nodes(nodes, edges, warnings):
     _create_nist_rmf_nodes(nodes, warnings)
 
     _create_eu_gpai_cop_nodes(nodes, edges, warnings)
+    _enrich_eu_gpai_cop_from_markdown(nodes, warnings)
 
     # NIST AI 600-1: Skip for now - complex prose document
     warnings.append("TODO: NIST AI 600-1 node extraction from prose markdown")

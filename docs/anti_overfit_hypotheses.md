@@ -156,3 +156,170 @@ Persisted to data/processed/b1_discriminative_eval.json. The discriminative metr
 **Frozen test pairs.** Excluded (B-2: aiuc_1__csa_aicm; B-1: aiuc_1__mitre_atlas; A: cosai_rm__owasp_llm).
 
 **Result.** REJECTED. NDCG-optimal and Youden-optimal threshold pairs both converge to (direct=0.45, related_primary=0.20), aggregate NDCG@10 = 1.0000 [0.8942, 1.0000]. Paired-bootstrap delta = +0.0000 [0.0000, 0.0000]; CI does NOT exclude 0. Reason: 4 of 5 expanded pairs are uniformly Direct (rationale='?'), so NDCG@10 saturates regardless of objective and the threshold sweep is degenerate. The hypothesis cannot be tested with the current anchor mix; it should be re-run after B-1 introduces structural features that drive score variance, or after rationale codes are populated for non-owasp_agentic frameworks. Chose direct=0.45 / related_primary=0.20 by tie-break on Youden's J among the top NDCG group.
+
+---
+
+# Session 7.6 — Hardening pre-registrations
+
+**Preamble.** Session 7.6 hardens the pipeline for SESSION 8 by fixing
+the cosai_rm anchor-skipping bug (S1), re-baselining with cosai_rm pairs
+(S2), diagnosing the aiuc_1__eu_gpai_cop MRR outlier (S3), enriching
+target descriptions for 4 frameworks (S4–S7), re-baselining post-enrichment
+(S8), adding cross-framework category links at graph build (S9), re-evaluating
+previously-rejected structural features on the linked graph (S10), re-testing
+mutual_reciprocal_rank with 10k permutations (S11), sweeping distractor count
+(S12), and per-pair threshold calibration (S13). S1/S2/S3/S14 are non-gated
+(infrastructure / diagnosis / documentation). H_76_S4..H_76_S13 below are the
+gated hypotheses. All gates evaluate on the 7 non-frozen expanded pairs
+(5 prior + 2 cosai_rm pairs unblocked by S1). **Frozen test sets are NOT
+touched in this loop** — Session 7.5 S7 was the one-shot.
+
+**Baseline convention.** Paired-bootstrap delta is measured against the
+IMMEDIATELY-PRIOR pipeline state, not Session 7.5's baseline. The baseline
+marches forward with each adopted change.
+
+**Global rollback rule.** Any adoption that causes any single non-frozen
+pair to regress by more than −0.02 MRR is auto-rolled back even if the
+aggregate paired CI clears zero.
+
+## 2026-04-07 — H_76_S4: eu_gpai_cop target-description enrichment
+
+**Hypothesis.** Parsing canonical descriptions from the eu-gpai-cop source
+corpus into the `description` field lifts aiuc_1__eu_gpai_cop MRR from the
+Session 7.5 baseline (0.1202) by ≥ +0.05 with paired-bootstrap 95% CI excluding 0,
+without aggregate regression on the other 6 non-frozen pairs beyond −0.005.
+
+**Predicted direction.** Positive on eu_gpai_cop; neutral on other pairs.
+
+**Metric.** Per-anchor MRR on `aiuc_1__eu_gpai_cop` (paired bootstrap) plus
+aggregate MRR across 7 non-frozen pairs (regression cap).
+
+**Result.** _Pending S4._
+
+## 2026-04-07 — H_76_S5: csa_aicm target-description enrichment
+
+**Hypothesis.** Same pattern on csa_aicm: paired Δ MRR CI on
+`aiuc_1__csa_aicm` excludes 0. If csa_aicm nodes already carry description
+text (median ≥ 200 chars), the task NO-OPs and this hypothesis is vacated.
+
+**Predicted direction.** Positive or no-op.
+
+**Metric.** Paired Δ MRR on `aiuc_1__csa_aicm`; aggregate regression cap.
+
+**Result.** _Pending S5._
+
+## 2026-04-07 — H_76_S6: mitre_atlas target-description enrichment
+
+**Hypothesis.** Same pattern on mitre_atlas. Likely no-op (ATLAS JSON
+already carries descriptions).
+
+**Predicted direction.** Positive or no-op.
+
+**Metric.** Paired Δ MRR on `aiuc_1__mitre_atlas`; aggregate regression cap.
+
+**Result.** _Pending S6._
+
+## 2026-04-07 — H_76_S7: nist_rmf target-description enrichment
+
+**Hypothesis.** Same pattern on nist_rmf. Likely no-op.
+
+**Predicted direction.** Positive or no-op.
+
+**Metric.** Paired Δ MRR on `aiuc_1__nist_rmf`; aggregate regression cap.
+
+**Result.** _Pending S7._
+
+## 2026-04-07 — H_76_S8: post-enrichment re-baseline + mitigation_lexical re-adopt
+
+**Hypothesis.** Under the post-S7 enriched graph, (a) aggregate MRR on
+the 7 non-frozen pairs is ≥ Session 7.5 baseline (0.3402), and (b) the
+Session 7.5 S5 adoption of `mitigation_lexical_match` at weight=0.10
+still clears both paired-Δ CI and permutation-importance CI.
+
+**Predicted direction.** Both conditions hold (baseline marches forward, lexical feature remains load-bearing).
+
+**Metric.** Aggregate MRR vs 0.3402 floor; paired Δ and perm CI on
+mitigation_lexical_match (1000 resamples each).
+
+**Rollback.** If lexical CI crosses 0 post-enrichment, reduce weight to
+0.05 and re-test; if still fails, remove the blend.
+
+**Result.** _Pending S8._
+
+## 2026-04-07 — H_76_S9: cross-framework category links at graph build
+
+**Hypothesis.** Emitting `cross_framework_category` edges between nodes
+sharing a declared cross-framework category (privacy, robustness, etc.)
+does not regress aggregate MRR on 7 non-frozen pairs by more than −0.005
+vs the post-S8 baseline. The purpose is unblocking S10, not direct lift.
+
+**Predicted direction.** Neutral (regression cap −0.005) with edge count
+increase > 0 and node count unchanged.
+
+**Metric.** Aggregate MRR paired Δ CI; graph build diagnostics.
+
+**Result.** _Pending S9._
+
+## 2026-04-07 — H_76_S10: shared_parent_centrality + confidence_weighted_bridge_depth re-eval
+
+**Hypothesis.** Under the S9-linked graph, at least one of
+`shared_parent_centrality` or `confidence_weighted_bridge_depth`
+(previously dropped for zero cross-framework 1-hop coverage) now clears
+both paired-Δ MRR CI and permutation-importance CI at blend weight=0.10.
+
+**Predicted direction.** Positive for at least one feature (coverage
+> 10% of anchors under the linked graph).
+
+**Metric.** Per-feature paired Δ MRR CI (1000 resamples) and permutation
+importance CI (1000 perms). Adopt any feature whose CIs both exclude 0.
+
+**Rollback.** Drop any feature whose per-pair regression exceeds −0.02.
+
+**Result.** _Pending S10._
+
+## 2026-04-07 — H_76_S11: mutual_reciprocal_rank re-test at 10k permutations
+
+**Hypothesis.** `mutual_reciprocal_rank` failed the permutation CI in
+Session 7.5 S5 at n_perm=1000 despite clearing paired Δ. Re-testing at
+n_perm=10000 clears the permutation CI (CI excludes 0), confirming the
+prior failure was a power issue rather than a true null.
+
+**Predicted direction.** Positive (perm CI clears at 10k).
+
+**Metric.** Permutation importance CI at n_perm=10000; paired Δ MRR CI
+(1000 resamples) must still exclude 0.
+
+**Result.** _Pending S11._
+
+## 2026-04-07 — H_76_S12: distractor count calibration
+
+**Hypothesis.** The canonical n_distractors=20 used throughout Session
+7.5 produces an MRR CI width within 1.5x of the n_distractors=80 width,
+so n=20 is a sufficient operating point.
+
+**Predicted direction.** CI width ratio ≤ 1.5.
+
+**Metric.** MRR bootstrap CI width at n ∈ {10, 20, 40, 80}.
+
+**Rollback.** If n=20 fails the 1.5x ratio, adopt the smallest n whose
+ratio vs n=80 is ≤ 1.2.
+
+**Result.** _Pending S12._
+
+## 2026-04-07 — H_76_S13: per-pair threshold calibration
+
+**Hypothesis.** For at least one non-frozen pair, a per-pair
+(direct, related_primary) threshold override strictly improves tier
+accuracy on that pair (paired Δ tier_acc CI > 0 via LOO-within-pair)
+without causing any other pair to regress more than −0.02 MRR.
+
+**Predicted direction.** Positive for at least `aiuc_1__eu_gpai_cop`
+(current MRR 0.1202 suggests thresholds are severely miscalibrated).
+
+**Metric.** Per-pair LOO-within-pair paired Δ tier_acc CI (1000
+resamples); aggregate MRR per-pair regression monitor.
+
+**Rollback.** Any pair failing the regression cap is reverted to the
+global (0.45, 0.20) thresholds.
+
+**Result.** _Pending S13._

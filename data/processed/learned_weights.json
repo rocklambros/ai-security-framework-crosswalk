@@ -1,22 +1,25 @@
 {
   "best_model": "Hand-tuned",
   "logistic_coefficients": {
-    "bridge_score": 5.430315938106526,
-    "semantic_score": 0.14692725118032854,
-    "keyword_score": 1.4750121599383013,
-    "function_match": 2.75953662720961,
-    "intercept": -3.048162599527955
+    "bridge_score": 4.656765485989415,
+    "semantic_score": 0.013540168330904856,
+    "keyword_score": 1.2965666786473524,
+    "function_match": 2.5336621063095968,
+    "node2vec_score": 6.045526108330011,
+    "intercept": -7.03808053780218
   },
   "lightgbm_feature_importance": {
-    "bridge_score": 5814.83060631156,
-    "semantic_score": 489.45115542411804,
-    "keyword_score": 85.69170188903809,
-    "function_match": 0.0
+    "bridge_score": 5579.089225775824,
+    "semantic_score": 167.8456957516173,
+    "keyword_score": 31.076725650578737,
+    "function_match": 17.662449955940247,
+    "node2vec_score": 2201.3956201944384
   },
   "ordinal_coefficients": {
-    "bridge_score": 80.04034477157043,
-    "semantic_score": 0.800062677967701,
-    "keyword_score": 8.018878195686495,
-    "function_match": 1.2722240101399707
+    "bridge_score": 71.72549109277087,
+    "semantic_score": -0.05007245534987721,
+    "keyword_score": 7.905017850451938,
+    "function_match": 0.4739256671934569,
+    "node2vec_score": 48.6169391414557
   }
 }

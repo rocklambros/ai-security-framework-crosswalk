@@ -21,7 +21,7 @@ from sklearn.metrics import (
     roc_auc_score,
 )
 
-FEATURES = ["bridge_score", "semantic_score", "keyword_score", "function_match"]
+FEATURES = ["bridge_score", "semantic_score", "keyword_score", "function_match", "node2vec_score"]
 TIER_ORDER = {"None": 0, "Tangential": 1, "Related": 2, "Direct": 3}
 HAND_WEIGHTS = {"bridge": 0.467, "semantic": 0.333, "keyword": 0.200}
 

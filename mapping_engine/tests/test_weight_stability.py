@@ -18,6 +18,7 @@ def _make_df() -> pd.DataFrame:
             "semantic_score": rng.uniform(0.6, 1.0, n // 2),
             "keyword_score": rng.uniform(0.4, 1.0, n // 2),
             "function_match": rng.choice([0.0, 1.0], n // 2, p=[0.2, 0.8]),
+            "node2vec_score": rng.uniform(0.5, 1.0, n // 2),
             "is_mapped": 1,
             "expert_tier": "Direct",
         }
@@ -28,6 +29,7 @@ def _make_df() -> pd.DataFrame:
             "semantic_score": rng.uniform(0.0, 0.4, n // 2),
             "keyword_score": rng.uniform(0.0, 0.4, n // 2),
             "function_match": rng.choice([0.0, 1.0], n // 2, p=[0.8, 0.2]),
+            "node2vec_score": rng.uniform(0.0, 0.5, n // 2),
             "is_mapped": 0,
             "expert_tier": "None",
         }

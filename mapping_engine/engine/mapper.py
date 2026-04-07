@@ -262,7 +262,7 @@ class PairMapper:
         composite = np.clip(composite, 0.0, 1.0)
         composite = _blend_mitigation_lexical(
             self.G, composite, source_nodes, target_nodes,
-            float(w.get("mitigation_lexical_match", 0.10)),
+            float(w.get("mitigation_lexical_match", 0.0)),
         )
 
         # Narrow-band cross-encoder rerank runs by default; disabled only
@@ -493,7 +493,7 @@ class PairMapper:
         composite = np.clip(composite, 0.0, 1.0)
         composite = _blend_mitigation_lexical(
             H, composite, source_nodes, target_nodes,
-            float(w.get("mitigation_lexical_match", 0.10)),
+            float(w.get("mitigation_lexical_match", 0.0)),
         )
 
         if self.enable_reranker is not False:

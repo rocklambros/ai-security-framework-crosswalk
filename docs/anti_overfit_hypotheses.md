@@ -244,7 +244,7 @@ mitigation_lexical_match (1000 resamples each).
 **Rollback.** If lexical CI crosses 0 post-enrichment, reduce weight to
 0.05 and re-test; if still fails, remove the blend.
 
-**Result.** _Pending S8._
+**Result.** PARTIAL — (a) aggregate floor PASS, (b) lexical feature DROPPED. Aggregate non-frozen MRR with mitigation_lexical_match still blended at 0.10 = 0.3920 ≫ 0.3402 floor. Re-running `eval_b1_features_discriminative.py` on the enriched graph: at weight=0.10, paired Δ MRR = −0.0046 [−0.0137, +0.0044] (CI crosses 0); perm null [−0.0080, +0.0088] (observed inside null) → DROP. Rollback step 1 (weight=0.05): paired Δ −0.0027 [−0.0087, +0.0021] still crosses 0 → DROP. Rollback step 2 executed: removed the blend by defaulting `mitigation_lexical_match` weight to 0.0 in `mapper.py` (both call sites). Post-removal aggregate MRR 0.3831 [0.3534, 0.4155] — still well above the 0.3402 floor. Interpretation: target-side enrichment for owasp_agentic, eu_gpai_cop, and nist_rmf already supplies the lexical signal that mitigation_lexical_match was previously fishing out; the feature is now redundant under richer text and adds noise. Pre-registered rollback executed cleanly.
 
 ## 2026-04-07 — H_76_S9: cross-framework category links at graph build
 

@@ -94,3 +94,70 @@ These items are explicitly out of scope for the current rebuild.
 All three reliability/learning-curve pairs are identical by construction
 (all phases collapse to the B-2 baseline). They are reproduced under
 each phase prefix for traceability.
+
+---
+
+## Session 7.5 follow-up — anchors-vs-distractors discriminative gate
+
+The B-2 / B-1 / A rebuild closed with a documented "metric is the
+bottleneck" failure mode: NDCG@10 saturated under uniform-Direct gold
+labels. Session 7.5 implemented the second of the three documented
+unblockers — switching the gate metric to anchors-vs-distractors
+discriminative ranking — and re-ran every gated step.
+
+### Pipeline state (post-S7.5)
+
+| Component | Status | Source |
+|---|---|---|
+| Hand-tuned weights | unchanged | B-2 |
+| Calibrated thresholds (0.45 / 0.20) | unchanged | B-2; S4 re-sweep rejected |
+| `mitigation_lexical_match` (weight 0.10) | **ADOPTED** | S5 |
+| `source_out_degree_ratio` | dropped | S5 |
+| `mutual_reciprocal_rank` | dropped | S5 |
+| `reranker_v2` (BAAI/bge-reranker-base fine-tune) | dropped | S6 (delta -0.1065 [-0.1269, -0.0875]) |
+
+### Discriminative metric — non-frozen pairs (post-S5 baseline)
+
+n=381 anchors across 4 of 5 expanded non-frozen pairs (cosai_rm__mitre_atlas
+contributes 0 due to a known cosai_rm source-side anchor-skipping bug).
+
+| Metric | Value (95% CI) |
+|---|---|
+| MRR  | 0.3402 [0.3066, 0.3708] |
+| Recall@5 | 0.5433 [0.4882, 0.5906] |
+| ROC-AUC | 0.6498 [0.6235, 0.6752] |
+
+### Frozen test results (one-shot under S7)
+
+| Phase | Frozen pair | n | MRR [95% CI] | Tier acc | Prior tier_acc |
+|---|---|---|---|---|---|
+| B-2 | `aiuc_1 -> csa_aicm`     | 257 | 0.4354 [0.3912, 0.4794] | **0.7938** | 0.0000 |
+| B-1 | `aiuc_1 -> mitre_atlas`  |  32 | 0.4379 [0.2953, 0.5869] | **0.5938** | 0.0000 |
+| A   | `cosai_rm -> owasp_llm`  |   0 | n/a | n/a | n/a |
+
+The Phase A pair was not scorable due to the cosai_rm source-side bug.
+B-2 and B-1 dramatically clear the H_S7 tier_acc gate (≥ 0.30) without
+any threshold retuning. Composite scores were never the problem — the
+saturated metric was. The MRR target (≥ 0.50) was not cleared (0.4357
+weighted), so distractors still overlap positives in the [0.20, 0.45]
+band. Path forward: rationale-code labeling or richer per-pair
+calibration — both out of scope for this loop.
+
+### Anti-overfit results
+
+All four pre-registered hypotheses (H_S4 / H_S5 / H_S6 / H_S7) ran the
+full pre-registration → CV → bootstrap → permutation → result chain in
+`docs/anti_overfit_hypotheses.md`. H_S5 produced the rebuild's first
+ADOPTED feature (`mitigation_lexical_match`); H_S4 and H_S6 cleanly
+rejected; H_S7 partially confirmed.
+
+### Pointers
+
+- Anchors-vs-distractors sampler: `mapping_engine/calibration/distractor_sampler.py`
+- Discriminative metric: `mapping_engine/calibration/discriminative_metric.py`
+- Per-pair baseline: `data/processed/discriminative_baseline.json` (S3)
+- B-1 re-eval: `data/processed/b1_discriminative_eval.json` (S5)
+- Reranker re-eval: `data/processed/reranker_v2_discriminative_eval.json` (S6)
+- Frozen results: `data/processed/frozen_tests_discriminative.json` (S7)
+- Cross-pair harness output: `docs/session8_cross_pair_validation.md` (S8)
+- Readiness doc: `docs/session8_ready.md` (S9)

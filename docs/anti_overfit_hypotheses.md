@@ -289,7 +289,7 @@ prior failure was a power issue rather than a true null.
 **Metric.** Permutation importance CI at n_perm=10000; paired Δ MRR CI
 (1000 resamples) must still exclude 0.
 
-**Result.** _Pending S11._
+**Result.** REJECT — genuinely null at 10k perms. mutual_reciprocal_rank paired Δ MRR = +0.0056 [−0.0041, +0.0162] (CI crosses 0); permutation null at n_perms=10000 = [−0.0103, +0.0102], observed +0.0056 sits inside the null band → DROP. The Session 7.5 hypothesis that 1k perms were underpowered is falsified — the feature carries no real signal under the post-S9 graph. No production weights changed.
 
 ## 2026-04-07 — H_76_S12: distractor count calibration
 

@@ -1,0 +1,1109 @@
+{
+  "v1_path": "/home/rock/github_projects/AIUC_2_OWASP_Agentic_Top_10/tests/test_data.json",
+  "v2_path": "/home/rock/github_projects/ai-security-framework-crosswalk/mapping_engine/output/results/aiuc_1__owasp_agentic.json",
+  "counts": {
+    "v1_pairs": 119,
+    "v2_pairs": 109,
+    "preserved": 57,
+    "preserved_pct": 0.4789915966386555,
+    "lost_from_v1": 62,
+    "regression_pct": 0.5210084033613446,
+    "new_in_v2": 52,
+    "tier_same": 57,
+    "tier_changed": 0
+  },
+  "tier_distribution": {
+    "v1": {
+      "Direct": 55,
+      "Related": 64
+    },
+    "v2": {
+      "Direct": 98,
+      "Related": 11
+    }
+  },
+  "v2_summary": {
+    "controls_mapped": "60 / 183",
+    "controls_unmapped": 123,
+    "owasp_entries_with_matches": 10,
+    "total_mappings": 109,
+    "primary_mappings": 98,
+    "secondary_mappings": 11,
+    "rationale_distribution": {
+      "SCOPE": 23,
+      "DETECT": 24,
+      "ISOLATE": 16,
+      "VALID": 11,
+      "PREV": 14,
+      "GATE": 12,
+      "GOVERN": 8,
+      "DISCLOSE": 1
+    }
+  },
+  "v2_signal_means": {
+    "bridge": 0.09202477064220183,
+    "semantic": 0.6745247706422018,
+    "keyword": 0.040751376146788997,
+    "function_match": 0.981651376146789
+  },
+  "preserved_pairs": [
+    "A003->ASI02",
+    "A003->ASI06",
+    "B001->ASI01",
+    "B002->ASI01",
+    "B002->ASI05",
+    "B002->ASI06",
+    "B005->ASI01",
+    "B005->ASI05",
+    "B005->ASI06",
+    "B006->ASI01",
+    "B006->ASI02",
+    "B006->ASI03",
+    "B006->ASI05",
+    "B006->ASI07",
+    "B006->ASI10",
+    "B007->ASI02",
+    "B007->ASI03",
+    "B008->ASI02",
+    "B008->ASI03",
+    "B008->ASI04",
+    "B008->ASI05",
+    "B008->ASI07",
+    "B008->ASI10",
+    "B009->ASI05",
+    "C003->ASI09",
+    "C004->ASI05",
+    "C005->ASI05",
+    "C006->ASI05",
+    "C007->ASI09",
+    "C009->ASI01",
+    "C009->ASI09",
+    "D001->ASI08",
+    "D001->ASI09",
+    "D002->ASI08",
+    "D002->ASI09",
+    "D003->ASI01",
+    "D003->ASI02",
+    "D003->ASI03",
+    "D003->ASI05",
+    "D003->ASI08",
+    "D003->ASI10",
+    "D004->ASI02",
+    "D004->ASI05",
+    "D004->ASI10",
+    "E001->ASI08",
+    "E001->ASI10",
+    "E002->ASI08",
+    "E003->ASI08",
+    "E006->ASI04",
+    "E009->ASI02",
+    "E009->ASI03",
+    "E009->ASI07",
+    "E015->ASI06",
+    "E015->ASI07",
+    "E015->ASI08",
+    "E015->ASI10",
+    "E016->ASI09"
+  ],
+  "lost_pairs": [
+    {
+      "control": "A003",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "A004",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "A004",
+      "risk": "ASI02",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "A004",
+      "risk": "ASI03",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "A004",
+      "risk": "ASI04",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "A005",
+      "risk": "ASI06",
+      "v1_tier": "Direct",
+      "v1_rationale": "ISOLATE"
+    },
+    {
+      "control": "A006",
+      "risk": "ASI06",
+      "v1_tier": "Related",
+      "v1_rationale": "ISOLATE"
+    },
+    {
+      "control": "A007",
+      "risk": "ASI02",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "A007",
+      "risk": "ASI03",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "A007",
+      "risk": "ASI04",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "B001",
+      "risk": "ASI05",
+      "v1_tier": "Related",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "B001",
+      "risk": "ASI06",
+      "v1_tier": "Direct",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "B001",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "B003",
+      "risk": "ASI03",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "B003",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "B004",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "B005",
+      "risk": "ASI08",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "B006",
+      "risk": "ASI06",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "B006",
+      "risk": "ASI08",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "B007",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "B007",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "B009",
+      "risk": "ASI06",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "B009",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "B009",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "C002",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "C002",
+      "risk": "ASI05",
+      "v1_tier": "Related",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "C003",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "C003",
+      "risk": "ASI08",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "C004",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "C005",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "C006",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "C006",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "C007",
+      "risk": "ASI08",
+      "v1_tier": "Related",
+      "v1_rationale": "GATE"
+    },
+    {
+      "control": "C007",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "GATE"
+    },
+    {
+      "control": "C008",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "C009",
+      "risk": "ASI02",
+      "v1_tier": "Related",
+      "v1_rationale": "GATE"
+    },
+    {
+      "control": "C009",
+      "risk": "ASI08",
+      "v1_tier": "Related",
+      "v1_rationale": "GATE"
+    },
+    {
+      "control": "C009",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "GATE"
+    },
+    {
+      "control": "C010",
+      "risk": "ASI09",
+      "v1_tier": "Direct",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "C011",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "D002",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "D003",
+      "risk": "ASI06",
+      "v1_tier": "Related",
+      "v1_rationale": "SCOPE"
+    },
+    {
+      "control": "D004",
+      "risk": "ASI03",
+      "v1_tier": "Related",
+      "v1_rationale": "VALID"
+    },
+    {
+      "control": "E004",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "GOVERN"
+    },
+    {
+      "control": "E005",
+      "risk": "ASI04",
+      "v1_tier": "Related",
+      "v1_rationale": "GOVERN"
+    },
+    {
+      "control": "E007",
+      "risk": "ASI04",
+      "v1_tier": "Related",
+      "v1_rationale": "GOVERN"
+    },
+    {
+      "control": "E008",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "GOVERN"
+    },
+    {
+      "control": "E009",
+      "risk": "ASI04",
+      "v1_tier": "Direct",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "E009",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "E010",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "GOVERN"
+    },
+    {
+      "control": "E010",
+      "risk": "ASI03",
+      "v1_tier": "Related",
+      "v1_rationale": "GOVERN"
+    },
+    {
+      "control": "E015",
+      "risk": "ASI01",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "E015",
+      "risk": "ASI02",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "E015",
+      "risk": "ASI03",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "E015",
+      "risk": "ASI04",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "E015",
+      "risk": "ASI05",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "E015",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    },
+    {
+      "control": "E016",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "DISCLOSE"
+    },
+    {
+      "control": "E017",
+      "risk": "ASI09",
+      "v1_tier": "Related",
+      "v1_rationale": "DISCLOSE"
+    },
+    {
+      "control": "F001",
+      "risk": "ASI05",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "F001",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "PREV"
+    },
+    {
+      "control": "F002",
+      "risk": "ASI10",
+      "v1_tier": "Related",
+      "v1_rationale": "DETECT"
+    }
+  ],
+  "new_pairs": [
+    {
+      "control": "A003",
+      "risk": "ASI01",
+      "v2_tier": "Related",
+      "v2_score": 0.5661,
+      "v2_signals": {
+        "bridge": 0.1205,
+        "semantic": 0.6568,
+        "keyword": 0.0749,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A003",
+      "risk": "ASI03",
+      "v2_tier": "Related",
+      "v2_score": 0.5288,
+      "v2_signals": {
+        "bridge": 0.1404,
+        "semantic": 0.591,
+        "keyword": 0.1232,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A003.1",
+      "risk": "ASI02",
+      "v2_tier": "Direct",
+      "v2_score": 0.2514,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.6456,
+        "keyword": 0.0441,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A003.1",
+      "risk": "ASI06",
+      "v2_tier": "Direct",
+      "v2_score": 0.2946,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.7603,
+        "keyword": 0.0539,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A004",
+      "risk": "ASI07",
+      "v2_tier": "Related",
+      "v2_score": 0.5747,
+      "v2_signals": {
+        "bridge": 0.1002,
+        "semantic": 0.8828,
+        "keyword": 0.0121,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A004.3",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3355,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.6353,
+        "keyword": 0.0067,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A005",
+      "risk": "ASI03",
+      "v2_tier": "Direct",
+      "v2_score": 0.3261,
+      "v2_signals": {
+        "bridge": 0.0845,
+        "semantic": 0.698,
+        "keyword": 0.0081,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A005",
+      "risk": "ASI04",
+      "v2_tier": "Direct",
+      "v2_score": 0.2579,
+      "v2_signals": {
+        "bridge": 0.0532,
+        "semantic": 0.5214,
+        "keyword": 0.0625,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A005",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.5604,
+      "v2_signals": {
+        "bridge": 0.0603,
+        "semantic": 0.8781,
+        "keyword": 0.0623,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A005.2",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3154,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.8529,
+        "keyword": 0.009,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A005.3",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3045,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.58,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A006",
+      "risk": "ASI03",
+      "v2_tier": "Direct",
+      "v2_score": 0.3251,
+      "v2_signals": {
+        "bridge": 0.1058,
+        "semantic": 0.6683,
+        "keyword": 0.0068,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A006",
+      "risk": "ASI05",
+      "v2_tier": "Direct",
+      "v2_score": 0.2916,
+      "v2_signals": {
+        "bridge": 0.1047,
+        "semantic": 0.5816,
+        "keyword": 0.0017,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A006",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3758,
+      "v2_signals": {
+        "bridge": 0.0712,
+        "semantic": 0.8496,
+        "keyword": 0.0073,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "A006",
+      "risk": "ASI10",
+      "v2_tier": "Direct",
+      "v2_score": 0.2867,
+      "v2_signals": {
+        "bridge": 0.087,
+        "semantic": 0.3565,
+        "keyword": 0.0027,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B001.1",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.2794,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.529,
+        "keyword": 0.0055,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B002.1",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.2685,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5086,
+        "keyword": 0.0048,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B002.2",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.2656,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.48,
+        "keyword": 0.0451,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B002.3",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.2835,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5359,
+        "keyword": 0.007,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B002.4",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3168,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.6016,
+        "keyword": 0.0033,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B005.4",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.3152,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5897,
+        "keyword": 0.0186,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B008.3",
+      "risk": "ASI03",
+      "v2_tier": "Direct",
+      "v2_score": 0.2507,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.4774,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B008.3",
+      "risk": "ASI04",
+      "v2_tier": "Direct",
+      "v2_score": 0.2868,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.7753,
+        "keyword": 0.0087,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "B008.3",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.2685,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.7306,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C003",
+      "risk": "ASI05",
+      "v2_tier": "Related",
+      "v2_score": 0.5894,
+      "v2_signals": {
+        "bridge": 0.125,
+        "semantic": 0.8781,
+        "keyword": 0.0135,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C003.3",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.2833,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5397,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C005.2",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.3191,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.8585,
+        "keyword": 0.0173,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C005.3",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.2911,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5544,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C006.3",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.2585,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.4797,
+        "keyword": 0.0223,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C007",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.3088,
+      "v2_signals": {
+        "bridge": 0.0851,
+        "semantic": 0.6517,
+        "keyword": 0.0051,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C007.3",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.2784,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5278,
+        "keyword": 0.0044,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C008",
+      "risk": "ASI02",
+      "v2_tier": "Direct",
+      "v2_score": 0.2527,
+      "v2_signals": {
+        "bridge": 0.0929,
+        "semantic": 0.6372,
+        "keyword": 0.0114,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "C009.1",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.2734,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.7311,
+        "keyword": 0.0217,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "D001.1",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.3149,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5998,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "D002.1",
+      "risk": "ASI08",
+      "v2_tier": "Direct",
+      "v2_score": 0.3643,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.9372,
+        "keyword": 0.0932,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "D002.1",
+      "risk": "ASI09",
+      "v2_tier": "Direct",
+      "v2_score": 0.3265,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.6136,
+        "keyword": 0.0146,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "D003.3",
+      "risk": "ASI02",
+      "v2_tier": "Direct",
+      "v2_score": 0.3302,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.8334,
+        "keyword": 0.0944,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "D004.1",
+      "risk": "ASI02",
+      "v2_tier": "Direct",
+      "v2_score": 0.3394,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.8435,
+        "keyword": 0.1389,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "D004.1",
+      "risk": "ASI05",
+      "v2_tier": "Direct",
+      "v2_score": 0.3167,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.8059,
+        "keyword": 0.0974,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E001.2",
+      "risk": "ASI04",
+      "v2_tier": "Direct",
+      "v2_score": 0.257,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.4649,
+        "keyword": 0.0432,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E002",
+      "risk": "ASI10",
+      "v2_tier": "Direct",
+      "v2_score": 0.2468,
+      "v2_signals": {
+        "bridge": 0.0968,
+        "semantic": 0.6157,
+        "keyword": 0.0126,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E003",
+      "risk": "ASI10",
+      "v2_tier": "Direct",
+      "v2_score": 0.2582,
+      "v2_signals": {
+        "bridge": 0.0968,
+        "semantic": 0.4344,
+        "keyword": 0.0161,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E003.2",
+      "risk": "ASI08",
+      "v2_tier": "Direct",
+      "v2_score": 0.3385,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.9341,
+        "keyword": 0.0577,
+        "function_match": 0.0
+      }
+    },
+    {
+      "control": "E004.1",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.3062,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5815,
+        "keyword": 0.003,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E008.2",
+      "risk": "ASI01",
+      "v2_tier": "Direct",
+      "v2_score": 0.3497,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.6542,
+        "keyword": 0.0208,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E009.1",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3184,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.8663,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E010.2",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3226,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.6094,
+        "keyword": 0.0087,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E010.3",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.2945,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.5609,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "E015.3",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3192,
+      "v2_signals": {
+        "bridge": 0.0,
+        "semantic": 0.8686,
+        "keyword": 0.0,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "F001",
+      "risk": "ASI02",
+      "v2_tier": "Related",
+      "v2_score": 0.4862,
+      "v2_signals": {
+        "bridge": 0.0624,
+        "semantic": 0.8625,
+        "keyword": 0.0406,
+        "function_match": 0.0
+      }
+    },
+    {
+      "control": "F002",
+      "risk": "ASI07",
+      "v2_tier": "Direct",
+      "v2_score": 0.3171,
+      "v2_signals": {
+        "bridge": 0.0405,
+        "semantic": 0.6242,
+        "keyword": 0.0068,
+        "function_match": 1.0
+      }
+    },
+    {
+      "control": "F002",
+      "risk": "ASI08",
+      "v2_tier": "Direct",
+      "v2_score": 0.2565,
+      "v2_signals": {
+        "bridge": 0.0871,
+        "semantic": 0.6614,
+        "keyword": 0.0011,
+        "function_match": 1.0
+      }
+    }
+  ],
+  "tier_changes": []
+}

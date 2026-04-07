@@ -1,0 +1,79 @@
+{
+  "blend_weight": 0.1,
+  "n_items": 550,
+  "per_pair": {
+    "aiuc_1__csa_aicm": {
+      "baseline": 0.34,
+      "minilm_blend": 0.38,
+      "bge_v2_m3_blend": 0.34,
+      "decision": "KEEP_MiniLM"
+    },
+    "aiuc_1__eu_gpai_cop": {
+      "baseline": 0.6,
+      "minilm_blend": 0.54,
+      "bge_v2_m3_blend": 0.52,
+      "decision": "KEEP_MiniLM"
+    },
+    "aiuc_1__mitre_atlas": {
+      "baseline": 0.32,
+      "minilm_blend": 0.3,
+      "bge_v2_m3_blend": 0.24,
+      "decision": "KEEP_MiniLM"
+    },
+    "aiuc_1__nist_rmf": {
+      "baseline": 0.7,
+      "minilm_blend": 0.6,
+      "bge_v2_m3_blend": 0.58,
+      "decision": "KEEP_MiniLM"
+    },
+    "aiuc_1__owasp_agentic": {
+      "baseline": 0.46,
+      "minilm_blend": 0.38,
+      "bge_v2_m3_blend": 0.4,
+      "decision": "ADOPT_v2_m3"
+    },
+    "aiuc_1__owasp_llm": {
+      "baseline": 0.54,
+      "minilm_blend": 0.6,
+      "bge_v2_m3_blend": 0.38,
+      "decision": "KEEP_MiniLM"
+    },
+    "cosai_rm__mitre_atlas": {
+      "baseline": 0.44,
+      "minilm_blend": 0.36,
+      "bge_v2_m3_blend": 0.34,
+      "decision": "KEEP_MiniLM"
+    },
+    "cosai_rm__owasp_llm": {
+      "baseline": 0.44,
+      "minilm_blend": 0.6,
+      "bge_v2_m3_blend": 0.34,
+      "decision": "KEEP_MiniLM"
+    },
+    "csa_aicm__owasp_agentic": {
+      "baseline": 0.22,
+      "minilm_blend": 0.22,
+      "bge_v2_m3_blend": 0.24,
+      "decision": "ADOPT_v2_m3"
+    },
+    "mitre_atlas__owasp_llm": {
+      "baseline": 0.2,
+      "minilm_blend": 0.2,
+      "bge_v2_m3_blend": 0.2,
+      "decision": "ADOPT_v2_m3"
+    },
+    "nist_rmf__owasp_agentic": {
+      "baseline": 0.3,
+      "minilm_blend": 0.16,
+      "bge_v2_m3_blend": 0.44,
+      "decision": "ADOPT_v2_m3"
+    }
+  },
+  "macro": {
+    "baseline": 0.4145454545454545,
+    "minilm": 0.39454545454545453,
+    "bge_v2_m3": 0.3654545454545455
+  },
+  "adopt_count": 4,
+  "total_pairs": 11
+}

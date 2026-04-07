@@ -1,0 +1,170 @@
+{
+  "base": {
+    "model": "BAAI/bge-large-en-v1.5",
+    "aiuc": {
+      "precision_at_5": 0.813953488372093,
+      "separation": {
+        "mapped_mean": 0.5225610517807385,
+        "unmapped_mean": 0.4940323231080704,
+        "delta": 0.028528728672668147
+      }
+    },
+    "nist": {
+      "precision_at_5": 0.8333333333333334,
+      "separation": {
+        "mapped_mean": 0.5246921469263741,
+        "unmapped_mean": 0.5002004472795952,
+        "delta": 0.024491699646778886
+      }
+    },
+    "anchors": [
+      {
+        "source": "aiuc_1:D004",
+        "target": "owasp_agentic:ASI02",
+        "expected": "Direct",
+        "score": 0.8780961150790111
+      },
+      {
+        "source": "aiuc_1:E006",
+        "target": "owasp_agentic:ASI04",
+        "expected": "Direct",
+        "score": 0.7692899014126802
+      },
+      {
+        "source": "aiuc_1:B005",
+        "target": "owasp_agentic:ASI01",
+        "expected": "Direct",
+        "score": 0.7009157048612423
+      },
+      {
+        "source": "aiuc_1:B002",
+        "target": "owasp_agentic:ASI06",
+        "expected": "Direct",
+        "score": 0.7373362637579916
+      },
+      {
+        "source": "aiuc_1:C006",
+        "target": "owasp_agentic:ASI05",
+        "expected": "Direct",
+        "score": 0.5376046237473827
+      },
+      {
+        "source": "aiuc_1:B001",
+        "target": "owasp_agentic:ASI01",
+        "expected": "Related",
+        "score": 0.7045516194685311
+      },
+      {
+        "source": "aiuc_1:A003",
+        "target": "owasp_agentic:ASI06",
+        "expected": "Related",
+        "score": 0.4104882541323965
+      },
+      {
+        "source": "aiuc_1:B006",
+        "target": "owasp_agentic:ASI03",
+        "expected": "Related",
+        "score": 0.3751914983113297
+      },
+      {
+        "source": "aiuc_1:E001",
+        "target": "owasp_agentic:ASI08",
+        "expected": "Related",
+        "score": 0.8209531860121058
+      },
+      {
+        "source": "aiuc_1:D003",
+        "target": "owasp_agentic:ASI02",
+        "expected": "Direct",
+        "score": 0.9222502148527576
+      }
+    ]
+  },
+  "finetuned": {
+    "model": "/home/rock/github_projects/ai-security-framework-crosswalk/mapping_engine/models/finetuned-crosswalk-v1",
+    "aiuc": {
+      "precision_at_5": 1.0,
+      "separation": {
+        "mapped_mean": 0.6703494510388892,
+        "unmapped_mean": 0.452285226473589,
+        "delta": 0.21806422456530022
+      }
+    },
+    "nist": {
+      "precision_at_5": 0.8333333333333334,
+      "separation": {
+        "mapped_mean": 0.5504291057605222,
+        "unmapped_mean": 0.504430471817748,
+        "delta": 0.04599863394277415
+      }
+    },
+    "anchors": [
+      {
+        "source": "aiuc_1:D004",
+        "target": "owasp_agentic:ASI02",
+        "expected": "Direct",
+        "score": 0.21552409437419007
+      },
+      {
+        "source": "aiuc_1:E006",
+        "target": "owasp_agentic:ASI04",
+        "expected": "Direct",
+        "score": 0.8935813371321408
+      },
+      {
+        "source": "aiuc_1:B005",
+        "target": "owasp_agentic:ASI01",
+        "expected": "Direct",
+        "score": 0.6743725471825024
+      },
+      {
+        "source": "aiuc_1:B002",
+        "target": "owasp_agentic:ASI06",
+        "expected": "Direct",
+        "score": 0.8014196674736425
+      },
+      {
+        "source": "aiuc_1:C006",
+        "target": "owasp_agentic:ASI05",
+        "expected": "Direct",
+        "score": 0.8529079912026875
+      },
+      {
+        "source": "aiuc_1:B001",
+        "target": "owasp_agentic:ASI01",
+        "expected": "Related",
+        "score": 0.6831953567072794
+      },
+      {
+        "source": "aiuc_1:A003",
+        "target": "owasp_agentic:ASI06",
+        "expected": "Related",
+        "score": 0.8611666793360822
+      },
+      {
+        "source": "aiuc_1:B006",
+        "target": "owasp_agentic:ASI03",
+        "expected": "Related",
+        "score": 0.7779684367023741
+      },
+      {
+        "source": "aiuc_1:E001",
+        "target": "owasp_agentic:ASI08",
+        "expected": "Related",
+        "score": 0.8009260313629915
+      },
+      {
+        "source": "aiuc_1:D003",
+        "target": "owasp_agentic:ASI02",
+        "expected": "Direct",
+        "score": 0.4319753103239796
+      }
+    ]
+  },
+  "decision": {
+    "base_nist_p5": 0.8333333333333334,
+    "finetuned_nist_p5": 0.8333333333333334,
+    "delta": 0.0,
+    "winner": "base"
+  }
+}

@@ -1,0 +1,1315 @@
+candidates:
+- source_node_id: mitre_atlas:AML.T0019
+  target_node_id: owasp_llm:LLM05
+  composite_score: 0.2001
+  uncertainty_score: 1.995
+  signals:
+    bridge: 0.0211
+    semantic: 0.3541
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Dataset poisoning instantiates LLM04, not LLM05 output-handling.
+  source_name: Publish Poisoned Datasets
+  source_description: 'Adversaries may [Poison Training Data](/techniques/AML.T0020)
+    and publish it to a public location.
+
+    The poisoned dataset may be a novel dataset or a poisoned variant of an existing
+    open source dataset.
+
+    This data may be introduced to a victim system via [AI Supply Chain Compromise](/techniques/AML.T0010).
+
+    '
+  target_name: Improper Output Handling
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0050
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.1999
+  uncertainty_score: 1.9949
+  signals:
+    bridge: 0.0
+    semantic: 0.3807
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Command/scripting interpreter weakly touches info disclosure; primary risk
+    is excessive agency.
+  source_name: Command and Scripting Interpreter
+  source_description: 'Adversaries may abuse command and script interpreters to execute
+    commands, scripts, or binaries. These interfaces and languages provide ways of
+    interacting with computer systems and are a common feature across many different
+    platforms. Most systems come with some built-in command-line interface and scripting
+    capabilities, for example, macOS and Linux distributions include some flavor of
+    Unix Shell while Windows installations include the Windows Command Shell and PowerShell.
+
+
+    There are also cross-platform interpreters such as Python, as well as those commonly
+    associated with client applications such as JavaScript and Visual Basic.
+
+
+    Adversaries may abuse these technologies in various ways as a means of executing
+    arbitrary commands. Commands and scripts can be embedded in Initial Access payloads
+    delivered to victims as lure documents or as secondary payloads downloaded from
+    an existing C2. Adversaries may also execute commands through interactive terminals/shells,
+    as well as utilize various Remote Services in order to achieve remote Execution.
+
+    '
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0064
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.1999
+  uncertainty_score: 1.9949
+  signals:
+    bridge: 0.0
+    semantic: 0.3807
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: RAG target reconnaissance is an attacker recon step, not a misinformation
+    technique.
+  source_name: Gather RAG-Indexed Targets
+  source_description: 'Adversaries may identify data sources used in retrieval augmented
+    generation (RAG) systems for targeting purposes. By pinpointing these sources,
+    attackers can focus on poisoning or otherwise manipulating the external data repositories
+    the AI relies on.
+
+
+    RAG-indexed data may be identified in public documentation about the system, or
+    by interacting with the system directly and observing any indications of or references
+    to external data sources.'
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0010
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.2002
+  uncertainty_score: 1.993
+  signals:
+    bridge: 0.0
+    semantic: 0.3813
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: AI supply-chain compromise aligns with LLM03; weak link to misinformation
+    outcome.
+  source_name: AI Supply Chain Compromise
+  source_description: 'Adversaries may gain initial access to a system by compromising
+    the unique portions of the AI supply chain.
+
+    This could include [Hardware](/techniques/AML.T0010.000), [Data](/techniques/AML.T0010.002)
+    and its annotations, parts of the AI [AI Software](/techniques/AML.T0010.001)
+    stack, or the [Model](/techniques/AML.T0010.003) itself.
+
+    In some instances the attacker will need secondary access to fully carry out an
+    attack using compromised components of the supply chain.'
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0051
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3505
+  uncertainty_score: 1.9805
+  signals:
+    bridge: 0.1923
+    semantic: 0.4203
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Prompt injection is the canonical lever attackers use to push agents beyond
+    their intended agency.
+  source_name: LLM Prompt Injection
+  source_description: 'An adversary may craft malicious prompts as inputs to an LLM
+    that cause the LLM to act in unintended ways.
+
+    These "prompt injections" are often designed to cause the model to ignore aspects
+    of its original instructions and follow the adversary''s instructions instead.
+
+
+    Prompt Injections can be an initial access vector to the LLM that provides the
+    adversary with a foothold to carry out other steps in their operation.
+
+    They may be designed to bypass defenses in the LLM, or allow the adversary to
+    issue privileged commands.
+
+    The effects of a prompt injection can persist throughout an interactive session
+    with an LLM.
+
+
+    Malicious prompts may be injected directly by the adversary ([Direct](/techniques/AML.T0051.000))
+    either to leverage the LLM to generate harmful content or to gain a foothold on
+    the system and lead to further effects.
+
+    Prompts may also be injected indirectly when as part of its normal operation the
+    LLM ingests the malicious prompt from another data source ([Indirect](/techniques/AML.T0051.001)).
+    This type of injection can be used by the adversary to a foothold on the system
+    or to target the user of the LLM.
+
+    Malicious prompts may also be [Triggered](/techniques/AML.T0051.002) user actions
+    or system events.'
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0092
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.3494
+  uncertainty_score: 1.9762
+  signals:
+    bridge: 0.0
+    semantic: 0.6655
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Chat-history manipulation can lead to misleading agent outputs that instantiate
+    misinformation.
+  source_name: Manipulate User LLM Chat History
+  source_description: "Adversaries may manipulate a user's large language model (LLM)\
+    \ chat history to cover the tracks of their malicious behavior. They may hide\
+    \ persistent changes they have made to the LLM's behavior, or obscure their attempts\
+    \ at discovering private information about the user.\n\nTo do so, adversaries\
+    \ may delete or edit existing messages or create new threads as part of their\
+    \ coverup. This is feasible if the adversary has the victim's authentication tokens\
+    \ for the backend LLM service or if they have direct access to the victim's chat\
+    \ interface. \n\nChat interfaces (especially desktop interfaces) often do not\
+    \ show the injected prompt for any ongoing chat, as they update chat history only\
+    \ once when initially opening it. This can help the adversary's manipulations\
+    \ go unnoticed by the victim."
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: mitre_atlas:AML.M0004
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.2007
+  uncertainty_score: 1.9712
+  signals:
+    bridge: 0.1193
+    semantic: 0.2289
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Query-rate limiting addresses unbounded consumption, not supply chain.
+  source_name: Restrict Number of AI Model Queries
+  source_description: 'Limit the total number and rate of queries a user can perform.
+
+    '
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0034.001
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.3493
+  uncertainty_score: 1.9708
+  signals:
+    bridge: 0.0
+    semantic: 0.6653
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Resource-intensive queries realize LLM10, not vector/embedding weaknesses.
+  source_name: Resource-Intensive Queries
+  source_description: 'Adversaries may craft inputs specifically designed to increase
+    the compute resources required for processing.
+
+
+    For generative AI models, adversaries may use long input sequences, requests for
+    extremely long outputs, or prompts that require complex reasoning as strategies
+    for increasing compute costs [\[1\]][1]. For vision and language models, "sponge
+    examples" [\[2\]][2] can be used to maximize energy consumption and decision latency.
+
+    Utilizing fewer resource-intensive queries instead of simply flooding the model
+    with excessive queries may be more difficult to detect and block or limit.
+
+
+    [1]: https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/
+
+    [2]: https://arxiv.org/abs/2006.03463'
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0052.000
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.3492
+  uncertainty_score: 1.9669
+  signals:
+    bridge: 0.0
+    semantic: 0.6651
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Spearphishing via LLM produces deceptive content that operationalizes misinformation.
+  source_name: Spearphishing via Social Engineering LLM
+  source_description: 'Adversaries may turn LLMs into targeted social engineers.
+
+    LLMs are capable of interacting with users via text conversations.
+
+    They can be instructed by an adversary to seek sensitive information from a user
+    and act as effective social engineers.
+
+    They can be targeted towards particular personas defined by the adversary.
+
+    This allows adversaries to scale spearphishing efforts and target individuals
+    to reveal private information such as credentials to privileged systems.
+
+    '
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0079
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.3509
+  uncertainty_score: 1.9652
+  signals:
+    bridge: 0.0
+    semantic: 0.573
+    keyword: 0.1667
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Generic staging-of-capabilities is not prompt injection.
+  source_name: Stage Capabilities
+  source_description: 'Adversaries may upload, install, or otherwise set up capabilities
+    that can be used during targeting. To support their operations, an adversary may
+    need to take capabilities they developed ([Develop Capabilities](/techniques/AML.T0017))
+    or obtained ([Obtain Capabilities](/techniques/AML.T0016)) and stage them on infrastructure
+    under their control. These capabilities may be staged on infrastructure that was
+    previously purchased/rented by the adversary ([Acquire Infrastructure](/techniques/AML.T0008))
+    or was otherwise compromised by them. Capabilities may also be staged on web services,
+    such as GitHub, model registries, such as Hugging Face, or container registries.
+
+
+    Adversaries may stage a variety of AI Artifacts including poisoned datasets ([Publish
+    Poisoned Datasets](/techniques/AML.T0019), malicious models ([Publish Poisoned
+    Models](/techniques/AML.T0058), and prompt injections. They may target names of
+    legitimate companies or products, engage in typosquatting, or use hallucinated
+    entities ([Discover LLM Hallucinations](/techniques/AML.T0062)).'
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0052.000
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.1991
+  uncertainty_score: 1.965
+  signals:
+    bridge: 0.0
+    semantic: 0.3793
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Spearphishing is unrelated to vector/embedding weaknesses.
+  source_name: Spearphishing via Social Engineering LLM
+  source_description: 'Adversaries may turn LLMs into targeted social engineers.
+
+    LLMs are capable of interacting with users via text conversations.
+
+    They can be instructed by an adversary to seek sensitive information from a user
+    and act as effective social engineers.
+
+    They can be targeted towards particular personas defined by the adversary.
+
+    This allows adversaries to scale spearphishing efforts and target individuals
+    to reveal private information such as credentials to privileged systems.
+
+    '
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0073
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.349
+  uncertainty_score: 1.9615
+  signals:
+    bridge: 0.0
+    semantic: 0.6648
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Impersonation is an identity abuse; only weakly relates to excessive agency.
+  source_name: Impersonation
+  source_description: 'Adversaries may impersonate a trusted person or organization
+    in order to persuade and trick a target into performing some action on their behalf.
+    For example, adversaries may communicate with victims (via [Phishing](/techniques/AML.T0052),
+    or [Spearphishing via Social Engineering LLM](/techniques/AML.T0052.000)) while
+    impersonating a known sender such as an executive, colleague, or third-party vendor.
+    Established trust can then be leveraged to accomplish an adversary''s ultimate
+    goals, possibly against multiple victims.
+
+
+    Adversaries may target resources that are part of the AI DevOps lifecycle, such
+    as model repositories, container registries, and software registries.'
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0020
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.199
+  uncertainty_score: 1.9592
+  signals:
+    bridge: 0.0485
+    semantic: 0.3167
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Training-data poisoning does not leak system prompts.
+  source_name: Poison Training Data
+  source_description: 'Adversaries may attempt to poison datasets used by an AI model
+    by modifying the underlying data or its labels.
+
+    This allows the adversary to embed vulnerabilities in AI models trained on the
+    data that may not be easily detectable.
+
+    Data poisoning attacks may or may not require modifying the labels.
+
+    The embedded vulnerability is activated at a later time by data samples with an
+    [Insert Backdoor Trigger](/techniques/AML.T0043.004)
+
+
+    Poisoned data can be introduced via [AI Supply Chain Compromise](/techniques/AML.T0010)
+    or the data may be poisoned after the adversary gains [Initial Access](/tactics/AML.TA0004)
+    to the system.'
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0031
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.2011
+  uncertainty_score: 1.9554
+  signals:
+    bridge: 0.0613
+    semantic: 0.3043
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Eroding model integrity overlaps weakly with supply-chain integrity.
+  source_name: Erode AI Model Integrity
+  source_description: 'Adversaries may degrade the target model''s performance with
+    adversarial data inputs to erode confidence in the system over time.
+
+    This can lead to the victim organization wasting time and money both attempting
+    to fix the system and performing the tasks it was meant to automate by hand.
+
+    '
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0003
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.2011
+  uncertainty_score: 1.9551
+  signals:
+    bridge: 0.0
+    semantic: 0.3705
+    keyword: 0.022
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Victim-website recon is not prompt injection.
+  source_name: Search Victim-Owned Websites
+  source_description: 'Adversaries may search websites owned by the victim for information
+    that can be used during targeting.
+
+    Victim-owned websites may contain technical details about their AI-enabled products
+    or services.
+
+    Victim-owned websites may contain a variety of details, including names of departments/divisions,
+    physical locations, and data about key employees such as names, roles, and contact
+    info.
+
+    These sites may also have details highlighting business operations and relationships.
+
+
+    Adversaries may search victim-owned websites to gather actionable information.
+
+    This information may help adversaries tailor their attacks (e.g. [Adversarial
+    AI Attacks](/techniques/AML.T0017.000) or [Manual Modification](/techniques/AML.T0043.003)).
+
+    Information from these sources may reveal opportunities for other forms of reconnaissance
+    (e.g. [Search Open Technical Databases](/techniques/AML.T0000) or [Search Open
+    AI Vulnerability Analysis](/techniques/AML.T0001))'
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: mitre_atlas:AML.M0023
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.2009
+  uncertainty_score: 1.9549
+  signals:
+    bridge: 0.0205
+    semantic: 0.3521
+    keyword: 0.0075
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: AI BOM is a supply-chain provenance control, not a prompt-injection mitigation.
+  source_name: AI Bill of Materials
+  source_description: 'An AI Bill of Materials (AI BOM) contains a full listing of
+    artifacts and resources that were used in building the AI. The AI BOM can help
+    mitigate supply chain risks and enable rapid response to reported vulnerabilities.
+
+
+    This can include maintaining dataset provenance, i.e. a detailed history of datasets
+    used for AI applications. The history can include information about the dataset
+    source as well as well as a complete record of any modifications.'
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: mitre_atlas:AML.M0026
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.1989
+  uncertainty_score: 1.954
+  signals:
+    bridge: 0.0218
+    semantic: 0.3507
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Permission config is a defense, but for excessive agency not supply chain.
+  source_name: Privileged AI Agent Permissions Configuration
+  source_description: AI agents may be granted elevated privileges above that of a
+    normal user to enable desired workflows. When deploying a privileged AI agent,
+    or an agent that interacts with multiple users, it is important to implement robust
+    policies and controls on permissions of the privileged agent. These controls include
+    Role-Based Access Controls (RBAC), Attribute-Based Access Controls (ABAC), and
+    the principle of least privilege so that the agent is only granted the necessary
+    permissions to access tools and resources required to accomplish its designated
+    task(s).
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0043.003
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.1993
+  uncertainty_score: 1.9498
+  signals:
+    bridge: 0.0244
+    semantic: 0.31
+    keyword: 0.067
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Manual modification is unrelated to system prompt leakage.
+  source_name: Manual Modification
+  source_description: 'Adversaries may manually modify the input data to craft adversarial
+    data.
+
+    They may use their knowledge of the target model to modify parts of the data they
+    suspect helps the model in performing its task.
+
+    The adversary may use trial and error until they are able to verify they have
+    a working adversarial input.
+
+    '
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0064
+  target_node_id: owasp_llm:LLM05
+  composite_score: 0.2013
+  uncertainty_score: 1.9481
+  signals:
+    bridge: 0.0197
+    semantic: 0.358
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: RAG target recon is unrelated to output handling.
+  source_name: Gather RAG-Indexed Targets
+  source_description: 'Adversaries may identify data sources used in retrieval augmented
+    generation (RAG) systems for targeting purposes. By pinpointing these sources,
+    attackers can focus on poisoning or otherwise manipulating the external data repositories
+    the AI relies on.
+
+
+    RAG-indexed data may be identified in public documentation about the system, or
+    by interacting with the system directly and observing any indications of or references
+    to external data sources.'
+  target_name: Improper Output Handling
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0066
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3514
+  uncertainty_score: 1.9442
+  signals:
+    bridge: 0.0
+    semantic: 0.6693
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Retrieval-content crafting can coerce the model into surfacing sensitive
+    retrieved records.
+  source_name: Retrieval Content Crafting
+  source_description: 'Adversaries may write content designed to be retrieved by user
+    queries and influence a user of the system in some way. This abuses the trust
+    the user has in the system.
+
+
+    The crafted content can be combined with a prompt injection. It can also stand
+    alone in a separate document or email. The adversary must get the crafted content
+    into the victim\u0027s database, such as a vector database used in a retrieval
+    augmented generation (RAG) system. This may be accomplished via cyber access,
+    or by abusing the ingestion mechanisms common in RAG systems (see [RAG Poisoning](/techniques/AML.T0070)).
+
+
+    Large language models may be used as an assistant to aid an adversary in crafting
+    content.'
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0016.001
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.3486
+  uncertainty_score: 1.9431
+  signals:
+    bridge: 0.0
+    semantic: 0.664
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Generic software-tools technique is not a vector/embedding weakness.
+  source_name: Software Tools
+  source_description: 'Adversaries may search for and obtain software tools to support
+    their operations.
+
+    Software designed for legitimate use may be repurposed by an adversary for malicious
+    intent.
+
+    An adversary may modify or customize software tools to achieve their purpose.
+
+    Software tools used to support attacks on AI systems are not necessarily AI-based
+    themselves.'
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0069
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.2015
+  uncertainty_score: 1.9415
+  signals:
+    bridge: 0.0
+    semantic: 0.3837
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: LLM system info discovery is recon, not an embedding weakness.
+  source_name: Discover LLM System Information
+  source_description: The adversary is trying to discover something about the large
+    language model's (LLM) system information. This may be found in a configuration
+    file containing the system instructions or extracted via interactions with the
+    LLM. The desired information may include the full system prompt, special characters
+    that have significance to the LLM or keywords indicating functionality available
+    to the LLM. Information about how the LLM is instructed can be used by the adversary
+    to understand the system's capabilities and to aid them in crafting malicious
+    prompts.
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0059
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.3515
+  uncertainty_score: 1.9394
+  signals:
+    bridge: 0.0274
+    semantic: 0.6343
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Dataset-integrity erosion can propagate into embedding space but is one step
+    removed.
+  source_name: Erode Dataset Integrity
+  source_description: Adversaries may poison or manipulate portions of a dataset to
+    reduce its usefulness, reduce trust, and cause users to waste resources correcting
+    errors.
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0011
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.1985
+  uncertainty_score: 1.9385
+  signals:
+    bridge: 0.0146
+    semantic: 0.3592
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: User execution is unrelated to system prompt leakage.
+  source_name: User Execution
+  source_description: 'An adversary may rely upon specific actions by a user in order
+    to gain execution.
+
+    Users may inadvertently execute unsafe code introduced via [AI Supply Chain Compromise](/techniques/AML.T0010).
+
+    Users may be subjected to social engineering to get them to execute malicious
+    code by, for example, opening a malicious document file or link.
+
+    '
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0103
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3483
+  uncertainty_score: 1.9333
+  signals:
+    bridge: 0.0
+    semantic: 0.6635
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Deploying an AI agent is not itself sensitive-information disclosure.
+  source_name: Deploy AI Agent
+  source_description: 'Adversaries may launch AI agents in the victim''s environment
+    to execute actions on their behalf. AI agents may have access to a wide range
+    of tools and data sources, as well as permissions to access and interact with
+    other services and systems in the victim''s environment. The adversary may leverage
+    these capabilities to carry out their operations.
+
+
+    Adversaries may configure the AI agent by providing an initial system prompt and
+    granting access to tools, effectively defining their goals for the agent to achieve.
+    They may deploy the agent with excessive trust permissions and disable any user
+    interactions to ensure the agent''s actions aren''t blocked.
+
+
+    Launching an AI agent may provide for some autonomous behavior, allowing for the
+    agent to make decisions and determine how to achieve the adversary''s goals. This
+    also represents a loss of control for the adversary.'
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: mitre_atlas:AML.M0019
+  target_node_id: owasp_llm:LLM05
+  composite_score: 0.1983
+  uncertainty_score: 1.9323
+  signals:
+    bridge: 0.0976
+    semantic: 0.2522
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Access control at production does not primarily mitigate improper output
+    handling.
+  source_name: Control Access to AI Models and Data in Production
+  source_description: 'Require users to verify their identities before accessing a
+    production model.
+
+    Require authentication for API endpoints and monitor production model queries
+    to ensure compliance with usage policies and to prevent model misuse.
+
+    '
+  target_name: Improper Output Handling
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0018.002
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.1983
+  uncertainty_score: 1.9301
+  signals:
+    bridge: 0.0
+    semantic: 0.3776
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Embedded malware is unrelated to unbounded consumption.
+  source_name: Embed Malware
+  source_description: 'Adversaries may embed malicious code into AI Model files.
+
+    AI models may be packaged as a combination of instructions and weights.
+
+    Some formats such as pickle files are unsafe to deserialize because they can contain
+    unsafe calls such as exec.
+
+    Models with embedded malware may still operate as expected.
+
+    It may allow them to achieve Execution, Command & Control, or Exfiltrate Data.'
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0101
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.5489
+  uncertainty_score: 1.9297
+  signals:
+    bridge: 0.0835
+    semantic: 0.9236
+    keyword: 0.0254
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Data destruction via agent tools is destructive integrity loss, adjacent
+    to but not poisoning.
+  source_name: Data Destruction via AI Agent Tool Invocation
+  source_description: Adversaries may invoke an AI agent's tool capable of performing
+    mutative operations to perform Data Destruction. Adversaries may destroy data
+    and files on specific systems or in large numbers on a network to interrupt availability
+    to systems, services, and network resources.
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0105
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.2019
+  uncertainty_score: 1.9245
+  signals:
+    bridge: 0.0
+    semantic: 0.3845
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Container/host escape is a severe consequence of excessive agency left unchecked.
+  source_name: Escape to Host
+  source_description: 'Adversaries may break out of a container or virtualized environment
+    to gain access to the underlying host. This can allow an adversary access to other
+    containerized or virtualized resources from the host level or to the host itself.
+    In principle, containerized / virtualized resources should provide a clear separation
+    of application functionality and be isolated from the host environment.
+
+
+    There are many ways an adversary may escape from a container or sandbox environment
+    via AI Systems. For example, modifying an AI Agent''s configuration to disable
+    safety features or user confirmations could allow the adversary to invoke tools
+    to be run on host environments rather than in the sandbox.'
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0065
+  target_node_id: owasp_llm:LLM05
+  composite_score: 0.1981
+  uncertainty_score: 1.9236
+  signals:
+    bridge: 0.0
+    semantic: 0.3773
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Prompt crafting is LLM01, not improper output handling.
+  source_name: LLM Prompt Crafting
+  source_description: 'Adversaries may use their acquired knowledge of the target
+    generative AI system to craft prompts that bypass its defenses and allow malicious
+    instructions to be executed.
+
+
+    The adversary may iterate on the prompt to ensure that it works as-intended consistently.'
+  target_name: Improper Output Handling
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0080
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.2019
+  uncertainty_score: 1.9223
+  signals:
+    bridge: 0.0
+    semantic: 0.3847
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Agent context poisoning primarily aligns with LLM04 rather than sensitive-info
+    disclosure.
+  source_name: AI Agent Context Poisoning
+  source_description: 'Adversaries may attempt to manipulate the context used by an
+    AI agent''s large language model (LLM) to influence the responses it generates
+    or actions it takes. This allows an adversary to persistently change the behavior
+    of the target agent and further their goals.
+
+
+    Context poisoning can be accomplished by prompting the an LLM to add instructions
+    or preferences to memory (See [Memory](/techniques/AML.T0080.000)) or by simply
+    prompting an LLM that uses prior messages in a thread as part of its context (See
+    [Thread](/techniques/AML.T0080.001)).'
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0011
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.352
+  uncertainty_score: 1.9218
+  signals:
+    bridge: 0.0756
+    semantic: 0.5731
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: User execution is not sensitive-information disclosure.
+  source_name: User Execution
+  source_description: 'An adversary may rely upon specific actions by a user in order
+    to gain execution.
+
+    Users may inadvertently execute unsafe code introduced via [AI Supply Chain Compromise](/techniques/AML.T0010).
+
+    Users may be subjected to social engineering to get them to execute malicious
+    code by, for example, opening a malicious document file or link.
+
+    '
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0048.000
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.348
+  uncertainty_score: 1.9201
+  signals:
+    bridge: 0.0
+    semantic: 0.6629
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Financial harm is an impact category, not info disclosure.
+  source_name: Financial Harm
+  source_description: 'Financial harm involves the loss of wealth, property, or other
+    monetary assets due to theft, fraud or forgery, or pressure to provide financial
+    resources to the adversary.
+
+    '
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0081
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.202
+  uncertainty_score: 1.9194
+  signals:
+    bridge: 0.0
+    semantic: 0.3704
+    keyword: 0.0251
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Config modification is not prompt injection.
+  source_name: Modify AI Agent Configuration
+  source_description: 'Adversaries may modify the configuration files for AI agents
+    on a system. This allows malicious changes to persist beyond the life of a single
+    agent and affects any agents that share the configuration.
+
+
+    Configuration changes may include modifications to the system prompt, tampering
+    with or replacing knowledge sources, modification to settings of connected tools,
+    and more. Through those changes, an attacker could redirect outputs or tools to
+    malicious services, embed covert instructions that exfiltrate data, or weaken
+    security controls that normally restrict agent behavior.
+
+
+    Adversaries may modify or disable a configuration setting related to security
+    controls, such as those that would prevent the AI Agent from taking actions that
+    may be harmful to the user''s system without human-in-the-loop oversight. Disabling
+    AI agent security features may allow adversaries to achieve their malicious goals
+    and maintain long-term corruption of the AI agent.'
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0056
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.198
+  uncertainty_score: 1.9193
+  signals:
+    bridge: 0.0662
+    semantic: 0.292
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: System-prompt extraction is LLM07, not vector/embedding weakness.
+  source_name: Extract LLM System Prompt
+  source_description: 'Adversaries may attempt to extract a large language model''s
+    (LLM) system prompt. This can be done via prompt injection to induce the model
+    to reveal its own system prompt or may be extracted from a configuration file.
+
+
+    System prompts can be a portion of an AI provider''s competitive advantage and
+    are thus valuable intellectual property that may be targeted by adversaries.'
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0043
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.3479
+  uncertainty_score: 1.9168
+  signals:
+    bridge: 0.0281
+    semantic: 0.6266
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Adversarial data crafting weakly relates to misinformation outcomes.
+  source_name: Craft Adversarial Data
+  source_description: 'Adversarial data are inputs to an AI model that have been modified
+    such that they cause the adversary''s desired effect in the target model.
+
+    Effects can range from misclassification, to missed detections, to maximizing
+    energy consumption.
+
+    Typically, the modification is constrained in magnitude or location so that a
+    human still perceives the data as if it were unmodified, but human perceptibility
+    may not always be a concern depending on the adversary''s intended effect.
+
+    For example, an adversarial input for an image classification task is an image
+    the AI model would misclassify, but a human would still recognize as containing
+    the correct class.
+
+
+    Depending on the adversary''s knowledge of and access to the target model, the
+    adversary may use different classes of algorithms to develop the adversarial example
+    such as [White-Box Optimization](/techniques/AML.T0043.000), [Black-Box Optimization](/techniques/AML.T0043.001),
+    [Black-Box Transfer](/techniques/AML.T0043.002), or [Manual Modification](/techniques/AML.T0043.003).
+
+
+    The adversary may [Verify Attack](/techniques/AML.T0042) their approach works
+    if they have white-box or inference API access to the model.
+
+    This allows the adversary to gain confidence their attack is effective "live"
+    environment where their attack may be noticed.
+
+    They can then use the attack at a later time to accomplish their goals.
+
+    An adversary may optimize adversarial examples for [Evade AI Model](/techniques/AML.T0015),
+    or to [Erode AI Model Integrity](/techniques/AML.T0031).'
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0059
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.2019
+  uncertainty_score: 1.9145
+  signals:
+    bridge: 0.1045
+    semantic: 0.2434
+    keyword: 0.0118
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Dataset-integrity erosion is not prompt injection.
+  source_name: Erode Dataset Integrity
+  source_description: Adversaries may poison or manipulate portions of a dataset to
+    reduce its usefulness, reduce trust, and cause users to waste resources correcting
+    errors.
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0081
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3478
+  uncertainty_score: 1.9135
+  signals:
+    bridge: 0.0
+    semantic: 0.6625
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Agent config modification is unrelated to sensitive-info disclosure.
+  source_name: Modify AI Agent Configuration
+  source_description: 'Adversaries may modify the configuration files for AI agents
+    on a system. This allows malicious changes to persist beyond the life of a single
+    agent and affects any agents that share the configuration.
+
+
+    Configuration changes may include modifications to the system prompt, tampering
+    with or replacing knowledge sources, modification to settings of connected tools,
+    and more. Through those changes, an attacker could redirect outputs or tools to
+    malicious services, embed covert instructions that exfiltrate data, or weaken
+    security controls that normally restrict agent behavior.
+
+
+    Adversaries may modify or disable a configuration setting related to security
+    controls, such as those that would prevent the AI Agent from taking actions that
+    may be harmful to the user''s system without human-in-the-loop oversight. Disabling
+    AI agent security features may allow adversaries to achieve their malicious goals
+    and maintain long-term corruption of the AI agent.'
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0099
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.3522
+  uncertainty_score: 1.9119
+  signals:
+    bridge: 0.0
+    semantic: 0.6709
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Tool-data poisoning can cause downstream misinformation in agent outputs.
+  source_name: AI Agent Tool Data Poisoning
+  source_description: 'Adversaries may place malicious content on a victim''s system
+    where it can be retrieved by an AI Agent Tool. This may be accomplished by placing
+    documents in a location that will be ingested by a service the AI agent has associated
+    tools for.
+
+
+    The content may be targeted such that it would often be retrieved by common queries.
+    The adversary''s content may include false or misleading information. It may also
+    include prompt injections with malicious instructions.'
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0069.002
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.2023
+  uncertainty_score: 1.9099
+  signals:
+    bridge: 0.0
+    semantic: 0.3852
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: System prompt defines agency boundaries; weak link to excessive-agency mitigation.
+  source_name: System Prompt
+  source_description: Adversaries may discover a large language model's system instructions
+    provided by the AI system builder to learn about the system's capabilities and
+    circumvent its guardrails.
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0018.001
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3476
+  uncertainty_score: 1.906
+  signals:
+    bridge: 0.1085
+    semantic: 0.5227
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Modifying model architecture is unrelated to excessive agency.
+  source_name: Modify AI Model Architecture
+  source_description: 'Adversaries may directly modify an AI model''s architecture
+    to re-define it''s behavior. This can include adding or removing layers as well
+    as adding pre or post-processing operations.
+
+
+    The effects could include removing the ability to predict certain classes, adding
+    erroneous operations to increase computation costs, or degrading performance.
+    Additionally, a separate adversary-defined network could be injected into the
+    computation graph, which can change the behavior based on the inputs, effectively
+    creating a backdoor.'
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0020
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.3524
+  uncertainty_score: 1.9058
+  signals:
+    bridge: 0.0311
+    semantic: 0.6312
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Training-data poisoning can distort embedding space and weaken vector integrity.
+  source_name: Poison Training Data
+  source_description: 'Adversaries may attempt to poison datasets used by an AI model
+    by modifying the underlying data or its labels.
+
+    This allows the adversary to embed vulnerabilities in AI models trained on the
+    data that may not be easily detectable.
+
+    Data poisoning attacks may or may not require modifying the labels.
+
+    The embedded vulnerability is activated at a later time by data samples with an
+    [Insert Backdoor Trigger](/techniques/AML.T0043.004)
+
+
+    Poisoned data can be introduced via [AI Supply Chain Compromise](/techniques/AML.T0010)
+    or the data may be poisoned after the adversary gains [Initial Access](/tactics/AML.TA0004)
+    to the system.'
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0108
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3476
+  uncertainty_score: 1.9051
+  signals:
+    bridge: 0.0
+    semantic: 0.6621
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: The AI-agent asset is the locus where excessive agency manifests.
+  source_name: AI Agent
+  source_description: 'Adversaries may abuse AI agents present on the victim''s system
+    for command and control. AI agents are often granted access to tools that can
+    execute shell commands, reach out to the internet, and interact with other services
+    in the victim''s environment, making them capable C2 agents.
+
+
+    The adversary may modify the behavior of an AI agent for C2 via [LLM Prompt Injection](/techniques/AML.T0051)
+    and rely on the agent''s ability to invoke tools to retrieve and execute the adversary''s
+    commands. They may maintain persistent control of an agent via [Modify AI Agent
+    Configuration](/techniques/AML.T0081) or [AI Agent Context Poisoning](/techniques/AML.T0080).
+    They may instruct the agent to not report their actions to the user in an attempt
+    to remain covert.'
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0008.000
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3524
+  uncertainty_score: 1.905
+  signals:
+    bridge: 0.0
+    semantic: 0.6712
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: AI development workspaces are dev infrastructure, unrelated to excessive
+    agency.
+  source_name: AI Development Workspaces
+  source_description: 'Developing and staging AI attacks often requires expensive
+    compute resources.
+
+    Adversaries may need access to one or many GPUs in order to develop an attack.
+
+    They may try to anonymously use free resources such as Google Colaboratory, or
+    cloud resources such as AWS, Azure, or Google Cloud as an efficient way to stand
+    up temporary resources to conduct operations.
+
+    Multiple workspaces may be used to avoid detection.'
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0015
+  target_node_id: owasp_llm:LLM05
+  composite_score: 0.1976
+  uncertainty_score: 1.9046
+  signals:
+    bridge: 0.0479
+    semantic: 0.3148
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Model evasion attacks are not improper output handling.
+  source_name: Evade AI Model
+  source_description: 'Adversaries can [Craft Adversarial Data](/techniques/AML.T0043)
+    that prevents an AI model from correctly identifying the contents of the data
+    or [Generate Deepfakes](/techniques/AML.T0088) that fools an AI model expecting
+    authentic data.
+
+
+    This technique can be used to evade a downstream task where AI is utilized. The
+    adversary may evade AI-based virus/malware detection or network scanning towards
+    the goal of a traditional cyber attack. AI model evasion through deepfake generation
+    may also provide initial access to systems that use AI-based biometric authentication.'
+  target_name: Improper Output Handling
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0084.002
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3524
+  uncertainty_score: 1.9043
+  signals:
+    bridge: 0.0
+    semantic: 0.6712
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Backdoor activation triggers are a canonical instance of data/model poisoning.
+  source_name: Activation Triggers
+  source_description: 'Adversaries may discover keywords or other triggers (such as
+    incoming emails, documents being added, incoming message, or other workflows)
+    that activate an agent and may cause it to run additional actions.
+
+
+    Understanding these triggers can reveal how the AI agent is activated and controlled.
+    This may also expose additional paths for compromise, as an adversary could attempt
+    to trigger the agent from outside its environment and drive it to perform unintended
+    or malicious actions.'
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0012
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.3476
+  uncertainty_score: 1.9039
+  signals:
+    bridge: 0.0
+    semantic: 0.6621
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Valid-accounts technique is unrelated to system prompt leakage.
+  source_name: Valid Accounts
+  source_description: 'Adversaries may obtain and abuse credentials of existing accounts
+    as a means of gaining Initial Access.
+
+    Credentials may take the form of usernames and passwords of individual user accounts
+    or API keys that provide access to various AI resources and services.
+
+
+    Compromised credentials may provide access to additional AI artifacts and allow
+    the adversary to perform [Discover AI Artifacts](/techniques/AML.T0007).
+
+    Compromised credentials may also grant an adversary increased privileges such
+    as write access to AI artifacts used during development or production.'
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: mitre_atlas:AML.M0005
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.5524
+  uncertainty_score: 1.9032
+  signals:
+    bridge: 0.2799
+    semantic: 0.6924
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Access control to models/data at rest restricts the scope an over-agentic
+    LLM can act upon.
+  source_name: Control Access to AI Models and Data at Rest
+  source_description: 'Establish access controls on internal model registries and
+    limit internal access to production models. Limit access to training data only
+    to approved users.
+
+    '
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0025
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3525
+  uncertainty_score: 1.9006
+  signals:
+    bridge: 0.1101
+    semantic: 0.5298
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Exfiltration is a consequence of excessive agency, not the agency control
+    itself.
+  source_name: Exfiltration via Cyber Means
+  source_description: 'Adversaries may exfiltrate AI artifacts or other information
+    relevant to their goals via traditional cyber means.
+
+
+    See the ATT&CK [Exfiltration](https://attack.mitre.org/tactics/TA0010/) tactic
+    for more information.'
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: mitre_atlas:AML.T0043.002
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.348
+  uncertainty_score: 1.8996
+  signals:
+    bridge: 0.0935
+    semantic: 0.5313
+    keyword: 0.0198
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Black-box transfer attack is not sensitive-info disclosure.
+  source_name: Black-Box Transfer
+  source_description: 'In Black-Box Transfer attacks, the adversary uses one or more
+    proxy models (trained via [Create Proxy AI Model](/techniques/AML.T0005) or [Train
+    Proxy via Replication](/techniques/AML.T0005.001)) they have full access to and
+    are representative of the target model.
+
+    The adversary uses [White-Box Optimization](/techniques/AML.T0043.000) on the
+    proxy models to generate adversarial examples.
+
+    If the set of proxy models are close enough to the target model, the adversarial
+    example should generalize from one to another.
+
+    This means that an attack that works for the proxy models will likely then work
+    for the target model.
+
+    If the adversary has [AI Model Inference API Access](/techniques/AML.T0040), they
+    may use [Verify Attack](/techniques/AML.T0042) to confirm the attack is working
+    and incorporate that information into their training process.
+
+    '
+  target_name: Sensitive Information Disclosure
+  target_description: ''

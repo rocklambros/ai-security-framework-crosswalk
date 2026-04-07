@@ -1,0 +1,6172 @@
+{
+  "metadata": {
+    "schema_version": "2.0",
+    "generated_at": "2026-04-07T17:32:26.553105+00:00",
+    "methodology": "multi-signal-hybrid-v2",
+    "source_standard": {
+      "name": "mitre_atlas",
+      "version": "unknown",
+      "controls": 202
+    },
+    "target_standard": {
+      "name": "owasp_llm",
+      "version": "unknown",
+      "entries": 10
+    },
+    "pipeline": {
+      "signals": {
+        "bridge": {
+          "weight": 0.45,
+          "technique": "2-hop weighted Jaccard on crosswalk graph"
+        },
+        "semantic": {
+          "weight": 0.35,
+          "technique": "Sentence-transformer cosine (BAAI/bge-large-en-v1.5)"
+        },
+        "keyword": {
+          "weight": 0.2,
+          "technique": "TF-IDF cosine with synonym expansion"
+        },
+        "function_match": {
+          "weight": 0.5,
+          "technique": "Multiplicative boost when function class matches target profile"
+        }
+      },
+      "thresholds": {
+        "direct": 0.55,
+        "related": 0.35,
+        "governance_floor": 0.22,
+        "tangential": 0.2
+      }
+    },
+    "classification": {
+      "rationale_taxonomy": {
+        "PREV": "Prevent",
+        "SCOPE": "Constrain scope",
+        "GATE": "Human gate",
+        "DETECT": "Detect and trace",
+        "VALID": "Validate and test",
+        "GOVERN": "Policy and governance",
+        "ISOLATE": "Isolate and contain",
+        "DISCLOSE": "Disclose and calibrate"
+      },
+      "relevance_levels": [
+        "Primary",
+        "Secondary"
+      ]
+    }
+  },
+  "summary": {
+    "controls_mapped": "73 / 202",
+    "controls_unmapped": 129,
+    "owasp_entries_with_matches": 6,
+    "total_mappings": 81,
+    "primary_mappings": 0,
+    "secondary_mappings": 81,
+    "rationale_distribution": {
+      "SCOPE": 12,
+      "PREV": 11,
+      "DETECT": 11,
+      "GOVERN": 36,
+      "GATE": 2,
+      "ISOLATE": 5,
+      "DISCLOSE": 2,
+      "VALID": 2
+    }
+  },
+  "control_level": {
+    "source_to_target": [
+      {
+        "control_id": "AML.M0000",
+        "control_title": "Limit Public Release of Information",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM02",
+            "owasp_title": "Sensitive Information Disclosure",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5411,
+            "signals": {
+              "bridge": 0.0845,
+              "semantic": 0.9025,
+              "keyword": 0.0342,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1911,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0001",
+        "control_title": "Limit Model Artifact Release",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5154,
+            "signals": {
+              "bridge": 0.0529,
+              "semantic": 0.88,
+              "keyword": 0.0589,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1654,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0002",
+        "control_title": "Passive AI Output Obfuscation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0003",
+        "control_title": "Model Hardening",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0004",
+        "control_title": "Restrict Number of AI Model Queries",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 3,
+        "primary_count": 0,
+        "secondary_count": 3,
+        "mappings": [
+          {
+            "owasp_id": "LLM10",
+            "owasp_title": "Unbounded Consumption",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6147,
+            "signals": {
+              "bridge": 0.2837,
+              "semantic": 0.8061,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0647,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6138,
+            "signals": {
+              "bridge": 0.2491,
+              "semantic": 0.8356,
+              "keyword": 0.0232,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0638,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "LLM06",
+            "owasp_title": "Excessive Agency",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5279,
+            "signals": {
+              "bridge": 0.1922,
+              "semantic": 0.7584,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1779,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0005",
+        "control_title": "Control Access to AI Models and Data at Rest",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 3,
+        "primary_count": 0,
+        "secondary_count": 3,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5379,
+            "signals": {
+              "bridge": 0.068,
+              "semantic": 0.9039,
+              "keyword": 0.0582,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1879,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "LLM02",
+            "owasp_title": "Sensitive Information Disclosure",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5342,
+            "signals": {
+              "bridge": 0.2647,
+              "semantic": 0.6772,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1842,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "LLM06",
+            "owasp_title": "Excessive Agency",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5146,
+            "signals": {
+              "bridge": 0.2239,
+              "semantic": 0.6924,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1646,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0006",
+        "control_title": "Use Ensemble Methods",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0007",
+        "control_title": "Sanitize Training Data",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5591,
+            "signals": {
+              "bridge": 0.0702,
+              "semantic": 0.9357,
+              "keyword": 0.0681,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0091,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0008",
+        "control_title": "Validate AI Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6033,
+            "signals": {
+              "bridge": 0.0946,
+              "semantic": 0.9458,
+              "keyword": 0.143,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0533,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0009",
+        "control_title": "Use Multi-Modal Sensors",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0010",
+        "control_title": "Input Restoration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5342,
+            "signals": {
+              "bridge": 0.0735,
+              "semantic": 0.9058,
+              "keyword": 0.0299,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1842,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0011",
+        "control_title": "Restrict Library Loading",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0012",
+        "control_title": "Encrypt Sensitive Information",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0013",
+        "control_title": "Code Signing",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0014",
+        "control_title": "Verify AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0015",
+        "control_title": "Adversarial Input Detection",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.6296,
+            "signals": {
+              "bridge": 0.2071,
+              "semantic": 0.9232,
+              "keyword": 0.0169,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0796,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.538,
+            "signals": {
+              "bridge": 0.3303,
+              "semantic": 0.3956,
+              "keyword": 0.3577,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.188,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0016",
+        "control_title": "Vulnerability Scanning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5307,
+            "signals": {
+              "bridge": 0.0655,
+              "semantic": 0.9139,
+              "keyword": 0.0222,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1807,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0017",
+        "control_title": "AI Model Distribution Methods",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5085,
+            "signals": {
+              "bridge": 0.026,
+              "semantic": 0.9138,
+              "keyword": 0.0372,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1585,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0018",
+        "control_title": "User Training",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0019",
+        "control_title": "Control Access to AI Models and Data in Production",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "LLM02",
+            "owasp_title": "Sensitive Information Disclosure",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5977,
+            "signals": {
+              "bridge": 0.3019,
+              "semantic": 0.7503,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0477,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5402,
+            "signals": {
+              "bridge": 0.068,
+              "semantic": 0.9114,
+              "keyword": 0.0526,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1902,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0020",
+        "control_title": "Generative AI Guardrails",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5167,
+            "signals": {
+              "bridge": 0.0768,
+              "semantic": 0.8602,
+              "keyword": 0.0443,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1667,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0021",
+        "control_title": "Generative AI Guidelines",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5926,
+            "signals": {
+              "bridge": 0.3341,
+              "semantic": 0.6629,
+              "keyword": 0.0635,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0426,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5565,
+            "signals": {
+              "bridge": 0.1812,
+              "semantic": 0.8143,
+              "keyword": 0.0224,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0065,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0022",
+        "control_title": "Generative AI Model Alignment",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.5152,
+            "signals": {
+              "bridge": 0.0274,
+              "semantic": 0.9296,
+              "keyword": 0.0289,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1652,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0023",
+        "control_title": "AI Bill of Materials",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM03",
+            "owasp_title": "Supply Chain",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5531,
+            "signals": {
+              "bridge": 0.0176,
+              "semantic": 0.886,
+              "keyword": 0.2533,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0031,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0024",
+        "control_title": "AI Telemetry Logging",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5612,
+            "signals": {
+              "bridge": 0.1325,
+              "semantic": 0.8911,
+              "keyword": 0.0133,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0112,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "LLM06",
+            "owasp_title": "Excessive Agency",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5121,
+            "signals": {
+              "bridge": 0.2348,
+              "semantic": 0.6736,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1621,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0025",
+        "control_title": "Maintain AI Dataset Provenance",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate",
+            "score": 0.5321,
+            "signals": {
+              "bridge": 0.0678,
+              "semantic": 0.9264,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1821,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.M0026",
+        "control_title": "Privileged AI Agent Permissions Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0027",
+        "control_title": "Single-User AI Agent Permissions Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0028",
+        "control_title": "AI Agent Tools Permissions Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0029",
+        "control_title": "Human In-the-Loop for AI Agent Actions",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0030",
+        "control_title": "Restrict AI Agent Tool Invocation on Untrusted Data",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0031",
+        "control_title": "Memory Hardening",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0032",
+        "control_title": "Segmentation of AI Agent Components",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0033",
+        "control_title": "Input and Output Validation for AI Agent Components",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.M0034",
+        "control_title": "Deepfake Detection",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0000",
+        "control_title": "Search Open Technical Databases",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0000.000",
+        "control_title": "Journals and Conference Proceedings",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0000.001",
+        "control_title": "Pre-Print Repositories",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0000.002",
+        "control_title": "Technical Blogs",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0001",
+        "control_title": "Search Open AI Vulnerability Analysis",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0002",
+        "control_title": "Acquire Public AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0002.000",
+        "control_title": "Datasets",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0002.001",
+        "control_title": "Models",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5281,
+            "signals": {
+              "bridge": 0.0536,
+              "semantic": 0.9225,
+              "keyword": 0.0255,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1781,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0003",
+        "control_title": "Search Victim-Owned Websites",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0004",
+        "control_title": "Search Application Repositories",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0005",
+        "control_title": "Create Proxy AI Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5276,
+            "signals": {
+              "bridge": 0.0449,
+              "semantic": 0.9296,
+              "keyword": 0.0308,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1776,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0005.000",
+        "control_title": "Train Proxy via Gathered AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5442,
+            "signals": {
+              "bridge": 0.0172,
+              "semantic": 0.9239,
+              "keyword": 0.1583,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1942,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0005.001",
+        "control_title": "Train Proxy via Replication",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5229,
+            "signals": {
+              "bridge": 0.0366,
+              "semantic": 0.9184,
+              "keyword": 0.0535,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1729,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0005.002",
+        "control_title": "Use Pre-Trained Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0006",
+        "control_title": "Active Scanning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0007",
+        "control_title": "Discover AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0008",
+        "control_title": "Acquire Infrastructure",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0008.000",
+        "control_title": "AI Development Workspaces",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0008.001",
+        "control_title": "Consumer Hardware",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0008.002",
+        "control_title": "Domains",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6337,
+            "signals": {
+              "bridge": 0.2667,
+              "semantic": 0.8643,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0837,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0008.003",
+        "control_title": "Physical Countermeasures",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0008.004",
+        "control_title": "Serverless",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0008.005",
+        "control_title": "AI Service Proxies",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0010",
+        "control_title": "AI Supply Chain Compromise",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM03",
+            "owasp_title": "Supply Chain",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5966,
+            "signals": {
+              "bridge": 0.0469,
+              "semantic": 0.863,
+              "keyword": 0.3728,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0466,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0010.000",
+        "control_title": "Hardware",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM03",
+            "owasp_title": "Supply Chain",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5484,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.8253,
+              "keyword": 0.3836,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1984,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0010.001",
+        "control_title": "AI Software",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5404,
+            "signals": {
+              "bridge": 0.0725,
+              "semantic": 0.9362,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1904,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0010.002",
+        "control_title": "Data",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate",
+            "score": 0.5966,
+            "signals": {
+              "bridge": 0.1622,
+              "semantic": 0.9069,
+              "keyword": 0.0367,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0466,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0010.003",
+        "control_title": "Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.564,
+            "signals": {
+              "bridge": 0.0879,
+              "semantic": 0.9445,
+              "keyword": 0.0293,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.014,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0010.004",
+        "control_title": "Container Registry",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0010.005",
+        "control_title": "AI Agent Tool",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0011",
+        "control_title": "User Execution",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5116,
+            "signals": {
+              "bridge": 0.0476,
+              "semantic": 0.9133,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1616,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0011.000",
+        "control_title": "Unsafe AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5215,
+            "signals": {
+              "bridge": 0.0417,
+              "semantic": 0.9322,
+              "keyword": 0.013,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1715,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0011.001",
+        "control_title": "Malicious Package",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5029,
+            "signals": {
+              "bridge": 0.029,
+              "semantic": 0.9206,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1529,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0011.002",
+        "control_title": "Poisoned AI Agent Tool",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5261,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.8508,
+              "keyword": 0.2646,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1761,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0011.003",
+        "control_title": "Malicious Link",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0012",
+        "control_title": "Valid Accounts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0013",
+        "control_title": "Discover AI Model Ontology",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5192,
+            "signals": {
+              "bridge": 0.0462,
+              "semantic": 0.9077,
+              "keyword": 0.0382,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1692,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0014",
+        "control_title": "Discover AI Model Family",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5062,
+            "signals": {
+              "bridge": 0.0405,
+              "semantic": 0.8851,
+              "keyword": 0.0473,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1562,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0015",
+        "control_title": "Evade AI Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5617,
+            "signals": {
+              "bridge": 0.0822,
+              "semantic": 0.9288,
+              "keyword": 0.0619,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0117,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0016",
+        "control_title": "Obtain Capabilities",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0016.000",
+        "control_title": "Adversarial AI Attack Implementations",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0016.001",
+        "control_title": "Software Tools",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0016.002",
+        "control_title": "Generative AI",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0017",
+        "control_title": "Develop Capabilities",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0017.000",
+        "control_title": "Adversarial AI Attacks",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0018",
+        "control_title": "Manipulate AI Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5925,
+            "signals": {
+              "bridge": 0.0946,
+              "semantic": 0.9438,
+              "keyword": 0.1105,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0425,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0018.000",
+        "control_title": "Poison AI Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5561,
+            "signals": {
+              "bridge": 0.0676,
+              "semantic": 0.9434,
+              "keyword": 0.0507,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0061,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0018.001",
+        "control_title": "Modify AI Model Architecture",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.528,
+            "signals": {
+              "bridge": 0.0435,
+              "semantic": 0.9378,
+              "keyword": 0.0209,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.178,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0018.002",
+        "control_title": "Embed Malware",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0019",
+        "control_title": "Publish Poisoned Datasets",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6381,
+            "signals": {
+              "bridge": 0.2034,
+              "semantic": 0.9377,
+              "keyword": 0.0284,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0881,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0020",
+        "control_title": "Poison Training Data",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6188,
+            "signals": {
+              "bridge": 0.1446,
+              "semantic": 0.9388,
+              "keyword": 0.0945,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0688,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0021",
+        "control_title": "Establish Accounts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0024",
+        "control_title": "Exfiltration via AI Inference API",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM02",
+            "owasp_title": "Sensitive Information Disclosure",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5446,
+            "signals": {
+              "bridge": 0.1362,
+              "semantic": 0.8451,
+              "keyword": 0.0299,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1946,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0024.000",
+        "control_title": "Infer Training Data Membership",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5061,
+            "signals": {
+              "bridge": 0.0366,
+              "semantic": 0.8789,
+              "keyword": 0.0664,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1561,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0024.001",
+        "control_title": "Invert AI Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5139,
+            "signals": {
+              "bridge": 0.0366,
+              "semantic": 0.9015,
+              "keyword": 0.0532,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1639,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0024.002",
+        "control_title": "Extract AI Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5533,
+            "signals": {
+              "bridge": 0.0778,
+              "semantic": 0.935,
+              "keyword": 0.0332,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0033,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0025",
+        "control_title": "Exfiltration via Cyber Means",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5023,
+            "signals": {
+              "bridge": 0.0968,
+              "semantic": 0.8323,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1523,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0029",
+        "control_title": "Denial of AI Service",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5202,
+            "signals": {
+              "bridge": 0.0769,
+              "semantic": 0.892,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1702,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0031",
+        "control_title": "Erode AI Model Integrity",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5551,
+            "signals": {
+              "bridge": 0.0806,
+              "semantic": 0.9226,
+              "keyword": 0.0544,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0051,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0034",
+        "control_title": "Cost Harvesting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0034.000",
+        "control_title": "Excessive Queries",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0034.001",
+        "control_title": "Resource-Intensive Queries",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0034.002",
+        "control_title": "Agentic Resource Consumption",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0035",
+        "control_title": "AI Artifact Collection",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5192,
+            "signals": {
+              "bridge": 0.0282,
+              "semantic": 0.9306,
+              "keyword": 0.0386,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1692,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0036",
+        "control_title": "Data from Information Repositories",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0037",
+        "control_title": "Data from Local System",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0040",
+        "control_title": "AI Model Inference API Access",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.501,
+            "signals": {
+              "bridge": 0.013,
+              "semantic": 0.9112,
+              "keyword": 0.0463,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.151,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0041",
+        "control_title": "Physical Environment Access",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0042",
+        "control_title": "Verify Attack",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5291,
+            "signals": {
+              "bridge": 0.0602,
+              "semantic": 0.9163,
+              "keyword": 0.0247,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1791,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0043",
+        "control_title": "Craft Adversarial Data",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6213,
+            "signals": {
+              "bridge": 0.1875,
+              "semantic": 0.9189,
+              "keyword": 0.0412,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0713,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0043.000",
+        "control_title": "White-Box Optimization",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5344,
+            "signals": {
+              "bridge": 0.0886,
+              "semantic": 0.8859,
+              "keyword": 0.0316,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1844,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0043.001",
+        "control_title": "Black-Box Optimization",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5465,
+            "signals": {
+              "bridge": 0.0706,
+              "semantic": 0.9386,
+              "keyword": 0.0204,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1965,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0043.002",
+        "control_title": "Black-Box Transfer",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5499,
+            "signals": {
+              "bridge": 0.0806,
+              "semantic": 0.9288,
+              "keyword": 0.0261,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1999,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0043.003",
+        "control_title": "Manual Modification",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5629,
+            "signals": {
+              "bridge": 0.08,
+              "semantic": 0.9277,
+              "keyword": 0.073,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0129,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0043.004",
+        "control_title": "Insert Backdoor Trigger",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5279,
+            "signals": {
+              "bridge": 0.0882,
+              "semantic": 0.8673,
+              "keyword": 0.0434,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1779,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0044",
+        "control_title": "Full AI Model Access",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5204,
+            "signals": {
+              "bridge": 0.0323,
+              "semantic": 0.9169,
+              "keyword": 0.0575,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1704,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0046",
+        "control_title": "Spamming AI System with Chaff Data",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.5025,
+            "signals": {
+              "bridge": 0.0441,
+              "semantic": 0.8876,
+              "keyword": 0.0224,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1525,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0047",
+        "control_title": "AI-Enabled Product or Service",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0048",
+        "control_title": "External Harms",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0048.000",
+        "control_title": "Financial Harm",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0048.001",
+        "control_title": "Reputational Harm",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0048.002",
+        "control_title": "Societal Harm",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0048.003",
+        "control_title": "User Harm",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0048.004",
+        "control_title": "AI Intellectual Property Theft",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5369,
+            "signals": {
+              "bridge": 0.0833,
+              "semantic": 0.8974,
+              "keyword": 0.0317,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1869,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0049",
+        "control_title": "Exploit Public-Facing Application",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0050",
+        "control_title": "Command and Scripting Interpreter",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0051",
+        "control_title": "LLM Prompt Injection",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6182,
+            "signals": {
+              "bridge": 0.1583,
+              "semantic": 0.8499,
+              "keyword": 0.2169,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0682,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0051.000",
+        "control_title": "Direct",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0051.001",
+        "control_title": "Indirect",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0051.002",
+        "control_title": "Triggered",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5482,
+            "signals": {
+              "bridge": 0.0366,
+              "semantic": 0.848,
+              "keyword": 0.261,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1982,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0052",
+        "control_title": "Phishing",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0052.000",
+        "control_title": "Spearphishing via Social Engineering LLM",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0053",
+        "control_title": "AI Agent Tool Invocation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0054",
+        "control_title": "LLM Jailbreak",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0055",
+        "control_title": "Unsecured Credentials",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0056",
+        "control_title": "Extract LLM System Prompt",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5615,
+            "signals": {
+              "bridge": 0.0519,
+              "semantic": 0.7996,
+              "keyword": 0.3554,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0115,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0057",
+        "control_title": "LLM Data Leakage",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0058",
+        "control_title": "Publish Poisoned Models",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5333,
+            "signals": {
+              "bridge": 0.0392,
+              "semantic": 0.9423,
+              "keyword": 0.0403,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1833,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0059",
+        "control_title": "Erode Dataset Integrity",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6426,
+            "signals": {
+              "bridge": 0.2353,
+              "semantic": 0.9215,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0926,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0060",
+        "control_title": "Publish Hallucinated Entities",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0061",
+        "control_title": "LLM Prompt Self-Replication",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5637,
+            "signals": {
+              "bridge": 0.0519,
+              "semantic": 0.8446,
+              "keyword": 0.2842,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0137,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0062",
+        "control_title": "Discover LLM Hallucinations",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5028,
+            "signals": {
+              "bridge": 0.0633,
+              "semantic": 0.8763,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1528,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0063",
+        "control_title": "Discover AI Model Outputs",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0064",
+        "control_title": "Gather RAG-Indexed Targets",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5142,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.9301,
+              "keyword": 0.0861,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1642,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0065",
+        "control_title": "LLM Prompt Crafting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0066",
+        "control_title": "Retrieval Content Crafting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0067",
+        "control_title": "LLM Trusted Output Components Manipulation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0067.000",
+        "control_title": "Citations",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0068",
+        "control_title": "LLM Prompt Obfuscation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0069",
+        "control_title": "Discover LLM System Information",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0069.000",
+        "control_title": "Special Character Sets",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0069.001",
+        "control_title": "System Instruction Keywords",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0069.002",
+        "control_title": "System Prompt",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0070",
+        "control_title": "RAG Poisoning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0071",
+        "control_title": "False RAG Entry Injection",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0072",
+        "control_title": "Reverse Shell",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0073",
+        "control_title": "Impersonation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0074",
+        "control_title": "Masquerading",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0075",
+        "control_title": "Cloud Service Discovery",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0076",
+        "control_title": "Corrupt AI Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.504,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.9335,
+              "keyword": 0.0464,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.154,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0077",
+        "control_title": "LLM Response Rendering",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0078",
+        "control_title": "Drive-by Compromise",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5116,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.8139,
+              "keyword": 0.2809,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1616,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0079",
+        "control_title": "Stage Capabilities",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0080",
+        "control_title": "AI Agent Context Poisoning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5025,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.906,
+              "keyword": 0.0896,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1525,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0080.000",
+        "control_title": "Memory",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0080.001",
+        "control_title": "Thread",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0081",
+        "control_title": "Modify AI Agent Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0082",
+        "control_title": "RAG Credential Harvesting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0083",
+        "control_title": "Credentials from AI Agent Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0084",
+        "control_title": "Discover AI Agent Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0084.000",
+        "control_title": "Embedded Knowledge",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0084.001",
+        "control_title": "Tool Definitions",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0084.002",
+        "control_title": "Activation Triggers",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0084.003",
+        "control_title": "Call Chains",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0085",
+        "control_title": "Data from AI Services",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0085.000",
+        "control_title": "RAG Databases",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0085.001",
+        "control_title": "AI Agent Tools",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0086",
+        "control_title": "Exfiltration via AI Agent Tool Invocation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0087",
+        "control_title": "Gather Victim Identity Information",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0088",
+        "control_title": "Generate Deepfakes",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0089",
+        "control_title": "Process Discovery",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0090",
+        "control_title": "OS Credential Dumping",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0091",
+        "control_title": "Use Alternate Authentication Material",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0091.000",
+        "control_title": "Application Access Token",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0092",
+        "control_title": "Manipulate User LLM Chat History",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0093",
+        "control_title": "Prompt Infiltration via Public-Facing Application",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0094",
+        "control_title": "Delay Execution of LLM Instructions",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5401,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.901,
+              "keyword": 0.2236,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1901,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0095",
+        "control_title": "Search Open Websites/Domains",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0096",
+        "control_title": "AI Service API",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0097",
+        "control_title": "Virtualization/Sandbox Evasion",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0098",
+        "control_title": "AI Agent Tool Credential Harvesting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0099",
+        "control_title": "AI Agent Tool Data Poisoning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0100",
+        "control_title": "AI Agent Clickbait",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0101",
+        "control_title": "Data Destruction via AI Agent Tool Invocation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0102",
+        "control_title": "Generate Malicious Commands",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0103",
+        "control_title": "Deploy AI Agent",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0104",
+        "control_title": "Publish Poisoned AI Agent Tool",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0105",
+        "control_title": "Escape to Host",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0106",
+        "control_title": "Exploitation for Credential Access",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0107",
+        "control_title": "Exploitation for Defense Evasion",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0108",
+        "control_title": "AI Agent",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0109",
+        "control_title": "AI Supply Chain Rug Pull",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0110",
+        "control_title": "AI Agent Tool Poisoning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5199,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.936,
+              "keyword": 0.0949,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1699,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0111",
+        "control_title": "AI Supply Chain Reputation Inflation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM03",
+            "owasp_title": "Supply Chain",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5148,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.8691,
+              "keyword": 0.1952,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1648,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "AML.T0112",
+        "control_title": "Machine Compromise",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0112.000",
+        "control_title": "Local AI Agent",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "AML.T0112.001",
+        "control_title": "AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5034,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.9357,
+              "keyword": 0.0405,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1534,
+            "needs_review": false
+          }
+        ]
+      }
+    ],
+    "target_to_source": [
+      {
+        "owasp_id": "LLM01",
+        "owasp_title": "Prompt Injection",
+        "owasp_rank": 1,
+        "mapping_count": 9,
+        "primary_count": 0,
+        "secondary_count": 9,
+        "function_coverage": {
+          "GOVERN": 5,
+          "PREV": 3,
+          "ISOLATE": 1
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "AML.T0051",
+            "control_title": "LLM Prompt Injection",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6182,
+            "signals": {
+              "bridge": 0.1583,
+              "semantic": 0.8499,
+              "keyword": 0.2169,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0682,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0021",
+            "control_title": "Generative AI Guidelines",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5926,
+            "signals": {
+              "bridge": 0.3341,
+              "semantic": 0.6629,
+              "keyword": 0.0635,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0426,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0061",
+            "control_title": "LLM Prompt Self-Replication",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5637,
+            "signals": {
+              "bridge": 0.0519,
+              "semantic": 0.8446,
+              "keyword": 0.2842,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0137,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0056",
+            "control_title": "Extract LLM System Prompt",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5615,
+            "signals": {
+              "bridge": 0.0519,
+              "semantic": 0.7996,
+              "keyword": 0.3554,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0115,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0051.002",
+            "control_title": "Triggered",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5482,
+            "signals": {
+              "bridge": 0.0366,
+              "semantic": 0.848,
+              "keyword": 0.261,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1982,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0094",
+            "control_title": "Delay Execution of LLM Instructions",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5401,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.901,
+              "keyword": 0.2236,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1901,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0015",
+            "control_title": "Adversarial Input Detection",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.538,
+            "signals": {
+              "bridge": 0.3303,
+              "semantic": 0.3956,
+              "keyword": 0.3577,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.188,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0011.002",
+            "control_title": "Poisoned AI Agent Tool",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5261,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.8508,
+              "keyword": 0.2646,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1761,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0078",
+            "control_title": "Drive-by Compromise",
+            "domain": "",
+            "function_class": "ISOLATE",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5116,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.8139,
+              "keyword": 0.2809,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1616,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "LLM02",
+        "owasp_title": "Sensitive Information Disclosure",
+        "owasp_rank": 1,
+        "mapping_count": 4,
+        "primary_count": 0,
+        "secondary_count": 4,
+        "function_coverage": {
+          "PREV": 1,
+          "GOVERN": 1,
+          "SCOPE": 2
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "ISOLATE",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "AML.M0019",
+            "control_title": "Control Access to AI Models and Data in Production",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5977,
+            "signals": {
+              "bridge": 0.3019,
+              "semantic": 0.7503,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0477,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0024",
+            "control_title": "Exfiltration via AI Inference API",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5446,
+            "signals": {
+              "bridge": 0.1362,
+              "semantic": 0.8451,
+              "keyword": 0.0299,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1946,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0000",
+            "control_title": "Limit Public Release of Information",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5411,
+            "signals": {
+              "bridge": 0.0845,
+              "semantic": 0.9025,
+              "keyword": 0.0342,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1911,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0005",
+            "control_title": "Control Access to AI Models and Data at Rest",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5342,
+            "signals": {
+              "bridge": 0.2647,
+              "semantic": 0.6772,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1842,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "LLM03",
+        "owasp_title": "Supply Chain",
+        "owasp_rank": 1,
+        "mapping_count": 4,
+        "primary_count": 0,
+        "secondary_count": 4,
+        "function_coverage": {
+          "GOVERN": 3,
+          "ISOLATE": 1
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "AML.T0010",
+            "control_title": "AI Supply Chain Compromise",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5966,
+            "signals": {
+              "bridge": 0.0469,
+              "semantic": 0.863,
+              "keyword": 0.3728,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0466,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0023",
+            "control_title": "AI Bill of Materials",
+            "domain": "",
+            "function_class": "ISOLATE",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5531,
+            "signals": {
+              "bridge": 0.0176,
+              "semantic": 0.886,
+              "keyword": 0.2533,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0031,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0010.000",
+            "control_title": "Hardware",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5484,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.8253,
+              "keyword": 0.3836,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1984,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0111",
+            "control_title": "AI Supply Chain Reputation Inflation",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5148,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.8691,
+              "keyword": 0.1952,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1648,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "LLM04",
+        "owasp_title": "Data and Model Poisoning",
+        "owasp_rank": 1,
+        "mapping_count": 60,
+        "primary_count": 0,
+        "secondary_count": 60,
+        "function_coverage": {
+          "GOVERN": 27,
+          "PREV": 7,
+          "SCOPE": 7,
+          "DETECT": 10,
+          "DISCLOSE": 2,
+          "VALID": 2,
+          "ISOLATE": 3,
+          "GATE": 2
+        },
+        "uncovered_functions": [],
+        "mappings": [
+          {
+            "control_id": "AML.T0059",
+            "control_title": "Erode Dataset Integrity",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6426,
+            "signals": {
+              "bridge": 0.2353,
+              "semantic": 0.9215,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0926,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0019",
+            "control_title": "Publish Poisoned Datasets",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6381,
+            "signals": {
+              "bridge": 0.2034,
+              "semantic": 0.9377,
+              "keyword": 0.0284,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0881,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0008.002",
+            "control_title": "Domains",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6337,
+            "signals": {
+              "bridge": 0.2667,
+              "semantic": 0.8643,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0837,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0015",
+            "control_title": "Adversarial Input Detection",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.6296,
+            "signals": {
+              "bridge": 0.2071,
+              "semantic": 0.9232,
+              "keyword": 0.0169,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0796,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0043",
+            "control_title": "Craft Adversarial Data",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6213,
+            "signals": {
+              "bridge": 0.1875,
+              "semantic": 0.9189,
+              "keyword": 0.0412,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0713,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0020",
+            "control_title": "Poison Training Data",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6188,
+            "signals": {
+              "bridge": 0.1446,
+              "semantic": 0.9388,
+              "keyword": 0.0945,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0688,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0004",
+            "control_title": "Restrict Number of AI Model Queries",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6138,
+            "signals": {
+              "bridge": 0.2491,
+              "semantic": 0.8356,
+              "keyword": 0.0232,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0638,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0008",
+            "control_title": "Validate AI Model",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6033,
+            "signals": {
+              "bridge": 0.0946,
+              "semantic": 0.9458,
+              "keyword": 0.143,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0533,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0010.002",
+            "control_title": "Data",
+            "domain": "",
+            "function_class": "DISCLOSE",
+            "relevance": "Secondary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate",
+            "score": 0.5966,
+            "signals": {
+              "bridge": 0.1622,
+              "semantic": 0.9069,
+              "keyword": 0.0367,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0466,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0018",
+            "control_title": "Manipulate AI Model",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5925,
+            "signals": {
+              "bridge": 0.0946,
+              "semantic": 0.9438,
+              "keyword": 0.1105,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0425,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0010.003",
+            "control_title": "Model",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.564,
+            "signals": {
+              "bridge": 0.0879,
+              "semantic": 0.9445,
+              "keyword": 0.0293,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.014,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0043.003",
+            "control_title": "Manual Modification",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5629,
+            "signals": {
+              "bridge": 0.08,
+              "semantic": 0.9277,
+              "keyword": 0.073,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0129,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0015",
+            "control_title": "Evade AI Model",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5617,
+            "signals": {
+              "bridge": 0.0822,
+              "semantic": 0.9288,
+              "keyword": 0.0619,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0117,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0024",
+            "control_title": "AI Telemetry Logging",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5612,
+            "signals": {
+              "bridge": 0.1325,
+              "semantic": 0.8911,
+              "keyword": 0.0133,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0112,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0007",
+            "control_title": "Sanitize Training Data",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5591,
+            "signals": {
+              "bridge": 0.0702,
+              "semantic": 0.9357,
+              "keyword": 0.0681,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0091,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0021",
+            "control_title": "Generative AI Guidelines",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5565,
+            "signals": {
+              "bridge": 0.1812,
+              "semantic": 0.8143,
+              "keyword": 0.0224,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0065,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0018.000",
+            "control_title": "Poison AI Model",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5561,
+            "signals": {
+              "bridge": 0.0676,
+              "semantic": 0.9434,
+              "keyword": 0.0507,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0061,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0031",
+            "control_title": "Erode AI Model Integrity",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5551,
+            "signals": {
+              "bridge": 0.0806,
+              "semantic": 0.9226,
+              "keyword": 0.0544,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0051,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0024.002",
+            "control_title": "Extract AI Model",
+            "domain": "",
+            "function_class": "ISOLATE",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5533,
+            "signals": {
+              "bridge": 0.0778,
+              "semantic": 0.935,
+              "keyword": 0.0332,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0033,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0043.002",
+            "control_title": "Black-Box Transfer",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5499,
+            "signals": {
+              "bridge": 0.0806,
+              "semantic": 0.9288,
+              "keyword": 0.0261,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1999,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0043.001",
+            "control_title": "Black-Box Optimization",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5465,
+            "signals": {
+              "bridge": 0.0706,
+              "semantic": 0.9386,
+              "keyword": 0.0204,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1965,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0005.000",
+            "control_title": "Train Proxy via Gathered AI Artifacts",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5442,
+            "signals": {
+              "bridge": 0.0172,
+              "semantic": 0.9239,
+              "keyword": 0.1583,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1942,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0010.001",
+            "control_title": "AI Software",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5404,
+            "signals": {
+              "bridge": 0.0725,
+              "semantic": 0.9362,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1904,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0019",
+            "control_title": "Control Access to AI Models and Data in Production",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5402,
+            "signals": {
+              "bridge": 0.068,
+              "semantic": 0.9114,
+              "keyword": 0.0526,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1902,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0005",
+            "control_title": "Control Access to AI Models and Data at Rest",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5379,
+            "signals": {
+              "bridge": 0.068,
+              "semantic": 0.9039,
+              "keyword": 0.0582,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1879,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0048.004",
+            "control_title": "AI Intellectual Property Theft",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5369,
+            "signals": {
+              "bridge": 0.0833,
+              "semantic": 0.8974,
+              "keyword": 0.0317,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1869,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0043.000",
+            "control_title": "White-Box Optimization",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5344,
+            "signals": {
+              "bridge": 0.0886,
+              "semantic": 0.8859,
+              "keyword": 0.0316,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1844,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0010",
+            "control_title": "Input Restoration",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5342,
+            "signals": {
+              "bridge": 0.0735,
+              "semantic": 0.9058,
+              "keyword": 0.0299,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1842,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0058",
+            "control_title": "Publish Poisoned Models",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5333,
+            "signals": {
+              "bridge": 0.0392,
+              "semantic": 0.9423,
+              "keyword": 0.0403,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1833,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0025",
+            "control_title": "Maintain AI Dataset Provenance",
+            "domain": "",
+            "function_class": "DISCLOSE",
+            "relevance": "Secondary",
+            "rationale_code": "DISCLOSE",
+            "rationale_label": "Disclose and calibrate",
+            "score": 0.5321,
+            "signals": {
+              "bridge": 0.0678,
+              "semantic": 0.9264,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1821,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0016",
+            "control_title": "Vulnerability Scanning",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5307,
+            "signals": {
+              "bridge": 0.0655,
+              "semantic": 0.9139,
+              "keyword": 0.0222,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1807,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0042",
+            "control_title": "Verify Attack",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5291,
+            "signals": {
+              "bridge": 0.0602,
+              "semantic": 0.9163,
+              "keyword": 0.0247,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1791,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0002.001",
+            "control_title": "Models",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5281,
+            "signals": {
+              "bridge": 0.0536,
+              "semantic": 0.9225,
+              "keyword": 0.0255,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1781,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0018.001",
+            "control_title": "Modify AI Model Architecture",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.528,
+            "signals": {
+              "bridge": 0.0435,
+              "semantic": 0.9378,
+              "keyword": 0.0209,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.178,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0043.004",
+            "control_title": "Insert Backdoor Trigger",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5279,
+            "signals": {
+              "bridge": 0.0882,
+              "semantic": 0.8673,
+              "keyword": 0.0434,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1779,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0005",
+            "control_title": "Create Proxy AI Model",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5276,
+            "signals": {
+              "bridge": 0.0449,
+              "semantic": 0.9296,
+              "keyword": 0.0308,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1776,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0005.001",
+            "control_title": "Train Proxy via Replication",
+            "domain": "",
+            "function_class": "ISOLATE",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5229,
+            "signals": {
+              "bridge": 0.0366,
+              "semantic": 0.9184,
+              "keyword": 0.0535,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1729,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0011.000",
+            "control_title": "Unsafe AI Artifacts",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5215,
+            "signals": {
+              "bridge": 0.0417,
+              "semantic": 0.9322,
+              "keyword": 0.013,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1715,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0044",
+            "control_title": "Full AI Model Access",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5204,
+            "signals": {
+              "bridge": 0.0323,
+              "semantic": 0.9169,
+              "keyword": 0.0575,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1704,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0029",
+            "control_title": "Denial of AI Service",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5202,
+            "signals": {
+              "bridge": 0.0769,
+              "semantic": 0.892,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1702,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0110",
+            "control_title": "AI Agent Tool Poisoning",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5199,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.936,
+              "keyword": 0.0949,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1699,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0035",
+            "control_title": "AI Artifact Collection",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5192,
+            "signals": {
+              "bridge": 0.0282,
+              "semantic": 0.9306,
+              "keyword": 0.0386,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1692,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0013",
+            "control_title": "Discover AI Model Ontology",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5192,
+            "signals": {
+              "bridge": 0.0462,
+              "semantic": 0.9077,
+              "keyword": 0.0382,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1692,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0020",
+            "control_title": "Generative AI Guardrails",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5167,
+            "signals": {
+              "bridge": 0.0768,
+              "semantic": 0.8602,
+              "keyword": 0.0443,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1667,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0001",
+            "control_title": "Limit Model Artifact Release",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5154,
+            "signals": {
+              "bridge": 0.0529,
+              "semantic": 0.88,
+              "keyword": 0.0589,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1654,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0022",
+            "control_title": "Generative AI Model Alignment",
+            "domain": "",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.5152,
+            "signals": {
+              "bridge": 0.0274,
+              "semantic": 0.9296,
+              "keyword": 0.0289,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1652,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0064",
+            "control_title": "Gather RAG-Indexed Targets",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5142,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.9301,
+              "keyword": 0.0861,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1642,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0024.001",
+            "control_title": "Invert AI Model",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5139,
+            "signals": {
+              "bridge": 0.0366,
+              "semantic": 0.9015,
+              "keyword": 0.0532,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1639,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0011",
+            "control_title": "User Execution",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5116,
+            "signals": {
+              "bridge": 0.0476,
+              "semantic": 0.9133,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1616,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0017",
+            "control_title": "AI Model Distribution Methods",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5085,
+            "signals": {
+              "bridge": 0.026,
+              "semantic": 0.9138,
+              "keyword": 0.0372,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1585,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0014",
+            "control_title": "Discover AI Model Family",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5062,
+            "signals": {
+              "bridge": 0.0405,
+              "semantic": 0.8851,
+              "keyword": 0.0473,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1562,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0024.000",
+            "control_title": "Infer Training Data Membership",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5061,
+            "signals": {
+              "bridge": 0.0366,
+              "semantic": 0.8789,
+              "keyword": 0.0664,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1561,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0076",
+            "control_title": "Corrupt AI Model",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.504,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.9335,
+              "keyword": 0.0464,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.154,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0112.001",
+            "control_title": "AI Artifacts",
+            "domain": "",
+            "function_class": "ISOLATE",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5034,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.9357,
+              "keyword": 0.0405,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1534,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0011.001",
+            "control_title": "Malicious Package",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5029,
+            "signals": {
+              "bridge": 0.029,
+              "semantic": 0.9206,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1529,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0062",
+            "control_title": "Discover LLM Hallucinations",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5028,
+            "signals": {
+              "bridge": 0.0633,
+              "semantic": 0.8763,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1528,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0080",
+            "control_title": "AI Agent Context Poisoning",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5025,
+            "signals": {
+              "bridge": 0.0,
+              "semantic": 0.906,
+              "keyword": 0.0896,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1525,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0046",
+            "control_title": "Spamming AI System with Chaff Data",
+            "domain": "",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.5025,
+            "signals": {
+              "bridge": 0.0441,
+              "semantic": 0.8876,
+              "keyword": 0.0224,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1525,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0025",
+            "control_title": "Exfiltration via Cyber Means",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5023,
+            "signals": {
+              "bridge": 0.0968,
+              "semantic": 0.8323,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1523,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0040",
+            "control_title": "AI Model Inference API Access",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.501,
+            "signals": {
+              "bridge": 0.013,
+              "semantic": 0.9112,
+              "keyword": 0.0463,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.151,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "LLM05",
+        "owasp_title": "Improper Output Handling",
+        "owasp_rank": 1,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "LLM06",
+        "owasp_title": "Excessive Agency",
+        "owasp_rank": 1,
+        "mapping_count": 3,
+        "primary_count": 0,
+        "secondary_count": 3,
+        "function_coverage": {
+          "SCOPE": 2,
+          "DETECT": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "AML.M0004",
+            "control_title": "Restrict Number of AI Model Queries",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5279,
+            "signals": {
+              "bridge": 0.1922,
+              "semantic": 0.7584,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1779,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0005",
+            "control_title": "Control Access to AI Models and Data at Rest",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5146,
+            "signals": {
+              "bridge": 0.2239,
+              "semantic": 0.6924,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1646,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0024",
+            "control_title": "AI Telemetry Logging",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5121,
+            "signals": {
+              "bridge": 0.2348,
+              "semantic": 0.6736,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1621,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "LLM07",
+        "owasp_title": "System Prompt Leakage",
+        "owasp_rank": 1,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "LLM08",
+        "owasp_title": "Vector and Embedding Weaknesses",
+        "owasp_rank": 1,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "LLM09",
+        "owasp_title": "Misinformation",
+        "owasp_rank": 1,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "LLM10",
+        "owasp_title": "Unbounded Consumption",
+        "owasp_rank": 1,
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "function_coverage": {
+          "SCOPE": 1
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "AML.M0004",
+            "control_title": "Restrict Number of AI Model Queries",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6147,
+            "signals": {
+              "bridge": 0.2837,
+              "semantic": 0.8061,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0647,
+            "needs_review": false
+          }
+        ]
+      }
+    ]
+  },
+  "gap_analysis": {
+    "unmapped_controls": [
+      {
+        "control_id": "AML.M0002",
+        "control_title": "Passive AI Output Obfuscation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0003",
+        "control_title": "Model Hardening",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0006",
+        "control_title": "Use Ensemble Methods",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0009",
+        "control_title": "Use Multi-Modal Sensors",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0011",
+        "control_title": "Restrict Library Loading",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0012",
+        "control_title": "Encrypt Sensitive Information",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0013",
+        "control_title": "Code Signing",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0014",
+        "control_title": "Verify AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0018",
+        "control_title": "User Training",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0026",
+        "control_title": "Privileged AI Agent Permissions Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0027",
+        "control_title": "Single-User AI Agent Permissions Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0028",
+        "control_title": "AI Agent Tools Permissions Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0029",
+        "control_title": "Human In-the-Loop for AI Agent Actions",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0030",
+        "control_title": "Restrict AI Agent Tool Invocation on Untrusted Data",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0031",
+        "control_title": "Memory Hardening",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0032",
+        "control_title": "Segmentation of AI Agent Components",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0033",
+        "control_title": "Input and Output Validation for AI Agent Components",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.M0034",
+        "control_title": "Deepfake Detection",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0000",
+        "control_title": "Search Open Technical Databases",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0000.000",
+        "control_title": "Journals and Conference Proceedings",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0000.001",
+        "control_title": "Pre-Print Repositories",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0000.002",
+        "control_title": "Technical Blogs",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0001",
+        "control_title": "Search Open AI Vulnerability Analysis",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0002",
+        "control_title": "Acquire Public AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0002.000",
+        "control_title": "Datasets",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0003",
+        "control_title": "Search Victim-Owned Websites",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0004",
+        "control_title": "Search Application Repositories",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0005.002",
+        "control_title": "Use Pre-Trained Model",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0006",
+        "control_title": "Active Scanning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0007",
+        "control_title": "Discover AI Artifacts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0008",
+        "control_title": "Acquire Infrastructure",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0008.000",
+        "control_title": "AI Development Workspaces",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0008.001",
+        "control_title": "Consumer Hardware",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0008.003",
+        "control_title": "Physical Countermeasures",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0008.004",
+        "control_title": "Serverless",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0008.005",
+        "control_title": "AI Service Proxies",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0010.004",
+        "control_title": "Container Registry",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0010.005",
+        "control_title": "AI Agent Tool",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0011.003",
+        "control_title": "Malicious Link",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0012",
+        "control_title": "Valid Accounts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0016",
+        "control_title": "Obtain Capabilities",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0016.000",
+        "control_title": "Adversarial AI Attack Implementations",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0016.001",
+        "control_title": "Software Tools",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0016.002",
+        "control_title": "Generative AI",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0017",
+        "control_title": "Develop Capabilities",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0017.000",
+        "control_title": "Adversarial AI Attacks",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0018.002",
+        "control_title": "Embed Malware",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0021",
+        "control_title": "Establish Accounts",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0034",
+        "control_title": "Cost Harvesting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0034.000",
+        "control_title": "Excessive Queries",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0034.001",
+        "control_title": "Resource-Intensive Queries",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0034.002",
+        "control_title": "Agentic Resource Consumption",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0036",
+        "control_title": "Data from Information Repositories",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0037",
+        "control_title": "Data from Local System",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0041",
+        "control_title": "Physical Environment Access",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0047",
+        "control_title": "AI-Enabled Product or Service",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0048",
+        "control_title": "External Harms",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0048.000",
+        "control_title": "Financial Harm",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0048.001",
+        "control_title": "Reputational Harm",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0048.002",
+        "control_title": "Societal Harm",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0048.003",
+        "control_title": "User Harm",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0049",
+        "control_title": "Exploit Public-Facing Application",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0050",
+        "control_title": "Command and Scripting Interpreter",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0051.000",
+        "control_title": "Direct",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0051.001",
+        "control_title": "Indirect",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0052",
+        "control_title": "Phishing",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0052.000",
+        "control_title": "Spearphishing via Social Engineering LLM",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0053",
+        "control_title": "AI Agent Tool Invocation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0054",
+        "control_title": "LLM Jailbreak",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0055",
+        "control_title": "Unsecured Credentials",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0057",
+        "control_title": "LLM Data Leakage",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0060",
+        "control_title": "Publish Hallucinated Entities",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0063",
+        "control_title": "Discover AI Model Outputs",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0065",
+        "control_title": "LLM Prompt Crafting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0066",
+        "control_title": "Retrieval Content Crafting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0067",
+        "control_title": "LLM Trusted Output Components Manipulation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0067.000",
+        "control_title": "Citations",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0068",
+        "control_title": "LLM Prompt Obfuscation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0069",
+        "control_title": "Discover LLM System Information",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0069.000",
+        "control_title": "Special Character Sets",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0069.001",
+        "control_title": "System Instruction Keywords",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0069.002",
+        "control_title": "System Prompt",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0070",
+        "control_title": "RAG Poisoning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0071",
+        "control_title": "False RAG Entry Injection",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0072",
+        "control_title": "Reverse Shell",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0073",
+        "control_title": "Impersonation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0074",
+        "control_title": "Masquerading",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0075",
+        "control_title": "Cloud Service Discovery",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0077",
+        "control_title": "LLM Response Rendering",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0079",
+        "control_title": "Stage Capabilities",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0080.000",
+        "control_title": "Memory",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0080.001",
+        "control_title": "Thread",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0081",
+        "control_title": "Modify AI Agent Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0082",
+        "control_title": "RAG Credential Harvesting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0083",
+        "control_title": "Credentials from AI Agent Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0084",
+        "control_title": "Discover AI Agent Configuration",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0084.000",
+        "control_title": "Embedded Knowledge",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0084.001",
+        "control_title": "Tool Definitions",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0084.002",
+        "control_title": "Activation Triggers",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0084.003",
+        "control_title": "Call Chains",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0085",
+        "control_title": "Data from AI Services",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0085.000",
+        "control_title": "RAG Databases",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0085.001",
+        "control_title": "AI Agent Tools",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0086",
+        "control_title": "Exfiltration via AI Agent Tool Invocation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0087",
+        "control_title": "Gather Victim Identity Information",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0088",
+        "control_title": "Generate Deepfakes",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0089",
+        "control_title": "Process Discovery",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0090",
+        "control_title": "OS Credential Dumping",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0091",
+        "control_title": "Use Alternate Authentication Material",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0091.000",
+        "control_title": "Application Access Token",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0092",
+        "control_title": "Manipulate User LLM Chat History",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0093",
+        "control_title": "Prompt Infiltration via Public-Facing Application",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0095",
+        "control_title": "Search Open Websites/Domains",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0096",
+        "control_title": "AI Service API",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0097",
+        "control_title": "Virtualization/Sandbox Evasion",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0098",
+        "control_title": "AI Agent Tool Credential Harvesting",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0099",
+        "control_title": "AI Agent Tool Data Poisoning",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0100",
+        "control_title": "AI Agent Clickbait",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0101",
+        "control_title": "Data Destruction via AI Agent Tool Invocation",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0102",
+        "control_title": "Generate Malicious Commands",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0103",
+        "control_title": "Deploy AI Agent",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0104",
+        "control_title": "Publish Poisoned AI Agent Tool",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0105",
+        "control_title": "Escape to Host",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0106",
+        "control_title": "Exploitation for Credential Access",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0107",
+        "control_title": "Exploitation for Defense Evasion",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0108",
+        "control_title": "AI Agent",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0109",
+        "control_title": "AI Supply Chain Rug Pull",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0112",
+        "control_title": "Machine Compromise",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "AML.T0112.000",
+        "control_title": "Local AI Agent",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      }
+    ],
+    "unmapped_count": 129,
+    "note": "Unmapped controls did not reach the Related threshold under the current pipeline.",
+    "needs_review_count": 17,
+    "needs_review": [
+      {
+        "source_node_id": "mitre_atlas:AML.M0007",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5591,
+        "tier": "Direct",
+        "confidence_gap": 0.0091
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0019",
+        "target_node_id": "owasp_llm:LLM02",
+        "score": 0.5977,
+        "tier": "Direct",
+        "confidence_gap": 0.0477
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0021",
+        "target_node_id": "owasp_llm:LLM01",
+        "score": 0.5926,
+        "tier": "Direct",
+        "confidence_gap": 0.0426
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0021",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5565,
+        "tier": "Direct",
+        "confidence_gap": 0.0065
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0023",
+        "target_node_id": "owasp_llm:LLM03",
+        "score": 0.5531,
+        "tier": "Direct",
+        "confidence_gap": 0.0031
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0024",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5612,
+        "tier": "Direct",
+        "confidence_gap": 0.0112
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0010",
+        "target_node_id": "owasp_llm:LLM03",
+        "score": 0.5966,
+        "tier": "Direct",
+        "confidence_gap": 0.0466
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0010.002",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5966,
+        "tier": "Direct",
+        "confidence_gap": 0.0466
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0010.003",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.564,
+        "tier": "Direct",
+        "confidence_gap": 0.014
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0015",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5617,
+        "tier": "Direct",
+        "confidence_gap": 0.0117
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0018",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5925,
+        "tier": "Direct",
+        "confidence_gap": 0.0425
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0018.000",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5561,
+        "tier": "Direct",
+        "confidence_gap": 0.0061
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0024.002",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5533,
+        "tier": "Direct",
+        "confidence_gap": 0.0033
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0031",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5551,
+        "tier": "Direct",
+        "confidence_gap": 0.0051
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0043.003",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5629,
+        "tier": "Direct",
+        "confidence_gap": 0.0129
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0056",
+        "target_node_id": "owasp_llm:LLM01",
+        "score": 0.5615,
+        "tier": "Direct",
+        "confidence_gap": 0.0115
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0061",
+        "target_node_id": "owasp_llm:LLM01",
+        "score": 0.5637,
+        "tier": "Direct",
+        "confidence_gap": 0.0137
+      }
+    ]
+  }
+}

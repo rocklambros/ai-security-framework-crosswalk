@@ -1,0 +1,1826 @@
+candidates:
+- source_node_id: aiuc_1:E005.1
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.35
+  uncertainty_score: 1.9994
+  signals:
+    bridge: 0.0
+    semantic: 0.6572
+    keyword: 0.0166
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Risk assessment for tool decisions directly addresses tool misuse/exploitation.
+  source_name: Risk assessment and decision record evaluating cloud vs. on-premises
+    factors.
+  source_description: Risk assessment and decision record evaluating cloud vs. on-premises
+    factors.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:B009.2
+  target_node_id: owasp_agentic:ASI04
+  composite_score: 0.2001
+  uncertainty_score: 1.9952
+  signals:
+    bridge: 0.0
+    semantic: 0.3812
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: User-facing output notices weakly relate to agentic supply-chain vulnerabilities.
+  source_name: Providing user-facing notices about output limitations.
+  source_description: Providing user-facing notices about output limitations.
+  target_name: Agentic Supply ChainVulnerabilities
+  target_description: "Agentic Supply Chain Vulnerabilities arise when agents, tools,\
+    \ and related artefacts they work with are provided by third parties and may be\
+    \ malicious, compromised, or tampered with in transit. These can be both static\
+    \ and dynamical sourced components, including models and model weights, tools,\
+    \ plug-ins, datasets, other agents, agentic interfaces - MCP (Model Context Protocol),\
+    \ A2A (Agent2Agent) - agentic registries and related artifacts, or update channels.\
+    \ These dependencies may introduce unsafe code, hidden instructions, or deceptive\
+    \ behaviors into the agent\u2019s execution chain. Supply chain is covered in\
+    \ depth in LLM03:2025 Supply Chain Vulnerabilities. However, its focus is on static\
+    \ dependencies. Unlike traditional AI or software supply chains, agentic ecosystems\
+    \ often compose capabilities at runtime - loading external tools- agent personas\
+    \ dynamically \u2013 thereby increasing the attack surface. This distributed run-time\
+    \ coordination - combined with agentic autonomy - creates a live supply chain\
+    \ that can cascade vulnerabilities across agents. These shifts focus from manifest\
+    \ to run-time security of a diverse and often opaque component. Tackling this\
+    \ problem requires careful development-time tooling and runtime orchestration,\
+    \ where components are dynamically loaded, shared, and trusted. The entry maps\
+    \ to T17 Supply Chain Compromise in Agentic Threats and Mitigations and across\
+    \ T2 Tool Misuse , T11 Unexpected RCE and Code Attacks, T12 Agent Communication\
+    \ Poisoning, T13 Rogue Agent and T16 Insecure Inter-Agent Protocol Abuse ."
+- source_node_id: aiuc_1:B009.1
+  target_node_id: owasp_agentic:ASI01
+  composite_score: 0.3498
+  uncertainty_score: 1.992
+  signals:
+    bridge: 0.0
+    semantic: 0.6639
+    keyword: 0.0042
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Limiting result count weakly relates to agent goal hijack.
+  source_name: Reducing or limiting the number of results shown in outputs to relevant
+    only.
+  source_description: Reducing or limiting the number of results shown in outputs
+    to relevant only.
+  target_name: Agent Goal Hijack
+  target_description: "AI Agents exhibit autonomous ability to execute a series of\
+    \ tasks to achieve a goal. Due to inherent weaknesses in how natural-language\
+    \ instructions and related content are processed, agents and the underlying model\
+    \ cannot reliably distinguish instructions from related content. As a result,\
+    \ attackers can manipulate an agent\u2019s objectives, task selection, or decision\
+    \ pathways through a variety of techniques - including, but not limited to, prompt-based\
+    \ manipulation, deceptive tool outputs, malicious artefacts, forged agent-to-agent\
+    \ messages, or poisoned external data. Because agents rely on untyped natural-language\
+    \ inputs and loosely governed orchestration logic, they cannot reliably distinguish\
+    \ legitimate instructions from attacker -controlled content. Unlike LLM01:2025\
+    \ , which focuses on altering a single model response, ASI01 captures the broader\
+    \ agentic impact where manipulated inputs redirect goals, panning (when used)\
+    \ and multi-step behavior. Agent Goal Hijack differs from ASI06 (Memory & Context\
+    \ Poisoning) and ASI10 (Rogue Agents) because the attacker directly alters the\
+    \ agent\u2019s goals, instructions, or decision pathways - regardless of whether\
+    \ the manipulation occurs interactively or through pre-positioned inputs such\
+    \ as documents, templates, or external data sources. ASI06 focuses on the persistent\
+    \ corruption of stored context or long-term memory, while ASI10 captures autonomous\
+    \ misalignment that emerges without active attacker control. In the OWASP Agentic\
+    \ AI Threats & Mitigations Guide, ASI01 corresponds to T06 Goal Manipulation (altering\
+    \ the agent\u2019s objectives) and T07 Misaligned & Deceptive Behaviors (bypassing\
+    \ safeguards or deceiving humans). Together, these illustrate how attackers can\
+    \ subvert the agent\u2019s objectives and action-selection logic, redirecting\
+    \ its autonomy toward unintended or harmful outcomes."
+- source_node_id: aiuc_1:E012
+  target_node_id: owasp_agentic:ASI08
+  composite_score: 0.1997
+  uncertainty_score: 1.9884
+  signals:
+    bridge: 0.0
+    semantic: 0.4532
+    keyword: 0.006
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Regulatory compliance documentation is unrelated to cascading failures.
+  source_name: Document regulatory compliance
+  source_description: Document applicable AI laws and standards, required data protections,
+    and strategies for compliance.
+  target_name: Cascading Failures
+  target_description: "Agentic cascading failures occur when a single fault (hallucination,\
+    \ malicious input, corrupted tool, or poisoned memory) propagates across autonomous\
+    \ agents, compounding into system-wide harm. Because agents plan, persist, and\
+    \ delegate autonomously, a single error can bypass stepwise human checks and persist\
+    \ in a saved state. As agents form emergent links to new tools or peers, these\
+    \ latent faults chain into privileged operations that compromise confidentiality,\
+    \ integrity, availability, leading to widespread service failures across agent\
+    \ networks, systems, and workflows. Cascading Failures describes the propagation\
+    \ and amplification of an initial fault-not the initial vulnerability itself-across\
+    \ agents, tools, and workflows, turning a single error into system-wide impact.\
+    \ ASI08 focuses on the propagation and amplification of faults rather than their\
+    \ origin. Use the initial defect under ASI04 , ASI06 , or ASI07 when it represents\
+    \ a direct compromise - such as a tainted dependency, poisoned memory, or spoofed\
+    \ message - and apply ASI08 only when that defect spreads across agents, sessions,\
+    \ or workflows , causing measurable fan-out or systemic impact beyond the original\
+    \ breach. Observable symptoms include rapid fan-out where one faulty decision\
+    \ triggers many downstream agents or tasks in a short time, cross-domain or tenant\
+    \ spread beyond the original context, oscillating retries or feedback loops between\
+    \ agents, and downstream queue storms or repeated identical intents-each providing\
+    \ clear detection hooks that make ASI08 operationally actionable. Cascading failures\
+    \ amplify across interconnected agents, chaining OWASP LLM Top 10 risks. LLM01:2025\
+    \ Prompt Injection and LLM06:2025 Excessive Agency can trigger autonomous tool\
+    \ runs that spread errors without human checks, while LLM04:2025 Data and Model\
+    \ Poisoning in persistent memory can skew decisions across sessions and workflows\
+    \ . Agentic AI - Threats and Mitigations 1.1 covers this threat in T5 \u2013 Cascading\
+    \ Hallucination "
+- source_node_id: aiuc_1:C012
+  target_node_id: owasp_agentic:ASI04
+  composite_score: 0.1997
+  uncertainty_score: 1.9876
+  signals:
+    bridge: 0.0
+    semantic: 0.4286
+    keyword: 0.0489
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Customer-defined output testing weakly relates to agentic supply chain.
+  source_name: Third-party testing for customer-defined risk
+  source_description: Appoint expert third-parties to evaluate system robustness to
+    additional high-risk outputs as defined in risk taxonomy.
+  target_name: Agentic Supply ChainVulnerabilities
+  target_description: "Agentic Supply Chain Vulnerabilities arise when agents, tools,\
+    \ and related artefacts they work with are provided by third parties and may be\
+    \ malicious, compromised, or tampered with in transit. These can be both static\
+    \ and dynamical sourced components, including models and model weights, tools,\
+    \ plug-ins, datasets, other agents, agentic interfaces - MCP (Model Context Protocol),\
+    \ A2A (Agent2Agent) - agentic registries and related artifacts, or update channels.\
+    \ These dependencies may introduce unsafe code, hidden instructions, or deceptive\
+    \ behaviors into the agent\u2019s execution chain. Supply chain is covered in\
+    \ depth in LLM03:2025 Supply Chain Vulnerabilities. However, its focus is on static\
+    \ dependencies. Unlike traditional AI or software supply chains, agentic ecosystems\
+    \ often compose capabilities at runtime - loading external tools- agent personas\
+    \ dynamically \u2013 thereby increasing the attack surface. This distributed run-time\
+    \ coordination - combined with agentic autonomy - creates a live supply chain\
+    \ that can cascade vulnerabilities across agents. These shifts focus from manifest\
+    \ to run-time security of a diverse and often opaque component. Tackling this\
+    \ problem requires careful development-time tooling and runtime orchestration,\
+    \ where components are dynamically loaded, shared, and trusted. The entry maps\
+    \ to T17 Supply Chain Compromise in Agentic Threats and Mitigations and across\
+    \ T2 Tool Misuse , T11 Unexpected RCE and Code Attacks, T12 Agent Communication\
+    \ Poisoning, T13 Rogue Agent and T16 Insecure Inter-Agent Protocol Abuse ."
+- source_node_id: aiuc_1:E008.2
+  target_node_id: owasp_agentic:ASI01
+  composite_score: 0.3497
+  uncertainty_score: 1.9873
+  signals:
+    bridge: 0.0
+    semantic: 0.6542
+    keyword: 0.0208
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: External feedback collection weakly relates to goal hijack.
+  source_name: Collect and implement external feedback on AI systems.
+  source_description: Collect and implement external feedback on AI systems.
+  target_name: Agent Goal Hijack
+  target_description: "AI Agents exhibit autonomous ability to execute a series of\
+    \ tasks to achieve a goal. Due to inherent weaknesses in how natural-language\
+    \ instructions and related content are processed, agents and the underlying model\
+    \ cannot reliably distinguish instructions from related content. As a result,\
+    \ attackers can manipulate an agent\u2019s objectives, task selection, or decision\
+    \ pathways through a variety of techniques - including, but not limited to, prompt-based\
+    \ manipulation, deceptive tool outputs, malicious artefacts, forged agent-to-agent\
+    \ messages, or poisoned external data. Because agents rely on untyped natural-language\
+    \ inputs and loosely governed orchestration logic, they cannot reliably distinguish\
+    \ legitimate instructions from attacker -controlled content. Unlike LLM01:2025\
+    \ , which focuses on altering a single model response, ASI01 captures the broader\
+    \ agentic impact where manipulated inputs redirect goals, panning (when used)\
+    \ and multi-step behavior. Agent Goal Hijack differs from ASI06 (Memory & Context\
+    \ Poisoning) and ASI10 (Rogue Agents) because the attacker directly alters the\
+    \ agent\u2019s goals, instructions, or decision pathways - regardless of whether\
+    \ the manipulation occurs interactively or through pre-positioned inputs such\
+    \ as documents, templates, or external data sources. ASI06 focuses on the persistent\
+    \ corruption of stored context or long-term memory, while ASI10 captures autonomous\
+    \ misalignment that emerges without active attacker control. In the OWASP Agentic\
+    \ AI Threats & Mitigations Guide, ASI01 corresponds to T06 Goal Manipulation (altering\
+    \ the agent\u2019s objectives) and T07 Misaligned & Deceptive Behaviors (bypassing\
+    \ safeguards or deceiving humans). Together, these illustrate how attackers can\
+    \ subvert the agent\u2019s objectives and action-selection logic, redirecting\
+    \ its autonomy toward unintended or harmful outcomes."
+- source_node_id: aiuc_1:B008.1
+  target_node_id: owasp_agentic:ASI09
+  composite_score: 0.1995
+  uncertainty_score: 1.9797
+  signals:
+    bridge: 0.0
+    semantic: 0.3787
+    keyword: 0.0023
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Restricting production access reduces human-agent trust exploitation surface.
+  source_name: Restricting access to production AI models based on job function.
+  source_description: Restricting access to production AI models based on job function.
+  target_name: Human-Agent TrustExploitation
+  target_description: Intelligent agents can establish strong trust with human users
+    through their natural language fluency, emotional intelligence, and perceived
+    expertise, known as anthropomorphism . Adversaries or misaligned designs may exploit
+    this trust to influence user decisions, extract sensitive information, or steer
+    outcomes for malicious purposes. In agentic systems, this risk is amplified when
+    humans over-rely on autonomous recommendations or unverifiable rationales, approving
+    actions without independent validation. By leveraging authority bias and persuasive
+    explainability, attackers can bypass oversight, leading to data breaches, financial
+    losses, downstream and reputational harms. The agent acts as an untraceable "bad
+    influence," manipulating the human into performing the final, audited action,
+    making the agent's role in the compromise invisible to forensics. Automation bias,
+    perceived authority, and anthropomorphic cues make abuse look legitimate and hard
+    to spot. Over-reliance on agent recommendations, especially when they appear confident
+    or authoritative, increases the chance of harmful decision-making. This entry
+    is about human misperception or over-reliance whereas ASI10 is agent intent deviation.
+    The entry builds on LLM06:2025 Excessive Agency , and can be caused by LLM01:2025
+    Prompt Injection , LLM05:2025 Improper Output Handling , or results in LLM09:2025
+    Misinformation . Aligns with Agentic AI Threats and Mitigations Guide (T7) Misaligned
+    & Deceptive , (T8) Repudiation & Untraceability , (T10) Overwhelming the Human
+    in the Loop .
+- source_node_id: aiuc_1:C008.1
+  target_node_id: owasp_agentic:ASI07
+  composite_score: 0.2006
+  uncertainty_score: 1.9779
+  signals:
+    bridge: 0.0
+    semantic: 0.382
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Output monitoring helps detect anomalous inter-agent communication.
+  source_name: Establish ongoing monitoring of AI outputs across risk categories through
+    regular evaluations.
+  source_description: Establish ongoing monitoring of AI outputs across risk categories
+    through regular evaluations.
+  target_name: Insecure Inter-AgentCommunication
+  target_description: "Multi agent systems depend on continuous communication between\
+    \ autonomous agents that coordinate via APIs, message buses, and shared memory,\
+    \ significantly expanding the attack surface. Decentralized architecture, varying\
+    \ autonomy, and uneven trust make perimeter-based security models ineffective.\
+    \ Weak inter-agent controls for authentication, integrity, confidentiality, or\
+    \ authorization let attackers intercept, manipulate, spoof, or block messages.\
+    \ Insecure Inter-Agent Communication occurs when these exchanges lack proper authentication,\
+    \ integrity, or semantic validation-allowing interception, spoofing, or manipulation\
+    \ of agent messages and intents. The threat spans transport, routing, discovery,\
+    \ and semantic layers, including covert or side-channels where agents leak or\
+    \ infer data through timing or behavioral cues. This differs from ASI03 (Identity\
+    \ & Privilege Abuse), which focuses on credential and permissions misuse, and\
+    \ ASI06 (Memory & Context Poisoning), which targets stored knowledge corruption.\
+    \ ASI07 focuses on compromising real-time messages between agents, leading to\
+    \ misinformation, privilege confusion, or coordinated manipulation across distributed\
+    \ agentic systems. The entry is covered by T12 \u2013 Agent Communication Poisoning\
+    \ & T16 \u2013 Insecure Inter-Agent Protocol Abuse in Agentic Threats and Mitigations"
+- source_node_id: aiuc_1:A005.3
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.3506
+  uncertainty_score: 1.9761
+  signals:
+    bridge: 0.0
+    semantic: 0.6678
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Privacy-enhancing tech is weakly related to tool misuse.
+  source_name: Implementing privacy-enhancing technologies to reduce competitive exposure.
+  source_description: Implementing privacy-enhancing technologies to reduce competitive
+    exposure.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:E008
+  target_node_id: owasp_agentic:ASI03
+  composite_score: 0.1993
+  uncertainty_score: 1.9735
+  signals:
+    bridge: 0.0432
+    semantic: 0.4004
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Internal process review weakly relates to identity/privilege abuse.
+  source_name: Review internal processes
+  source_description: Establish regular internal reviews of key processes and document
+    review records and approvals.
+  target_name: Identity and PrivilegeAbuse
+  target_description: "Identity & Privilege Abuse exploits dynamic trust and delegation\
+    \ in agents to escalate access and bypass controls by manipulating delegation\
+    \ chains, role inheritance, control flows, and agent context; context includes\
+    \ cached credentials or conversation history across interconnected systems. In\
+    \ this context, identity refers both to the agent\u2019s defined persona and to\
+    \ any authentication material that represents it. Agent-toagent trust or inherited\
+    \ credentials can be exploited to escalate access, hijack privileges, or execute\
+    \ unauthorized actions. This risk arises from the architectural mismatch between\
+    \ user-centric identity systems and agentic design. Without a distinct, governed\
+    \ identity of its own, an agent operates in an attribution gap that makes enforcing\
+    \ true least privilege impossible. Identity in this context includes both the\
+    \ agent\u2019s assigned persona and any authentication material (API keys, OAuth\
+    \ tokens, delegated user sessions) that represent it. This differs scenario in\
+    \ ASI02 (Tools Misuse) which is an unintended or unsafe use of already granted\
+    \ privilege by a principal misusing its own tools. Identity & Privilege Abuse\
+    \ is the agentic evolution of Excessive Agency (LLM06:2025) . It often leverages\
+    \ Prompt Injection (LLM01:2025) , and because of agent permissions, tool integrations,\
+    \ and multi-agent systems, the impact can amplify and exceed Sensitive Information\
+    \ Disclosure (LLM02:2025) to directly compromise the confidentiality, integrity,\
+    \ and availability of systems and data the agent can reach. In the OWASP ASI Threats\
+    \ and Mitigations, it maps one-to-one to T3: Privilege Compromise , and in OWASP\
+    \ AIVSS it corresponds to Core Risk 2: Agent Access Control Violation ."
+- source_node_id: aiuc_1:A007
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.35
+  uncertainty_score: 1.9723
+  signals:
+    bridge: 0.1134
+    semantic: 0.7083
+    keyword: 0.0266
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: IP violation prevention is weakly related to tool misuse.
+  source_name: Prevent IP violations
+  source_description: Implement safeguards and technical controls to prevent AI outputs
+    from violating copyrights, trademarks, or other third-party intellectual property
+    rights.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:E013.3
+  target_node_id: owasp_agentic:ASI01
+  composite_score: 0.199
+  uncertainty_score: 1.9619
+  signals:
+    bridge: 0.0
+    semantic: 0.3791
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Defect tracking and continuous improvement support goal-hijack remediation.
+  source_name: Implementing defect tracking, continuous improvement, and post-market
+    monitoring.
+  source_description: Implementing defect tracking, continuous improvement, and post-market
+    monitoring.
+  target_name: Agent Goal Hijack
+  target_description: "AI Agents exhibit autonomous ability to execute a series of\
+    \ tasks to achieve a goal. Due to inherent weaknesses in how natural-language\
+    \ instructions and related content are processed, agents and the underlying model\
+    \ cannot reliably distinguish instructions from related content. As a result,\
+    \ attackers can manipulate an agent\u2019s objectives, task selection, or decision\
+    \ pathways through a variety of techniques - including, but not limited to, prompt-based\
+    \ manipulation, deceptive tool outputs, malicious artefacts, forged agent-to-agent\
+    \ messages, or poisoned external data. Because agents rely on untyped natural-language\
+    \ inputs and loosely governed orchestration logic, they cannot reliably distinguish\
+    \ legitimate instructions from attacker -controlled content. Unlike LLM01:2025\
+    \ , which focuses on altering a single model response, ASI01 captures the broader\
+    \ agentic impact where manipulated inputs redirect goals, panning (when used)\
+    \ and multi-step behavior. Agent Goal Hijack differs from ASI06 (Memory & Context\
+    \ Poisoning) and ASI10 (Rogue Agents) because the attacker directly alters the\
+    \ agent\u2019s goals, instructions, or decision pathways - regardless of whether\
+    \ the manipulation occurs interactively or through pre-positioned inputs such\
+    \ as documents, templates, or external data sources. ASI06 focuses on the persistent\
+    \ corruption of stored context or long-term memory, while ASI10 captures autonomous\
+    \ misalignment that emerges without active attacker control. In the OWASP Agentic\
+    \ AI Threats & Mitigations Guide, ASI01 corresponds to T06 Goal Manipulation (altering\
+    \ the agent\u2019s objectives) and T07 Misaligned & Deceptive Behaviors (bypassing\
+    \ safeguards or deceiving humans). Together, these illustrate how attackers can\
+    \ subvert the agent\u2019s objectives and action-selection logic, redirecting\
+    \ its autonomy toward unintended or harmful outcomes."
+- source_node_id: aiuc_1:B009
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.3494
+  uncertainty_score: 1.9617
+  signals:
+    bridge: 0.1091
+    semantic: 0.7236
+    keyword: 0.013
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Limiting output over-exposure directly reduces tool-misuse blast radius.
+  source_name: Limit output over-exposure
+  source_description: Implement output limitations and obfuscation techniques to safeguard
+    against information leakage.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:E011.2
+  target_node_id: owasp_agentic:ASI03
+  composite_score: 0.351
+  uncertainty_score: 1.9595
+  signals:
+    bridge: 0.0
+    semantic: 0.6686
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Transfer compliance is unrelated to identity/privilege abuse.
+  source_name: Implementing transfer compliance procedures.
+  source_description: Implementing transfer compliance procedures.
+  target_name: Identity and PrivilegeAbuse
+  target_description: "Identity & Privilege Abuse exploits dynamic trust and delegation\
+    \ in agents to escalate access and bypass controls by manipulating delegation\
+    \ chains, role inheritance, control flows, and agent context; context includes\
+    \ cached credentials or conversation history across interconnected systems. In\
+    \ this context, identity refers both to the agent\u2019s defined persona and to\
+    \ any authentication material that represents it. Agent-toagent trust or inherited\
+    \ credentials can be exploited to escalate access, hijack privileges, or execute\
+    \ unauthorized actions. This risk arises from the architectural mismatch between\
+    \ user-centric identity systems and agentic design. Without a distinct, governed\
+    \ identity of its own, an agent operates in an attribution gap that makes enforcing\
+    \ true least privilege impossible. Identity in this context includes both the\
+    \ agent\u2019s assigned persona and any authentication material (API keys, OAuth\
+    \ tokens, delegated user sessions) that represent it. This differs scenario in\
+    \ ASI02 (Tools Misuse) which is an unintended or unsafe use of already granted\
+    \ privilege by a principal misusing its own tools. Identity & Privilege Abuse\
+    \ is the agentic evolution of Excessive Agency (LLM06:2025) . It often leverages\
+    \ Prompt Injection (LLM01:2025) , and because of agent permissions, tool integrations,\
+    \ and multi-agent systems, the impact can amplify and exceed Sensitive Information\
+    \ Disclosure (LLM02:2025) to directly compromise the confidentiality, integrity,\
+    \ and availability of systems and data the agent can reach. In the OWASP ASI Threats\
+    \ and Mitigations, it maps one-to-one to T3: Privilege Compromise , and in OWASP\
+    \ AIVSS it corresponds to Core Risk 2: Agent Access Control Violation ."
+- source_node_id: aiuc_1:E013.2
+  target_node_id: owasp_agentic:ASI01
+  composite_score: 0.2011
+  uncertainty_score: 1.9573
+  signals:
+    bridge: 0.0
+    semantic: 0.383
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Change management constrains drift that enables goal hijack.
+  source_name: Establishing change management, approval processes.
+  source_description: Establishing change management, approval processes.
+  target_name: Agent Goal Hijack
+  target_description: "AI Agents exhibit autonomous ability to execute a series of\
+    \ tasks to achieve a goal. Due to inherent weaknesses in how natural-language\
+    \ instructions and related content are processed, agents and the underlying model\
+    \ cannot reliably distinguish instructions from related content. As a result,\
+    \ attackers can manipulate an agent\u2019s objectives, task selection, or decision\
+    \ pathways through a variety of techniques - including, but not limited to, prompt-based\
+    \ manipulation, deceptive tool outputs, malicious artefacts, forged agent-to-agent\
+    \ messages, or poisoned external data. Because agents rely on untyped natural-language\
+    \ inputs and loosely governed orchestration logic, they cannot reliably distinguish\
+    \ legitimate instructions from attacker -controlled content. Unlike LLM01:2025\
+    \ , which focuses on altering a single model response, ASI01 captures the broader\
+    \ agentic impact where manipulated inputs redirect goals, panning (when used)\
+    \ and multi-step behavior. Agent Goal Hijack differs from ASI06 (Memory & Context\
+    \ Poisoning) and ASI10 (Rogue Agents) because the attacker directly alters the\
+    \ agent\u2019s goals, instructions, or decision pathways - regardless of whether\
+    \ the manipulation occurs interactively or through pre-positioned inputs such\
+    \ as documents, templates, or external data sources. ASI06 focuses on the persistent\
+    \ corruption of stored context or long-term memory, while ASI10 captures autonomous\
+    \ misalignment that emerges without active attacker control. In the OWASP Agentic\
+    \ AI Threats & Mitigations Guide, ASI01 corresponds to T06 Goal Manipulation (altering\
+    \ the agent\u2019s objectives) and T07 Misaligned & Deceptive Behaviors (bypassing\
+    \ safeguards or deceiving humans). Together, these illustrate how attackers can\
+    \ subvert the agent\u2019s objectives and action-selection logic, redirecting\
+    \ its autonomy toward unintended or harmful outcomes."
+- source_node_id: aiuc_1:C006.3
+  target_node_id: owasp_agentic:ASI04
+  composite_score: 0.3511
+  uncertainty_score: 1.9546
+  signals:
+    bridge: 0.0
+    semantic: 0.6615
+    keyword: 0.0129
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Output-attack detection weakly relates to agentic supply chain.
+  source_name: Detecting advanced output-based attack patterns.
+  source_description: Detecting advanced output-based attack patterns.
+  target_name: Agentic Supply ChainVulnerabilities
+  target_description: "Agentic Supply Chain Vulnerabilities arise when agents, tools,\
+    \ and related artefacts they work with are provided by third parties and may be\
+    \ malicious, compromised, or tampered with in transit. These can be both static\
+    \ and dynamical sourced components, including models and model weights, tools,\
+    \ plug-ins, datasets, other agents, agentic interfaces - MCP (Model Context Protocol),\
+    \ A2A (Agent2Agent) - agentic registries and related artifacts, or update channels.\
+    \ These dependencies may introduce unsafe code, hidden instructions, or deceptive\
+    \ behaviors into the agent\u2019s execution chain. Supply chain is covered in\
+    \ depth in LLM03:2025 Supply Chain Vulnerabilities. However, its focus is on static\
+    \ dependencies. Unlike traditional AI or software supply chains, agentic ecosystems\
+    \ often compose capabilities at runtime - loading external tools- agent personas\
+    \ dynamically \u2013 thereby increasing the attack surface. This distributed run-time\
+    \ coordination - combined with agentic autonomy - creates a live supply chain\
+    \ that can cascade vulnerabilities across agents. These shifts focus from manifest\
+    \ to run-time security of a diverse and often opaque component. Tackling this\
+    \ problem requires careful development-time tooling and runtime orchestration,\
+    \ where components are dynamically loaded, shared, and trusted. The entry maps\
+    \ to T17 Supply Chain Compromise in Agentic Threats and Mitigations and across\
+    \ T2 Tool Misuse , T11 Unexpected RCE and Code Attacks, T12 Agent Communication\
+    \ Poisoning, T13 Rogue Agent and T16 Insecure Inter-Agent Protocol Abuse ."
+- source_node_id: aiuc_1:C007.2
+  target_node_id: owasp_agentic:ASI09
+  composite_score: 0.2012
+  uncertainty_score: 1.9515
+  signals:
+    bridge: 0.0
+    semantic: 0.367
+    keyword: 0.0285
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Detection rules for output-based attacks are canonical human-agent trust
+    exploitation defense.
+  source_name: Detection code, configuration, or rules engine showing high-risk output
+    filtering.
+  source_description: Detection code, configuration, or rules engine showing high-risk
+    output filtering.
+  target_name: Human-Agent TrustExploitation
+  target_description: Intelligent agents can establish strong trust with human users
+    through their natural language fluency, emotional intelligence, and perceived
+    expertise, known as anthropomorphism . Adversaries or misaligned designs may exploit
+    this trust to influence user decisions, extract sensitive information, or steer
+    outcomes for malicious purposes. In agentic systems, this risk is amplified when
+    humans over-rely on autonomous recommendations or unverifiable rationales, approving
+    actions without independent validation. By leveraging authority bias and persuasive
+    explainability, attackers can bypass oversight, leading to data breaches, financial
+    losses, downstream and reputational harms. The agent acts as an untraceable "bad
+    influence," manipulating the human into performing the final, audited action,
+    making the agent's role in the compromise invisible to forensics. Automation bias,
+    perceived authority, and anthropomorphic cues make abuse look legitimate and hard
+    to spot. Over-reliance on agent recommendations, especially when they appear confident
+    or authoritative, increases the chance of harmful decision-making. This entry
+    is about human misperception or over-reliance whereas ASI10 is agent intent deviation.
+    The entry builds on LLM06:2025 Excessive Agency , and can be caused by LLM01:2025
+    Prompt Injection , LLM05:2025 Improper Output Handling , or results in LLM09:2025
+    Misinformation . Aligns with Agentic AI Threats and Mitigations Guide (T7) Misaligned
+    & Deceptive , (T8) Repudiation & Untraceability , (T10) Overwhelming the Human
+    in the Loop .
+- source_node_id: aiuc_1:B008.2
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.3513
+  uncertainty_score: 1.9492
+  signals:
+    bridge: 0.0
+    semantic: 0.654
+    keyword: 0.0263
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Scoped API tokens and TLS are canonical tool-misuse prevention controls.
+  source_name: Applying scoped API tokens, TLS for all endpoint traffic, schema validation.
+  source_description: Applying scoped API tokens, TLS for all endpoint traffic, schema
+    validation.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:C005.2
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.3487
+  uncertainty_score: 1.9486
+  signals:
+    bridge: 0.0
+    semantic: 0.6477
+    keyword: 0.0288
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Escalation procedures for tool failures directly address tool misuse.
+  source_name: Establishing escalation procedures for flagged high-risk content.
+  source_description: Establishing escalation procedures for flagged high-risk content.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:B008.3
+  target_node_id: owasp_agentic:ASI05
+  composite_score: 0.3513
+  uncertainty_score: 1.9482
+  signals:
+    bridge: 0.0
+    semantic: 0.6603
+    keyword: 0.0155
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Hardened model hosting/minimal containers is canonical RCE prevention.
+  source_name: Securing model hosting environments with minimal container images.
+  source_description: Securing model hosting environments with minimal container images.
+  target_name: Unexpected CodeExecution (RCE)
+  target_description: "Agentic systems - including popular vibe coding tools - often\
+    \ generate and execute code. Attackers exploit code-generation features or embedded\
+    \ tool access to escalate actions into remote code execution (RCE), local misuse,\
+    \ or exploitation of internal systems. Because this code is often generated in\
+    \ real-time by the agent it can bypass traditional security controls. Prompt injection,\
+    \ tool misuse, or unsafe serialization can convert text into unintended executable\
+    \ behavior. While code execution can be triggered via the same tool interfaces\
+    \ discussed under ASI02 , ASI05 focuses on unexpected or adversarial execution\
+    \ of code (scripts, binaries, JIT/WASM modules, deserialized objects, template\
+    \ engines, in memory evaluations) that leads to host or container compromise,\
+    \ persistence, or sandbox escape - outcomes that require host and runtime-specific\
+    \ mitigations beyond ordinary tool-use controls. This entry builds on LLM01:2025\
+    \ Prompt Injection and LLM05:2025 Improper Output Handling , reflecting their\
+    \ evolution in agentic systems from a single manipulated output interpreted or\
+    \ executed to orchestrated multi-tool chains that achieve execution through a\
+    \ sequence of otherwise legitimate tool calls. This risk aligns with T11 Unexpected\
+    \ RCE and Code Attacks in Agentic AI \u2013 Threats and Mitigations v1.1 ."
+- source_node_id: aiuc_1:E015.2
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.1987
+  uncertainty_score: 1.9482
+  signals:
+    bridge: 0.0
+    semantic: 0.3557
+    keyword: 0.0398
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Storage retention is weakly related to tool misuse.
+  source_name: Implement storage with retention policies, access controls, and data
+    sanitation.
+  source_description: Implement storage with retention policies, access controls,
+    and data sanitation.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:B003.1
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.3486
+  uncertainty_score: 1.9421
+  signals:
+    bridge: 0.0
+    semantic: 0.662
+    keyword: 0.0033
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Defining limitations and scope constrains tool misuse.
+  source_name: Policy document defining limitations and approval requirements for
+    publicly sharing AI system technical details.
+  source_description: Policy document defining limitations and approval requirements
+    for publicly sharing AI system technical details.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:B008.4
+  target_node_id: owasp_agentic:ASI04
+  composite_score: 0.3485
+  uncertainty_score: 1.939
+  signals:
+    bridge: 0.0
+    semantic: 0.6586
+    keyword: 0.0091
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Model integrity verification is canonical agentic supply-chain defense.
+  source_name: Verifying model integrity before deployment using cryptographic checksums.
+  source_description: Verifying model integrity before deployment using cryptographic
+    checksums.
+  target_name: Agentic Supply ChainVulnerabilities
+  target_description: "Agentic Supply Chain Vulnerabilities arise when agents, tools,\
+    \ and related artefacts they work with are provided by third parties and may be\
+    \ malicious, compromised, or tampered with in transit. These can be both static\
+    \ and dynamical sourced components, including models and model weights, tools,\
+    \ plug-ins, datasets, other agents, agentic interfaces - MCP (Model Context Protocol),\
+    \ A2A (Agent2Agent) - agentic registries and related artifacts, or update channels.\
+    \ These dependencies may introduce unsafe code, hidden instructions, or deceptive\
+    \ behaviors into the agent\u2019s execution chain. Supply chain is covered in\
+    \ depth in LLM03:2025 Supply Chain Vulnerabilities. However, its focus is on static\
+    \ dependencies. Unlike traditional AI or software supply chains, agentic ecosystems\
+    \ often compose capabilities at runtime - loading external tools- agent personas\
+    \ dynamically \u2013 thereby increasing the attack surface. This distributed run-time\
+    \ coordination - combined with agentic autonomy - creates a live supply chain\
+    \ that can cascade vulnerabilities across agents. These shifts focus from manifest\
+    \ to run-time security of a diverse and often opaque component. Tackling this\
+    \ problem requires careful development-time tooling and runtime orchestration,\
+    \ where components are dynamically loaded, shared, and trusted. The entry maps\
+    \ to T17 Supply Chain Compromise in Agentic Threats and Mitigations and across\
+    \ T2 Tool Misuse , T11 Unexpected RCE and Code Attacks, T12 Agent Communication\
+    \ Poisoning, T13 Rogue Agent and T16 Insecure Inter-Agent Protocol Abuse ."
+- source_node_id: aiuc_1:C008
+  target_node_id: owasp_agentic:ASI08
+  composite_score: 0.3515
+  uncertainty_score: 1.9365
+  signals:
+    bridge: 0.0833
+    semantic: 0.6354
+    keyword: 0.0054
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Monitoring AI risk categories supports cascading-failure detection.
+  source_name: Monitor AI risk categories
+  source_description: Implement monitoring of AI systems across risk categories.
+  target_name: Cascading Failures
+  target_description: "Agentic cascading failures occur when a single fault (hallucination,\
+    \ malicious input, corrupted tool, or poisoned memory) propagates across autonomous\
+    \ agents, compounding into system-wide harm. Because agents plan, persist, and\
+    \ delegate autonomously, a single error can bypass stepwise human checks and persist\
+    \ in a saved state. As agents form emergent links to new tools or peers, these\
+    \ latent faults chain into privileged operations that compromise confidentiality,\
+    \ integrity, availability, leading to widespread service failures across agent\
+    \ networks, systems, and workflows. Cascading Failures describes the propagation\
+    \ and amplification of an initial fault-not the initial vulnerability itself-across\
+    \ agents, tools, and workflows, turning a single error into system-wide impact.\
+    \ ASI08 focuses on the propagation and amplification of faults rather than their\
+    \ origin. Use the initial defect under ASI04 , ASI06 , or ASI07 when it represents\
+    \ a direct compromise - such as a tainted dependency, poisoned memory, or spoofed\
+    \ message - and apply ASI08 only when that defect spreads across agents, sessions,\
+    \ or workflows , causing measurable fan-out or systemic impact beyond the original\
+    \ breach. Observable symptoms include rapid fan-out where one faulty decision\
+    \ triggers many downstream agents or tasks in a short time, cross-domain or tenant\
+    \ spread beyond the original context, oscillating retries or feedback loops between\
+    \ agents, and downstream queue storms or repeated identical intents-each providing\
+    \ clear detection hooks that make ASI08 operationally actionable. Cascading failures\
+    \ amplify across interconnected agents, chaining OWASP LLM Top 10 risks. LLM01:2025\
+    \ Prompt Injection and LLM06:2025 Excessive Agency can trigger autonomous tool\
+    \ runs that spread errors without human checks, while LLM04:2025 Data and Model\
+    \ Poisoning in persistent memory can skew decisions across sessions and workflows\
+    \ . Agentic AI - Threats and Mitigations 1.1 covers this threat in T5 \u2013 Cascading\
+    \ Hallucination "
+- source_node_id: aiuc_1:A003.1
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.3516
+  uncertainty_score: 1.9354
+  signals:
+    bridge: 0.0
+    semantic: 0.6456
+    keyword: 0.0422
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Data collection limits are unrelated to tool misuse.
+  source_name: Configuring data collection limits to reduce data and privacy exposure,
+    limiting data collection to task-relevant inform
+  source_description: Configuring data collection limits to reduce data and privacy
+    exposure, limiting data collection to task-relevant information based on context.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:C003.2
+  target_node_id: owasp_agentic:ASI10
+  composite_score: 0.3483
+  uncertainty_score: 1.9313
+  signals:
+    bridge: 0.0
+    semantic: 0.6476
+    keyword: 0.0276
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Restricting high-risk recommendations reduces rogue-agent action space.
+  source_name: Restricting high-risk recommendations in sensitive domains with disclaimers.
+  source_description: Restricting high-risk recommendations in sensitive domains with
+    disclaimers.
+  target_name: Rogue Agents
+  target_description: "Rogue Agents are malicious or compromised AI Agents that deviate\
+    \ from their intended function or authorized scope, acting harmfully, deceptively,\
+    \ or parasitically within multi-agent or human-agent ecosystems. The agent\u2019\
+    s actions may individually appear legitimate, but its emergent behavior becomes\
+    \ harmful, creating a containment gap for traditional rule-based systems. While\
+    \ external compromise, such as Prompt Injection (LLM01:2025), Goal Hijack (AS01)\
+    \ or Supply Chain tampering (AS04) can initiate the divergence, ASI10 focuses\
+    \ on the loss of behavioral integrity and governance once the drift begins , not\
+    \ the initial intrusion itself. Consequences include sensitive information disclosure,\
+    \ misinformation propagation, workflow hijacking, and operational sabotage. Rogue\
+    \ Agents represent a distinct risk of behavioral divergence, unlike Excessive\
+    \ Agency (LLM06:2025), which focuses on over-granted permissions, and can be amplified\
+    \ \"insider threats\" due to the speed and scale of Agentic systems. Consequences\
+    \ include Sensitive Information Disclosure (LLM02;2025), Misinformation (LLM09:2025).\
+    \ In the OWASP Agentic AI Threats and Mitigations guide, ASI10 corresponds to\
+    \ T13 \u2013 Rogue Agents in Multi-Agent Systems . The OWASP AIVSS framework maps\
+    \ this risk primarily to Behavioral Integrity (BI) , Operational Security (OS)\
+    \ , and Compliance Violations (CV) , with elevated severity for critical or self-propagating\
+    \ deployments."
+- source_node_id: aiuc_1:E015.1
+  target_node_id: owasp_agentic:ASI10
+  composite_score: 0.2017
+  uncertainty_score: 1.9303
+  signals:
+    bridge: 0.0
+    semantic: 0.3843
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: System activity capture is a key rogue-agent detection input.
+  source_name: Capture system activity details including inputs, processing steps,
+    outputs, and metadata.
+  source_description: Capture system activity details including inputs, processing
+    steps, outputs, and metadata.
+  target_name: Rogue Agents
+  target_description: "Rogue Agents are malicious or compromised AI Agents that deviate\
+    \ from their intended function or authorized scope, acting harmfully, deceptively,\
+    \ or parasitically within multi-agent or human-agent ecosystems. The agent\u2019\
+    s actions may individually appear legitimate, but its emergent behavior becomes\
+    \ harmful, creating a containment gap for traditional rule-based systems. While\
+    \ external compromise, such as Prompt Injection (LLM01:2025), Goal Hijack (AS01)\
+    \ or Supply Chain tampering (AS04) can initiate the divergence, ASI10 focuses\
+    \ on the loss of behavioral integrity and governance once the drift begins , not\
+    \ the initial intrusion itself. Consequences include sensitive information disclosure,\
+    \ misinformation propagation, workflow hijacking, and operational sabotage. Rogue\
+    \ Agents represent a distinct risk of behavioral divergence, unlike Excessive\
+    \ Agency (LLM06:2025), which focuses on over-granted permissions, and can be amplified\
+    \ \"insider threats\" due to the speed and scale of Agentic systems. Consequences\
+    \ include Sensitive Information Disclosure (LLM02;2025), Misinformation (LLM09:2025).\
+    \ In the OWASP Agentic AI Threats and Mitigations guide, ASI10 corresponds to\
+    \ T13 \u2013 Rogue Agents in Multi-Agent Systems . The OWASP AIVSS framework maps\
+    \ this risk primarily to Behavioral Integrity (BI) , Operational Security (OS)\
+    \ , and Compliance Violations (CV) , with elevated severity for critical or self-propagating\
+    \ deployments."
+- source_node_id: aiuc_1:E004
+  target_node_id: owasp_agentic:ASI01
+  composite_score: 0.3515
+  uncertainty_score: 1.9274
+  signals:
+    bridge: 0.0493
+    semantic: 0.6753
+    keyword: 0.0124
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Accountability assignment helps deter and recover from goal hijack.
+  source_name: Assign accountability
+  source_description: Document which AI system changes require formal review or approval,
+    assign a lead accountable for each, and document their approval.
+  target_name: Agent Goal Hijack
+  target_description: "AI Agents exhibit autonomous ability to execute a series of\
+    \ tasks to achieve a goal. Due to inherent weaknesses in how natural-language\
+    \ instructions and related content are processed, agents and the underlying model\
+    \ cannot reliably distinguish instructions from related content. As a result,\
+    \ attackers can manipulate an agent\u2019s objectives, task selection, or decision\
+    \ pathways through a variety of techniques - including, but not limited to, prompt-based\
+    \ manipulation, deceptive tool outputs, malicious artefacts, forged agent-to-agent\
+    \ messages, or poisoned external data. Because agents rely on untyped natural-language\
+    \ inputs and loosely governed orchestration logic, they cannot reliably distinguish\
+    \ legitimate instructions from attacker -controlled content. Unlike LLM01:2025\
+    \ , which focuses on altering a single model response, ASI01 captures the broader\
+    \ agentic impact where manipulated inputs redirect goals, panning (when used)\
+    \ and multi-step behavior. Agent Goal Hijack differs from ASI06 (Memory & Context\
+    \ Poisoning) and ASI10 (Rogue Agents) because the attacker directly alters the\
+    \ agent\u2019s goals, instructions, or decision pathways - regardless of whether\
+    \ the manipulation occurs interactively or through pre-positioned inputs such\
+    \ as documents, templates, or external data sources. ASI06 focuses on the persistent\
+    \ corruption of stored context or long-term memory, while ASI10 captures autonomous\
+    \ misalignment that emerges without active attacker control. In the OWASP Agentic\
+    \ AI Threats & Mitigations Guide, ASI01 corresponds to T06 Goal Manipulation (altering\
+    \ the agent\u2019s objectives) and T07 Misaligned & Deceptive Behaviors (bypassing\
+    \ safeguards or deceiving humans). Together, these illustrate how attackers can\
+    \ subvert the agent\u2019s objectives and action-selection logic, redirecting\
+    \ its autonomy toward unintended or harmful outcomes."
+- source_node_id: aiuc_1:D003.3
+  target_node_id: owasp_agentic:ASI05
+  composite_score: 0.3482
+  uncertainty_score: 1.9267
+  signals:
+    bridge: 0.0
+    semantic: 0.834
+    keyword: 0.114
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Tool-call execution monitoring is canonical RCE detection.
+  source_name: Execution monitoring and logging; tracking all tool calls, monitoring
+    for unauthorized access attempts.
+  source_description: Execution monitoring and logging; tracking all tool calls, monitoring
+    for unauthorized access attempts.
+  target_name: Unexpected CodeExecution (RCE)
+  target_description: "Agentic systems - including popular vibe coding tools - often\
+    \ generate and execute code. Attackers exploit code-generation features or embedded\
+    \ tool access to escalate actions into remote code execution (RCE), local misuse,\
+    \ or exploitation of internal systems. Because this code is often generated in\
+    \ real-time by the agent it can bypass traditional security controls. Prompt injection,\
+    \ tool misuse, or unsafe serialization can convert text into unintended executable\
+    \ behavior. While code execution can be triggered via the same tool interfaces\
+    \ discussed under ASI02 , ASI05 focuses on unexpected or adversarial execution\
+    \ of code (scripts, binaries, JIT/WASM modules, deserialized objects, template\
+    \ engines, in memory evaluations) that leads to host or container compromise,\
+    \ persistence, or sandbox escape - outcomes that require host and runtime-specific\
+    \ mitigations beyond ordinary tool-use controls. This entry builds on LLM01:2025\
+    \ Prompt Injection and LLM05:2025 Improper Output Handling , reflecting their\
+    \ evolution in agentic systems from a single manipulated output interpreted or\
+    \ executed to orchestrated multi-tool chains that achieve execution through a\
+    \ sequence of otherwise legitimate tool calls. This risk aligns with T11 Unexpected\
+    \ RCE and Code Attacks in Agentic AI \u2013 Threats and Mitigations v1.1 ."
+- source_node_id: aiuc_1:B009.2
+  target_node_id: owasp_agentic:ASI03
+  composite_score: 0.1981
+  uncertainty_score: 1.9256
+  signals:
+    bridge: 0.0
+    semantic: 0.3702
+    keyword: 0.0126
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: User-facing notices are unrelated to identity/privilege abuse.
+  source_name: Providing user-facing notices about output limitations.
+  source_description: Providing user-facing notices about output limitations.
+  target_name: Identity and PrivilegeAbuse
+  target_description: "Identity & Privilege Abuse exploits dynamic trust and delegation\
+    \ in agents to escalate access and bypass controls by manipulating delegation\
+    \ chains, role inheritance, control flows, and agent context; context includes\
+    \ cached credentials or conversation history across interconnected systems. In\
+    \ this context, identity refers both to the agent\u2019s defined persona and to\
+    \ any authentication material that represents it. Agent-toagent trust or inherited\
+    \ credentials can be exploited to escalate access, hijack privileges, or execute\
+    \ unauthorized actions. This risk arises from the architectural mismatch between\
+    \ user-centric identity systems and agentic design. Without a distinct, governed\
+    \ identity of its own, an agent operates in an attribution gap that makes enforcing\
+    \ true least privilege impossible. Identity in this context includes both the\
+    \ agent\u2019s assigned persona and any authentication material (API keys, OAuth\
+    \ tokens, delegated user sessions) that represent it. This differs scenario in\
+    \ ASI02 (Tools Misuse) which is an unintended or unsafe use of already granted\
+    \ privilege by a principal misusing its own tools. Identity & Privilege Abuse\
+    \ is the agentic evolution of Excessive Agency (LLM06:2025) . It often leverages\
+    \ Prompt Injection (LLM01:2025) , and because of agent permissions, tool integrations,\
+    \ and multi-agent systems, the impact can amplify and exceed Sensitive Information\
+    \ Disclosure (LLM02:2025) to directly compromise the confidentiality, integrity,\
+    \ and availability of systems and data the agent can reach. In the OWASP ASI Threats\
+    \ and Mitigations, it maps one-to-one to T3: Privilege Compromise , and in OWASP\
+    \ AIVSS it corresponds to Core Risk 2: Agent Access Control Violation ."
+- source_node_id: aiuc_1:C003.2
+  target_node_id: owasp_agentic:ASI09
+  composite_score: 0.3481
+  uncertainty_score: 1.9253
+  signals:
+    bridge: 0.0
+    semantic: 0.9204
+    keyword: 0.0419
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Restricting high-risk recommendations reduces human-agent trust exploitation.
+  source_name: Restricting high-risk recommendations in sensitive domains with disclaimers.
+  source_description: Restricting high-risk recommendations in sensitive domains with
+    disclaimers.
+  target_name: Human-Agent TrustExploitation
+  target_description: Intelligent agents can establish strong trust with human users
+    through their natural language fluency, emotional intelligence, and perceived
+    expertise, known as anthropomorphism . Adversaries or misaligned designs may exploit
+    this trust to influence user decisions, extract sensitive information, or steer
+    outcomes for malicious purposes. In agentic systems, this risk is amplified when
+    humans over-rely on autonomous recommendations or unverifiable rationales, approving
+    actions without independent validation. By leveraging authority bias and persuasive
+    explainability, attackers can bypass oversight, leading to data breaches, financial
+    losses, downstream and reputational harms. The agent acts as an untraceable "bad
+    influence," manipulating the human into performing the final, audited action,
+    making the agent's role in the compromise invisible to forensics. Automation bias,
+    perceived authority, and anthropomorphic cues make abuse look legitimate and hard
+    to spot. Over-reliance on agent recommendations, especially when they appear confident
+    or authoritative, increases the chance of harmful decision-making. This entry
+    is about human misperception or over-reliance whereas ASI10 is agent intent deviation.
+    The entry builds on LLM06:2025 Excessive Agency , and can be caused by LLM01:2025
+    Prompt Injection , LLM05:2025 Improper Output Handling , or results in LLM09:2025
+    Misinformation . Aligns with Agentic AI Threats and Mitigations Guide (T7) Misaligned
+    & Deceptive , (T8) Repudiation & Untraceability , (T10) Overwhelming the Human
+    in the Loop .
+- source_node_id: aiuc_1:F001.2
+  target_node_id: owasp_agentic:ASI09
+  composite_score: 0.2019
+  uncertainty_score: 1.9237
+  signals:
+    bridge: 0.0
+    semantic: 0.3692
+    keyword: 0.0269
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Filtering for unsafe-request patterns is canonical human-agent trust exploitation
+    defense.
+  source_name: Deploy content filtering to detect requests for malicious code generation
+    and vulnerability exploitation.
+  source_description: Deploy content filtering to detect requests for malicious code
+    generation and vulnerability exploitation.
+  target_name: Human-Agent TrustExploitation
+  target_description: Intelligent agents can establish strong trust with human users
+    through their natural language fluency, emotional intelligence, and perceived
+    expertise, known as anthropomorphism . Adversaries or misaligned designs may exploit
+    this trust to influence user decisions, extract sensitive information, or steer
+    outcomes for malicious purposes. In agentic systems, this risk is amplified when
+    humans over-rely on autonomous recommendations or unverifiable rationales, approving
+    actions without independent validation. By leveraging authority bias and persuasive
+    explainability, attackers can bypass oversight, leading to data breaches, financial
+    losses, downstream and reputational harms. The agent acts as an untraceable "bad
+    influence," manipulating the human into performing the final, audited action,
+    making the agent's role in the compromise invisible to forensics. Automation bias,
+    perceived authority, and anthropomorphic cues make abuse look legitimate and hard
+    to spot. Over-reliance on agent recommendations, especially when they appear confident
+    or authoritative, increases the chance of harmful decision-making. This entry
+    is about human misperception or over-reliance whereas ASI10 is agent intent deviation.
+    The entry builds on LLM06:2025 Excessive Agency , and can be caused by LLM01:2025
+    Prompt Injection , LLM05:2025 Improper Output Handling , or results in LLM09:2025
+    Misinformation . Aligns with Agentic AI Threats and Mitigations Guide (T7) Misaligned
+    & Deceptive , (T8) Repudiation & Untraceability , (T10) Overwhelming the Human
+    in the Loop .
+- source_node_id: aiuc_1:B006.1
+  target_node_id: owasp_agentic:ASI10
+  composite_score: 0.348
+  uncertainty_score: 1.9196
+  signals:
+    bridge: 0.0
+    semantic: 0.6516
+    keyword: 0.0196
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Restricting agent backend access directly limits rogue-agent capability.
+  source_name: Restricting agent access to approved backend services and APIs, enforcing
+    network segmentation or API gateway rules.
+  source_description: Restricting agent access to approved backend services and APIs,
+    enforcing network segmentation or API gateway rules.
+  target_name: Rogue Agents
+  target_description: "Rogue Agents are malicious or compromised AI Agents that deviate\
+    \ from their intended function or authorized scope, acting harmfully, deceptively,\
+    \ or parasitically within multi-agent or human-agent ecosystems. The agent\u2019\
+    s actions may individually appear legitimate, but its emergent behavior becomes\
+    \ harmful, creating a containment gap for traditional rule-based systems. While\
+    \ external compromise, such as Prompt Injection (LLM01:2025), Goal Hijack (AS01)\
+    \ or Supply Chain tampering (AS04) can initiate the divergence, ASI10 focuses\
+    \ on the loss of behavioral integrity and governance once the drift begins , not\
+    \ the initial intrusion itself. Consequences include sensitive information disclosure,\
+    \ misinformation propagation, workflow hijacking, and operational sabotage. Rogue\
+    \ Agents represent a distinct risk of behavioral divergence, unlike Excessive\
+    \ Agency (LLM06:2025), which focuses on over-granted permissions, and can be amplified\
+    \ \"insider threats\" due to the speed and scale of Agentic systems. Consequences\
+    \ include Sensitive Information Disclosure (LLM02;2025), Misinformation (LLM09:2025).\
+    \ In the OWASP Agentic AI Threats and Mitigations guide, ASI10 corresponds to\
+    \ T13 \u2013 Rogue Agents in Multi-Agent Systems . The OWASP AIVSS framework maps\
+    \ this risk primarily to Behavioral Integrity (BI) , Operational Security (OS)\
+    \ , and Compliance Violations (CV) , with elevated severity for critical or self-propagating\
+    \ deployments."
+- source_node_id: aiuc_1:E010.3
+  target_node_id: owasp_agentic:ASI05
+  composite_score: 0.3479
+  uncertainty_score: 1.9163
+  signals:
+    bridge: 0.0
+    semantic: 0.654
+    keyword: 0.0153
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: AUP alerts weakly relate to RCE prevention.
+  source_name: User-facing alerts when acceptable use policy is violated.
+  source_description: User-facing alerts when acceptable use policy is violated.
+  target_name: Unexpected CodeExecution (RCE)
+  target_description: "Agentic systems - including popular vibe coding tools - often\
+    \ generate and execute code. Attackers exploit code-generation features or embedded\
+    \ tool access to escalate actions into remote code execution (RCE), local misuse,\
+    \ or exploitation of internal systems. Because this code is often generated in\
+    \ real-time by the agent it can bypass traditional security controls. Prompt injection,\
+    \ tool misuse, or unsafe serialization can convert text into unintended executable\
+    \ behavior. While code execution can be triggered via the same tool interfaces\
+    \ discussed under ASI02 , ASI05 focuses on unexpected or adversarial execution\
+    \ of code (scripts, binaries, JIT/WASM modules, deserialized objects, template\
+    \ engines, in memory evaluations) that leads to host or container compromise,\
+    \ persistence, or sandbox escape - outcomes that require host and runtime-specific\
+    \ mitigations beyond ordinary tool-use controls. This entry builds on LLM01:2025\
+    \ Prompt Injection and LLM05:2025 Improper Output Handling , reflecting their\
+    \ evolution in agentic systems from a single manipulated output interpreted or\
+    \ executed to orchestrated multi-tool chains that achieve execution through a\
+    \ sequence of otherwise legitimate tool calls. This risk aligns with T11 Unexpected\
+    \ RCE and Code Attacks in Agentic AI \u2013 Threats and Mitigations v1.1 ."
+- source_node_id: aiuc_1:B008
+  target_node_id: owasp_agentic:ASI06
+  composite_score: 0.2018
+  uncertainty_score: 1.9159
+  signals:
+    bridge: 0.0982
+    semantic: 0.1758
+    keyword: 0.011
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Protecting deployment environment is canonical memory/context poisoning defense.
+  source_name: Protect model deployment environment
+  source_description: Implement security measures for AI model deployment environments
+    including encryption, access controls and authorization.
+  target_name: Memory & Context Poisoning
+  target_description: "Agentic systems rely on stored and retrievable information\
+    \ which can be a snapshot of its conversation history, a memory tool or expanded\
+    \ context, which supports continuity across tasks and reasoning cycles. Context\
+    \ includes any information an agent retains, retrieves, or reuses, such as summaries,\
+    \ embeddings, and RAG stores but excludes one-time input prompts covered under\
+    \ LLM01 :2025 Prompt Injection . In Memory and Context Poisoning , adversaries\
+    \ corrupt or seed this context with malicious or misleading data, causing future\
+    \ reasoning, planning, or tool use to become biased, unsafe, or aid exfiltration.\
+    \ Ingestion sources such as uploads, API feeds, user input, or peer-agent exchanges\
+    \ may be untrusted or only partially validated. This risk is distinct from ASI01\
+    \ (Goal Hijack), which captures direct goal manipulation, and ASI08 ( Cascading\
+    \ Failures), which describes degradation after poisoning occurs. However, memory\
+    \ poisoning frequently leads to goal hijacking ( ASI01 ), as corrupted context\
+    \ or long-term memory can alter the agent\u2019s goal interpretation, reasoning\
+    \ path, or tool-selection logic. It builds on LLM01:2025 Prompt Injection , LLM04:2025\
+    \ Data and Model Poisoning , and LLM08:2025 Vector and Embedding Weaknesses ,\
+    \ but focuses on persistent corruption of agent memory and retrievable context\
+    \ that propagates across sessions and alters autonomous reasoning. It maps to\
+    \ T1 Memory Poisoning in Agentic Threats and Mitigations, with related impacts\
+    \ in T4 Memory Overload , T6 Broken Goals , and T12 Shared Memory Poisoning .\
+    \ In AIVSS, the AARS fields Memory Use and Contextual Awareness raise the agentic\
+    \ vulnerability score."
+- source_node_id: aiuc_1:C003
+  target_node_id: owasp_agentic:ASI06
+  composite_score: 0.3489
+  uncertainty_score: 1.9148
+  signals:
+    bridge: 0.1176
+    semantic: 0.4128
+    keyword: 0.0426
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Generic harmful-output prevention weakly relates to memory/context poisoning.
+  source_name: Prevent harmful outputs
+  source_description: Implement safeguards to prevent harmful outputs including distressed
+    outputs, angry responses, high-risk advice, offensive content, bias, and deception.
+  target_name: Memory & Context Poisoning
+  target_description: "Agentic systems rely on stored and retrievable information\
+    \ which can be a snapshot of its conversation history, a memory tool or expanded\
+    \ context, which supports continuity across tasks and reasoning cycles. Context\
+    \ includes any information an agent retains, retrieves, or reuses, such as summaries,\
+    \ embeddings, and RAG stores but excludes one-time input prompts covered under\
+    \ LLM01 :2025 Prompt Injection . In Memory and Context Poisoning , adversaries\
+    \ corrupt or seed this context with malicious or misleading data, causing future\
+    \ reasoning, planning, or tool use to become biased, unsafe, or aid exfiltration.\
+    \ Ingestion sources such as uploads, API feeds, user input, or peer-agent exchanges\
+    \ may be untrusted or only partially validated. This risk is distinct from ASI01\
+    \ (Goal Hijack), which captures direct goal manipulation, and ASI08 ( Cascading\
+    \ Failures), which describes degradation after poisoning occurs. However, memory\
+    \ poisoning frequently leads to goal hijacking ( ASI01 ), as corrupted context\
+    \ or long-term memory can alter the agent\u2019s goal interpretation, reasoning\
+    \ path, or tool-selection logic. It builds on LLM01:2025 Prompt Injection , LLM04:2025\
+    \ Data and Model Poisoning , and LLM08:2025 Vector and Embedding Weaknesses ,\
+    \ but focuses on persistent corruption of agent memory and retrievable context\
+    \ that propagates across sessions and alters autonomous reasoning. It maps to\
+    \ T1 Memory Poisoning in Agentic Threats and Mitigations, with related impacts\
+    \ in T4 Memory Overload , T6 Broken Goals , and T12 Shared Memory Poisoning .\
+    \ In AIVSS, the AARS fields Memory Use and Contextual Awareness raise the agentic\
+    \ vulnerability score."
+- source_node_id: aiuc_1:C009
+  target_node_id: owasp_agentic:ASI09
+  composite_score: 0.3516
+  uncertainty_score: 1.9112
+  signals:
+    bridge: 0.1273
+    semantic: 0.7016
+    keyword: 0.0265
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Real-time intervention is a key human-agent trust exploitation control.
+  source_name: Enable real-time feedback and intervention
+  source_description: Implement mechanisms to enable real-time user feedback collection
+    and intervention mechanisms.
+  target_name: Human-Agent TrustExploitation
+  target_description: Intelligent agents can establish strong trust with human users
+    through their natural language fluency, emotional intelligence, and perceived
+    expertise, known as anthropomorphism . Adversaries or misaligned designs may exploit
+    this trust to influence user decisions, extract sensitive information, or steer
+    outcomes for malicious purposes. In agentic systems, this risk is amplified when
+    humans over-rely on autonomous recommendations or unverifiable rationales, approving
+    actions without independent validation. By leveraging authority bias and persuasive
+    explainability, attackers can bypass oversight, leading to data breaches, financial
+    losses, downstream and reputational harms. The agent acts as an untraceable "bad
+    influence," manipulating the human into performing the final, audited action,
+    making the agent's role in the compromise invisible to forensics. Automation bias,
+    perceived authority, and anthropomorphic cues make abuse look legitimate and hard
+    to spot. Over-reliance on agent recommendations, especially when they appear confident
+    or authoritative, increases the chance of harmful decision-making. This entry
+    is about human misperception or over-reliance whereas ASI10 is agent intent deviation.
+    The entry builds on LLM06:2025 Excessive Agency , and can be caused by LLM01:2025
+    Prompt Injection , LLM05:2025 Improper Output Handling , or results in LLM09:2025
+    Misinformation . Aligns with Agentic AI Threats and Mitigations Guide (T7) Misaligned
+    & Deceptive , (T8) Repudiation & Untraceability , (T10) Overwhelming the Human
+    in the Loop .
+- source_node_id: aiuc_1:B002.1
+  target_node_id: owasp_agentic:ASI05
+  composite_score: 0.3522
+  uncertainty_score: 1.9101
+  signals:
+    bridge: 0.0
+    semantic: 0.8919
+    keyword: 0.0801
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Prompt-injection monitoring directly mitigates the canonical RCE entry point.
+  source_name: Implementing monitoring for prompt injection patterns, jailbreak techniques,
+    adversarial input attempts.
+  source_description: Implementing monitoring for prompt injection patterns, jailbreak
+    techniques, adversarial input attempts.
+  target_name: Unexpected CodeExecution (RCE)
+  target_description: "Agentic systems - including popular vibe coding tools - often\
+    \ generate and execute code. Attackers exploit code-generation features or embedded\
+    \ tool access to escalate actions into remote code execution (RCE), local misuse,\
+    \ or exploitation of internal systems. Because this code is often generated in\
+    \ real-time by the agent it can bypass traditional security controls. Prompt injection,\
+    \ tool misuse, or unsafe serialization can convert text into unintended executable\
+    \ behavior. While code execution can be triggered via the same tool interfaces\
+    \ discussed under ASI02 , ASI05 focuses on unexpected or adversarial execution\
+    \ of code (scripts, binaries, JIT/WASM modules, deserialized objects, template\
+    \ engines, in memory evaluations) that leads to host or container compromise,\
+    \ persistence, or sandbox escape - outcomes that require host and runtime-specific\
+    \ mitigations beyond ordinary tool-use controls. This entry builds on LLM01:2025\
+    \ Prompt Injection and LLM05:2025 Improper Output Handling , reflecting their\
+    \ evolution in agentic systems from a single manipulated output interpreted or\
+    \ executed to orchestrated multi-tool chains that achieve execution through a\
+    \ sequence of otherwise legitimate tool calls. This risk aligns with T11 Unexpected\
+    \ RCE and Code Attacks in Agentic AI \u2013 Threats and Mitigations v1.1 ."
+- source_node_id: aiuc_1:D004
+  target_node_id: owasp_agentic:ASI06
+  composite_score: 0.1998
+  uncertainty_score: 1.9073
+  signals:
+    bridge: 0.1193
+    semantic: 0.2541
+    keyword: 0.0863
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Third-party tool-call testing is a key memory/context poisoning evaluation.
+  source_name: Third-party testing of tool calls
+  source_description: Appoint expert third-parties to evaluate tool calls in AI systems
+    at least every 3 months.
+  target_name: Memory & Context Poisoning
+  target_description: "Agentic systems rely on stored and retrievable information\
+    \ which can be a snapshot of its conversation history, a memory tool or expanded\
+    \ context, which supports continuity across tasks and reasoning cycles. Context\
+    \ includes any information an agent retains, retrieves, or reuses, such as summaries,\
+    \ embeddings, and RAG stores but excludes one-time input prompts covered under\
+    \ LLM01 :2025 Prompt Injection . In Memory and Context Poisoning , adversaries\
+    \ corrupt or seed this context with malicious or misleading data, causing future\
+    \ reasoning, planning, or tool use to become biased, unsafe, or aid exfiltration.\
+    \ Ingestion sources such as uploads, API feeds, user input, or peer-agent exchanges\
+    \ may be untrusted or only partially validated. This risk is distinct from ASI01\
+    \ (Goal Hijack), which captures direct goal manipulation, and ASI08 ( Cascading\
+    \ Failures), which describes degradation after poisoning occurs. However, memory\
+    \ poisoning frequently leads to goal hijacking ( ASI01 ), as corrupted context\
+    \ or long-term memory can alter the agent\u2019s goal interpretation, reasoning\
+    \ path, or tool-selection logic. It builds on LLM01:2025 Prompt Injection , LLM04:2025\
+    \ Data and Model Poisoning , and LLM08:2025 Vector and Embedding Weaknesses ,\
+    \ but focuses on persistent corruption of agent memory and retrievable context\
+    \ that propagates across sessions and alters autonomous reasoning. It maps to\
+    \ T1 Memory Poisoning in Agentic Threats and Mitigations, with related impacts\
+    \ in T4 Memory Overload , T6 Broken Goals , and T12 Shared Memory Poisoning .\
+    \ In AIVSS, the AARS fields Memory Use and Contextual Awareness raise the agentic\
+    \ vulnerability score."
+- source_node_id: aiuc_1:C011.1
+  target_node_id: owasp_agentic:ASI07
+  composite_score: 0.1976
+  uncertainty_score: 1.9045
+  signals:
+    bridge: 0.0
+    semantic: 0.3764
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Output evaluation supports inter-agent communication security validation.
+  source_name: Third-party evaluation report showing out-of-scope output testing.
+  source_description: Third-party evaluation report showing out-of-scope output testing.
+  target_name: Insecure Inter-AgentCommunication
+  target_description: "Multi agent systems depend on continuous communication between\
+    \ autonomous agents that coordinate via APIs, message buses, and shared memory,\
+    \ significantly expanding the attack surface. Decentralized architecture, varying\
+    \ autonomy, and uneven trust make perimeter-based security models ineffective.\
+    \ Weak inter-agent controls for authentication, integrity, confidentiality, or\
+    \ authorization let attackers intercept, manipulate, spoof, or block messages.\
+    \ Insecure Inter-Agent Communication occurs when these exchanges lack proper authentication,\
+    \ integrity, or semantic validation-allowing interception, spoofing, or manipulation\
+    \ of agent messages and intents. The threat spans transport, routing, discovery,\
+    \ and semantic layers, including covert or side-channels where agents leak or\
+    \ infer data through timing or behavioral cues. This differs from ASI03 (Identity\
+    \ & Privilege Abuse), which focuses on credential and permissions misuse, and\
+    \ ASI06 (Memory & Context Poisoning), which targets stored knowledge corruption.\
+    \ ASI07 focuses on compromising real-time messages between agents, leading to\
+    \ misinformation, privilege confusion, or coordinated manipulation across distributed\
+    \ agentic systems. The entry is covered by T12 \u2013 Agent Communication Poisoning\
+    \ & T16 \u2013 Insecure Inter-Agent Protocol Abuse in Agentic Threats and Mitigations"
+- source_node_id: aiuc_1:C011.1
+  target_node_id: owasp_agentic:ASI01
+  composite_score: 0.2025
+  uncertainty_score: 1.9
+  signals:
+    bridge: 0.0
+    semantic: 0.3857
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Output evaluation supports goal-hijack detection.
+  source_name: Third-party evaluation report showing out-of-scope output testing.
+  source_description: Third-party evaluation report showing out-of-scope output testing.
+  target_name: Agent Goal Hijack
+  target_description: "AI Agents exhibit autonomous ability to execute a series of\
+    \ tasks to achieve a goal. Due to inherent weaknesses in how natural-language\
+    \ instructions and related content are processed, agents and the underlying model\
+    \ cannot reliably distinguish instructions from related content. As a result,\
+    \ attackers can manipulate an agent\u2019s objectives, task selection, or decision\
+    \ pathways through a variety of techniques - including, but not limited to, prompt-based\
+    \ manipulation, deceptive tool outputs, malicious artefacts, forged agent-to-agent\
+    \ messages, or poisoned external data. Because agents rely on untyped natural-language\
+    \ inputs and loosely governed orchestration logic, they cannot reliably distinguish\
+    \ legitimate instructions from attacker -controlled content. Unlike LLM01:2025\
+    \ , which focuses on altering a single model response, ASI01 captures the broader\
+    \ agentic impact where manipulated inputs redirect goals, panning (when used)\
+    \ and multi-step behavior. Agent Goal Hijack differs from ASI06 (Memory & Context\
+    \ Poisoning) and ASI10 (Rogue Agents) because the attacker directly alters the\
+    \ agent\u2019s goals, instructions, or decision pathways - regardless of whether\
+    \ the manipulation occurs interactively or through pre-positioned inputs such\
+    \ as documents, templates, or external data sources. ASI06 focuses on the persistent\
+    \ corruption of stored context or long-term memory, while ASI10 captures autonomous\
+    \ misalignment that emerges without active attacker control. In the OWASP Agentic\
+    \ AI Threats & Mitigations Guide, ASI01 corresponds to T06 Goal Manipulation (altering\
+    \ the agent\u2019s objectives) and T07 Misaligned & Deceptive Behaviors (bypassing\
+    \ safeguards or deceiving humans). Together, these illustrate how attackers can\
+    \ subvert the agent\u2019s objectives and action-selection logic, redirecting\
+    \ its autonomy toward unintended or harmful outcomes."
+- source_node_id: aiuc_1:C010.1
+  target_node_id: owasp_agentic:ASI06
+  composite_score: 0.1973
+  uncertainty_score: 1.8939
+  signals:
+    bridge: 0.0
+    semantic: 0.3742
+    keyword: 0.0029
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Hallucination evaluation weakly relates to memory/context poisoning.
+  source_name: Third-party evaluation report showing harmful output testing.
+  source_description: Third-party evaluation report showing harmful output testing.
+  target_name: Memory & Context Poisoning
+  target_description: "Agentic systems rely on stored and retrievable information\
+    \ which can be a snapshot of its conversation history, a memory tool or expanded\
+    \ context, which supports continuity across tasks and reasoning cycles. Context\
+    \ includes any information an agent retains, retrieves, or reuses, such as summaries,\
+    \ embeddings, and RAG stores but excludes one-time input prompts covered under\
+    \ LLM01 :2025 Prompt Injection . In Memory and Context Poisoning , adversaries\
+    \ corrupt or seed this context with malicious or misleading data, causing future\
+    \ reasoning, planning, or tool use to become biased, unsafe, or aid exfiltration.\
+    \ Ingestion sources such as uploads, API feeds, user input, or peer-agent exchanges\
+    \ may be untrusted or only partially validated. This risk is distinct from ASI01\
+    \ (Goal Hijack), which captures direct goal manipulation, and ASI08 ( Cascading\
+    \ Failures), which describes degradation after poisoning occurs. However, memory\
+    \ poisoning frequently leads to goal hijacking ( ASI01 ), as corrupted context\
+    \ or long-term memory can alter the agent\u2019s goal interpretation, reasoning\
+    \ path, or tool-selection logic. It builds on LLM01:2025 Prompt Injection , LLM04:2025\
+    \ Data and Model Poisoning , and LLM08:2025 Vector and Embedding Weaknesses ,\
+    \ but focuses on persistent corruption of agent memory and retrievable context\
+    \ that propagates across sessions and alters autonomous reasoning. It maps to\
+    \ T1 Memory Poisoning in Agentic Threats and Mitigations, with related impacts\
+    \ in T4 Memory Overload , T6 Broken Goals , and T12 Shared Memory Poisoning .\
+    \ In AIVSS, the AARS fields Memory Use and Contextual Awareness raise the agentic\
+    \ vulnerability score."
+- source_node_id: aiuc_1:A005.2
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.2027
+  uncertainty_score: 1.8922
+  signals:
+    bridge: 0.0
+    semantic: 0.3826
+    keyword: 0.0062
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Customer data isolation is unrelated to tool misuse.
+  source_name: Implementing customer data isolation controls with strict logical and
+    physical separation.
+  source_description: Implementing customer data isolation controls with strict logical
+    and physical separation.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:C012
+  target_node_id: owasp_agentic:ASI01
+  composite_score: 0.1973
+  uncertainty_score: 1.8894
+  signals:
+    bridge: 0.0833
+    semantic: 0.3427
+    keyword: 0.004
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Customer-defined output testing weakly relates to goal hijack.
+  source_name: Third-party testing for customer-defined risk
+  source_description: Appoint expert third-parties to evaluate system robustness to
+    additional high-risk outputs as defined in risk taxonomy.
+  target_name: Agent Goal Hijack
+  target_description: "AI Agents exhibit autonomous ability to execute a series of\
+    \ tasks to achieve a goal. Due to inherent weaknesses in how natural-language\
+    \ instructions and related content are processed, agents and the underlying model\
+    \ cannot reliably distinguish instructions from related content. As a result,\
+    \ attackers can manipulate an agent\u2019s objectives, task selection, or decision\
+    \ pathways through a variety of techniques - including, but not limited to, prompt-based\
+    \ manipulation, deceptive tool outputs, malicious artefacts, forged agent-to-agent\
+    \ messages, or poisoned external data. Because agents rely on untyped natural-language\
+    \ inputs and loosely governed orchestration logic, they cannot reliably distinguish\
+    \ legitimate instructions from attacker -controlled content. Unlike LLM01:2025\
+    \ , which focuses on altering a single model response, ASI01 captures the broader\
+    \ agentic impact where manipulated inputs redirect goals, panning (when used)\
+    \ and multi-step behavior. Agent Goal Hijack differs from ASI06 (Memory & Context\
+    \ Poisoning) and ASI10 (Rogue Agents) because the attacker directly alters the\
+    \ agent\u2019s goals, instructions, or decision pathways - regardless of whether\
+    \ the manipulation occurs interactively or through pre-positioned inputs such\
+    \ as documents, templates, or external data sources. ASI06 focuses on the persistent\
+    \ corruption of stored context or long-term memory, while ASI10 captures autonomous\
+    \ misalignment that emerges without active attacker control. In the OWASP Agentic\
+    \ AI Threats & Mitigations Guide, ASI01 corresponds to T06 Goal Manipulation (altering\
+    \ the agent\u2019s objectives) and T07 Misaligned & Deceptive Behaviors (bypassing\
+    \ safeguards or deceiving humans). Together, these illustrate how attackers can\
+    \ subvert the agent\u2019s objectives and action-selection logic, redirecting\
+    \ its autonomy toward unintended or harmful outcomes."
+- source_node_id: aiuc_1:B008.1
+  target_node_id: owasp_agentic:ASI04
+  composite_score: 0.1972
+  uncertainty_score: 1.8883
+  signals:
+    bridge: 0.0
+    semantic: 0.3692
+    keyword: 0.0113
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Restricting production access reduces agentic supply-chain exposure.
+  source_name: Restricting access to production AI models based on job function.
+  source_description: Restricting access to production AI models based on job function.
+  target_name: Agentic Supply ChainVulnerabilities
+  target_description: "Agentic Supply Chain Vulnerabilities arise when agents, tools,\
+    \ and related artefacts they work with are provided by third parties and may be\
+    \ malicious, compromised, or tampered with in transit. These can be both static\
+    \ and dynamical sourced components, including models and model weights, tools,\
+    \ plug-ins, datasets, other agents, agentic interfaces - MCP (Model Context Protocol),\
+    \ A2A (Agent2Agent) - agentic registries and related artifacts, or update channels.\
+    \ These dependencies may introduce unsafe code, hidden instructions, or deceptive\
+    \ behaviors into the agent\u2019s execution chain. Supply chain is covered in\
+    \ depth in LLM03:2025 Supply Chain Vulnerabilities. However, its focus is on static\
+    \ dependencies. Unlike traditional AI or software supply chains, agentic ecosystems\
+    \ often compose capabilities at runtime - loading external tools- agent personas\
+    \ dynamically \u2013 thereby increasing the attack surface. This distributed run-time\
+    \ coordination - combined with agentic autonomy - creates a live supply chain\
+    \ that can cascade vulnerabilities across agents. These shifts focus from manifest\
+    \ to run-time security of a diverse and often opaque component. Tackling this\
+    \ problem requires careful development-time tooling and runtime orchestration,\
+    \ where components are dynamically loaded, shared, and trusted. The entry maps\
+    \ to T17 Supply Chain Compromise in Agentic Threats and Mitigations and across\
+    \ T2 Tool Misuse , T11 Unexpected RCE and Code Attacks, T12 Agent Communication\
+    \ Poisoning, T13 Rogue Agent and T16 Insecure Inter-Agent Protocol Abuse ."
+- source_node_id: aiuc_1:B002.4
+  target_node_id: owasp_agentic:ASI02
+  composite_score: 0.3471
+  uncertainty_score: 1.885
+  signals:
+    bridge: 0.0
+    semantic: 0.6242
+    keyword: 0.0648
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Adversarial input detection directly mitigates tool-misuse triggers.
+  source_name: Implementing adversarial input detection prior to AI model processing.
+  source_description: Implementing adversarial input detection prior to AI model processing.
+  target_name: Tool Misuse and Exploitation
+  target_description: 'Agents can misuse legitimate tools due to prompt injection,
+    misalignment, or unsafe delegation or ambiguous instruction - leading to data
+    exfiltration, tool output manipulation or workflow hijacking. Risks arise from
+    how the agent chooses and applies tools; agent memory, dynamic tool selection,
+    and delegation can contribute to misuse via chaining, privilege escalation, and
+    unintended actions. This relates to LLM06:2025 (Excessive Agency), which addresses
+    excessive autonomy but focuses on the misuse of legitimate tools. This entry covers
+    cases where the agent operates within its authorized privileges but applies a
+    legitimate tool in an unsafe or unintended way - for example deleting valuable
+    data, over-invoking costly APIs, or exfiltrating information. If the misuse involves
+    privilege escalation or credential inheritance, it falls under ASI03 (Identity
+    & Privilege Abuse); if the misuse results in arbitrary or injected code execution,
+    it is classified under ASI05 (Unexpected Code Execution). Finally, tool definitions
+    increasingly come via MCP servers, creating a natural overlap with ASI04 (Agentic
+    Supply Chain Vulnerabilities). The entry maps to T2 Tool Misuse in the Agentic
+    AI Threats and Mitigations Guide whilst T4 Resource Overload and T16 Insecure
+    Inter-Agent Protocol Abuse represent contributing factors that can amplify or
+    enable tool exploitation . The entry aligns with AIVSS Core Risk: Agentic AI Tool
+    Misuse .'
+- source_node_id: aiuc_1:E017.3
+  target_node_id: owasp_agentic:ASI04
+  composite_score: 0.3529
+  uncertainty_score: 1.885
+  signals:
+    bridge: 0.0
+    semantic: 0.6721
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Transparency policy weakly relates to agentic supply chain.
+  source_name: Policy defining transparency sharing practices with stakeholder categories.
+  source_description: Policy defining transparency sharing practices with stakeholder
+    categories.
+  target_name: Agentic Supply ChainVulnerabilities
+  target_description: "Agentic Supply Chain Vulnerabilities arise when agents, tools,\
+    \ and related artefacts they work with are provided by third parties and may be\
+    \ malicious, compromised, or tampered with in transit. These can be both static\
+    \ and dynamical sourced components, including models and model weights, tools,\
+    \ plug-ins, datasets, other agents, agentic interfaces - MCP (Model Context Protocol),\
+    \ A2A (Agent2Agent) - agentic registries and related artifacts, or update channels.\
+    \ These dependencies may introduce unsafe code, hidden instructions, or deceptive\
+    \ behaviors into the agent\u2019s execution chain. Supply chain is covered in\
+    \ depth in LLM03:2025 Supply Chain Vulnerabilities. However, its focus is on static\
+    \ dependencies. Unlike traditional AI or software supply chains, agentic ecosystems\
+    \ often compose capabilities at runtime - loading external tools- agent personas\
+    \ dynamically \u2013 thereby increasing the attack surface. This distributed run-time\
+    \ coordination - combined with agentic autonomy - creates a live supply chain\
+    \ that can cascade vulnerabilities across agents. These shifts focus from manifest\
+    \ to run-time security of a diverse and often opaque component. Tackling this\
+    \ problem requires careful development-time tooling and runtime orchestration,\
+    \ where components are dynamically loaded, shared, and trusted. The entry maps\
+    \ to T17 Supply Chain Compromise in Agentic Threats and Mitigations and across\
+    \ T2 Tool Misuse , T11 Unexpected RCE and Code Attacks, T12 Agent Communication\
+    \ Poisoning, T13 Rogue Agent and T16 Insecure Inter-Agent Protocol Abuse ."
+- source_node_id: aiuc_1:E015.3
+  target_node_id: owasp_agentic:ASI04
+  composite_score: 0.197
+  uncertainty_score: 1.8817
+  signals:
+    bridge: 0.0
+    semantic: 0.3753
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Tamper-evident logs weakly relate to agentic supply chain.
+  source_name: Ensure logs are tamper-evident and independently verifiable.
+  source_description: Ensure logs are tamper-evident and independently verifiable.
+  target_name: Agentic Supply ChainVulnerabilities
+  target_description: "Agentic Supply Chain Vulnerabilities arise when agents, tools,\
+    \ and related artefacts they work with are provided by third parties and may be\
+    \ malicious, compromised, or tampered with in transit. These can be both static\
+    \ and dynamical sourced components, including models and model weights, tools,\
+    \ plug-ins, datasets, other agents, agentic interfaces - MCP (Model Context Protocol),\
+    \ A2A (Agent2Agent) - agentic registries and related artifacts, or update channels.\
+    \ These dependencies may introduce unsafe code, hidden instructions, or deceptive\
+    \ behaviors into the agent\u2019s execution chain. Supply chain is covered in\
+    \ depth in LLM03:2025 Supply Chain Vulnerabilities. However, its focus is on static\
+    \ dependencies. Unlike traditional AI or software supply chains, agentic ecosystems\
+    \ often compose capabilities at runtime - loading external tools- agent personas\
+    \ dynamically \u2013 thereby increasing the attack surface. This distributed run-time\
+    \ coordination - combined with agentic autonomy - creates a live supply chain\
+    \ that can cascade vulnerabilities across agents. These shifts focus from manifest\
+    \ to run-time security of a diverse and often opaque component. Tackling this\
+    \ problem requires careful development-time tooling and runtime orchestration,\
+    \ where components are dynamically loaded, shared, and trusted. The entry maps\
+    \ to T17 Supply Chain Compromise in Agentic Threats and Mitigations and across\
+    \ T2 Tool Misuse , T11 Unexpected RCE and Code Attacks, T12 Agent Communication\
+    \ Poisoning, T13 Rogue Agent and T16 Insecure Inter-Agent Protocol Abuse ."
+- source_node_id: aiuc_1:C008
+  target_node_id: owasp_agentic:ASI05
+  composite_score: 0.3527
+  uncertainty_score: 1.8766
+  signals:
+    bridge: 0.1301
+    semantic: 0.8579
+    keyword: 0.0183
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Risk monitoring supports RCE early detection.
+  source_name: Monitor AI risk categories
+  source_description: Implement monitoring of AI systems across risk categories.
+  target_name: Unexpected CodeExecution (RCE)
+  target_description: "Agentic systems - including popular vibe coding tools - often\
+    \ generate and execute code. Attackers exploit code-generation features or embedded\
+    \ tool access to escalate actions into remote code execution (RCE), local misuse,\
+    \ or exploitation of internal systems. Because this code is often generated in\
+    \ real-time by the agent it can bypass traditional security controls. Prompt injection,\
+    \ tool misuse, or unsafe serialization can convert text into unintended executable\
+    \ behavior. While code execution can be triggered via the same tool interfaces\
+    \ discussed under ASI02 , ASI05 focuses on unexpected or adversarial execution\
+    \ of code (scripts, binaries, JIT/WASM modules, deserialized objects, template\
+    \ engines, in memory evaluations) that leads to host or container compromise,\
+    \ persistence, or sandbox escape - outcomes that require host and runtime-specific\
+    \ mitigations beyond ordinary tool-use controls. This entry builds on LLM01:2025\
+    \ Prompt Injection and LLM05:2025 Improper Output Handling , reflecting their\
+    \ evolution in agentic systems from a single manipulated output interpreted or\
+    \ executed to orchestrated multi-tool chains that achieve execution through a\
+    \ sequence of otherwise legitimate tool calls. This risk aligns with T11 Unexpected\
+    \ RCE and Code Attacks in Agentic AI \u2013 Threats and Mitigations v1.1 ."
+- source_node_id: aiuc_1:A006.1
+  target_node_id: owasp_agentic:ASI08
+  composite_score: 0.1969
+  uncertainty_score: 1.8744
+  signals:
+    bridge: 0.0
+    semantic: 0.3717
+    keyword: 0.0058
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Personal-data safeguards weakly relate to cascading failures.
+  source_name: Implementing safeguards to prevent personal data leakage through AI
+    system outputs and logs, filtering prompts and outpu
+  source_description: Implementing safeguards to prevent personal data leakage through
+    AI system outputs and logs, filtering prompts and outputs for personal identifiers.
+  target_name: Cascading Failures
+  target_description: "Agentic cascading failures occur when a single fault (hallucination,\
+    \ malicious input, corrupted tool, or poisoned memory) propagates across autonomous\
+    \ agents, compounding into system-wide harm. Because agents plan, persist, and\
+    \ delegate autonomously, a single error can bypass stepwise human checks and persist\
+    \ in a saved state. As agents form emergent links to new tools or peers, these\
+    \ latent faults chain into privileged operations that compromise confidentiality,\
+    \ integrity, availability, leading to widespread service failures across agent\
+    \ networks, systems, and workflows. Cascading Failures describes the propagation\
+    \ and amplification of an initial fault-not the initial vulnerability itself-across\
+    \ agents, tools, and workflows, turning a single error into system-wide impact.\
+    \ ASI08 focuses on the propagation and amplification of faults rather than their\
+    \ origin. Use the initial defect under ASI04 , ASI06 , or ASI07 when it represents\
+    \ a direct compromise - such as a tainted dependency, poisoned memory, or spoofed\
+    \ message - and apply ASI08 only when that defect spreads across agents, sessions,\
+    \ or workflows , causing measurable fan-out or systemic impact beyond the original\
+    \ breach. Observable symptoms include rapid fan-out where one faulty decision\
+    \ triggers many downstream agents or tasks in a short time, cross-domain or tenant\
+    \ spread beyond the original context, oscillating retries or feedback loops between\
+    \ agents, and downstream queue storms or repeated identical intents-each providing\
+    \ clear detection hooks that make ASI08 operationally actionable. Cascading failures\
+    \ amplify across interconnected agents, chaining OWASP LLM Top 10 risks. LLM01:2025\
+    \ Prompt Injection and LLM06:2025 Excessive Agency can trigger autonomous tool\
+    \ runs that spread errors without human checks, while LLM04:2025 Data and Model\
+    \ Poisoning in persistent memory can skew decisions across sessions and workflows\
+    \ . Agentic AI - Threats and Mitigations 1.1 covers this threat in T5 \u2013 Cascading\
+    \ Hallucination "

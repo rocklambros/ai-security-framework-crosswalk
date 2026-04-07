@@ -30,20 +30,28 @@ N_PER_ANCHOR = 20
 RNG_SEED = 20260407
 
 
-def _expanded_pairs() -> list[str]:
+def _expanded_pairs() -> list[tuple[str, str]]:
+    """Return list of (display_name, config_basename) for all pairs."""
     seen = set()
-    out = []
+    out: list[tuple[str, str]] = []
     for p in sorted(PAIRS_DIR.glob("*__expanded.yaml")):
         name = p.stem.removesuffix("__expanded")
         if name in seen:
             continue
         seen.add(name)
-        out.append(name)
+        out.append((name, p.stem))
+    for p in sorted(PAIRS_DIR.glob("*.yaml")):
+        if p.stem.endswith("__expanded"):
+            continue
+        if p.stem in seen:
+            continue
+        seen.add(p.stem)
+        out.append((p.stem, p.stem))
     return out
 
 
-def _eval_pair(G, name: str) -> dict:
-    cfg = load_pair_config(name + "__expanded", validate_anchors_in=G)
+def _eval_pair(G, name: str, cfg_basename: str | None = None) -> dict:
+    cfg = load_pair_config(cfg_basename or (name + "__expanded"), validate_anchors_in=G)
     mapper = PairMapper(G, cfg, use_learned_weights=False)
     result = mapper.run()
 
@@ -68,8 +76,9 @@ def _eval_pair(G, name: str) -> dict:
     pos_scores: list[float] = []
     dist_scores: list[list[float]] = []
     try:
+        cfg_path = PAIRS_DIR / f"{cfg_basename or (name + '__expanded')}.yaml"
         ds_list = sample_distractors(
-            PAIRS_DIR / f"{name}__expanded.yaml", G,
+            cfg_path, G,
             n_per_anchor=N_PER_ANCHOR, rng_seed=RNG_SEED,
         )
     except Exception as e:
@@ -159,9 +168,9 @@ def _render_md(rows: list[dict]) -> str:
 def main() -> None:
     G = load_graph(REPO / "data/processed/nodes.json", REPO / "data/processed/edges.json")
     rows = []
-    for name in _expanded_pairs():
+    for name, cfg_basename in _expanded_pairs():
         print(f"  evaluating {name} ...")
-        rows.append(_eval_pair(G, name))
+        rows.append(_eval_pair(G, name, cfg_basename))
     OUT_MD.write_text(_render_md(rows))
     OUT_JSON.write_text(json.dumps({"rows": rows}, indent=2, default=str))
     print(f"Wrote {OUT_MD}")

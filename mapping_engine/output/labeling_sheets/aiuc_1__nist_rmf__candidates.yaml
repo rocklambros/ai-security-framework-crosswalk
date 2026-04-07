@@ -1,0 +1,1000 @@
+candidates:
+- source_node_id: aiuc_1:F001
+  target_node_id: nist_rmf:MANAGE-3.2
+  composite_score: 0.35
+  uncertainty_score: 1.9983
+  signals:
+    bridge: 0.0
+    semantic: 0.5864
+    keyword: 0.0072
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Cyber misuse prevention motivates pre-trained model monitoring.
+  source_name: Prevent AI cyber misuse
+  source_description: Implement or document guardrails to prevent AI-enabled misuse
+    for cyber attacks and exploitation.
+  target_name: Pre-trained models used for development monitored as part of regular
+    AI system monitoring and maintenance.
+  target_description: Pre-trained models which are used for development are monitored
+    as part of AI system regular monitoring and maintenance.
+- source_node_id: aiuc_1:C010.1
+  target_node_id: nist_rmf:MEASURE-1.3
+  composite_score: 0.2001
+  uncertainty_score: 1.9966
+  signals:
+    bridge: 0.0
+    semantic: 0.3811
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Harmful output evaluation weakly relates to internal expert use.
+  source_name: Third-party evaluation report showing harmful output testing.
+  source_description: Third-party evaluation report showing harmful output testing.
+  target_name: Internal experts not serving as front-line developers and/or independent
+    assessors involved in regular assessments. Doma
+  target_description: Internal experts who did not serve as front-line developers
+    for the system and/or independent assessors are involved in regular assessments
+    and updates. Domain experts, users, AI actors external to the team that developed
+    or deployed the AI system, and affected communities are consulted in support of
+    assessments as necessary per organizational risk tolerance.
+- source_node_id: aiuc_1:E001.3
+  target_node_id: nist_rmf:MAP-1.1
+  composite_score: 0.2002
+  uncertainty_score: 1.994
+  signals:
+    bridge: 0.0
+    semantic: 0.3812
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: System freeze controls support intended-purpose maintenance.
+  source_name: Implement system freeze capabilities, vulnerability fixes, access control
+    updates.
+  source_description: Implement system freeze capabilities, vulnerability fixes, access
+    control updates.
+  target_name: Intended purpose, beneficial uses, context-specific laws, norms, expectations,
+    and deployment settings understood and do
+  target_description: 'Intended purposes, potentially beneficial uses, contextspecific
+    laws, norms and expectations, and prospective settings in which the AI system
+    will be deployed are understood and documented. Considerations include: the specific
+    set or types of users along with their expectations; potential positive and negative
+    impacts of system uses to individuals, communities, organizations, society, and
+    the planet; assumptions and related limitations about AI system purposes, uses,
+    and risks across the development or product AI lifecycle; and related TEVV and
+    system metrics.'
+- source_node_id: aiuc_1:E013.3
+  target_node_id: nist_rmf:MEASURE-2.1
+  composite_score: 0.2002
+  uncertainty_score: 1.9934
+  signals:
+    bridge: 0.0
+    semantic: 0.3813
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Defect tracking maps to TEVV test sets and metrics documentation.
+  source_name: Implementing defect tracking, continuous improvement, and post-market
+    monitoring.
+  source_description: Implementing defect tracking, continuous improvement, and post-market
+    monitoring.
+  target_name: Test sets, metrics, and tool details used during TEVV documented.
+  target_description: Test sets, metrics, and details about the tools used during
+    TEVV are documented.
+- source_node_id: aiuc_1:B001.1
+  target_node_id: nist_rmf:GOVERN-4.2
+  composite_score: 0.3502
+  uncertainty_score: 1.9932
+  signals:
+    bridge: 0.0
+    semantic: 0.667
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Adversarial robustness evaluation maps to risk/impact documentation.
+  source_name: Third-party evaluation report demonstrating adversarial robustness
+    testing including risk taxonomy, methodology, finding
+  source_description: Third-party evaluation report demonstrating adversarial robustness
+    testing including risk taxonomy, methodology, findings, and remediation timelines.
+  target_name: Teams document risks and potential impacts of AI technology; communicate
+    impacts broadly.
+  target_description: Organizational teams document the risks and potential impacts
+    of the AI technology they design, develop, deploy, evaluate, and use, and they
+    communicate about the impacts more broadly.
+- source_node_id: aiuc_1:D001.1
+  target_node_id: nist_rmf:GOVERN-1.3
+  composite_score: 0.2002
+  uncertainty_score: 1.9902
+  signals:
+    bridge: 0.0
+    semantic: 0.3814
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Factual accuracy controls support trustworthy-AI procedures.
+  source_name: Implementing factual accuracy controls via fact-checking mechanisms,
+    flagging uncertain responses.
+  source_description: Implementing factual accuracy controls via fact-checking mechanisms,
+    flagging uncertain responses.
+  target_name: Processes and procedures in place to determine needed level of risk
+    management activities based on organizational risk t
+  target_description: "Processes, procedures, and practices are in place to determine\
+    \ the needed level of risk management activities based on the organization\u2019\
+    s risk tolerance."
+- source_node_id: aiuc_1:B001
+  target_node_id: nist_rmf:MEASURE-2.11
+  composite_score: 0.1997
+  uncertainty_score: 1.9887
+  signals:
+    bridge: 0.0558
+    semantic: 0.3849
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Adversarial robustness weakly relates to fairness/bias evaluation.
+  source_name: Third-party testing of adversarial robustness
+  source_description: Implement adversarial testing program to validate system resilience
+    against adversarial inputs and prompt injection attempts.
+  target_name: Fairness and bias evaluated; results documented.
+  target_description: "Fairness and bias \u2013 as identified in the **MAP** function\
+    \ \u2013 are evaluated and results are documented."
+- source_node_id: aiuc_1:C005.1
+  target_node_id: nist_rmf:MAP-1.3
+  composite_score: 0.1997
+  uncertainty_score: 1.9876
+  signals:
+    bridge: 0.0
+    semantic: 0.3804
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Detection/blocking supports mission-aligned mapping.
+  source_name: Implementing detection and blocking mechanisms aligned with organizational
+    risk taxonomy.
+  source_description: Implementing detection and blocking mechanisms aligned with
+    organizational risk taxonomy.
+  target_name: Organization's mission and relevant goals for the AI technology understood
+    and documented.
+  target_description: "The organization\u2019s mission and relevant goals for AI technology\
+    \ are understood and documented."
+- source_node_id: aiuc_1:B004
+  target_node_id: nist_rmf:GOVERN-4.2
+  composite_score: 0.1996
+  uncertainty_score: 1.9856
+  signals:
+    bridge: 0.0
+    semantic: 0.3008
+    keyword: 0.0057
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Endpoint scrape prevention supports risk/impact documentation.
+  source_name: Prevent AI endpoint scraping
+  source_description: Implement safeguards to prevent probing or scraping of external
+    AI endpoints.
+  target_name: Teams document risks and potential impacts of AI technology; communicate
+    impacts broadly.
+  target_description: Organizational teams document the risks and potential impacts
+    of the AI technology they design, develop, deploy, evaluate, and use, and they
+    communicate about the impacts more broadly.
+- source_node_id: aiuc_1:B005.1
+  target_node_id: nist_rmf:MAP-4.1
+  composite_score: 0.2004
+  uncertainty_score: 1.9833
+  signals:
+    bridge: 0.0
+    semantic: 0.3817
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Automated moderation supports tech/legal risk mapping.
+  source_name: Integration of automated moderation tools to filter inputs before reaching
+    the foundation model.
+  source_description: Integration of automated moderation tools to filter inputs before
+    reaching the foundation model.
+  target_name: Approaches for mapping AI technology and legal risks of components
+    in place, followed, and documented, including third-p
+  target_description: "Approaches for mapping AI technology and legal risks of its\
+    \ components \u2013 including the use of third-party data or software \u2013 are\
+    \ in place, followed, and documented, as are risks of infringement of a third\
+    \ party\u2019s intellectual property or other rights."
+- source_node_id: aiuc_1:A005.2
+  target_node_id: nist_rmf:MEASURE-4.1
+  composite_score: 0.3506
+  uncertainty_score: 1.9758
+  signals:
+    bridge: 0.0
+    semantic: 0.6678
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Customer data isolation supports AI-risk measurement approaches.
+  source_name: Implementing customer data isolation controls with strict logical and
+    physical separation.
+  source_description: Implementing customer data isolation controls with strict logical
+    and physical separation.
+  target_name: Measurement approaches for identifying AI risks connected to deployment
+    context(s) and informed through consultation wit
+  target_description: Measurement approaches for identifying AI risks are connected
+    to deployment context(s) and informed through consultation with domain experts
+    and other end users. Approaches are documented.
+- source_node_id: aiuc_1:E014
+  target_node_id: nist_rmf:GOVERN-1.6
+  composite_score: 0.3494
+  uncertainty_score: 1.9745
+  signals:
+    bridge: 0.1064
+    semantic: 0.6049
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Transparency reports map to AI system inventory mechanisms.
+  source_name: Share transparency reports
+  source_description: RETIRED - Merged into E017 at Q1 2026 update.
+  target_name: Mechanisms in place to inventory AI systems, resourced according to
+    organizational risk priorities.
+  target_description: Mechanisms are in place to inventory AI systems and are resourced
+    according to organizational risk priorities.
+- source_node_id: aiuc_1:A005.2
+  target_node_id: nist_rmf:MEASURE-4.2
+  composite_score: 0.3493
+  uncertainty_score: 1.9727
+  signals:
+    bridge: 0.0
+    semantic: 0.6654
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Customer data isolation supports trustworthiness measurement.
+  source_name: Implementing customer data isolation controls with strict logical and
+    physical separation.
+  source_description: Implementing customer data isolation controls with strict logical
+    and physical separation.
+  target_name: Measurement results regarding AI system trustworthiness validated through
+    input from domain experts and relevant AI acto
+  target_description: Measurement results regarding AI system trustworthiness in deployment
+    context(s) and across the AI lifecycle are informed by input from domain experts
+    and relevant AI actors to validate whether the system is performing consistently
+    as intended. Results are documented.
+- source_node_id: aiuc_1:C009.2
+  target_node_id: nist_rmf:GOVERN-1.1
+  composite_score: 0.2007
+  uncertainty_score: 1.9712
+  signals:
+    bridge: 0.0
+    semantic: 0.3823
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: User feedback review supports legal/regulatory compliance assessment.
+  source_name: Review user feedback and intervention logs regularly.
+  source_description: Review user feedback and intervention logs regularly.
+  target_name: Legal and regulatory requirements involving AI are understood, managed,
+    and documented.
+  target_description: Legal and regulatory requirements involving AI are understood,
+    managed, and documented.
+- source_node_id: aiuc_1:A004
+  target_node_id: nist_rmf:MAP-3.3
+  composite_score: 0.2007
+  uncertainty_score: 1.9702
+  signals:
+    bridge: 0.0351
+    semantic: 0.2599
+    keyword: 0.0018
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: IP protection weakly relates to targeted application scope.
+  source_name: Protect IP & trade secrets
+  source_description: Implement safeguards or technical controls to prevent AI systems
+    from leaking company intellectual property or confidential information.
+  target_name: Targeted application scope specified and documented based on system
+    capability and established context.
+  target_description: "Targeted application scope is specified and documented based\
+    \ on the system\u2019s capability, established context, and AI system categorization."
+- source_node_id: aiuc_1:C007.3
+  target_node_id: nist_rmf:MAP-3.5
+  composite_score: 0.3492
+  uncertainty_score: 1.969
+  signals:
+    bridge: 0.0
+    semantic: 0.8968
+    keyword: 0.0372
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Human review workflow is canonical human-oversight process documentation.
+  source_name: Workflow documentation for human review process for flagged outputs.
+  source_description: Workflow documentation for human review process for flagged
+    outputs.
+  target_name: Processes for human oversight defined, assessed, and documented in
+    accordance with organizational policies.
+  target_description: Processes for human oversight are defined, assessed, and documented
+    in accordance with organizational policies from the **GOVERN** function.
+- source_node_id: aiuc_1:C005
+  target_node_id: nist_rmf:MANAGE-3.2
+  composite_score: 0.2008
+  uncertainty_score: 1.9686
+  signals:
+    bridge: 0.0
+    semantic: 0.3063
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Customer-defined risk prevention supports pre-trained model monitoring.
+  source_name: Prevent customer-defined high risk outputs
+  source_description: Implement safeguards to prevent additional high risk outputs
+    as defined in risk taxonomy.
+  target_name: Pre-trained models used for development monitored as part of regular
+    AI system monitoring and maintenance.
+  target_description: Pre-trained models which are used for development are monitored
+    as part of AI system regular monitoring and maintenance.
+- source_node_id: aiuc_1:C005.3
+  target_node_id: nist_rmf:GOVERN-1.3
+  composite_score: 0.2008
+  uncertainty_score: 1.9684
+  signals:
+    bridge: 0.0
+    semantic: 0.3825
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Real-time intervention supports trustworthy-AI determination procedures.
+  source_name: Implementing automated real-time interventions.
+  source_description: Implementing automated real-time interventions.
+  target_name: Processes and procedures in place to determine needed level of risk
+    management activities based on organizational risk t
+  target_description: "Processes, procedures, and practices are in place to determine\
+    \ the needed level of risk management activities based on the organization\u2019\
+    s risk tolerance."
+- source_node_id: aiuc_1:E010.1
+  target_node_id: nist_rmf:MAP-3.5
+  composite_score: 0.3508
+  uncertainty_score: 1.9681
+  signals:
+    bridge: 0.0
+    semantic: 0.6682
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: AUP defines acceptable use; supports human-oversight scope.
+  source_name: Policy document defining acceptable and prohibited AI usage.
+  source_description: Policy document defining acceptable and prohibited AI usage.
+  target_name: Processes for human oversight defined, assessed, and documented in
+    accordance with organizational policies.
+  target_description: Processes for human oversight are defined, assessed, and documented
+    in accordance with organizational policies from the **GOVERN** function.
+- source_node_id: aiuc_1:F001.2
+  target_node_id: nist_rmf:MANAGE-3.2
+  composite_score: 0.2008
+  uncertainty_score: 1.9679
+  signals:
+    bridge: 0.0
+    semantic: 0.3825
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Content filtering supports pre-trained model monitoring.
+  source_name: Deploy content filtering to detect requests for malicious code generation
+    and vulnerability exploitation.
+  source_description: Deploy content filtering to detect requests for malicious code
+    generation and vulnerability exploitation.
+  target_name: Pre-trained models used for development monitored as part of regular
+    AI system monitoring and maintenance.
+  target_description: Pre-trained models which are used for development are monitored
+    as part of AI system regular monitoring and maintenance.
+- source_node_id: aiuc_1:E015.2
+  target_node_id: nist_rmf:MAP-3.3
+  composite_score: 0.1992
+  uncertainty_score: 1.9673
+  signals:
+    bridge: 0.0
+    semantic: 0.3794
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Storage retention weakly relates to targeted application scope.
+  source_name: Implement storage with retention policies, access controls, and data
+    sanitation.
+  source_description: Implement storage with retention policies, access controls,
+    and data sanitation.
+  target_name: Targeted application scope specified and documented based on system
+    capability and established context.
+  target_description: "Targeted application scope is specified and documented based\
+    \ on the system\u2019s capability, established context, and AI system categorization."
+- source_node_id: aiuc_1:B001
+  target_node_id: nist_rmf:MEASURE-4.2
+  composite_score: 0.3495
+  uncertainty_score: 1.9672
+  signals:
+    bridge: 0.0901
+    semantic: 0.9028
+    keyword: 0.0146
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Adversarial robustness testing maps directly to trustworthiness measurement.
+  source_name: Third-party testing of adversarial robustness
+  source_description: Implement adversarial testing program to validate system resilience
+    against adversarial inputs and prompt injection attempts.
+  target_name: Measurement results regarding AI system trustworthiness validated through
+    input from domain experts and relevant AI acto
+  target_description: Measurement results regarding AI system trustworthiness in deployment
+    context(s) and across the AI lifecycle are informed by input from domain experts
+    and relevant AI actors to validate whether the system is performing consistently
+    as intended. Results are documented.
+- source_node_id: aiuc_1:E011
+  target_node_id: nist_rmf:GOVERN-3.2
+  composite_score: 0.3509
+  uncertainty_score: 1.963
+  signals:
+    bridge: 0.0
+    semantic: 0.7417
+    keyword: 0.0052
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Processing-location records support policy differentiation.
+  source_name: Record processing locations
+  source_description: Document AI data processing locations covering geographic locations
+    of processing and inference endpoints.
+  target_name: Policies and procedures define and differentiate roles for human-AI
+    configurations and system oversight.
+  target_description: Policies and procedures are in place to define and differentiate
+    roles and responsibilities for human-AI configurations and oversight of AI systems.
+- source_node_id: aiuc_1:C011
+  target_node_id: nist_rmf:MEASURE-1.1
+  composite_score: 0.2009
+  uncertainty_score: 1.9627
+  signals:
+    bridge: 0.0
+    semantic: 0.4589
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Out-of-scope output testing maps to enumerated-risk measurement.
+  source_name: Third-party testing for out-of-scope outputs
+  source_description: Appoint expert third parties to evaluate system robustness to
+    out-of-scope outputs at least every 3 months.
+  target_name: Approaches and metrics for measurement of enumerated AI risks selected,
+    starting with most significant risks. Risks that
+  target_description: "Approaches and metrics for measurement of AI risks enumerated\
+    \ during the **MAP** function are selected for implementation starting with the\
+    \ most significant AI risks. The risks or trustworthiness characteristics that\
+    \ will not \u2013 or cannot \u2013 be measured are properly documented."
+- source_node_id: aiuc_1:C005.2
+  target_node_id: nist_rmf:GOVERN-6.2
+  composite_score: 0.3509
+  uncertainty_score: 1.9623
+  signals:
+    bridge: 0.0
+    semantic: 0.8352
+    keyword: 0.0895
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Escalation procedures map to contingency processes for failures.
+  source_name: Establishing escalation procedures for flagged high-risk content.
+  source_description: Establishing escalation procedures for flagged high-risk content.
+  target_name: Contingency processes in place to handle failures or incidents in high-risk
+    third-party data or AI systems.
+  target_description: Contingency processes are in place to handle failures or incidents
+    in third-party data or AI systems deemed to be high-risk.
+- source_node_id: aiuc_1:C002
+  target_node_id: nist_rmf:MAP-1.3
+  composite_score: 0.201
+  uncertainty_score: 1.9604
+  signals:
+    bridge: 0.0
+    semantic: 0.4563
+    keyword: 0.0048
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Pre-deployment testing maps to mission-aligned evaluation.
+  source_name: Conduct pre-deployment testing
+  source_description: Conduct internal testing of AI systems prior to deployment across
+    risk categories.
+  target_name: Organization's mission and relevant goals for the AI technology understood
+    and documented.
+  target_description: "The organization\u2019s mission and relevant goals for AI technology\
+    \ are understood and documented."
+- source_node_id: aiuc_1:E012.1
+  target_node_id: nist_rmf:MAP-3.5
+  composite_score: 0.349
+  uncertainty_score: 1.9603
+  signals:
+    bridge: 0.0
+    semantic: 0.949
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Regulatory identification supports human-oversight process scoping.
+  source_name: Identify applicable regulations, document compliance procedures, and
+    review every 6 months.
+  source_description: Identify applicable regulations, document compliance procedures,
+    and review every 6 months.
+  target_name: Processes for human oversight defined, assessed, and documented in
+    accordance with organizational policies.
+  target_description: Processes for human oversight are defined, assessed, and documented
+    in accordance with organizational policies from the **GOVERN** function.
+- source_node_id: aiuc_1:E011
+  target_node_id: nist_rmf:MANAGE-4.3
+  composite_score: 0.351
+  uncertainty_score: 1.958
+  signals:
+    bridge: 0.0412
+    semantic: 0.6898
+    keyword: 0.0035
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Processing-location records support incident communication.
+  source_name: Record processing locations
+  source_description: Document AI data processing locations covering geographic locations
+    of processing and inference endpoints.
+  target_name: Incidents and errors communicated to relevant AI actors including affected
+    communities; processes for tracking, respondi
+  target_description: Incidents and errors are communicated to relevant AI actors,
+    including affected communities. Processes for tracking, responding to, and recovering
+    from incidents and errors are followed and documented.
+- source_node_id: aiuc_1:C005.1
+  target_node_id: nist_rmf:GOVERN-1.5
+  composite_score: 0.3511
+  uncertainty_score: 1.9571
+  signals:
+    bridge: 0.0
+    semantic: 0.652
+    keyword: 0.0293
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Detection/blocking supports ongoing risk monitoring/review.
+  source_name: Implementing detection and blocking mechanisms aligned with organizational
+    risk taxonomy.
+  source_description: Implementing detection and blocking mechanisms aligned with
+    organizational risk taxonomy.
+  target_name: Ongoing monitoring and periodic review of risk management process and
+    outcomes; roles and responsibilities defined.
+  target_description: Ongoing monitoring and periodic review of the risk management
+    process and its outcomes are planned and organizational roles and responsibilities
+    clearly defined, including determining the frequency of periodic review.
+- source_node_id: aiuc_1:E005.1
+  target_node_id: nist_rmf:MAP-4.2
+  composite_score: 0.3511
+  uncertainty_score: 1.9568
+  signals:
+    bridge: 0.0
+    semantic: 0.6596
+    keyword: 0.0159
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Risk assessment for tool decisions maps directly to internal risk controls.
+  source_name: Risk assessment and decision record evaluating cloud vs. on-premises
+    factors.
+  source_description: Risk assessment and decision record evaluating cloud vs. on-premises
+    factors.
+  target_name: Internal risk controls for AI system components, including third-party
+    technologies, identified and documented.
+  target_description: Internal risk controls for components of the AI system, including
+    third-party AI technologies, are identified and documented.
+- source_node_id: aiuc_1:D003.4
+  target_node_id: nist_rmf:MEASURE-3.3
+  composite_score: 0.1989
+  uncertainty_score: 1.956
+  signals:
+    bridge: 0.0
+    semantic: 0.3789
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Human approval for sensitive tools maps to end-user feedback processes.
+  source_name: Requiring human approval for sensitive tool operations.
+  source_description: Requiring human approval for sensitive tool operations.
+  target_name: Feedback processes for end users and impacted communities to report
+    problems and appeal outcomes established and integra
+  target_description: Feedback processes for end users and impacted communities to
+    report problems and appeal system outcomes are established and integrated into
+    AI system evaluation metrics.
+- source_node_id: aiuc_1:B004.2
+  target_node_id: nist_rmf:MAP-1.1
+  composite_score: 0.3511
+  uncertainty_score: 1.9558
+  signals:
+    bridge: 0.0
+    semantic: 0.6688
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Rate limiting weakly relates to intended purpose documentation.
+  source_name: Implementing rate limiting and query restrictions.
+  source_description: Implementing rate limiting and query restrictions.
+  target_name: Intended purpose, beneficial uses, context-specific laws, norms, expectations,
+    and deployment settings understood and do
+  target_description: 'Intended purposes, potentially beneficial uses, contextspecific
+    laws, norms and expectations, and prospective settings in which the AI system
+    will be deployed are understood and documented. Considerations include: the specific
+    set or types of users along with their expectations; potential positive and negative
+    impacts of system uses to individuals, communities, organizations, society, and
+    the planet; assumptions and related limitations about AI system purposes, uses,
+    and risks across the development or product AI lifecycle; and related TEVV and
+    system metrics.'
+- source_node_id: aiuc_1:B004.3
+  target_node_id: nist_rmf:MEASURE-1.1
+  composite_score: 0.3488
+  uncertainty_score: 1.9535
+  signals:
+    bridge: 0.0
+    semantic: 0.6602
+    keyword: 0.0074
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Simulated attack testing maps to enumerated-risk measurement.
+  source_name: Conducting simulated external attack testing of AI endpoints.
+  source_description: Conducting simulated external attack testing of AI endpoints.
+  target_name: Approaches and metrics for measurement of enumerated AI risks selected,
+    starting with most significant risks. Risks that
+  target_description: "Approaches and metrics for measurement of AI risks enumerated\
+    \ during the **MAP** function are selected for implementation starting with the\
+    \ most significant AI risks. The risks or trustworthiness characteristics that\
+    \ will not \u2013 or cannot \u2013 be measured are properly documented."
+- source_node_id: aiuc_1:E010.3
+  target_node_id: nist_rmf:MANAGE-3.1
+  composite_score: 0.3512
+  uncertainty_score: 1.952
+  signals:
+    bridge: 0.0
+    semantic: 0.669
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: AUP alerts support third-party AI risk management.
+  source_name: User-facing alerts when acceptable use policy is violated.
+  source_description: User-facing alerts when acceptable use policy is violated.
+  target_name: AI risks and benefits from third-party resources regularly monitored;
+    risk controls applied and documented.
+  target_description: AI risks and benefits from third-party resources are regularly
+    monitored, and risk controls are applied and documented.
+- source_node_id: aiuc_1:E015
+  target_node_id: nist_rmf:MEASURE
+  composite_score: 0.1987
+  uncertainty_score: 1.95
+  signals:
+    bridge: 0.0
+    semantic: 0.4525
+    keyword: 0.0039
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Model activity logging supports the MEASURE function broadly.
+  source_name: Log model activity
+  source_description: Maintain logs of AI system processes, actions, and model outputs
+    to support incident investigation, auditing, and explanation.
+  target_name: MEASURE
+  target_description: Employ quantitative and qualitative tools to analyze and assess
+    AI risks
+- source_node_id: aiuc_1:E001.2
+  target_node_id: nist_rmf:MANAGE-4.1
+  composite_score: 0.3513
+  uncertainty_score: 1.9481
+  signals:
+    bridge: 0.0
+    semantic: 0.6691
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Customer communication procedures support post-deployment monitoring.
+  source_name: Define procedures for customer communications, regulatory reporting,
+    and vendor notifications.
+  source_description: Define procedures for customer communications, regulatory reporting,
+    and vendor notifications.
+  target_name: Post-deployment monitoring plans implemented, including mechanisms
+    for capturing end-user input, appeal and override, de
+  target_description: Post-deployment AI system monitoring plans are implemented,
+    including mechanisms for capturing and evaluating input from users and other relevant
+    AI actors, appeal and override, decommissioning, incident response, recovery,
+    and change management.
+- source_node_id: aiuc_1:E010.3
+  target_node_id: nist_rmf:MEASURE-4.1
+  composite_score: 0.3487
+  uncertainty_score: 1.9478
+  signals:
+    bridge: 0.0
+    semantic: 0.6642
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: AUP alerts support AI-risk identification measurement.
+  source_name: User-facing alerts when acceptable use policy is violated.
+  source_description: User-facing alerts when acceptable use policy is violated.
+  target_name: Measurement approaches for identifying AI risks connected to deployment
+    context(s) and informed through consultation wit
+  target_description: Measurement approaches for identifying AI risks are connected
+    to deployment context(s) and informed through consultation with domain experts
+    and other end users. Approaches are documented.
+- source_node_id: aiuc_1:D004.1
+  target_node_id: nist_rmf:MAP-4.1
+  composite_score: 0.3513
+  uncertainty_score: 1.9462
+  signals:
+    bridge: 0.0
+    semantic: 0.6246
+    keyword: 0.078
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Tool-call evaluation supports tech/legal risk mapping.
+  source_name: Third-party evaluation report showing tool call testing results.
+  source_description: Third-party evaluation report showing tool call testing results.
+  target_name: Approaches for mapping AI technology and legal risks of components
+    in place, followed, and documented, including third-p
+  target_description: "Approaches for mapping AI technology and legal risks of its\
+    \ components \u2013 including the use of third-party data or software \u2013 are\
+    \ in place, followed, and documented, as are risks of infringement of a third\
+    \ party\u2019s intellectual property or other rights."
+- source_node_id: aiuc_1:E004.1
+  target_node_id: nist_rmf:GOVERN-5.1
+  composite_score: 0.3514
+  uncertainty_score: 1.9458
+  signals:
+    bridge: 0.0
+    semantic: 0.6666
+    keyword: 0.0047
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Change documentation supports lessons-learned policies.
+  source_name: Documentation defining which AI system changes require approval with
+    assigned leads, plus approval records.
+  source_description: Documentation defining which AI system changes require approval
+    with assigned leads, plus approval records.
+  target_name: Policies and practices in place to collect, consider, prioritize, and
+    integrate external feedback regarding potential in
+  target_description: Organizational policies and practices are in place to collect,
+    consider, prioritize, and integrate feedback from those external to the team that
+    developed or deployed the AI system regarding the potential individual and societal
+    impacts related to AI risks.
+- source_node_id: aiuc_1:C012
+  target_node_id: nist_rmf:MAP-3.4
+  composite_score: 0.3514
+  uncertainty_score: 1.945
+  signals:
+    bridge: 0.0
+    semantic: 0.7269
+    keyword: 0.0326
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Customer-defined risk testing supports operator profiling.
+  source_name: Third-party testing for customer-defined risk
+  source_description: Appoint expert third-parties to evaluate system robustness to
+    additional high-risk outputs as defined in risk taxonomy.
+  target_name: Processes for operator and practitioner proficiency with AI system
+    performance defined, assessed, and documented.
+  target_description: "Processes for operator and practitioner proficiency with AI\
+    \ system performance and trustworthiness \u2013 and relevant technical standards\
+    \ and certifications \u2013 are defined, assessed, and documented."
+- source_node_id: aiuc_1:C008.1
+  target_node_id: nist_rmf:MEASURE-2.12
+  composite_score: 0.3486
+  uncertainty_score: 1.9444
+  signals:
+    bridge: 0.0
+    semantic: 0.6599
+    keyword: 0.0072
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Output monitoring is unrelated to environmental sustainability.
+  source_name: Establish ongoing monitoring of AI outputs across risk categories through
+    regular evaluations.
+  source_description: Establish ongoing monitoring of AI outputs across risk categories
+    through regular evaluations.
+  target_name: Environmental impact and sustainability of AI model training and management
+    assessed and documented.
+  target_description: "Environmental impact and sustainability of AI model training\
+    \ and management activities \u2013 as identified in the"
+- source_node_id: aiuc_1:C012
+  target_node_id: nist_rmf:MEASURE-1.1
+  composite_score: 0.3486
+  uncertainty_score: 1.9444
+  signals:
+    bridge: 0.0
+    semantic: 0.7402
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Customer-defined risk testing maps to enumerated-risk measurement.
+  source_name: Third-party testing for customer-defined risk
+  source_description: Appoint expert third-parties to evaluate system robustness to
+    additional high-risk outputs as defined in risk taxonomy.
+  target_name: Approaches and metrics for measurement of enumerated AI risks selected,
+    starting with most significant risks. Risks that
+  target_description: "Approaches and metrics for measurement of AI risks enumerated\
+    \ during the **MAP** function are selected for implementation starting with the\
+    \ most significant AI risks. The risks or trustworthiness characteristics that\
+    \ will not \u2013 or cannot \u2013 be measured are properly documented."
+- source_node_id: aiuc_1:C004
+  target_node_id: nist_rmf:MAP-1.3
+  composite_score: 0.1986
+  uncertainty_score: 1.9433
+  signals:
+    bridge: 0.0
+    semantic: 0.3021
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Out-of-scope output prevention supports mission-alignment mapping.
+  source_name: Prevent out-of-scope outputs
+  source_description: Implement safeguards to prevent out-of-scope outputs.
+  target_name: Organization's mission and relevant goals for the AI technology understood
+    and documented.
+  target_description: "The organization\u2019s mission and relevant goals for AI technology\
+    \ are understood and documented."
+- source_node_id: aiuc_1:A001
+  target_node_id: nist_rmf:MEASURE-3.3
+  composite_score: 0.3486
+  uncertainty_score: 1.9423
+  signals:
+    bridge: 0.0
+    semantic: 0.7391
+    keyword: 0.0018
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Input data policy supports end-user feedback processes.
+  source_name: Establish input data policy
+  source_description: Establish and communicate AI input data policies covering how
+    customer data is used for model training, inference processing, data retention
+    periods, and customer data rights.
+  target_name: Feedback processes for end users and impacted communities to report
+    problems and appeal outcomes established and integra
+  target_description: Feedback processes for end users and impacted communities to
+    report problems and appeal system outcomes are established and integrated into
+    AI system evaluation metrics.
+- source_node_id: aiuc_1:A003.2
+  target_node_id: nist_rmf:GOVERN-4.1
+  composite_score: 0.2015
+  uncertainty_score: 1.9415
+  signals:
+    bridge: 0.0
+    semantic: 0.3716
+    keyword: 0.0213
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Monitoring mechanisms support organizational accountability practices.
+  source_name: Deploying monitoring mechanisms ensuring AI systems only perform necessary
+    inference and logging deviations from defined
+  source_description: Deploying monitoring mechanisms ensuring AI systems only perform
+    necessary inference and logging deviations from defined operational scope.
+  target_name: Organizational policies and practices foster critical thinking and
+    safety-first mindset in AI design, development, deplo
+  target_description: Organizational policies and practices are in place to foster
+    a critical thinking and safety-first mindset in the design, development, deployment,
+    and uses of AI systems to minimize potential negative impacts.
+- source_node_id: aiuc_1:C006.3
+  target_node_id: nist_rmf:MEASURE-2.12
+  composite_score: 0.2015
+  uncertainty_score: 1.9397
+  signals:
+    bridge: 0.0
+    semantic: 0.3838
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Output-attack detection is unrelated to environmental sustainability.
+  source_name: Detecting advanced output-based attack patterns.
+  source_description: Detecting advanced output-based attack patterns.
+  target_name: Environmental impact and sustainability of AI model training and management
+    assessed and documented.
+  target_description: "Environmental impact and sustainability of AI model training\
+    \ and management activities \u2013 as identified in the"
+- source_node_id: aiuc_1:B008.3
+  target_node_id: nist_rmf:MEASURE-2.6
+  composite_score: 0.3485
+  uncertainty_score: 1.9393
+  signals:
+    bridge: 0.0
+    semantic: 0.6638
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Hardened model hosting supports regular safety-risk evaluation.
+  source_name: Securing model hosting environments with minimal container images.
+  source_description: Securing model hosting environments with minimal container images.
+  target_name: 'AI system regularly evaluated for safety risks; demonstrated to be
+    safe with residual risk not exceeding tolerance; can '
+  target_description: "The AI system is evaluated regularly for safety risks \u2013\
+    \ as identified in the **MAP** function. The AI system to be deployed is demonstrated\
+    \ to be safe, its residual negative risk does not exceed the risk tolerance, and\
+    \ it can fail safely, particularly if made to operate beyond its knowledge limits.\
+    \ Safety metrics reflect system reliability and robustness, real-time monitoring,\
+    \ and response times for AI system failures."
+- source_node_id: aiuc_1:C009.2
+  target_node_id: nist_rmf:MEASURE-3.3
+  composite_score: 0.3484
+  uncertainty_score: 1.9365
+  signals:
+    bridge: 0.0
+    semantic: 0.9137
+    keyword: 0.0421
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: User feedback/intervention review maps to end-user feedback processes.
+  source_name: Review user feedback and intervention logs regularly.
+  source_description: Review user feedback and intervention logs regularly.
+  target_name: Feedback processes for end users and impacted communities to report
+    problems and appeal outcomes established and integra
+  target_description: Feedback processes for end users and impacted communities to
+    report problems and appeal system outcomes are established and integrated into
+    AI system evaluation metrics.
+- source_node_id: aiuc_1:E007
+  target_node_id: nist_rmf:GOVERN-1.4
+  composite_score: 0.2016
+  uncertainty_score: 1.9349
+  signals:
+    bridge: 0.0699
+    semantic: 0.3703
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Change-approval documentation supports risk-management process establishment.
+  source_name: Document system change approvals
+  source_description: RETIRED - Merged with E004 at Q1 2026 update.
+  target_name: Risk management process and outcomes established through transparent
+    policies, procedures, and controls based on organiz
+  target_description: The risk management process and its outcomes are established
+    through transparent policies, procedures, and other controls based on organizational
+    risk priorities.
+- source_node_id: aiuc_1:E014
+  target_node_id: nist_rmf:MANAGE-4.3
+  composite_score: 0.3483
+  uncertainty_score: 1.932
+  signals:
+    bridge: 0.2586
+    semantic: 0.4071
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Transparency reports support incident/error communication.
+  source_name: Share transparency reports
+  source_description: RETIRED - Merged into E017 at Q1 2026 update.
+  target_name: Incidents and errors communicated to relevant AI actors including affected
+    communities; processes for tracking, respondi
+  target_description: Incidents and errors are communicated to relevant AI actors,
+    including affected communities. Processes for tracking, responding to, and recovering
+    from incidents and errors are followed and documented.

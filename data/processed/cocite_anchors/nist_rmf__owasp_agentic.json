@@ -1,0 +1,877 @@
+[
+  {
+    "source": "nist_rmf:GOVERN-4.3",
+    "target": "owasp_agentic:ASI08",
+    "expected_tier": "Related",
+    "multiplicity": 4,
+    "confidence_weight": 3.0,
+    "hubs": [
+      "aiuc_1:D002",
+      "aiuc_1:E001",
+      "aiuc_1:E002",
+      "aiuc_1:E003"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-4.3",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 4,
+    "confidence_weight": 3.0,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:D002",
+      "aiuc_1:D004",
+      "aiuc_1:E001"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.7",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 4,
+    "confidence_weight": 3.0,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:B002",
+      "aiuc_1:B005",
+      "aiuc_1:F001"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 4,
+    "confidence_weight": 3.0,
+    "hubs": [
+      "aiuc_1:E004",
+      "aiuc_1:E015",
+      "aiuc_1:E016",
+      "aiuc_1:E017"
+    ]
+  },
+  {
+    "source": "nist_rmf:MANAGE-1.3",
+    "target": "owasp_agentic:ASI08",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:E001",
+      "aiuc_1:E002",
+      "aiuc_1:E003"
+    ]
+  },
+  {
+    "source": "nist_rmf:MANAGE-4.3",
+    "target": "owasp_agentic:ASI08",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:E001",
+      "aiuc_1:E002",
+      "aiuc_1:E003"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.10",
+    "target": "owasp_agentic:ASI06",
+    "expected_tier": "Direct",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:A005",
+      "aiuc_1:A006",
+      "aiuc_1:B009"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-4.3",
+    "target": "owasp_agentic:ASI01",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:C002",
+      "aiuc_1:C011"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-4.3",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:C002",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.1",
+    "target": "owasp_agentic:ASI01",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:C002",
+      "aiuc_1:C011"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.1",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:C002",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.1",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:D002",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.7",
+    "target": "owasp_agentic:ASI01",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:B002",
+      "aiuc_1:B005"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.7",
+    "target": "owasp_agentic:ASI06",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:B002",
+      "aiuc_1:B005"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI01",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:E010",
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-6.1",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:A007",
+      "aiuc_1:D003",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-6.1",
+    "target": "owasp_agentic:ASI03",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:A007",
+      "aiuc_1:D003",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MAP-3.5",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:C007",
+      "aiuc_1:C009",
+      "aiuc_1:E004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.6",
+    "target": "owasp_agentic:ASI01",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:C011"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.6",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.6",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.7",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:F001"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI03",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:E010",
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI06",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C008",
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI04",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:E007",
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:E015",
+      "aiuc_1:E016"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-6.1",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D003",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-6.1",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D003",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MANAGE-2.2",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D002",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-1.3",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D002",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-4.1",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D002",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-4.2",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D002",
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MAP-2.2",
+    "target": "owasp_agentic:ASI01",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C004",
+      "aiuc_1:C011"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-4.3",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C010",
+      "aiuc_1:D002"
+    ]
+  },
+  {
+    "source": "nist_rmf:MANAGE-2.2",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C010",
+      "aiuc_1:D002"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-1.3",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C010",
+      "aiuc_1:D002"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.1",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C010",
+      "aiuc_1:D002"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.5",
+    "target": "owasp_agentic:ASI08",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D001",
+      "aiuc_1:D002"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.5",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D001",
+      "aiuc_1:D002"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-4.1",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C010",
+      "aiuc_1:D002"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-4.2",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C010",
+      "aiuc_1:D002"
+    ]
+  },
+  {
+    "source": "nist_rmf:MAP-2.1",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:A003",
+      "aiuc_1:B006"
+    ]
+  },
+  {
+    "source": "nist_rmf:MAP-2.1",
+    "target": "owasp_agentic:ASI06",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:A003",
+      "aiuc_1:B006"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.11",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C003",
+      "aiuc_1:C010"
+    ]
+  },
+  {
+    "source": "nist_rmf:MAP-4.2",
+    "target": "owasp_agentic:ASI04",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:E005",
+      "aiuc_1:E006"
+    ]
+  },
+  {
+    "source": "nist_rmf:MAP-3.4",
+    "target": "owasp_agentic:ASI01",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C004",
+      "aiuc_1:E010"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-3.2",
+    "target": "owasp_agentic:ASI08",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C007",
+      "aiuc_1:C009"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-3.2",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C007",
+      "aiuc_1:C009"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-3.2",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C007",
+      "aiuc_1:C009"
+    ]
+  },
+  {
+    "source": "nist_rmf:MAP-3.5",
+    "target": "owasp_agentic:ASI08",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C007",
+      "aiuc_1:C009"
+    ]
+  },
+  {
+    "source": "nist_rmf:MAP-3.5",
+    "target": "owasp_agentic:ASI10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:C007",
+      "aiuc_1:C009"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-4.3",
+    "target": "owasp_agentic:ASI06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B001"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.1",
+    "target": "owasp_agentic:ASI06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B001"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.6",
+    "target": "owasp_agentic:ASI06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B001"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI07",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI08",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.4",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI01",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI03",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI07",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.8",
+    "target": "owasp_agentic:ASI08",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.7",
+    "target": "owasp_agentic:ASI09",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B004"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-4.3",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:GOVERN-4.3",
+    "target": "owasp_agentic:ASI03",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MANAGE-2.2",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MANAGE-2.2",
+    "target": "owasp_agentic:ASI03",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MANAGE-2.2",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-1.3",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-1.3",
+    "target": "owasp_agentic:ASI03",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-1.3",
+    "target": "owasp_agentic:ASI05",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.1",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.1",
+    "target": "owasp_agentic:ASI03",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  },
+  {
+    "source": "nist_rmf:MEASURE-2.6",
+    "target": "owasp_agentic:ASI02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D004"
+    ]
+  }
+]

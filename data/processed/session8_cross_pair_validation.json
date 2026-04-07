@@ -2,22 +2,22 @@
   "rows": [
     {
       "pair": "aiuc_1__csa_aicm",
-      "n_mappings": 61,
+      "n_mappings": 82,
       "tier_counts": {
-        "Direct": 47,
+        "Direct": 68,
         "Related": 14,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 12,
+      "needs_review_count": 13,
       "n_anchors_scored": 257,
-      "mrr": 0.3995061674781833,
+      "mrr": 0.4780076938831501,
       "mrr_ci": [
-        0.3616146498357779,
-        0.44108344623582446
+        0.43600478382944335,
+        0.5223666163556131
       ],
-      "recall_at_5": 0.6731517509727627,
-      "roc_auc": 0.7788993777347121,
+      "recall_at_5": 0.7470817120622568,
+      "roc_auc": 0.805951263455919,
       "sampler_error": null
     },
     {
@@ -29,135 +29,195 @@
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 3,
+      "needs_review_count": 1,
       "n_anchors_scored": 60,
-      "mrr": 0.41305123117623116,
+      "mrr": 0.4062655168905168,
       "mrr_ci": [
-        0.3352262477106227,
-        0.5017001488095238
+        0.327708009004884,
+        0.497948082010582
       ],
-      "recall_at_5": 0.7166666666666667,
-      "roc_auc": 0.8009444444444445,
+      "recall_at_5": 0.7,
+      "roc_auc": 0.7979583333333333,
       "sampler_error": null
     },
     {
       "pair": "aiuc_1__mitre_atlas",
       "n_mappings": 71,
       "tier_counts": {
-        "Direct": 57,
-        "Related": 14,
+        "Direct": 59,
+        "Related": 12,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 15,
+      "needs_review_count": 13,
       "n_anchors_scored": 32,
-      "mrr": 0.6019593253968254,
+      "mrr": 0.6499859483266991,
       "mrr_ci": [
-        0.4898704117063492,
-        0.7206789434523809
+        0.5348091506339379,
+        0.7653835761278195
       ],
       "recall_at_5": 0.875,
-      "roc_auc": 0.8446533203125,
+      "roc_auc": 0.850537109375,
       "sampler_error": null
     },
     {
       "pair": "aiuc_1__nist_rmf",
-      "n_mappings": 17,
+      "n_mappings": 25,
       "tier_counts": {
-        "Direct": 14,
-        "Related": 3,
+        "Direct": 20,
+        "Related": 5,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 7,
+      "needs_review_count": 5,
       "n_anchors_scored": 152,
-      "mrr": 0.3244980551230042,
+      "mrr": 0.36359111666672367,
       "mrr_ci": [
-        0.2781150044317805,
-        0.38067768864974844
+        0.31067262569262477,
+        0.4173248386451982
       ],
-      "recall_at_5": 0.46710526315789475,
-      "roc_auc": 0.6904237361495845,
+      "recall_at_5": 0.5592105263157895,
+      "roc_auc": 0.7326242209141274,
       "sampler_error": null
     },
     {
       "pair": "aiuc_1__owasp_agentic",
       "n_mappings": 67,
       "tier_counts": {
-        "Direct": 5,
-        "Related": 62,
+        "Direct": 18,
+        "Related": 49,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 27,
+      "needs_review_count": 25,
       "n_anchors_scored": 109,
-      "mrr": 0.4226008446191934,
+      "mrr": 0.474592252803262,
       "mrr_ci": [
-        0.3680395369156837,
-        0.4818990279598079
+        0.41133245958934034,
+        0.5357325797291395
       ],
-      "recall_at_5": 0.7706422018348624,
-      "roc_auc": 0.5943499171482843,
+      "recall_at_5": 0.7798165137614679,
+      "roc_auc": 0.6120384216411375,
       "sampler_error": null
     },
     {
       "pair": "aiuc_1__owasp_llm",
-      "n_mappings": 7,
+      "n_mappings": 10,
       "tier_counts": {
-        "Direct": 5,
-        "Related": 2,
+        "Direct": 7,
+        "Related": 3,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 2,
+      "needs_review_count": 1,
       "n_anchors_scored": 60,
-      "mrr": 0.3669841269841269,
+      "mrr": 0.36601190476190476,
       "mrr_ci": [
-        0.29701388888888886,
-        0.4427767857142857
+        0.2914583333333334,
+        0.45421875
       ],
-      "recall_at_5": 0.6833333333333333,
-      "roc_auc": 0.5207373271889401,
+      "recall_at_5": 0.6,
+      "roc_auc": 0.49600614439324114,
       "sampler_error": null
     },
     {
       "pair": "cosai_rm__mitre_atlas",
-      "n_mappings": 32,
+      "n_mappings": 38,
       "tier_counts": {
-        "Direct": 28,
-        "Related": 4,
+        "Direct": 33,
+        "Related": 5,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 6,
+      "needs_review_count": 9,
       "n_anchors_scored": 29,
-      "mrr": 0.5351032588101553,
+      "mrr": 0.5532840722495894,
       "mrr_ci": [
-        0.3949389367816092,
-        0.6739691091954022
+        0.41773193760262717,
+        0.6837787356321837
       ],
-      "recall_at_5": 0.7586206896551724,
-      "roc_auc": 0.8665873959571938,
+      "recall_at_5": 0.7931034482758621,
+      "roc_auc": 0.8760998810939358,
       "sampler_error": null
     },
     {
       "pair": "cosai_rm__owasp_llm",
-      "n_mappings": 6,
+      "n_mappings": 4,
       "tier_counts": {
-        "Direct": 5,
-        "Related": 1,
+        "Direct": 4,
+        "Related": 0,
         "None": 0,
         "other": 0
       },
       "needs_review_count": 1,
       "n_anchors_scored": 18,
-      "mrr": 0.4043650793650794,
+      "mrr": 0.38075396825396823,
       "mrr_ci": [
-        0.2679580026455027,
-        0.5542708333333333
+        0.263207671957672,
+        0.5255968915343916
       ],
-      "recall_at_5": 0.6666666666666666,
-      "roc_auc": 0.6173245614035088,
+      "recall_at_5": 0.7222222222222222,
+      "roc_auc": 0.6253654970760234,
+      "sampler_error": null
+    },
+    {
+      "pair": "csa_aicm__owasp_agentic",
+      "n_mappings": 31,
+      "tier_counts": {
+        "Direct": 27,
+        "Related": 4,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 3,
+      "n_anchors_scored": 39,
+      "mrr": 0.5739316239316238,
+      "mrr_ci": [
+        0.4696153846153846,
+        0.6816346153846153
+      ],
+      "recall_at_5": 0.9230769230769231,
+      "roc_auc": 0.8231426692965155,
+      "sampler_error": null
+    },
+    {
+      "pair": "mitre_atlas__owasp_llm",
+      "n_mappings": 60,
+      "tier_counts": {
+        "Direct": 59,
+        "Related": 1,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 4,
+      "n_anchors_scored": 20,
+      "mrr": 0.71,
+      "mrr_ci": [
+        0.561625,
+        0.8417083333333334
+      ],
+      "recall_at_5": 0.95,
+      "roc_auc": 0.9213888888888889,
+      "sampler_error": null
+    },
+    {
+      "pair": "nist_rmf__owasp_agentic",
+      "n_mappings": 8,
+      "tier_counts": {
+        "Direct": 7,
+        "Related": 1,
+        "None": 0,
+        "other": 0
+      },
+      "needs_review_count": 1,
+      "n_anchors_scored": 20,
+      "mrr": 0.725,
+      "mrr_ci": [
+        0.5833333333333333,
+        0.8501041666666665
+      ],
+      "recall_at_5": 1.0,
+      "roc_auc": 0.8933333333333333,
       "sampler_error": null
     }
   ]

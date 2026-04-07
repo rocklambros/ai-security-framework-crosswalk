@@ -1,0 +1,992 @@
+[
+  {
+    "anchor": "Third-party testing of adversarial robustness Implement adversarial testing program to validate system resilience against adversarial inputs and prompt injection attempts. Adversarial Testing Red Teaming Prompt Injection Jailbreak",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Third-party testing of adversarial robustness Implement adversarial testing program to validate system resilience against adversarial inputs and goal hijack attempts. Adversarial Testing Red Teaming Prompt Injection Jailbreak",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Detect adversarial input Implement monitoring capabilities to detect and respond to adversarial inputs and prompt injection attempts. Monitor Adversarial Jailbreak Prompt Injection",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Detect adversarial input Implement monitoring capabilities to detect and respond to adversarial inputs and adversarial input attempts. Monitor Adversarial Jailbreak Prompt Injection",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement real-time input filtering Implement real-time input filtering using automated moderation tools. Prompt Injection Jailbreak Adversarial Input Protection",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement real-time input filtering Implement real-time input filtering using automated moderation tools. adversarial input Jailbreak Adversarial Input Protection",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges. Access Permissions Agent Permissions",
+    "positive": "Agent Goal Hijack",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized permissions. Access Permissions Agent Permissions",
+    "positive": "Agent Goal Hijack",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control Transparency",
+    "positive": "Agent Goal Hijack",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control disclosure",
+    "positive": "Agent Goal Hijack",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Restrict unsafe tool calls Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Agent Goal Hijack",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Restrict unsafe tool invocations Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Agent Goal Hijack",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Protect IP & trade secrets Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information. Intellectual Property Confidential Information Data Protections",
+    "positive": "Agent Goal Hijack",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Protect IP & trade secrets Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information. Intellectual Property Confidential Information piis",
+    "positive": "Agent Goal Hijack",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Conduct pre-deployment testing Conduct internal testing of AI systems prior to deployment across risk categories. Internal Testing Pre-Deployment Testing",
+    "positive": "Agent Goal Hijack",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "Prevent harmful outputs Implement safeguards to prevent harmful outputs including distressed outputs, angry responses, high-risk advice, offensive content, bias, and deception. Harmful Outputs Distressed Angry Advice Offensive Bias",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent harmful outputs Implement safeguards to prevent harmful outputs including distressed outputs, angry responses, high-risk advice, offensive content, bias, and trust. Harmful Outputs Distressed Angry Advice Offensive Bias",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent out-of-scope outputs Implement safeguards to prevent out-of-scope outputs. Out-of-Scope Political Discussion Technical Controls",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent output vulnerabilities Implement safeguards to prevent security vulnerabilities in outputs from impacting users. Harmful Outputs Code Injection Data Exfiltration Application",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent output vulnerabilities Implement safeguards to prevent security vulnerabilities in outputs from impacting users. Harmful Outputs remote code execution Data Exfiltration Application",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Third-party testing for out-of-scope outputs Appoint expert third parties to evaluate system robustness to out-of-scope outputs at least every 3 months. Out-of-Scope Third-Party Testing",
+    "positive": "Agent Goal Hijack",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "supply chain testing for out-of-scope outputs Appoint expert third parties to evaluate system robustness to out-of-scope outputs at least every 3 months. Out-of-Scope Third-Party Testing",
+    "positive": "Agent Goal Hijack",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "Review internal processes Establish regular internal reviews of key processes and document review records and approvals. Internal Reviews Documentation",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Establish AI acceptable use policy Establish and implement an AI acceptable use policy defining prohibited AI usage for end-users. Acceptable Use Breach",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Establish AI terms of use policy Establish and implement an AI acceptable use policy defining prohibited AI usage for end-users. Acceptable Use Breach",
+    "positive": "Agent Goal Hijack",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Limit AI agent data collection Implement safeguards to limit AI agent data access to task-relevant information based on user roles and context. Data Collection Data Access Agent Permissions Access Permissions",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Limit AI agent data collection Implement safeguards to limit AI agent data access to task-relevant information based on user roles and context. Data Collection Data Access Agent privileges Access Permissions",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges. Access Permissions Agent Permissions",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized access controls. Access Permissions Agent Permissions",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Enforce user access privileges to AI systems Establish and maintain user access controls and admin privileges for AI systems in line with policy. Access Controls Organizational Policy",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Enforce user access access controls to AI systems Establish and maintain user access controls and admin privileges for AI systems in line with policy. Access Controls Organizational Policy",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Restrict unsafe tool calls Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Restrict unsafe tool invocations Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Third-party testing of tool calls Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months. Tool Calls Tool Selection Third-Party Testing",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Third-party testing of tool invocations Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months. Tool Calls Tool Selection Third-Party Testing",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor third-party access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor supply chain access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect IP & trade secrets Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information. Intellectual Property Confidential Information Data Protections",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Protect IP & trade secrets Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information. Intellectual Property Confidential Information piis",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Prevent IP violations Implement safeguards and technical controls to prevent AI outputs from violating copyrights, trademarks, or other third-party intellectual property rights. Intellectual Property Copyright Protection",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent IP violations Implement safeguards and technical controls to prevent AI outputs from violating copyrights, trademarks, or other vendor intellectual property rights. Intellectual Property Copyright Protection",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, access controls and authorization. Model Environment Encryption Access Controls",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, authorizations and authorization. Model Environment Encryption Access Controls",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control Transparency",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control explainability",
+    "positive": "Tool Misuse and Exploitation",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges. Access Permissions Agent Permissions",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized permissions. Access Permissions Agent Permissions",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Enforce user access privileges to AI systems Establish and maintain user access controls and admin privileges for AI systems in line with policy. Access Controls Organizational Policy",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Enforce user access access controls to AI systems Establish and maintain user access controls and admin privileges for AI systems in line with policy. Access Controls Organizational Policy",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, access controls and authorization. Model Environment Encryption Access Controls",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, authorizations and authorization. Model Environment Encryption Access Controls",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Restrict unsafe tool calls Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Restrict unsafe tool executions Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Monitor third-party access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor dependency access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect IP & trade secrets Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information. Intellectual Property Confidential Information Data Protections",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Protect IP & trade secrets Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information. Intellectual Property Confidential Information personal datas",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Prevent IP violations Implement safeguards and technical controls to prevent AI outputs from violating copyrights, trademarks, or other third-party intellectual property rights. Intellectual Property Copyright Protection",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent IP violations Implement safeguards and technical controls to prevent AI outputs from violating copyrights, trademarks, or other third party intellectual property rights. Intellectual Property Copyright Protection",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Manage public release of technical details Implement controls to prevent over-disclosure of technical information about AI systems. Public Disclosure Open-Source External Threats",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Manage public release of technical details Implement controls to prevent over-disclosure of technical information about AI systems. Public Disclosure Open-Soucode execution External Threats",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Third-party testing of tool calls Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months. Tool Calls Tool Selection Third-Party Testing",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Third-party testing of tool uses Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months. Tool Calls Tool Selection Third-Party Testing",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Establish AI acceptable use policy Establish and implement an AI acceptable use policy defining prohibited AI usage for end-users. Acceptable Use Breach",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Establish AI usage policy policy Establish and implement an AI acceptable use policy defining prohibited AI usage for end-users. Acceptable Use Breach",
+    "positive": "Identity and PrivilegeAbuse",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, access controls and authorization. Model Environment Encryption Access Controls",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, privileges and authorization. Model Environment Encryption Access Controls",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Conduct vendor due diligence Establish AI vendor due diligence processes for foundation and upstream model providers. Vendor Due Diligence Foundation Models",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Conduct third-party due diligence Establish AI vendor due diligence processes for foundation and upstream model providers. Vendor Due Diligence Foundation Models",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor third-party access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor supply chain access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect IP & trade secrets Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information. Intellectual Property Confidential Information Data Protections",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Protect IP & trade secrets Implement safeguards or technical controls to prevent AI systems from leaking company intellectual property or confidential information. Intellectual Property Confidential Information personal datas",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Prevent IP violations Implement safeguards and technical controls to prevent AI outputs from violating copyrights, trademarks, or other third-party intellectual property rights. Intellectual Property Copyright Protection",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent IP violations Implement safeguards and technical controls to prevent AI outputs from violating copyrights, trademarks, or other dependency intellectual property rights. Intellectual Property Copyright Protection",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Assess cloud vs on-prem processing Establish criteria for selecting cloud provider and circumstances for on-premises processing. Deployment Cloud Security Data Residency",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Identity and PrivilegeAbuse"
+  },
+  {
+    "anchor": "Document system change approvals RETIRED - Merged with E004 at Q1 2026 update. Approvals Workflows",
+    "positive": "Agentic Supply ChainVulnerabilities",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges. Access Permissions Agent Permissions",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized permissions. Access Permissions Agent Permissions",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, access controls and authorization. Model Environment Encryption Access Controls",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, privileges and authorization. Model Environment Encryption Access Controls",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent output vulnerabilities Implement safeguards to prevent security vulnerabilities in outputs from impacting users. Harmful Outputs Code Injection Data Exfiltration Application",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent output vulnerabilities Implement safeguards to prevent security vulnerabilities in outputs from impacting users. Harmful Outputs remote code execution Data Exfiltration Application",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Restrict unsafe tool calls Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Restrict unsafe tool executions Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Third-party testing of tool calls Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months. Tool Calls Tool Selection Third-Party Testing",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Third-party testing of tool misuses Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months. Tool Calls Tool Selection Third-Party Testing",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Third-party testing of adversarial robustness Implement adversarial testing program to validate system resilience against adversarial inputs and prompt injection attempts. Adversarial Testing Red Teaming Prompt Injection Jailbreak",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Third-party testing of adversarial robustness Implement adversarial testing program to validate system resilience against adversarial inputs and adversarial prompt attempts. Adversarial Testing Red Teaming Prompt Injection Jailbreak",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Detect adversarial input Implement monitoring capabilities to detect and respond to adversarial inputs and prompt injection attempts. Monitor Adversarial Jailbreak Prompt Injection",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Detect adversarial input Implement monitoring capabilities to detect and respond to adversarial inputs and adversarial input attempts. Monitor Adversarial Jailbreak Prompt Injection",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement real-time input filtering Implement real-time input filtering using automated moderation tools. Prompt Injection Jailbreak Adversarial Input Protection",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement real-time input filtering Implement real-time input filtering using automated moderation tools. goal hijack Jailbreak Adversarial Input Protection",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Limit output over-exposure Implement output limitations and obfuscation techniques to safeguard against information leakage. Output Obfuscation Fidelity Reduction Information Leakage Response Filtering",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Conduct pre-deployment testing Conduct internal testing of AI systems prior to deployment across risk categories. Internal Testing Pre-Deployment Testing",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "Prevent out-of-scope outputs Implement safeguards to prevent out-of-scope outputs. Out-of-Scope Political Discussion Technical Controls",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent customer-defined high risk outputs Implement safeguards to prevent additional high risk outputs as defined in risk taxonomy. High-Risk Outputs Risk Taxonomy Technical Controls",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "Prevent AI cyber misuse Implement or document guardrails to prevent AI-enabled misuse for cyber attacks and exploitation. Cyber Attacks",
+    "positive": "Unexpected CodeExecution (RCE)",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Limit AI agent data collection Implement safeguards to limit AI agent data access to task-relevant information based on user roles and context. Data Collection Data Access Agent Permissions Access Permissions",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Limit AI agent data collection Implement safeguards to limit AI agent data access to task-relevant information based on user roles and context. Data Collection Data Access Agent authorizations Access Permissions",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent cross-customer data exposure Implement safeguards to prevent cross-customer data exposure when combining customer data from multiple sources. Cross-Customer Data Model Training Data Rights",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent cross-customer data exposure Implement safeguards to prevent cross-customer data exposure when combining customer data from multiple soucode injections. Cross-Customer Data Model Training Data Rights",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Third-party testing of adversarial robustness Implement adversarial testing program to validate system resilience against adversarial inputs and prompt injection attempts. Adversarial Testing Red Teaming Prompt Injection Jailbreak",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Third-party testing of adversarial robustness Implement adversarial testing program to validate system resilience against adversarial inputs and goal hijack attempts. Adversarial Testing Red Teaming Prompt Injection Jailbreak",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Detect adversarial input Implement monitoring capabilities to detect and respond to adversarial inputs and prompt injection attempts. Monitor Adversarial Jailbreak Prompt Injection",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Detect adversarial input Implement monitoring capabilities to detect and respond to adversarial inputs and adversarial prompt attempts. Monitor Adversarial Jailbreak Prompt Injection",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement real-time input filtering Implement real-time input filtering using automated moderation tools. Prompt Injection Jailbreak Adversarial Input Protection",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement real-time input filtering Implement real-time input filtering using automated moderation tools. goal hijack Jailbreak Adversarial Input Protection",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent PII leakage Establish safeguards to prevent personal data leakage through AI outputs and logs. Personal Data Leakage",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent personal data leakage Establish safeguards to prevent personal data leakage through AI outputs and logs. Personal Data Leakage",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges. Access Permissions Agent Permissions",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized access controls. Access Permissions Agent Permissions",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Limit output over-exposure Implement output limitations and obfuscation techniques to safeguard against information leakage. Output Obfuscation Fidelity Reduction Information Leakage Response Filtering",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Restrict unsafe tool calls Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Restrict unsafe tool misuses Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Memory & Context Poisoning",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges. Access Permissions Agent Permissions",
+    "positive": "Insecure Inter-AgentCommunication",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized authorizations. Access Permissions Agent Permissions",
+    "positive": "Insecure Inter-AgentCommunication",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, access controls and authorization. Model Environment Encryption Access Controls",
+    "positive": "Insecure Inter-AgentCommunication",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, permissions and authorization. Model Environment Encryption Access Controls",
+    "positive": "Insecure Inter-AgentCommunication",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor third-party access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Insecure Inter-AgentCommunication",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor supply chain access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Insecure Inter-AgentCommunication",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent hallucinated outputs Implement safeguards or technical controls to prevent hallucinated outputs. Hallucinations Technical Controls",
+    "positive": "Cascading Failures",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent hallucinated outputs Implement safeguards or technical controls to prevent hallucinated outputs. confabulations Technical Controls",
+    "positive": "Cascading Failures",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Third-party testing for hallucinations Appoint expert third-parties to evaluate hallucinated outputs at least every 3 months. Hallucinations Third-Party Testing",
+    "positive": "Cascading Failures",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "supply chain testing for hallucinations Appoint expert third-parties to evaluate hallucinated outputs at least every 3 months. Hallucinations Third-Party Testing",
+    "positive": "Cascading Failures",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Restrict unsafe tool calls Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Cascading Failures",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Restrict unsafe tool executions Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Cascading Failures",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "AI failure plan for security breaches Document an AI failure plan addressing privacy and security breaches by assigning accountable owners and establishing notification and remediation procedures. Incident Response Security Privacy",
+    "positive": "Cascading Failures",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "AI failure plan for security breaches Document an AI failure plan addressing privacy and security breaches by assigning accountable owners and establishing notification and remediation procedures. breach response Security Privacy",
+    "positive": "Cascading Failures",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "AI failure plan for harmful outputs Document AI failure plan for harmful AI outputs that cause significant customer harm. Incident Response Emergency Response Harmful Outputs",
+    "positive": "Cascading Failures",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "AI failure plan for output filterings Document AI failure plan for harmful AI outputs that cause significant customer harm. Incident Response Emergency Response Harmful Outputs",
+    "positive": "Cascading Failures",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "AI failure plan for hallucinations Document AI failure plan for hallucinated AI outputs that cause substantial customer financial loss. Hallucinations Incident Response Customer Loss",
+    "positive": "Cascading Failures",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "AI failure plan for false outputs Document AI failure plan for hallucinated AI outputs that cause substantial customer financial loss. Hallucinations Incident Response Customer Loss",
+    "positive": "Cascading Failures",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Implement real-time input filtering Implement real-time input filtering using automated moderation tools. Prompt Injection Jailbreak Adversarial Input Protection",
+    "positive": "Cascading Failures",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement real-time input filtering Implement real-time input filtering using automated moderation tools. adversarial prompt Jailbreak Adversarial Input Protection",
+    "positive": "Cascading Failures",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges. Access Permissions Agent Permissions",
+    "positive": "Cascading Failures",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized authorizations. Access Permissions Agent Permissions",
+    "positive": "Cascading Failures",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent harmful outputs Implement safeguards to prevent harmful outputs including distressed outputs, angry responses, high-risk advice, offensive content, bias, and deception. Harmful Outputs Distressed Angry Advice Offensive Bias",
+    "positive": "Cascading Failures",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent harmful outputs Implement safeguards to prevent harmful outputs including distressed outputs, angry responses, high-risk advice, offensive content, bias, and human-in-the-loop. Harmful Outputs Distressed Angry Advice Offensive Bias",
+    "positive": "Cascading Failures",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Flag high risk outputs Implement an alerting system that flags high-risk outputs for human review. Human Review Escalation",
+    "positive": "Cascading Failures",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control Transparency",
+    "positive": "Cascading Failures",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control explainability",
+    "positive": "Cascading Failures",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Prevent harmful outputs Implement safeguards to prevent harmful outputs including distressed outputs, angry responses, high-risk advice, offensive content, bias, and deception. Harmful Outputs Distressed Angry Advice Offensive Bias",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent harmful outputs Implement safeguards to prevent harmful outputs including distressed outputs, angry responses, high-risk advice, offensive content, bias, and human oversight. Harmful Outputs Distressed Angry Advice Offensive Bias",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Flag high risk outputs Implement an alerting system that flags high-risk outputs for human review. Human Review Escalation",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control Transparency",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control labelling",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Third-party testing for harmful outputs Appoint expert third parties to evaluate system robustness to harmful outputs at least every 3 months. Harmful Outputs Third-Party Testing",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "dependency testing for harmful outputs Appoint expert third parties to evaluate system robustness to harmful outputs at least every 3 months. Harmful Outputs Third-Party Testing",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent hallucinated outputs Implement safeguards or technical controls to prevent hallucinated outputs. Hallucinations Technical Controls",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent hallucinated outputs Implement safeguards or technical controls to prevent hallucinated outputs. false outputs Technical Controls",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Third-party testing for hallucinations Appoint expert third-parties to evaluate hallucinated outputs at least every 3 months. Hallucinations Third-Party Testing",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "supply chain testing for hallucinations Appoint expert third-parties to evaluate hallucinated outputs at least every 3 months. Hallucinations Third-Party Testing",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement AI disclosure mechanisms Implement clear disclosure mechanisms to inform users when they are interacting with AI systems. Labelling Transparency",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Implement AI labelling mechanisms Implement clear disclosure mechanisms to inform users when they are interacting with AI systems. Labelling Transparency",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Limit AI agent data collection Implement safeguards to limit AI agent data access to task-relevant information based on user roles and context. Data Collection Data Access Agent Permissions Access Permissions",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Limit AI agent data collection Implement safeguards to limit AI agent data access to task-relevant information based on user roles and context. Data Collection Data Access Agent access controls Access Permissions",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent AI endpoint scraping Implement safeguards to prevent probing or scraping of external AI endpoints. Scraping Probing Rate Limiting Query Quotas Zero Trust",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent AI endpoint scraping Implement safeguards to prevent probing or scraping of external AI endpoints. Scraping Probing Rate Limiting Query Quotas Zero human-in-the-loop",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Enforce user access privileges to AI systems Establish and maintain user access controls and admin privileges for AI systems in line with policy. Access Controls Organizational Policy",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Enforce user access authorizations to AI systems Establish and maintain user access controls and admin privileges for AI systems in line with policy. Access Controls Organizational Policy",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Limit output over-exposure Implement output limitations and obfuscation techniques to safeguard against information leakage. Output Obfuscation Fidelity Reduction Information Leakage Response Filtering",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent customer-defined high risk outputs Implement safeguards to prevent additional high risk outputs as defined in risk taxonomy. High-Risk Outputs Risk Taxonomy Technical Controls",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "Prevent output vulnerabilities Implement safeguards to prevent security vulnerabilities in outputs from impacting users. Harmful Outputs Code Injection Data Exfiltration Application",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent output vulnerabilities Implement safeguards to prevent security vulnerabilities in outputs from impacting users. Harmful Outputs rce Data Exfiltration Application",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Assign accountability Document which AI system changes require formal review or approval, assign a lead accountable for each, and document their approval. Decision Owners Deployment",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor third-party access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor vendor access Implement systems to monitor third-party access to AI systems. Access Logins",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Document system transparency policy Establish a system transparency policy and maintain a repository of model cards, datasheets, and interpretability reports. Transparency System Cards",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Document system explainability policy Establish a system transparency policy and maintain a repository of model cards, datasheets, and interpretability reports. Transparency System Cards",
+    "positive": "Human-Agent TrustExploitation",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized privileges. Access Permissions Agent Permissions",
+    "positive": "Rogue Agents",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Prevent unauthorized AI agent actions Implement safeguards to prevent AI agents from performing actions beyond intended scope and authorized authorizations. Access Permissions Agent Permissions",
+    "positive": "Rogue Agents",
+    "negative": "Human-Agent TrustExploitation"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, access controls and authorization. Model Environment Encryption Access Controls",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Protect model deployment environment Implement security measures for AI model deployment environments including encryption, permissions and authorization. Model Environment Encryption Access Controls",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Restrict unsafe tool calls Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Rogue Agents",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Restrict unsafe tool misuses Implement safeguards or technical controls to prevent tool calls in AI systems from executing unauthorized actions, accessing restricted information, or making decisions beyond their intended scope. Tool Calls Tool Selection Technical Controls",
+    "positive": "Rogue Agents",
+    "negative": "Insecure Inter-AgentCommunication"
+  },
+  {
+    "anchor": "Third-party testing of tool calls Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months. Tool Calls Tool Selection Third-Party Testing",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Third-party testing of tool invocations Appoint expert third-parties to evaluate tool calls in AI systems at least every 3 months. Tool Calls Tool Selection Third-Party Testing",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "AI failure plan for security breaches Document an AI failure plan addressing privacy and security breaches by assigning accountable owners and establishing notification and remediation procedures. Incident Response Security Privacy",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "AI failure plan for security breaches Document an AI failure plan addressing privacy and security breaches by assigning accountable owners and establishing notification and remediation procedures. failure plan Security Privacy",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Third-party testing of adversarial robustness Implement adversarial testing program to validate system resilience against adversarial inputs and prompt injection attempts. Adversarial Testing Red Teaming Prompt Injection Jailbreak",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Third-party testing of adversarial robustness Implement adversarial testing program to validate system resilience against adversarial inputs and adversarial prompt attempts. Adversarial Testing Red Teaming Prompt Injection Jailbreak",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Manage public release of technical details Implement controls to prevent over-disclosure of technical information about AI systems. Public Disclosure Open-Source External Threats",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Manage public release of technical details Implement controls to prevent over-disclosure of technical information about AI systems. Public Disclosure Open-Souremote code execution External Threats",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Enforce user access privileges to AI systems Establish and maintain user access controls and admin privileges for AI systems in line with policy. Access Controls Organizational Policy",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Enforce user access permissions to AI systems Establish and maintain user access controls and admin privileges for AI systems in line with policy. Access Controls Organizational Policy",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Limit output over-exposure Implement output limitations and obfuscation techniques to safeguard against information leakage. Output Obfuscation Fidelity Reduction Information Leakage Response Filtering",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Flag high risk outputs Implement an alerting system that flags high-risk outputs for human review. Human Review Escalation",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Monitor AI risk categories Implement monitoring of AI systems across risk categories. Monitoring High-Risk Outputs",
+    "positive": "Rogue Agents",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "Monitor AI risk categories Implement logging of AI systems across risk categories. Monitoring High-Risk Outputs",
+    "positive": "Rogue Agents",
+    "negative": "Cascading Failures"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control Transparency",
+    "positive": "Rogue Agents",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Enable real-time feedback and intervention Implement mechanisms to enable real-time user feedback collection and intervention mechanisms. Feedback Intervention User Control disclosure",
+    "positive": "Rogue Agents",
+    "negative": "Agentic Supply ChainVulnerabilities"
+  },
+  {
+    "anchor": "Third-party testing for hallucinations Appoint expert third-parties to evaluate hallucinated outputs at least every 3 months. Hallucinations Third-Party Testing",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "dependency testing for hallucinations Appoint expert third-parties to evaluate hallucinated outputs at least every 3 months. Hallucinations Third-Party Testing",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Implement AI disclosure mechanisms Implement clear disclosure mechanisms to inform users when they are interacting with AI systems. Labelling Transparency",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Implement AI transparency mechanisms Implement clear disclosure mechanisms to inform users when they are interacting with AI systems. Labelling Transparency",
+    "positive": "Rogue Agents",
+    "negative": "Agent Goal Hijack"
+  },
+  {
+    "anchor": "Prevent AI cyber misuse Implement or document guardrails to prevent AI-enabled misuse for cyber attacks and exploitation. Cyber Attacks",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  },
+  {
+    "anchor": "Prevent catastrophic misuse Implement or document guardrails to prevent AI-enabled catastrophic system misuse (chemical / bio / radio / nuclear). CBRN Chemical Bioweapon Radioactive Nuclear",
+    "positive": "Rogue Agents",
+    "negative": "Tool Misuse and Exploitation"
+  }
+]

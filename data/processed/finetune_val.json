@@ -1,0 +1,662 @@
+[
+  {
+    "sentence1": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+    "sentence2": "Agent Goal Hijack",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Approaches for mapping AI technology and legal risks of components in place, followed, and documented, including third-p",
+    "sentence2": "Agent Goal Hijack",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system security and resilience evaluated and documented.",
+    "sentence2": "Agent Goal Hijack",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Processes and procedures in place to determine needed level of risk management activities based on organizational risk t",
+    "sentence2": "Agent Goal Hijack",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Organizational policies and practices foster critical thinking and safety-first mindset in AI design, development, deplo",
+    "sentence2": "Agent Goal Hijack",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system regularly evaluated for safety risks; demonstrated to be safe with residual risk not exceeding tolerance; can",
+    "sentence2": "Agent Goal Hijack",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Agent Goal Hijack",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system security and resilience evaluated and documented.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system demonstrated to be valid and reliable; limitations of generalizability documented.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Post-deployment monitoring plans implemented, including mechanisms for capturing end-user input, appeal and override, de",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Mechanisms in place to inventory AI systems, resourced according to organizational risk priorities.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system security and resilience evaluated and documented.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system demonstrated to be valid and reliable; limitations of generalizability documented.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Legal and regulatory requirements involving AI are understood, managed, and documented.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Mechanisms in place to inventory AI systems, resourced according to organizational risk priorities.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Scientific integrity and Test, Evaluation, Validation, and Verification (TEVV) considerations identified and documented.",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system regularly evaluated for safety risks; demonstrated to be safe with residual risk not exceeding tolerance; can",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Mechanisms in place to inventory AI systems, resourced according to organizational risk priorities.",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Legal and regulatory requirements involving AI are understood, managed, and documented.",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Mechanisms in place and applied to sustain value of deployed AI systems.",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system security and resilience evaluated and documented.",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system performance or assurance criteria measured qualitatively or quantitatively and demonstrated for deployment-sim",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Organizational policies and practices foster critical thinking and safety-first mindset in AI design, development, deplo",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Post-deployment monitoring plans implemented, including mechanisms for capturing end-user input, appeal and override, de",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system demonstrated to be valid and reliable; limitations of generalizability documented.",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system security and resilience evaluated and documented.",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Approaches and metrics for measurement of enumerated AI risks selected, starting with most significant risks. Risks that",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system regularly evaluated for safety risks; demonstrated to be safe with residual risk not exceeding tolerance; can",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system security and resilience evaluated and documented.",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Measurement approaches for identifying AI risks connected to deployment context(s) and informed through consultation wit",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Mechanisms in place to inventory AI systems, resourced according to organizational risk priorities.",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Cascading Failures",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Mechanisms in place and applied to sustain value of deployed AI systems.",
+    "sentence2": "Cascading Failures",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Post-deployment monitoring plans implemented, including mechanisms for capturing end-user input, appeal and override, de",
+    "sentence2": "Cascading Failures",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system regularly evaluated for safety risks; demonstrated to be safe with residual risk not exceeding tolerance; can",
+    "sentence2": "Cascading Failures",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+    "sentence2": "Cascading Failures",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+    "sentence2": "Cascading Failures",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Organizational policies and practices foster critical thinking and safety-first mindset in AI design, development, deplo",
+    "sentence2": "Cascading Failures",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system performance or assurance criteria measured qualitatively or quantitatively and demonstrated for deployment-sim",
+    "sentence2": "Cascading Failures",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Approaches for mapping AI technology and legal risks of components in place, followed, and documented, including third-p",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Fairness and bias evaluated; results documented.",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system regularly evaluated for safety risks; demonstrated to be safe with residual risk not exceeding tolerance; can",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Processes and procedures in place to determine needed level of risk management activities based on organizational risk t",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Post-deployment monitoring plans implemented, including mechanisms for capturing end-user input, appeal and override, de",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+    "sentence2": "Rogue Agents",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Post-deployment monitoring plans implemented, including mechanisms for capturing end-user input, appeal and override, de",
+    "sentence2": "Rogue Agents",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Mechanisms in place and applied to sustain value of deployed AI systems.",
+    "sentence2": "Rogue Agents",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system security and resilience evaluated and documented.",
+    "sentence2": "Rogue Agents",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+    "sentence2": "Rogue Agents",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Mechanisms in place to inventory AI systems, resourced according to organizational risk priorities.",
+    "sentence2": "Rogue Agents",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+    "sentence2": "Rogue Agents",
+    "score": 1.0
+  },
+  {
+    "sentence1": "AI system regularly evaluated for safety risks; demonstrated to be safe with residual risk not exceeding tolerance; can",
+    "sentence2": "Rogue Agents",
+    "score": 1.0
+  },
+  {
+    "sentence1": "Potential benefits of intended AI system functionality and performance examined and documented.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Approaches and metrics for measurement of enumerated AI risks selected, starting with most significant risks. Risks that",
+    "sentence2": "Agent Goal Hijack",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Executive leadership takes responsibility for decisions about risks associated with AI system development and deployment",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Organizational policies and practices foster critical thinking and safety-first mindset in AI design, development, deplo",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Roles, responsibilities, and lines of communication related to mapping, measuring, and managing AI risks documented and",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+    "sentence2": "Agent Goal Hijack",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Test sets, metrics, and tool details used during TEVV documented.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Measurable activities for continual improvements integrated into AI system updates; regular engagement with interested p",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Measurement results regarding AI system trustworthiness validated through input from domain experts and relevant AI acto",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Roles, responsibilities, and lines of communication related to mapping, measuring, and managing AI risks documented and",
+    "sentence2": "Rogue Agents",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Policies and practices in place to collect, consider, prioritize, and integrate external feedback regarding potential in",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Measurable performance improvements or declines identified and documented based on relevant actor consultations and fiel",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 0.0
+  },
+  {
+    "sentence1": "System requirements elicited from and understood by relevant AI actors; design decisions consider socio-technical implic",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Contingency processes in place to handle failures or incidents in high-risk third-party data or AI systems.",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Policies and practices in place to collect, consider, prioritize, and integrate external feedback regarding potential in",
+    "sentence2": "Rogue Agents",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Information about AI system's knowledge limits and how output may be utilized and overseen by humans documented.",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Resources required to manage AI risks taken into account, along with viable non-AI alternatives.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Mechanisms in place and applied to sustain value of deployed AI systems.",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Organizational policies and practices foster critical thinking and safety-first mindset in AI design, development, deplo",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Personnel and partners receive AI risk management training to perform duties consistent with policies and procedures.",
+    "sentence2": "Rogue Agents",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Mechanisms in place and responsibilities assigned to supersede, disengage, or deactivate AI systems demonstrating incons",
+    "sentence2": "Cascading Failures",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Feedback processes for end users and impacted communities to report problems and appeal outcomes established and integra",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Scientific integrity and Test, Evaluation, Validation, and Verification (TEVV) considerations identified and documented.",
+    "sentence2": "Cascading Failures",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Evaluations involving human subjects meet applicable requirements and are representative of relevant population.",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Specific task and implementation methods that the AI system will support are defined.",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Resources required to manage AI risks taken into account, along with viable non-AI alternatives.",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Decision-making informed by diverse team reflecting demographic, disciplinary, and experiential diversity.",
+    "sentence2": "Rogue Agents",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Specific task and implementation methods that the AI system will support are defined.",
+    "sentence2": "Human-Agent TrustExploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Effectiveness of employed TEVV metrics and processes evaluated and documented.",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Executive leadership takes responsibility for decisions about risks associated with AI system development and deployment",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "AI model explained, validated, and documented; output interpreted within context to inform responsible use and governanc",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Responses to high-priority risks developed, planned, and documented (mitigate, transfer, avoid, or accept).",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Determination made whether AI system achieves intended purpose and stated objectives; whether development or deployment",
+    "sentence2": "Cascading Failures",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Test sets, metrics, and tool details used during TEVV documented.",
+    "sentence2": "Agent Goal Hijack",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Scientific integrity and Test, Evaluation, Validation, and Verification (TEVV) considerations identified and documented.",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Processes for operator and practitioner proficiency with AI system performance defined, assessed, and documented.",
+    "sentence2": "Rogue Agents",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Evaluations involving human subjects meet applicable requirements and are representative of relevant population.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Functionality and behavior of AI system and components monitored when in production.",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Roles, responsibilities, and lines of communication related to mapping, measuring, and managing AI risks documented and",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Practices and personnel supporting regular engagement with relevant AI actors and integrating feedback about positive, n",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Processes and procedures in place to determine needed level of risk management activities based on organizational risk t",
+    "sentence2": "Cascading Failures",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Processes for human oversight defined, assessed, and documented in accordance with organizational policies.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Organizational practices enable AI testing, incident identification, and information sharing.",
+    "sentence2": "Cascading Failures",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Roles, responsibilities, and lines of communication related to mapping, measuring, and managing AI risks documented and",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Organizational risk tolerances determined and documented.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Incidents and errors communicated to relevant AI actors including affected communities; processes for tracking, respondi",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Approaches and metrics for measurement of enumerated AI risks selected, starting with most significant risks. Risks that",
+    "sentence2": "Cascading Failures",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Decision-making informed by diverse team reflecting demographic, disciplinary, and experiential diversity.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Effectiveness of employed TEVV metrics and processes evaluated and documented.",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Measurement results regarding AI system trustworthiness validated through input from domain experts and relevant AI acto",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Policies and procedures address AI risks associated with third-party entities, including intellectual property infringem",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Test sets, metrics, and tool details used during TEVV documented.",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Likelihood and magnitude of each identified impact examined and documented based on expected use, similar contexts, publ",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Determination made whether AI system achieves intended purpose and stated objectives; whether development or deployment",
+    "sentence2": "Tool Misuse and Exploitation",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Negative residual risks to downstream acquirers and end users documented.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Post-deployment monitoring plans implemented, including mechanisms for capturing end-user input, appeal and override, de",
+    "sentence2": "Agentic Supply ChainVulnerabilities",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Trustworthy AI characteristics integrated into organizational policies, processes, and procedures.",
+    "sentence2": "Cascading Failures",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Resources required to manage AI risks taken into account, along with viable non-AI alternatives.",
+    "sentence2": "Unexpected CodeExecution (RCE)",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Organizational risk tolerances determined and documented.",
+    "sentence2": "Agent Goal Hijack",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Contingency processes in place to handle failures or incidents in high-risk third-party data or AI systems.",
+    "sentence2": "Insecure Inter-AgentCommunication",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Feedback processes for end users and impacted communities to report problems and appeal outcomes established and integra",
+    "sentence2": "Memory & Context Poisoning",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Scientific integrity and Test, Evaluation, Validation, and Verification (TEVV) considerations identified and documented.",
+    "sentence2": "Identity and PrivilegeAbuse",
+    "score": 0.0
+  },
+  {
+    "sentence1": "AI model explained, validated, and documented; output interpreted within context to inform responsible use and governanc",
+    "sentence2": "Rogue Agents",
+    "score": 0.0
+  },
+  {
+    "sentence1": "Processes and procedures for decommissioning and phasing out AI systems safely without increasing risks.",
+    "sentence2": "Cascading Failures",
+    "score": 0.0
+  }
+]

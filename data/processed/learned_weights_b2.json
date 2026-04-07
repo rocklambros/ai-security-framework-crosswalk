@@ -1,0 +1,235 @@
+{
+  "schema_version": "b2.7",
+  "frozen_test_pairs_excluded": [
+    "aiuc_1__csa_aicm",
+    "aiuc_1__mitre_atlas",
+    "cosai_rm__owasp_llm"
+  ],
+  "per_pair": {
+    "aiuc_1__eu_gpai_cop": {
+      "n_anchors": 60,
+      "tier_accuracy": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "spearman": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "ndcg_at_10": {
+        "point": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "mean": 1.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "cv_5fold": {
+        "tier_accuracy_mean": 0.0,
+        "tier_accuracy_std": 0.0,
+        "ndcg_at_10_mean": 1.0,
+        "ndcg_at_10_std": 0.0,
+        "spearman_mean": 0.0,
+        "spearman_std": 0.0,
+        "n_folds": 5
+      }
+    },
+    "aiuc_1__nist_rmf": {
+      "n_anchors": 152,
+      "tier_accuracy": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "spearman": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "ndcg_at_10": {
+        "point": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "mean": 1.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "cv_5fold": {
+        "tier_accuracy_mean": 0.0,
+        "tier_accuracy_std": 0.0,
+        "ndcg_at_10_mean": 1.0,
+        "ndcg_at_10_std": 0.0,
+        "spearman_mean": 0.0,
+        "spearman_std": 0.0,
+        "n_folds": 5
+      }
+    },
+    "aiuc_1__owasp_agentic": {
+      "n_anchors": 119,
+      "tier_accuracy": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "spearman": {
+        "point": 0.3014184976234252,
+        "lo": 0.1272115806011314,
+        "hi": 0.45470664854357995,
+        "mean": 0.3017364776332607,
+        "std": 0.08357482956586788,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "ndcg_at_10": {
+        "point": 0.8990684392693267,
+        "lo": 0.749437905169814,
+        "hi": 1.0,
+        "mean": 0.9087147162134193,
+        "std": 0.06886379070869106,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "cv_5fold": {
+        "tier_accuracy_mean": 0.0,
+        "tier_accuracy_std": 0.0,
+        "ndcg_at_10_mean": 0.8630285060544767,
+        "ndcg_at_10_std": 0.08077137774742829,
+        "spearman_mean": 0.296440122836088,
+        "spearman_std": 0.33351967414128697,
+        "n_folds": 5
+      }
+    },
+    "aiuc_1__owasp_llm": {
+      "n_anchors": 60,
+      "tier_accuracy": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "spearman": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "ndcg_at_10": {
+        "point": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "mean": 1.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "cv_5fold": {
+        "tier_accuracy_mean": 0.0,
+        "tier_accuracy_std": 0.0,
+        "ndcg_at_10_mean": 1.0,
+        "ndcg_at_10_std": 0.0,
+        "spearman_mean": 0.0,
+        "spearman_std": 0.0,
+        "n_folds": 5
+      }
+    },
+    "cosai_rm__mitre_atlas": {
+      "n_anchors": 29,
+      "tier_accuracy": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "spearman": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "mean": 0.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "ndcg_at_10": {
+        "point": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "mean": 1.0,
+        "std": 0.0,
+        "n_resamples": 1000,
+        "alpha": 0.05
+      },
+      "cv_5fold": {
+        "tier_accuracy_mean": 0.0,
+        "tier_accuracy_std": 0.0,
+        "ndcg_at_10_mean": 1.0,
+        "ndcg_at_10_std": 0.0,
+        "spearman_mean": 0.0,
+        "spearman_std": 0.0,
+        "n_folds": 5
+      }
+    }
+  },
+  "aggregate": {
+    "n_anchors_total": 420,
+    "tier_accuracy": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "n_resamples": 1000,
+      "alpha": 0.05
+    },
+    "ndcg_at_10": {
+      "point": 0.9510907186004265,
+      "lo": 0.842063127520229,
+      "hi": 1.0,
+      "mean": 0.9582795699570856,
+      "std": 0.046918224413543916,
+      "n_resamples": 1000,
+      "alpha": 0.05
+    },
+    "spearman": {
+      "point": -0.03767330583763089,
+      "lo": -0.12739428677585338,
+      "hi": 0.053979811200828016,
+      "mean": -0.03778214542134584,
+      "std": 0.04675070715330962,
+      "n_resamples": 1000,
+      "alpha": 0.05
+    }
+  }
+}

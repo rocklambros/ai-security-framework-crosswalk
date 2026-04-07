@@ -1,0 +1,22 @@
+{
+  "best_model": "Hand-tuned",
+  "logistic_coefficients": {
+    "bridge_score": 5.430315938106526,
+    "semantic_score": 0.14692725118032854,
+    "keyword_score": 1.4750121599383013,
+    "function_match": 2.75953662720961,
+    "intercept": -3.048162599527955
+  },
+  "lightgbm_feature_importance": {
+    "bridge_score": 5814.83060631156,
+    "semantic_score": 489.45115542411804,
+    "keyword_score": 85.69170188903809,
+    "function_match": 0.0
+  },
+  "ordinal_coefficients": {
+    "bridge_score": 80.04034477157043,
+    "semantic_score": 0.800062677967701,
+    "keyword_score": 8.018878195686495,
+    "function_match": 1.2722240101399707
+  }
+}

@@ -10,6 +10,16 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 <!-- Append new entries below this line. Do not edit prior entries except to fill in their result. -->
 
+## 2026-04-07 — B1.6: confidence-weighted bridge depth
+
+**Hypothesis.** Adding `confidence_weighted_bridge_depth` (sum over 2-hop paths source -> bridge_node -> target of `conf(source,bridge) * conf(bridge,target)`) improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired-bootstrap 95% CI excluding 0, AND has permutation-importance CI excluding 0.
+
+**Predicted direction.** Positive (high-confidence 2-hop paths via curated bridge nodes indicate stronger semantic linkage than count-based bridge alone).
+
+**Minimum effect size.** Δ NDCG@10 ≥ 0.03 paired CI excluding 0; perm-importance CI excluding 0.
+
+**Result.** REJECTED. n=420, feature_nonzero_frac=0.000 — same bipartite-topology problem as B1.2: source and target framework nodes share zero 1-hop bridge neighbors in the current graph. Both gate criteria fail trivially. Feature DROPPED. To resurrect this idea would require either cross-framework category links during graph build, or relaxing "bridge" to 3-hop (which then risks transitive closure noise). Persisted to data/processed/b1_eval_confidence_weighted_bridge_depth.json.
+
 ## 2026-04-07 — B1.5: mitigation lexical match structural feature
 
 **Hypothesis.** Adding `mitigation_lexical_match` (token Jaccard between source node's full semantic text and target node's `mitigation_text`) improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired-bootstrap 95% CI excluding 0, AND has permutation-importance CI excluding 0.

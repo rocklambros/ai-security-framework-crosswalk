@@ -206,6 +206,44 @@ def mitigation_lexical_match(
     return M
 
 
+def confidence_weighted_bridge_depth(
+    G: nx.DiGraph,
+    source_nodes: list[str],
+    target_nodes: list[str],
+    mask_pairs: Iterable[tuple[str, str]] | None = None,
+) -> np.ndarray:
+    """Confidence-weighted 2-hop path count between (source, target).
+
+    For each pair, sums ``conf(source, b) * conf(b, target)`` over every
+    intermediate node ``b`` reachable in one hop from source AND in one
+    hop to target (in either edge orientation). ``mask_pairs`` excludes
+    specific (u, v) edges so the held-out anchor's own edge does not
+    contribute via the (source, target) direct path.
+    """
+    mask = set(mask_pairs or ())
+    s_nbrs = {s: _masked_neighbors(G, s, mask) for s in source_nodes}
+    t_nbrs = {t: _masked_neighbors(G, t, mask) for t in target_nodes}
+    M = np.zeros((len(source_nodes), len(target_nodes)), dtype=float)
+    for i, s in enumerate(source_nodes):
+        sn = s_nbrs[s]
+        if not sn:
+            continue
+        for j, t in enumerate(target_nodes):
+            tn = t_nbrs[t]
+            if not tn:
+                continue
+            common = sn & tn
+            if not common:
+                continue
+            score = 0.0
+            for b in common:
+                if b == s or b == t:
+                    continue
+                score += _edge_conf(G, s, b) * _edge_conf(G, b, t)
+            M[i, j] = score
+    return M
+
+
 def compute_structural_features(
     G: nx.DiGraph,
     source_nodes: list[str],
@@ -231,6 +269,9 @@ def compute_structural_features(
             G, source_nodes, target_nodes, mask
         ),
         "mitigation_lexical_match": mitigation_lexical_match(
+            G, source_nodes, target_nodes, mask
+        ),
+        "confidence_weighted_bridge_depth": confidence_weighted_bridge_depth(
             G, source_nodes, target_nodes, mask
         ),
     }

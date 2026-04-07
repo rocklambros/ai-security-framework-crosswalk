@@ -1,0 +1,59 @@
+{
+  "n_anchors": 420,
+  "baseline_ndcg_at_10": {
+    "point": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "n_resamples": 1000,
+    "alpha": 0.05
+  },
+  "reranker_v2_ndcg_at_10": {
+    "point": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "n_resamples": 1000,
+    "alpha": 0.05
+  },
+  "paired_delta": {
+    "point": 0.0,
+    "lo": 0.0,
+    "hi": 0.0
+  },
+  "decision": "DROP",
+  "per_pair": [
+    {
+      "pair": "aiuc_1__eu_gpai_cop",
+      "n": 60,
+      "baseline_ndcg": 1.0,
+      "reranker_ndcg": 1.0
+    },
+    {
+      "pair": "aiuc_1__nist_rmf",
+      "n": 152,
+      "baseline_ndcg": 1.0,
+      "reranker_ndcg": 1.0
+    },
+    {
+      "pair": "aiuc_1__owasp_agentic",
+      "n": 119,
+      "baseline_ndcg": 1.0,
+      "reranker_ndcg": 1.0
+    },
+    {
+      "pair": "aiuc_1__owasp_llm",
+      "n": 60,
+      "baseline_ndcg": 1.0,
+      "reranker_ndcg": 1.0
+    },
+    {
+      "pair": "cosai_rm__mitre_atlas",
+      "n": 29,
+      "baseline_ndcg": 1.0,
+      "reranker_ndcg": 1.0
+    }
+  ]
+}

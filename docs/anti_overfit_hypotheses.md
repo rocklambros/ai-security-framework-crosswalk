@@ -22,7 +22,7 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 **Training discipline.** Triples generation EXCLUDES: (a) all anchor-pair edges, (b) all three frozen-test pairs (`aiuc_1__csa_aicm`, `aiuc_1__mitre_atlas`, `cosai_rm__owasp_llm`), (c) all 1-hop graph neighbors of either side of any anchor or frozen-test pair. Training/validation split = leave-one-framework-pair-out CV across the surviving training pairs. Frozen test pairs are NEVER seen during training, validation, or model selection.
 
-**Result.** TBD — fill in after A5.
+**Result.** REJECTED. n=420, baseline (no reranker) NDCG@10 = 1.0000 [1.0000, 1.0000], reranker_v2 NDCG@10 = 1.0000 [1.0000, 1.0000], paired-bootstrap delta = +0.0000 [+0.0000, +0.0000]. Same NDCG@10 saturation as B1.2–B1.7: 4 of 5 expanded non-frozen pairs are uniformly Direct, so the metric cannot move regardless of how good the reranker is. Reranker_v2 is DROPPED from the calibration pipeline; defaults.yaml is left unchanged. Training-time validation NDCG@10 on the held-out aiuc_1->nist_rmf pair did improve across epochs (0.673 → 0.709 → 0.720), so the model itself learned a meaningful signal — the gate is the problem, not the model. Persisted to data/processed/reranker_v2_eval.json. Re-test would require either populating rationale codes for non-owasp_agentic pairs or switching the metric to anchors-vs-distractors.
 
 ## 2026-04-07 — B1.7: mutual reciprocal rank
 

@@ -1,0 +1,49 @@
+# Rationale code -> default tier mapping
+#
+# Used by mapping_engine/scripts/expand_anchors.py to auto-derive expected_tier
+# values when promoting expert/authoritative edges to anchor pairs.
+#
+# IMPORTANT: this is an APPROXIMATE PRIOR, not ground truth. The Phase A
+# leakage analysis showed concrete counter-examples where the naive
+# rationale->tier rule disagrees with the expert-assigned tier:
+#
+#   D004 (VALID, aiuc_1 -> owasp_agentic ASI02) is expected Direct
+#   E006 (VALID, aiuc_1 -> owasp_agentic ASI04) is expected Direct
+#   A003 (SCOPE, aiuc_1 -> owasp_agentic ASI06) is expected Related
+#   B006 (SCOPE, aiuc_1 -> owasp_agentic ASI03) is expected Related
+#
+# So this table is a starting point. Cross-validation with bootstrap CI
+# (per docs/anti_overfit_methodology.md) is what actually decides whether
+# the auto-derived tiers generalize. The point of using this prior is to
+# scale anchors from N=10 hand-curated to N=80+ auto-derived per pair, so
+# that CV has enough statistical power to learn the residuals.
+#
+# Strong/primary functional roles -> Direct (the control IS the defense)
+# Supporting/observability roles  -> Related (the control supports defenses)
+# Missing rationale ('?') -> Direct (authoritative curators included it
+#   deliberately; treat as strong by default and let CV downgrade noisy ones)
+
+rationale_to_tier:
+  PREV: Direct       # Prevent — primary blocking control
+  SCOPE: Direct      # Constrain scope — primary boundary control
+  GATE: Direct       # Human gate — primary checkpoint
+  ISOLATE: Direct    # Isolate and contain — primary containment
+  DETECT: Related    # Detect and trace — supporting observability
+  VALID: Related     # Validate and test — supporting assurance
+  GOVERN: Related    # Policy and governance — supporting oversight
+  DISCLOSE: Related  # Disclose and calibrate — supporting transparency
+  "?": Direct        # Unknown / unpopulated — treat as Direct prior
+
+# Confidence weight applied to anchors derived from each rationale.
+# Lower weight = less influence in calibration loss. Used by expand_anchors.py
+# to flag low-confidence anchors that CV should weight down.
+confidence_weight:
+  PREV: 1.00
+  SCOPE: 1.00
+  GATE: 1.00
+  ISOLATE: 1.00
+  DETECT: 0.90
+  VALID: 0.90
+  GOVERN: 0.85
+  DISCLOSE: 0.85
+  "?": 0.75   # missing rationale = lower confidence in the auto-derived tier

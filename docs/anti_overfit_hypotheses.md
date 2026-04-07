@@ -275,7 +275,7 @@ importance CI (1000 perms). Adopt any feature whose CIs both exclude 0.
 
 **Rollback.** Drop any feature whose per-pair regression exceeds −0.02.
 
-**Result.** _Pending S10._
+**Result.** REJECT both. Re-ran `eval_b1_features_discriminative.py` against the post-S9 baseline (n=410 MRR=0.3887). `shared_parent_centrality` paired Δ MRR = −0.0028 [−0.0077, +0.0004] (CI crosses 0); perm null [−0.0036, +0.0036], obs −0.0028 inside null → DROP. `confidence_weighted_bridge_depth` identical numbers (the two features are perfectly redundant under the current category-link structure, both walking the same 1-hop neighborhoods) → DROP. Conclusion: cross-framework category links unblock the topological coverage but the resulting signal is dominated by category-membership noise rather than true structural similarity, so neither feature carries paired Δ. Both stay rejected. No production weights changed.
 
 ## 2026-04-07 — H_76_S11: mutual_reciprocal_rank re-test at 10k permutations
 

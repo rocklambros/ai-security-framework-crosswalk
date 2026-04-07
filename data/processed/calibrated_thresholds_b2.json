@@ -1,0 +1,296 @@
+{
+  "schema_version": "b2.9",
+  "frozen_test_pairs_excluded": [
+    "aiuc_1__csa_aicm",
+    "aiuc_1__mitre_atlas",
+    "cosai_rm__owasp_llm"
+  ],
+  "grids": {
+    "direct": [
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7
+    ],
+    "related_primary": [
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45
+    ]
+  },
+  "sweep": [
+    {
+      "direct": 0.45,
+      "related_primary": 0.2,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.3761904761904762
+    },
+    {
+      "direct": 0.5,
+      "related_primary": 0.2,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.3761904761904762
+    },
+    {
+      "direct": 0.55,
+      "related_primary": 0.2,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.3761904761904762
+    },
+    {
+      "direct": 0.45,
+      "related_primary": 0.25,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.5214285714285714
+    },
+    {
+      "direct": 0.5,
+      "related_primary": 0.25,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.5214285714285714
+    },
+    {
+      "direct": 0.55,
+      "related_primary": 0.25,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.5214285714285714
+    },
+    {
+      "direct": 0.45,
+      "related_primary": 0.35,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.7880952380952381
+    },
+    {
+      "direct": 0.5,
+      "related_primary": 0.35,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.7880952380952381
+    },
+    {
+      "direct": 0.55,
+      "related_primary": 0.35,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.7880952380952381
+    },
+    {
+      "direct": 0.6,
+      "related_primary": 0.35,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.7880952380952381
+    },
+    {
+      "direct": 0.65,
+      "related_primary": 0.35,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.7880952380952381
+    },
+    {
+      "direct": 0.7,
+      "related_primary": 0.35,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.7880952380952381
+    },
+    {
+      "direct": 0.5,
+      "related_primary": 0.45,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.9857142857142858
+    },
+    {
+      "direct": 0.55,
+      "related_primary": 0.45,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.9857142857142858
+    },
+    {
+      "direct": 0.6,
+      "related_primary": 0.45,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.9857142857142858
+    },
+    {
+      "direct": 0.65,
+      "related_primary": 0.45,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.9857142857142858
+    },
+    {
+      "direct": 0.7,
+      "related_primary": 0.45,
+      "ndcg_at_10": 1.0,
+      "youden_j": -0.9857142857142858
+    },
+    {
+      "direct": 0.45,
+      "related_primary": 0.3,
+      "ndcg_at_10": 0.9879827400068646,
+      "youden_j": -0.6404761904761904
+    },
+    {
+      "direct": 0.5,
+      "related_primary": 0.3,
+      "ndcg_at_10": 0.9879827400068646,
+      "youden_j": -0.6404761904761904
+    },
+    {
+      "direct": 0.55,
+      "related_primary": 0.3,
+      "ndcg_at_10": 0.9874853133475043,
+      "youden_j": -0.6404761904761904
+    },
+    {
+      "direct": 0.6,
+      "related_primary": 0.3,
+      "ndcg_at_10": 0.9851914380818058,
+      "youden_j": -0.6404761904761904
+    },
+    {
+      "direct": 0.65,
+      "related_primary": 0.3,
+      "ndcg_at_10": 0.9851914380818058,
+      "youden_j": -0.6404761904761904
+    },
+    {
+      "direct": 0.7,
+      "related_primary": 0.3,
+      "ndcg_at_10": 0.9851914380818058,
+      "youden_j": -0.6404761904761904
+    },
+    {
+      "direct": 0.45,
+      "related_primary": 0.4,
+      "ndcg_at_10": 0.9754680533543689,
+      "youden_j": -0.9095238095238095
+    },
+    {
+      "direct": 0.5,
+      "related_primary": 0.4,
+      "ndcg_at_10": 0.9754680533543689,
+      "youden_j": -0.9095238095238095
+    },
+    {
+      "direct": 0.55,
+      "related_primary": 0.4,
+      "ndcg_at_10": 0.9754680533543689,
+      "youden_j": -0.9095238095238095
+    },
+    {
+      "direct": 0.6,
+      "related_primary": 0.2,
+      "ndcg_at_10": 0.9743705269816686,
+      "youden_j": -0.3761904761904762
+    },
+    {
+      "direct": 0.65,
+      "related_primary": 0.2,
+      "ndcg_at_10": 0.9743705269816686,
+      "youden_j": -0.3761904761904762
+    },
+    {
+      "direct": 0.7,
+      "related_primary": 0.2,
+      "ndcg_at_10": 0.9743705269816686,
+      "youden_j": -0.3761904761904762
+    },
+    {
+      "direct": 0.6,
+      "related_primary": 0.25,
+      "ndcg_at_10": 0.9743705269816686,
+      "youden_j": -0.5214285714285714
+    },
+    {
+      "direct": 0.65,
+      "related_primary": 0.25,
+      "ndcg_at_10": 0.9743705269816686,
+      "youden_j": -0.5214285714285714
+    },
+    {
+      "direct": 0.7,
+      "related_primary": 0.25,
+      "ndcg_at_10": 0.9743705269816686,
+      "youden_j": -0.5214285714285714
+    },
+    {
+      "direct": 0.4,
+      "related_primary": 0.2,
+      "ndcg_at_10": 0.9730275839042851,
+      "youden_j": -0.3761904761904762
+    },
+    {
+      "direct": 0.4,
+      "related_primary": 0.25,
+      "ndcg_at_10": 0.9730275839042851,
+      "youden_j": -0.5214285714285714
+    },
+    {
+      "direct": 0.4,
+      "related_primary": 0.3,
+      "ndcg_at_10": 0.9730275839042851,
+      "youden_j": -0.6404761904761904
+    },
+    {
+      "direct": 0.4,
+      "related_primary": 0.35,
+      "ndcg_at_10": 0.9730275839042851,
+      "youden_j": -0.7880952380952381
+    },
+    {
+      "direct": 0.6,
+      "related_primary": 0.4,
+      "ndcg_at_10": 0.9730275839042851,
+      "youden_j": -0.9095238095238095
+    },
+    {
+      "direct": 0.65,
+      "related_primary": 0.4,
+      "ndcg_at_10": 0.9730275839042851,
+      "youden_j": -0.9095238095238095
+    },
+    {
+      "direct": 0.7,
+      "related_primary": 0.4,
+      "ndcg_at_10": 0.9730275839042851,
+      "youden_j": -0.9095238095238095
+    }
+  ],
+  "ndcg_optimal": {
+    "direct": 0.45,
+    "related_primary": 0.2,
+    "ndcg_at_10_ci": {
+      "point": 1.0,
+      "lo": 0.8942447343913573,
+      "hi": 1.0,
+      "mean": 0.9768772207396145,
+      "std": 0.03495237701059098,
+      "n_resamples": 1000,
+      "alpha": 0.05
+    }
+  },
+  "youden_optimal": {
+    "direct": 0.45,
+    "related_primary": 0.2,
+    "ndcg_at_10_ci": {
+      "point": 1.0,
+      "lo": 0.8942447343913573,
+      "hi": 1.0,
+      "mean": 0.9768772207396145,
+      "std": 0.03495237701059098,
+      "n_resamples": 1000,
+      "alpha": 0.05
+    }
+  },
+  "paired_delta_ndcg": {
+    "point": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "ci_excludes_zero": false
+  },
+  "n_anchors": 420
+}

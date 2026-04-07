@@ -8,9 +8,10 @@ candidates:
     semantic: 0.599
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Crypto-key revocation is unrelated to adversarial or unintended code execution
+    in agents.
   source_name: Key Revocation
   source_description: Define, implement and evaluate processes, procedures and technical
     measures to revoke and remove cryptographic keys prior to the end of its established
@@ -43,9 +44,10 @@ candidates:
     semantic: 0.6603
     keyword: 0.0027
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Asset classification is a prerequisite for access policy but does not itself
+    prevent agent tool misuse.
   source_name: Assets Classification
   source_description: "Classify and document the physical, and logical assets (e.g.,\
     \ applications) based on the organizational business risk. Review and update the\
@@ -79,9 +81,9 @@ candidates:
     semantic: 0.3349
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Supply-chain inventory does not address agent identity or privilege abuse.
   source_name: Supply Chain Inventory
   source_description: Develop and maintain an inventory of all supply chain relationships.
   target_name: Identity and PrivilegeAbuse
@@ -116,9 +118,9 @@ candidates:
     semantic: 0.2787
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Crypto-key destruction is unrelated to agentic supply-chain component integrity.
   source_name: Key Destruction
   source_description: Define, implement, and evaluate processes, procedures, and technical
     measures to securely destroy cryptographic keys when they are no longer needed,
@@ -153,9 +155,10 @@ candidates:
     semantic: 0.3443
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Network segmentation limits blast radius when a supply-chain component is
+    compromised.
   source_name: Segmentation and Segregation
   source_description: Design, develop, deploy and configure applications and infrastructures  such
     that tenant access is appropriately segmented and segregated,  monitored and restricted.
@@ -189,9 +192,10 @@ candidates:
     semantic: 0.2418
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Unique user identity helps prevent one user's context from poisoning another's
+    agent memory.
   source_name: Uniquely Identifiable Users
   source_description: "Define, implement and evaluate processes, procedures and technical\
     \ measures, that ensure identities\u2019 activities are identifiable through uniquely\
@@ -228,9 +232,10 @@ candidates:
     semantic: 0.6613
     keyword: 0.0109
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: High-level governance sets tone but does not directly prevent RCE in agent
+    tool chains.
   source_name: Governance Program Policy and Procedures
   source_description: Establish, document, approve, communicate, apply, evaluate and
     maintain policies and procedures for an information governance program, which
@@ -263,9 +268,9 @@ candidates:
     semantic: 0.2083
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Least privilege reduces the blast radius of a compromised supply-chain dependency.
   source_name: Least Privilege
   source_description: Employ the least privilege principle when implementing information
     system access.
@@ -299,9 +304,10 @@ candidates:
     semantic: 0.8517
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Vulnerability remediation schedule directly drives patching of third-party/agent
+    supply-chain CVEs.
   source_name: Vulnerability Remediation Schedule
   source_description: Define, implement and evaluate processes, procedures and technical
     measures based on identified risks to support scheduled and emergency responses
@@ -336,9 +342,9 @@ candidates:
     semantic: 0.3888
     keyword: 0.0193
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Pen-testing can discover RCE paths exposed via agent tool interfaces.
   source_name: Penetration Testing
   source_description: Define, implement and evaluate processes, procedures and technical
     measures for the periodic performance of penetration testing by  independent third
@@ -370,9 +376,10 @@ candidates:
     semantic: 0.6065
     keyword: 0.0098
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Key inventory aids detecting unauthorized credentials that rogue agents might
+    hold but is a weak control.
   source_name: Key Inventory Management
   source_description: Define, implement and evaluate processes, procedures and technical
     measures in order for the key management system to track and report  all cryptographic
@@ -407,9 +414,10 @@ candidates:
     semantic: 0.6621
     keyword: 0.0108
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Data inventory is an upstream prerequisite to privilege decisions, not an
+    identity/privilege control.
   source_name: Data Inventory
   source_description: Create and maintain a data inventory, at least for any sensitive,
     regulated  and personal data. Review and update the inventory at least annually
@@ -446,9 +454,9 @@ candidates:
     semantic: 0.6314
     keyword: 0.0141
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Key recovery is unrelated to memory/context poisoning.
   source_name: Key Recovery
   source_description: Define, implement and evaluate processes, procedures and technical
     measures to assess the risk to operational continuity versus the risk of  the
@@ -486,9 +494,10 @@ candidates:
     semantic: 0.6612
     keyword: 0.0065
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: SSRM clarifies failure responsibilities across CSP/customer but is not a
+    cascading-failure technical control.
   source_name: SSRM Policy and Procedures
   source_description: Establish, document, approve, communicate, apply, evaluate and  maintain
     policies and procedures for the application of the Shared  Security Responsibility
@@ -530,9 +539,9 @@ candidates:
     semantic: 0.5634
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Independent assessment can surface cascading-failure gaps but is a meta-control.
   source_name: Independent Assessments
   source_description: Conduct independent audit and assurance assessments according
     to relevant standards at least annually.
@@ -572,9 +581,10 @@ candidates:
     semantic: 0.317
     keyword: 0.0059
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk/impact analysis is an indirect prerequisite for handling human-agent
+    trust exploitation.
   source_name: Risk Assessment and Impact Analysis
   source_description: Determine the impact of business disruptions and risks to establish
     criteria for developing business continuity and operational resilience  strategies
@@ -610,9 +620,10 @@ candidates:
     semantic: 0.5942
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Vulnerability-management metrics do not address inter-agent communication
+    channels.
   source_name: Vulnerability Management Metrics
   source_description: Establish, monitor and report metrics for vulnerability identification
     and remediation at defined intervals.
@@ -643,9 +654,10 @@ candidates:
     semantic: 0.6024
     keyword: 0.0636
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Supply-chain inventory helps trace which component triggered a cascading
+    failure but is a diagnostic aid.
   source_name: Supply Chain Inventory
   source_description: Develop and maintain an inventory of all supply chain relationships.
   target_name: Cascading Failures
@@ -684,9 +696,9 @@ candidates:
     semantic: 0.2796
     keyword: 0.0209
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Clock sync is unrelated to identity/privilege abuse.
   source_name: Clock Synchronization
   source_description: Use a reliable time source across all relevant information processing
     systems.
@@ -722,9 +734,9 @@ candidates:
     semantic: 0.3665
     keyword: 0.0217
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Sensitive-data protection is orthogonal to rogue-agent detection.
   source_name: Sensitive Data Protection
   source_description: Define and implement, processes, procedures and technical measures
     to protect sensitive data throughout its lifecycle.
@@ -757,9 +769,10 @@ candidates:
     semantic: 0.8281
     keyword: 0.016
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: AI impact assessment can enumerate goal-manipulation scenarios as part of
+    pre-deployment risk review.
   source_name: AI Impact Assessment
   source_description: Establish, document, and communicate to all relevant stakeholders
     an AI Impact Assessment process and its criteria to regularly evaluate the ethical,
@@ -799,9 +812,9 @@ candidates:
     semantic: 0.6434
     keyword: 0.037
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Backup enables recovery after cascading failure propagates to data stores.
   source_name: Backup
   source_description: Periodically perform backups. Ensure the confidentiality, integrity  and
     availability of the backup, and verify restoration from backup for resiliency.
@@ -841,9 +854,9 @@ candidates:
     semantic: 0.3707
     keyword: 0.0036
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Physical secure-area authorization is unrelated to prompt-level goal hijack.
   source_name: Secure Area Authorization
   source_description: Allow only authorized personnel access to secure areas, with
     all ingress and egress points restricted, documented, and monitored by  physical
@@ -883,9 +896,9 @@ candidates:
     semantic: 0.2518
     keyword: 0.0022
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Change management policy is unrelated to human-agent trust exploitation.
   source_name: Change Management Policy and Procedures
   source_description: Establish, document, approve, communicate, apply, evaluate and  maintain
     policies and procedures for managing the risks  associated with applying changes
@@ -921,9 +934,9 @@ candidates:
     semantic: 0.3441
     keyword: 0.06
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Application approval does not address human-agent trust abuse.
   source_name: Application and Service Approval
   source_description: Define, document, apply and evaluate a list of approved services,
     applications and sources of applications (stores) acceptable for use by  endpoints
@@ -958,9 +971,9 @@ candidates:
     semantic: 0.4053
     keyword: 0.0042
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Patching does not defend against prompt-injection-driven goal hijack.
   source_name: Vulnerability Remediation Schedule
   source_description: Define, implement and evaluate processes, procedures and technical
     measures based on identified risks to support scheduled and emergency responses
@@ -999,9 +1012,10 @@ candidates:
     semantic: 0.2228
     keyword: 0.003
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Log protection preserves forensic evidence of cascading failures but is not
+    a containment control.
   source_name: Log Protection
   source_description: Protect audit records from unauthorized access, modification,
     and  deletion.
@@ -1041,9 +1055,9 @@ candidates:
     semantic: 0.6654
     keyword: 0.0075
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Governance program policy only weakly addresses cascading-failure response.
   source_name: Governance Program Policy and Procedures
   source_description: Establish, document, approve, communicate, apply, evaluate and
     maintain policies and procedures for an information governance program, which
@@ -1085,9 +1099,10 @@ candidates:
     semantic: 0.5491
     keyword: 0.0805
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Source-code management enforces integrity of first-party code consumed by
+    the agent supply chain.
   source_name: Source Code Management
   source_description: Implement source code management practices, such as version
     control, code review & static code analysis, aligning with the SDLC process.
@@ -1121,9 +1136,10 @@ candidates:
     semantic: 0.3484
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: RACI/responsibility model is a meta-control for tool-misuse accountability,
+    not prevention.
   source_name: Governance Responsibility Model
   source_description: Define and document roles and responsibilities for planning,
     implementing, operating, assessing, and improving governance programs.
@@ -1156,9 +1172,10 @@ candidates:
     semantic: 0.6533
     keyword: 0.0376
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Periodic user-access review directly reduces standing privileges that agents
+    can misuse via delegation.
   source_name: User Access Review
   source_description: Review and revalidate user access for least privilege and separation
     of duties with a frequency that is commensurated with organizational risk  tolerance
@@ -1192,9 +1209,9 @@ candidates:
     semantic: 0.3798
     keyword: 0.0075
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Remote wipe is unrelated to agent memory/context poisoning.
   source_name: Remote Wipe
   source_description: Define, implement and evaluate processes, procedures and technical
     measures to enable the deletion of company data remotely on managed endpoint devices.
@@ -1230,9 +1247,9 @@ candidates:
     semantic: 0.5037
     keyword: 0.0066
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Anomaly/failure reporting is a key detection control for tool-misuse signals.
   source_name: Failures and Anomalies Reporting
   source_description: Define, implement and evaluate processes, procedures and technical
     measures for the reporting of anomalies and failures of the monitoring  system
@@ -1266,9 +1283,9 @@ candidates:
     semantic: 0.2641
     keyword: 0.0068
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Log records of context mutations support detection of memory poisoning.
   source_name: Log Records
   source_description: Generate audit records containing relevant security information.
   target_name: Memory & Context Poisoning
@@ -1303,9 +1320,10 @@ candidates:
     semantic: 0.6585
     keyword: 0.0078
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Network-security controls can isolate and contain rogue agents communicating
+    over the wire.
   source_name: Network Security
   source_description: Monitor, encrypt and restrict communications between environments
     to only authenticated and authorized connections, as justified by the  business.
@@ -1340,9 +1358,9 @@ candidates:
     semantic: 0.3834
     keyword: 0.0026
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Endpoint inventory is not an identity/privilege control.
   source_name: Endpoint Inventory
   source_description: Maintain an inventory of all endpoints used to store and process  company
     data.
@@ -1378,9 +1396,9 @@ candidates:
     semantic: 0.652
     keyword: 0.0187
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Remote-working policy is unrelated to agent goal hijack.
   source_name: Remote and Home Working Policy and Procedures
   source_description: Establish, document, approve, communicate, apply, evaluate and
     maintain policies and procedures to protect information accessed, processed or
@@ -1420,9 +1438,10 @@ candidates:
     semantic: 0.3821
     keyword: 0.0051
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Supply-chain data-security assessment weakly touches RCE via third-party
+    code.
   source_name: Supply Chain Data Security Assessment
   source_description: Define and implement a process for conducting security assessments
     periodically for all organizations within the supply chain.
@@ -1453,9 +1472,9 @@ candidates:
     semantic: 0.3726
     keyword: 0.0124
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Off-site equipment disposal is unrelated to identity/privilege abuse.
   source_name: Off-Site Equipment Disposal Policy
   source_description: Establish, document, approve, communicate, apply, evaluate and
     maintain policies and procedures for the secure disposal of equipment used outside  the
@@ -1495,9 +1514,9 @@ candidates:
     semantic: 0.3681
     keyword: 0.0066
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Adverse-event response training is unrelated to identity abuse.
   source_name: Adverse Event Response Training
   source_description: Train datacenter personnel to safely manage adverse events,
     including but not limited to unauthorized ingress and egress attempts.
@@ -1533,9 +1552,9 @@ candidates:
     semantic: 0.3689
     keyword: 0.024
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Physical secure-area authorization is unrelated to cascading failures.
   source_name: Secure Area Authorization
   source_description: Allow only authorized personnel access to secure areas, with
     all ingress and egress points restricted, documented, and monitored by  physical
@@ -1577,9 +1596,9 @@ candidates:
     semantic: 0.67
     keyword: 0.0021
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Personal data sub-processing is a privacy control, unrelated to RCE.
   source_name: Personal Data Sub-processing
   source_description: Define, implement and evaluate processes, procedures and technical
     measures for the transfer and sub-processing of personal data within the service
@@ -1611,9 +1630,9 @@ candidates:
     semantic: 0.8532
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Vulnerability remediation is the canonical mitigation for supply-chain vulnerabilities.
   source_name: Vulnerability Remediation
   source_description: Define, implement and evaluate processes, procedures and technical
     measures to enable both scheduled and emergency responses to vulnerability identifications,
@@ -1648,9 +1667,10 @@ candidates:
     semantic: 0.3336
     keyword: 0.0174
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Model-documentation validation supports provenance claims for model supply
+    chain.
   source_name: Model Documentation Validation
   source_description: Define, implement, and evaluate processes, procedures, and technical
     measures for the validation of the Model documentation aligned with the current
@@ -1685,9 +1705,10 @@ candidates:
     semantic: 0.431
     keyword: 0.0246
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Adversarial hardening reduces exploitability of a compromised model in the
+    supply chain.
   source_name: Robustness against Adversarial Attack / Model Hardening
   source_description: Define, implement, and evaluate processes, procedures, and technical
     measures for Model Hardening to mitigate relevant adversarial attacks as identified
@@ -1722,9 +1743,10 @@ candidates:
     semantic: 0.5911
     keyword: 0.0216
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Open-model risk assessment informs tool-selection decisions but does not
+    prevent misuse.
   source_name: Open Model Risk Assessment
   source_description: Establish a process to evaluate risk associated with open models.
     Periodically review these risk factors, and implement a process to monitor and
@@ -1758,9 +1780,10 @@ candidates:
     semantic: 0.9025
     keyword: 0.0978
     function_match: 0.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Supply-chain risk management is the canonical control family for agentic
+    supply-chain vulnerabilities.
   source_name: Supply Chain Risk Management
   source_description: Periodically review risk factors associated with supply chain
     relationships.
@@ -1794,9 +1817,9 @@ candidates:
     semantic: 0.414
     keyword: 0.0203
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Password strength does not address human-agent trust exploitation.
   source_name: Strong Password Policy and Procedures
   source_description: Establish, document, approve, communicate, implement, apply,
     evaluate and maintain strong password policies and procedures. Review and update
@@ -1831,9 +1854,9 @@ candidates:
     semantic: 0.4399
     keyword: 0.0088
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Bias/fairness assessment is unrelated to identity/privilege abuse.
   source_name: Bias and Fairness Assessment
   source_description: Regularly evaluate AI systems, models, datasets & algorithms
     for bias and fairness to ensure compliance with ethical standards.
@@ -1869,9 +1892,9 @@ candidates:
     semantic: 0.2222
     keyword: 0.0688
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Endpoint management is unrelated to human-agent trust exploitation.
   source_name: Endpoint Management
   source_description: Define, implement and evaluate processes, procedures and technical
     measures to enforce policies and controls for all endpoints permitted  to access

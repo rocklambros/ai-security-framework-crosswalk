@@ -8,9 +8,9 @@ candidates:
     semantic: 0.3541
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Dataset poisoning instantiates LLM04, not LLM05 output-handling.
   source_name: Publish Poisoned Datasets
   source_description: 'Adversaries may [Poison Training Data](/techniques/AML.T0020)
     and publish it to a public location.
@@ -32,9 +32,10 @@ candidates:
     semantic: 0.3807
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Command/scripting interpreter weakly touches info disclosure; primary risk
+    is excessive agency.
   source_name: Command and Scripting Interpreter
   source_description: 'Adversaries may abuse command and script interpreters to execute
     commands, scripts, or binaries. These interfaces and languages provide ways of
@@ -66,9 +67,10 @@ candidates:
     semantic: 0.3807
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: RAG target reconnaissance is an attacker recon step, not a misinformation
+    technique.
   source_name: Gather RAG-Indexed Targets
   source_description: 'Adversaries may identify data sources used in retrieval augmented
     generation (RAG) systems for targeting purposes. By pinpointing these sources,
@@ -90,9 +92,10 @@ candidates:
     semantic: 0.3813
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: AI supply-chain compromise aligns with LLM03; weak link to misinformation
+    outcome.
   source_name: AI Supply Chain Compromise
   source_description: 'Adversaries may gain initial access to a system by compromising
     the unique portions of the AI supply chain.
@@ -114,9 +117,10 @@ candidates:
     semantic: 0.4203
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Prompt injection is the canonical lever attackers use to push agents beyond
+    their intended agency.
   source_name: LLM Prompt Injection
   source_description: 'An adversary may craft malicious prompts as inputs to an LLM
     that cause the LLM to act in unintended ways.
@@ -157,9 +161,10 @@ candidates:
     semantic: 0.6655
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Chat-history manipulation can lead to misleading agent outputs that instantiate
+    misinformation.
   source_name: Manipulate User LLM Chat History
   source_description: "Adversaries may manipulate a user's large language model (LLM)\
     \ chat history to cover the tracks of their malicious behavior. They may hide\
@@ -183,9 +188,9 @@ candidates:
     semantic: 0.2289
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Query-rate limiting addresses unbounded consumption, not supply chain.
   source_name: Restrict Number of AI Model Queries
   source_description: 'Limit the total number and rate of queries a user can perform.
 
@@ -201,9 +206,9 @@ candidates:
     semantic: 0.6653
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Resource-intensive queries realize LLM10, not vector/embedding weaknesses.
   source_name: Resource-Intensive Queries
   source_description: 'Adversaries may craft inputs specifically designed to increase
     the compute resources required for processing.
@@ -232,9 +237,9 @@ candidates:
     semantic: 0.6651
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Spearphishing via LLM produces deceptive content that operationalizes misinformation.
   source_name: Spearphishing via Social Engineering LLM
   source_description: 'Adversaries may turn LLMs into targeted social engineers.
 
@@ -260,9 +265,9 @@ candidates:
     semantic: 0.573
     keyword: 0.1667
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Generic staging-of-capabilities is not prompt injection.
   source_name: Stage Capabilities
   source_description: 'Adversaries may upload, install, or otherwise set up capabilities
     that can be used during targeting. To support their operations, an adversary may
@@ -290,9 +295,9 @@ candidates:
     semantic: 0.3793
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Spearphishing is unrelated to vector/embedding weaknesses.
   source_name: Spearphishing via Social Engineering LLM
   source_description: 'Adversaries may turn LLMs into targeted social engineers.
 
@@ -318,9 +323,9 @@ candidates:
     semantic: 0.6648
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Impersonation is an identity abuse; only weakly relates to excessive agency.
   source_name: Impersonation
   source_description: 'Adversaries may impersonate a trusted person or organization
     in order to persuade and trick a target into performing some action on their behalf.
@@ -344,9 +349,9 @@ candidates:
     semantic: 0.3167
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Training-data poisoning does not leak system prompts.
   source_name: Poison Training Data
   source_description: 'Adversaries may attempt to poison datasets used by an AI model
     by modifying the underlying data or its labels.
@@ -374,9 +379,9 @@ candidates:
     semantic: 0.3043
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Eroding model integrity overlaps weakly with supply-chain integrity.
   source_name: Erode AI Model Integrity
   source_description: 'Adversaries may degrade the target model''s performance with
     adversarial data inputs to erode confidence in the system over time.
@@ -396,9 +401,9 @@ candidates:
     semantic: 0.3705
     keyword: 0.022
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Victim-website recon is not prompt injection.
   source_name: Search Victim-Owned Websites
   source_description: 'Adversaries may search websites owned by the victim for information
     that can be used during targeting.
@@ -432,9 +437,9 @@ candidates:
     semantic: 0.3521
     keyword: 0.0075
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: AI BOM is a supply-chain provenance control, not a prompt-injection mitigation.
   source_name: AI Bill of Materials
   source_description: 'An AI Bill of Materials (AI BOM) contains a full listing of
     artifacts and resources that were used in building the AI. The AI BOM can help
@@ -455,9 +460,9 @@ candidates:
     semantic: 0.3507
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Permission config is a defense, but for excessive agency not supply chain.
   source_name: Privileged AI Agent Permissions Configuration
   source_description: AI agents may be granted elevated privileges above that of a
     normal user to enable desired workflows. When deploying a privileged AI agent,
@@ -478,9 +483,9 @@ candidates:
     semantic: 0.31
     keyword: 0.067
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Manual modification is unrelated to system prompt leakage.
   source_name: Manual Modification
   source_description: 'Adversaries may manually modify the input data to craft adversarial
     data.
@@ -503,9 +508,9 @@ candidates:
     semantic: 0.358
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: RAG target recon is unrelated to output handling.
   source_name: Gather RAG-Indexed Targets
   source_description: 'Adversaries may identify data sources used in retrieval augmented
     generation (RAG) systems for targeting purposes. By pinpointing these sources,
@@ -527,9 +532,10 @@ candidates:
     semantic: 0.6693
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Retrieval-content crafting can coerce the model into surfacing sensitive
+    retrieved records.
   source_name: Retrieval Content Crafting
   source_description: 'Adversaries may write content designed to be retrieved by user
     queries and influence a user of the system in some way. This abuses the trust
@@ -556,9 +562,9 @@ candidates:
     semantic: 0.664
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Generic software-tools technique is not a vector/embedding weakness.
   source_name: Software Tools
   source_description: 'Adversaries may search for and obtain software tools to support
     their operations.
@@ -581,9 +587,9 @@ candidates:
     semantic: 0.3837
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: LLM system info discovery is recon, not an embedding weakness.
   source_name: Discover LLM System Information
   source_description: The adversary is trying to discover something about the large
     language model's (LLM) system information. This may be found in a configuration
@@ -604,9 +610,10 @@ candidates:
     semantic: 0.6343
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Dataset-integrity erosion can propagate into embedding space but is one step
+    removed.
   source_name: Erode Dataset Integrity
   source_description: Adversaries may poison or manipulate portions of a dataset to
     reduce its usefulness, reduce trust, and cause users to waste resources correcting
@@ -622,9 +629,9 @@ candidates:
     semantic: 0.3592
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: User execution is unrelated to system prompt leakage.
   source_name: User Execution
   source_description: 'An adversary may rely upon specific actions by a user in order
     to gain execution.
@@ -646,9 +653,9 @@ candidates:
     semantic: 0.6635
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Deploying an AI agent is not itself sensitive-information disclosure.
   source_name: Deploy AI Agent
   source_description: 'Adversaries may launch AI agents in the victim''s environment
     to execute actions on their behalf. AI agents may have access to a wide range
@@ -677,9 +684,10 @@ candidates:
     semantic: 0.2522
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Access control at production does not primarily mitigate improper output
+    handling.
   source_name: Control Access to AI Models and Data in Production
   source_description: 'Require users to verify their identities before accessing a
     production model.
@@ -699,9 +707,9 @@ candidates:
     semantic: 0.3776
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Embedded malware is unrelated to unbounded consumption.
   source_name: Embed Malware
   source_description: 'Adversaries may embed malicious code into AI Model files.
 
@@ -724,9 +732,10 @@ candidates:
     semantic: 0.9236
     keyword: 0.0254
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Data destruction via agent tools is destructive integrity loss, adjacent
+    to but not poisoning.
   source_name: Data Destruction via AI Agent Tool Invocation
   source_description: Adversaries may invoke an AI agent's tool capable of performing
     mutative operations to perform Data Destruction. Adversaries may destroy data
@@ -743,9 +752,9 @@ candidates:
     semantic: 0.3845
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Container/host escape is a severe consequence of excessive agency left unchecked.
   source_name: Escape to Host
   source_description: 'Adversaries may break out of a container or virtualized environment
     to gain access to the underlying host. This can allow an adversary access to other
@@ -769,9 +778,9 @@ candidates:
     semantic: 0.3773
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Prompt crafting is LLM01, not improper output handling.
   source_name: LLM Prompt Crafting
   source_description: 'Adversaries may use their acquired knowledge of the target
     generative AI system to craft prompts that bypass its defenses and allow malicious
@@ -790,9 +799,10 @@ candidates:
     semantic: 0.3847
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Agent context poisoning primarily aligns with LLM04 rather than sensitive-info
+    disclosure.
   source_name: AI Agent Context Poisoning
   source_description: 'Adversaries may attempt to manipulate the context used by an
     AI agent''s large language model (LLM) to influence the responses it generates
@@ -815,9 +825,9 @@ candidates:
     semantic: 0.5731
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: User execution is not sensitive-information disclosure.
   source_name: User Execution
   source_description: 'An adversary may rely upon specific actions by a user in order
     to gain execution.
@@ -839,9 +849,9 @@ candidates:
     semantic: 0.6629
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Financial harm is an impact category, not info disclosure.
   source_name: Financial Harm
   source_description: 'Financial harm involves the loss of wealth, property, or other
     monetary assets due to theft, fraud or forgery, or pressure to provide financial
@@ -859,9 +869,9 @@ candidates:
     semantic: 0.3704
     keyword: 0.0251
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Config modification is not prompt injection.
   source_name: Modify AI Agent Configuration
   source_description: 'Adversaries may modify the configuration files for AI agents
     on a system. This allows malicious changes to persist beyond the life of a single
@@ -891,9 +901,9 @@ candidates:
     semantic: 0.292
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: System-prompt extraction is LLM07, not vector/embedding weakness.
   source_name: Extract LLM System Prompt
   source_description: 'Adversaries may attempt to extract a large language model''s
     (LLM) system prompt. This can be done via prompt injection to induce the model
@@ -913,9 +923,9 @@ candidates:
     semantic: 0.6266
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Adversarial data crafting weakly relates to misinformation outcomes.
   source_name: Craft Adversarial Data
   source_description: 'Adversarial data are inputs to an AI model that have been modified
     such that they cause the adversary''s desired effect in the target model.
@@ -959,9 +969,9 @@ candidates:
     semantic: 0.2434
     keyword: 0.0118
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Dataset-integrity erosion is not prompt injection.
   source_name: Erode Dataset Integrity
   source_description: Adversaries may poison or manipulate portions of a dataset to
     reduce its usefulness, reduce trust, and cause users to waste resources correcting
@@ -977,9 +987,9 @@ candidates:
     semantic: 0.6625
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Agent config modification is unrelated to sensitive-info disclosure.
   source_name: Modify AI Agent Configuration
   source_description: 'Adversaries may modify the configuration files for AI agents
     on a system. This allows malicious changes to persist beyond the life of a single
@@ -1009,9 +1019,9 @@ candidates:
     semantic: 0.6709
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Tool-data poisoning can cause downstream misinformation in agent outputs.
   source_name: AI Agent Tool Data Poisoning
   source_description: 'Adversaries may place malicious content on a victim''s system
     where it can be retrieved by an AI Agent Tool. This may be accomplished by placing
@@ -1033,9 +1043,9 @@ candidates:
     semantic: 0.3852
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: System prompt defines agency boundaries; weak link to excessive-agency mitigation.
   source_name: System Prompt
   source_description: Adversaries may discover a large language model's system instructions
     provided by the AI system builder to learn about the system's capabilities and
@@ -1051,9 +1061,9 @@ candidates:
     semantic: 0.5227
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Modifying model architecture is unrelated to excessive agency.
   source_name: Modify AI Model Architecture
   source_description: 'Adversaries may directly modify an AI model''s architecture
     to re-define it''s behavior. This can include adding or removing layers as well
@@ -1076,9 +1086,9 @@ candidates:
     semantic: 0.6312
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Training-data poisoning can distort embedding space and weaken vector integrity.
   source_name: Poison Training Data
   source_description: 'Adversaries may attempt to poison datasets used by an AI model
     by modifying the underlying data or its labels.
@@ -1106,9 +1116,9 @@ candidates:
     semantic: 0.6621
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: The AI-agent asset is the locus where excessive agency manifests.
   source_name: AI Agent
   source_description: 'Adversaries may abuse AI agents present on the victim''s system
     for command and control. AI agents are often granted access to tools that can
@@ -1133,9 +1143,10 @@ candidates:
     semantic: 0.6712
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: AI development workspaces are dev infrastructure, unrelated to excessive
+    agency.
   source_name: AI Development Workspaces
   source_description: 'Developing and staging AI attacks often requires expensive
     compute resources.
@@ -1158,9 +1169,9 @@ candidates:
     semantic: 0.3148
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Model evasion attacks are not improper output handling.
   source_name: Evade AI Model
   source_description: 'Adversaries can [Craft Adversarial Data](/techniques/AML.T0043)
     that prevents an AI model from correctly identifying the contents of the data
@@ -1183,9 +1194,9 @@ candidates:
     semantic: 0.6712
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Backdoor activation triggers are a canonical instance of data/model poisoning.
   source_name: Activation Triggers
   source_description: 'Adversaries may discover keywords or other triggers (such as
     incoming emails, documents being added, incoming message, or other workflows)
@@ -1207,9 +1218,9 @@ candidates:
     semantic: 0.6621
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Valid-accounts technique is unrelated to system prompt leakage.
   source_name: Valid Accounts
   source_description: 'Adversaries may obtain and abuse credentials of existing accounts
     as a means of gaining Initial Access.
@@ -1234,9 +1245,10 @@ candidates:
     semantic: 0.6924
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Access control to models/data at rest restricts the scope an over-agentic
+    LLM can act upon.
   source_name: Control Access to AI Models and Data at Rest
   source_description: 'Establish access controls on internal model registries and
     limit internal access to production models. Limit access to training data only
@@ -1254,9 +1266,10 @@ candidates:
     semantic: 0.5298
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Exfiltration is a consequence of excessive agency, not the agency control
+    itself.
   source_name: Exfiltration via Cyber Means
   source_description: 'Adversaries may exfiltrate AI artifacts or other information
     relevant to their goals via traditional cyber means.
@@ -1275,9 +1288,9 @@ candidates:
     semantic: 0.5313
     keyword: 0.0198
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Black-box transfer attack is not sensitive-info disclosure.
   source_name: Black-Box Transfer
   source_description: 'In Black-Box Transfer attacks, the adversary uses one or more
     proxy models (trained via [Create Proxy AI Model](/techniques/AML.T0005) or [Train

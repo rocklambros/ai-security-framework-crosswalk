@@ -8,9 +8,9 @@ candidates:
     semantic: 0.3803
     keyword: 0.0028
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Generic risk tracking only weakly touches memory/context poisoning.
   source_name: Risk tracking approaches considered for settings where AI risks are
     difficult to assess using current measurement techni
   source_description: Risk tracking approaches are considered for settings where AI
@@ -48,9 +48,9 @@ candidates:
     semantic: 0.3305
     keyword: 0.0078
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk-management scoping is a meta-control for identity abuse.
   source_name: Processes and procedures in place to determine needed level of risk
     management activities based on organizational risk t
   source_description: "Processes, procedures, and practices are in place to determine\
@@ -88,9 +88,9 @@ candidates:
     semantic: 0.2107
     keyword: 0.0236
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Deployment-context measurement weakly informs inter-agent comms risk.
   source_name: Measurement approaches for identifying AI risks connected to deployment
     context(s) and informed through consultation wit
   source_description: Measurement approaches for identifying AI risks are connected
@@ -123,9 +123,9 @@ candidates:
     semantic: 0.229
     keyword: 0.001
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Validity/reliability measurement is orthogonal to supply-chain vulns.
   source_name: AI system demonstrated to be valid and reliable; limitations of generalizability
     documented.
   source_description: The AI system to be deployed is demonstrated to be valid and
@@ -161,9 +161,9 @@ candidates:
     semantic: 0.6076
     keyword: 0.0011
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Generic risk metrics weakly cover RCE-class risks.
   source_name: Approaches and metrics for measurement of enumerated AI risks selected,
     starting with most significant risks. Risks that
   source_description: "Approaches and metrics for measurement of AI risks enumerated\
@@ -197,9 +197,9 @@ candidates:
     semantic: 0.3725
     keyword: 0.0088
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Third-party contingency is unrelated to agent goal hijack.
   source_name: Contingency processes in place to handle failures or incidents in high-risk
     third-party data or AI systems.
   source_description: Contingency processes are in place to handle failures or incidents
@@ -238,9 +238,9 @@ candidates:
     semantic: 0.3773
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk tracking weakly covers inter-agent comms.
   source_name: Risk tracking approaches considered for settings where AI risks are
     difficult to assess using current measurement techni
   source_description: Risk tracking approaches are considered for settings where AI
@@ -273,9 +273,9 @@ candidates:
     semantic: 0.3023
     keyword: 0.0073
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Trustworthy-AI policy is a meta-control for cascading failures.
   source_name: Trustworthy AI characteristics integrated into organizational policies,
     processes, and procedures.
   source_description: The characteristics of trustworthy AI are integrated into organizational
@@ -316,9 +316,10 @@ candidates:
     semantic: 0.6051
     keyword: 0.0226
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Scoping the agent's targeted application directly constrains which tools
+    are in-bounds, mitigating tool misuse.
   source_name: Targeted application scope specified and documented based on system
     capability and established context.
   source_description: "Targeted application scope is specified and documented based\
@@ -352,9 +353,9 @@ candidates:
     semantic: 0.3225
     keyword: 0.0033
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Legal/tech risk mapping weakly touches human-agent trust exploitation.
   source_name: Approaches for mapping AI technology and legal risks of components
     in place, followed, and documented, including third-p
   source_description: "Approaches for mapping AI technology and legal risks of its\
@@ -391,9 +392,10 @@ candidates:
     semantic: 0.7555
     keyword: 0.0141
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Post-deployment monitoring with override/appeal is a key detection layer
+    for goal-hijack attempts.
   source_name: Post-deployment monitoring plans implemented, including mechanisms
     for capturing end-user input, appeal and override, de
   source_description: Post-deployment AI system monitoring plans are implemented,
@@ -434,9 +436,9 @@ candidates:
     semantic: 0.2391
     keyword: 0.0049
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Internal risk controls only weakly address human-agent trust.
   source_name: Internal risk controls for AI system components, including third-party
     technologies, identified and documented.
   source_description: Internal risk controls for components of the AI system, including
@@ -471,9 +473,9 @@ candidates:
     semantic: 0.2872
     keyword: 0.0425
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Trustworthy-AI policy integration weakly supports supply-chain discipline.
   source_name: Trustworthy AI characteristics integrated into organizational policies,
     processes, and procedures.
   source_description: The characteristics of trustworthy AI are integrated into organizational
@@ -508,9 +510,10 @@ candidates:
     semantic: 0.422
     keyword: 0.0193
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Documenting knowledge limits and human oversight constrains the drift into
+    rogue-agent behavior.
   source_name: Information about AI system's knowledge limits and how output may be
     utilized and overseen by humans documented.
   source_description: "Information about the AI system\u2019s knowledge limits and\
@@ -546,9 +549,9 @@ candidates:
     semantic: 0.4226
     keyword: 0.0465
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Post-deployment monitoring can surface human-agent trust exploitation patterns.
   source_name: Post-deployment monitoring plans implemented, including mechanisms
     for capturing end-user input, appeal and override, de
   source_description: Post-deployment AI system monitoring plans are implemented,
@@ -585,9 +588,9 @@ candidates:
     semantic: 0.5645
     keyword: 0.0052
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Generic risk-mgmt processes are weakly protective of goal hijack.
   source_name: Processes and procedures in place to determine needed level of risk
     management activities based on organizational risk t
   source_description: "Processes, procedures, and practices are in place to determine\
@@ -627,9 +630,9 @@ candidates:
     semantic: 0.5935
     keyword: 0.0083
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk mapping is a meta-control for goal hijack.
   source_name: Approaches for mapping AI technology and legal risks of components
     in place, followed, and documented, including third-p
   source_description: "Approaches for mapping AI technology and legal risks of its\
@@ -670,9 +673,9 @@ candidates:
     semantic: 0.3515
     keyword: 0.001
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Legal/regulatory awareness is unrelated to supply-chain component integrity.
   source_name: Legal and regulatory requirements involving AI are understood, managed,
     and documented.
   source_description: Legal and regulatory requirements involving AI are understood,
@@ -707,9 +710,9 @@ candidates:
     semantic: 0.3117
     keyword: 0.0316
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Generic metrics weakly touch memory-poisoning risk.
   source_name: Approaches and metrics for measurement of enumerated AI risks selected,
     starting with most significant risks. Risks that
   source_description: "Approaches and metrics for measurement of AI risks enumerated\
@@ -748,9 +751,9 @@ candidates:
     semantic: 0.3727
     keyword: 0.0009
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Mission/goals documentation is unrelated to cascading failures.
   source_name: Organization's mission and relevant goals for the AI technology understood
     and documented.
   source_description: "The organization\u2019s mission and relevant goals for AI technology\
@@ -791,9 +794,9 @@ candidates:
     semantic: 0.1447
     keyword: 0.01
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Safety-risk evaluation is unrelated to identity/privilege abuse.
   source_name: 'AI system regularly evaluated for safety risks; demonstrated to be
     safe with residual risk not exceeding tolerance; can '
   source_description: "The AI system is evaluated regularly for safety risks \u2013\
@@ -834,9 +837,9 @@ candidates:
     semantic: 0.3524
     keyword: 0.0357
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Generic metrics weakly touch inter-agent comms.
   source_name: Approaches and metrics for measurement of enumerated AI risks selected,
     starting with most significant risks. Risks that
   source_description: "Approaches and metrics for measurement of AI risks enumerated\
@@ -870,9 +873,9 @@ candidates:
     semantic: 0.5895
     keyword: 0.0316
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Scope documentation weakly constrains inter-agent topology.
   source_name: Targeted application scope specified and documented based on system
     capability and established context.
   source_description: "Targeted application scope is specified and documented based\
@@ -904,9 +907,9 @@ candidates:
     semantic: 0.3765
     keyword: 0.0102
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Intended-purpose documentation weakly constrains human-agent trust dynamics.
   source_name: Intended purpose, beneficial uses, context-specific laws, norms, expectations,
     and deployment settings understood and do
   source_description: 'Intended purposes, potentially beneficial uses, contextspecific
@@ -947,9 +950,10 @@ candidates:
     semantic: 0.3705
     keyword: 0.0856
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Internal risk controls explicitly cover third-party technology, supporting
+    supply-chain defense.
   source_name: Internal risk controls for AI system components, including third-party
     technologies, identified and documented.
   source_description: Internal risk controls for components of the AI system, including
@@ -984,9 +988,9 @@ candidates:
     semantic: 0.5358
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: TEVV effectiveness evaluation weakly touches goal-hijack detection.
   source_name: Effectiveness of employed TEVV metrics and processes evaluated and
     documented.
   source_description: Effectiveness of the employed TEVV metrics and processes in
@@ -1025,9 +1029,10 @@ candidates:
     semantic: 0.6554
     keyword: 0.0008
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Pre-trained model monitoring limits cascading failures from upstream model
+    drift.
   source_name: Pre-trained models used for development monitored as part of regular
     AI system monitoring and maintenance.
   source_description: Pre-trained models which are used for development are monitored
@@ -1068,9 +1073,9 @@ candidates:
     semantic: 0.7731
     keyword: 0.0244
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Deployment-context risk measurement weakly informs tool-misuse prevention.
   source_name: Measurement approaches for identifying AI risks connected to deployment
     context(s) and informed through consultation wit
   source_description: Measurement approaches for identifying AI risks are connected
@@ -1105,9 +1110,9 @@ candidates:
     semantic: 0.3904
     keyword: 0.0036
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Safety-first culture is a meta-control for inter-agent comms.
   source_name: Organizational policies and practices foster critical thinking and
     safety-first mindset in AI design, development, deplo
   source_description: Organizational policies and practices are in place to foster
@@ -1140,9 +1145,9 @@ candidates:
     semantic: 0.492
     keyword: 0.0009
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Performance/assurance criteria are unrelated to RCE.
   source_name: AI system performance or assurance criteria measured qualitatively
     or quantitatively and demonstrated for deployment-sim
   source_description: AI system performance or assurance criteria are measured qualitatively
@@ -1175,9 +1180,10 @@ candidates:
     semantic: 0.2065
     keyword: 0.0026
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Ongoing monitoring is a meta-control that weakly supports memory-poisoning
+    detection.
   source_name: Ongoing monitoring and periodic review of risk management process and
     outcomes; roles and responsibilities defined.
   source_description: Ongoing monitoring and periodic review of the risk management
@@ -1215,9 +1221,9 @@ candidates:
     semantic: 0.3911
     keyword: 0.0038
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk tracking weakly touches human-agent trust exploitation.
   source_name: Risk tracking approaches considered for settings where AI risks are
     difficult to assess using current measurement techni
   source_description: Risk tracking approaches are considered for settings where AI
@@ -1253,9 +1259,9 @@ candidates:
     semantic: 0.6532
     keyword: 0.0018
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Environmental/sustainability impact is unrelated to rogue agents.
   source_name: Environmental impact and sustainability of AI model training and management
     assessed and documented.
   source_description: "Environmental impact and sustainability of AI model training\
@@ -1289,9 +1295,9 @@ candidates:
     semantic: 0.5498
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Fairness/bias evaluation is only weakly linked to identity/privilege abuse.
   source_name: Fairness and bias evaluated; results documented.
   source_description: "Fairness and bias \u2013 as identified in the **MAP** function\
     \ \u2013 are evaluated and results are documented."
@@ -1327,9 +1333,9 @@ candidates:
     semantic: 0.6461
     keyword: 0.0121
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Mission/goals documentation is unrelated to memory poisoning.
   source_name: Organization's mission and relevant goals for the AI technology understood
     and documented.
   source_description: "The organization\u2019s mission and relevant goals for AI technology\
@@ -1366,9 +1372,9 @@ candidates:
     semantic: 0.5312
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Validity/reliability measurement weakly touches inter-agent comms.
   source_name: AI system demonstrated to be valid and reliable; limitations of generalizability
     documented.
   source_description: The AI system to be deployed is demonstrated to be valid and
@@ -1401,9 +1407,9 @@ candidates:
     semantic: 0.6603
     keyword: 0.0071
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Stakeholder feedback mechanisms do not directly prevent tool misuse.
   source_name: Mechanisms established to regularly incorporate adjudicated feedback
     from relevant AI actors into system design and impl
   source_description: Mechanisms are established to enable the team that developed
@@ -1438,9 +1444,9 @@ candidates:
     semantic: 0.6384
     keyword: 0.0209
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Environmental/sustainability impact is unrelated to cascading failures.
   source_name: Environmental impact and sustainability of AI model training and management
     assessed and documented.
   source_description: "Environmental impact and sustainability of AI model training\
@@ -1481,9 +1487,9 @@ candidates:
     semantic: 0.3977
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Pre-trained model monitoring is weakly protective of memory poisoning.
   source_name: Pre-trained models used for development monitored as part of regular
     AI system monitoring and maintenance.
   source_description: Pre-trained models which are used for development are monitored
@@ -1520,9 +1526,9 @@ candidates:
     semantic: 0.3624
     keyword: 0.003
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Generic risk tracking weakly covers cascading failures.
   source_name: Risk tracking approaches considered for settings where AI risks are
     difficult to assess using current measurement techni
   source_description: Risk tracking approaches are considered for settings where AI
@@ -1564,9 +1570,10 @@ candidates:
     semantic: 0.4801
     keyword: 0.0359
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Third-party risk monitoring is a direct precursor to cascading-failure prevention
+    from upstream dependencies.
   source_name: AI risks and benefits from third-party resources regularly monitored;
     risk controls applied and documented.
   source_description: AI risks and benefits from third-party resources are regularly
@@ -1607,9 +1614,9 @@ candidates:
     semantic: 0.8775
     keyword: 0.0137
     function_match: 0.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Task/method definition is unrelated to RCE.
   source_name: Specific task and implementation methods that the AI system will support
     are defined.
   source_description: The specific tasks and methods used to implement the tasks that
@@ -1642,9 +1649,9 @@ candidates:
     semantic: 0.6473
     keyword: 0.0024
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Safety-first culture is a meta-control for cascading failures.
   source_name: Organizational policies and practices foster critical thinking and
     safety-first mindset in AI design, development, deplo
   source_description: Organizational policies and practices are in place to foster
@@ -1686,9 +1693,9 @@ candidates:
     semantic: 0.1155
     keyword: 0.0
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: TEVV test-set documentation is unrelated to trust exploitation.
   source_name: Test sets, metrics, and tool details used during TEVV documented.
   source_description: Test sets, metrics, and details about the tools used during
     TEVV are documented.
@@ -1722,9 +1729,9 @@ candidates:
     semantic: 0.6467
     keyword: 0.0017
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Environmental impact is unrelated to tool misuse.
   source_name: Environmental impact and sustainability of AI model training and management
     assessed and documented.
   source_description: "Environmental impact and sustainability of AI model training\
@@ -1758,9 +1765,9 @@ candidates:
     semantic: 0.1737
     keyword: 0.0359
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Operator proficiency is unrelated to supply-chain vulnerabilities.
   source_name: Processes for operator and practitioner proficiency with AI system
     performance defined, assessed, and documented.
   source_description: "Processes for operator and practitioner proficiency with AI\
@@ -1796,9 +1803,9 @@ candidates:
     semantic: 0.4473
     keyword: 0.0062
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Operator proficiency weakly supports cascading-failure response.
   source_name: Processes for operator and practitioner proficiency with AI system
     performance defined, assessed, and documented.
   source_description: "Processes for operator and practitioner proficiency with AI\
@@ -1840,9 +1847,9 @@ candidates:
     semantic: 0.6846
     keyword: 0.0028
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Safety-first culture weakly touches human-agent trust dynamics.
   source_name: Organizational policies and practices foster critical thinking and
     safety-first mindset in AI design, development, deplo
   source_description: Organizational policies and practices are in place to foster
@@ -1878,9 +1885,10 @@ candidates:
     semantic: 0.6668
     keyword: 0.0135
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Safe decommissioning prevents abandoned/retired agents from persisting as
+    rogue agents.
   source_name: Processes and procedures for decommissioning and phasing out AI systems
     safely without increasing risks.
   source_description: "Processes and procedures are in place for decommissioning and\
@@ -1915,9 +1923,9 @@ candidates:
     semantic: 0.5604
     keyword: 0.0132
     function_match: 1.0
-  expert_tier: ''
-  expert_relevance: ''
-  notes: ''
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Internal risk controls weakly touch inter-agent comms.
   source_name: Internal risk controls for AI system components, including third-party
     technologies, identified and documented.
   source_description: Internal risk controls for components of the AI system, including

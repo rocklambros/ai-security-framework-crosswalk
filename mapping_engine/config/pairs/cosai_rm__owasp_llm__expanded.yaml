@@ -10,6 +10,7 @@ target_framework: owasp_llm
 source_entry_types:
 - control
 - activity
+- risk
 target_entry_types:
 - risk
 match_mode: control_to_risk

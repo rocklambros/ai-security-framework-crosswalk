@@ -9,6 +9,7 @@ source_framework: cosai_rm
 target_framework: mitre_atlas
 source_entry_types:
 - control
+- risk
 target_entry_types:
 - mitigation
 - technique

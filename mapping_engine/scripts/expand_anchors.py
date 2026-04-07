@@ -71,6 +71,7 @@ def expand_pair(
     edges = json.loads(EDGES.read_text())
     nodes = json.loads(NODES.read_text())
     node_fw = {n["node_id"]: n.get("framework") for n in nodes}
+    node_et = {n["node_id"]: n.get("entry_type") for n in nodes}
 
     pair_edges = _expert_edges_for_pair(edges, node_fw, source_fw, target_fw)
     if not pair_edges:
@@ -108,11 +109,25 @@ def expand_pair(
     rng = random.Random(seed)
     holdout_indices = sorted(rng.sample(range(n), n_holdout))
 
+    # Auto-union entry_types from the actual anchors so every anchor's
+    # source/target node is selectable by PairMapper._select_nodes. Without
+    # this, anchors referencing e.g. cosai_rm risks while source_entry_types
+    # defaulted to ["control", "activity"] were silently dropped from the
+    # masked-validation records (Session 7.6 S1 bug fix).
+    src_types_base = list(source_entry_types or ["control", "activity"])
+    tgt_types_base = list(target_entry_types or ["risk"])
+    src_types = sorted(set(src_types_base) | {
+        node_et.get(a["source"]) for a in anchors if node_et.get(a["source"])
+    })
+    tgt_types = sorted(set(tgt_types_base) | {
+        node_et.get(a["target"]) for a in anchors if node_et.get(a["target"])
+    })
+
     config: dict = {
         "source_framework": source_fw,
         "target_framework": target_fw,
-        "source_entry_types": source_entry_types or ["control", "activity"],
-        "target_entry_types": target_entry_types or ["risk"],
+        "source_entry_types": src_types,
+        "target_entry_types": tgt_types,
         "match_mode": match_mode,
         "anchors": {
             "pairs": anchors,

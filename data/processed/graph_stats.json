@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-07T00:30:18.735775+00:00",
-  "node_count": 895,
-  "edge_count": 1790,
+  "generated_at": "2026-04-07T00:42:39.965423+00:00",
+  "node_count": 983,
+  "edge_count": 1883,
   "frameworks": {
     "aiuc_1": {
       "nodes": 189,
@@ -42,20 +42,25 @@
       "nodes": 61,
       "outbound_edges": 165,
       "inbound_edges": 118
+    },
+    "owasp_ai_exchange": {
+      "nodes": 88,
+      "outbound_edges": 93,
+      "inbound_edges": 93
     }
   },
   "edge_confidence_distribution": {
-    "authoritative": 1605,
+    "authoritative": 1698,
     "expert": 119,
     "unvalidated": 66
   },
   "rationale_distribution": {
-    "PARENT": 664,
+    "PARENT": 679,
     "null": 763,
     "SCOPE": 33,
     "ISOLATE": 8,
     "VALID": 16,
-    "PREV": 268,
+    "PREV": 346,
     "GATE": 8,
     "DETECT": 17,
     "GOVERN": 10,
@@ -96,10 +101,36 @@
     "nist_rmf:MEASURE",
     "nist_rmf:MEASURE-2.12",
     "nist_rmf:MEASURE-2.2",
-    "nist_rmf:MEASURE-3.2"
+    "nist_rmf:MEASURE-3.2",
+    "owasp_ai_exchange:1.1",
+    "owasp_ai_exchange:2.0",
+    "owasp_ai_exchange:3.0",
+    "owasp_ai_exchange:4.1",
+    "owasp_ai_exchange:4.6",
+    "owasp_ai_exchange:4.7",
+    "owasp_ai_exchange:AIPROGRAM",
+    "owasp_ai_exchange:AITRANSPARENCY",
+    "owasp_ai_exchange:ALLOWEDDATA",
+    "owasp_ai_exchange:AUGMENTATIONDATACONFIDENTIALITY",
+    "owasp_ai_exchange:AUGMENTATIONDATAINTEGRITY",
+    "owasp_ai_exchange:CHECKCOMPLIANCE",
+    "owasp_ai_exchange:CONFCOMPUTE",
+    "owasp_ai_exchange:CONTINUOUSVALIDATION",
+    "owasp_ai_exchange:DATAMINIMIZE",
+    "owasp_ai_exchange:DEVPROGRAM",
+    "owasp_ai_exchange:DISCRETE",
+    "owasp_ai_exchange:EXPLAINABILITY",
+    "owasp_ai_exchange:LEASTMODELPRIVILEGE",
+    "owasp_ai_exchange:MODELWATERMARKING",
+    "owasp_ai_exchange:OBFUSCATETRAININGDATA",
+    "owasp_ai_exchange:OVERSIGHT",
+    "owasp_ai_exchange:SECDEVPROGRAM",
+    "owasp_ai_exchange:SECEDUCATE",
+    "owasp_ai_exchange:SECPROGRAM",
+    "owasp_ai_exchange:SHORTRETAIN",
+    "owasp_ai_exchange:UNWANTEDBIASTESTING"
   ],
   "validation_warnings": [
-    "TODO: NIST AI 600-1 node extraction from prose markdown",
-    "TODO: OWASP AI Exchange node extraction skipped"
+    "TODO: NIST AI 600-1 node extraction from prose markdown"
   ]
 }

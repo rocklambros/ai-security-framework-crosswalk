@@ -821,6 +821,256 @@ def parse_csa_aicm(nodes, edges, warnings):
 
 
 # ---------------------------------------------------------------------------
+# Parse OWASP AI Exchange (Hugo source markdown from GitHub)
+# ---------------------------------------------------------------------------
+
+def _normalize_control_id(raw):
+    """'#AI PROGRAM' -> 'AIPROGRAM', '#PROMPT INJECTION I/O HANDLING' -> 'PROMPTINJECTIONIOHANDLING'."""
+    s = raw.strip().lstrip("#").strip()
+    return re.sub(r"[^A-Za-z0-9]", "", s).upper()
+
+
+def _slug_to_control_id(slug):
+    """'/go/aiprogram/' -> 'AIPROGRAM'. Converts permalink slug to control ID."""
+    s = slug.strip("/").split("/")[-1]
+    return re.sub(r"[^a-z0-9]", "", s).upper()
+
+
+def _parse_owasp_exchange_controls_and_threats(nodes, edges, warnings):
+    """Parse controls (#### #NAME) and threats (## N.N / ### N.N.N) from Hugo source files."""
+    exchange_dir = os.path.join(FRAMEWORKS_DIR, "owasp-ai-exchange")
+    src_files = [
+        "src_1_general_controls.md",
+        "src_2_threats_through_use.md",
+        "src_3_development_time_threats.md",
+        "src_4_runtime_application_security_threats.md",
+        "src_5_testing.md",
+        "src_6_privacy.md",
+    ]
+
+    # Section parent tracking: ## headings are groups, #### # are controls under them
+    control_re = re.compile(r"^####\s+#(.+)$")
+    threat_section_re = re.compile(r"^(#{2,3})\s+(\d+\.\d+\.?\d*\.?\d*)\.?\s+(.+)$")
+    permalink_re = re.compile(r">\s*Permalink:\s*(https?://\S+)")
+    category_re = re.compile(r">\s*Category:\s*(.+)")
+
+    for fname in src_files:
+        text = read_text(os.path.join(exchange_dir, fname))
+        if not text:
+            continue
+
+        lines = text.split("\n")
+        i = 0
+        while i < len(lines):
+            line = lines[i].rstrip()
+
+            # Match control heading: #### #CONTROL NAME
+            ctrl_match = control_re.match(line)
+            if ctrl_match:
+                raw_name = ctrl_match.group(1).strip()
+                ctrl_id = _normalize_control_id(raw_name)
+                nid = f"owasp_ai_exchange:{ctrl_id}"
+
+                # Look ahead for permalink/category/description
+                url = None
+                category = None
+                desc_lines = []
+                j = i + 1
+                while j < len(lines):
+                    ln = lines[j].rstrip()
+                    pm = permalink_re.match(ln)
+                    cm = category_re.match(ln)
+                    if pm:
+                        url = pm.group(1)
+                    elif cm:
+                        category = cm.group(1).strip()
+                    elif ln.startswith("**Description**"):
+                        # Collect description lines until next heading or blank section
+                        k = j + 1
+                        while k < len(lines) and not lines[k].startswith("#") and not lines[k].startswith("**Objective") and not lines[k].startswith("**Implementation"):
+                            if lines[k].strip():
+                                desc_lines.append(lines[k].strip())
+                            else:
+                                break
+                            k += 1
+                        break
+                    elif ln.startswith("#"):
+                        break
+                    j += 1
+
+                desc = " ".join(desc_lines)[:500] if desc_lines else ""
+                add_node(nodes, make_node(
+                    node_id=nid,
+                    framework="owasp_ai_exchange",
+                    local_id=ctrl_id,
+                    name=raw_name.title(),
+                    entry_type="control",
+                    domain=category or "",
+                    description=desc,
+                    url=url,
+                ))
+                i = j if j > i else i + 1
+                continue
+
+            # Match threat heading: ## 2.1. Evasion or ### 2.1.1. Closed-box evasion
+            threat_match = threat_section_re.match(line)
+            if threat_match:
+                level = threat_match.group(1)
+                threat_num = threat_match.group(2).rstrip(".")
+                threat_title = threat_match.group(3).strip().rstrip("*").strip()
+                threat_id = sanitize_local_id(threat_num)
+                nid = f"owasp_ai_exchange:{threat_id}"
+
+                # Determine parent: ### 2.1.1 parent is ## 2.1
+                parent_nid = None
+                if level == "###":
+                    parent_num = ".".join(threat_num.split(".")[:-1])
+                    if parent_num:
+                        parent_nid = f"owasp_ai_exchange:{sanitize_local_id(parent_num)}"
+
+                # Look ahead for permalink/category
+                url = None
+                category = None
+                j = i + 1
+                while j < len(lines) and j < i + 5:
+                    ln = lines[j].rstrip()
+                    pm = permalink_re.match(ln)
+                    cm = category_re.match(ln)
+                    if pm:
+                        url = pm.group(1)
+                    elif cm:
+                        category = cm.group(1).strip()
+                    elif ln.startswith("#"):
+                        break
+                    j += 1
+
+                add_node(nodes, make_node(
+                    node_id=nid,
+                    framework="owasp_ai_exchange",
+                    local_id=threat_id,
+                    name=threat_title,
+                    entry_type="risk",
+                    domain=category or "",
+                    parent_node_id=parent_nid,
+                    url=url,
+                ))
+
+                # PARENT edge if subthreat
+                if parent_nid:
+                    add_edge(edges, make_edge(
+                        source_node_id=parent_nid,
+                        target_node_id=nid,
+                        rationale_code="PARENT",
+                        rationale_label="Parent-child hierarchy",
+                        confidence="authoritative",
+                        provenance=fname,
+                    ))
+
+            i += 1
+
+
+def _parse_owasp_exchange_periodic_table(nodes, edges, warnings):
+    """Parse the Periodic Table HTML from ai_security_overview.md for threat→control edges."""
+    exchange_dir = os.path.join(FRAMEWORKS_DIR, "owasp-ai-exchange")
+    text = read_text(os.path.join(exchange_dir, "src_ai_security_overview.md"))
+    if not text:
+        warnings.append("OWASP AI Exchange overview file not found")
+        return
+
+    # The periodic table is in an HTML <table> with <a href="/go/slug/"> links.
+    # Each <tr> has threat link(s) in column 3 and control links in column 4.
+    # Extract all rows between the periodic table markers.
+    table_start = text.find("Periodic table of AI security")
+    if table_start == -1:
+        warnings.append("Periodic table section not found in overview")
+        return
+
+    table_section = text[table_start:]
+    # Find the <tbody> ... </tbody> block
+    tbody_start = table_section.find("<tbody>")
+    tbody_end = table_section.find("</tbody>")
+    if tbody_start == -1 or tbody_end == -1:
+        return
+    tbody = table_section[tbody_start:tbody_end]
+
+    # Split into rows
+    rows = re.findall(r"<tr>(.*?)</tr>", tbody, re.DOTALL)
+
+    # Build a slug→control_id lookup from existing nodes
+    slug_map = {}
+    for n in nodes.values():
+        if n["framework"] == "owasp_ai_exchange" and n.get("url"):
+            slug = n["url"].rstrip("/").split("/")[-1]
+            slug_map[slug.lower()] = n["node_id"]
+
+    for row in rows:
+        # Extract all <a href="/go/.../">...</a> links
+        links = re.findall(r'<a\s+href="/go/([^"]+)/"[^>]*>([^<]+)</a>', row)
+        if not links:
+            continue
+
+        # Parse <td> cells to distinguish threat vs control columns
+        cells = re.findall(r"<td[^>]*>(.*?)</td>", row, re.DOTALL)
+        if len(cells) < 2:
+            continue
+
+        # The last cell(s) with content are controls; the threat is typically in the
+        # cell before controls. In rows with 4 cells: [asset, surface, threat, controls]
+        # In continuation rows with fewer cells, threat might carry over.
+        threat_links = []
+        control_links = []
+
+        # Find threat and control cells by position
+        for ci, cell in enumerate(cells):
+            cell_links = re.findall(r'<a\s+href="/go/([^"]+)/"[^>]*>([^<]+)</a>', cell)
+            if ci < len(cells) - 1:
+                # Non-last cells: could be threat links
+                for slug, name in cell_links:
+                    threat_links.append(slug.lower())
+            else:
+                # Last cell: controls
+                for slug, name in cell_links:
+                    control_links.append(slug.lower())
+
+        # Create edges: threat → control
+        for t_slug in threat_links:
+            t_nid = slug_map.get(t_slug)
+            if not t_nid:
+                # Try to create from slug
+                t_ctrl_id = _slug_to_control_id(t_slug)
+                t_nid = f"owasp_ai_exchange:{t_ctrl_id}"
+
+            for c_slug in control_links:
+                c_nid = slug_map.get(c_slug)
+                if not c_nid:
+                    c_ctrl_id = _slug_to_control_id(c_slug)
+                    c_nid = f"owasp_ai_exchange:{c_ctrl_id}"
+
+                add_edge(edges, make_edge(
+                    source_node_id=c_nid,
+                    target_node_id=t_nid,
+                    rationale_code="PREV",
+                    rationale_label="Control mitigates threat",
+                    confidence="authoritative",
+                    provenance="src_ai_security_overview.md",
+                ))
+
+
+def parse_owasp_ai_exchange(nodes, edges, warnings):
+    """Parse OWASP AI Exchange Hugo source files for controls, threats, and mappings."""
+    exchange_dir = os.path.join(FRAMEWORKS_DIR, "owasp-ai-exchange")
+    # Check if source files exist
+    if not os.path.exists(os.path.join(exchange_dir, "src_1_general_controls.md")):
+        warnings.append("OWASP AI Exchange source files not found (run download first)")
+        return
+
+    _parse_owasp_exchange_controls_and_threats(nodes, edges, warnings)
+    _parse_owasp_exchange_periodic_table(nodes, edges, warnings)
+
+    log.info("OWASP AI Exchange parsed. Nodes=%d, Edges=%d", len(nodes), len(edges))
+
+
+# ---------------------------------------------------------------------------
 # Task 7: Create stub nodes for remaining frameworks
 # ---------------------------------------------------------------------------
 
@@ -976,9 +1226,7 @@ def create_stub_nodes(nodes, edges, warnings):
     _create_eu_gpai_cop_nodes(nodes, edges, warnings)
 
     # NIST AI 600-1: Skip for now - complex prose document
-    # OWASP AI Exchange: Skip for now
     warnings.append("TODO: NIST AI 600-1 node extraction from prose markdown")
-    warnings.append("TODO: OWASP AI Exchange node extraction skipped")
 
     log.info("Task 7: Stub nodes created. Nodes=%d, Edges=%d", len(nodes), len(edges))
 
@@ -998,6 +1246,7 @@ def validate_and_fix(nodes, edges, warnings):
         "mitre_atlas": "technique", "nist_rmf": "subcategory",
         "csa_aicm": "control", "cosai_rm": "control",
         "eu_gpai_cop": "requirement", "nist_600_1": "control",
+        "owasp_ai_exchange": "control",
     }
 
     for key, edge in list(edges.items()):
@@ -1124,6 +1373,9 @@ def main():
 
     # Task 6: CSA AICM
     parse_csa_aicm(nodes, edges, warnings)
+
+    # OWASP AI Exchange (Hugo source markdown)
+    parse_owasp_ai_exchange(nodes, edges, warnings)
 
     # Task 7: Stub nodes for remaining frameworks
     create_stub_nodes(nodes, edges, warnings)

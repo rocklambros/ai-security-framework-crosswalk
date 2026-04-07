@@ -1,0 +1,11 @@
+source,target,v1_jaccard,v2_bridge,expected_tier
+aiuc_1:D004,owasp_agentic:ASI02,0.000000,0.137980,Direct
+aiuc_1:E006,owasp_agentic:ASI04,0.000000,0.122917,Direct
+aiuc_1:B005,owasp_agentic:ASI01,0.000000,0.126874,Direct
+aiuc_1:B002,owasp_agentic:ASI06,0.000000,0.169100,Direct
+aiuc_1:C006,owasp_agentic:ASI05,0.000000,0.118490,Direct
+aiuc_1:B001,owasp_agentic:ASI01,0.000000,0.164032,Related
+aiuc_1:A003,owasp_agentic:ASI06,0.000000,0.162207,Related
+aiuc_1:B006,owasp_agentic:ASI03,0.000000,0.142651,Related
+aiuc_1:E001,owasp_agentic:ASI08,0.000000,0.187291,Related
+aiuc_1:D003,owasp_agentic:ASI02,0.000000,0.146315,Direct

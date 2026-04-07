@@ -1,0 +1,1681 @@
+candidates:
+- source_node_id: aiuc_1:A003.1
+  target_node_id: eu_gpai_cop:Measure_4.1
+  composite_score: 0.2
+  uncertainty_score: 1.9995
+  signals:
+    bridge: 0.0
+    semantic: 0.3798
+    keyword: 0.002
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Data collection limits weakly relate to systemic risk acceptance criteria.
+  source_name: Configuring data collection limits to reduce data and privacy exposure,
+    limiting data collection to task-relevant inform
+  source_description: Configuring data collection limits to reduce data and privacy
+    exposure, limiting data collection to task-relevant information based on context.
+  target_name: 'Measure 4.1: Systemic risk acceptance criteria and acceptance determination'
+  target_description: 'Signatories will describe and justify (in the Framework pursuant
+    to Measure 1.1, point (2)(a)) how they will determine whether the systemic risks
+    stemming from the model are acceptable. To do so, Signatories will: (1) for each
+    identified systemic risk (pursuant to Measure 2.1), at least: (a) define appropriate
+    systemic risk tiers that: (i) are defined in terms of model capabilities, and
+    may additionally incorporate model propensities, risk estimates, and/or other
+    suitable metrics; (ii) are measurable; and (iii) comprise at least one systemic
+    risk tier that has not been reached by the model; or (b) define other appropriate
+    systemic risk acceptance criteria, if systemic risk tiers are not suitable for
+    the systemic risk and the systemic risk is not a specified systemic risk (pursuant
+    to Appendix 1.4); (2) describe how they will use these tiers and/or other criteria
+    to determine whether each identified systemic risk (pursuant to Measure 2.1) and
+    the overall systemic risk are acceptable; and (3) justify how the use of these
+    tiers and/or other criteria pursuant to point (2) ensures that each identified
+    systemic risk (pursuant to Measure 2.1) and the overall systemic risk are acceptable.
+    Signatories will apply the systemic risk acceptance criteria to each identified
+    systemic risk (pursuant to Measure 2.1), incorporating a safety margin (as specified
+    in the following paragraph), to determine whether each identified systemic risk
+    (pursuant to Measure 2.1) and the overall systemic risk are acceptable. This acceptance
+    determination will take into account at least the information gathered via systemic
+    risk identification and analysis (pursuant to Commitments 2 and 3). The safety
+    margin will: (1) be appropriate for the systemic risk; and (2) take into account
+    potential limitations, changes, and uncertainties of: (a) systemic risk sources
+    (e.g. capability improvements after the time of assessment); (b) systemic risk
+    assessments (e.g. under-elicitation of model evaluations or historical accuracy
+    of similar assessments); and (c) the effectiveness of safety and security mitigations
+    (e.g. mitigations being circumvented, deactivated, or subverted).'
+- source_node_id: aiuc_1:B002.4
+  target_node_id: eu_gpai_cop:Measure_2.1
+  composite_score: 0.35
+  uncertainty_score: 1.9989
+  signals:
+    bridge: 0.0
+    semantic: 0.6531
+    keyword: 0.0238
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Adversarial input detection directly supports systemic risk identification.
+  source_name: Implementing adversarial input detection prior to AI model processing.
+  source_description: Implementing adversarial input detection prior to AI model processing.
+  target_name: 'Measure 2.1: Systemic risk identification process'
+  target_description: 'Signatories will identify: (1) the systemic risks obtained
+    through the following process: (a) compiling a list of risks that could stem from
+    the model and be systemic, based on the types of risks in Appendix 1.1, taking
+    into account: (i) model-independent information (pursuant to Measure 3.1); (ii)
+    relevant information about the model and similar models, including information
+    from post-market monitoring (pursuant to Measure 3.5), and information about serious
+    incidents and near misses (pursuant to Commitment 9); and (iii) any other relevant
+    information communicated directly or via public releases to the Signatory by the
+    AI Office, the Scientific Panel of Independent Experts, or other initiatives,
+    such as the International Network of AI Safety Institutes, endorsed for this purpose
+    by the AI Office; (b) analysing relevant characteristics of the risks compiled
+    pursuant to point (a), such as their nature (based on Appendix 1.2) and sources
+    (based on Appendix 1.3); and (c) identifying, based on point (b), the systemic
+    risks stemming from the model; and (2) the specified systemic risks in Appendix
+    1.4.'
+- source_node_id: aiuc_1:B001
+  target_node_id: eu_gpai_cop:Article-11
+  composite_score: 0.2
+  uncertainty_score: 1.9989
+  signals:
+    bridge: 0.0116
+    semantic: 0.4423
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Adversarial robustness testing supports Article 11 technical documentation.
+  source_name: Third-party testing of adversarial robustness
+  source_description: Implement adversarial testing program to validate system resilience
+    against adversarial inputs and prompt injection attempts.
+  target_name: EU AI Act Article 11
+  target_description: Technical Documentation. This EU law states that before a high-risk
+    AI system is launched, detailed technical documentation must be prepared and kept
+    updated. This documentation should prove that the AI system meets the law's requirements
+    and provide clear information for authorities to check compliance. It should include
+    certain key elements. Small businesses, including start-ups, can provide this
+    information in a simpler way. The EU will create a simplified form for this purpose.
+    If a high-risk AI system is related to a product covered by other EU laws, one
+    set of documentation should include all necessary information. The EU can update
+    these requirements as technology advances.
+- source_node_id: aiuc_1:B001.2
+  target_node_id: eu_gpai_cop:Measure_3.2
+  composite_score: 0.3501
+  uncertainty_score: 1.9965
+  signals:
+    bridge: 0.0
+    semantic: 0.6485
+    keyword: 0.0322
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Penetration test reports are canonical model evaluation evidence.
+  source_name: Penetration test reports incorporating AI-specific test cases, shared
+    threat models, and testing calendars.
+  source_description: Penetration test reports incorporating AI-specific test cases,
+    shared threat models, and testing calendars.
+  target_name: 'Measure 3.2: Model evaluations'
+  target_description: "Signatories will conduct at least state-of-the-art model evaluations\
+    \ in the modalities relevant to the systemic risk to assess the model\u2019s capabilities,\
+    \ propensities, affordances, and/or effects, as specified in Appendix 3. Signatories\
+    \ will ensure that such model evaluations are designed and conducted using methods\
+    \ that are appropriate for the model and the systemic risk, and include open-ended\
+    \ testing of the model to improve the understanding of the systemic risk, with\
+    \ a view to identifying unexpected behaviours, capability boundaries, or emergent\
+    \ properties. Examples of model evaluation methods are: Q&A sets, task-based evaluations,\
+    \ benchmarks, red-teaming and other methods of adversarial testing, human uplift\
+    \ studies, model organisms, simulations, and/or proxy evaluations for classified\
+    \ materials. Further, the design of the model evaluations will be informed by\
+    \ the model-independent information gathered pursuant to Measure 3.1."
+- source_node_id: aiuc_1:E015.3
+  target_node_id: eu_gpai_cop:Measure_8.1
+  composite_score: 0.3501
+  uncertainty_score: 1.9941
+  signals:
+    bridge: 0.0
+    semantic: 0.6669
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Tamper-evident logs weakly relate to defining responsibilities.
+  source_name: Ensure logs are tamper-evident and independently verifiable.
+  source_description: Ensure logs are tamper-evident and independently verifiable.
+  target_name: 'Measure 8.1: Definition of clear responsibilities'
+  target_description: "Signatories will clearly define responsibilities for managing\
+    \ the systemic risks stemming from their models across all levels of the organisation.\
+    \ This includes the following responsibilities: (1) Systemic risk oversight: Overseeing\
+    \ the Signatories\u2019 systemic risk assessment and mitigation processes and\
+    \ measures. (2) Systemic risk ownership: Managing systemic risks stemming from\
+    \ Signatories\u2019 models, including the systemic risk assessment and mitigation\
+    \ processes and measures, and managing the response to serious incidents. (3)\
+    \ Systemic risk support and monitoring: Supporting and monitoring the Signatories\u2019\
+    \ systemic risk assessment and mitigation processes and measures. (4) Systemic\
+    \ risk assurance: Providing internal and, as appropriate, external assurance about\
+    \ the adequacy of the Signatories\u2019 systemic risk assessment and mitigation\
+    \ processes and measures to the management body in its supervisory function or\
+    \ another suitable independent body (such as a council or board). Signatories\
+    \ will allocate these responsibilities, as suitable for the Signatories\u2019\
+    \ governance structure and organisational complexity, across the following levels\
+    \ of their organisation: (1) the management body in its supervisory function or\
+    \ another suitable independent body (such as a council or board); (2) the management\
+    \ body in its executive function; (3) relevant operational teams; (4) if available,\
+    \ internal assurance providers (e.g. an internal audit function); and (5) if available,\
+    \ external assurance providers (e.g. third-party auditors). This Measure is presumed\
+    \ to be fulfilled, if Signatories, as appropriate for the systemic risks stemming\
+    \ from their models, adhere to all of the following: (1) Systemic risk oversight:\
+    \ The responsibility for overseeing the Signatory\u2019s systemic risk management\
+    \ processes and measures has been assigned to a specific committee of the management\
+    \ body in its supervisory function (e.g. a risk committee or audit committee)\
+    \ or one or multiple suitable independent bodies (such as councils or boards).\
+    \ For Signatories that are SMEs or SMCs, this responsibility may be primarily\
+    \ assigned to an individual member of the management body in its supervisory function.\
+    \ (2) Systemic risk ownership: The responsibility for managing systemic risks\
+    \ from models has been assigned to suitable members of the management body in\
+    \ its executive function who are also responsible for relevant Signatory core\
+    \ business activities that may give rise to systemic risk, such as research and\
+    \ product development (e.g. Head of Research or Head of Product). The members\
+    \ of the management body in its executive function have assigned lower-level responsibilities\
+    \ to operational managers who oversee parts of the systemic-risk- producing business\
+    \ activities (e.g. specific research domains or specific products). Depending\
+    \ on the organisational complexity, there may be a cascading responsibility structure.\
+    \ (3) Systemic risk support and monitoring: The responsibility for supporting\
+    \ and monitoring the Signatory\u2019s systemic risk management processes and measures,\
+    \ including conducting risk assessments, has been assigned to at least one member\
+    \ of the management body in its executive function (e.g. a Chief Risk Officer\
+    \ or a Vice President, Safety & Security Framework). This member(s) must not also\
+    \ be responsible for the Signatory\u2019s core business activities that may produce\
+    \ systemic risk (e.g. research and product development). For Signatories that\
+    \ are SMEs or SMCs, there is at least one individual in the management body in\
+    \ its executive function tasked with supporting and monitoring the Signatory\u2019\
+    s systemic risk assessment and mitigation processes and measures. (4) Systemic\
+    \ risk assurance: The responsibility for providing assurance about the adequacy\
+    \ of the Signatory\u2019s systemic risk assessment and mitigation processes and\
+    \ measures to the management body in its supervisory function or another suitable\
+    \ independent body (such as a council or board) has been assigned to a relevant\
+    \ party"
+- source_node_id: aiuc_1:F001.2
+  target_node_id: eu_gpai_cop:Article-50
+  composite_score: 0.3502
+  uncertainty_score: 1.9926
+  signals:
+    bridge: 0.0
+    semantic: 0.9359
+    keyword: 0.0274
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Content filtering supports Article 50 transparency obligations.
+  source_name: Deploy content filtering to detect requests for malicious code generation
+    and vulnerability exploitation.
+  source_description: Deploy content filtering to detect requests for malicious code
+    generation and vulnerability exploitation.
+  target_name: EU AI Act Article 50
+  target_description: Transparency Obligations for Providers and Deployers of Certain
+    AI Systems. This article states that companies must inform users when they are
+    interacting with an AI system, unless it's obvious or the AI is used for legal
+    purposes like crime detection. AI systems that create synthetic content (like
+    deepfakes) must mark their outputs as artificially generated. Companies must also
+    inform users when they use AI for emotion recognition or biometric categorisation,
+    unless it's for legal purposes. If an AI system creates or alters content, the
+    company must disclose this, unless it's for legal purposes or the content is artistic
+    or satirical. The AI Office will help create guidelines for detecting and labelling
+    artificially generated content.
+- source_node_id: aiuc_1:B006.2
+  target_node_id: eu_gpai_cop:Article-21
+  composite_score: 0.3498
+  uncertainty_score: 1.9915
+  signals:
+    bridge: 0.0
+    semantic: 0.6663
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Agent monitoring supports Article 21 corrective-action obligations.
+  source_name: Deploying monitoring and alerting for agent actions that exceed security
+    boundaries.
+  source_description: Deploying monitoring and alerting for agent actions that exceed
+    security boundaries.
+  target_name: EU AI Act Article 21
+  target_description: Cooperation with Competent Authorities. This article states
+    that companies providing high-risk AI systems must, when asked by a relevant authority,
+    provide all the information needed to show that their AI system meets the required
+    standards. This information must be in a language that the authority can easily
+    understand. If asked, these companies must also allow the authority to access
+    automatically generated logs of the AI system, as long as they control these logs.
+    Any information obtained by the authority must be treated confidentially.
+- source_node_id: aiuc_1:F002
+  target_node_id: eu_gpai_cop:Measure_2.1
+  composite_score: 0.3497
+  uncertainty_score: 1.9895
+  signals:
+    bridge: 0.0
+    semantic: 0.7403
+    keyword: 0.0036
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Catastrophic-misuse prevention is canonical systemic risk identification.
+  source_name: Prevent catastrophic misuse
+  source_description: Implement or document guardrails to prevent AI-enabled catastrophic
+    system misuse (chemical / bio / radio / nuclear).
+  target_name: 'Measure 2.1: Systemic risk identification process'
+  target_description: 'Signatories will identify: (1) the systemic risks obtained
+    through the following process: (a) compiling a list of risks that could stem from
+    the model and be systemic, based on the types of risks in Appendix 1.1, taking
+    into account: (i) model-independent information (pursuant to Measure 3.1); (ii)
+    relevant information about the model and similar models, including information
+    from post-market monitoring (pursuant to Measure 3.5), and information about serious
+    incidents and near misses (pursuant to Commitment 9); and (iii) any other relevant
+    information communicated directly or via public releases to the Signatory by the
+    AI Office, the Scientific Panel of Independent Experts, or other initiatives,
+    such as the International Network of AI Safety Institutes, endorsed for this purpose
+    by the AI Office; (b) analysing relevant characteristics of the risks compiled
+    pursuant to point (a), such as their nature (based on Appendix 1.2) and sources
+    (based on Appendix 1.3); and (c) identifying, based on point (b), the systemic
+    risks stemming from the model; and (2) the specified systemic risks in Appendix
+    1.4.'
+- source_node_id: aiuc_1:D003.4
+  target_node_id: eu_gpai_cop:Commitment_9
+  composite_score: 0.2003
+  uncertainty_score: 1.9881
+  signals:
+    bridge: 0.0
+    semantic: 0.3815
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Human approval for sensitive tools maps to serious incident reporting commitment.
+  source_name: Requiring human approval for sensitive tool operations.
+  source_description: Requiring human approval for sensitive tool operations.
+  target_name: 'Commitment 9: Serious incident reporting'
+  target_description: 'LEGAL TEXT: Article 55(1), and recitals 114 and 115 AI Act
+    Signatories commit to implementing appropriate processes and measures for keeping
+    track of, documenting, and reporting to the AI Office and, as applicable, to national
+    competent authorities, without undue delay relevant information about serious
+    incidents along the entire model lifecycle and possible corrective measures to
+    address them, as specified in the Measures of this Commitment. Further, Signatories
+    commit to providing resourcing of such processes and measures appropriate for
+    the severity of the serious incident and the degree of involvement of their model.'
+- source_node_id: aiuc_1:B009
+  target_node_id: eu_gpai_cop:Measure_7.3
+  composite_score: 0.3496
+  uncertainty_score: 1.9858
+  signals:
+    bridge: 0.0
+    semantic: 0.8651
+    keyword: 0.0177
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Output over-exposure limits map to systemic risk documentation.
+  source_name: Limit output over-exposure
+  source_description: Implement output limitations and obfuscation techniques to safeguard
+    against information leakage.
+  target_name: 'Measure 7.3: Documentation of systemic risk identification, analysis,
+    and mitigation'
+  target_description: "Signatories will provide in the Model Report: (1) a description\
+    \ of the results of their systemic risk identification and analysis and any information\
+    \ relevant to understanding them including: (a) a description of their systemic\
+    \ risk identification process for risks belonging to the types of risks in Appendix\
+    \ 1.1 (pursuant to Measure 2.1, point (1)); (b) explanations of uncertainties\
+    \ and assumptions about how the model would be used and integrated into AI systems;\
+    \ (c) a description of the results of their systemic risk modelling for the systemic\
+    \ risks (pursuant to Measure 3.3); (d) a description of the systemic risks stemming\
+    \ from the model and a justification therefor, including: (i) the systemic risk\
+    \ estimates (pursuant to Measure 3.4); and (ii) a comparison between systemic\
+    \ risks with safety and security mitigations implemented and with the model fully\
+    \ elicited (pursuant to Appendix 3.2); (e) all results of model evaluations relevant\
+    \ to understanding the systemic risks stemming from the model and descriptions\
+    \ of: (i) how the evaluations were conducted; (ii) the tests and tasks involved\
+    \ in the model evaluations; (iii) how the model evaluations were scored; (iv)\
+    \ how the model was elicited (pursuant to Appendix 3.2); (v) how the scores compare\
+    \ to human baselines (where applicable), across the model versions, and across\
+    \ the evaluation settings; (f) at least five, random samples of inputs and outputs\
+    \ from each relevant model evaluation, such as completions, generations, and/or\
+    \ trajectories, to facilitate independent interpretation of the model evaluation\
+    \ results and understanding of the systemic risks stemming from the model. If\
+    \ particular trajectories materially inform the understanding of a systemic risk,\
+    \ such trajectories will also be provided. Further, Signatories will provide a\
+    \ sufficiently large number of random samples of inputs and outputs from a relevant\
+    \ model evaluation if subsequently asked by the AI Office; (g) a description of\
+    \ the access and other resources provided to: (i) internal model evaluation teams\
+    \ (pursuant to Appendix 3.4); and (ii) independent external evaluators pursuant\
+    \ to Appendix 3.5. Alternatively to the preceding point (ii), Signatories will\
+    \ procure any such independent external evaluators to provide the requisite information\
+    \ directly to the AI Office at the same time that the Signatory supplies its Model\
+    \ Report to the AI Office; and (h) if they make use of the \u201Csimilarly safe\
+    \ or safer model\u201D concept pursuant to Appendix 2, provide a justification\
+    \ of how the criteria for \u201Csafe reference model\u201D (pursuant to Appendix\
+    \ 2.1) and the criteria for \u201Csimilarly safe or safer model\u201D (pursuant\
+    \ to Appendix 2.2) are fulfilled; (2) a description of: (a) all safety mitigations\
+    \ implemented (pursuant to Commitment 5); (b) how they fulfil the requirements\
+    \ of Measure 5.1; and (c) their limitations (e.g. if training on examples of undesirable\
+    \ model behaviour makes identifying future instances of such behaviour more difficult);\
+    \ (3) a description of: (a) the Security Goal (pursuant to Measure 6.1); (b) all\
+    \ security mitigations implemented (pursuant to Measure 6.2); (c) how the mitigations\
+    \ meet the Security Goal, including the extent to which they align with relevant\
+    \ international standards or other relevant guidance (such as the RAND Securing\
+    \ AI Model Weights report); and (d) if Signatories have deviated from a listed\
+    \ security mitigation in one (or more) of Appendices 4.1 to 4.5, points (a), a\
+    \ justification for how the alternative security mitigations they have implemented\
+    \ achieve the respective mitigation objectives; and (4) a high-level description\
+    \ of: (a) the techniques and assets they intend to use to further develop the\
+    \ model over the next six months, including through the use of other AI models\
+    \ and/or AI systems; (b) how such future versions and more advanced models may\
+    \ differ from the Signatory\u2019s current ones, in terms of capabilities and\
+    \ propensities; and (c) any new or materially updated safety and security mitigat"
+- source_node_id: aiuc_1:C003.3
+  target_node_id: eu_gpai_cop:Measure_7.6
+  composite_score: 0.1996
+  uncertainty_score: 1.9843
+  signals:
+    bridge: 0.0
+    semantic: 0.3802
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Discriminatory pattern monitoring supports model report updates.
+  source_name: Monitoring for discriminatory patterns and implementing fairness checks.
+  source_description: Monitoring for discriminatory patterns and implementing fairness
+    checks.
+  target_name: 'Measure 7.6: Model Report updates'
+  target_description: "Signatories will update their Model Report if they have reasonable\
+    \ grounds to believe that the justification for why the systemic risks stemming\
+    \ from the model are acceptable (pursuant to Measure 7.2, point (1)) has been\
+    \ materially undermined. Examples of such grounds are: (1) one of the conditions\
+    \ listed pursuant to Measure 7.2, point (2), has materialised; (2) the model\u2019\
+    s capabilities, propensities, and/or affordances have changed or will change materially,\
+    \ such as through further post-training, access to additional tools, or increase\
+    \ in inference compute; (3) the model\u2019s use and/or integrations into AI systems\
+    \ have changed or will change materially; (4) serious incidents and/or near misses\
+    \ involving the model or a similar model have occurred; and/or (5) developments\
+    \ have occurred that materially undermine the external validity of model evaluations\
+    \ conducted, materially improve the state of the art of model evaluation methods,\
+    \ and/or for other reasons suggest that the systemic risk assessment conducted\
+    \ is materially inaccurate. Model Report updates should be completed within a\
+    \ reasonable amount of time after the Signatory becomes aware of the grounds that\
+    \ necessitate an update, e.g. after discovering them as part of their continuous\
+    \ systemic risk assessment and mitigation (pursuant to Measure 1.2, second paragraph).\
+    \ If a Model Report update is triggered by a deliberate change to a model and\
+    \ that change is made available on the market, the Model Report update and the\
+    \ underlying full systemic risk assessment and mitigation process (pursuant to\
+    \ Measure 1.2, third paragraph) need to be completed before the change is made\
+    \ available on the market. Further, if the model is amongst their respective most\
+    \ capable models available on the market, Signatories will provide the AI Office\
+    \ with an updated Model Report at least every six months. Signatories do not need\
+    \ to do so if: (1) the model\u2019s capabilities, propensities, and/or affordances\
+    \ have not changed since they have last provided the AI Office with the Model\
+    \ Report, or update thereof; (2) they will place a more capable model on the market\
+    \ in less than a month; and/or (3) the model is considered similarly safe or safer\
+    \ (pursuant to Appendix 2.2) for each identified systemic risk (pursuant to Measure\
+    \ 2.1). The updated Model Report will contain: (1) the updated information specified\
+    \ in Measures 7.1 to 7.5 based on the results of the full systemic risk assessment\
+    \ and mitigation process (pursuant to Measure 1.2, third paragraph); and (2) a\
+    \ changelog, describing how and why the Model Report has been updated, along with\
+    \ a version number and the date of change."
+- source_node_id: aiuc_1:C003.3
+  target_node_id: eu_gpai_cop:Measure_5.1
+  composite_score: 0.3504
+  uncertainty_score: 1.984
+  signals:
+    bridge: 0.0
+    semantic: 0.918
+    keyword: 0.0598
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Discriminatory pattern monitoring is a canonical safety mitigation.
+  source_name: Monitoring for discriminatory patterns and implementing fairness checks.
+  source_description: Monitoring for discriminatory patterns and implementing fairness
+    checks.
+  target_name: 'Measure 5.1: Appropriate safety mitigations'
+  target_description: "Signatories will implement safety mitigations that are appropriate,\
+    \ including sufficiently robust under adversarial pressure (e.g. fine-tuning attacks\
+    \ or jailbreaking), taking into account the model\u2019s release and distribution\
+    \ strategy. Examples of safety mitigations are: (1) filtering and cleaning training\
+    \ data, e.g. data that might result in undesirable model propensities such as\
+    \ unfaithful chain-of-thought traces; (2) monitoring and filtering the model\u2019\
+    s inputs and/or outputs; (3) changing the model behaviour in the interests of\
+    \ safety, such as fine-tuning the model to refuse certain requests or provide\
+    \ unhelpful responses; (4) staging the access to the model, e.g. by limiting API\
+    \ access to vetted users, gradually expanding access based on post-market monitoring,\
+    \ and/or not making the model parameters publicly available for download initially;\
+    \ (5) offering tools for other actors to use to mitigate the systemic risks stemming\
+    \ from the model; (6) techniques that provide high-assurance quantitative safety\
+    \ guarantees concerning the model\u2019s behaviour; (7) techniques to enable safe\
+    \ ecosystems of AI agents, such as model identifications, specialised communication\
+    \ protocols, or incident monitoring tools; and/or (8) other emerging safety mitigations,\
+    \ such as for achieving transparency into chain-of-thought reasoning or defending\
+    \ against a model\u2019s ability to subvert its other safety mitigations."
+- source_node_id: aiuc_1:C010
+  target_node_id: eu_gpai_cop:Measure_8.3
+  composite_score: 0.1996
+  uncertainty_score: 1.9833
+  signals:
+    bridge: 0.0
+    semantic: 0.4563
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Harmful output testing weakly relates to risk culture promotion.
+  source_name: Third-party testing for harmful outputs
+  source_description: Appoint expert third parties to evaluate system robustness to
+    harmful outputs at least every 3 months.
+  target_name: 'Measure 8.3: Promotion of a healthy risk culture'
+  target_description: "Signatories will promote a healthy risk culture and take appropriate\
+    \ measures to ensure that actors who have been assigned responsibilities for managing\
+    \ the systemic risks stemming from their models (pursuant to Measure 8.1) take\
+    \ a reasoned and balanced approach to systemic risk. Examples of indicators of\
+    \ a healthy risk culture for the purpose of this Measure are: (1) setting the\
+    \ tone for a healthy systemic risk culture from the top, e.g. by the leadership\
+    \ clearly communicating the Signatory\u2019s Framework to staff; (2) allowing\
+    \ clear communication and challenge of decisions concerning systemic risk; (3)\
+    \ setting incentives and affording sufficient independence of staff involved in\
+    \ systemic risk assessment and mitigation to discourage excessive systemic-risk-taking\
+    \ and encourage an unbiased assessment of the systemic risks stemming from their\
+    \ models; (4) anonymous surveys find that staff are comfortable raising concerns\
+    \ about systemic risks, are aware of channels for doing so, and understand the\
+    \ Signatory\u2019s Framework; (5) internal reporting channels are actively used\
+    \ and reports are acted upon appropriately; (6) annually informing workers of\
+    \ the Signatory\u2019s whistleblower protection policy and making such policy\
+    \ readily available to workers such as by publishing it on their website; and/or\
+    \ (7) not retaliating in any form, including any direct or indirect detrimental\
+    \ action such as termination, demotion, legal action, negative evaluations, or\
+    \ creation of hostile work environments, against any person publishing or providing\
+    \ information acquired in the context of work-related activities performed for\
+    \ the Signatory to competent authorities about systemic risks stemming from their\
+    \ models for which the person has reasonable grounds to believe its veracity."
+- source_node_id: aiuc_1:B002
+  target_node_id: eu_gpai_cop:Article-43
+  composite_score: 0.3499
+  uncertainty_score: 1.9826
+  signals:
+    bridge: 0.0355
+    semantic: 0.8232
+    keyword: 0.0122
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Adversarial input detection supports Article 43 conformity assessment.
+  source_name: Detect adversarial input
+  source_description: Implement monitoring capabilities to detect and respond to adversarial
+    inputs and prompt injection attempts.
+  target_name: EU AI Act Article 43
+  target_description: Conformity Assessment. This article discusses the process of
+    assessing whether high-risk AI systems meet certain standards. If a provider has
+    used certain standards in creating their AI system, they must choose one of two
+    assessment procedures. If the provider hasn't used these standards, or only used
+    part of them, they must follow a specific assessment procedure. If the AI system
+    is for law enforcement or immigration authorities, a market surveillance authority
+    will act as the assessment body. The article also states that if an AI system
+    is significantly modified, it must undergo a new assessment. The Commission can
+    update these procedures as technology advances.
+- source_node_id: aiuc_1:E010.1
+  target_node_id: eu_gpai_cop:Measure_10.2
+  composite_score: 0.3496
+  uncertainty_score: 1.982
+  signals:
+    bridge: 0.0
+    semantic: 0.6635
+    keyword: 0.0041
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: AUP definition is canonical public transparency content.
+  source_name: Policy document defining acceptable and prohibited AI usage.
+  source_description: Policy document defining acceptable and prohibited AI usage.
+  target_name: 'Measure 10.2: Public transparency'
+  target_description: "If and insofar as necessary to assess and/or mitigate systemic\
+    \ risks, Signatories will publish (e.g. via their websites) a summarised version\
+    \ of their Framework and Model Report(s), and updates thereof (pursuant to Commitments\
+    \ 1 and 7), with removals to not undermine the effectiveness of safety and/or\
+    \ security mitigations and to protect sensitive commercial information. For Model\
+    \ Reports, such publication will include high-level descriptions of the systemic\
+    \ risk assessment results and the safety and security mitigations implemented.\
+    \ For Frameworks, such publication is not necessary if all of the Signatory\u2019\
+    s models are similarly safe or safer models pursuant to Appendix 2.2. For Model\
+    \ Reports, such publication is not necessary if the model is a similarly safe\
+    \ or safer model pursuant to Appendix 2.2. ## Glossary Wherever this Chapter refers\
+    \ to a term defined in Article 3 AI Act, the AI Act definition applies, and such\
+    \ definition shall prevail in the event of any alternative and/or competing interpretation\
+    \ to which the use of the term in this Chapter may give rise. Otherwise and complementing\
+    \ this, the following terms with the stated meanings are used in this Chapter.\
+    \ Unless otherwise stated, all grammatical variations of the terms defined in\
+    \ this Glossary shall be deemed to be covered by the relevant definition. Term\
+    \ Definition \u2018appropriate\u2019 suitable and necessary to achieve the intended\
+    \ purpose of systemic risk assessment and/or mitigation, whether through best\
+    \ practices, the state of the art, or other more innovative processes, measures,\
+    \ methodologies, methods, or techniques that go beyond the state of the art. \u2018\
+    best practice\u2019 accepted amongst providers of general-purpose AI models with\
+    \ systemic risk as the processes, measures, methodologies, methods, and techniques\
+    \ that best assess and mitigate systemic risks at any given point in time. \u2018\
+    confirmed\u2019 a Framework or Model Report, or an update thereof, that has received\
+    \ required approvals under the applicable governance procedures. \u2018deception\u2019\
+    \ model behaviours that systematically produce false beliefs in others, including\
+    \ model behaviours to achieve goals that involve evading oversight, such as a\
+    \ model\u2019s detecting that it is being evaluated and under-performing or otherwise\
+    \ undermining oversight. \u2018external validity\u2019 an aspect of high scientific\
+    \ and technical rigour (see definition below) that ensures model evaluations are\
+    \ suitably calibrated for results to be used as a proxy for model behaviour outside\
+    \ the evaluation environment. Demonstrating external validity will differ for\
+    \ different systemic risks and model evaluation methods, but may be shown by,\
+    \ e.g. documenting the model evaluation environment, the ways in which it diverges\
+    \ from the real-world context, and the diversity of the model evaluation environment.\
+    \ \u2018high scientific and technical rigour\u2019 the quality standard for model\
+    \ evaluations, such that model evaluations with high scientific and technical\
+    \ rigour have internal validity (see definition below) and external validity (see\
+    \ definition above), as well as being reproducible (see definition below). See\
+    \ further Appendix 3.2. \u2018including\u2019 introduces a non-exhaustive set\
+    \ that is to be understood as the minimum required by the term referred to and\
+    \ is indicative of further items of the set. \u2018independent external\u2019\
+    \ a natural or legal person that has no financial, operational, or management\
+    \ dependence on the Signatory or any of its subsidiaries or associates, and is\
+    \ otherwise free from the Signatory\u2019s control in reaching conclusions and/or\
+    \ making recommendations, including through contractual safeguards and suitable\
+    \ conflict of interest policies. \u2018insider threats\u2019 hostile operations\
+    \ by humans, AI models, and/or AI systems (e.g. senior management, a senior member\
+    \ of the organisation\u2019s research team, other disgruntled employees, perpetrators\
+    \ of industrial espionage operations that have infiltrated their target, and/or\
+    \ model self-exfiltration) with access to sensitive organisational "
+- source_node_id: aiuc_1:C010.1
+  target_node_id: eu_gpai_cop:Article-27
+  composite_score: 0.3495
+  uncertainty_score: 1.9783
+  signals:
+    bridge: 0.0
+    semantic: 0.6656
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Harmful output evaluation weakly relates to Article 27 fundamental rights
+    impact.
+  source_name: Third-party evaluation report showing harmful output testing.
+  source_description: Third-party evaluation report showing harmful output testing.
+  target_name: EU AI Act Article 27
+  target_description: Fundamental Rights Impact Assessment for High-Risk AI Systems.
+    Before using a high-risk AI system, public bodies and private entities providing
+    public services must assess how the system could impact people's fundamental rights.
+    This includes describing how and when the system will be used, who it might affect,
+    and what risks it might pose. They also need to outline how humans will oversee
+    the system and what steps will be taken if risks materialize. This assessment
+    must be done for the first use of the system, but can be updated if necessary.
+    The results must be reported to the market surveillance authority, unless exempt.
+    The AI Office will provide a template to help with this process.
+- source_node_id: aiuc_1:E012.1
+  target_node_id: eu_gpai_cop:Article-20
+  composite_score: 0.2006
+  uncertainty_score: 1.9774
+  signals:
+    bridge: 0.0
+    semantic: 0.3429
+    keyword: 0.0686
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Regulatory identification and compliance docs support Article 20 obligations.
+  source_name: Identify applicable regulations, document compliance procedures, and
+    review every 6 months.
+  source_description: Identify applicable regulations, document compliance procedures,
+    and review every 6 months.
+  target_name: EU AI Act Article 20
+  target_description: Corrective Actions and Duty of Information. This article states
+    that if a company providing a high-risk AI system realizes that their system is
+    not following the rules set by the EU, they must immediately fix the issue, stop
+    using it, or recall it. They must also inform anyone involved in distributing
+    or using the system. If the system poses a risk, the company must investigate
+    why and inform the authorities responsible for monitoring the AI market. They
+    must also inform any organization that certified the system, detailing what went
+    wrong and what they did to fix it.
+- source_node_id: aiuc_1:C002.2
+  target_node_id: eu_gpai_cop:Commitment_3
+  composite_score: 0.2006
+  uncertainty_score: 1.977
+  signals:
+    bridge: 0.0
+    semantic: 0.38
+    keyword: 0.0036
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: AI testing integration supports systemic risk analysis commitment.
+  source_name: Integrating AI system testing into established SDLC gates.
+  source_description: Integrating AI system testing into established SDLC gates.
+  target_name: 'Commitment 3: Systemic risk analysis'
+  target_description: 'LEGAL TEXT: Article 55(1) and recital 114 AI Act Signatories
+    commit to analysing each identified systemic risk (pursuant to Commitment 2).
+    The purpose of systemic risk analysis includes facilitating systemic risk acceptance
+    determination (pursuant to Commitment 4). Systemic risk analysis involves five
+    elements for each identified systemic risk, which may overlap and may need to
+    be implemented recursively: (1) gathering model-independent information (as specified
+    in Measure 3.1); (2) conducting model evaluations (as specified in Measure 3.2);
+    (3) modelling the systemic risk (as specified in Measure 3.3); and (4) estimating
+    the systemic risk (as specified in Measure 3.4); while (5) conducting post-market
+    monitoring (as specified in Measure 3.5).'
+- source_node_id: aiuc_1:E017.3
+  target_node_id: eu_gpai_cop:Measure_10.2
+  composite_score: 0.3494
+  uncertainty_score: 1.9768
+  signals:
+    bridge: 0.0
+    semantic: 0.9292
+    keyword: 0.0371
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Transparency policy is canonical public transparency content.
+  source_name: Policy defining transparency sharing practices with stakeholder categories.
+  source_description: Policy defining transparency sharing practices with stakeholder
+    categories.
+  target_name: 'Measure 10.2: Public transparency'
+  target_description: "If and insofar as necessary to assess and/or mitigate systemic\
+    \ risks, Signatories will publish (e.g. via their websites) a summarised version\
+    \ of their Framework and Model Report(s), and updates thereof (pursuant to Commitments\
+    \ 1 and 7), with removals to not undermine the effectiveness of safety and/or\
+    \ security mitigations and to protect sensitive commercial information. For Model\
+    \ Reports, such publication will include high-level descriptions of the systemic\
+    \ risk assessment results and the safety and security mitigations implemented.\
+    \ For Frameworks, such publication is not necessary if all of the Signatory\u2019\
+    s models are similarly safe or safer models pursuant to Appendix 2.2. For Model\
+    \ Reports, such publication is not necessary if the model is a similarly safe\
+    \ or safer model pursuant to Appendix 2.2. ## Glossary Wherever this Chapter refers\
+    \ to a term defined in Article 3 AI Act, the AI Act definition applies, and such\
+    \ definition shall prevail in the event of any alternative and/or competing interpretation\
+    \ to which the use of the term in this Chapter may give rise. Otherwise and complementing\
+    \ this, the following terms with the stated meanings are used in this Chapter.\
+    \ Unless otherwise stated, all grammatical variations of the terms defined in\
+    \ this Glossary shall be deemed to be covered by the relevant definition. Term\
+    \ Definition \u2018appropriate\u2019 suitable and necessary to achieve the intended\
+    \ purpose of systemic risk assessment and/or mitigation, whether through best\
+    \ practices, the state of the art, or other more innovative processes, measures,\
+    \ methodologies, methods, or techniques that go beyond the state of the art. \u2018\
+    best practice\u2019 accepted amongst providers of general-purpose AI models with\
+    \ systemic risk as the processes, measures, methodologies, methods, and techniques\
+    \ that best assess and mitigate systemic risks at any given point in time. \u2018\
+    confirmed\u2019 a Framework or Model Report, or an update thereof, that has received\
+    \ required approvals under the applicable governance procedures. \u2018deception\u2019\
+    \ model behaviours that systematically produce false beliefs in others, including\
+    \ model behaviours to achieve goals that involve evading oversight, such as a\
+    \ model\u2019s detecting that it is being evaluated and under-performing or otherwise\
+    \ undermining oversight. \u2018external validity\u2019 an aspect of high scientific\
+    \ and technical rigour (see definition below) that ensures model evaluations are\
+    \ suitably calibrated for results to be used as a proxy for model behaviour outside\
+    \ the evaluation environment. Demonstrating external validity will differ for\
+    \ different systemic risks and model evaluation methods, but may be shown by,\
+    \ e.g. documenting the model evaluation environment, the ways in which it diverges\
+    \ from the real-world context, and the diversity of the model evaluation environment.\
+    \ \u2018high scientific and technical rigour\u2019 the quality standard for model\
+    \ evaluations, such that model evaluations with high scientific and technical\
+    \ rigour have internal validity (see definition below) and external validity (see\
+    \ definition above), as well as being reproducible (see definition below). See\
+    \ further Appendix 3.2. \u2018including\u2019 introduces a non-exhaustive set\
+    \ that is to be understood as the minimum required by the term referred to and\
+    \ is indicative of further items of the set. \u2018independent external\u2019\
+    \ a natural or legal person that has no financial, operational, or management\
+    \ dependence on the Signatory or any of its subsidiaries or associates, and is\
+    \ otherwise free from the Signatory\u2019s control in reaching conclusions and/or\
+    \ making recommendations, including through contractual safeguards and suitable\
+    \ conflict of interest policies. \u2018insider threats\u2019 hostile operations\
+    \ by humans, AI models, and/or AI systems (e.g. senior management, a senior member\
+    \ of the organisation\u2019s research team, other disgruntled employees, perpetrators\
+    \ of industrial espionage operations that have infiltrated their target, and/or\
+    \ model self-exfiltration) with access to sensitive organisational "
+- source_node_id: aiuc_1:C003.1
+  target_node_id: eu_gpai_cop:Article-50
+  composite_score: 0.3506
+  uncertainty_score: 1.9753
+  signals:
+    bridge: 0.0
+    semantic: 0.9156
+    keyword: 0.0571
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Detecting/blocking harmful outputs maps to Article 50 transparency obligations.
+  source_name: Detecting and blocking harmful output types through content filtering
+    systems.
+  source_description: Detecting and blocking harmful output types through content
+    filtering systems.
+  target_name: EU AI Act Article 50
+  target_description: Transparency Obligations for Providers and Deployers of Certain
+    AI Systems. This article states that companies must inform users when they are
+    interacting with an AI system, unless it's obvious or the AI is used for legal
+    purposes like crime detection. AI systems that create synthetic content (like
+    deepfakes) must mark their outputs as artificially generated. Companies must also
+    inform users when they use AI for emotion recognition or biometric categorisation,
+    unless it's for legal purposes. If an AI system creates or alters content, the
+    company must disclose this, unless it's for legal purposes or the content is artistic
+    or satirical. The AI Office will help create guidelines for detecting and labelling
+    artificially generated content.
+- source_node_id: aiuc_1:C003
+  target_node_id: eu_gpai_cop:Measure_1.2
+  composite_score: 0.3507
+  uncertainty_score: 1.9725
+  signals:
+    bridge: 0.0
+    semantic: 0.5839
+    keyword: 0.0139
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Harmful output prevention supports framework implementation.
+  source_name: Prevent harmful outputs
+  source_description: Implement safeguards to prevent harmful outputs including distressed
+    outputs, angry responses, high-risk advice, offensive content, bias, and deception.
+  target_name: 'Measure 1.2: Implementing the Framework'
+  target_description: "Signatories will implement the processes and measures outlined\
+    \ in their Framework as specified in the following paragraphs. Along the entire\
+    \ model lifecycle, Signatories will continuously: (1) assess the systemic risks\
+    \ stemming from the model by: (a) conducting lighter-touch model evaluations that\
+    \ need not adhere to Appendix 3 (e.g. automated evaluations) at appropriate trigger\
+    \ points defined in terms of, e.g. time, training compute, development stages,\
+    \ user access, inference compute, and/or affordances; (b) conducting post-market\
+    \ monitoring after placing the model on the market, as specified in Measure 3.5;\
+    \ (c) taking into account relevant information about serious incidents (pursuant\
+    \ to Commitment 9); and (d) increasing the breadth and/or depth of assessment\
+    \ or conducting a full systemic risk assessment and mitigation process that is\
+    \ specified in the following paragraph, based on the results of points (a), (b),\
+    \ and (c); and (2) implement systemic risk mitigations taking into account the\
+    \ results of point (1), including addressing serious incidents as appropriate.\
+    \ Figure 2. Illustrative timeline of systemic risk assessment and mitigation along\
+    \ the model lifecycle. In addition, Signatories will implement a full systemic\
+    \ risk assessment and mitigation process that involves four steps, without needing\
+    \ to duplicate parts of the model\u2019s previous systemic risk assessments that\
+    \ are still appropriate: (1) identifying the systemic risks stemming from the\
+    \ model as specified in Commitment 2; (2) analysing each identified systemic risk\
+    \ as specified in Commitment 3; (3) determining whether the systemic risks stemming\
+    \ from the model are acceptable as specified in Measure 4.1; and (4) if the systemic\
+    \ risks stemming from the model are not determined to be acceptable, implementing\
+    \ safety and/or security mitigations as specified in Commitments 5 and 6, and\
+    \ re-assessing the systemic risks stemming from the model starting from point\
+    \ (1), as specified in Measure 4.2. Signatories will conduct such a full systemic\
+    \ risk assessment and mitigation process at least before placing the model on\
+    \ the market and whenever the conditions specified in Measure 7.6, first and third\
+    \ paragraph, are met. Signatories will report their implemented measures and processes\
+    \ to the AI Office as specified in Commitment 7. Figure 3. Full systemic risk\
+    \ assessment and mitigation process."
+- source_node_id: aiuc_1:B006.2
+  target_node_id: eu_gpai_cop:Article-50
+  composite_score: 0.3493
+  uncertainty_score: 1.9715
+  signals:
+    bridge: 0.0
+    semantic: 0.6653
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Agent monitoring supports Article 50 transparency on synthetic content.
+  source_name: Deploying monitoring and alerting for agent actions that exceed security
+    boundaries.
+  source_description: Deploying monitoring and alerting for agent actions that exceed
+    security boundaries.
+  target_name: EU AI Act Article 50
+  target_description: Transparency Obligations for Providers and Deployers of Certain
+    AI Systems. This article states that companies must inform users when they are
+    interacting with an AI system, unless it's obvious or the AI is used for legal
+    purposes like crime detection. AI systems that create synthetic content (like
+    deepfakes) must mark their outputs as artificially generated. Companies must also
+    inform users when they use AI for emotion recognition or biometric categorisation,
+    unless it's for legal purposes. If an AI system creates or alters content, the
+    company must disclose this, unless it's for legal purposes or the content is artistic
+    or satirical. The AI Office will help create guidelines for detecting and labelling
+    artificially generated content.
+- source_node_id: aiuc_1:E010
+  target_node_id: eu_gpai_cop:Article-44
+  composite_score: 0.3493
+  uncertainty_score: 1.9712
+  signals:
+    bridge: 0.0
+    semantic: 0.7347
+    keyword: 0.0118
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: AUP definition maps directly to Article 44 use instructions.
+  source_name: Establish AI acceptable use policy
+  source_description: Establish and implement an AI acceptable use policy defining
+    prohibited AI usage for end-users.
+  target_name: EU AI Act Article 44
+  target_description: Certificates. This article states that certificates for AI systems
+    must be written in a language that can be easily understood by the relevant authorities
+    in the country where the certificate is issued. These certificates are valid for
+    up to five years for certain AI systems, and four years for others. They can be
+    extended upon request, but only after a re-assessment. If an AI system no longer
+    meets the necessary requirements, the certificate can be suspended or withdrawn,
+    unless the provider takes corrective action. There must also be an appeal process
+    for decisions made about these certificates.
+- source_node_id: aiuc_1:B004.3
+  target_node_id: eu_gpai_cop:Article-16
+  composite_score: 0.3507
+  uncertainty_score: 1.9706
+  signals:
+    bridge: 0.0
+    semantic: 0.6624
+    keyword: 0.01
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Simulated attack testing supports Article 16 quality management.
+  source_name: Conducting simulated external attack testing of AI endpoints.
+  source_description: Conducting simulated external attack testing of AI endpoints.
+  target_name: EU AI Act Article 16
+  target_description: Obligations of Providers of High-Risk AI Systems. This article
+    states that companies providing high-risk AI systems must follow certain rules.
+    They must make sure their AI systems meet specific standards and display their
+    contact information on the product or its packaging. They need to have a quality
+    management system and keep certain documents and logs. Before selling or using
+    the AI system, they must have it checked for compliance with regulations. They
+    also need to mark the product with a CE marking to show it meets EU standards.
+    They must register the product, fix any issues, provide necessary information,
+    and prove it meets standards if asked by authorities. The AI system must also
+    be accessible according to EU directives.
+- source_node_id: aiuc_1:E009.1
+  target_node_id: eu_gpai_cop:Measure_1.1
+  composite_score: 0.1992
+  uncertainty_score: 1.9698
+  signals:
+    bridge: 0.0
+    semantic: 0.3795
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Third-party interaction logging supports framework creation.
+  source_name: Configuring logging for third-party interactions with captured metadata.
+  source_description: Configuring logging for third-party interactions with captured
+    metadata.
+  target_name: 'Measure 1.1: Creating the Framework'
+  target_description: "Signatories will create a state-of-the-art Framework, taking\
+    \ into account the models they are developing, making available on the market,\
+    \ and/or using. The Framework will contain a high-level description of implemented\
+    \ and planned processes and measures for systemic risk assessment and mitigation\
+    \ to adhere to this Chapter. In addition, the Framework will contain: (1) a description\
+    \ and justification of the trigger points and their usage, at which the Signatories\
+    \ will conduct additional lighter-touch model evaluations along the entire model\
+    \ lifecycle, as specified in Measure 1.2, second paragraph, point (1)(a); (2)\
+    \ for the Signatories\u2019 determination of whether systemic risk is considered\
+    \ acceptable, as specified in Commitment 4: (a) a description and justification\
+    \ of the systemic risk acceptance criteria, including the systemic risk tiers,\
+    \ and their usage as specified in Measure 4.1; (b) a high-level description of\
+    \ what safety and security mitigations Signatories would need to implement once\
+    \ each systemic risk tier is reached; (c) for each systemic risk that Signatories\
+    \ defined systemic risk tiers for as specified in Measure 4.1, estimates of timelines\
+    \ when Signatories reasonably foresee that they will have a model that exceeds\
+    \ the highest systemic risk tier already reached by any of their existing models.\
+    \ Such estimates: (i) may consist of time ranges or probability distributions;\
+    \ and (ii) may take into account aggregate forecasts, surveys, and other estimates\
+    \ produced with other providers. Further, such estimates will be supported by\
+    \ justifications, including underlying assumptions and uncertainties; and (d)\
+    \ a description of whether and, if so, by what process input from external actors,\
+    \ including governments, influences proceeding with the development, making available\
+    \ on the market, and/or use of the Signatories\u2019 models as specified in Measure\
+    \ 4.2, other than as the result of independent external evaluations; (3) a description\
+    \ of how systemic risk responsibility is allocated for the processes by which\
+    \ systemic risk is assessed and mitigated as specified in Commitment 8; and (4)\
+    \ a description of the process by which Signatories will update the Framework,\
+    \ including how they will determine that an updated Framework is confirmed, as\
+    \ specified in Measure 1.3. Signatories will have confirmed the Framework no later\
+    \ than four weeks after having notified the Commission pursuant to Article 52(1)\
+    \ AI Act and no later than two weeks before placing the model on the market."
+- source_node_id: aiuc_1:B003
+  target_node_id: eu_gpai_cop:Article-19
+  composite_score: 0.3503
+  uncertainty_score: 1.9693
+  signals:
+    bridge: 0.0263
+    semantic: 0.5465
+    keyword: 0.0187
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Public release management maps to Article 19 traceability/documentation.
+  source_name: Manage public release of technical details
+  source_description: Implement controls to prevent over-disclosure of technical information
+    about AI systems.
+  target_name: EU AI Act Article 19
+  target_description: Automatically Generated Logs. This article states that companies
+    providing high-risk AI systems must keep automatically generated logs of these
+    systems, as long as they have control over these logs. These logs must be kept
+    for at least six months, or longer if required by EU or national laws, especially
+    those related to personal data protection. If the provider is a financial institution,
+    they must keep these logs as part of their documentation under financial services
+    law.
+- source_node_id: aiuc_1:C008
+  target_node_id: eu_gpai_cop:Article-21
+  composite_score: 0.3492
+  uncertainty_score: 1.9678
+  signals:
+    bridge: 0.0
+    semantic: 0.7094
+    keyword: 0.0559
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Risk monitoring supports Article 21 corrective actions.
+  source_name: Monitor AI risk categories
+  source_description: Implement monitoring of AI systems across risk categories.
+  target_name: EU AI Act Article 21
+  target_description: Cooperation with Competent Authorities. This article states
+    that companies providing high-risk AI systems must, when asked by a relevant authority,
+    provide all the information needed to show that their AI system meets the required
+    standards. This information must be in a language that the authority can easily
+    understand. If asked, these companies must also allow the authority to access
+    automatically generated logs of the AI system, as long as they control these logs.
+    Any information obtained by the authority must be treated confidentially.
+- source_node_id: aiuc_1:B005.1
+  target_node_id: eu_gpai_cop:Measure_5.1
+  composite_score: 0.3492
+  uncertainty_score: 1.9668
+  signals:
+    bridge: 0.0
+    semantic: 0.9205
+    keyword: 0.05
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Automated moderation is a canonical safety mitigation.
+  source_name: Integration of automated moderation tools to filter inputs before reaching
+    the foundation model.
+  source_description: Integration of automated moderation tools to filter inputs before
+    reaching the foundation model.
+  target_name: 'Measure 5.1: Appropriate safety mitigations'
+  target_description: "Signatories will implement safety mitigations that are appropriate,\
+    \ including sufficiently robust under adversarial pressure (e.g. fine-tuning attacks\
+    \ or jailbreaking), taking into account the model\u2019s release and distribution\
+    \ strategy. Examples of safety mitigations are: (1) filtering and cleaning training\
+    \ data, e.g. data that might result in undesirable model propensities such as\
+    \ unfaithful chain-of-thought traces; (2) monitoring and filtering the model\u2019\
+    s inputs and/or outputs; (3) changing the model behaviour in the interests of\
+    \ safety, such as fine-tuning the model to refuse certain requests or provide\
+    \ unhelpful responses; (4) staging the access to the model, e.g. by limiting API\
+    \ access to vetted users, gradually expanding access based on post-market monitoring,\
+    \ and/or not making the model parameters publicly available for download initially;\
+    \ (5) offering tools for other actors to use to mitigate the systemic risks stemming\
+    \ from the model; (6) techniques that provide high-assurance quantitative safety\
+    \ guarantees concerning the model\u2019s behaviour; (7) techniques to enable safe\
+    \ ecosystems of AI agents, such as model identifications, specialised communication\
+    \ protocols, or incident monitoring tools; and/or (8) other emerging safety mitigations,\
+    \ such as for achieving transparency into chain-of-thought reasoning or defending\
+    \ against a model\u2019s ability to subvert its other safety mitigations."
+- source_node_id: aiuc_1:D004.1
+  target_node_id: eu_gpai_cop:Commitment_3
+  composite_score: 0.1992
+  uncertainty_score: 1.9668
+  signals:
+    bridge: 0.0
+    semantic: 0.3794
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Tool-call evaluation supports systemic risk analysis.
+  source_name: Third-party evaluation report showing tool call testing results.
+  source_description: Third-party evaluation report showing tool call testing results.
+  target_name: 'Commitment 3: Systemic risk analysis'
+  target_description: 'LEGAL TEXT: Article 55(1) and recital 114 AI Act Signatories
+    commit to analysing each identified systemic risk (pursuant to Commitment 2).
+    The purpose of systemic risk analysis includes facilitating systemic risk acceptance
+    determination (pursuant to Commitment 4). Systemic risk analysis involves five
+    elements for each identified systemic risk, which may overlap and may need to
+    be implemented recursively: (1) gathering model-independent information (as specified
+    in Measure 3.1); (2) conducting model evaluations (as specified in Measure 3.2);
+    (3) modelling the systemic risk (as specified in Measure 3.3); and (4) estimating
+    the systemic risk (as specified in Measure 3.4); while (5) conducting post-market
+    monitoring (as specified in Measure 3.5).'
+- source_node_id: aiuc_1:B004.3
+  target_node_id: eu_gpai_cop:Commitment_3
+  composite_score: 0.1991
+  uncertainty_score: 1.9631
+  signals:
+    bridge: 0.0
+    semantic: 0.3569
+    keyword: 0.0391
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Simulated attack testing supports systemic risk analysis.
+  source_name: Conducting simulated external attack testing of AI endpoints.
+  source_description: Conducting simulated external attack testing of AI endpoints.
+  target_name: 'Commitment 3: Systemic risk analysis'
+  target_description: 'LEGAL TEXT: Article 55(1) and recital 114 AI Act Signatories
+    commit to analysing each identified systemic risk (pursuant to Commitment 2).
+    The purpose of systemic risk analysis includes facilitating systemic risk acceptance
+    determination (pursuant to Commitment 4). Systemic risk analysis involves five
+    elements for each identified systemic risk, which may overlap and may need to
+    be implemented recursively: (1) gathering model-independent information (as specified
+    in Measure 3.1); (2) conducting model evaluations (as specified in Measure 3.2);
+    (3) modelling the systemic risk (as specified in Measure 3.3); and (4) estimating
+    the systemic risk (as specified in Measure 3.4); while (5) conducting post-market
+    monitoring (as specified in Measure 3.5).'
+- source_node_id: aiuc_1:C007.1
+  target_node_id: eu_gpai_cop:Article-18
+  composite_score: 0.3491
+  uncertainty_score: 1.9621
+  signals:
+    bridge: 0.0
+    semantic: 0.6507
+    keyword: 0.0248
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: High-risk output policy supports Article 18 documentation retention.
+  source_name: Document or policy defining high-risk outputs requiring human review.
+  source_description: Document or policy defining high-risk outputs requiring human
+    review.
+  target_name: EU AI Act Article 18
+  target_description: Documentation Keeping. This article states that providers of
+    high-risk AI systems must keep certain documents for 10 years after the system
+    is released. These documents include technical documentation, quality management
+    system documentation, approved changes, decisions from notified bodies, and the
+    EU declaration of conformity. If the provider goes bankrupt or stops its activities
+    before the 10 years are up, each EU member state will decide how to keep these
+    documents available. Financial institutions that are providers must keep the technical
+    documentation as part of their documentation under Union financial services law.
+- source_node_id: aiuc_1:C005
+  target_node_id: eu_gpai_cop:Measure_1.2
+  composite_score: 0.349
+  uncertainty_score: 1.9616
+  signals:
+    bridge: 0.0
+    semantic: 0.569
+    keyword: 0.0344
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Customer high-risk output prevention supports framework implementation.
+  source_name: Prevent customer-defined high risk outputs
+  source_description: Implement safeguards to prevent additional high risk outputs
+    as defined in risk taxonomy.
+  target_name: 'Measure 1.2: Implementing the Framework'
+  target_description: "Signatories will implement the processes and measures outlined\
+    \ in their Framework as specified in the following paragraphs. Along the entire\
+    \ model lifecycle, Signatories will continuously: (1) assess the systemic risks\
+    \ stemming from the model by: (a) conducting lighter-touch model evaluations that\
+    \ need not adhere to Appendix 3 (e.g. automated evaluations) at appropriate trigger\
+    \ points defined in terms of, e.g. time, training compute, development stages,\
+    \ user access, inference compute, and/or affordances; (b) conducting post-market\
+    \ monitoring after placing the model on the market, as specified in Measure 3.5;\
+    \ (c) taking into account relevant information about serious incidents (pursuant\
+    \ to Commitment 9); and (d) increasing the breadth and/or depth of assessment\
+    \ or conducting a full systemic risk assessment and mitigation process that is\
+    \ specified in the following paragraph, based on the results of points (a), (b),\
+    \ and (c); and (2) implement systemic risk mitigations taking into account the\
+    \ results of point (1), including addressing serious incidents as appropriate.\
+    \ Figure 2. Illustrative timeline of systemic risk assessment and mitigation along\
+    \ the model lifecycle. In addition, Signatories will implement a full systemic\
+    \ risk assessment and mitigation process that involves four steps, without needing\
+    \ to duplicate parts of the model\u2019s previous systemic risk assessments that\
+    \ are still appropriate: (1) identifying the systemic risks stemming from the\
+    \ model as specified in Commitment 2; (2) analysing each identified systemic risk\
+    \ as specified in Commitment 3; (3) determining whether the systemic risks stemming\
+    \ from the model are acceptable as specified in Measure 4.1; and (4) if the systemic\
+    \ risks stemming from the model are not determined to be acceptable, implementing\
+    \ safety and/or security mitigations as specified in Commitments 5 and 6, and\
+    \ re-assessing the systemic risks stemming from the model starting from point\
+    \ (1), as specified in Measure 4.2. Signatories will conduct such a full systemic\
+    \ risk assessment and mitigation process at least before placing the model on\
+    \ the market and whenever the conditions specified in Measure 7.6, first and third\
+    \ paragraph, are met. Signatories will report their implemented measures and processes\
+    \ to the AI Office as specified in Commitment 7. Figure 3. Full systemic risk\
+    \ assessment and mitigation process."
+- source_node_id: aiuc_1:C006
+  target_node_id: eu_gpai_cop:Measure_9.2
+  composite_score: 0.351
+  uncertainty_score: 1.9612
+  signals:
+    bridge: 0.0
+    semantic: 0.5867
+    keyword: 0.0098
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Output vulnerability prevention supports serious-incident relevant info.
+  source_name: Prevent output vulnerabilities
+  source_description: Implement safeguards to prevent security vulnerabilities in
+    outputs from impacting users.
+  target_name: 'Measure 9.2: Relevant information for serious incident tracking, documentation,
+    and'
+  target_description: "reporting Signatories will keep track of, document, and report\
+    \ to the AI Office and, as applicable, to national competent authorities, at least\
+    \ the following information to the best of their knowledge, redacted to the extent\
+    \ necessary to comply with other Union law applicable to such information: (1)\
+    \ the start and end dates of the serious incident, or best approximations thereof\
+    \ if the precise dates are unclear; (2) the resulting harm and the victim or affected\
+    \ group of the serious incident; (3) the chain of events that (directly or indirectly)\
+    \ led to the serious incident; (4) the model involved in the serious incident;\
+    \ (5) a description of material available setting out the model\u2019s involvement\
+    \ in the serious incident; (6) what, if anything, the Signatory intends to do\
+    \ or has done in response to the serious incident; (7) what, if anything, the\
+    \ Signatory recommends the AI Office and, as applicable, national competent authorities\
+    \ to do in response to the serious incident; (8) a root cause analysis with a\
+    \ description of the model\u2019s outputs that (directly or indirectly) led to\
+    \ the serious incident and the factors that contributed to their generation, including\
+    \ the inputs used and any failures or circumventions of systemic risk mitigations;\
+    \ and (9) any patterns detected during post-market monitoring (pursuant to Measure\
+    \ 3.5) that can reasonably be assumed to be connected to the serious incident,\
+    \ such as individual or aggregate data on near misses. Signatories will investigate\
+    \ the causes and effects of serious incidents, including the information within\
+    \ the preceding list, with a view to informing systemic risk assessment. If Signatories\
+    \ do not yet have certain relevant information from the preceding list, they will\
+    \ record that in their serious incident reports. The level of detail in serious\
+    \ incident reports will be appropriate for the severity of the incident."
+- source_node_id: aiuc_1:A002
+  target_node_id: eu_gpai_cop:Article-20
+  composite_score: 0.351
+  uncertainty_score: 1.9586
+  signals:
+    bridge: 0.0
+    semantic: 0.7417
+    keyword: 0.0054
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Output data policy supports Article 20 obligations.
+  source_name: Establish output data policy
+  source_description: Establish AI output ownership, usage, opt-out and deletion policies
+    to customers and communicate these policies.
+  target_name: EU AI Act Article 20
+  target_description: Corrective Actions and Duty of Information. This article states
+    that if a company providing a high-risk AI system realizes that their system is
+    not following the rules set by the EU, they must immediately fix the issue, stop
+    using it, or recall it. They must also inform anyone involved in distributing
+    or using the system. If the system poses a risk, the company must investigate
+    why and inform the authorities responsible for monitoring the AI market. They
+    must also inform any organization that certified the system, detailing what went
+    wrong and what they did to fix it.
+- source_node_id: aiuc_1:D003.2
+  target_node_id: eu_gpai_cop:Commitment_7
+  composite_score: 0.2011
+  uncertainty_score: 1.9571
+  signals:
+    bridge: 0.0
+    semantic: 0.383
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Rate limits/transaction caps support safety/security model report.
+  source_name: Enforcing rate limits and transaction caps for autonomous tool use.
+  source_description: Enforcing rate limits and transaction caps for autonomous tool
+    use.
+  target_name: 'Commitment 7: Safety and Security Model Reports'
+  target_description: "LEGAL TEXT: Articles 55(1) and 56(5) AI Act Signatories commit\
+    \ to reporting to the AI Office information about their model and their systemic\
+    \ risk assessment and mitigation processes and measures by creating a Safety and\
+    \ Security Model Report (\u201CModel Report\u201D) before placing a model on the\
+    \ market (as specified in Measures 7.1 to 7.5). Further, Signatories commit to\
+    \ keeping the Model Report up-to-date (as specified in Measure 7.6) and notifying\
+    \ the AI Office of their Model Report (as specified in Measure 7.7). If Signatories\
+    \ have already provided relevant information to the AI Office in other reports\
+    \ and/or notifications, they may reference those reports and/or notifications\
+    \ in their Model Report. Signatories may create a single Model Report for several\
+    \ models if the systemic risk assessment and mitigation processes and measures\
+    \ for one model cannot be understood without reference to the other model(s).\
+    \ Signatories that are SMEs or SMCs may reduce the level of detail in their Model\
+    \ Report to the extent necessary to reflect size and capacity constraints."
+- source_node_id: aiuc_1:D004
+  target_node_id: eu_gpai_cop:Measure_2.1
+  composite_score: 0.1989
+  uncertainty_score: 1.9566
+  signals:
+    bridge: 0.0
+    semantic: 0.4486
+    keyword: 0.0113
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Tool-call testing supports systemic risk identification.
+  source_name: Third-party testing of tool calls
+  source_description: Appoint expert third-parties to evaluate tool calls in AI systems
+    at least every 3 months.
+  target_name: 'Measure 2.1: Systemic risk identification process'
+  target_description: 'Signatories will identify: (1) the systemic risks obtained
+    through the following process: (a) compiling a list of risks that could stem from
+    the model and be systemic, based on the types of risks in Appendix 1.1, taking
+    into account: (i) model-independent information (pursuant to Measure 3.1); (ii)
+    relevant information about the model and similar models, including information
+    from post-market monitoring (pursuant to Measure 3.5), and information about serious
+    incidents and near misses (pursuant to Commitment 9); and (iii) any other relevant
+    information communicated directly or via public releases to the Signatory by the
+    AI Office, the Scientific Panel of Independent Experts, or other initiatives,
+    such as the International Network of AI Safety Institutes, endorsed for this purpose
+    by the AI Office; (b) analysing relevant characteristics of the risks compiled
+    pursuant to point (a), such as their nature (based on Appendix 1.2) and sources
+    (based on Appendix 1.3); and (c) identifying, based on point (b), the systemic
+    risks stemming from the model; and (2) the specified systemic risks in Appendix
+    1.4.'
+- source_node_id: aiuc_1:C009.1
+  target_node_id: eu_gpai_cop:Measure_6.2
+  composite_score: 0.3489
+  uncertainty_score: 1.9565
+  signals:
+    bridge: 0.0
+    semantic: 0.6573
+    keyword: 0.0128
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: User intervention capabilities are canonical security mitigations.
+  source_name: Enable user intervention capabilities such as pause, stop, or redirect
+    system behavior.
+  source_description: Enable user intervention capabilities such as pause, stop, or
+    redirect system behavior.
+  target_name: 'Measure 6.2: Appropriate security mitigations'
+  target_description: "Signatories will implement appropriate security mitigations\
+    \ to meet the Security Goal, including the security mitigations pursuant to Appendix\
+    \ 4. If Signatories deviate from any of the security mitigations listed in Appendices\
+    \ 4.1 to 4.5, points (a), e.g. due to the Signatory\u2019s organisational context\
+    \ and digital infrastructure, they will implement alternative security mitigations\
+    \ that achieve the respective mitigation objectives. The implementation of the\
+    \ required security mitigations may be staged appropriately in line with the increase\
+    \ in model capabilities along the entire model lifecycle."
+- source_node_id: aiuc_1:B001
+  target_node_id: eu_gpai_cop:Article-72
+  composite_score: 0.3489
+  uncertainty_score: 1.9548
+  signals:
+    bridge: 0.1302
+    semantic: 0.5732
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Adversarial robustness testing weakly relates to Article 72 post-market monitoring.
+  source_name: Third-party testing of adversarial robustness
+  source_description: Implement adversarial testing program to validate system resilience
+    against adversarial inputs and prompt injection attempts.
+  target_name: EU AI Act Article 72
+  target_description: Post-Market Monitoring by Providers and Post-Market Monitoring
+    Plan for High-Risk AI Systems. The EU AI Act requires providers of high-risk AI
+    systems to establish a post-market monitoring system. This system should collect
+    and analyze data on the performance of these AI systems throughout their lifetime,
+    ensuring they continue to comply with regulations. The monitoring system should
+    be based on a plan that is part of the technical documentation. The EU Commission
+    will provide a template for this plan. If a monitoring system is already in place
+    under other legislation, providers can integrate the necessary elements from this
+    new requirement, as long as it provides the same level of protection.
+- source_node_id: aiuc_1:B009.2
+  target_node_id: eu_gpai_cop:Commitment_7
+  composite_score: 0.2011
+  uncertainty_score: 1.9543
+  signals:
+    bridge: 0.0
+    semantic: 0.3831
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: User-facing output notices support safety/security model report.
+  source_name: Providing user-facing notices about output limitations.
+  source_description: Providing user-facing notices about output limitations.
+  target_name: 'Commitment 7: Safety and Security Model Reports'
+  target_description: "LEGAL TEXT: Articles 55(1) and 56(5) AI Act Signatories commit\
+    \ to reporting to the AI Office information about their model and their systemic\
+    \ risk assessment and mitigation processes and measures by creating a Safety and\
+    \ Security Model Report (\u201CModel Report\u201D) before placing a model on the\
+    \ market (as specified in Measures 7.1 to 7.5). Further, Signatories commit to\
+    \ keeping the Model Report up-to-date (as specified in Measure 7.6) and notifying\
+    \ the AI Office of their Model Report (as specified in Measure 7.7). If Signatories\
+    \ have already provided relevant information to the AI Office in other reports\
+    \ and/or notifications, they may reference those reports and/or notifications\
+    \ in their Model Report. Signatories may create a single Model Report for several\
+    \ models if the systemic risk assessment and mitigation processes and measures\
+    \ for one model cannot be understood without reference to the other model(s).\
+    \ Signatories that are SMEs or SMCs may reduce the level of detail in their Model\
+    \ Report to the extent necessary to reflect size and capacity constraints."
+- source_node_id: aiuc_1:B004.2
+  target_node_id: eu_gpai_cop:Article-46
+  composite_score: 0.3512
+  uncertainty_score: 1.9534
+  signals:
+    bridge: 0.0
+    semantic: 0.6689
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Rate limiting supports Article 46 GPAI registration assurances.
+  source_name: Implementing rate limiting and query restrictions.
+  source_description: Implementing rate limiting and query restrictions.
+  target_name: EU AI Act Article 46
+  target_description: Derogation from Conformity Assessment Procedure. This article
+    allows for exceptions to the usual approval process for high-risk AI systems.
+    If there's a justified reason, such as public safety or environmental protection,
+    a market surveillance authority can allow these systems to be used for a limited
+    time while they're being assessed. In urgent situations, law enforcement or civil
+    protection authorities can use these systems without prior approval, as long as
+    they request it soon after. If approval is denied, the system must be stopped
+    and its results discarded. The EU Commission and other member states must be informed
+    of any approvals, and if no objections are raised within 15 days, the approval
+    is considered justified. If objections are raised, the Commission will consult
+    with the relevant parties and decide if the approval is justified. If it's not,
+    the approval must be withdrawn.
+- source_node_id: aiuc_1:B003.2
+  target_node_id: eu_gpai_cop:Measure_10.2
+  composite_score: 0.3512
+  uncertainty_score: 1.9518
+  signals:
+    bridge: 0.0
+    semantic: 0.6604
+    keyword: 0.0149
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Approval records for public AI comms map to public transparency.
+  source_name: Approval records for public AI communications.
+  source_description: Approval records for public AI communications.
+  target_name: 'Measure 10.2: Public transparency'
+  target_description: "If and insofar as necessary to assess and/or mitigate systemic\
+    \ risks, Signatories will publish (e.g. via their websites) a summarised version\
+    \ of their Framework and Model Report(s), and updates thereof (pursuant to Commitments\
+    \ 1 and 7), with removals to not undermine the effectiveness of safety and/or\
+    \ security mitigations and to protect sensitive commercial information. For Model\
+    \ Reports, such publication will include high-level descriptions of the systemic\
+    \ risk assessment results and the safety and security mitigations implemented.\
+    \ For Frameworks, such publication is not necessary if all of the Signatory\u2019\
+    s models are similarly safe or safer models pursuant to Appendix 2.2. For Model\
+    \ Reports, such publication is not necessary if the model is a similarly safe\
+    \ or safer model pursuant to Appendix 2.2. ## Glossary Wherever this Chapter refers\
+    \ to a term defined in Article 3 AI Act, the AI Act definition applies, and such\
+    \ definition shall prevail in the event of any alternative and/or competing interpretation\
+    \ to which the use of the term in this Chapter may give rise. Otherwise and complementing\
+    \ this, the following terms with the stated meanings are used in this Chapter.\
+    \ Unless otherwise stated, all grammatical variations of the terms defined in\
+    \ this Glossary shall be deemed to be covered by the relevant definition. Term\
+    \ Definition \u2018appropriate\u2019 suitable and necessary to achieve the intended\
+    \ purpose of systemic risk assessment and/or mitigation, whether through best\
+    \ practices, the state of the art, or other more innovative processes, measures,\
+    \ methodologies, methods, or techniques that go beyond the state of the art. \u2018\
+    best practice\u2019 accepted amongst providers of general-purpose AI models with\
+    \ systemic risk as the processes, measures, methodologies, methods, and techniques\
+    \ that best assess and mitigate systemic risks at any given point in time. \u2018\
+    confirmed\u2019 a Framework or Model Report, or an update thereof, that has received\
+    \ required approvals under the applicable governance procedures. \u2018deception\u2019\
+    \ model behaviours that systematically produce false beliefs in others, including\
+    \ model behaviours to achieve goals that involve evading oversight, such as a\
+    \ model\u2019s detecting that it is being evaluated and under-performing or otherwise\
+    \ undermining oversight. \u2018external validity\u2019 an aspect of high scientific\
+    \ and technical rigour (see definition below) that ensures model evaluations are\
+    \ suitably calibrated for results to be used as a proxy for model behaviour outside\
+    \ the evaluation environment. Demonstrating external validity will differ for\
+    \ different systemic risks and model evaluation methods, but may be shown by,\
+    \ e.g. documenting the model evaluation environment, the ways in which it diverges\
+    \ from the real-world context, and the diversity of the model evaluation environment.\
+    \ \u2018high scientific and technical rigour\u2019 the quality standard for model\
+    \ evaluations, such that model evaluations with high scientific and technical\
+    \ rigour have internal validity (see definition below) and external validity (see\
+    \ definition above), as well as being reproducible (see definition below). See\
+    \ further Appendix 3.2. \u2018including\u2019 introduces a non-exhaustive set\
+    \ that is to be understood as the minimum required by the term referred to and\
+    \ is indicative of further items of the set. \u2018independent external\u2019\
+    \ a natural or legal person that has no financial, operational, or management\
+    \ dependence on the Signatory or any of its subsidiaries or associates, and is\
+    \ otherwise free from the Signatory\u2019s control in reaching conclusions and/or\
+    \ making recommendations, including through contractual safeguards and suitable\
+    \ conflict of interest policies. \u2018insider threats\u2019 hostile operations\
+    \ by humans, AI models, and/or AI systems (e.g. senior management, a senior member\
+    \ of the organisation\u2019s research team, other disgruntled employees, perpetrators\
+    \ of industrial espionage operations that have infiltrated their target, and/or\
+    \ model self-exfiltration) with access to sensitive organisational "
+- source_node_id: aiuc_1:A003
+  target_node_id: eu_gpai_cop:Article-13
+  composite_score: 0.3505
+  uncertainty_score: 1.9516
+  signals:
+    bridge: 0.0284
+    semantic: 0.7932
+    keyword: 0.0307
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Agent data collection limits map to Article 13 transparency to deployers.
+  source_name: Limit AI agent data collection
+  source_description: Implement safeguards to limit AI agent data access to task-relevant
+    information based on user roles and context.
+  target_name: EU AI Act Article 13
+  target_description: Transparency and Provision of Information to Deployers. This
+    article states that high-risk AI systems must be designed to be transparent, so
+    that those using them can understand and use them correctly. They must come with
+    clear instructions, including information about the provider, the system's capabilities
+    and limitations, and any potential risks. The instructions should also explain
+    how to interpret the system's output, any pre-determined changes to the system,
+    and how to maintain it. If relevant, they should also describe how to collect,
+    store and interpret data logs.
+- source_node_id: aiuc_1:C008
+  target_node_id: eu_gpai_cop:Article-11
+  composite_score: 0.3501
+  uncertainty_score: 1.9514
+  signals:
+    bridge: 0.0453
+    semantic: 0.6572
+    keyword: 0.0482
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Risk monitoring supports Article 11 technical documentation.
+  source_name: Monitor AI risk categories
+  source_description: Implement monitoring of AI systems across risk categories.
+  target_name: EU AI Act Article 11
+  target_description: Technical Documentation. This EU law states that before a high-risk
+    AI system is launched, detailed technical documentation must be prepared and kept
+    updated. This documentation should prove that the AI system meets the law's requirements
+    and provide clear information for authorities to check compliance. It should include
+    certain key elements. Small businesses, including start-ups, can provide this
+    information in a simpler way. The EU will create a simplified form for this purpose.
+    If a high-risk AI system is related to a product covered by other EU laws, one
+    set of documentation should include all necessary information. The EU can update
+    these requirements as technology advances.
+- source_node_id: aiuc_1:A006.3
+  target_node_id: eu_gpai_cop:Article-72
+  composite_score: 0.3513
+  uncertainty_score: 1.9493
+  signals:
+    bridge: 0.0
+    semantic: 0.8954
+    keyword: 0.0286
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: DLP integration supports Article 72 post-market monitoring.
+  source_name: Integrating with existing data loss prevention (DLP) systems to monitor
+    and block outputs containing personal data.
+  source_description: Integrating with existing data loss prevention (DLP) systems
+    to monitor and block outputs containing personal data.
+  target_name: EU AI Act Article 72
+  target_description: Post-Market Monitoring by Providers and Post-Market Monitoring
+    Plan for High-Risk AI Systems. The EU AI Act requires providers of high-risk AI
+    systems to establish a post-market monitoring system. This system should collect
+    and analyze data on the performance of these AI systems throughout their lifetime,
+    ensuring they continue to comply with regulations. The monitoring system should
+    be based on a plan that is part of the technical documentation. The EU Commission
+    will provide a template for this plan. If a monitoring system is already in place
+    under other legislation, providers can integrate the necessary elements from this
+    new requirement, as long as it provides the same level of protection.
+- source_node_id: aiuc_1:A004
+  target_node_id: eu_gpai_cop:Measure_4.2
+  composite_score: 0.2013
+  uncertainty_score: 1.9475
+  signals:
+    bridge: 0.0
+    semantic: 0.3052
+    keyword: 0.0036
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: IP protection weakly relates to proceed/not-proceed decision criteria.
+  source_name: Protect IP & trade secrets
+  source_description: Implement safeguards or technical controls to prevent AI systems
+    from leaking company intellectual property or confidential information.
+  target_name: 'Measure 4.2: Proceeding or not proceeding based on systemic risk acceptance'
+  target_description: 'determination Signatories will only proceed with the development,
+    the making available on the market, and/or the use of the model, if the systemic
+    risks stemming from the model are determined to be acceptable (pursuant to Measure
+    4.1). If the systemic risks stemming from the model are not determined to be acceptable
+    or are reasonably foreseeable to be soon not determined to be acceptable (pursuant
+    to Measure 4.1), Signatories will take appropriate measures to ensure the systemic
+    risks stemming from the model are and will remain acceptable prior to proceeding.
+    In particular, Signatories will: (1) not make the model available on the market,
+    restrict the making available on the market (e.g. via adjusting licenses or usage
+    restrictions), withdraw, or recall the model, as necessary; (2) implement safety
+    and/or security mitigations (pursuant to Commitments 5 and 6); and (3) conduct
+    another round of systemic risk identification (pursuant to Commitment 2), systemic
+    risk analysis (pursuant to Commitment 3), and systemic risk acceptance determination
+    (pursuant to this Commitment).'
+- source_node_id: aiuc_1:C011
+  target_node_id: eu_gpai_cop:Article-72
+  composite_score: 0.3514
+  uncertainty_score: 1.9455
+  signals:
+    bridge: 0.0452
+    semantic: 0.6874
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Out-of-scope output testing supports Article 72 post-market monitoring.
+  source_name: Third-party testing for out-of-scope outputs
+  source_description: Appoint expert third parties to evaluate system robustness to
+    out-of-scope outputs at least every 3 months.
+  target_name: EU AI Act Article 72
+  target_description: Post-Market Monitoring by Providers and Post-Market Monitoring
+    Plan for High-Risk AI Systems. The EU AI Act requires providers of high-risk AI
+    systems to establish a post-market monitoring system. This system should collect
+    and analyze data on the performance of these AI systems throughout their lifetime,
+    ensuring they continue to comply with regulations. The monitoring system should
+    be based on a plan that is part of the technical documentation. The EU Commission
+    will provide a template for this plan. If a monitoring system is already in place
+    under other legislation, providers can integrate the necessary elements from this
+    new requirement, as long as it provides the same level of protection.
+- source_node_id: aiuc_1:B002.2
+  target_node_id: eu_gpai_cop:Article-14
+  composite_score: 0.3514
+  uncertainty_score: 1.9431
+  signals:
+    bridge: 0.0
+    semantic: 0.6165
+    keyword: 0.0925
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Adversarial attack logging supports Article 14 human oversight.
+  source_name: Logging suspected adversarial attacks with relevant context and escalating
+    based on severity.
+  source_description: Logging suspected adversarial attacks with relevant context
+    and escalating based on severity.
+  target_name: EU AI Act Article 14
+  target_description: Human Oversight. This article states that high-risk AI systems
+    must be designed in a way that allows humans to effectively oversee them. The
+    goal of human oversight is to prevent or minimize risks to health, safety, or
+    fundamental rights that may arise from using these systems. The oversight measures
+    should match the risks and context of the AI system's use. These measures could
+    be built into the system by the provider or implemented by the user. The AI system
+    should be provided in a way that allows the overseer to understand its capabilities
+    and limitations, detect and address issues, avoid over-reliance on the system,
+    interpret its output, decide not to use it, or stop its operation. For certain
+    high-risk AI systems, any action or decision based on the system's identification
+    must be verified by at least two competent individuals.
+- source_node_id: aiuc_1:B009.2
+  target_node_id: eu_gpai_cop:Measure_7.7
+  composite_score: 0.3515
+  uncertainty_score: 1.9416
+  signals:
+    bridge: 0.0
+    semantic: 0.6618
+    keyword: 0.0133
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Output limit notices support model report notifications.
+  source_name: Providing user-facing notices about output limitations.
+  source_description: Providing user-facing notices about output limitations.
+  target_name: 'Measure 7.7: Model Report notifications'
+  target_description: Signatories will provide the AI Office with access to the Model
+    Report (without redactions, unless they are required by national security laws
+    to which Signatories are subject) by the time they place a model on the market,
+    e.g. through a publicly accessible link or through a sufficiently secure channel
+    specified by the AI Office. If a Model Report is updated, Signatories will provide
+    the AI Office with access to the updated Model Report (without redactions, unless
+    they are required by national security laws to which Signatories are subject)
+    within five business days of a confirmed update. To facilitate the placing on
+    the market of a model, Signatories may delay providing the AI Office with a Model
+    Report, or an update thereof, by up to 15 business days. This may be done only
+    if the AI Office considers the Signatory to be acting in good faith and if the
+    Signatory provides an interim Model Report, containing the information specified
+    in Measures 7.2 and 7.5, to the AI Office without delay.
+- source_node_id: aiuc_1:E015
+  target_node_id: eu_gpai_cop:Measure_1.2
+  composite_score: 0.2015
+  uncertainty_score: 1.9415
+  signals:
+    bridge: 0.0
+    semantic: 0.424
+    keyword: 0.063
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Model activity logging is canonical framework implementation.
+  source_name: Log model activity
+  source_description: Maintain logs of AI system processes, actions, and model outputs
+    to support incident investigation, auditing, and explanation.
+  target_name: 'Measure 1.2: Implementing the Framework'
+  target_description: "Signatories will implement the processes and measures outlined\
+    \ in their Framework as specified in the following paragraphs. Along the entire\
+    \ model lifecycle, Signatories will continuously: (1) assess the systemic risks\
+    \ stemming from the model by: (a) conducting lighter-touch model evaluations that\
+    \ need not adhere to Appendix 3 (e.g. automated evaluations) at appropriate trigger\
+    \ points defined in terms of, e.g. time, training compute, development stages,\
+    \ user access, inference compute, and/or affordances; (b) conducting post-market\
+    \ monitoring after placing the model on the market, as specified in Measure 3.5;\
+    \ (c) taking into account relevant information about serious incidents (pursuant\
+    \ to Commitment 9); and (d) increasing the breadth and/or depth of assessment\
+    \ or conducting a full systemic risk assessment and mitigation process that is\
+    \ specified in the following paragraph, based on the results of points (a), (b),\
+    \ and (c); and (2) implement systemic risk mitigations taking into account the\
+    \ results of point (1), including addressing serious incidents as appropriate.\
+    \ Figure 2. Illustrative timeline of systemic risk assessment and mitigation along\
+    \ the model lifecycle. In addition, Signatories will implement a full systemic\
+    \ risk assessment and mitigation process that involves four steps, without needing\
+    \ to duplicate parts of the model\u2019s previous systemic risk assessments that\
+    \ are still appropriate: (1) identifying the systemic risks stemming from the\
+    \ model as specified in Commitment 2; (2) analysing each identified systemic risk\
+    \ as specified in Commitment 3; (3) determining whether the systemic risks stemming\
+    \ from the model are acceptable as specified in Measure 4.1; and (4) if the systemic\
+    \ risks stemming from the model are not determined to be acceptable, implementing\
+    \ safety and/or security mitigations as specified in Commitments 5 and 6, and\
+    \ re-assessing the systemic risks stemming from the model starting from point\
+    \ (1), as specified in Measure 4.2. Signatories will conduct such a full systemic\
+    \ risk assessment and mitigation process at least before placing the model on\
+    \ the market and whenever the conditions specified in Measure 7.6, first and third\
+    \ paragraph, are met. Signatories will report their implemented measures and processes\
+    \ to the AI Office as specified in Commitment 7. Figure 3. Full systemic risk\
+    \ assessment and mitigation process."
+- source_node_id: aiuc_1:C002.2
+  target_node_id: eu_gpai_cop:Article-11
+  composite_score: 0.3485
+  uncertainty_score: 1.9399
+  signals:
+    bridge: 0.0
+    semantic: 0.6587
+    keyword: 0.0089
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: AI testing integration supports Article 11 technical documentation.
+  source_name: Integrating AI system testing into established SDLC gates.
+  source_description: Integrating AI system testing into established SDLC gates.
+  target_name: EU AI Act Article 11
+  target_description: Technical Documentation. This EU law states that before a high-risk
+    AI system is launched, detailed technical documentation must be prepared and kept
+    updated. This documentation should prove that the AI system meets the law's requirements
+    and provide clear information for authorities to check compliance. It should include
+    certain key elements. Small businesses, including start-ups, can provide this
+    information in a simpler way. The EU will create a simplified form for this purpose.
+    If a high-risk AI system is related to a product covered by other EU laws, one
+    set of documentation should include all necessary information. The EU can update
+    these requirements as technology advances.

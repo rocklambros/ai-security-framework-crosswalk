@@ -10,6 +10,16 @@ This file records every hypothesis pre-registered before running cross-validatio
 
 <!-- Append new entries below this line. Do not edit prior entries except to fill in their result. -->
 
+## 2026-04-07 — B1.7: mutual reciprocal rank
+
+**Hypothesis.** Adding `mutual_reciprocal_rank` (harmonic mean of reciprocal rank of source in target's neighbor list AND target in source's neighbor list, where neighbors are scored via token-Jaccard similarity over name+description text) improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired CI excluding 0 AND perm-importance CI excluding 0.
+
+**Predicted direction.** Positive.
+
+**Minimum effect size.** Δ NDCG@10 ≥ 0.03 paired CI excluding 0; perm-importance CI excluding 0.
+
+**Result.** REJECTED. n=420, feature_nonzero_frac=0.931. baseline NDCG@10 = 1.0000 [1.0000, 1.0000], blended NDCG@10 = 1.0000 [1.0000, 1.0000], paired delta = +0.0000 [0.0000, 0.0000], perm importance = +0.0000 [0.0000, 0.0000]. Both gates fail. Same NDCG@10 saturation as B1.3/B1.5: feature carries real signal (93% non-zero) but the metric cannot move on a uniform-Direct anchor mix. Feature DROPPED. Helper retained for future re-test. Persisted to data/processed/b1_eval_mutual_reciprocal_rank.json.
+
 ## 2026-04-07 — B1.6: confidence-weighted bridge depth
 
 **Hypothesis.** Adding `confidence_weighted_bridge_depth` (sum over 2-hop paths source -> bridge_node -> target of `conf(source,bridge) * conf(bridge,target)`) improves aggregate honest CV NDCG@10 over the 5 expanded non-frozen pairs by ≥ 0.03 with paired-bootstrap 95% CI excluding 0, AND has permutation-importance CI excluding 0.

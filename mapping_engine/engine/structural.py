@@ -244,6 +244,67 @@ def confidence_weighted_bridge_depth(
     return M
 
 
+def _node_text_tokens(G: nx.DiGraph, node_id: str) -> set[str]:
+    if node_id not in G:
+        return set()
+    d = G.nodes[node_id]
+    parts = []
+    for k in ("name", "title", "description", "objective", "intent", "body"):
+        v = d.get(k)
+        if v:
+            parts.append(str(v))
+    return _tokenize(" ".join(parts))
+
+
+def mutual_reciprocal_rank(
+    G: nx.DiGraph,
+    source_nodes: list[str],
+    target_nodes: list[str],
+    mask_pairs: Iterable[tuple[str, str]] | None = None,
+) -> np.ndarray:
+    """Harmonic mean of reciprocal ranks of (source in target's neighbors)
+    and (target in source's neighbors), with neighbors ranked by token
+    Jaccard over name/description text. ``mask_pairs`` is accepted but
+    unused (this feature reads node text only)."""
+    _ = mask_pairs
+    src_tokens = [_node_text_tokens(G, s) for s in source_nodes]
+    tgt_tokens = [_node_text_tokens(G, t) for t in target_nodes]
+    n_s, n_t = len(source_nodes), len(target_nodes)
+    if n_s == 0 or n_t == 0:
+        return np.zeros((n_s, n_t), dtype=float)
+    sim = np.zeros((n_s, n_t), dtype=float)
+    for i in range(n_s):
+        si = src_tokens[i]
+        if not si:
+            continue
+        for j in range(n_t):
+            tj = tgt_tokens[j]
+            if not tj:
+                continue
+            inter = len(si & tj)
+            if inter == 0:
+                continue
+            sim[i, j] = inter / len(si | tj)
+
+    # Rank columns within each row (descending sim), and rows within each column.
+    # rank_t[i, j] = rank of target j among row i; rank_s[i, j] = rank of source i among col j.
+    row_order = np.argsort(-sim, axis=1, kind="mergesort")
+    col_order = np.argsort(-sim, axis=0, kind="mergesort")
+    rank_t = np.empty_like(sim)
+    rank_s = np.empty_like(sim)
+    for i in range(n_s):
+        for pos, j in enumerate(row_order[i]):
+            rank_t[i, j] = pos + 1
+    for j in range(n_t):
+        for pos, i in enumerate(col_order[:, j]):
+            rank_s[i, j] = pos + 1
+    rr_t = 1.0 / rank_t
+    rr_s = 1.0 / rank_s
+    denom = rr_t + rr_s
+    M = np.where(denom > 0, 2.0 * rr_t * rr_s / np.where(denom == 0, 1.0, denom), 0.0)
+    return M
+
+
 def compute_structural_features(
     G: nx.DiGraph,
     source_nodes: list[str],
@@ -272,6 +333,9 @@ def compute_structural_features(
             G, source_nodes, target_nodes, mask
         ),
         "confidence_weighted_bridge_depth": confidence_weighted_bridge_depth(
+            G, source_nodes, target_nodes, mask
+        ),
+        "mutual_reciprocal_rank": mutual_reciprocal_rank(
             G, source_nodes, target_nodes, mask
         ),
     }

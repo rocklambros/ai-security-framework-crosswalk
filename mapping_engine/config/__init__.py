@@ -42,6 +42,7 @@ class PairConfig(BaseModel):
     semantic: dict[str, Any] = Field(default_factory=dict)
     bridge: dict[str, Any] = Field(default_factory=dict)
     function_match: dict[str, Any] = Field(default_factory=dict)
+    function_class_prior: dict[str, Any] = Field(default_factory=dict)
     reranker: dict[str, Any] = Field(default_factory=dict)
     active_learning: dict[str, Any] = Field(default_factory=dict)
     anchors: Anchors

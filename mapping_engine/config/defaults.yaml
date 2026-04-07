@@ -36,6 +36,10 @@ active_learning:
   uncertainty_band: 0.05
   max_candidates: 20
 
+function_class_prior:
+  delta_prev: 0.04   # additive boost when source.function_class in {PREV, SCOPE, ISOLATE, GATE}
+  delta_sup: 0.04    # additive penalty when source.function_class in {DETECT, VALID, GOVERN, DISCLOSE}
+
 function_match:
   modes:
     control_to_risk:

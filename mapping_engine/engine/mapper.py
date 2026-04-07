@@ -122,6 +122,7 @@ class PairMapper:
             "bridge": dict(pair_config.bridge or {}),
             "function_match": dict(pair_config.function_match or {}),
             "reranker": dict(pair_config.reranker or {}),
+            "function_class_prior": dict(pair_config.function_class_prior or {}),
         }
 
         if use_learned_weights:
@@ -177,6 +178,7 @@ class PairMapper:
         if node2vec is not None and wn > 0.0:
             composite = composite + wn * node2vec
         composite = composite * (1.0 + boost * fn_match)
+        composite = self._apply_function_class_prior(composite, source_nodes)
         composite = np.clip(composite, 0.0, 1.0)
 
         # Narrow-band cross-encoder rerank runs by default; disabled only
@@ -403,6 +405,7 @@ class PairMapper:
         if node2vec is not None and wn > 0.0:
             composite = composite + wn * node2vec
         composite = composite * (1.0 + boost * fn_match)
+        composite = self._apply_function_class_prior(composite, source_nodes)
         composite = np.clip(composite, 0.0, 1.0)
 
         if self.enable_reranker is not False:

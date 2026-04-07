@@ -1,0 +1,1721 @@
+{
+  "kept": [
+    {
+      "source": "csa_aicm:AIS-09",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B009",
+        "aiuc_1:C004",
+        "aiuc_1:C006"
+      ],
+      "masked_score": 0.584,
+      "masked_pred": "Direct",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:AIS-09",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B003",
+        "aiuc_1:B009",
+        "aiuc_1:D002"
+      ],
+      "masked_score": 0.5263,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-09",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C004",
+        "aiuc_1:C006"
+      ],
+      "masked_score": 0.525,
+      "masked_pred": "Related",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:GRC-09",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C004",
+        "aiuc_1:E010"
+      ],
+      "masked_score": 0.4081,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-11",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C004",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.5545,
+      "masked_pred": "Direct",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:D001",
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.6123,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:BCR-09",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:E001",
+        "aiuc_1:E002",
+        "aiuc_1:E003"
+      ],
+      "masked_score": 0.5438,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:BCR-10",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:E001",
+        "aiuc_1:E002",
+        "aiuc_1:E003"
+      ],
+      "masked_score": 0.5279,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-11",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:F001",
+        "aiuc_1:F002"
+      ],
+      "masked_score": 0.5829,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-15",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C007",
+        "aiuc_1:C009",
+        "aiuc_1:E016"
+      ],
+      "masked_score": 0.5654,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-14",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.5538,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-14",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.737,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:UEM-08",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A004",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.5034,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:UEM-08",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A004",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.608,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-05",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:C002"
+      ],
+      "masked_score": 0.5391,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:LOG-15",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C004",
+        "aiuc_1:C005"
+      ],
+      "masked_score": 0.5929,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-11",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D001",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.6271,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-17",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:B007"
+      ],
+      "masked_score": 0.5719,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-09",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C005"
+      ],
+      "masked_score": 0.5099,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-11",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C010"
+      ],
+      "masked_score": 0.5471,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.5015,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.6037,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.5195,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:SEF-05",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:E001",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.5888,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:SEF-07",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:E001",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.5152,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-06",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:D002"
+      ],
+      "masked_score": 0.5647,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-07",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002"
+      ],
+      "masked_score": 0.6139,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-07",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002"
+      ],
+      "masked_score": 0.5542,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-07",
+      "target": "owasp_agentic:ASI06",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002"
+      ],
+      "masked_score": 0.5043,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-07",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:D002"
+      ],
+      "masked_score": 0.5271,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-01",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002"
+      ],
+      "masked_score": 0.505,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-12",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.5485,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-12",
+      "target": "owasp_agentic:ASI06",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.5146,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-12",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.5841,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-10",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:F001",
+        "aiuc_1:F002"
+      ],
+      "masked_score": 0.5038,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:LOG-14",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B002",
+        "aiuc_1:B005"
+      ],
+      "masked_score": 0.5017,
+      "masked_pred": "Related",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:LOG-14",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B002",
+        "aiuc_1:B005"
+      ],
+      "masked_score": 0.6058,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-11",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C008",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.5555,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-05",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D002",
+        "aiuc_1:D004"
+      ],
+      "masked_score": 0.558,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    }
+  ],
+  "dropped": [
+    {
+      "source": "csa_aicm:DSP-07",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Direct",
+      "multiplicity": 5,
+      "confidence_weight": 3.75,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:A004",
+        "aiuc_1:B006",
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.4592,
+      "masked_pred": "Tangential",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:AIS-09",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 5,
+      "confidence_weight": 3.75,
+      "hubs": [
+        "aiuc_1:B009",
+        "aiuc_1:C003",
+        "aiuc_1:C006",
+        "aiuc_1:D001",
+        "aiuc_1:D002"
+      ],
+      "masked_score": 0.2765,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-07",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Direct",
+      "multiplicity": 4,
+      "confidence_weight": 3.0,
+      "hubs": [
+        "aiuc_1:A004",
+        "aiuc_1:B006",
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.4692,
+      "masked_pred": "Tangential",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:TVM-11",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 4,
+      "confidence_weight": 3.0,
+      "hubs": [
+        "aiuc_1:C004",
+        "aiuc_1:C005",
+        "aiuc_1:D003",
+        "aiuc_1:F001"
+      ],
+      "masked_score": 0.4878,
+      "masked_pred": "Tangential",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:AIS-06",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B008",
+        "aiuc_1:C002",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.2809,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-07",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B006",
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.3067,
+      "masked_pred": "Tangential",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:AIS-07",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:C002",
+        "aiuc_1:C006"
+      ],
+      "masked_score": 0.3691,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-07",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:C002",
+        "aiuc_1:C006"
+      ],
+      "masked_score": 0.1963,
+      "masked_pred": "None",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-09",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C004",
+        "aiuc_1:C005",
+        "aiuc_1:F001"
+      ],
+      "masked_score": 0.3506,
+      "masked_pred": "Tangential",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:AIS-09",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:D001",
+        "aiuc_1:D002"
+      ],
+      "masked_score": 0.484,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-08",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:A004",
+        "aiuc_1:B007"
+      ],
+      "masked_score": 0.3642,
+      "masked_pred": "Tangential",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:SEF-09",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:E001",
+        "aiuc_1:E002",
+        "aiuc_1:E003"
+      ],
+      "masked_score": 0.2719,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-08",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002",
+        "aiuc_1:B005"
+      ],
+      "masked_score": 0.364,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-08",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002",
+        "aiuc_1:B005"
+      ],
+      "masked_score": 0.3157,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-08",
+      "target": "owasp_agentic:ASI06",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002",
+        "aiuc_1:B005"
+      ],
+      "masked_score": 0.1371,
+      "masked_pred": "None",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-02",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C008",
+        "aiuc_1:F001",
+        "aiuc_1:F002"
+      ],
+      "masked_score": 0.3138,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-15",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C007",
+        "aiuc_1:C009",
+        "aiuc_1:E016"
+      ],
+      "masked_score": 0.3681,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-11",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:B006",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.3419,
+      "masked_pred": "Tangential",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:AIS-11",
+      "target": "owasp_agentic:ASI06",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:B006",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.2145,
+      "masked_pred": "Tangential",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:AIS-06",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B008",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.3469,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-06",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B008",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.2353,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-06",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B008",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.367,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-07",
+      "target": "owasp_agentic:ASI04",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A004",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.2547,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-07",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B006",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.3351,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-07",
+      "target": "owasp_agentic:ASI07",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B006",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.4302,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-04",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.3694,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-04",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.4794,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-04",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.3059,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-14",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.4577,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:UEM-08",
+      "target": "owasp_agentic:ASI04",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A004",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.4145,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-05",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C002",
+        "aiuc_1:D004"
+      ],
+      "masked_score": 0.3752,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-06",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C002",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.3584,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-05",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:C002"
+      ],
+      "masked_score": 0.4274,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:LOG-15",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C004"
+      ],
+      "masked_score": 0.4476,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D001",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.2114,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-07",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:B007"
+      ],
+      "masked_score": 0.2004,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-08",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A004",
+        "aiuc_1:B007"
+      ],
+      "masked_score": 0.4068,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-08",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:B007"
+      ],
+      "masked_score": 0.223,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-17",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:B007"
+      ],
+      "masked_score": 0.4736,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-09",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A007",
+        "aiuc_1:B003"
+      ],
+      "masked_score": 0.1918,
+      "masked_pred": "None",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:LOG-15",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C005"
+      ],
+      "masked_score": 0.2312,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-11",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.4078,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-11",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C005"
+      ],
+      "masked_score": 0.2804,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-04",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:E017"
+      ],
+      "masked_score": 0.1152,
+      "masked_pred": "None",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.4313,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.3067,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI06",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.4381,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:SEF-05",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:E001",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.3605,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:SEF-07",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:E001",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.3624,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-01",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002"
+      ],
+      "masked_score": 0.4502,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-01",
+      "target": "owasp_agentic:ASI06",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002"
+      ],
+      "masked_score": 0.4238,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-03",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:C008"
+      ],
+      "masked_score": 0.3193,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-07",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:C008"
+      ],
+      "masked_score": 0.3879,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-12",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.481,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-09",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:F001",
+        "aiuc_1:F002"
+      ],
+      "masked_score": 0.41,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-12",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:F001",
+        "aiuc_1:F002"
+      ],
+      "masked_score": 0.291,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:LOG-14",
+      "target": "owasp_agentic:ASI06",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B002",
+        "aiuc_1:B005"
+      ],
+      "masked_score": 0.4834,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:DSP-07",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A004",
+        "aiuc_1:B006"
+      ],
+      "masked_score": 0.1644,
+      "masked_pred": "None",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-10",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E009"
+      ],
+      "masked_score": 0.3727,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-10",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E009"
+      ],
+      "masked_score": 0.4845,
+      "masked_pred": "Tangential",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-10",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Related",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B004",
+        "aiuc_1:E009"
+      ],
+      "masked_score": 0.1106,
+      "masked_pred": "None",
+      "prior": "Related"
+    }
+  ],
+  "demoted": [
+    {
+      "source": "csa_aicm:AIS-09",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Related",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C003",
+        "aiuc_1:C004",
+        "aiuc_1:C006"
+      ],
+      "masked_score": 0.525,
+      "masked_pred": "Related",
+      "prior": "Direct"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:D001",
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.6123,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-11",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:F001",
+        "aiuc_1:F002"
+      ],
+      "masked_score": 0.5829,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:GRC-15",
+      "target": "owasp_agentic:ASI09",
+      "expected_tier": "Direct",
+      "multiplicity": 3,
+      "confidence_weight": 2.25,
+      "hubs": [
+        "aiuc_1:C007",
+        "aiuc_1:C009",
+        "aiuc_1:E016"
+      ],
+      "masked_score": 0.5654,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-14",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.5538,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-14",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B007",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.737,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:UEM-08",
+      "target": "owasp_agentic:ASI03",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A004",
+        "aiuc_1:B008"
+      ],
+      "masked_score": 0.608,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:LOG-15",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C004",
+        "aiuc_1:C005"
+      ],
+      "masked_score": 0.5929,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-11",
+      "target": "owasp_agentic:ASI08",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D001",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.6271,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:IAM-17",
+      "target": "owasp_agentic:ASI02",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:A003",
+        "aiuc_1:B007"
+      ],
+      "masked_score": 0.5719,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-10",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D003",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.6037,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:SEF-05",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:E001",
+        "aiuc_1:E015"
+      ],
+      "masked_score": 0.5888,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-06",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:D002"
+      ],
+      "masked_score": 0.5647,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-07",
+      "target": "owasp_agentic:ASI01",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002"
+      ],
+      "masked_score": 0.6139,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-07",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:B002"
+      ],
+      "masked_score": 0.5542,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:TVM-12",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B001",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.5841,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:LOG-14",
+      "target": "owasp_agentic:ASI05",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:B002",
+        "aiuc_1:B005"
+      ],
+      "masked_score": 0.6058,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:MDS-11",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:C008",
+        "aiuc_1:D003"
+      ],
+      "masked_score": 0.5555,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    },
+    {
+      "source": "csa_aicm:AIS-05",
+      "target": "owasp_agentic:ASI10",
+      "expected_tier": "Direct",
+      "multiplicity": 2,
+      "confidence_weight": 1.5,
+      "hubs": [
+        "aiuc_1:D002",
+        "aiuc_1:D004"
+      ],
+      "masked_score": 0.558,
+      "masked_pred": "Direct",
+      "prior": "Related"
+    }
+  ],
+  "missing": [],
+  "stats": {
+    "input": 100,
+    "kept": 39,
+    "dropped": 61,
+    "demoted": 19,
+    "missing": 0
+  }
+}

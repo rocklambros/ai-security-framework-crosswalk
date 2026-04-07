@@ -287,8 +287,13 @@ def write_json(
     schema = _load_schema()
     # The schema uses source_to_owasp/owasp_to_source keys; we emit
     # source_to_target/target_to_source. Adapt a copy for validation.
-    doc_for_validation = _adapt_for_schema(doc, schema)
-    jsonschema.validate(doc_for_validation, schema)
+    # The v2 schema is hardcoded to OWASP Agentic (ASI01-ASI10). Skip
+    # validation for pairs that target a different OWASP top-10 (e.g.
+    # owasp_llm) — the document shape is identical, only the id pattern
+    # differs.
+    if pair_config.target_framework == "owasp_agentic":
+        doc_for_validation = _adapt_for_schema(doc, schema)
+        jsonschema.validate(doc_for_validation, schema)
 
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)

@@ -10,13 +10,16 @@ Discriminative metrics use 20 distractors per anchor, seed=20260407.
 
 | Pair | n_map | Direct | Related | None | needs_review | n_anc | MRR [95% CI] | Recall@5 | AUC |
 |---|---:|---:|---:|---:|---:|---:|---|---:|---:|
-| `aiuc_1__csa_aicm` | 61 | 47 | 14 | 0 | 12 | 257 | 0.4021 [0.3647, 0.4432] | 0.6732 | 0.7789 |
-| `aiuc_1__eu_gpai_cop` | 14 | 6 | 8 | 0 | 1 | 60 | 0.4139 [0.3352, 0.5028] | 0.7167 | 0.8012 |
-| `aiuc_1__mitre_atlas` | 71 | 56 | 15 | 0 | 14 | 32 | 0.5968 [0.4831, 0.7153] | 0.8750 | 0.8442 |
-| `aiuc_1__nist_rmf` | 17 | 14 | 3 | 0 | 7 | 152 | 0.3245 [0.2781, 0.3807] | 0.4671 | 0.6905 |
-| `aiuc_1__owasp_agentic` | 67 | 5 | 62 | 0 | 27 | 109 | 0.4226 [0.3680, 0.4819] | 0.7706 | 0.5940 |
-| `aiuc_1__owasp_llm` | 7 | 5 | 2 | 0 | 2 | 60 | 0.3781 [0.3062, 0.4563] | 0.6833 | 0.5290 |
-| `cosai_rm__mitre_atlas` | 32 | 28 | 4 | 0 | 6 | 29 | 0.5351 [0.3949, 0.6740] | 0.7586 | 0.8666 |
-| `cosai_rm__owasp_llm` | 6 | 5 | 1 | 0 | 1 | 18 | 0.4044 [0.2680, 0.5543] | 0.6667 | 0.6173 |
+| `aiuc_1__csa_aicm` | 82 | 68 | 14 | 0 | 13 | 257 | 0.4780 [0.4360, 0.5224] | 0.7471 | 0.8060 |
+| `aiuc_1__eu_gpai_cop` | 15 | 7 | 8 | 0 | 1 | 60 | 0.4063 [0.3277, 0.4979] | 0.7000 | 0.7980 |
+| `aiuc_1__mitre_atlas` | 71 | 59 | 12 | 0 | 13 | 32 | 0.6500 [0.5348, 0.7654] | 0.8750 | 0.8505 |
+| `aiuc_1__nist_rmf` | 25 | 20 | 5 | 0 | 5 | 152 | 0.3636 [0.3107, 0.4173] | 0.5592 | 0.7326 |
+| `aiuc_1__owasp_agentic` | 67 | 18 | 49 | 0 | 25 | 109 | 0.4746 [0.4113, 0.5357] | 0.7798 | 0.6120 |
+| `aiuc_1__owasp_llm` | 10 | 7 | 3 | 0 | 1 | 60 | 0.3660 [0.2915, 0.4542] | 0.6000 | 0.4960 |
+| `cosai_rm__mitre_atlas` | 38 | 33 | 5 | 0 | 9 | 29 | 0.5533 [0.4177, 0.6838] | 0.7931 | 0.8761 |
+| `cosai_rm__owasp_llm` | 4 | 4 | 0 | 0 | 1 | 18 | 0.3808 [0.2632, 0.5256] | 0.7222 | 0.6254 |
+| `csa_aicm__owasp_agentic` | 31 | 27 | 4 | 0 | 3 | 39 | 0.5739 [0.4696, 0.6816] | 0.9231 | 0.8231 |
+| `mitre_atlas__owasp_llm` | 60 | 59 | 1 | 0 | 4 | 20 | 0.7100 [0.5616, 0.8417] | 0.9500 | 0.9214 |
+| `nist_rmf__owasp_agentic` | 8 | 7 | 1 | 0 | 1 | 20 | 0.7250 [0.5833, 0.8501] | 1.0000 | 0.8933 |
 
 **Skipped-anchor note.** `cosai_rm__*` pairs report `n_anc=0` because cosai_rm source nodes do not currently surface in PairMapper's masked-validation records. The mapping output (`n_map`) is unaffected and remains the production source of truth for those pairs. Filed for SESSION 8 follow-up.

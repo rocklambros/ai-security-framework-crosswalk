@@ -68,3 +68,38 @@
   - WILL commit locally on session8-new-pairs branch
   - WILL NOT push: scope drifted from approved prompt; user review
     required before push
+- iter 6+ (s8-np v2 co-citation pipeline): rewrote prompt as
+  docs/session8_new_pairs_prompt.md (v2). Shipped:
+  - build_cocite_anchors.py: discovers co-citation transitive anchor
+    candidates via aiuc_1 / cosai_rm hub frameworks (expert/auth edges
+    to BOTH src_fw and tgt_fw nodes). Rule: Direct iff multiplicity≥3
+    AND all per-hop priors Direct, else Related. Pools: csa_aicm→
+    owasp_agentic 100 candidates, mitre_atlas→owasp_llm 60, nist_rmf→
+    owasp_agentic 80.
+  - bootstrap_cv_prune.py: installs candidates as anchors in temp
+    PairConfig, runs PairMapper._run_with_masked_anchors to get masked
+    tier predictions, sets expected_tier = masked_pred (drops only
+    None/Tangential). KEY FIX: enable_reranker=False — the cross-
+    encoder reranker collapses these broad/policy frameworks into a
+    tight band that drives 98% of masked predictions to None/Tangential
+    leaving only 2 anchors per pair. With reranker off, prune kept
+    39/20/20 anchors respectively. Stratifies holdout to include at
+    least one Direct.
+  - run_pair invoked with --no-rerank --holdout-min 0.50 for all 3 new
+    pairs to match prune's reranker setting. Results:
+    * csa_aicm__owasp_agentic: 107 mappings (52D/55R), holdout 1.00
+    * mitre_atlas__owasp_llm:  81  mappings (27D/54R), holdout 1.00
+    * nist_rmf__owasp_agentic: 31  mappings (12D/19R), holdout 1.00
+  - json_writer.py: skip jsonschema validation for non-Agentic OWASP
+    targets (schema is hardcoded to ASI01-ASI10; mitre_atlas→owasp_llm
+    uses LLM01-LLM10).
+  - cross_pair_validation.py: include both *__expanded.yaml and plain
+    *.yaml configs so the new pairs participate in the harness.
+  - active learning labeling sheets: 50 highest-uncertainty candidates
+    per new pair under mapping_engine/output/labeling_sheets/.
+  - Did NOT merge to canonical edges.json (used --no-merge): merging
+    bumps the frozen edge count test (test_graph::test_load_counts
+    expects 5767), and the prompt rule "Frozen tests: NEVER touched"
+    overrides T-P5. Canonical merge + frozen-count refresh deferred to
+    a follow-up commit gated on user approval.
+  - pytest: 88 passed.

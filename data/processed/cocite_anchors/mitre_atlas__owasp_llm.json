@@ -1,0 +1,630 @@
+[
+  {
+    "source": "mitre_atlas:AML.M0020",
+    "target": "owasp_llm:LLM05",
+    "expected_tier": "Direct",
+    "multiplicity": 4,
+    "confidence_weight": 3.0,
+    "hubs": [
+      "aiuc_1:A004",
+      "aiuc_1:A006",
+      "aiuc_1:A007",
+      "aiuc_1:C006"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0024",
+    "target": "owasp_llm:LLM10",
+    "expected_tier": "Direct",
+    "multiplicity": 4,
+    "confidence_weight": 3.0,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:D003",
+      "aiuc_1:E009",
+      "aiuc_1:E015"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0003",
+    "target": "owasp_llm:LLM08",
+    "expected_tier": "Direct",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:B002",
+      "aiuc_1:B004"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0004",
+    "target": "owasp_llm:LLM08",
+    "expected_tier": "Direct",
+    "multiplicity": 3,
+    "confidence_weight": 2.25,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:B004",
+      "aiuc_1:D003"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0015",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:B005"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0015",
+    "target": "owasp_llm:LLM10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:B005"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0021",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:B005"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0021",
+    "target": "owasp_llm:LLM10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:B005"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0010.003",
+    "target": "owasp_llm:LLM03",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "cosai_rm:MDT",
+      "cosai_rm:MST"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0049",
+    "target": "owasp_llm:LLM03",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "cosai_rm:IIC",
+      "cosai_rm:MDT"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0051",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "cosai_rm:MDT",
+      "cosai_rm:PIJ"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0051",
+    "target": "owasp_llm:LLM03",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "cosai_rm:IIC",
+      "cosai_rm:MDT"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0051",
+    "target": "owasp_llm:LLM06",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "cosai_rm:IIC",
+      "cosai_rm:RA"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0003",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:B002"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0003",
+    "target": "owasp_llm:LLM05",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:B004"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0004",
+    "target": "owasp_llm:LLM05",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B001",
+      "aiuc_1:B004"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0020",
+    "target": "owasp_llm:LLM03",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:A004",
+      "aiuc_1:A007"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0020",
+    "target": "owasp_llm:LLM08",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:A004",
+      "aiuc_1:A006"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0004",
+    "target": "owasp_llm:LLM10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B004",
+      "aiuc_1:D003"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0024",
+    "target": "owasp_llm:LLM06",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:D003",
+      "aiuc_1:E009"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0024",
+    "target": "owasp_llm:LLM08",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:D003"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0003",
+    "target": "owasp_llm:LLM10",
+    "expected_tier": "Related",
+    "multiplicity": 2,
+    "confidence_weight": 1.5,
+    "hubs": [
+      "aiuc_1:B002",
+      "aiuc_1:B004"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0015",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B005"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0021",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B005"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0010.003",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:MDT"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0049",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:MDT"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0008.002",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:DP"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0010.002",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:DP"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0019",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:DP"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0020",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:DP"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0043",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:DP"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0059",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:DP"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0015",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:MEV"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0043",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:MEV"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0010.001",
+    "target": "owasp_llm:LLM03",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:MST"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0018",
+    "target": "owasp_llm:LLM03",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:MST"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0049",
+    "target": "owasp_llm:LLM06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:IIC"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0000",
+    "target": "owasp_llm:LLM02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B003"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0000",
+    "target": "owasp_llm:LLM07",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B003"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0001",
+    "target": "owasp_llm:LLM02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B003"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0001",
+    "target": "owasp_llm:LLM07",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B003"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0005",
+    "target": "owasp_llm:LLM02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B007"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0005",
+    "target": "owasp_llm:LLM06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B007"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0005",
+    "target": "owasp_llm:LLM10",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B007"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0019",
+    "target": "owasp_llm:LLM02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B007"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0019",
+    "target": "owasp_llm:LLM06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B007"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0019",
+    "target": "owasp_llm:LLM10",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B007"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0024",
+    "target": "owasp_llm:LLM02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:SDD"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0024",
+    "target": "owasp_llm:LLM07",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:SDD"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.T0086",
+    "target": "owasp_llm:LLM06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "cosai_rm:RA"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0003",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B001"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0004",
+    "target": "owasp_llm:LLM01",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B001"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0004",
+    "target": "owasp_llm:LLM04",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B001"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0002",
+    "target": "owasp_llm:LLM02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B009"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0002",
+    "target": "owasp_llm:LLM05",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B009"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0002",
+    "target": "owasp_llm:LLM08",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B009"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0002",
+    "target": "owasp_llm:LLM09",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:B009"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0020",
+    "target": "owasp_llm:LLM02",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:A006"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0004",
+    "target": "owasp_llm:LLM06",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:D003"
+    ]
+  },
+  {
+    "source": "mitre_atlas:AML.M0024",
+    "target": "owasp_llm:LLM03",
+    "expected_tier": "Related",
+    "multiplicity": 1,
+    "confidence_weight": 0.75,
+    "hubs": [
+      "aiuc_1:E009"
+    ]
+  }
+]

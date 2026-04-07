@@ -1,0 +1,2517 @@
+{
+  "metadata": {
+    "schema_version": "2.0",
+    "generated_at": "2026-04-07T17:32:59.508861+00:00",
+    "methodology": "multi-signal-hybrid-v2",
+    "source_standard": {
+      "name": "nist_rmf",
+      "version": "unknown",
+      "controls": 72
+    },
+    "target_standard": {
+      "name": "OWASP Top 10 for Agentic Applications",
+      "version": "2026",
+      "url": "https://owasp.org/",
+      "entries": 10
+    },
+    "pipeline": {
+      "signals": {
+        "bridge": {
+          "weight": 0.45,
+          "technique": "2-hop weighted Jaccard on crosswalk graph"
+        },
+        "semantic": {
+          "weight": 0.35,
+          "technique": "Sentence-transformer cosine (BAAI/bge-large-en-v1.5)"
+        },
+        "keyword": {
+          "weight": 0.2,
+          "technique": "TF-IDF cosine with synonym expansion"
+        },
+        "function_match": {
+          "weight": 0.5,
+          "technique": "Multiplicative boost when function class matches target profile"
+        }
+      },
+      "thresholds": {
+        "direct": 0.55,
+        "related": 0.35,
+        "governance_floor": 0.22,
+        "tangential": 0.2
+      }
+    },
+    "classification": {
+      "rationale_taxonomy": {
+        "PREV": "Prevent",
+        "SCOPE": "Constrain scope",
+        "GATE": "Human gate",
+        "DETECT": "Detect and trace",
+        "VALID": "Validate and test",
+        "GOVERN": "Policy and governance",
+        "ISOLATE": "Isolate and contain",
+        "DISCLOSE": "Disclose and calibrate"
+      },
+      "relevance_levels": [
+        "Primary",
+        "Secondary"
+      ]
+    }
+  },
+  "summary": {
+    "controls_mapped": "19 / 72",
+    "controls_unmapped": 53,
+    "owasp_entries_with_matches": 7,
+    "total_mappings": 31,
+    "primary_mappings": 3,
+    "secondary_mappings": 28,
+    "rationale_distribution": {
+      "DETECT": 11,
+      "GATE": 4,
+      "VALID": 10,
+      "GOVERN": 3,
+      "SCOPE": 3
+    }
+  },
+  "control_level": {
+    "source_to_target": [
+      {
+        "control_id": "GOVERN-1.1",
+        "control_title": "Legal and regulatory requirements involving AI are understood, managed, and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-1.2",
+        "control_title": "Trustworthy AI characteristics integrated into organizational policies, processes, and procedures.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-1.3",
+        "control_title": "Processes and procedures in place to determine needed level of risk management activities based on organizational risk t",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-1.4",
+        "control_title": "Risk management process and outcomes established through transparent policies, procedures, and controls based on organiz",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-1.5",
+        "control_title": "Ongoing monitoring and periodic review of risk management process and outcomes; roles and responsibilities defined.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5969,
+            "signals": {
+              "bridge": 0.2365,
+              "semantic": 0.8262,
+              "keyword": 0.0116,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0469,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5154,
+            "signals": {
+              "bridge": 0.1777,
+              "semantic": 0.7532,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1654,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "GOVERN-1.6",
+        "control_title": "Mechanisms in place to inventory AI systems, resourced according to organizational risk priorities.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-1.7",
+        "control_title": "Processes and procedures for decommissioning and phasing out AI systems safely without increasing risks.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-2.1",
+        "control_title": "Roles, responsibilities, and lines of communication related to mapping, measuring, and managing AI risks documented and ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-2.2",
+        "control_title": "Personnel and partners receive AI risk management training to perform duties consistent with policies and procedures.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-2.3",
+        "control_title": "Executive leadership takes responsibility for decisions about risks associated with AI system development and deployment",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-3.1",
+        "control_title": "Decision-making informed by diverse team reflecting demographic, disciplinary, and experiential diversity.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-3.2",
+        "control_title": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.4048,
+            "signals": {
+              "bridge": 0.0735,
+              "semantic": 0.6755,
+              "keyword": 0.0019,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0548,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "GOVERN-4.1",
+        "control_title": "Organizational policies and practices foster critical thinking and safety-first mindset in AI design, development, deplo",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-4.2",
+        "control_title": "Teams document risks and potential impacts of AI technology; communicate impacts broadly.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-4.3",
+        "control_title": "Organizational practices enable AI testing, incident identification, and information sharing.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 3,
+        "primary_count": 0,
+        "secondary_count": 3,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.623,
+            "signals": {
+              "bridge": 0.307,
+              "semantic": 0.7913,
+              "keyword": 0.0011,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.073,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5494,
+            "signals": {
+              "bridge": 0.1374,
+              "semantic": 0.8586,
+              "keyword": 0.0197,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1994,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5231,
+            "signals": {
+              "bridge": 0.2898,
+              "semantic": 0.615,
+              "keyword": 0.0156,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1731,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "GOVERN-5.1",
+        "control_title": "Policies and practices in place to collect, consider, prioritize, and integrate external feedback regarding potential in",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-5.2",
+        "control_title": "Mechanisms established to regularly incorporate adjudicated feedback from relevant AI actors into system design and impl",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-6.1",
+        "control_title": "Policies and procedures address AI risks associated with third-party entities, including intellectual property infringem",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "GOVERN-6.2",
+        "control_title": "Contingency processes in place to handle failures or incidents in high-risk third-party data or AI systems.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-1.1",
+        "control_title": "Determination made whether AI system achieves intended purpose and stated objectives; whether development or deployment ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-1.2",
+        "control_title": "Treatment of documented AI risks prioritized based on impact, likelihood, or available resources or methods.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-1.3",
+        "control_title": "Responses to high-priority risks developed, planned, and documented (mitigate, transfer, avoid, or accept).",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-1.4",
+        "control_title": "Negative residual risks to downstream acquirers and end users documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-2.1",
+        "control_title": "Resources required to manage AI risks taken into account, along with viable non-AI alternatives.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-2.2",
+        "control_title": "Mechanisms in place and applied to sustain value of deployed AI systems.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-2.3",
+        "control_title": "Procedures followed to respond to and recover from previously unknown risk when identified.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-2.4",
+        "control_title": "Mechanisms in place and responsibilities assigned to supersede, disengage, or deactivate AI systems demonstrating incons",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-3.1",
+        "control_title": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI02",
+            "owasp_title": "Tool Misuse and Exploitation",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5127,
+            "signals": {
+              "bridge": 0.0474,
+              "semantic": 0.8615,
+              "keyword": 0.0949,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1627,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5016,
+            "signals": {
+              "bridge": 0.0626,
+              "semantic": 0.8277,
+              "keyword": 0.0826,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1516,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MANAGE-3.2",
+        "control_title": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-4.1",
+        "control_title": "Post-deployment monitoring plans implemented, including mechanisms for capturing end-user input, appeal and override, de",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 1,
+        "secondary_count": 0,
+        "mappings": [
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.4867,
+            "signals": {
+              "bridge": 0.1272,
+              "semantic": 0.7555,
+              "keyword": 0.0141,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1367,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MANAGE-4.2",
+        "control_title": "Measurable activities for continual improvements integrated into AI system updates; regular engagement with interested p",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MANAGE-4.3",
+        "control_title": "Incidents and errors communicated to relevant AI actors including affected communities; processes for tracking, respondi",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5431,
+            "signals": {
+              "bridge": 0.188,
+              "semantic": 0.7872,
+              "keyword": 0.0097,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1931,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MAP-1.1",
+        "control_title": "Intended purpose, beneficial uses, context-specific laws, norms, expectations, and deployment settings understood and do",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-1.2",
+        "control_title": "Interdisciplinary AI actors with diverse competencies and documentation of their participation.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-1.3",
+        "control_title": "Organization's mission and relevant goals for the AI technology understood and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-1.4",
+        "control_title": "Business value or context of business use clearly defined or re-evaluated.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-1.5",
+        "control_title": "Organizational risk tolerances determined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-1.6",
+        "control_title": "System requirements elicited from and understood by relevant AI actors; design decisions consider socio-technical implic",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-2.1",
+        "control_title": "Specific task and implementation methods that the AI system will support are defined.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-2.2",
+        "control_title": "Information about AI system's knowledge limits and how output may be utilized and overseen by humans documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5447,
+            "signals": {
+              "bridge": 0.1327,
+              "semantic": 0.8567,
+              "keyword": 0.018,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1947,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MAP-2.3",
+        "control_title": "Scientific integrity and Test, Evaluation, Validation, and Verification (TEVV) considerations identified and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-3.1",
+        "control_title": "Potential benefits of intended AI system functionality and performance examined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-3.2",
+        "control_title": "Potential costs (including non-monetary) resulting from expected or realized AI errors examined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-3.3",
+        "control_title": "Targeted application scope specified and documented based on system capability and established context.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-3.4",
+        "control_title": "Processes for operator and practitioner proficiency with AI system performance defined, assessed, and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5241,
+            "signals": {
+              "bridge": 0.1044,
+              "semantic": 0.8634,
+              "keyword": 0.001,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1741,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MAP-3.5",
+        "control_title": "Processes for human oversight defined, assessed, and documented in accordance with organizational policies.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 1,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.5363,
+            "signals": {
+              "bridge": 0.1681,
+              "semantic": 0.7646,
+              "keyword": 0.0714,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1863,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.4165,
+            "signals": {
+              "bridge": 0.0945,
+              "semantic": 0.6719,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0665,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MAP-4.1",
+        "control_title": "Approaches for mapping AI technology and legal risks of components in place, followed, and documented, including third-p",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-4.2",
+        "control_title": "Internal risk controls for AI system components, including third-party technologies, identified and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5371,
+            "signals": {
+              "bridge": 0.1291,
+              "semantic": 0.8361,
+              "keyword": 0.0365,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1871,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MAP-5.1",
+        "control_title": "Likelihood and magnitude of each identified impact examined and documented based on expected use, similar contexts, publ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MAP-5.2",
+        "control_title": "Practices and personnel supporting regular engagement with relevant AI actors and integrating feedback about positive, n",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-1.1",
+        "control_title": "Approaches and metrics for measurement of enumerated AI risks selected, starting with most significant risks. Risks that",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-1.2",
+        "control_title": "Appropriateness of AI metrics and effectiveness of existing controls regularly assessed and updated, including error rep",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-1.3",
+        "control_title": "Internal experts not serving as front-line developers and/or independent assessors involved in regular assessments. Doma",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5265,
+            "signals": {
+              "bridge": 0.1421,
+              "semantic": 0.8161,
+              "keyword": 0.0073,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1765,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-2.1",
+        "control_title": "Test sets, metrics, and tool details used during TEVV documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6734,
+            "signals": {
+              "bridge": 0.3379,
+              "semantic": 0.8356,
+              "keyword": 0.0221,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1234,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI06",
+            "owasp_title": "Memory & Context Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5261,
+            "signals": {
+              "bridge": 0.2259,
+              "semantic": 0.7041,
+              "keyword": 0.0131,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1761,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-2.10",
+        "control_title": "Privacy risk of the AI system examined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-2.11",
+        "control_title": "Fairness and bias evaluated; results documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-2.12",
+        "control_title": "Environmental impact and sustainability of AI model training and management assessed and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-2.13",
+        "control_title": "Effectiveness of employed TEVV metrics and processes evaluated and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-2.2",
+        "control_title": "Evaluations involving human subjects meet applicable requirements and are representative of relevant population.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-2.3",
+        "control_title": "AI system performance or assurance criteria measured qualitatively or quantitatively and demonstrated for deployment-sim",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-2.4",
+        "control_title": "Functionality and behavior of AI system and components monitored when in production.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 3,
+        "primary_count": 0,
+        "secondary_count": 3,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6167,
+            "signals": {
+              "bridge": 0.3014,
+              "semantic": 0.779,
+              "keyword": 0.0144,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0667,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5742,
+            "signals": {
+              "bridge": 0.319,
+              "semantic": 0.6762,
+              "keyword": 0.0128,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0242,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5703,
+            "signals": {
+              "bridge": 0.232,
+              "semantic": 0.7775,
+              "keyword": 0.0184,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0203,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-2.5",
+        "control_title": "AI system demonstrated to be valid and reliable; limitations of generalizability documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5615,
+            "signals": {
+              "bridge": 0.2217,
+              "semantic": 0.7838,
+              "keyword": 0.0011,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0115,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-2.6",
+        "control_title": "AI system regularly evaluated for safety risks; demonstrated to be safe with residual risk not exceeding tolerance; can ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6078,
+            "signals": {
+              "bridge": 0.1992,
+              "semantic": 0.8965,
+              "keyword": 0.009,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0578,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-2.7",
+        "control_title": "AI system security and resilience evaluated and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 3,
+        "primary_count": 0,
+        "secondary_count": 3,
+        "mappings": [
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5991,
+            "signals": {
+              "bridge": 0.2048,
+              "semantic": 0.8662,
+              "keyword": 0.0202,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0491,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "ASI05",
+            "owasp_title": "Unexpected CodeExecution (RCE)",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.524,
+            "signals": {
+              "bridge": 0.3228,
+              "semantic": 0.5742,
+              "keyword": 0.0154,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.174,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5175,
+            "signals": {
+              "bridge": 0.262,
+              "semantic": 0.6475,
+              "keyword": 0.0022,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1675,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-2.8",
+        "control_title": "Risks associated with transparency and accountability examined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI08",
+            "owasp_title": "Cascading Failures",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5681,
+            "signals": {
+              "bridge": 0.1605,
+              "semantic": 0.8738,
+              "keyword": 0.0033,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0181,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5649,
+            "signals": {
+              "bridge": 0.1577,
+              "semantic": 0.8447,
+              "keyword": 0.0499,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0149,
+            "needs_review": true
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-2.9",
+        "control_title": "AI model explained, validated, and documented; output interpreted within context to inform responsible use and governanc",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-3.1",
+        "control_title": "Approaches, personnel, and documentation in place to regularly identify and track existing, unanticipated, and emergent ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-3.2",
+        "control_title": "Risk tracking approaches considered for settings where AI risks are difficult to assess using current measurement techni",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-3.3",
+        "control_title": "Feedback processes for end users and impacted communities to report problems and appeal outcomes established and integra",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      },
+      {
+        "control_id": "MEASURE-4.1",
+        "control_title": "Measurement approaches for identifying AI risks connected to deployment context(s) and informed through consultation wit",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5281,
+            "signals": {
+              "bridge": 0.1421,
+              "semantic": 0.8225,
+              "keyword": 0.0015,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1781,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-4.2",
+        "control_title": "Measurement results regarding AI system trustworthiness validated through input from domain experts and relevant AI acto",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "mappings": [
+          {
+            "owasp_id": "ASI09",
+            "owasp_title": "Human-Agent TrustExploitation",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6157,
+            "signals": {
+              "bridge": 0.1865,
+              "semantic": 0.8975,
+              "keyword": 0.062,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0657,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "ASI10",
+            "owasp_title": "Rogue Agents",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.505,
+            "signals": {
+              "bridge": 0.1527,
+              "semantic": 0.7577,
+              "keyword": 0.0139,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.155,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "control_id": "MEASURE-4.3",
+        "control_title": "Measurable performance improvements or declines identified and documented based on relevant actor consultations and fiel",
+        "domain": "",
+        "function_class": "GOVERN",
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "mappings": []
+      }
+    ],
+    "target_to_source": [
+      {
+        "owasp_id": "ASI01",
+        "owasp_title": "Agent Goal Hijack",
+        "owasp_rank": 1,
+        "mapping_count": 5,
+        "primary_count": 3,
+        "secondary_count": 2,
+        "function_coverage": {
+          "DETECT": 1,
+          "VALID": 1,
+          "GATE": 3
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE"
+        ],
+        "mappings": [
+          {
+            "control_id": "MEASURE-2.4",
+            "control_title": "Functionality and behavior of AI system and components monitored when in production.",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5742,
+            "signals": {
+              "bridge": 0.319,
+              "semantic": 0.6762,
+              "keyword": 0.0128,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0242,
+            "needs_review": true
+          },
+          {
+            "control_id": "MEASURE-2.7",
+            "control_title": "AI system security and resilience evaluated and documented.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5175,
+            "signals": {
+              "bridge": 0.262,
+              "semantic": 0.6475,
+              "keyword": 0.0022,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1675,
+            "needs_review": false
+          },
+          {
+            "control_id": "MANAGE-4.1",
+            "control_title": "Post-deployment monitoring plans implemented, including mechanisms for capturing end-user input, appeal and override, de",
+            "domain": "",
+            "function_class": "GATE",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.4867,
+            "signals": {
+              "bridge": 0.1272,
+              "semantic": 0.7555,
+              "keyword": 0.0141,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1367,
+            "needs_review": false
+          },
+          {
+            "control_id": "MAP-3.5",
+            "control_title": "Processes for human oversight defined, assessed, and documented in accordance with organizational policies.",
+            "domain": "",
+            "function_class": "GATE",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.4165,
+            "signals": {
+              "bridge": 0.0945,
+              "semantic": 0.6719,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0665,
+            "needs_review": false
+          },
+          {
+            "control_id": "GOVERN-3.2",
+            "control_title": "Policies and procedures define and differentiate roles for human-AI configurations and system oversight.",
+            "domain": "",
+            "function_class": "GATE",
+            "relevance": "Primary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.4048,
+            "signals": {
+              "bridge": 0.0735,
+              "semantic": 0.6755,
+              "keyword": 0.0019,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0548,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI02",
+        "owasp_title": "Tool Misuse and Exploitation",
+        "owasp_rank": 2,
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "function_coverage": {
+          "VALID": 1,
+          "DETECT": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE"
+        ],
+        "mappings": [
+          {
+            "control_id": "GOVERN-4.3",
+            "control_title": "Organizational practices enable AI testing, incident identification, and information sharing.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5494,
+            "signals": {
+              "bridge": 0.1374,
+              "semantic": 0.8586,
+              "keyword": 0.0197,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1994,
+            "needs_review": false
+          },
+          {
+            "control_id": "MANAGE-3.1",
+            "control_title": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5127,
+            "signals": {
+              "bridge": 0.0474,
+              "semantic": 0.8615,
+              "keyword": 0.0949,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1627,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI03",
+        "owasp_title": "Identity and PrivilegeAbuse",
+        "owasp_rank": 3,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "ASI04",
+        "owasp_title": "Agentic Supply ChainVulnerabilities",
+        "owasp_rank": 4,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "ASI05",
+        "owasp_title": "Unexpected CodeExecution (RCE)",
+        "owasp_rank": 5,
+        "mapping_count": 10,
+        "primary_count": 0,
+        "secondary_count": 10,
+        "function_coverage": {
+          "VALID": 4,
+          "DETECT": 4,
+          "SCOPE": 2
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV"
+        ],
+        "mappings": [
+          {
+            "control_id": "MEASURE-2.1",
+            "control_title": "Test sets, metrics, and tool details used during TEVV documented.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.6734,
+            "signals": {
+              "bridge": 0.3379,
+              "semantic": 0.8356,
+              "keyword": 0.0221,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1234,
+            "needs_review": false
+          },
+          {
+            "control_id": "GOVERN-4.3",
+            "control_title": "Organizational practices enable AI testing, incident identification, and information sharing.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.623,
+            "signals": {
+              "bridge": 0.307,
+              "semantic": 0.7913,
+              "keyword": 0.0011,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.073,
+            "needs_review": false
+          },
+          {
+            "control_id": "MEASURE-2.4",
+            "control_title": "Functionality and behavior of AI system and components monitored when in production.",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6167,
+            "signals": {
+              "bridge": 0.3014,
+              "semantic": 0.779,
+              "keyword": 0.0144,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0667,
+            "needs_review": false
+          },
+          {
+            "control_id": "GOVERN-1.5",
+            "control_title": "Ongoing monitoring and periodic review of risk management process and outcomes; roles and responsibilities defined.",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5969,
+            "signals": {
+              "bridge": 0.2365,
+              "semantic": 0.8262,
+              "keyword": 0.0116,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0469,
+            "needs_review": true
+          },
+          {
+            "control_id": "MEASURE-2.5",
+            "control_title": "AI system demonstrated to be valid and reliable; limitations of generalizability documented.",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5615,
+            "signals": {
+              "bridge": 0.2217,
+              "semantic": 0.7838,
+              "keyword": 0.0011,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0115,
+            "needs_review": true
+          },
+          {
+            "control_id": "MAP-2.2",
+            "control_title": "Information about AI system's knowledge limits and how output may be utilized and overseen by humans documented.",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5447,
+            "signals": {
+              "bridge": 0.1327,
+              "semantic": 0.8567,
+              "keyword": 0.018,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1947,
+            "needs_review": false
+          },
+          {
+            "control_id": "MAP-4.2",
+            "control_title": "Internal risk controls for AI system components, including third-party technologies, identified and documented.",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5371,
+            "signals": {
+              "bridge": 0.1291,
+              "semantic": 0.8361,
+              "keyword": 0.0365,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1871,
+            "needs_review": false
+          },
+          {
+            "control_id": "MAP-3.4",
+            "control_title": "Processes for operator and practitioner proficiency with AI system performance defined, assessed, and documented.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5241,
+            "signals": {
+              "bridge": 0.1044,
+              "semantic": 0.8634,
+              "keyword": 0.001,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1741,
+            "needs_review": false
+          },
+          {
+            "control_id": "MEASURE-2.7",
+            "control_title": "AI system security and resilience evaluated and documented.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.524,
+            "signals": {
+              "bridge": 0.3228,
+              "semantic": 0.5742,
+              "keyword": 0.0154,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.174,
+            "needs_review": false
+          },
+          {
+            "control_id": "MANAGE-3.1",
+            "control_title": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5016,
+            "signals": {
+              "bridge": 0.0626,
+              "semantic": 0.8277,
+              "keyword": 0.0826,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1516,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI06",
+        "owasp_title": "Memory & Context Poisoning",
+        "owasp_rank": 6,
+        "mapping_count": 1,
+        "primary_count": 0,
+        "secondary_count": 1,
+        "function_coverage": {
+          "VALID": 1
+        },
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE"
+        ],
+        "mappings": [
+          {
+            "control_id": "MEASURE-2.1",
+            "control_title": "Test sets, metrics, and tool details used during TEVV documented.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5261,
+            "signals": {
+              "bridge": 0.2259,
+              "semantic": 0.7041,
+              "keyword": 0.0131,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1761,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI07",
+        "owasp_title": "Insecure Inter-AgentCommunication",
+        "owasp_rank": 7,
+        "mapping_count": 0,
+        "primary_count": 0,
+        "secondary_count": 0,
+        "function_coverage": {},
+        "uncovered_functions": [
+          "DETECT",
+          "DISCLOSE",
+          "GATE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": []
+      },
+      {
+        "owasp_id": "ASI08",
+        "owasp_title": "Cascading Failures",
+        "owasp_rank": 8,
+        "mapping_count": 3,
+        "primary_count": 0,
+        "secondary_count": 3,
+        "function_coverage": {
+          "GOVERN": 2,
+          "DETECT": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "MEASURE-2.8",
+            "control_title": "Risks associated with transparency and accountability examined and documented.",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5681,
+            "signals": {
+              "bridge": 0.1605,
+              "semantic": 0.8738,
+              "keyword": 0.0033,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0181,
+            "needs_review": true
+          },
+          {
+            "control_id": "MANAGE-4.3",
+            "control_title": "Incidents and errors communicated to relevant AI actors including affected communities; processes for tracking, respondi",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5431,
+            "signals": {
+              "bridge": 0.188,
+              "semantic": 0.7872,
+              "keyword": 0.0097,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1931,
+            "needs_review": false
+          },
+          {
+            "control_id": "GOVERN-1.5",
+            "control_title": "Ongoing monitoring and periodic review of risk management process and outcomes; roles and responsibilities defined.",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5154,
+            "signals": {
+              "bridge": 0.1777,
+              "semantic": 0.7532,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1654,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI09",
+        "owasp_title": "Human-Agent TrustExploitation",
+        "owasp_rank": 9,
+        "mapping_count": 2,
+        "primary_count": 0,
+        "secondary_count": 2,
+        "function_coverage": {
+          "DETECT": 1,
+          "GATE": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GOVERN",
+          "ISOLATE",
+          "PREV",
+          "SCOPE",
+          "VALID"
+        ],
+        "mappings": [
+          {
+            "control_id": "MEASURE-4.2",
+            "control_title": "Measurement results regarding AI system trustworthiness validated through input from domain experts and relevant AI acto",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.6157,
+            "signals": {
+              "bridge": 0.1865,
+              "semantic": 0.8975,
+              "keyword": 0.062,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0657,
+            "needs_review": false
+          },
+          {
+            "control_id": "MAP-3.5",
+            "control_title": "Processes for human oversight defined, assessed, and documented in accordance with organizational policies.",
+            "domain": "",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.5363,
+            "signals": {
+              "bridge": 0.1681,
+              "semantic": 0.7646,
+              "keyword": 0.0714,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1863,
+            "needs_review": false
+          }
+        ]
+      },
+      {
+        "owasp_id": "ASI10",
+        "owasp_title": "Rogue Agents",
+        "owasp_rank": 10,
+        "mapping_count": 8,
+        "primary_count": 0,
+        "secondary_count": 8,
+        "function_coverage": {
+          "SCOPE": 1,
+          "VALID": 3,
+          "DETECT": 3,
+          "GOVERN": 1
+        },
+        "uncovered_functions": [
+          "DISCLOSE",
+          "GATE",
+          "ISOLATE",
+          "PREV"
+        ],
+        "mappings": [
+          {
+            "control_id": "MEASURE-2.6",
+            "control_title": "AI system regularly evaluated for safety risks; demonstrated to be safe with residual risk not exceeding tolerance; can ",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6078,
+            "signals": {
+              "bridge": 0.1992,
+              "semantic": 0.8965,
+              "keyword": 0.009,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0578,
+            "needs_review": false
+          },
+          {
+            "control_id": "MEASURE-2.7",
+            "control_title": "AI system security and resilience evaluated and documented.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5991,
+            "signals": {
+              "bridge": 0.2048,
+              "semantic": 0.8662,
+              "keyword": 0.0202,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0491,
+            "needs_review": true
+          },
+          {
+            "control_id": "MEASURE-2.4",
+            "control_title": "Functionality and behavior of AI system and components monitored when in production.",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5703,
+            "signals": {
+              "bridge": 0.232,
+              "semantic": 0.7775,
+              "keyword": 0.0184,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0203,
+            "needs_review": true
+          },
+          {
+            "control_id": "MEASURE-2.8",
+            "control_title": "Risks associated with transparency and accountability examined and documented.",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5649,
+            "signals": {
+              "bridge": 0.1577,
+              "semantic": 0.8447,
+              "keyword": 0.0499,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0149,
+            "needs_review": true
+          },
+          {
+            "control_id": "MEASURE-4.1",
+            "control_title": "Measurement approaches for identifying AI risks connected to deployment context(s) and informed through consultation wit",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5281,
+            "signals": {
+              "bridge": 0.1421,
+              "semantic": 0.8225,
+              "keyword": 0.0015,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1781,
+            "needs_review": false
+          },
+          {
+            "control_id": "MEASURE-1.3",
+            "control_title": "Internal experts not serving as front-line developers and/or independent assessors involved in regular assessments. Doma",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5265,
+            "signals": {
+              "bridge": 0.1421,
+              "semantic": 0.8161,
+              "keyword": 0.0073,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1765,
+            "needs_review": false
+          },
+          {
+            "control_id": "GOVERN-4.3",
+            "control_title": "Organizational practices enable AI testing, incident identification, and information sharing.",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5231,
+            "signals": {
+              "bridge": 0.2898,
+              "semantic": 0.615,
+              "keyword": 0.0156,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1731,
+            "needs_review": false
+          },
+          {
+            "control_id": "MEASURE-4.2",
+            "control_title": "Measurement results regarding AI system trustworthiness validated through input from domain experts and relevant AI acto",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.505,
+            "signals": {
+              "bridge": 0.1527,
+              "semantic": 0.7577,
+              "keyword": 0.0139,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.155,
+            "needs_review": false
+          }
+        ]
+      }
+    ]
+  },
+  "gap_analysis": {
+    "unmapped_controls": [
+      {
+        "control_id": "GOVERN-1.1",
+        "control_title": "Legal and regulatory requirements involving AI are understood, managed, and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-1.2",
+        "control_title": "Trustworthy AI characteristics integrated into organizational policies, processes, and procedures.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-1.3",
+        "control_title": "Processes and procedures in place to determine needed level of risk management activities based on organizational risk t",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-1.4",
+        "control_title": "Risk management process and outcomes established through transparent policies, procedures, and controls based on organiz",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-1.6",
+        "control_title": "Mechanisms in place to inventory AI systems, resourced according to organizational risk priorities.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-1.7",
+        "control_title": "Processes and procedures for decommissioning and phasing out AI systems safely without increasing risks.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-2.1",
+        "control_title": "Roles, responsibilities, and lines of communication related to mapping, measuring, and managing AI risks documented and ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-2.2",
+        "control_title": "Personnel and partners receive AI risk management training to perform duties consistent with policies and procedures.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-2.3",
+        "control_title": "Executive leadership takes responsibility for decisions about risks associated with AI system development and deployment",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-3.1",
+        "control_title": "Decision-making informed by diverse team reflecting demographic, disciplinary, and experiential diversity.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-4.1",
+        "control_title": "Organizational policies and practices foster critical thinking and safety-first mindset in AI design, development, deplo",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-4.2",
+        "control_title": "Teams document risks and potential impacts of AI technology; communicate impacts broadly.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-5.1",
+        "control_title": "Policies and practices in place to collect, consider, prioritize, and integrate external feedback regarding potential in",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-5.2",
+        "control_title": "Mechanisms established to regularly incorporate adjudicated feedback from relevant AI actors into system design and impl",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-6.1",
+        "control_title": "Policies and procedures address AI risks associated with third-party entities, including intellectual property infringem",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "GOVERN-6.2",
+        "control_title": "Contingency processes in place to handle failures or incidents in high-risk third-party data or AI systems.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-1.1",
+        "control_title": "Determination made whether AI system achieves intended purpose and stated objectives; whether development or deployment ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-1.2",
+        "control_title": "Treatment of documented AI risks prioritized based on impact, likelihood, or available resources or methods.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-1.3",
+        "control_title": "Responses to high-priority risks developed, planned, and documented (mitigate, transfer, avoid, or accept).",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-1.4",
+        "control_title": "Negative residual risks to downstream acquirers and end users documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-2.1",
+        "control_title": "Resources required to manage AI risks taken into account, along with viable non-AI alternatives.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-2.2",
+        "control_title": "Mechanisms in place and applied to sustain value of deployed AI systems.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-2.3",
+        "control_title": "Procedures followed to respond to and recover from previously unknown risk when identified.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-2.4",
+        "control_title": "Mechanisms in place and responsibilities assigned to supersede, disengage, or deactivate AI systems demonstrating incons",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-3.2",
+        "control_title": "Pre-trained models used for development monitored as part of regular AI system monitoring and maintenance.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MANAGE-4.2",
+        "control_title": "Measurable activities for continual improvements integrated into AI system updates; regular engagement with interested p",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-1.1",
+        "control_title": "Intended purpose, beneficial uses, context-specific laws, norms, expectations, and deployment settings understood and do",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-1.2",
+        "control_title": "Interdisciplinary AI actors with diverse competencies and documentation of their participation.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-1.3",
+        "control_title": "Organization's mission and relevant goals for the AI technology understood and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-1.4",
+        "control_title": "Business value or context of business use clearly defined or re-evaluated.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-1.5",
+        "control_title": "Organizational risk tolerances determined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-1.6",
+        "control_title": "System requirements elicited from and understood by relevant AI actors; design decisions consider socio-technical implic",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-2.1",
+        "control_title": "Specific task and implementation methods that the AI system will support are defined.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-2.3",
+        "control_title": "Scientific integrity and Test, Evaluation, Validation, and Verification (TEVV) considerations identified and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-3.1",
+        "control_title": "Potential benefits of intended AI system functionality and performance examined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-3.2",
+        "control_title": "Potential costs (including non-monetary) resulting from expected or realized AI errors examined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-3.3",
+        "control_title": "Targeted application scope specified and documented based on system capability and established context.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-4.1",
+        "control_title": "Approaches for mapping AI technology and legal risks of components in place, followed, and documented, including third-p",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-5.1",
+        "control_title": "Likelihood and magnitude of each identified impact examined and documented based on expected use, similar contexts, publ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MAP-5.2",
+        "control_title": "Practices and personnel supporting regular engagement with relevant AI actors and integrating feedback about positive, n",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-1.1",
+        "control_title": "Approaches and metrics for measurement of enumerated AI risks selected, starting with most significant risks. Risks that",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-1.2",
+        "control_title": "Appropriateness of AI metrics and effectiveness of existing controls regularly assessed and updated, including error rep",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-2.10",
+        "control_title": "Privacy risk of the AI system examined and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-2.11",
+        "control_title": "Fairness and bias evaluated; results documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-2.12",
+        "control_title": "Environmental impact and sustainability of AI model training and management assessed and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-2.13",
+        "control_title": "Effectiveness of employed TEVV metrics and processes evaluated and documented.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-2.2",
+        "control_title": "Evaluations involving human subjects meet applicable requirements and are representative of relevant population.",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-2.3",
+        "control_title": "AI system performance or assurance criteria measured qualitatively or quantitatively and demonstrated for deployment-sim",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-2.9",
+        "control_title": "AI model explained, validated, and documented; output interpreted within context to inform responsible use and governanc",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-3.1",
+        "control_title": "Approaches, personnel, and documentation in place to regularly identify and track existing, unanticipated, and emergent ",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-3.2",
+        "control_title": "Risk tracking approaches considered for settings where AI risks are difficult to assess using current measurement techni",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-3.3",
+        "control_title": "Feedback processes for end users and impacted communities to report problems and appeal outcomes established and integra",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      },
+      {
+        "control_id": "MEASURE-4.3",
+        "control_title": "Measurable performance improvements or declines identified and documented based on relevant actor consultations and fiel",
+        "domain": "",
+        "function_class": "GOVERN",
+        "gap_reason": "Below mapping threshold for all target entries"
+      }
+    ],
+    "unmapped_count": 53,
+    "note": "Unmapped controls did not reach the Related threshold under the current pipeline.",
+    "needs_review_count": 7,
+    "needs_review": [
+      {
+        "source_node_id": "nist_rmf:GOVERN-1.5",
+        "target_node_id": "owasp_agentic:ASI05",
+        "score": 0.5969,
+        "tier": "Direct",
+        "confidence_gap": 0.0469
+      },
+      {
+        "source_node_id": "nist_rmf:MEASURE-2.4",
+        "target_node_id": "owasp_agentic:ASI01",
+        "score": 0.5742,
+        "tier": "Direct",
+        "confidence_gap": 0.0242
+      },
+      {
+        "source_node_id": "nist_rmf:MEASURE-2.4",
+        "target_node_id": "owasp_agentic:ASI10",
+        "score": 0.5703,
+        "tier": "Direct",
+        "confidence_gap": 0.0203
+      },
+      {
+        "source_node_id": "nist_rmf:MEASURE-2.5",
+        "target_node_id": "owasp_agentic:ASI05",
+        "score": 0.5615,
+        "tier": "Direct",
+        "confidence_gap": 0.0115
+      },
+      {
+        "source_node_id": "nist_rmf:MEASURE-2.7",
+        "target_node_id": "owasp_agentic:ASI10",
+        "score": 0.5991,
+        "tier": "Direct",
+        "confidence_gap": 0.0491
+      },
+      {
+        "source_node_id": "nist_rmf:MEASURE-2.8",
+        "target_node_id": "owasp_agentic:ASI08",
+        "score": 0.5681,
+        "tier": "Direct",
+        "confidence_gap": 0.0181
+      },
+      {
+        "source_node_id": "nist_rmf:MEASURE-2.8",
+        "target_node_id": "owasp_agentic:ASI10",
+        "score": 0.5649,
+        "tier": "Direct",
+        "confidence_gap": 0.0149
+      }
+    ]
+  }
+}

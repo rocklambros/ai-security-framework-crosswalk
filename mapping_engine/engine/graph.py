@@ -80,7 +80,7 @@ def get_node_text(G: nx.DiGraph, node_id: str) -> str:
 
 # Bump this whenever ``get_node_semantic_text`` changes so cached embeddings
 # auto-invalidate on next load.
-SEMANTIC_TEXT_VERSION = "v6-2026-04-07-csa-aicm-enriched"
+SEMANTIC_TEXT_VERSION = "v7-2026-04-07-nist-rmf-enriched"
 
 
 def get_node_semantic_text(G: nx.DiGraph, node_id: str) -> str:

@@ -227,7 +227,7 @@ already carries descriptions).
 
 **Metric.** Paired Δ MRR on `aiuc_1__nist_rmf`; aggregate regression cap.
 
-**Result.** _Pending S7._
+**Result.** WIN. nist_rmf was actually empty (not no-op): median description length 0/76 prior, 172/76 after enrichment from `nist_ai_rmf_1.0.md` (`**FUNC N.N:**` blocks). aiuc_1__nist_rmf MRR 0.3001 → 0.3260 (Δ +0.0259), recall@5 0.5000 → 0.4671, AUC 0.6537 → 0.6909. Aggregate non-frozen MRR 0.3821 → 0.3920 [0.3607, 0.4256], AUC 0.7077 → 0.7217. No per-pair regressions exceed −0.02 cap. Bumped `SEMANTIC_TEXT_VERSION` to v7.
 
 ## 2026-04-07 — H_76_S8: post-enrichment re-baseline + mitigation_lexical re-adopt
 

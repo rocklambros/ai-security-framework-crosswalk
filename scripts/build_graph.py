@@ -1388,6 +1388,39 @@ def _create_nist_rmf_nodes(nodes, warnings):
             ))
 
 
+def _enrich_nist_rmf_from_markdown(nodes, warnings):
+    """Populate nist_rmf subcategory descriptions from the source markdown.
+
+    Subcategory entries appear as ``**FUNC N.N:** body…`` blocks ending at
+    a blank line. The base ``_create_nist_rmf_nodes`` only writes IDs, so
+    every nist_rmf node ships with empty description text — the same root
+    cause as the eu_gpai_cop outlier (S3/S4). This enrichment fills them
+    in. The matched node id format is ``nist_rmf:FUNC-N.N``.
+    """
+    path = os.path.join(FRAMEWORKS_DIR, "nist-ai-rmf", "nist_ai_rmf_1.0.md")
+    text = read_text(path)
+    if not text:
+        return
+    pat = re.compile(
+        r"\*\*(GOVERN|MAP|MEASURE|MANAGE)\s+(\d+\.\d+):\*\*\s*(.+?)(?=\n\s*\n)",
+        re.DOTALL,
+    )
+    n_filled = 0
+    for func, num, body in pat.findall(text):
+        nid = f"nist_rmf:{func}-{num}"
+        if nid not in nodes:
+            continue
+        # Collapse internal whitespace and strip page-break artifacts.
+        desc = re.sub(r"\s+", " ", body).strip()
+        if not desc:
+            continue
+        cur = nodes[nid].get("description") or ""
+        if len(desc) > len(cur):
+            nodes[nid]["description"] = desc
+            n_filled += 1
+    logging.info(f"NIST RMF enrichment: {n_filled} subcategories got descriptions")
+
+
 def _create_eu_gpai_cop_nodes(nodes, edges, warnings):
     """Create EU GPAI Code of Practice commitment and measure nodes."""
     path = os.path.join(FRAMEWORKS_DIR, "eu-gpai-code-of-practice", "gpai_cop_safety_and_security.md")
@@ -1437,6 +1470,7 @@ def create_stub_nodes(nodes, edges, warnings):
     global edges_placeholder
     edges_placeholder = edges
     _create_nist_rmf_nodes(nodes, warnings)
+    _enrich_nist_rmf_from_markdown(nodes, warnings)
 
     _create_eu_gpai_cop_nodes(nodes, edges, warnings)
     _enrich_eu_gpai_cop_from_markdown(nodes, warnings)

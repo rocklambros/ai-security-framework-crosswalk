@@ -1,0 +1,25 @@
+{
+  "pair": "aiuc_1__mitre_atlas",
+  "n_anchors": 32,
+  "ndcg_at_10": {
+    "point": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "mean": 1.0,
+    "std": 0.0,
+    "n_resamples": 1000,
+    "alpha": 0.05
+  },
+  "tier_accuracy": {
+    "point": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "mean": 0.0,
+    "std": 0.0,
+    "n_resamples": 1000,
+    "alpha": 0.05
+  },
+  "phase": "B-1",
+  "frozen": true,
+  "note": "B-1 = B-2 baseline (no structural features survived gates)"
+}

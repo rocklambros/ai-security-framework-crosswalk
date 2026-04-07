@@ -24,3 +24,19 @@ These limitations are explicitly noted in `docs/anti_overfit_methodology.md` and
 Recorded once. NOT to be retuned for B-2.
 
 ---
+
+## Phase B-1 — `aiuc_1 -> mitre_atlas`
+
+- **Date:** 2026-04-07
+- **Anchors:** 32 (auto-expanded from expert/authoritative cross-framework edges via `expand_anchors.py` with `--target-entry-types technique mitigation`; all `expected_tier=Direct` per rationale_to_tier defaults)
+- **Pipeline:** B-1 = B-2 baseline (no B-1 structural features survived their anti-overfit gates; see `docs/diagnostics/b1_ablation.md`). Hand-tuned weights, calibrated thresholds direct=0.45 / related_primary=0.20.
+- **NDCG@10:** 1.0000 [1.0000, 1.0000] (1000-resample bootstrap)
+- **Tier accuracy:** 0.0000 [0.0000, 0.0000]
+
+**Interpretation.** Same dual degeneracy as B-2: uniform-Direct expected tiers force NDCG@10 to saturate at 1.0 regardless of ordering, while composite scores against MITRE ATLAS techniques/mitigations fall below the calibrated direct/related thresholds, producing a mass tier-classification miss. Because B-1 inherits the B-2 model unchanged, this result is fully consistent with the B-2 frozen-test outcome on csa_aicm.
+
+**Decision (NO retuning).** B-1 calibration is left as-is. The unblockers documented in `docs/diagnostics/b1_ablation.md` (populate rationale codes, switch to anchors-vs-distractors metric, build cross-framework category links) remain the only routes to making this gate informative, and they are explicitly out of scope for the current rebuild.
+
+Recorded once. NOT to be retuned for B-1.
+
+---

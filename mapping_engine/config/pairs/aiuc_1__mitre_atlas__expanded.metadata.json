@@ -1,0 +1,130 @@
+{
+  "aiuc_1:A004->mitre_atlas:AML.M0020": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A006->mitre_atlas:AML.M0020": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A007->mitre_atlas:AML.M0020": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->mitre_atlas:AML.M0003": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->mitre_atlas:AML.M0004": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->mitre_atlas:AML.M0003": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->mitre_atlas:AML.M0015": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->mitre_atlas:AML.M0021": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->mitre_atlas:AML.M0024": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B003->mitre_atlas:AML.M0000": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B003->mitre_atlas:AML.M0001": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B004->mitre_atlas:AML.M0003": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B004->mitre_atlas:AML.M0004": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B005->mitre_atlas:AML.M0015": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B005->mitre_atlas:AML.M0021": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B007->mitre_atlas:AML.M0005": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B007->mitre_atlas:AML.M0019": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B008->mitre_atlas:AML.M0005": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B008->mitre_atlas:AML.M0012": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B008->mitre_atlas:AML.M0019": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B009->mitre_atlas:AML.M0002": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->mitre_atlas:AML.M0016": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C006->mitre_atlas:AML.M0020": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C007->mitre_atlas:AML.M0020": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D003->mitre_atlas:AML.M0004": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D003->mitre_atlas:AML.M0024": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E004->mitre_atlas:AML.M0013": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E005->mitre_atlas:AML.M0017": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E009->mitre_atlas:AML.M0024": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E015->mitre_atlas:AML.M0024": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->mitre_atlas:AML.M0023": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->mitre_atlas:AML.M0025": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  }
+}

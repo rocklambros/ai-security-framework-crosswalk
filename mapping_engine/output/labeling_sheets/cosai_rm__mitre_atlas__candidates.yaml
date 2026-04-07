@@ -1,0 +1,1607 @@
+candidates:
+- source_node_id: cosai_rm:controlRedTeaming
+  target_node_id: mitre_atlas:AML.T0013
+  composite_score: 0.2
+  uncertainty_score: 1.9984
+  signals:
+    bridge: 0.0
+    semantic: 0.3747
+    keyword: 0.0108
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Red teaming probes for model ontology discovery vulnerabilities.
+  source_name: Red Teaming
+  source_description: 'Drive security and privacy improvements through self-driven
+    adversarial attacks on AI infrastructure and products
+
+    '
+  target_name: Discover AI Model Ontology
+  target_description: 'Adversaries may discover the ontology of an AI model''s output
+    space, for example, the types of objects a model can detect.
+
+    The adversary may discovery the ontology by repeated queries to the model, forcing
+    it to enumerate its output space.
+
+    Or the ontology may be discovered in a configuration file or in documentation
+    about the model.
+
+
+    The model ontology helps the adversary understand how the model is being used
+    by the victim.
+
+    It is useful to the adversary in creating targeted attacks.'
+- source_node_id: cosai_rm:controlInputValidationAndSanitization
+  target_node_id: mitre_atlas:AML.T0071
+  composite_score: 0.3499
+  uncertainty_score: 1.995
+  signals:
+    bridge: 0.0
+    semantic: 0.652
+    keyword: 0.0252
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Input validation/sanitization is canonical false RAG entry injection defense.
+  source_name: Input Validation and Sanitization
+  source_description: Block or restrict adversarial queries to AI models.
+  target_name: False RAG Entry Injection
+  target_description: "Adversaries may introduce false entries into a victim's retrieval\
+    \ augmented generation (RAG) database. Content designed to be interpreted as a\
+    \ document by the large language model (LLM) used in the RAG system is included\
+    \ in a data source being ingested into the RAG database. When RAG entry including\
+    \ the false document is retrieved, the LLM is tricked into treating part of the\
+    \ retrieved content as a false RAG result. \n\nBy including a false RAG document\
+    \ inside of a regular RAG entry, it bypasses data monitoring tools. It also prevents\
+    \ the document from being deleted directly. \n\nThe adversary may use discovered\
+    \ system keywords to learn how to instruct a particular LLM to treat content as\
+    \ a RAG entry. They may be able to manipulate the injected entry's metadata including\
+    \ document title, author, and creation date."
+- source_node_id: cosai_rm:controlModelAndDataExecutionIntegrity
+  target_node_id: mitre_atlas:AML.T0105
+  composite_score: 0.2002
+  uncertainty_score: 1.9937
+  signals:
+    bridge: 0.0
+    semantic: 0.3469
+    keyword: 0.0601
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Execution integrity is canonical escape-to-host defense.
+  source_name: Model and Data Execution Integrity
+  source_description: "Ensure that the code and model results from training and development\
+    \ are of known provenance and lineage and not modified from known-good sources\
+    \ in unexpected ways at inference time.\n Examples include ... - validating expected\
+    \ code and model signatures / hashes at inference-time - limit and immutably record\
+    \ all modifications to runtime AI system components via\n  oversight processes\n\
+    - etc\n"
+  target_name: Escape to Host
+  target_description: 'Adversaries may break out of a container or virtualized environment
+    to gain access to the underlying host. This can allow an adversary access to other
+    containerized or virtualized resources from the host level or to the host itself.
+    In principle, containerized / virtualized resources should provide a clear separation
+    of application functionality and be isolated from the host environment.
+
+
+    There are many ways an adversary may escape from a container or sandbox environment
+    via AI Systems. For example, modifying an AI Agent''s configuration to disable
+    safety features or user confirmations could allow the adversary to invoke tools
+    to be run on host environments rather than in the sandbox.'
+- source_node_id: cosai_rm:controlUserDataManagement
+  target_node_id: mitre_atlas:AML.T0102
+  composite_score: 0.2003
+  uncertainty_score: 1.9897
+  signals:
+    bridge: 0.0
+    semantic: 0.3694
+    keyword: 0.0211
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: User data management constrains malicious command generation surface.
+  source_name: User Data Management
+  source_description: 'Store, process, and use all user data (e.g. prompts and logs)
+    from AI applications in compliance with user consent.
+
+    '
+  target_name: Generate Malicious Commands
+  target_description: 'Adversaries may use large language models (LLMs) to dynamically
+    generate malicious commands from natural language. Dynamically generated commands
+    may be harder detect as the attack signature is constantly changing. AI-generated
+    commands may also allow adversaries to more rapidly adapt to different environments
+    and adjust their tactics.
+
+
+    Adversaries may utilize LLMs present in the victim''s environment or call out
+    to externally hosted services. [APT28](https://attack.mitre.org/groups/G0007)
+    utilized a model hosted on HuggingFace in a campaign with their LAMEHUG malware
+    [\[1\]][1]. In either case prompts to generate malicious code can blend in with
+    normal traffic.
+
+
+    [1]: https://logpoint.com/en/blog/apt28s-new-arsenal-lamehug-the-first-ai-powered-malware'
+- source_node_id: cosai_rm:controlRiskGovernance
+  target_node_id: mitre_atlas:AML.T0103
+  composite_score: 0.3503
+  uncertainty_score: 1.987
+  signals:
+    bridge: 0.0
+    semantic: 0.6642
+    keyword: 0.0053
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk governance is meta-level for AI agent deployment.
+  source_name: Risk Governance
+  source_description: 'Inventory, measure, and monitor residual risk to AI in your
+    organization.
+
+    '
+  target_name: Deploy AI Agent
+  target_description: 'Adversaries may launch AI agents in the victim''s environment
+    to execute actions on their behalf. AI agents may have access to a wide range
+    of tools and data sources, as well as permissions to access and interact with
+    other services and systems in the victim''s environment. The adversary may leverage
+    these capabilities to carry out their operations.
+
+
+    Adversaries may configure the AI agent by providing an initial system prompt and
+    granting access to tools, effectively defining their goals for the agent to achieve.
+    They may deploy the agent with excessive trust permissions and disable any user
+    interactions to ensure the agent''s actions aren''t blocked.
+
+
+    Launching an AI agent may provide for some autonomous behavior, allowing for the
+    agent to make decisions and determine how to achieve the adversary''s goals. This
+    also represents a loss of control for the adversary.'
+- source_node_id: cosai_rm:controlAdversarialTrainingAndTesting
+  target_node_id: mitre_atlas:AML.TA0007
+  composite_score: 0.3504
+  uncertainty_score: 1.9845
+  signals:
+    bridge: 0.0
+    semantic: 0.6556
+    keyword: 0.0206
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Adversarial training/testing directly addresses defense evasion tactic.
+  source_name: Adversarial Training and Testing
+  source_description: 'Use techniques to make AI models robust to adversarial inputs
+    (i.e. prompts) in the context of their use in applications.
+
+    '
+  target_name: Defense Evasion
+  target_description: 'The adversary is trying to avoid being detected by AI-enabled
+    security software.
+
+
+    Defense Evasion consists of techniques that adversaries use to avoid detection
+    throughout their compromise.
+
+    Techniques used for defense evasion include evading AI-enabled security software
+    such as malware detectors.'
+- source_node_id: cosai_rm:controlVulnerabilityManagement
+  target_node_id: mitre_atlas:AML.T0054
+  composite_score: 0.3504
+  uncertainty_score: 1.9832
+  signals:
+    bridge: 0.0
+    semantic: 0.6675
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Vulnerability management addresses LLM jailbreak techniques.
+  source_name: Vulnerability Management
+  source_description: 'Proactively and continually test and monitor production infrastructure
+    and products for security and privacy regressions
+
+    '
+  target_name: LLM Jailbreak
+  target_description: 'An adversary may target the inputs or the architecture of an
+    LLM, placing it in a state where it will freely respond to user input, bypassing
+    any controls, restrictions, or guardrails placed on the LLM. Once successfully
+    jailbroken, the LLM can be used in unintended ways by the adversary.
+
+
+    Jailbreaks are classified as either white-box or black-box depending on the level
+    of model access they require. In white-box jailbreaks, the attacker directly exploits
+    the model. Gradient and logit-based attacks use internal signals to select prompts
+    that make harmful answers more likely while fine-tuning-based methods weaken safety
+    through retraining ([Jailbreak Attacks and Defenses: A Survey]; [JailbreakZoo]).
+    Additionally, many large language models encode refusal in a single linear signal
+    in their internal layers; removing or suppressing this signal via an activation
+    edit largely disables refusal while leaving normal skills mostly intact ([Refusal
+    Direction]).
+
+
+    Black-box jailbreaks, on the other hand, do not require direct model access, relying
+    instead on clever prompting and context tricks. Examples include wrapping a harmful
+    question inside a story, role-play, or code snippet so the model "fills in" the
+    dangerous part as part of the scenario ([Jailbreak Attacks and Defenses: A Survey])
+    or hiding intent through ciphers, rare languages, and other encodings so the text
+    looks harmless to filters but remains understandable to the model ([JailbreakZoo];
+    [Jailbreak Attacks and Defenses: A Survey]). Black-box jailbreaks can also take
+    a multi-turn form where attackers engage in dialogue that begins harmless but
+    escalates towards a forbidden goal, changing the conversation history through
+    references and hints while never explicitly stating the malicious request ([Cresendo
+    attacks], [Echo Chamber attack]).
+
+
+    Jailbreak generation can be automated with fine-tuned models ([MASTERKEY]), multi-agent
+    systems ([Jailbreak Attacks and Defenses: A Survey]), or evolutionary algorithms
+    ([JailbreakZ'
+- source_node_id: cosai_rm:DP
+  target_node_id: mitre_atlas:AML.M0011
+  composite_score: 0.3502
+  uncertainty_score: 1.9793
+  signals:
+    bridge: 0.0317
+    semantic: 0.6192
+    keyword: 0.0124
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Data poisoning is unrelated to library loading restriction.
+  source_name: Data Poisoning
+  source_description: 'Altering data sources used to train the model. In terms of
+    impact, Data Poisoning is comparable to modifying the logic of an application
+    to change its behavior.
+
+    '
+  target_name: Restrict Library Loading
+  target_description: 'Prevent abuse of library loading mechanisms in the operating
+    system and software to load untrusted code by configuring appropriate library
+    loading mechanisms and investigating potential vulnerable software.
+
+
+    File formats such as pickle files that are commonly used to store AI models can
+    contain exploits that allow for loading of malicious libraries.'
+- source_node_id: cosai_rm:controlRetrievalAndVectorSystemIntegrity
+  target_node_id: mitre_atlas:AML.T0013
+  composite_score: 0.2005
+  uncertainty_score: 1.9786
+  signals:
+    bridge: 0.0
+    semantic: 0.3775
+    keyword: 0.0078
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Vector integrity is unrelated to model ontology recon.
+  source_name: Retrieval and Vector System Integrity Management
+  source_description: 'Implement provenance tracking, cryptographic signing, deduplication,
+    embedding anomaly detection, and index integrity checks to protect retrieval systems
+    and vector databases from poisoning attacks.
+
+    '
+  target_name: Discover AI Model Ontology
+  target_description: 'Adversaries may discover the ontology of an AI model''s output
+    space, for example, the types of objects a model can detect.
+
+    The adversary may discovery the ontology by repeated queries to the model, forcing
+    it to enumerate its output space.
+
+    Or the ontology may be discovered in a configuration file or in documentation
+    about the model.
+
+
+    The model ontology helps the adversary understand how the model is being used
+    by the victim.
+
+    It is useful to the adversary in creating targeted attacks.'
+- source_node_id: cosai_rm:controlUserDataManagement
+  target_node_id: mitre_atlas:AML.T0104
+  composite_score: 0.1994
+  uncertainty_score: 1.9779
+  signals:
+    bridge: 0.0
+    semantic: 0.378
+    keyword: 0.0033
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: User data management reduces poisoned tool publication exposure.
+  source_name: User Data Management
+  source_description: 'Store, process, and use all user data (e.g. prompts and logs)
+    from AI applications in compliance with user consent.
+
+    '
+  target_name: Publish Poisoned AI Agent Tool
+  target_description: 'Adversaries may create and publish poisoned AI agent tools.
+    Poisoned tools may contain an [LLM Prompt Injection](/techniques/AML.T0051), which
+    can lead to a variety of impacts.
+
+
+    Tools may be published to open source version control repositories (e.g. GitHub,
+    GitLab), to package registries (e.g. npm), or to repositories specifically designed
+    for sharing tools (e.g. OpenClaw Hub). These registries may be largely unregulated
+    and may contain many poisoned tools [\[1\]][1]. Tools may also be published as
+    remotely hosted servers [\[2\]][2].
+
+
+    [1]: https://opensourcemalware.com/blog/clawdbot-skills-ganked-your-crypto
+
+    [2]: https://mcpservers.org/remote-mcp-servers'
+- source_node_id: cosai_rm:controlModelAndDataAccessControls
+  target_node_id: mitre_atlas:AML.T0003
+  composite_score: 0.2006
+  uncertainty_score: 1.9768
+  signals:
+    bridge: 0.0
+    semantic: 0.3804
+    keyword: 0.0028
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Access controls are unrelated to victim website search recon.
+  source_name: Model and Data Access Controls
+  source_description: 'Minimize internal access to models, weights, datasets, etc.
+    in storage and in production use.
+
+    '
+  target_name: Search Victim-Owned Websites
+  target_description: 'Adversaries may search websites owned by the victim for information
+    that can be used during targeting.
+
+    Victim-owned websites may contain technical details about their AI-enabled products
+    or services.
+
+    Victim-owned websites may contain a variety of details, including names of departments/divisions,
+    physical locations, and data about key employees such as names, roles, and contact
+    info.
+
+    These sites may also have details highlighting business operations and relationships.
+
+
+    Adversaries may search victim-owned websites to gather actionable information.
+
+    This information may help adversaries tailor their attacks (e.g. [Adversarial
+    AI Attacks](/techniques/AML.T0017.000) or [Manual Modification](/techniques/AML.T0043.003)).
+
+    Information from these sources may reveal opportunities for other forms of reconnaissance
+    (e.g. [Search Open Technical Databases](/techniques/AML.T0000) or [Search Open
+    AI Vulnerability Analysis](/techniques/AML.T0001))'
+- source_node_id: cosai_rm:controlModelAndDataExecutionIntegrity
+  target_node_id: mitre_atlas:AML.TA0009
+  composite_score: 0.3494
+  uncertainty_score: 1.9757
+  signals:
+    bridge: 0.0
+    semantic: 0.616
+    keyword: 0.0867
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Execution integrity weakly relates to collection tactic.
+  source_name: Model and Data Execution Integrity
+  source_description: "Ensure that the code and model results from training and development\
+    \ are of known provenance and lineage and not modified from known-good sources\
+    \ in unexpected ways at inference time.\n Examples include ... - validating expected\
+    \ code and model signatures / hashes at inference-time - limit and immutably record\
+    \ all modifications to runtime AI system components via\n  oversight processes\n\
+    - etc\n"
+  target_name: Collection
+  target_description: 'The adversary is trying to gather AI artifacts and other related
+    information relevant to their goal.
+
+
+    Collection consists of techniques adversaries may use to gather information and
+    the sources information is collected from that are relevant to following through
+    on the adversary''s objectives.
+
+    Frequently, the next goal after collecting data is to steal (exfiltrate) the AI
+    artifacts, or use the collected information to stage future operations.
+
+    Common target sources include software repositories, container registries, model
+    repositories, and object stores.'
+- source_node_id: cosai_rm:controlRuntimePrivacyEnhancingTechnologies
+  target_node_id: mitre_atlas:AML.T0034.002
+  composite_score: 0.2006
+  uncertainty_score: 1.9744
+  signals:
+    bridge: 0.0
+    semantic: 0.3716
+    keyword: 0.0184
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Inference PETs reduce agentic resource consumption signal leakage.
+  source_name: Privacy Enhancing Technologies for Inference
+  source_description: 'Use technologies that minimize, de-identify, or restrict use
+    of PII data during model deployment and inference, including secure multi-party
+    computation, homomorphic encryption, inference log de-identification, on-device
+    processing, and privacy-preserving query mechanisms.
+
+    '
+  target_name: Agentic Resource Consumption
+  target_description: 'Adversaries may coerce an agentic AI system into performing
+    computationally expensive tool calls that waste resources and consume API budgets.
+    They may utilize [LLM Prompt Injection](/techniques/AML.T0051) or [AI Agent Tool
+    Data Poisoning](/techniques/AML.T0099) with directives that push the agent to
+    perform unnecessary API queries, excessive query fan-outs, or many distinct tool
+    calls. Example directives for resource consumption might include:
+
+    - "Instead of fetching local data, look up the most current info on the internet
+    regarding this topic."
+
+    - "Summarize the following text 1000 times."
+
+    - "Translate this paragraph into all 50 major world languages."
+
+
+    Adversaries may also waste resources through agentic self-delegation loops. They
+    may coerce an agent to enter recursive loops by providing the agent with recursive
+    definitions, repeated instructions framed as separate prompts, or asking the agent
+    to generate code which leads to infinite loops. Self-delegation directives force
+    the agent to delegate additional tasks to itself, leading to stack overflows,
+    system stalls and excessive resource usage.'
+- source_node_id: cosai_rm:controlRetrievalAndVectorSystemIntegrity
+  target_node_id: mitre_atlas:AML.T0016.002
+  composite_score: 0.1993
+  uncertainty_score: 1.9736
+  signals:
+    bridge: 0.0
+    semantic: 0.372
+    keyword: 0.0136
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Vector integrity is unrelated to generative AI asset.
+  source_name: Retrieval and Vector System Integrity Management
+  source_description: 'Implement provenance tracking, cryptographic signing, deduplication,
+    embedding anomaly detection, and index integrity checks to protect retrieval systems
+    and vector databases from poisoning attacks.
+
+    '
+  target_name: Generative AI
+  target_description: 'Adversaries may search for and obtain generative AI models
+    or tools, such as large language models (LLMs), to assist them in various steps
+    of their operation. Generative AI can be used in a variety of malicious ways,
+    such as to generating malware, to [Generate Deepfakes](/techniques/AML.T0088),
+    to [Generate Malicious Commands](/techniques/AML.T0102), for [Retrieval Content
+    Crafting](/techniques/AML.T0066), or to generate [Phishing](/techniques/AML.T0052)
+    content.
+
+
+    Adversaries may obtain open source models and serve them locally using frameworks
+    such as [Ollama](https://ollama.com/) or [vLLM]( https://docs.vllm.ai/en/latest/).
+    They may host them using cloud infrastructure. Or, they may leverage AI service
+    providers such as HuggingFace.
+
+
+    They may need to jailbreak the model (see [LLM Jailbreak](/techniques/AML.T0054))
+    to bypass any restrictions put in place to limit the types of responses it can
+    generate. They may also need to break the terms of service of the model''s developer.
+
+
+    Generative AI models may also be "uncensored" meaning they are designed to generate
+    content without any restrictions such as guardrails or content filters. Uncensored
+    GenAI is ripe for abuse by cybercriminals [\[1\]][1] [\[2\]][2]. Models may be
+    fine-tuned to remove alignment and guardrails [\[3\]][3] or be subjected to targeted
+    manipulations to bypass refusal [\[4\]][4] resulting in uncensored variants of
+    the model. Uncensored models may be built for offensive and defensive cybersecurity
+    [\[5\]][5], which can be abused by an adversary. There are also models that are
+    expressly designed and advertised for malicious use [\[6\]][6].
+
+
+    [1]: https://blog.talosintelligence.com/cybercriminal-abuse-of-large-language-models/
+
+    [2]: https://gbhackers.com/cybercriminals-exploit-llm-models/
+
+    [3]: https://erichartford.com/uncensored-models
+
+    [4]: https://arxiv.org/abs/2406.11717/
+
+    [5]: https://taico.ca/posts/whiterabbitneo/
+
+    [6]: https://gbhackers.com/wormgpt-enhanced-with-grok-and-mixtral/'
+- source_node_id: cosai_rm:DP
+  target_node_id: mitre_atlas:AML.T0071
+  composite_score: 0.3493
+  uncertainty_score: 1.9728
+  signals:
+    bridge: 0.0
+    semantic: 0.6264
+    keyword: 0.0682
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Data poisoning prevention directly mitigates false RAG entry injection.
+  source_name: Data Poisoning
+  source_description: 'Altering data sources used to train the model. In terms of
+    impact, Data Poisoning is comparable to modifying the logic of an application
+    to change its behavior.
+
+    '
+  target_name: False RAG Entry Injection
+  target_description: "Adversaries may introduce false entries into a victim's retrieval\
+    \ augmented generation (RAG) database. Content designed to be interpreted as a\
+    \ document by the large language model (LLM) used in the RAG system is included\
+    \ in a data source being ingested into the RAG database. When RAG entry including\
+    \ the false document is retrieved, the LLM is tricked into treating part of the\
+    \ retrieved content as a false RAG result. \n\nBy including a false RAG document\
+    \ inside of a regular RAG entry, it bypasses data monitoring tools. It also prevents\
+    \ the document from being deleted directly. \n\nThe adversary may use discovered\
+    \ system keywords to learn how to instruct a particular LLM to treat content as\
+    \ a RAG entry. They may be able to manipulate the injected entry's metadata including\
+    \ document title, author, and creation date."
+- source_node_id: cosai_rm:controlAgentObservability
+  target_node_id: mitre_atlas:AML.T0008.000
+  composite_score: 0.2008
+  uncertainty_score: 1.969
+  signals:
+    bridge: 0.0
+    semantic: 0.3766
+    keyword: 0.0103
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Agent observability is unrelated to AI dev workspace asset.
+  source_name: Agent Observability
+  source_description: 'Ensure an agent''s actions, tool use, and reasoning are transparent
+    and auditable through logging, allowing for debugging, security oversight, and
+    user insights into agent activity.
+
+    '
+  target_name: AI Development Workspaces
+  target_description: 'Developing and staging AI attacks often requires expensive
+    compute resources.
+
+    Adversaries may need access to one or many GPUs in order to develop an attack.
+
+    They may try to anonymously use free resources such as Google Colaboratory, or
+    cloud resources such as AWS, Azure, or Google Cloud as an efficient way to stand
+    up temporary resources to conduct operations.
+
+    Multiple workspaces may be used to avoid detection.'
+- source_node_id: cosai_rm:controlOrchestratorAndRouteIntegrity
+  target_node_id: mitre_atlas:AML.T0088
+  composite_score: 0.2008
+  uncertainty_score: 1.9679
+  signals:
+    bridge: 0.0
+    semantic: 0.3643
+    keyword: 0.0318
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Orchestrator integrity reduces deepfake generation attack surface.
+  source_name: Orchestrator and Route Integrity
+  source_description: 'Implement signed route manifests, configuration integrity verification,
+    and response provenance tracking to prevent routing manipulation and ensure request
+    routing to authorized models.
+
+    '
+  target_name: Generate Deepfakes
+  target_description: 'Adversaries may use generative artificial intelligence (GenAI)
+    to create synthetic media (i.e. imagery, video, audio, and text) that appear authentic.
+    These "[deepfakes]( https://en.wikipedia.org/wiki/Deepfake)" may mimic a real
+    person or depict fictional personas. Adversaries may use deepfakes for impersonation
+    to conduct [Phishing](/techniques/AML.T0052) or to evade AI applications such
+    as biometric identity verification systems (see [Evade AI Model](/techniques/AML.T0015)).
+
+
+    Manipulation of media has been possible for a long time, however GenAI reduces
+    the skill and level of effort required, allowing adversaries to rapidly scale
+    operations to target more users or systems. It also makes real-time manipulations
+    feasible.
+
+
+    Adversaries may utilize open-source models and software that were designed for
+    legitimate use cases to generate deepfakes for malicious use. However, there are
+    some projects specifically tailored towards malicious use cases such as [ProKYC](https://www.catonetworks.com/blog/prokyc-selling-deepfake-tool-for-account-fraud-attacks/).'
+- source_node_id: cosai_rm:controlAgentObservability
+  target_node_id: mitre_atlas:AML.T0015
+  composite_score: 0.1991
+  uncertainty_score: 1.9623
+  signals:
+    bridge: 0.0189
+    semantic: 0.3531
+    keyword: 0.0034
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Agent observability detects AI model evasion attempts.
+  source_name: Agent Observability
+  source_description: 'Ensure an agent''s actions, tool use, and reasoning are transparent
+    and auditable through logging, allowing for debugging, security oversight, and
+    user insights into agent activity.
+
+    '
+  target_name: Evade AI Model
+  target_description: 'Adversaries can [Craft Adversarial Data](/techniques/AML.T0043)
+    that prevents an AI model from correctly identifying the contents of the data
+    or [Generate Deepfakes](/techniques/AML.T0088) that fools an AI model expecting
+    authentic data.
+
+
+    This technique can be used to evade a downstream task where AI is utilized. The
+    adversary may evade AI-based virus/malware detection or network scanning towards
+    the goal of a traditional cyber attack. AI model evasion through deepfake generation
+    may also provide initial access to systems that use AI-based biometric authentication.'
+- source_node_id: cosai_rm:EBM
+  target_node_id: mitre_atlas:AML.T0088
+  composite_score: 0.201
+  uncertainty_score: 1.961
+  signals:
+    bridge: 0.0
+    semantic: 0.3637
+    keyword: 0.0335
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Benchmark manipulation is unrelated to deepfake generation.
+  source_name: Evaluation/Benchmark Manipulation
+  source_description: 'Poisoned or leaked evaluation sets misleading safety and robustness
+    signals. Evaluation/Benchmark Manipulation can compromise model assessment accuracy
+    and lead to deployment of unsafe or unreliable AI systems.
+
+    '
+  target_name: Generate Deepfakes
+  target_description: 'Adversaries may use generative artificial intelligence (GenAI)
+    to create synthetic media (i.e. imagery, video, audio, and text) that appear authentic.
+    These "[deepfakes]( https://en.wikipedia.org/wiki/Deepfake)" may mimic a real
+    person or depict fictional personas. Adversaries may use deepfakes for impersonation
+    to conduct [Phishing](/techniques/AML.T0052) or to evade AI applications such
+    as biometric identity verification systems (see [Evade AI Model](/techniques/AML.T0015)).
+
+
+    Manipulation of media has been possible for a long time, however GenAI reduces
+    the skill and level of effort required, allowing adversaries to rapidly scale
+    operations to target more users or systems. It also makes real-time manipulations
+    feasible.
+
+
+    Adversaries may utilize open-source models and software that were designed for
+    legitimate use cases to generate deepfakes for malicious use. However, there are
+    some projects specifically tailored towards malicious use cases such as [ProKYC](https://www.catonetworks.com/blog/prokyc-selling-deepfake-tool-for-account-fraud-attacks/).'
+- source_node_id: cosai_rm:EBM
+  target_node_id: mitre_atlas:AML.T0097
+  composite_score: 0.201
+  uncertainty_score: 1.9593
+  signals:
+    bridge: 0.0
+    semantic: 0.3823
+    keyword: 0.001
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Benchmark manipulation is unrelated to sandbox evasion.
+  source_name: Evaluation/Benchmark Manipulation
+  source_description: 'Poisoned or leaked evaluation sets misleading safety and robustness
+    signals. Evaluation/Benchmark Manipulation can compromise model assessment accuracy
+    and lead to deployment of unsafe or unreliable AI systems.
+
+    '
+  target_name: Virtualization/Sandbox Evasion
+  target_description: 'Adversaries may employ various means to detect and avoid virtualization
+    and analysis environments. This may include changing behaviors based on the results
+    of checks for the presence of artifacts indicative of a virtual machine environment
+    (VME) or sandbox. If the adversary detects a VME, they may alter their malware
+    to disengage from the victim or conceal the core functions of the implant. They
+    may also search for VME artifacts before dropping secondary or additional payloads.
+
+
+    Adversaries may use several methods to accomplish Virtualization/Sandbox Evasion
+    such as checking for security monitoring tools (e.g., Sysinternals, Wireshark,
+    etc.) or other system artifacts associated with analysis or virtualization such
+    as registry keys (e.g. substrings matching Vmware, VBOX, QEMU), environment variables
+    (e.g. substrings matching VBOX, VMWARE, PARALLELS), NIC MAC addresses (e.g. prefixes
+    00-05-69 (VMWare) or 08-00-27 (VirtualBox)), running processes (e.g. vmware.exe,
+    vboxservice.exe, qemu-ga.exe) [\[1\]][1].
+
+
+    [1]: https://research.checkpoint.com/2025/ai-evasion-prompt-injection/'
+- source_node_id: cosai_rm:controlOrchestratorAndRouteIntegrity
+  target_node_id: mitre_atlas:AML.T0043.001
+  composite_score: 0.199
+  uncertainty_score: 1.9593
+  signals:
+    bridge: 0.0339
+    semantic: 0.3354
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Orchestrator integrity reduces black-box optimization attack effectiveness.
+  source_name: Orchestrator and Route Integrity
+  source_description: 'Implement signed route manifests, configuration integrity verification,
+    and response provenance tracking to prevent routing manipulation and ensure request
+    routing to authorized models.
+
+    '
+  target_name: Black-Box Optimization
+  target_description: 'In Black-Box attacks, the adversary has black-box (i.e. [AI
+    Model Inference API Access](/techniques/AML.T0040) via API access) access to the
+    target model.
+
+    With black-box attacks, the adversary may be using an API that the victim is monitoring.
+
+    These attacks are generally less effective and require more inferences than [White-Box
+    Optimization](/techniques/AML.T0043.000) attacks, but they require much less access.
+
+    '
+- source_node_id: cosai_rm:ASSC
+  target_node_id: mitre_atlas:AML.T0112
+  composite_score: 0.351
+  uncertainty_score: 1.9592
+  signals:
+    bridge: 0.0
+    semantic: 0.9387
+    keyword: 0.0286
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Side-channel controls directly mitigate machine compromise via accelerator
+    leaks.
+  source_name: Accelerator and System Side-channels
+  source_description: 'Cross-tenant leakage via hardware side-channels in CPUs, GPUs,
+    TPUs, memory systems, and interconnects. These vulnerabilities exploit timing,
+    cache, speculative execution, and memory access patterns to compromise data confidentiality
+    and infer sensitive information in shared computing environments.
+
+    '
+  target_name: Machine Compromise
+  target_description: 'Adversaries may compromise a machine by exploiting or manipulating
+    AI-enabled components on the system. Compromising a victim system allows the adversary
+    to execute arbitrary code, steal credentials, exfiltrate data, and continue to
+    persist on the system.
+
+
+    Adversaries may target a [Local AI Agent](/techniques/AML.T0112.000) which if
+    compromised grants them the capabilities and permissions of the agent, or [AI
+    Artifacts](/techniques/AML.T0112.001) which can contain embedded malware.'
+- source_node_id: cosai_rm:controlAdversarialTrainingAndTesting
+  target_node_id: mitre_atlas:AML.T0076
+  composite_score: 0.3511
+  uncertainty_score: 1.9574
+  signals:
+    bridge: 0.0
+    semantic: 0.6662
+    keyword: 0.0044
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Adversarial training/testing directly addresses corrupt AI model.
+  source_name: Adversarial Training and Testing
+  source_description: 'Use techniques to make AI models robust to adversarial inputs
+    (i.e. prompts) in the context of their use in applications.
+
+    '
+  target_name: Corrupt AI Model
+  target_description: An adversary may purposefully corrupt a malicious AI model file
+    so that it cannot be successfully deserialized in order to evade detection by
+    a model scanner. The corrupt model may still successfully execute malicious code
+    before deserialization fails.
+- source_node_id: cosai_rm:controlModelPrivacyEnhancingTechnologies
+  target_node_id: mitre_atlas:AML.M0027
+  composite_score: 0.2011
+  uncertainty_score: 1.9565
+  signals:
+    bridge: 0.0
+    semantic: 0.3738
+    keyword: 0.0161
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Training PETs map to single-user agent permission configuration goals.
+  source_name: Privacy Enhancing Technologies for Model Training
+  source_description: 'Use technologies that minimize, de-identify, or restrict use
+    of PII data in training or evaluating models, including differential privacy,
+    secure aggregation protocols, federated learning, data anonymization, and synthetic
+    data generation.
+
+    '
+  target_name: Single-User AI Agent Permissions Configuration
+  target_description: When deploying an AI agent that acts as a representative of
+    a user and performs actions on their behalf, it is important to implement robust
+    policies and controls on permissions and lifecycle management of the agent. Lifecycle
+    management involves establishing identity, protocols for access management, and
+    decommissioning of the agent when its role is no longer needed. Controls should
+    also include the principle of least privilege and delegated access from the user
+    account. When acting as a representative of a user, the AI agent should not be
+    granted permissions that the user would not be granted within the system or organization.
+- source_node_id: cosai_rm:DP
+  target_node_id: mitre_atlas:AML.T0000
+  composite_score: 0.3511
+  uncertainty_score: 1.956
+  signals:
+    bridge: 0.0
+    semantic: 0.6335
+    keyword: 0.0617
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Data poisoning is unrelated to open-source database recon.
+  source_name: Data Poisoning
+  source_description: 'Altering data sources used to train the model. In terms of
+    impact, Data Poisoning is comparable to modifying the logic of an application
+    to change its behavior.
+
+    '
+  target_name: Search Open Technical Databases
+  target_description: 'Adversaries may search for publicly available research and
+    technical documentation to learn how and where AI is used within a victim organization.
+
+    The adversary can use this information to identify targets for attack, or to tailor
+    an existing attack to make it more effective.
+
+    Organizations often use open source model architectures trained on additional
+    proprietary data in production.
+
+    Knowledge of this underlying architecture allows the adversary to craft more realistic
+    proxy models ([Create Proxy AI Model](/techniques/AML.T0005)).
+
+    An adversary can search these resources for publications for authors employed
+    at the victim organization.
+
+
+    Research and technical materials may exist as academic papers published in [Journals
+    and Conference Proceedings](/techniques/AML.T0000.000), or stored in [Pre-Print
+    Repositories](/techniques/AML.T0000.001), as well as [Technical Blogs](/techniques/AML.T0000.002).'
+- source_node_id: cosai_rm:controlTrainingDataSanitization
+  target_node_id: mitre_atlas:AML.M0017
+  composite_score: 0.2011
+  uncertainty_score: 1.9548
+  signals:
+    bridge: 0.0
+    semantic: 0.3831
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Training data sanitization supports trusted model distribution.
+  source_name: Training Data Sanitization
+  source_description: 'Detect and remove or remediate poisoned or sensitive data in
+    training and evaluation.
+
+    '
+  target_name: AI Model Distribution Methods
+  target_description: 'Deploying AI models to edge devices can increase the attack
+    surface of the system.
+
+    Consider serving models in the cloud to reduce the level of access the adversary
+    has to the model.
+
+    Also consider computing features in the cloud to prevent gray-box attacks, where
+    an adversary has access to the model preprocessing methods.'
+- source_node_id: cosai_rm:controlInputValidationAndSanitization
+  target_node_id: mitre_atlas:AML.M0010
+  composite_score: 0.3497
+  uncertainty_score: 1.9536
+  signals:
+    bridge: 0.0
+    semantic: 0.9634
+    keyword: 0.0627
+    function_match: 0.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Input validation supports input restoration defense.
+  source_name: Input Validation and Sanitization
+  source_description: Block or restrict adversarial queries to AI models.
+  target_name: Input Restoration
+  target_description: 'Preprocess all inference data to nullify or reverse potential
+    adversarial perturbations.
+
+    '
+- source_node_id: cosai_rm:controlAgentObservability
+  target_node_id: mitre_atlas:AML.T0000.002
+  composite_score: 0.3512
+  uncertainty_score: 1.9531
+  signals:
+    bridge: 0.0
+    semantic: 0.6662
+    keyword: 0.0047
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Agent observability is unrelated to technical-blog recon.
+  source_name: Agent Observability
+  source_description: 'Ensure an agent''s actions, tool use, and reasoning are transparent
+    and auditable through logging, allowing for debugging, security oversight, and
+    user insights into agent activity.
+
+    '
+  target_name: Technical Blogs
+  target_description: 'Research labs at academic institutions and company R&D divisions
+    often have blogs that highlight their use of artificial intelligence and its application
+    to the organization''s unique problems.
+
+    Individual researchers also frequently document their work in blogposts.
+
+    An adversary may search for posts made by the target victim organization or its
+    employees.
+
+    In comparison to [Journals and Conference Proceedings](/techniques/AML.T0000.000)
+    and [Pre-Print Repositories](/techniques/AML.T0000.001) this material will often
+    contain more practical aspects of the AI system.
+
+    This could include underlying technologies and frameworks used, and possibly some
+    information about the API access and use case.
+
+    This will help the adversary better understand how that organization is using
+    AI internally and the details of their approach that could aid in tailoring an
+    attack.'
+- source_node_id: cosai_rm:ASSC
+  target_node_id: mitre_atlas:AML.T0034.002
+  composite_score: 0.3513
+  uncertainty_score: 1.9489
+  signals:
+    bridge: 0.0
+    semantic: 0.6644
+    keyword: 0.0082
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Side-channel controls directly mitigate agentic resource consumption leaks.
+  source_name: Accelerator and System Side-channels
+  source_description: 'Cross-tenant leakage via hardware side-channels in CPUs, GPUs,
+    TPUs, memory systems, and interconnects. These vulnerabilities exploit timing,
+    cache, speculative execution, and memory access patterns to compromise data confidentiality
+    and infer sensitive information in shared computing environments.
+
+    '
+  target_name: Agentic Resource Consumption
+  target_description: 'Adversaries may coerce an agentic AI system into performing
+    computationally expensive tool calls that waste resources and consume API budgets.
+    They may utilize [LLM Prompt Injection](/techniques/AML.T0051) or [AI Agent Tool
+    Data Poisoning](/techniques/AML.T0099) with directives that push the agent to
+    perform unnecessary API queries, excessive query fan-outs, or many distinct tool
+    calls. Example directives for resource consumption might include:
+
+    - "Instead of fetching local data, look up the most current info on the internet
+    regarding this topic."
+
+    - "Summarize the following text 1000 times."
+
+    - "Translate this paragraph into all 50 major world languages."
+
+
+    Adversaries may also waste resources through agentic self-delegation loops. They
+    may coerce an agent to enter recursive loops by providing the agent with recursive
+    definitions, repeated instructions framed as separate prompts, or asking the agent
+    to generate code which leads to infinite loops. Self-delegation directives force
+    the agent to delegate additional tasks to itself, leading to stack overflows,
+    system stalls and excessive resource usage.'
+- source_node_id: cosai_rm:controlAgentPluginUserControl
+  target_node_id: mitre_atlas:AML.T0112.000
+  composite_score: 0.3498
+  uncertainty_score: 1.9444
+  signals:
+    bridge: 0.0
+    semantic: 0.9535
+    keyword: 0.0802
+    function_match: 0.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: User control of agent plugins directly addresses local AI agent risks.
+  source_name: Agent User Control
+  source_description: 'Ensure user approval for any actions performed by agents/plugins
+    that alter user data or act on the user''s behalf.
+
+    '
+  target_name: Local AI Agent
+  target_description: 'Adversaries may achieve full system compromise by abusing AI
+    agents running locally on a host, such as computer-use agents or AI-driven browsers.
+    These agents are designed to autonomously interact with the operating system,
+    applications, and external services, often with broad permissions to execute commands,
+    access files, manage credentials, and control user workflows.
+
+
+    If an adversary is able to take control of an AI agent''s behavior, they effectively
+    gain the same level of access as the agent. This can result in complete control
+    over the machine, including executing arbitrary code, accessing or exfiltrating
+    sensitive data, modifying system configurations, and establishing persistence.'
+- source_node_id: cosai_rm:controlModelAndDataIntegrityManagement
+  target_node_id: mitre_atlas:AML.TA0008
+  composite_score: 0.2014
+  uncertainty_score: 1.9441
+  signals:
+    bridge: 0.0
+    semantic: 0.3799
+    keyword: 0.0065
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Integrity management weakly relates to discovery tactic.
+  source_name: Model and Data Integrity Management
+  source_description: "Ensure that all data, models, and code used to produce AI models\
+    \ are verifiably integrity-protected during development and deployment.\n Implement\
+    \ repository trust policies, cryptographic signatures, attestation frameworks,\
+    \ and offline verification capabilities to ensure integrity and authenticity of\
+    \ models and artifacts.\n"
+  target_name: Discovery
+  target_description: 'The adversary is trying to figure out your AI environment.
+
+
+    Discovery consists of techniques an adversary may use to gain knowledge about
+    the system and internal network.
+
+    These techniques help adversaries observe the environment and orient themselves
+    before deciding how to act.
+
+    They also allow adversaries to explore what they can control and what''s around
+    their entry point in order to discover how it could benefit their current objective.
+
+    Native operating system tools are often used toward this post-compromise information-gathering
+    objective.'
+- source_node_id: cosai_rm:UTD
+  target_node_id: mitre_atlas:AML.T0018.002
+  composite_score: 0.3514
+  uncertainty_score: 1.9433
+  signals:
+    bridge: 0.0
+    semantic: 0.6593
+    keyword: 0.0177
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Unauthorized training data prevention reduces embedded malware exposure.
+  source_name: Unauthorized Training Data
+  source_description: 'Using unauthorized data for model training. Using a model trained
+    with Unauthorized Training Data might lead to legal or ethical challenges.
+
+    '
+  target_name: Embed Malware
+  target_description: 'Adversaries may embed malicious code into AI Model files.
+
+    AI models may be packaged as a combination of instructions and weights.
+
+    Some formats such as pickle files are unsafe to deserialize because they can contain
+    unsafe calls such as exec.
+
+    Models with embedded malware may still operate as expected.
+
+    It may allow them to achieve Execution, Command & Control, or Exfiltrate Data.'
+- source_node_id: cosai_rm:controlModelPrivacyEnhancingTechnologies
+  target_node_id: mitre_atlas:AML.T0066
+  composite_score: 0.3515
+  uncertainty_score: 1.9391
+  signals:
+    bridge: 0.0
+    semantic: 0.661
+    keyword: 0.0149
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Training PETs reduce retrieval content crafting effectiveness.
+  source_name: Privacy Enhancing Technologies for Model Training
+  source_description: 'Use technologies that minimize, de-identify, or restrict use
+    of PII data in training or evaluating models, including differential privacy,
+    secure aggregation protocols, federated learning, data anonymization, and synthetic
+    data generation.
+
+    '
+  target_name: Retrieval Content Crafting
+  target_description: 'Adversaries may write content designed to be retrieved by user
+    queries and influence a user of the system in some way. This abuses the trust
+    the user has in the system.
+
+
+    The crafted content can be combined with a prompt injection. It can also stand
+    alone in a separate document or email. The adversary must get the crafted content
+    into the victim\u0027s database, such as a vector database used in a retrieval
+    augmented generation (RAG) system. This may be accomplished via cyber access,
+    or by abusing the ingestion mechanisms common in RAG systems (see [RAG Poisoning](/techniques/AML.T0070)).
+
+
+    Large language models may be used as an assistant to aid an adversary in crafting
+    content.'
+- source_node_id: cosai_rm:MLD
+  target_node_id: mitre_atlas:AML.T0018.002
+  composite_score: 0.3507
+  uncertainty_score: 1.9338
+  signals:
+    bridge: 0.0
+    semantic: 0.9622
+    keyword: 0.0697
+    function_match: 0.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Malicious loader/deserialization prevention directly addresses embedded malware.
+  source_name: Malicious Loader/Deserialization
+  source_description: 'Unsafe loaders for models and tokenizers that can cause remote
+    code execution or integrity compromise. Malicious Loader/Deserialization poses
+    significant security risks including system compromise and data breaches.
+
+    '
+  target_name: Embed Malware
+  target_description: 'Adversaries may embed malicious code into AI Model files.
+
+    AI models may be packaged as a combination of instructions and weights.
+
+    Some formats such as pickle files are unsafe to deserialize because they can contain
+    unsafe calls such as exec.
+
+    Models with embedded malware may still operate as expected.
+
+    It may allow them to achieve Execution, Command & Control, or Exfiltrate Data.'
+- source_node_id: cosai_rm:PCP
+  target_node_id: mitre_atlas:AML.T0034.000
+  composite_score: 0.3517
+  uncertainty_score: 1.933
+  signals:
+    bridge: 0.0
+    semantic: 0.6646
+    keyword: 0.0093
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Cache poisoning prevention reduces excessive query exploitation.
+  source_name: Prompt/Response Cache Poisoning
+  source_description: 'Cross-user contamination via shared LLM caches lacking isolation
+    and validation. Prompt/Response Cache Poisoning can lead to information leakage,
+    misinformation propagation, and unauthorized access to cached content.
+
+    '
+  target_name: Excessive Queries
+  target_description: 'Adversaries may send an excessive number of otherwise normal
+    or low-complexity queries to an AI system with the goal of overwhelming its capacity
+    and increasing operating costs.
+
+
+    The attacker can automate high-volume request generation, exploiting rate limits,
+    autoscaling policies, and pay-per-use billing models to drive sustained resource
+    consumption without relying on specially crafted, computationally expensive inputs.
+    This behavior can also lead to increased latency, request queuing, and service
+    degradation or unavailability for legitimate users, as the system struggles to
+    process the inflated traffic.'
+- source_node_id: cosai_rm:controlRetrievalAndVectorSystemIntegrity
+  target_node_id: mitre_atlas:AML.T0010.005
+  composite_score: 0.3483
+  uncertainty_score: 1.9327
+  signals:
+    bridge: 0.0
+    semantic: 0.6602
+    keyword: 0.0058
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Vector integrity is foundational to securing AI agent tool retrieval.
+  source_name: Retrieval and Vector System Integrity Management
+  source_description: 'Implement provenance tracking, cryptographic signing, deduplication,
+    embedding anomaly detection, and index integrity checks to protect retrieval systems
+    and vector databases from poisoning attacks.
+
+    '
+  target_name: AI Agent Tool
+  target_description: 'Adversaries may target AI agent tools as a means to compromise
+    a victim''s AI supply chain. Tools add capabilities to AI agents, allowing them
+    to interact with other services, connect to data sources, access internet resources,
+    run system tools, and execute code. They are an attractive target for adversaries
+    because compromising an AI agent can provide them with broad accesses and permissions
+    on the victim''s system via the agent''s other tools.
+
+
+    Poisoned agent tools (See [AI Agent Tool Poisoning](/techniques/AML.T0110)) can
+    contain malicious code or [LLM Prompt Injection](/techniques/AML.T0051)s that
+    manipulate the agent''s behavior and even modify how other tools are called. Adversaries
+    have successfully used a poisoned MCP server to exfiltrate private user data [\[5\]][koi].
+
+
+    Agent tools have exploded in popularity, with thousands of MCP servers available
+    publicly [\[2\]][glama]. They are often released on open-source software repositories
+    such as GitHub, indexed on hubs specific to MCP servers [\[3\]][mcp-hub][\[4\]][mcp-server-hub],
+    and published to package registries such as NPM. AI agents can also be connected
+    to remotely-hosted tools [\[5\]][remote-mcp]. This creates an environment where
+    malicious tools can proliferate rapidly and safeguards are often not in place.
+
+
+    [koi]: https://www.koi.ai/blog/postmark-mcp-npm-malicious-backdoor-email-theft
+    "First Malicious MCP in the Wild: The Postmark Backdoor That''s Stealing Your
+    Emails"
+
+    [glama]: https://glama.ai/mcp/servers "Glama"
+
+    [mcp-hub]: https://www.mcphub.ai/ "MCP Hub"
+
+    [mcp-server-hub]: https://mcpserverhub.com/ "MCP Server Hub"
+
+    [remote-mcp]: https://mcpservers.org/remote-mcp-servers "Remote MCP Servers"'
+- source_node_id: cosai_rm:controlAgentPluginPermissions
+  target_node_id: mitre_atlas:AML.T0105
+  composite_score: 0.3483
+  uncertainty_score: 1.9321
+  signals:
+    bridge: 0.0
+    semantic: 0.6413
+    keyword: 0.0388
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Agent permissions directly address escape-to-host risk.
+  source_name: Agent Permissions
+  source_description: Use least-privilege principle as the upper bound on agentic
+    system permissions to minimize the number of tools that an agent is permitted
+    to interact with and the actions it is allowed to take. An agentic system's use
+    of privileges should be contextual and dynamic, adapting to the specific user
+    query and trusted contextual information. This design also applies to agents that
+    have access to user information. For example, an agent asked to fill out a form
+    or answer questions should share only cont
+  target_name: Escape to Host
+  target_description: 'Adversaries may break out of a container or virtualized environment
+    to gain access to the underlying host. This can allow an adversary access to other
+    containerized or virtualized resources from the host level or to the host itself.
+    In principle, containerized / virtualized resources should provide a clear separation
+    of application functionality and be isolated from the host environment.
+
+
+    There are many ways an adversary may escape from a container or sandbox environment
+    via AI Systems. For example, modifying an AI Agent''s configuration to disable
+    safety features or user confirmations could allow the adversary to invoke tools
+    to be run on host environments rather than in the sandbox.'
+- source_node_id: cosai_rm:controlModelPrivacyEnhancingTechnologies
+  target_node_id: mitre_atlas:AML.T0024.001
+  composite_score: 0.3502
+  uncertainty_score: 1.9306
+  signals:
+    bridge: 0.0172
+    semantic: 0.9365
+    keyword: 0.0731
+    function_match: 0.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Training PETs directly mitigate model inversion attacks.
+  source_name: Privacy Enhancing Technologies for Model Training
+  source_description: 'Use technologies that minimize, de-identify, or restrict use
+    of PII data in training or evaluating models, including differential privacy,
+    secure aggregation protocols, federated learning, data anonymization, and synthetic
+    data generation.
+
+    '
+  target_name: Invert AI Model
+  target_description: 'AI models'' training data could be reconstructed by exploiting
+    the confidence scores that are available via an inference API.
+
+    By querying the inference API strategically, adversaries can back out potentially
+    private information embedded within the training data.
+
+    This could lead to privacy violations if the attacker can reconstruct the data
+    of sensitive features used in the algorithm.'
+- source_node_id: cosai_rm:controlOrchestratorAndRouteIntegrity
+  target_node_id: mitre_atlas:AML.T0011.003
+  composite_score: 0.3482
+  uncertainty_score: 1.9298
+  signals:
+    bridge: 0.0
+    semantic: 0.6633
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Orchestrator integrity reduces malicious link injection.
+  source_name: Orchestrator and Route Integrity
+  source_description: 'Implement signed route manifests, configuration integrity verification,
+    and response provenance tracking to prevent routing manipulation and ensure request
+    routing to authorized models.
+
+    '
+  target_name: Malicious Link
+  target_description: 'An adversary may rely upon a user clicking a malicious link
+    in order to gain execution. Users may be subjected to social engineering to get
+    them to click on a link that will lead to code execution. This user action will
+    typically be observed as follow-on behavior from Spearphishing Link. Clicking
+    on a link may also lead to other execution techniques such as exploitation of
+    a browser or application vulnerability via Exploitation for Client Execution.
+    Links may also lead users to download files that require execution via Malicious
+    File.
+
+
+    There are many ways an adversary can leverage malicious links to gain access to
+    a victim system via an AI system. For example, an AI Agent that is configured
+    to not validate website origin headers will accept connections from any website,
+    allowing adversaries the ability to get around previously inaccessible network.'
+- source_node_id: cosai_rm:EDH
+  target_node_id: mitre_atlas:AML.M0005
+  composite_score: 0.3496
+  uncertainty_score: 1.929
+  signals:
+    bridge: 0.0288
+    semantic: 0.9429
+    keyword: 0.0332
+    function_match: 0.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Excessive data handling prevention maps to access control on data at rest.
+  source_name: Excessive Data Handling
+  source_description: 'Using data for model training and development that exceeds
+    authorized or legal boundaries for collection, retention, or processing. This
+    may lead to policy and legal challenges.
+
+    '
+  target_name: Control Access to AI Models and Data at Rest
+  target_description: 'Establish access controls on internal model registries and
+    limit internal access to production models. Limit access to training data only
+    to approved users.
+
+    '
+- source_node_id: cosai_rm:controlRiskGovernance
+  target_node_id: mitre_atlas:AML.M0008
+  composite_score: 0.3481
+  uncertainty_score: 1.9255
+  signals:
+    bridge: 0.0
+    semantic: 0.9155
+    keyword: 0.052
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Risk governance supports AI model validation.
+  source_name: Risk Governance
+  source_description: 'Inventory, measure, and monitor residual risk to AI in your
+    organization.
+
+    '
+  target_name: Validate AI Model
+  target_description: 'Validate that AI models perform as intended by testing for
+    backdoor triggers, potential for data leakage, or adversarial influence.
+
+    Monitor AI model for concept drift and training data drift, which may indicate
+    data tampering and poisoning.'
+- source_node_id: cosai_rm:controlThreatDetection
+  target_node_id: mitre_atlas:AML.T0063
+  composite_score: 0.3519
+  uncertainty_score: 1.9246
+  signals:
+    bridge: 0.0
+    semantic: 0.6607
+    keyword: 0.0167
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Threat detection directly addresses model output discovery.
+  source_name: Threat Detection
+  source_description: 'Detect and alert on internal or external attacks on AI assets,
+    infrastructure, and products
+
+    '
+  target_name: Discover AI Model Outputs
+  target_description: 'Adversaries may discover model outputs, such as class scores,
+    whose presence is not required for the system to function and are not intended
+    for use by the end user. Model outputs may be found in logs or may be included
+    in API responses.
+
+    Model outputs may enable the adversary to identify weaknesses in the model and
+    develop attacks.'
+- source_node_id: cosai_rm:controlUserDataManagement
+  target_node_id: mitre_atlas:AML.T0068
+  composite_score: 0.3481
+  uncertainty_score: 1.9236
+  signals:
+    bridge: 0.0
+    semantic: 0.6591
+    keyword: 0.0069
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: User data management reduces prompt obfuscation effectiveness.
+  source_name: User Data Management
+  source_description: 'Store, process, and use all user data (e.g. prompts and logs)
+    from AI applications in compliance with user consent.
+
+    '
+  target_name: LLM Prompt Obfuscation
+  target_description: 'Adversaries may hide or otherwise obfuscate prompt injections
+    or retrieval content to avoid detection from humans, large language model (LLM)
+    guardrails, or other detection mechanisms.
+
+
+    For text inputs, this may include modifying how the instructions are rendered
+    such as small text, text colored the same as the background, or hidden HTML elements.
+    For multi-modal inputs, malicious instructions could be hidden in the data itself
+    (e.g. in the pixels of an image) or in file metadata (e.g. EXIF for images, ID3
+    tags for audio, or document metadata).
+
+
+    Inputs can also be obscured via an encoding scheme such as base64 or rot13. This
+    may bypass LLM guardrails that identify malicious content and may not be as easily
+    identifiable as malicious to a human in the loop.'
+- source_node_id: cosai_rm:EBM
+  target_node_id: mitre_atlas:AML.T0018
+  composite_score: 0.3495
+  uncertainty_score: 1.9184
+  signals:
+    bridge: 0.0426
+    semantic: 0.9363
+    keyword: 0.0134
+    function_match: 0.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Benchmark manipulation directly addresses AI model manipulation.
+  source_name: Evaluation/Benchmark Manipulation
+  source_description: 'Poisoned or leaked evaluation sets misleading safety and robustness
+    signals. Evaluation/Benchmark Manipulation can compromise model assessment accuracy
+    and lead to deployment of unsafe or unreliable AI systems.
+
+    '
+  target_name: Manipulate AI Model
+  target_description: Adversaries may directly manipulate an AI model to change its
+    behavior or introduce malicious code. Manipulating a model gives the adversary
+    a persistent change in the system. This can include poisoning the model by changing
+    its weights, modifying the model architecture to change its behavior, and embedding
+    malware which may be executed when the model is loaded.
+- source_node_id: cosai_rm:UTD
+  target_node_id: mitre_atlas:AML.T0066
+  composite_score: 0.3479
+  uncertainty_score: 1.9179
+  signals:
+    bridge: 0.0
+    semantic: 0.6628
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Unauthorized training data prevention reduces retrieval content crafting.
+  source_name: Unauthorized Training Data
+  source_description: 'Using unauthorized data for model training. Using a model trained
+    with Unauthorized Training Data might lead to legal or ethical challenges.
+
+    '
+  target_name: Retrieval Content Crafting
+  target_description: 'Adversaries may write content designed to be retrieved by user
+    queries and influence a user of the system in some way. This abuses the trust
+    the user has in the system.
+
+
+    The crafted content can be combined with a prompt injection. It can also stand
+    alone in a separate document or email. The adversary must get the crafted content
+    into the victim\u0027s database, such as a vector database used in a retrieval
+    augmented generation (RAG) system. This may be accomplished via cyber access,
+    or by abusing the ingestion mechanisms common in RAG systems (see [RAG Poisoning](/techniques/AML.T0070)).
+
+
+    Large language models may be used as an assistant to aid an adversary in crafting
+    content.'
+- source_node_id: cosai_rm:controlTrainingDataSanitization
+  target_node_id: mitre_atlas:AML.T0047
+  composite_score: 0.1979
+  uncertainty_score: 1.9177
+  signals:
+    bridge: 0.0
+    semantic: 0.377
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Training data sanitization is unrelated to AI-enabled product asset.
+  source_name: Training Data Sanitization
+  source_description: 'Detect and remove or remediate poisoned or sensitive data in
+    training and evaluation.
+
+    '
+  target_name: AI-Enabled Product or Service
+  target_description: 'Adversaries may use a product or service that uses artificial
+    intelligence under the hood to gain access to the underlying AI model.
+
+    This type of indirect model access may reveal details of the AI model or its inferences
+    in logs or metadata.'
+- source_node_id: cosai_rm:controlOutputValidationAndSanitization
+  target_node_id: mitre_atlas:AML.T0068
+  composite_score: 0.3521
+  uncertainty_score: 1.9164
+  signals:
+    bridge: 0.0
+    semantic: 0.6706
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Output validation reduces prompt obfuscation success.
+  source_name: Output Validation and Sanitization
+  source_description: 'Block, nullify, or sanitize insecure output from AI models
+    before passing it to applications, extensions or users.
+
+    '
+  target_name: LLM Prompt Obfuscation
+  target_description: 'Adversaries may hide or otherwise obfuscate prompt injections
+    or retrieval content to avoid detection from humans, large language model (LLM)
+    guardrails, or other detection mechanisms.
+
+
+    For text inputs, this may include modifying how the instructions are rendered
+    such as small text, text colored the same as the background, or hidden HTML elements.
+    For multi-modal inputs, malicious instructions could be hidden in the data itself
+    (e.g. in the pixels of an image) or in file metadata (e.g. EXIF for images, ID3
+    tags for audio, or document metadata).
+
+
+    Inputs can also be obscured via an encoding scheme such as base64 or rot13. This
+    may bypass LLM guardrails that identify malicious content and may not be as easily
+    identifiable as malicious to a human in the loop.'
+- source_node_id: cosai_rm:controlModelAndDataIntegrityManagement
+  target_node_id: mitre_atlas:AML.T0093
+  composite_score: 0.2021
+  uncertainty_score: 1.9157
+  signals:
+    bridge: 0.0
+    semantic: 0.3784
+    keyword: 0.0115
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Integrity management addresses prompt infiltration via public apps.
+  source_name: Model and Data Integrity Management
+  source_description: "Ensure that all data, models, and code used to produce AI models\
+    \ are verifiably integrity-protected during development and deployment.\n Implement\
+    \ repository trust policies, cryptographic signatures, attestation frameworks,\
+    \ and offline verification capabilities to ensure integrity and authenticity of\
+    \ models and artifacts.\n"
+  target_name: Prompt Infiltration via Public-Facing Application
+  target_description: 'An adversary may introduce malicious prompts into the victim''s
+    system via a public-facing application with the intention of it being ingested
+    by an AI at some point in the future and ultimately having a downstream effect.
+    This may occur when a data source is indexed by a retrieval augmented generation
+    (RAG) system, when a rule triggers an action by an AI agent, or when a user utilizes
+    a large language model (LLM) to interact with the malicious content. The malicious
+    prompts may persist on the victim system for an extended period and could affect
+    multiple users and various AI tools within the victim organization.
+
+
+    Any public-facing application that accepts text input could be a target. This
+    includes email, shared document systems like OneDrive or Google Drive, and service
+    desks or ticketing systems like Jira. This also includes OCR-mediated infiltration
+    where malicious instructions are embedded in images, screenshots, and invoices
+    that are ingested into the system.
+
+
+    Adversaries may perform [Reconnaissance](/tactics/AML.TA0002) to identify public
+    facing applications that are likely monitored by an AI agent or are likely to
+    be indexed by a RAG. They may perform [Discover AI Agent Configuration](/techniques/AML.T0084)
+    to refine their targeting.'
+- source_node_id: cosai_rm:controlThreatDetection
+  target_node_id: mitre_atlas:AML.M0020
+  composite_score: 0.3479
+  uncertainty_score: 1.9153
+  signals:
+    bridge: 0.0
+    semantic: 0.6598
+    keyword: 0.005
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Threat detection is canonical generative AI guardrails.
+  source_name: Threat Detection
+  source_description: 'Detect and alert on internal or external attacks on AI assets,
+    infrastructure, and products
+
+    '
+  target_name: Generative AI Guardrails
+  target_description: 'Guardrails are safety controls that are placed between a generative
+    AI model and the output shared with the user to prevent undesired inputs and outputs.
+
+    Guardrails can take the form of validators such as filters, rule-based logic,
+    or regular expressions, as well as AI-based approaches, such as classifiers and
+    utilizing LLMs, or named entity recognition (NER) to evaluate the safety of the
+    prompt or response. Domain specific methods can be employed to reduce risks in
+    a variety of areas such as etiquette, brand damage, jailbreaking, false information,
+    code exploits, SQL injections, and data leakage.'
+- source_node_id: cosai_rm:controlRuntimePrivacyEnhancingTechnologies
+  target_node_id: mitre_atlas:AML.T0091
+  composite_score: 0.2022
+  uncertainty_score: 1.9133
+  signals:
+    bridge: 0.0
+    semantic: 0.3797
+    keyword: 0.0094
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Inference PETs weakly relate to alternate authentication material abuse.
+  source_name: Privacy Enhancing Technologies for Inference
+  source_description: 'Use technologies that minimize, de-identify, or restrict use
+    of PII data during model deployment and inference, including secure multi-party
+    computation, homomorphic encryption, inference log de-identification, on-device
+    processing, and privacy-preserving query mechanisms.
+
+    '
+  target_name: Use Alternate Authentication Material
+  target_description: 'Adversaries may use alternate authentication material, such
+    as password hashes, Kerberos tickets, and application access tokens, in order
+    to move laterally within an environment and bypass normal system access controls.
+
+
+    AI services commonly use alternate authentication material as a primary means
+    for users to make queries, making them vulnerable to this technique.'

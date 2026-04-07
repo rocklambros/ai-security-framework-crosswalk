@@ -1,0 +1,995 @@
+candidates:
+- source_node_id: cosai_rm:controlAgentPluginPermissions
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.1994
+  uncertainty_score: 1.9742
+  signals:
+    bridge: 0.0275
+    semantic: 0.3443
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Agent plugin permissions reduce vector store query exposure.
+  source_name: Agent Permissions
+  source_description: Use least-privilege principle as the upper bound on agentic
+    system permissions to minimize the number of tools that an agent is permitted
+    to interact with and the actions it is allowed to take. An agentic system's use
+    of privileges should be contextual and dynamic, adapting to the specific user
+    query and trusted contextual information. This design also applies to agents that
+    have access to user information. For example, an agent asked to fill out a form
+    or answer questions should share only cont
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: cosai_rm:UTD
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.1991
+  uncertainty_score: 1.9655
+  signals:
+    bridge: 0.0
+    semantic: 0.3793
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Unauthorized training data prevention addresses supply-chain integrity.
+  source_name: Unauthorized Training Data
+  source_description: 'Using unauthorized data for model training. Using a model trained
+    with Unauthorized Training Data might lead to legal or ethical challenges.
+
+    '
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: cosai_rm:controlModelAndDataInventoryManagement
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.1991
+  uncertainty_score: 1.9645
+  signals:
+    bridge: 0.0
+    semantic: 0.3793
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Inventory management supports sensitive-info disclosure prevention.
+  source_name: Model and Data Inventory Management
+  source_description: 'Ensure that all data, code, models, and transformation tools
+    used in AI applications are inventoried and tracked.
+
+    '
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: cosai_rm:ASSC
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.3511
+  uncertainty_score: 1.9548
+  signals:
+    bridge: 0.0
+    semantic: 0.6688
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Side-channel controls reduce embedding extraction risks.
+  source_name: Accelerator and System Side-channels
+  source_description: 'Cross-tenant leakage via hardware side-channels in CPUs, GPUs,
+    TPUs, memory systems, and interconnects. These vulnerabilities exploit timing,
+    cache, speculative execution, and memory access patterns to compromise data confidentiality
+    and infer sensitive information in shared computing environments.
+
+    '
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: cosai_rm:controlApplicationAccessManagement
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3489
+  uncertainty_score: 1.9544
+  signals:
+    bridge: 0.0103
+    semantic: 0.6512
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Application access management is canonical sensitive-info disclosure defense.
+  source_name: Application Access and Resource Management
+  source_description: "Ensure comprehensive access governance through:\n Identity\
+    \ and authorization controls that restrict resources to authorized users and endpoints\
+    \ for authorized actions.\n Resource governance controls including usage quotas,\
+    \ rate limiting, cost monitoring, and anomaly detection to prevent resource exhaustion\
+    \ and economic denial of wallet attacks.\n"
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: cosai_rm:controlRiskGovernance
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.2012
+  uncertainty_score: 1.9538
+  signals:
+    bridge: 0.0
+    semantic: 0.3832
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk governance weakly relates to misinformation mitigation.
+  source_name: Risk Governance
+  source_description: 'Inventory, measure, and monitor residual risk to AI in your
+    organization.
+
+    '
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: cosai_rm:PCP
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3499
+  uncertainty_score: 1.9521
+  signals:
+    bridge: 0.0441
+    semantic: 0.8402
+    keyword: 0.0859
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Cache poisoning is a canonical data/model poisoning vector.
+  source_name: Prompt/Response Cache Poisoning
+  source_description: 'Cross-user contamination via shared LLM caches lacking isolation
+    and validation. Prompt/Response Cache Poisoning can lead to information leakage,
+    misinformation propagation, and unauthorized access to cached content.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:controlOutputValidationAndSanitization
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3514
+  uncertainty_score: 1.9441
+  signals:
+    bridge: 0.0633
+    semantic: 0.8746
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Output validation reduces poisoned-output propagation.
+  source_name: Output Validation and Sanitization
+  source_description: 'Block, nullify, or sanitize insecure output from AI models
+    before passing it to applications, extensions or users.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:EDH
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3516
+  uncertainty_score: 1.9377
+  signals:
+    bridge: 0.1211
+    semantic: 0.5139
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Excessive data handling prevention is canonical sensitive-info disclosure
+    defense.
+  source_name: Excessive Data Handling
+  source_description: 'Using data for model training and development that exceeds
+    authorized or legal boundaries for collection, retention, or processing. This
+    may lead to policy and legal challenges.
+
+    '
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: cosai_rm:PCP
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.351
+  uncertainty_score: 1.9152
+  signals:
+    bridge: 0.0442
+    semantic: 0.5454
+    keyword: 0.1162
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Cache poisoning can produce misinformation outputs.
+  source_name: Prompt/Response Cache Poisoning
+  source_description: 'Cross-user contamination via shared LLM caches lacking isolation
+    and validation. Prompt/Response Cache Poisoning can lead to information leakage,
+    misinformation propagation, and unauthorized access to cached content.
+
+    '
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: cosai_rm:UTD
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.3478
+  uncertainty_score: 1.9127
+  signals:
+    bridge: 0.0358
+    semantic: 0.6164
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Unauthorized training data is a primary misinformation source.
+  source_name: Unauthorized Training Data
+  source_description: 'Using unauthorized data for model training. Using a model trained
+    with Unauthorized Training Data might lead to legal or ethical challenges.
+
+    '
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: cosai_rm:PCP
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.3484
+  uncertainty_score: 1.9001
+  signals:
+    bridge: 0.0353
+    semantic: 0.5851
+    keyword: 0.0578
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Cache poisoning can be triggered by indirect prompt injection.
+  source_name: Prompt/Response Cache Poisoning
+  source_description: 'Cross-user contamination via shared LLM caches lacking isolation
+    and validation. Prompt/Response Cache Poisoning can lead to information leakage,
+    misinformation propagation, and unauthorized access to cached content.
+
+    '
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: cosai_rm:controlOrchestratorAndRouteIntegrity
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.2028
+  uncertainty_score: 1.8873
+  signals:
+    bridge: 0.0159
+    semantic: 0.3659
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Orchestrator integrity reduces unbounded consumption from routing loops.
+  source_name: Orchestrator and Route Integrity
+  source_description: 'Implement signed route manifests, configuration integrity verification,
+    and response provenance tracking to prevent routing manipulation and ensure request
+    routing to authorized models.
+
+    '
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: cosai_rm:controlAgentPluginUserControl
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.347
+  uncertainty_score: 1.8789
+  signals:
+    bridge: 0.2876
+    semantic: 0.574
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: User control reduces system-prompt leakage exposure.
+  source_name: Agent User Control
+  source_description: 'Ensure user approval for any actions performed by agents/plugins
+    that alter user data or act on the user''s behalf.
+
+    '
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: cosai_rm:controlRiskGovernance
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.2031
+  uncertainty_score: 1.8754
+  signals:
+    bridge: 0.0
+    semantic: 0.3869
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk governance weakly relates to vector/embedding weaknesses.
+  source_name: Risk Governance
+  source_description: 'Inventory, measure, and monitor residual risk to AI in your
+    organization.
+
+    '
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: cosai_rm:controlAdversarialTrainingAndTesting
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3535
+  uncertainty_score: 1.8617
+  signals:
+    bridge: 0.0423
+    semantic: 0.9074
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Adversarial training directly mitigates data/model poisoning.
+  source_name: Adversarial Training and Testing
+  source_description: 'Use techniques to make AI models robust to adversarial inputs
+    (i.e. prompts) in the context of their use in applications.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:controlUserDataManagement
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3465
+  uncertainty_score: 1.86
+  signals:
+    bridge: 0.1634
+    semantic: 0.7312
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: User data management is canonical sensitive-info disclosure defense.
+  source_name: User Data Management
+  source_description: 'Store, process, and use all user data (e.g. prompts and logs)
+    from AI applications in compliance with user consent.
+
+    '
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: cosai_rm:ORH
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3516
+  uncertainty_score: 1.8491
+  signals:
+    bridge: 0.0645
+    semantic: 0.9116
+    keyword: 0.0177
+    function_match: 0.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Orchestrator hijack can introduce poisoned routing decisions.
+  source_name: Orchestrator/Route Hijack
+  source_description: 'Silent model or route swaps via configuration tampering or
+    prompt-based routing abuse. Orchestrator/Route Hijack can redirect requests to
+    malicious models or compromise routing integrity in AI systems.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:controlThreatDetection
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.1961
+  uncertainty_score: 1.8442
+  signals:
+    bridge: 0.0
+    semantic: 0.3735
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Threat detection identifies misinformation indicators.
+  source_name: Threat Detection
+  source_description: 'Detect and alert on internal or external attacks on AI assets,
+    infrastructure, and products
+
+    '
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: cosai_rm:controlRetrievalAndVectorSystemIntegrity
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.2039
+  uncertainty_score: 1.8429
+  signals:
+    bridge: 0.0205
+    semantic: 0.3621
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Vector integrity reduces RAG-driven misinformation.
+  source_name: Retrieval and Vector System Integrity Management
+  source_description: 'Implement provenance tracking, cryptographic signing, deduplication,
+    embedding anomaly detection, and index integrity checks to protect retrieval systems
+    and vector databases from poisoning attacks.
+
+    '
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: cosai_rm:controlApplicationAccessManagement
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.354
+  uncertainty_score: 1.8397
+  signals:
+    bridge: 0.0182
+    semantic: 0.6509
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Application access management reduces poisoning vector exposure.
+  source_name: Application Access and Resource Management
+  source_description: "Ensure comprehensive access governance through:\n Identity\
+    \ and authorization controls that restrict resources to authorized users and endpoints\
+    \ for authorized actions.\n Resource governance controls including usage quotas,\
+    \ rate limiting, cost monitoring, and anomaly detection to prevent resource exhaustion\
+    \ and economic denial of wallet attacks.\n"
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:controlRedTeaming
+  target_node_id: owasp_llm:LLM01
+  composite_score: 0.2042
+  uncertainty_score: 1.8302
+  signals:
+    bridge: 0.0
+    semantic: 0.3317
+    keyword: 0.1004
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Red teaming is canonical prompt-injection defense validation.
+  source_name: Red Teaming
+  source_description: 'Drive security and privacy improvements through self-driven
+    adversarial attacks on AI infrastructure and products
+
+    '
+  target_name: Prompt Injection
+  target_description: ''
+- source_node_id: cosai_rm:controlOrchestratorAndRouteIntegrity
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.1953
+  uncertainty_score: 1.8121
+  signals:
+    bridge: 0.02
+    semantic: 0.3463
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Orchestrator integrity reduces vector store routing exploits.
+  source_name: Orchestrator and Route Integrity
+  source_description: 'Implement signed route manifests, configuration integrity verification,
+    and response provenance tracking to prevent routing manipulation and ensure request
+    routing to authorized models.
+
+    '
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: cosai_rm:controlUserTransparencyAndControls
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.3453
+  uncertainty_score: 1.8115
+  signals:
+    bridge: 0.2876
+    semantic: 0.5677
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: User transparency reduces system-prompt leakage impact.
+  source_name: User Transparency and Controls
+  source_description: 'Inform users of relevant AI risks with disclosures, and provide
+    transparency and control experiences for use of their data in AI applications.
+
+    '
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: cosai_rm:controlModelAndDataIntegrityManagement
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.2049
+  uncertainty_score: 1.8042
+  signals:
+    bridge: 0.0225
+    semantic: 0.3613
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Integrity management reduces excessive agency from corrupted artifacts.
+  source_name: Model and Data Integrity Management
+  source_description: "Ensure that all data, models, and code used to produce AI models\
+    \ are verifiably integrity-protected during development and deployment.\n Implement\
+    \ repository trust policies, cryptographic signatures, attestation frameworks,\
+    \ and offline verification capabilities to ensure integrity and authenticity of\
+    \ models and artifacts.\n"
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: cosai_rm:DMS
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3532
+  uncertainty_score: 1.8037
+  signals:
+    bridge: 0.0635
+    semantic: 0.9275
+    keyword: 0.0
+    function_match: 0.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: DoS prevention weakly relates to data/model poisoning.
+  source_name: Denial of ML Service
+  source_description: 'Overloading ML systems with resource-intensive queries. Like
+    traditional DoS attacks, Denial of ML Service can reduce availability of or entirely
+    disrupt a service.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:controlRetrievalAndVectorSystemIntegrity
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.1949
+  uncertainty_score: 1.7957
+  signals:
+    bridge: 0.0
+    semantic: 0.3712
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Vector integrity reduces unbounded consumption from poisoned indices.
+  source_name: Retrieval and Vector System Integrity Management
+  source_description: 'Implement provenance tracking, cryptographic signing, deduplication,
+    embedding anomaly detection, and index integrity checks to protect retrieval systems
+    and vector databases from poisoning attacks.
+
+    '
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: cosai_rm:controlRedTeaming
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.1944
+  uncertainty_score: 1.7761
+  signals:
+    bridge: 0.0
+    semantic: 0.3703
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Red teaming is canonical system prompt leakage testing.
+  source_name: Red Teaming
+  source_description: 'Drive security and privacy improvements through self-driven
+    adversarial attacks on AI infrastructure and products
+
+    '
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: cosai_rm:controlModelAndDataIntegrityManagement
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.1943
+  uncertainty_score: 1.773
+  signals:
+    bridge: 0.0124
+    semantic: 0.3542
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Integrity management reduces unbounded consumption from corrupted artifacts.
+  source_name: Model and Data Integrity Management
+  source_description: "Ensure that all data, models, and code used to produce AI models\
+    \ are verifiably integrity-protected during development and deployment.\n Implement\
+    \ repository trust policies, cryptographic signatures, attestation frameworks,\
+    \ and offline verification capabilities to ensure integrity and authenticity of\
+    \ models and artifacts.\n"
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: cosai_rm:controlModelAndDataAccessControls
+  target_node_id: owasp_llm:LLM02
+  composite_score: 0.3564
+  uncertainty_score: 1.7424
+  signals:
+    bridge: 0.0162
+    semantic: 0.6582
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Model/data access controls are canonical sensitive-info disclosure defense.
+  source_name: Model and Data Access Controls
+  source_description: 'Minimize internal access to models, weights, datasets, etc.
+    in storage and in production use.
+
+    '
+  target_name: Sensitive Information Disclosure
+  target_description: ''
+- source_node_id: cosai_rm:controlAgentPluginUserControl
+  target_node_id: owasp_llm:LLM05
+  composite_score: 0.2064
+  uncertainty_score: 1.7424
+  signals:
+    bridge: 0.035
+    semantic: 0.3482
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: User control reduces improper output handling impact.
+  source_name: Agent User Control
+  source_description: 'Ensure user approval for any actions performed by agents/plugins
+    that alter user data or act on the user''s behalf.
+
+    '
+  target_name: Improper Output Handling
+  target_description: ''
+- source_node_id: cosai_rm:controlAgentObservability
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.2064
+  uncertainty_score: 1.7423
+  signals:
+    bridge: 0.019
+    semantic: 0.3687
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Agent observability detects vector store anomalies.
+  source_name: Agent Observability
+  source_description: 'Ensure an agent''s actions, tool use, and reasoning are transparent
+    and auditable through logging, allowing for debugging, security oversight, and
+    user insights into agent activity.
+
+    '
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: cosai_rm:controlTrainingDataSanitization
+  target_node_id: owasp_llm:LLM07
+  composite_score: 0.1935
+  uncertainty_score: 1.7401
+  signals:
+    bridge: 0.0169
+    semantic: 0.3469
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Training data sanitization reduces system prompt leakage via memorization.
+  source_name: Training Data Sanitization
+  source_description: 'Detect and remove or remediate poisoned or sensitive data in
+    training and evaluation.
+
+    '
+  target_name: System Prompt Leakage
+  target_description: ''
+- source_node_id: cosai_rm:MRE
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3448
+  uncertainty_score: 1.7388
+  signals:
+    bridge: 0.0159
+    semantic: 0.9388
+    keyword: 0.0455
+    function_match: 0.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Reverse engineering can support poisoning attack development.
+  source_name: Model Reverse Engineering
+  source_description: 'Recreating a model by analyzing its inputs, outputs, and behaviors.
+    A reverse engineer model can be used to create imitation products or adversarial
+    attacks.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:RVP
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3544
+  uncertainty_score: 1.7267
+  signals:
+    bridge: 0.0448
+    semantic: 0.892
+    keyword: 0.1101
+    function_match: 0.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Retrieval/vector store poisoning is a canonical data/model poisoning vector.
+  source_name: Retrieval/Vector Store Poisoning
+  source_description: 'Poisoning retrieval corpora or vector indices to steer RAG
+    outputs. Retrieval/Vector Store Poisoning can compromise the integrity of knowledge
+    retrieval systems and lead to misinformation or malicious content injection.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:controlAdversarialTrainingAndTesting
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.343
+  uncertainty_score: 1.7186
+  signals:
+    bridge: 0.1216
+    semantic: 0.4969
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Adversarial testing reduces misinformation outputs.
+  source_name: Adversarial Training and Testing
+  source_description: 'Use techniques to make AI models robust to adversarial inputs
+    (i.e. prompts) in the context of their use in applications.
+
+    '
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: cosai_rm:ASSC
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.1929
+  uncertainty_score: 1.7158
+  signals:
+    bridge: 0.0
+    semantic: 0.3674
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Side-channel controls are unrelated to misinformation.
+  source_name: Accelerator and System Side-channels
+  source_description: 'Cross-tenant leakage via hardware side-channels in CPUs, GPUs,
+    TPUs, memory systems, and interconnects. These vulnerabilities exploit timing,
+    cache, speculative execution, and memory access patterns to compromise data confidentiality
+    and infer sensitive information in shared computing environments.
+
+    '
+  target_name: Misinformation
+  target_description: ''
+- source_node_id: cosai_rm:controlAgentPluginPermissions
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.2071
+  uncertainty_score: 1.7148
+  signals:
+    bridge: 0.0
+    semantic: 0.3945
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Agent permissions reduce data/model poisoning exposure via tool calls.
+  source_name: Agent Permissions
+  source_description: Use least-privilege principle as the upper bound on agentic
+    system permissions to minimize the number of tools that an agent is permitted
+    to interact with and the actions it is allowed to take. An agentic system's use
+    of privileges should be contextual and dynamic, adapting to the specific user
+    query and trusted contextual information. This design also applies to agents that
+    have access to user information. For example, an agent asked to fill out a form
+    or answer questions should share only cont
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:controlAgentObservability
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3427
+  uncertainty_score: 1.7074
+  signals:
+    bridge: 0.0926
+    semantic: 0.8117
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Agent observability detects excessive agency events.
+  source_name: Agent Observability
+  source_description: 'Ensure an agent''s actions, tool use, and reasoning are transparent
+    and auditable through logging, allowing for debugging, security oversight, and
+    user insights into agent activity.
+
+    '
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: cosai_rm:controlAgentPluginPermissions
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.2073
+  uncertainty_score: 1.707
+  signals:
+    bridge: 0.0884
+    semantic: 0.2813
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Agent permissions reduce supply-chain attack blast radius.
+  source_name: Agent Permissions
+  source_description: Use least-privilege principle as the upper bound on agentic
+    system permissions to minimize the number of tools that an agent is permitted
+    to interact with and the actions it is allowed to take. An agentic system's use
+    of privileges should be contextual and dynamic, adapting to the specific user
+    query and trusted contextual information. This design also applies to agents that
+    have access to user information. For example, an agent asked to fill out a form
+    or answer questions should share only cont
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: cosai_rm:controlRiskGovernance
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3575
+  uncertainty_score: 1.7002
+  signals:
+    bridge: 0.0
+    semantic: 0.6809
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Tangential
+  expert_relevance: Secondary
+  notes: Risk governance weakly relates to excessive agency.
+  source_name: Risk Governance
+  source_description: 'Inventory, measure, and monitor residual risk to AI in your
+    organization.
+
+    '
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: cosai_rm:ADI
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.2076
+  uncertainty_score: 1.6965
+  signals:
+    bridge: 0.0188
+    semantic: 0.3712
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Adapter/PEFT injection is a canonical excessive agency vector.
+  source_name: Adapter/PEFT Injection
+  source_description: 'Trojaned adapters merged at runtime to bypass safety or exfiltrate
+    data. Adapter/PEFT Injection can compromise model behavior and enable unauthorized
+    access to sensitive information or system resources.
+
+    '
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: cosai_rm:controlOrchestratorAndRouteIntegrity
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3423
+  uncertainty_score: 1.6909
+  signals:
+    bridge: 0.0741
+    semantic: 0.8356
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Orchestrator integrity reduces routing-injected poisoning.
+  source_name: Orchestrator and Route Integrity
+  source_description: 'Implement signed route manifests, configuration integrity verification,
+    and response provenance tracking to prevent routing manipulation and ensure request
+    routing to authorized models.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:ASSC
+  target_node_id: owasp_llm:LLM04
+  composite_score: 0.3426
+  uncertainty_score: 1.6904
+  signals:
+    bridge: 0.0536
+    semantic: 0.8541
+    keyword: 0.0159
+    function_match: 1.0
+  expert_tier: None
+  expert_relevance: Secondary
+  notes: Side-channel controls are unrelated to data/model poisoning.
+  source_name: Accelerator and System Side-channels
+  source_description: 'Cross-tenant leakage via hardware side-channels in CPUs, GPUs,
+    TPUs, memory systems, and interconnects. These vulnerabilities exploit timing,
+    cache, speculative execution, and memory access patterns to compromise data confidentiality
+    and infer sensitive information in shared computing environments.
+
+    '
+  target_name: Data and Model Poisoning
+  target_description: ''
+- source_node_id: cosai_rm:controlAgentPluginPermissions
+  target_node_id: owasp_llm:LLM06
+  composite_score: 0.3578
+  uncertainty_score: 1.6879
+  signals:
+    bridge: 0.144
+    semantic: 0.7752
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Agent permissions are canonical excessive agency mitigation.
+  source_name: Agent Permissions
+  source_description: Use least-privilege principle as the upper bound on agentic
+    system permissions to minimize the number of tools that an agent is permitted
+    to interact with and the actions it is allowed to take. An agentic system's use
+    of privileges should be contextual and dynamic, adapting to the specific user
+    query and trusted contextual information. This design also applies to agents that
+    have access to user information. For example, an agent asked to fill out a form
+    or answer questions should share only cont
+  target_name: Excessive Agency
+  target_description: ''
+- source_node_id: cosai_rm:controlModelPrivacyEnhancingTechnologies
+  target_node_id: owasp_llm:LLM10
+  composite_score: 0.2078
+  uncertainty_score: 1.687
+  signals:
+    bridge: 0.0076
+    semantic: 0.386
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Secondary
+  notes: Training PETs reduce unbounded consumption via leak protection.
+  source_name: Privacy Enhancing Technologies for Model Training
+  source_description: 'Use technologies that minimize, de-identify, or restrict use
+    of PII data in training or evaluating models, including differential privacy,
+    secure aggregation protocols, federated learning, data anonymization, and synthetic
+    data generation.
+
+    '
+  target_name: Unbounded Consumption
+  target_description: ''
+- source_node_id: cosai_rm:controlOrchestratorAndRouteIntegrity
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.3419
+  uncertainty_score: 1.6743
+  signals:
+    bridge: 0.1687
+    semantic: 0.713
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Orchestrator integrity reduces supply-chain compromise via routing.
+  source_name: Orchestrator and Route Integrity
+  source_description: 'Implement signed route manifests, configuration integrity verification,
+    and response provenance tracking to prevent routing manipulation and ensure request
+    routing to authorized models.
+
+    '
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: cosai_rm:controlRetrievalAndVectorSystemIntegrity
+  target_node_id: owasp_llm:LLM03
+  composite_score: 0.2086
+  uncertainty_score: 1.6556
+  signals:
+    bridge: 0.0149
+    semantic: 0.3782
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Vector integrity addresses supply-chain integrity of retrieval sources.
+  source_name: Retrieval and Vector System Integrity Management
+  source_description: 'Implement provenance tracking, cryptographic signing, deduplication,
+    embedding anomaly detection, and index integrity checks to protect retrieval systems
+    and vector databases from poisoning attacks.
+
+    '
+  target_name: Supply Chain
+  target_description: ''
+- source_node_id: cosai_rm:controlRetrievalAndVectorSystemIntegrity
+  target_node_id: owasp_llm:LLM08
+  composite_score: 0.3413
+  uncertainty_score: 1.652
+  signals:
+    bridge: 0.0
+    semantic: 0.8266
+    keyword: 0.1512
+    function_match: 1.0
+  expert_tier: Direct
+  expert_relevance: Primary
+  notes: Vector integrity is canonical vector/embedding weakness defense.
+  source_name: Retrieval and Vector System Integrity Management
+  source_description: 'Implement provenance tracking, cryptographic signing, deduplication,
+    embedding anomaly detection, and index integrity checks to protect retrieval systems
+    and vector databases from poisoning attacks.
+
+    '
+  target_name: Vector and Embedding Weaknesses
+  target_description: ''
+- source_node_id: cosai_rm:ISD
+  target_node_id: owasp_llm:LLM09
+  composite_score: 0.3589
+  uncertainty_score: 1.6443
+  signals:
+    bridge: 0.1389
+    semantic: 0.505
+    keyword: 0.0
+    function_match: 1.0
+  expert_tier: Related
+  expert_relevance: Primary
+  notes: Inferred sensitive data prevention reduces misinformation about individuals.
+  source_name: Inferred Sensitive Data
+  source_description: 'Model inferring personal information not contained in training
+    data or inputs. Inferred Sensitive Data may be considered a data privacy incident.
+
+    '
+  target_name: Misinformation
+  target_description: ''

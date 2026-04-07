@@ -217,7 +217,7 @@ already carries descriptions).
 
 **Metric.** Paired Δ MRR on `aiuc_1__mitre_atlas`; aggregate regression cap.
 
-**Result.** _Pending S6._
+**Result.** NO-OP. mitre_atlas description coverage already at median 483 chars / max 2000 / 0 zeros across 218 nodes (verified post-S5 graph rebuild). No enrichment work needed; the add_node merge fix in S5 also benefits any future mitre_atlas stub-then-real merge cases. Aggregate non-frozen baseline unchanged from S5: MRR=0.3821 [0.3512, 0.4140].
 
 ## 2026-04-07 — H_76_S7: nist_rmf target-description enrichment
 

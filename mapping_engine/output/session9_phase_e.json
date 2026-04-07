@@ -1,0 +1,34 @@
+{
+  "baseline_macro_ndcg5": 0.5125814751196291,
+  "lambdamart_groupcv_macro_ndcg5": 0.5901567139303902,
+  "lambdamart_train_macro_ndcg5": 0.8988806217854266,
+  "delta_vs_baseline": 0.077575238810761,
+  "train_holdout_gap": 0.30872390785503645,
+  "per_pair_baseline_ndcg5": {
+    "aiuc_1__csa_aicm": 0.179770346690321,
+    "aiuc_1__eu_gpai_cop": 0.4285714285714285,
+    "aiuc_1__mitre_atlas": 0.37116522383079,
+    "aiuc_1__nist_rmf": 0.4285714285714285,
+    "aiuc_1__owasp_agentic": 0.36597070721026864,
+    "aiuc_1__owasp_llm": 0.6775463617080406,
+    "cosai_rm__mitre_atlas": 0.5508492941340157,
+    "cosai_rm__owasp_llm": 0.6608397947263838,
+    "csa_aicm__owasp_agentic": 0.7719184050168792,
+    "mitre_atlas__owasp_llm": 0.5562830473323933,
+    "nist_rmf__owasp_agentic": 0.646910188523972
+  },
+  "per_pair_groupcv_ndcg5": {
+    "aiuc_1__eu_gpai_cop": 0.5508492941340157,
+    "aiuc_1__owasp_agentic": 0.6489001322671737,
+    "aiuc_1__owasp_llm": 0.5870133870600276,
+    "cosai_rm__owasp_llm": 0.8281227542004858,
+    "nist_rmf__owasp_agentic": 0.41383858190702194,
+    "aiuc_1__csa_aicm": 0.6258236241410682,
+    "aiuc_1__nist_rmf": 0.7192801759488139,
+    "cosai_rm__mitre_atlas": 0.5254743443638903,
+    "mitre_atlas__owasp_llm": 0.13946559338323253,
+    "aiuc_1__mitre_atlas": 0.6992148198508501,
+    "csa_aicm__owasp_agentic": 0.753741145977712
+  },
+  "decision": "REJECT"
+}

@@ -1,0 +1,610 @@
+{
+  "aiuc_1:A001->nist_rmf:MEASURE-2.10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A003->nist_rmf:MAP-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A005->nist_rmf:MEASURE-2.10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A006->nist_rmf:MEASURE-2.10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A007->nist_rmf:GOVERN-6.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A007->nist_rmf:MAP-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->nist_rmf:MEASURE-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->nist_rmf:MEASURE-2.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->nist_rmf:MEASURE-2.7": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->nist_rmf:GOVERN-1.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->nist_rmf:MEASURE-2.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->nist_rmf:MEASURE-2.7": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->nist_rmf:MEASURE-3.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B004->nist_rmf:MEASURE-2.7": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B005->nist_rmf:MEASURE-2.7": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B006->nist_rmf:MAP-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B009->nist_rmf:MEASURE-2.10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:GOVERN-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:GOVERN-1.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:GOVERN-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:GOVERN-6.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MANAGE-1.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MANAGE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MANAGE-1.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MAP-1.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MAP-5.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MEASURE-1.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MEASURE-2.10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MEASURE-2.11": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->nist_rmf:MEASURE-3.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->nist_rmf:MANAGE-1.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->nist_rmf:MAP-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->nist_rmf:MEASURE-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->nist_rmf:MEASURE-2.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->nist_rmf:MEASURE-2.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->nist_rmf:MEASURE-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C003->nist_rmf:MEASURE-2.11": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C004->nist_rmf:MAP-2.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C004->nist_rmf:MAP-3.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C005->nist_rmf:MANAGE-1.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C007->nist_rmf:GOVERN-3.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C007->nist_rmf:MAP-3.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C008->nist_rmf:GOVERN-1.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C008->nist_rmf:MANAGE-3.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C008->nist_rmf:MANAGE-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C008->nist_rmf:MEASURE-2.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C008->nist_rmf:MEASURE-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C009->nist_rmf:GOVERN-3.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C009->nist_rmf:MAP-3.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C009->nist_rmf:MEASURE-3.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->nist_rmf:MANAGE-2.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->nist_rmf:MEASURE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->nist_rmf:MEASURE-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->nist_rmf:MEASURE-2.11": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->nist_rmf:MEASURE-2.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->nist_rmf:MEASURE-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->nist_rmf:MEASURE-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C011->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C011->nist_rmf:MANAGE-2.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C011->nist_rmf:MAP-2.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C011->nist_rmf:MEASURE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C011->nist_rmf:MEASURE-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C011->nist_rmf:MEASURE-2.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C011->nist_rmf:MEASURE-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C011->nist_rmf:MEASURE-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C012->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C012->nist_rmf:MANAGE-2.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C012->nist_rmf:MEASURE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C012->nist_rmf:MEASURE-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C012->nist_rmf:MEASURE-2.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C012->nist_rmf:MEASURE-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C012->nist_rmf:MEASURE-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D001->nist_rmf:MEASURE-2.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D002->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D002->nist_rmf:MANAGE-2.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D002->nist_rmf:MEASURE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D002->nist_rmf:MEASURE-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D002->nist_rmf:MEASURE-2.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D002->nist_rmf:MEASURE-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D002->nist_rmf:MEASURE-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D003->nist_rmf:GOVERN-6.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->nist_rmf:GOVERN-6.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->nist_rmf:MANAGE-2.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->nist_rmf:MEASURE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->nist_rmf:MEASURE-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->nist_rmf:MEASURE-2.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->nist_rmf:MEASURE-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->nist_rmf:MEASURE-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E001->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E001->nist_rmf:MANAGE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E001->nist_rmf:MANAGE-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E002->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E002->nist_rmf:MANAGE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E002->nist_rmf:MANAGE-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E003->nist_rmf:GOVERN-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E003->nist_rmf:MANAGE-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E003->nist_rmf:MANAGE-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E004->nist_rmf:GOVERN-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E004->nist_rmf:GOVERN-2.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E004->nist_rmf:MAP-3.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E004->nist_rmf:MEASURE-2.8": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E005->nist_rmf:MAP-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E006->nist_rmf:MAP-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E007->nist_rmf:GOVERN-2.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E007->nist_rmf:GOVERN-2.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E007->nist_rmf:MANAGE-1.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E007->nist_rmf:MAP-3.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E007->nist_rmf:MEASURE-2.8": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E007->nist_rmf:MEASURE-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E008->nist_rmf:GOVERN-1.7": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E008->nist_rmf:GOVERN-5.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E008->nist_rmf:GOVERN-5.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E008->nist_rmf:MANAGE-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E008->nist_rmf:MEASURE-1.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E008->nist_rmf:MEASURE-2.13": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E009->nist_rmf:GOVERN-1.5": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E009->nist_rmf:MANAGE-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E010->nist_rmf:GOVERN-1.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E010->nist_rmf:MAP-1.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E010->nist_rmf:MAP-3.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E010->nist_rmf:MAP-3.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E010->nist_rmf:MEASURE-2.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E011->nist_rmf:GOVERN-1.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->nist_rmf:GOVERN-1.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->nist_rmf:GOVERN-1.7": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->nist_rmf:MAP-1.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->nist_rmf:MAP-4.1": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->nist_rmf:GOVERN-1.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->nist_rmf:GOVERN-1.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E014->nist_rmf:MANAGE-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E014->nist_rmf:MANAGE-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E014->nist_rmf:MAP-1.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E014->nist_rmf:MAP-5.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E014->nist_rmf:MEASURE-2.8": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E014->nist_rmf:MEASURE-2.9": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E014->nist_rmf:MEASURE-4.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E015->nist_rmf:MEASURE-2.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E015->nist_rmf:MEASURE-2.8": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E016->nist_rmf:MAP-2.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E016->nist_rmf:MAP-3.4": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E016->nist_rmf:MEASURE-2.8": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->nist_rmf:GOVERN-1.2": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->nist_rmf:GOVERN-1.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->nist_rmf:MAP-1.6": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->nist_rmf:MEASURE-2.8": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->nist_rmf:MEASURE-2.9": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->nist_rmf:MEASURE-4.3": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:F001->nist_rmf:MEASURE-2.7": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "aiuc_1:A003->owasp_llm:LLM06": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A003->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A003->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A004->owasp_llm:LLM03": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A004->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A004->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A005->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A005->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A005->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A006->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A006->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A006->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A007->owasp_llm:LLM03": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A007->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->owasp_llm:LLM01": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->owasp_llm:LLM04": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B001->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->owasp_llm:LLM01": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B003->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B003->owasp_llm:LLM07": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B004->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B004->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B004->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B004->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B005->owasp_llm:LLM01": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B005->owasp_llm:LLM04": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B005->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B006->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B006->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B007->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B007->owasp_llm:LLM06": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B007->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B008->owasp_llm:LLM07": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B009->owasp_llm:LLM02": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B009->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B009->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B009->owasp_llm:LLM09": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C003->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C003->owasp_llm:LLM09": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C004->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C005->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C006->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D001->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D001->owasp_llm:LLM09": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D002->owasp_llm:LLM09": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D003->owasp_llm:LLM06": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D003->owasp_llm:LLM08": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D003->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D004->owasp_llm:LLM06": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E005->owasp_llm:LLM03": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E006->owasp_llm:LLM03": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E009->owasp_llm:LLM03": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E009->owasp_llm:LLM05": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E009->owasp_llm:LLM06": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E009->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E010->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E015->owasp_llm:LLM10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  }
+}

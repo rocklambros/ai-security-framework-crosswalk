@@ -1,0 +1,242 @@
+{
+  "aiuc_1:A001->eu_gpai_cop:Article-11": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A004->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:A006->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->eu_gpai_cop:Article-15": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B002->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B004->eu_gpai_cop:Article-15": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:B008->eu_gpai_cop:Article-15": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C001->eu_gpai_cop:Article-9": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->eu_gpai_cop:Article-27": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C002->eu_gpai_cop:Article-9": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C003->eu_gpai_cop:Article-9": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C004->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C005->eu_gpai_cop:Article-9": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C006->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C008->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C009->eu_gpai_cop:Article-14": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:C010->eu_gpai_cop:Article-9": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:D003->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E001->eu_gpai_cop:Article-20": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E001->eu_gpai_cop:Article-73": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E002->eu_gpai_cop:Article-20": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E002->eu_gpai_cop:Article-73": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E003->eu_gpai_cop:Article-20": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E003->eu_gpai_cop:Article-73": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E004->eu_gpai_cop:Article-17": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E004->eu_gpai_cop:Article-18": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E006->eu_gpai_cop:Article-23": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E006->eu_gpai_cop:Article-24": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E007->eu_gpai_cop:Article-17": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E007->eu_gpai_cop:Article-18": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E008->eu_gpai_cop:Article-43": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E009->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E011->eu_gpai_cop:Article-11": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-16": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-18": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-21": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-25": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-26": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-43": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-47": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-48": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E012->eu_gpai_cop:Article-49": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-10": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-11": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-12": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-16": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-17": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-18": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-19": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-26": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-43": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-72": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-73": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E013->eu_gpai_cop:Article-9": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E014->eu_gpai_cop:Article-11": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E015->eu_gpai_cop:Article-12": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E015->eu_gpai_cop:Article-19": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E016->eu_gpai_cop:Article-13": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E016->eu_gpai_cop:Article-50": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "aiuc_1:E017->eu_gpai_cop:Article-11": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  }
+}

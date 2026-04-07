@@ -1,0 +1,118 @@
+{
+  "cosai_rm:DMS->mitre_atlas:AML.T0029": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:DMS->mitre_atlas:AML.T0034": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:DP->mitre_atlas:AML.T0008.002": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:DP->mitre_atlas:AML.T0010.002": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:DP->mitre_atlas:AML.T0019": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:DP->mitre_atlas:AML.T0020": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:DP->mitre_atlas:AML.T0043": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:DP->mitre_atlas:AML.T0059": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:IIC->mitre_atlas:AML.T0049": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:IIC->mitre_atlas:AML.T0051": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MDT->mitre_atlas:AML.T0010.003": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MDT->mitre_atlas:AML.T0049": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MDT->mitre_atlas:AML.T0051": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MEV->mitre_atlas:AML.T0015": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MEV->mitre_atlas:AML.T0043": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MRE->mitre_atlas:AML.T0005": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MRE->mitre_atlas:AML.T0024.002": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MRE->mitre_atlas:AML.T0048.004": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MST->mitre_atlas:AML.T0010.001": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MST->mitre_atlas:AML.T0010.003": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MST->mitre_atlas:AML.T0018": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MXF->mitre_atlas:AML.T0024.002": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MXF->mitre_atlas:AML.T0025": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:MXF->mitre_atlas:AML.T0048.004": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:PIJ->mitre_atlas:AML.T0051": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:RA->mitre_atlas:AML.T0051": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:RA->mitre_atlas:AML.T0086": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:SDD->mitre_atlas:AML.T0024": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  },
+  "cosai_rm:UTD->mitre_atlas:AML.T0010.002": {
+    "anchor_weight": 0.75,
+    "rationale_code": "?"
+  }
+}

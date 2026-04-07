@@ -209,7 +209,7 @@ sequenceDiagram
 
 ## Composite signal blend
 
-The production composite uses hand-tuned weights because every attempt to replace them with a learned model was rejected for principled reasons. Logistic regression and LightGBM were both trained on the 119 AIUC-1 expert pairs plus sampled negatives and evaluated on a held-out NIST validation set. The learned models recovered a few additional true positives at the cost of a larger number of false positives, which is the wrong tradeoff for a tool whose primary user is an auditor triaging alerts rather than a researcher building an exhaustive map. The coefficients from both learned models are archived and used in the notebook to draw honest ROC curves alongside the hand-tuned baseline.
+The production composite uses hand-tuned weights because every attempt to replace them with a learned model was rejected for principled reasons. Logistic regression and LightGBM were both trained on the 119 AIUC-1 expert pairs plus sampled negatives and evaluated on a held-out NIST validation set. The learned models recovered a few additional true positives at the cost of a larger number of false positives, which is the wrong tradeoff for a tool whose primary user is an auditor triaging alerts rather than a researcher building an exhaustive map. The coefficients from both learned models, plus an ordinal regression baseline, are archived and used in the notebook's Section 5 to show how four different weighting strategies read the same five signal features, framed as descriptive feature exploration rather than a horse race between classifiers.
 
 ```mermaid
 %% Composite blend, tier thresholds, and the calibrated gates that sit around them.

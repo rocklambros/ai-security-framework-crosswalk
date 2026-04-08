@@ -1,0 +1,10 @@
+# Plan 1 — infra & splits only
+python-dotenv==1.0.1
+pyyaml==6.0.2
+pandas==2.2.3
+scikit-learn==1.5.2
+sentence-transformers==3.2.1
+huggingface_hub==0.26.2
+wandb==0.18.7
+pytest==8.3.3
+tenacity==9.0.0

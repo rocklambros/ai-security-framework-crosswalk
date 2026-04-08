@@ -72,7 +72,7 @@ All 11 evaluated on identical `human_test_frozen`. Bootstrap CIs + McNemar's tes
 
 ### 2.1 Candidate generation
 
-For each of 12 framework pairs (every framework appears ≥2× as source, ≥2× as target), enumerate (source, target) candidate pairs:
+For each of 12 framework pairs — chosen so that every one of the 9 frameworks appears in **at least 2 pairs total** (as source, as target, or both; this guarantees no framework is represented by a single pairing), enumerate (source, target) candidate pairs:
 - For each source node, retrieve top-20 target nodes via `bge-large-en-v1.5` zero-shot cosine
 - ~36k raw candidates, down-sampled to ~10k balanced by framework pair and by candidate-score bucket (don't over-sample top-of-distribution)
 - **Retrieval-floor check (mandatory before labeling begins):** all 400 frozen human-test pairs must appear in the top-20 retrieval for their source node (fresh-75 doesn't exist yet at this phase). If coverage < 100%, expand k until it does, up to k=50 max. If k=50 still misses pairs, the gap is reported as the retrieval ceiling in the paper and budget is adjusted (+$150 LLM spend for the expanded candidate pool).
@@ -383,7 +383,7 @@ Hard cap $1000. If projection exceeds, cut order: (1) drop Rung XL (~$15), (2) d
 | Decision | Value |
 |---|---|
 | Honest test split | 150 cal / 400 frozen / 75 fresh (user-labeled post-freeze) |
-| Coverage | 12 framework pairs, every framework ≥2× source and ≥2× target |
+| Coverage | 12 framework pairs, every framework appears in ≥2 pairs total (source or target) |
 | Prediction framing | Multi-task: multi-label BCE + learning-to-rank |
 | Architecture | 3-stage ensemble: fine-tuned cross-encoder + GAT + stacked LightGBM + Mondrian conformal wrapper |
 | GAT training | Independent (primary) AND joint (additional config); report both |

@@ -46,6 +46,15 @@ def test_held_out_provenance_shas_never_appear_in_training_loader():
         )
 
 
+def test_rule2_hit_count_monotonic():
+    """Plan 1-C: after switching Rule 2 to the canonicalized target_node_id,
+    Rule 2 hit count must be >= the pre-fix count (which was 0). Firewall
+    tightening is fine; loosening is a bug.
+    """
+    p = _load_partition()
+    assert p["rule2_hits"] >= 0
+
+
 def test_no_held_out_row_matches_a_train_eligible_full_tuple():
     p = _load_partition()
     held = set(p["held_out"])

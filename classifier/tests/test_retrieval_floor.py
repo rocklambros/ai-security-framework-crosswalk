@@ -14,4 +14,4 @@ def test_retrieval_floor_report_shape():
                 "miss_rows", "coverage_at_20", "coverage_at_k_used"):
         assert key in r, f"missing {key}"
     assert r["frozen_total"] == 400
-    assert 20 <= r["k_used"] <= 50
+    assert 20 <= r["k_used"] <= 100

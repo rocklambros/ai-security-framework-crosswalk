@@ -5,7 +5,7 @@ from classifier.config import SPLITS_DIR
 from classifier.data.candidates import FRAMEWORK_PAIRS, build_candidate_pool
 
 
-def check_floor(k_initial: int = 20, k_max: int = 50) -> dict:
+def check_floor(k_initial: int = 20, k_max: int = 100) -> dict:
     frozen = pd.read_json(SPLITS_DIR / "human_test_frozen.jsonl", lines=True)
     pool_by_pair = build_candidate_pool(pairs=FRAMEWORK_PAIRS, k=k_max)
 

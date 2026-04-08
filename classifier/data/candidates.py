@@ -1,4 +1,4 @@
-"""Candidate-pool generation for the 22-pair, 12-framework coverage matrix."""
+"""Candidate-pool generation for the 26-pair, 12-framework coverage matrix."""
 from __future__ import annotations
 
 FRAMEWORKS: list[str] = [
@@ -36,8 +36,14 @@ FRAMEWORK_PAIRS: list[tuple[str, str]] = [
     ("owasp_llm",          "eu_ai_act"),        # 20
     ("owasp_agentic",      "eu_ai_act"),        # 21
     ("owasp_dsgai",        "eu_ai_act"),        # 22
+    # Missing-from-original-12 pairs that the frozen test references
+    # (Sessions 1-8 labeled against these but they were never in candidates.py)
+    ("aiuc_1",             "csa_aicm"),         # 23
+    ("aiuc_1",             "eu_gpai_cop"),      # 24
+    ("aiuc_1",             "mitre_atlas"),      # 25
+    ("cosai_rm",           "owasp_llm"),        # 26
 ]
-assert len(FRAMEWORK_PAIRS) == 22
+assert len(FRAMEWORK_PAIRS) == 26
 # Coverage check: every framework appears in >=2 pairs
 from collections import Counter
 _counts = Counter(fw for pair in FRAMEWORK_PAIRS for fw in pair)
@@ -68,15 +74,36 @@ import numpy as np
 
 
 def _node_text(n: dict) -> str:
-    name = n.get("name") or n.get("title") or n.get("id") or ""
-    desc = n.get("description") or n.get("text") or n.get("summary") or ""
-    return f"{name}. {desc}".strip()
+    """Rich text representation for embedding.
+
+    Joins title/name, section/category path, and full body text so the
+    embedding captures both the identifier and the prose. Falls back
+    gracefully when optional fields are missing.
+    """
+    title = n.get("title") or n.get("name") or ""
+    section = n.get("section") or n.get("category") or n.get("section_path") or ""
+    body = (
+        n.get("text")
+        or n.get("description")
+        or n.get("summary")
+        or n.get("body")
+        or ""
+    )
+    parts: list[str] = []
+    if title:
+        parts.append(title.strip())
+    if section and section not in title:
+        parts.append(f"[{section.strip()}]")
+    if body:
+        parts.append(body.strip())
+    out = " — ".join(p for p in parts if p)
+    return out or n.get("node_id") or n.get("id") or ""
 
 
 def build_candidate_pool(
     pairs: list[tuple[str, str]],
     k: int = 20,
-    model_name: str = "BAAI/bge-small-en-v1.5",
+    model_name: str = "BAAI/bge-base-en-v1.5",
     cache_dir: Path | None = None,
 ) -> dict[str, list[dict]]:
     """For each (src_fw, tgt_fw) pair, return top-k target nodes per source node by cosine.

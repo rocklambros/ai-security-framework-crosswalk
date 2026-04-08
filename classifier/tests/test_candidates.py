@@ -2,7 +2,7 @@ from classifier.data.candidates import FRAMEWORK_PAIRS, FRAMEWORKS
 
 
 def test_framework_pairs_count():
-    assert len(FRAMEWORK_PAIRS) == 22
+    assert len(FRAMEWORK_PAIRS) == 26
 
 
 def test_every_framework_in_at_least_two_pairs():

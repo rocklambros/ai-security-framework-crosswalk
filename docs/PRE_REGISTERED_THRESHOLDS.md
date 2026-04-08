@@ -1,6 +1,6 @@
 # Pre-Registered Success Thresholds
 
-**Committed:** $(git rev-parse HEAD ≤ this commit) on 2026-04-07
+**Committed:** 2026-04-07. Pre-registration provenance = the git commit that introduced this file. Run `git log --follow --diff-filter=A -- docs/PRE_REGISTERED_THRESHOLDS.md` to retrieve the creation SHA; any subsequent edits are visible in the same log.
 **Purpose:** Protect against p-hacking by declaring paper framings before any training run.
 
 ## Primary headline: Recall@3 on `human_test_frozen` (400 pairs)

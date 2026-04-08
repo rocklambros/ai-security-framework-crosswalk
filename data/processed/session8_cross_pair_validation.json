@@ -2,22 +2,22 @@
   "rows": [
     {
       "pair": "aiuc_1__csa_aicm",
-      "n_mappings": 82,
+      "n_mappings": 81,
       "tier_counts": {
-        "Direct": 68,
+        "Direct": 67,
         "Related": 14,
         "None": 0,
         "other": 0
       },
       "needs_review_count": 13,
       "n_anchors_scored": 257,
-      "mrr": 0.4780076938831501,
+      "mrr": 0.48214140064331606,
       "mrr_ci": [
-        0.43600478382944335,
-        0.5223666163556131
+        0.4400407778586273,
+        0.5267866211810311
       ],
-      "recall_at_5": 0.7470817120622568,
-      "roc_auc": 0.805951263455919,
+      "recall_at_5": 0.7392996108949417,
+      "roc_auc": 0.8063131160199246,
       "sampler_error": null
     },
     {
@@ -29,115 +29,115 @@
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 1,
+      "needs_review_count": 2,
       "n_anchors_scored": 60,
-      "mrr": 0.4062655168905168,
+      "mrr": 0.40603403540903543,
       "mrr_ci": [
-        0.327708009004884,
-        0.497948082010582
+        0.32747652752340256,
+        0.49771318554131055
       ],
       "recall_at_5": 0.7,
-      "roc_auc": 0.7979583333333333,
+      "roc_auc": 0.7977361111111111,
       "sampler_error": null
     },
     {
       "pair": "aiuc_1__mitre_atlas",
-      "n_mappings": 71,
+      "n_mappings": 74,
       "tier_counts": {
-        "Direct": 59,
+        "Direct": 62,
         "Related": 12,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 13,
+      "needs_review_count": 12,
       "n_anchors_scored": 32,
-      "mrr": 0.6499859483266991,
+      "mrr": 0.6039930555555555,
       "mrr_ci": [
-        0.5348091506339379,
-        0.7653835761278195
+        0.49700520833333334,
+        0.7147699652777777
       ],
       "recall_at_5": 0.875,
-      "roc_auc": 0.850537109375,
+      "roc_auc": 0.848974609375,
       "sampler_error": null
     },
     {
       "pair": "aiuc_1__nist_rmf",
-      "n_mappings": 25,
+      "n_mappings": 23,
       "tier_counts": {
-        "Direct": 20,
+        "Direct": 18,
         "Related": 5,
         "None": 0,
         "other": 0
       },
       "needs_review_count": 5,
       "n_anchors_scored": 152,
-      "mrr": 0.36359111666672367,
+      "mrr": 0.36721950582142854,
       "mrr_ci": [
-        0.31067262569262477,
-        0.4173248386451982
+        0.31455395089378124,
+        0.4217512666606597
       ],
       "recall_at_5": 0.5592105263157895,
-      "roc_auc": 0.7326242209141274,
+      "roc_auc": 0.7332864439058172,
       "sampler_error": null
     },
     {
       "pair": "aiuc_1__owasp_agentic",
-      "n_mappings": 67,
+      "n_mappings": 65,
       "tier_counts": {
         "Direct": 18,
-        "Related": 49,
+        "Related": 47,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 25,
+      "needs_review_count": 23,
       "n_anchors_scored": 109,
-      "mrr": 0.474592252803262,
+      "mrr": 0.4730632008154944,
       "mrr_ci": [
-        0.41133245958934034,
-        0.5357325797291395
+        0.40947893912916844,
+        0.53449250036406
       ],
       "recall_at_5": 0.7798165137614679,
-      "roc_auc": 0.6120384216411375,
+      "roc_auc": 0.6116746824017567,
       "sampler_error": null
     },
     {
       "pair": "aiuc_1__owasp_llm",
       "n_mappings": 10,
       "tier_counts": {
-        "Direct": 7,
-        "Related": 3,
+        "Direct": 8,
+        "Related": 2,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 1,
+      "needs_review_count": 2,
       "n_anchors_scored": 60,
-      "mrr": 0.36601190476190476,
+      "mrr": 0.36934523809523806,
       "mrr_ci": [
-        0.2914583333333334,
-        0.45421875
+        0.29431845238095233,
+        0.4584548611111111
       ],
       "recall_at_5": 0.6,
-      "roc_auc": 0.49600614439324114,
+      "roc_auc": 0.4990399385560676,
       "sampler_error": null
     },
     {
       "pair": "cosai_rm__mitre_atlas",
-      "n_mappings": 38,
+      "n_mappings": 37,
       "tier_counts": {
-        "Direct": 33,
+        "Direct": 32,
         "Related": 5,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 9,
+      "needs_review_count": 7,
       "n_anchors_scored": 29,
-      "mrr": 0.5532840722495894,
+      "mrr": 0.5469211822660098,
       "mrr_ci": [
-        0.41773193760262717,
-        0.6837787356321837
+        0.4092703201970443,
+        0.6764901477832512
       ],
       "recall_at_5": 0.7931034482758621,
-      "roc_auc": 0.8760998810939358,
+      "roc_auc": 0.8718192627824018,
       "sampler_error": null
     },
     {
@@ -157,47 +157,47 @@
         0.5255968915343916
       ],
       "recall_at_5": 0.7222222222222222,
-      "roc_auc": 0.6253654970760234,
+      "roc_auc": 0.6235380116959064,
       "sampler_error": null
     },
     {
       "pair": "csa_aicm__owasp_agentic",
-      "n_mappings": 31,
+      "n_mappings": 32,
       "tier_counts": {
         "Direct": 27,
-        "Related": 4,
+        "Related": 5,
         "None": 0,
         "other": 0
       },
-      "needs_review_count": 3,
+      "needs_review_count": 5,
       "n_anchors_scored": 39,
       "mrr": 0.5739316239316238,
       "mrr_ci": [
-        0.4696153846153846,
-        0.6816346153846153
+        0.46965811965811965,
+        0.6812179487179486
       ],
       "recall_at_5": 0.9230769230769231,
-      "roc_auc": 0.8231426692965155,
+      "roc_auc": 0.8245306450434655,
       "sampler_error": null
     },
     {
       "pair": "mitre_atlas__owasp_llm",
-      "n_mappings": 60,
+      "n_mappings": 78,
       "tier_counts": {
-        "Direct": 59,
+        "Direct": 77,
         "Related": 1,
         "None": 0,
         "other": 0
       },
       "needs_review_count": 4,
       "n_anchors_scored": 20,
-      "mrr": 0.71,
+      "mrr": 0.7083333333333333,
       "mrr_ci": [
-        0.561625,
-        0.8417083333333334
+        0.5583333333333333,
+        0.8416666666666666
       ],
       "recall_at_5": 0.95,
-      "roc_auc": 0.9213888888888889,
+      "roc_auc": 0.9208333333333333,
       "sampler_error": null
     },
     {

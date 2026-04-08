@@ -1,7 +1,7 @@
 {
   "metadata": {
     "schema_version": "2.0",
-    "generated_at": "2026-04-07T17:32:59.508861+00:00",
+    "generated_at": "2026-04-08T12:30:11.344401+00:00",
     "methodology": "multi-signal-hybrid-v2",
     "source_standard": {
       "name": "nist_rmf",
@@ -61,11 +61,11 @@
     "controls_mapped": "19 / 72",
     "controls_unmapped": 53,
     "owasp_entries_with_matches": 7,
-    "total_mappings": 31,
+    "total_mappings": 30,
     "primary_mappings": 3,
-    "secondary_mappings": 28,
+    "secondary_mappings": 27,
     "rationale_distribution": {
-      "DETECT": 11,
+      "DETECT": 10,
       "GATE": 4,
       "VALID": 10,
       "GOVERN": 3,
@@ -129,14 +129,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5969,
+            "score": 0.5936,
             "signals": {
-              "bridge": 0.2365,
+              "bridge": 0.2316,
               "semantic": 0.8262,
               "keyword": 0.0116,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0469,
+            "confidence_gap": 0.0436,
             "needs_review": true
           },
           {
@@ -145,14 +145,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5154,
+            "score": 0.5137,
             "signals": {
-              "bridge": 0.1777,
+              "bridge": 0.1752,
               "semantic": 0.7532,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1654,
+            "confidence_gap": 0.1637,
             "needs_review": false
           }
         ]
@@ -232,14 +232,14 @@
             "relevance": "Primary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.4048,
+            "score": 0.4579,
             "signals": {
-              "bridge": 0.0735,
+              "bridge": 0.1521,
               "semantic": 0.6755,
               "keyword": 0.0019,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0548,
+            "confidence_gap": 0.1079,
             "needs_review": false
           }
         ]
@@ -279,14 +279,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.623,
+            "score": 0.6257,
             "signals": {
-              "bridge": 0.307,
+              "bridge": 0.311,
               "semantic": 0.7913,
               "keyword": 0.0011,
               "function_match": 1.0
             },
-            "confidence_gap": 0.073,
+            "confidence_gap": 0.0757,
             "needs_review": false
           },
           {
@@ -295,14 +295,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5494,
+            "score": 0.5468,
             "signals": {
-              "bridge": 0.1374,
+              "bridge": 0.1335,
               "semantic": 0.8586,
-              "keyword": 0.0197,
+              "keyword": 0.0198,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1994,
+            "confidence_gap": 0.1968,
             "needs_review": false
           },
           {
@@ -311,14 +311,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5231,
+            "score": 0.5226,
             "signals": {
-              "bridge": 0.2898,
+              "bridge": 0.289,
               "semantic": 0.615,
               "keyword": 0.0156,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1731,
+            "confidence_gap": 0.1726,
             "needs_review": false
           }
         ]
@@ -448,9 +448,9 @@
         "control_title": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 2,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 2,
+        "secondary_count": 1,
         "mappings": [
           {
             "owasp_id": "ASI02",
@@ -458,30 +458,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5127,
+            "score": 0.5139,
             "signals": {
-              "bridge": 0.0474,
+              "bridge": 0.0454,
               "semantic": 0.8615,
-              "keyword": 0.0949,
+              "keyword": 0.1032,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1627,
-            "needs_review": false
-          },
-          {
-            "owasp_id": "ASI05",
-            "owasp_title": "Unexpected CodeExecution (RCE)",
-            "relevance": "Secondary",
-            "rationale_code": "DETECT",
-            "rationale_label": "Detect and trace",
-            "score": 0.5016,
-            "signals": {
-              "bridge": 0.0626,
-              "semantic": 0.8277,
-              "keyword": 0.0826,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1516,
+            "confidence_gap": 0.1639,
             "needs_review": false
           }
         ]
@@ -511,14 +495,14 @@
             "relevance": "Primary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.4867,
+            "score": 0.4881,
             "signals": {
-              "bridge": 0.1272,
+              "bridge": 0.1291,
               "semantic": 0.7555,
               "keyword": 0.0141,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1367,
+            "confidence_gap": 0.1381,
             "needs_review": false
           }
         ]
@@ -548,14 +532,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5431,
+            "score": 0.5457,
             "signals": {
-              "bridge": 0.188,
+              "bridge": 0.1919,
               "semantic": 0.7872,
               "keyword": 0.0097,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1931,
+            "confidence_gap": 0.1957,
             "needs_review": false
           }
         ]
@@ -645,14 +629,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5447,
+            "score": 0.5437,
             "signals": {
-              "bridge": 0.1327,
+              "bridge": 0.1312,
               "semantic": 0.8567,
               "keyword": 0.018,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1947,
+            "confidence_gap": 0.1937,
             "needs_review": false
           }
         ]
@@ -712,14 +696,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5241,
+            "score": 0.5214,
             "signals": {
-              "bridge": 0.1044,
+              "bridge": 0.1005,
               "semantic": 0.8634,
               "keyword": 0.001,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1741,
+            "confidence_gap": 0.1714,
             "needs_review": false
           }
         ]
@@ -739,15 +723,15 @@
             "relevance": "Secondary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.5363,
+            "score": 0.5559,
             "signals": {
-              "bridge": 0.1681,
+              "bridge": 0.1955,
               "semantic": 0.7646,
-              "keyword": 0.0714,
+              "keyword": 0.075,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1863,
-            "needs_review": false
+            "confidence_gap": 0.0059,
+            "needs_review": true
           },
           {
             "owasp_id": "ASI01",
@@ -755,14 +739,14 @@
             "relevance": "Primary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.4165,
+            "score": 0.4668,
             "signals": {
-              "bridge": 0.0945,
+              "bridge": 0.169,
               "semantic": 0.6719,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0665,
+            "confidence_gap": 0.1168,
             "needs_review": false
           }
         ]
@@ -792,14 +776,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5371,
+            "score": 0.5339,
             "signals": {
-              "bridge": 0.1291,
+              "bridge": 0.1244,
               "semantic": 0.8361,
-              "keyword": 0.0365,
+              "keyword": 0.0366,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1871,
+            "confidence_gap": 0.1839,
             "needs_review": false
           }
         ]
@@ -859,14 +843,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5265,
+            "score": 0.5278,
             "signals": {
-              "bridge": 0.1421,
+              "bridge": 0.144,
               "semantic": 0.8161,
               "keyword": 0.0073,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1765,
+            "confidence_gap": 0.1778,
             "needs_review": false
           }
         ]
@@ -886,14 +870,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.6734,
+            "score": 0.7123,
             "signals": {
-              "bridge": 0.3379,
+              "bridge": 0.3955,
               "semantic": 0.8356,
               "keyword": 0.0221,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1234,
+            "confidence_gap": 0.1623,
             "needs_review": false
           },
           {
@@ -902,14 +886,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5261,
+            "score": 0.5481,
             "signals": {
-              "bridge": 0.2259,
+              "bridge": 0.2585,
               "semantic": 0.7041,
               "keyword": 0.0131,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1761,
+            "confidence_gap": 0.1981,
             "needs_review": false
           }
         ]
@@ -989,31 +973,15 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.6167,
+            "score": 0.6094,
             "signals": {
-              "bridge": 0.3014,
+              "bridge": 0.2905,
               "semantic": 0.779,
               "keyword": 0.0144,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0667,
+            "confidence_gap": 0.0594,
             "needs_review": false
-          },
-          {
-            "owasp_id": "ASI01",
-            "owasp_title": "Agent Goal Hijack",
-            "relevance": "Secondary",
-            "rationale_code": "DETECT",
-            "rationale_label": "Detect and trace",
-            "score": 0.5742,
-            "signals": {
-              "bridge": 0.319,
-              "semantic": 0.6762,
-              "keyword": 0.0128,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0242,
-            "needs_review": true
           },
           {
             "owasp_id": "ASI10",
@@ -1021,14 +989,30 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5703,
+            "score": 0.5649,
             "signals": {
-              "bridge": 0.232,
+              "bridge": 0.224,
               "semantic": 0.7775,
               "keyword": 0.0184,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0203,
+            "confidence_gap": 0.0149,
+            "needs_review": true
+          },
+          {
+            "owasp_id": "ASI01",
+            "owasp_title": "Agent Goal Hijack",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5635,
+            "signals": {
+              "bridge": 0.3032,
+              "semantic": 0.6762,
+              "keyword": 0.0128,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0135,
             "needs_review": true
           }
         ]
@@ -1048,14 +1032,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5615,
+            "score": 0.561,
             "signals": {
-              "bridge": 0.2217,
+              "bridge": 0.221,
               "semantic": 0.7838,
               "keyword": 0.0011,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0115,
+            "confidence_gap": 0.011,
             "needs_review": true
           }
         ]
@@ -1075,14 +1059,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.6078,
+            "score": 0.6075,
             "signals": {
-              "bridge": 0.1992,
+              "bridge": 0.1987,
               "semantic": 0.8965,
               "keyword": 0.009,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0578,
+            "confidence_gap": 0.0575,
             "needs_review": false
           }
         ]
@@ -1102,14 +1086,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5991,
+            "score": 0.5947,
             "signals": {
-              "bridge": 0.2048,
+              "bridge": 0.1983,
               "semantic": 0.8662,
               "keyword": 0.0202,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0491,
+            "confidence_gap": 0.0447,
             "needs_review": true
           },
           {
@@ -1118,14 +1102,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.524,
+            "score": 0.5187,
             "signals": {
-              "bridge": 0.3228,
+              "bridge": 0.315,
               "semantic": 0.5742,
               "keyword": 0.0154,
               "function_match": 1.0
             },
-            "confidence_gap": 0.174,
+            "confidence_gap": 0.1687,
             "needs_review": false
           },
           {
@@ -1134,14 +1118,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5175,
+            "score": 0.5162,
             "signals": {
-              "bridge": 0.262,
+              "bridge": 0.2601,
               "semantic": 0.6475,
               "keyword": 0.0022,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1675,
+            "confidence_gap": 0.1662,
             "needs_review": false
           }
         ]
@@ -1161,14 +1145,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5681,
+            "score": 0.5705,
             "signals": {
-              "bridge": 0.1605,
+              "bridge": 0.164,
               "semantic": 0.8738,
               "keyword": 0.0033,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0181,
+            "confidence_gap": 0.0205,
             "needs_review": true
           },
           {
@@ -1177,14 +1161,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5649,
+            "score": 0.5622,
             "signals": {
-              "bridge": 0.1577,
+              "bridge": 0.1538,
               "semantic": 0.8447,
               "keyword": 0.0499,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0149,
+            "confidence_gap": 0.0122,
             "needs_review": true
           }
         ]
@@ -1244,14 +1228,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5281,
+            "score": 0.5294,
             "signals": {
-              "bridge": 0.1421,
+              "bridge": 0.144,
               "semantic": 0.8225,
               "keyword": 0.0015,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1781,
+            "confidence_gap": 0.1794,
             "needs_review": false
           }
         ]
@@ -1271,14 +1255,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.6157,
+            "score": 0.6144,
             "signals": {
-              "bridge": 0.1865,
+              "bridge": 0.1846,
               "semantic": 0.8975,
-              "keyword": 0.062,
+              "keyword": 0.0619,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0657,
+            "confidence_gap": 0.0644,
             "needs_review": false
           },
           {
@@ -1287,14 +1271,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.505,
+            "score": 0.5078,
             "signals": {
-              "bridge": 0.1527,
+              "bridge": 0.1568,
               "semantic": 0.7577,
               "keyword": 0.0139,
               "function_match": 1.0
             },
-            "confidence_gap": 0.155,
+            "confidence_gap": 0.1578,
             "needs_review": false
           }
         ]
@@ -1339,14 +1323,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5742,
+            "score": 0.5635,
             "signals": {
-              "bridge": 0.319,
+              "bridge": 0.3032,
               "semantic": 0.6762,
               "keyword": 0.0128,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0242,
+            "confidence_gap": 0.0135,
             "needs_review": true
           },
           {
@@ -1357,14 +1341,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5175,
+            "score": 0.5162,
             "signals": {
-              "bridge": 0.262,
+              "bridge": 0.2601,
               "semantic": 0.6475,
               "keyword": 0.0022,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1675,
+            "confidence_gap": 0.1662,
             "needs_review": false
           },
           {
@@ -1375,14 +1359,14 @@
             "relevance": "Primary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.4867,
+            "score": 0.4881,
             "signals": {
-              "bridge": 0.1272,
+              "bridge": 0.1291,
               "semantic": 0.7555,
               "keyword": 0.0141,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1367,
+            "confidence_gap": 0.1381,
             "needs_review": false
           },
           {
@@ -1393,14 +1377,14 @@
             "relevance": "Primary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.4165,
+            "score": 0.4668,
             "signals": {
-              "bridge": 0.0945,
+              "bridge": 0.169,
               "semantic": 0.6719,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0665,
+            "confidence_gap": 0.1168,
             "needs_review": false
           },
           {
@@ -1411,14 +1395,14 @@
             "relevance": "Primary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.4048,
+            "score": 0.4579,
             "signals": {
-              "bridge": 0.0735,
+              "bridge": 0.1521,
               "semantic": 0.6755,
               "keyword": 0.0019,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0548,
+            "confidence_gap": 0.1079,
             "needs_review": false
           }
         ]
@@ -1451,14 +1435,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5494,
+            "score": 0.5468,
             "signals": {
-              "bridge": 0.1374,
+              "bridge": 0.1335,
               "semantic": 0.8586,
-              "keyword": 0.0197,
+              "keyword": 0.0198,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1994,
+            "confidence_gap": 0.1968,
             "needs_review": false
           },
           {
@@ -1469,14 +1453,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5127,
+            "score": 0.5139,
             "signals": {
-              "bridge": 0.0474,
+              "bridge": 0.0454,
               "semantic": 0.8615,
-              "keyword": 0.0949,
+              "keyword": 0.1032,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1627,
+            "confidence_gap": 0.1639,
             "needs_review": false
           }
         ]
@@ -1525,12 +1509,12 @@
         "owasp_id": "ASI05",
         "owasp_title": "Unexpected CodeExecution (RCE)",
         "owasp_rank": 5,
-        "mapping_count": 10,
+        "mapping_count": 9,
         "primary_count": 0,
-        "secondary_count": 10,
+        "secondary_count": 9,
         "function_coverage": {
           "VALID": 4,
-          "DETECT": 4,
+          "DETECT": 3,
           "SCOPE": 2
         },
         "uncovered_functions": [
@@ -1549,14 +1533,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.6734,
+            "score": 0.7123,
             "signals": {
-              "bridge": 0.3379,
+              "bridge": 0.3955,
               "semantic": 0.8356,
               "keyword": 0.0221,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1234,
+            "confidence_gap": 0.1623,
             "needs_review": false
           },
           {
@@ -1567,14 +1551,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.623,
+            "score": 0.6257,
             "signals": {
-              "bridge": 0.307,
+              "bridge": 0.311,
               "semantic": 0.7913,
               "keyword": 0.0011,
               "function_match": 1.0
             },
-            "confidence_gap": 0.073,
+            "confidence_gap": 0.0757,
             "needs_review": false
           },
           {
@@ -1585,14 +1569,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.6167,
+            "score": 0.6094,
             "signals": {
-              "bridge": 0.3014,
+              "bridge": 0.2905,
               "semantic": 0.779,
               "keyword": 0.0144,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0667,
+            "confidence_gap": 0.0594,
             "needs_review": false
           },
           {
@@ -1603,14 +1587,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5969,
+            "score": 0.5936,
             "signals": {
-              "bridge": 0.2365,
+              "bridge": 0.2316,
               "semantic": 0.8262,
               "keyword": 0.0116,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0469,
+            "confidence_gap": 0.0436,
             "needs_review": true
           },
           {
@@ -1621,14 +1605,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5615,
+            "score": 0.561,
             "signals": {
-              "bridge": 0.2217,
+              "bridge": 0.221,
               "semantic": 0.7838,
               "keyword": 0.0011,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0115,
+            "confidence_gap": 0.011,
             "needs_review": true
           },
           {
@@ -1639,14 +1623,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5447,
+            "score": 0.5437,
             "signals": {
-              "bridge": 0.1327,
+              "bridge": 0.1312,
               "semantic": 0.8567,
               "keyword": 0.018,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1947,
+            "confidence_gap": 0.1937,
             "needs_review": false
           },
           {
@@ -1657,14 +1641,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5371,
+            "score": 0.5339,
             "signals": {
-              "bridge": 0.1291,
+              "bridge": 0.1244,
               "semantic": 0.8361,
-              "keyword": 0.0365,
+              "keyword": 0.0366,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1871,
+            "confidence_gap": 0.1839,
             "needs_review": false
           },
           {
@@ -1675,14 +1659,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5241,
+            "score": 0.5214,
             "signals": {
-              "bridge": 0.1044,
+              "bridge": 0.1005,
               "semantic": 0.8634,
               "keyword": 0.001,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1741,
+            "confidence_gap": 0.1714,
             "needs_review": false
           },
           {
@@ -1693,32 +1677,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.524,
+            "score": 0.5187,
             "signals": {
-              "bridge": 0.3228,
+              "bridge": 0.315,
               "semantic": 0.5742,
               "keyword": 0.0154,
               "function_match": 1.0
             },
-            "confidence_gap": 0.174,
-            "needs_review": false
-          },
-          {
-            "control_id": "MANAGE-3.1",
-            "control_title": "AI risks and benefits from third-party resources regularly monitored; risk controls applied and documented.",
-            "domain": "",
-            "function_class": "DETECT",
-            "relevance": "Secondary",
-            "rationale_code": "DETECT",
-            "rationale_label": "Detect and trace",
-            "score": 0.5016,
-            "signals": {
-              "bridge": 0.0626,
-              "semantic": 0.8277,
-              "keyword": 0.0826,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1516,
+            "confidence_gap": 0.1687,
             "needs_review": false
           }
         ]
@@ -1751,14 +1717,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5261,
+            "score": 0.5481,
             "signals": {
-              "bridge": 0.2259,
+              "bridge": 0.2585,
               "semantic": 0.7041,
               "keyword": 0.0131,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1761,
+            "confidence_gap": 0.1981,
             "needs_review": false
           }
         ]
@@ -1811,14 +1777,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5681,
+            "score": 0.5705,
             "signals": {
-              "bridge": 0.1605,
+              "bridge": 0.164,
               "semantic": 0.8738,
               "keyword": 0.0033,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0181,
+            "confidence_gap": 0.0205,
             "needs_review": true
           },
           {
@@ -1829,14 +1795,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5431,
+            "score": 0.5457,
             "signals": {
-              "bridge": 0.188,
+              "bridge": 0.1919,
               "semantic": 0.7872,
               "keyword": 0.0097,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1931,
+            "confidence_gap": 0.1957,
             "needs_review": false
           },
           {
@@ -1847,14 +1813,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5154,
+            "score": 0.5137,
             "signals": {
-              "bridge": 0.1777,
+              "bridge": 0.1752,
               "semantic": 0.7532,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1654,
+            "confidence_gap": 0.1637,
             "needs_review": false
           }
         ]
@@ -1887,14 +1853,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.6157,
+            "score": 0.6144,
             "signals": {
-              "bridge": 0.1865,
+              "bridge": 0.1846,
               "semantic": 0.8975,
-              "keyword": 0.062,
+              "keyword": 0.0619,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0657,
+            "confidence_gap": 0.0644,
             "needs_review": false
           },
           {
@@ -1905,15 +1871,15 @@
             "relevance": "Secondary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.5363,
+            "score": 0.5559,
             "signals": {
-              "bridge": 0.1681,
+              "bridge": 0.1955,
               "semantic": 0.7646,
-              "keyword": 0.0714,
+              "keyword": 0.075,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1863,
-            "needs_review": false
+            "confidence_gap": 0.0059,
+            "needs_review": true
           }
         ]
       },
@@ -1945,14 +1911,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.6078,
+            "score": 0.6075,
             "signals": {
-              "bridge": 0.1992,
+              "bridge": 0.1987,
               "semantic": 0.8965,
               "keyword": 0.009,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0578,
+            "confidence_gap": 0.0575,
             "needs_review": false
           },
           {
@@ -1963,14 +1929,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5991,
+            "score": 0.5947,
             "signals": {
-              "bridge": 0.2048,
+              "bridge": 0.1983,
               "semantic": 0.8662,
               "keyword": 0.0202,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0491,
+            "confidence_gap": 0.0447,
             "needs_review": true
           },
           {
@@ -1981,14 +1947,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5703,
+            "score": 0.5649,
             "signals": {
-              "bridge": 0.232,
+              "bridge": 0.224,
               "semantic": 0.7775,
               "keyword": 0.0184,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0203,
+            "confidence_gap": 0.0149,
             "needs_review": true
           },
           {
@@ -1999,14 +1965,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5649,
+            "score": 0.5622,
             "signals": {
-              "bridge": 0.1577,
+              "bridge": 0.1538,
               "semantic": 0.8447,
               "keyword": 0.0499,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0149,
+            "confidence_gap": 0.0122,
             "needs_review": true
           },
           {
@@ -2017,14 +1983,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5281,
+            "score": 0.5294,
             "signals": {
-              "bridge": 0.1421,
+              "bridge": 0.144,
               "semantic": 0.8225,
               "keyword": 0.0015,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1781,
+            "confidence_gap": 0.1794,
             "needs_review": false
           },
           {
@@ -2035,14 +2001,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5265,
+            "score": 0.5278,
             "signals": {
-              "bridge": 0.1421,
+              "bridge": 0.144,
               "semantic": 0.8161,
               "keyword": 0.0073,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1765,
+            "confidence_gap": 0.1778,
             "needs_review": false
           },
           {
@@ -2053,14 +2019,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5231,
+            "score": 0.5226,
             "signals": {
-              "bridge": 0.2898,
+              "bridge": 0.289,
               "semantic": 0.615,
               "keyword": 0.0156,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1731,
+            "confidence_gap": 0.1726,
             "needs_review": false
           },
           {
@@ -2071,14 +2037,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.505,
+            "score": 0.5078,
             "signals": {
-              "bridge": 0.1527,
+              "bridge": 0.1568,
               "semantic": 0.7577,
               "keyword": 0.0139,
               "function_match": 1.0
             },
-            "confidence_gap": 0.155,
+            "confidence_gap": 0.1578,
             "needs_review": false
           }
         ]
@@ -2461,56 +2427,63 @@
     ],
     "unmapped_count": 53,
     "note": "Unmapped controls did not reach the Related threshold under the current pipeline.",
-    "needs_review_count": 7,
+    "needs_review_count": 8,
     "needs_review": [
       {
         "source_node_id": "nist_rmf:GOVERN-1.5",
         "target_node_id": "owasp_agentic:ASI05",
-        "score": 0.5969,
+        "score": 0.5936,
         "tier": "Direct",
-        "confidence_gap": 0.0469
+        "confidence_gap": 0.0436
+      },
+      {
+        "source_node_id": "nist_rmf:MAP-3.5",
+        "target_node_id": "owasp_agentic:ASI09",
+        "score": 0.5559,
+        "tier": "Direct",
+        "confidence_gap": 0.0059
       },
       {
         "source_node_id": "nist_rmf:MEASURE-2.4",
         "target_node_id": "owasp_agentic:ASI01",
-        "score": 0.5742,
+        "score": 0.5635,
         "tier": "Direct",
-        "confidence_gap": 0.0242
+        "confidence_gap": 0.0135
       },
       {
         "source_node_id": "nist_rmf:MEASURE-2.4",
         "target_node_id": "owasp_agentic:ASI10",
-        "score": 0.5703,
+        "score": 0.5649,
         "tier": "Direct",
-        "confidence_gap": 0.0203
+        "confidence_gap": 0.0149
       },
       {
         "source_node_id": "nist_rmf:MEASURE-2.5",
         "target_node_id": "owasp_agentic:ASI05",
-        "score": 0.5615,
+        "score": 0.561,
         "tier": "Direct",
-        "confidence_gap": 0.0115
+        "confidence_gap": 0.011
       },
       {
         "source_node_id": "nist_rmf:MEASURE-2.7",
         "target_node_id": "owasp_agentic:ASI10",
-        "score": 0.5991,
+        "score": 0.5947,
         "tier": "Direct",
-        "confidence_gap": 0.0491
+        "confidence_gap": 0.0447
       },
       {
         "source_node_id": "nist_rmf:MEASURE-2.8",
         "target_node_id": "owasp_agentic:ASI08",
-        "score": 0.5681,
+        "score": 0.5705,
         "tier": "Direct",
-        "confidence_gap": 0.0181
+        "confidence_gap": 0.0205
       },
       {
         "source_node_id": "nist_rmf:MEASURE-2.8",
         "target_node_id": "owasp_agentic:ASI10",
-        "score": 0.5649,
+        "score": 0.5622,
         "tier": "Direct",
-        "confidence_gap": 0.0149
+        "confidence_gap": 0.0122
       }
     ]
   }

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "schema_version": "2.0",
-    "generated_at": "2026-04-07T17:32:26.553105+00:00",
+    "generated_at": "2026-04-08T12:29:34.799840+00:00",
     "methodology": "multi-signal-hybrid-v2",
     "source_standard": {
       "name": "mitre_atlas",
@@ -57,21 +57,21 @@
     }
   },
   "summary": {
-    "controls_mapped": "73 / 202",
-    "controls_unmapped": 129,
+    "controls_mapped": "85 / 202",
+    "controls_unmapped": 117,
     "owasp_entries_with_matches": 6,
-    "total_mappings": 81,
+    "total_mappings": 94,
     "primary_mappings": 0,
-    "secondary_mappings": 81,
+    "secondary_mappings": 94,
     "rationale_distribution": {
       "SCOPE": 12,
-      "PREV": 11,
-      "DETECT": 11,
-      "GOVERN": 36,
+      "PREV": 15,
+      "DETECT": 12,
+      "GOVERN": 42,
       "GATE": 2,
-      "ISOLATE": 5,
+      "ISOLATE": 6,
       "DISCLOSE": 2,
-      "VALID": 2
+      "VALID": 3
     }
   },
   "control_level": {
@@ -91,14 +91,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5411,
+            "score": 0.5433,
             "signals": {
               "bridge": 0.0845,
               "semantic": 0.9025,
-              "keyword": 0.0342,
+              "keyword": 0.0414,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1911,
+            "confidence_gap": 0.1933,
             "needs_review": false
           }
         ]
@@ -118,14 +118,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5154,
+            "score": 0.5368,
             "signals": {
-              "bridge": 0.0529,
+              "bridge": 0.0852,
               "semantic": 0.88,
-              "keyword": 0.0589,
+              "keyword": 0.0578,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1654,
+            "confidence_gap": 0.1868,
             "needs_review": false
           }
         ]
@@ -160,6 +160,22 @@
         "secondary_count": 3,
         "mappings": [
           {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.634,
+            "signals": {
+              "bridge": 0.279,
+              "semantic": 0.8356,
+              "keyword": 0.0232,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.084,
+            "needs_review": false
+          },
+          {
             "owasp_id": "LLM10",
             "owasp_title": "Unbounded Consumption",
             "relevance": "Secondary",
@@ -173,22 +189,6 @@
               "function_match": 1.0
             },
             "confidence_gap": 0.0647,
-            "needs_review": false
-          },
-          {
-            "owasp_id": "LLM04",
-            "owasp_title": "Data and Model Poisoning",
-            "relevance": "Secondary",
-            "rationale_code": "SCOPE",
-            "rationale_label": "Constrain scope",
-            "score": 0.6138,
-            "signals": {
-              "bridge": 0.2491,
-              "semantic": 0.8356,
-              "keyword": 0.0232,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0638,
             "needs_review": false
           },
           {
@@ -224,15 +224,15 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5379,
+            "score": 0.5657,
             "signals": {
-              "bridge": 0.068,
+              "bridge": 0.109,
               "semantic": 0.9039,
-              "keyword": 0.0582,
+              "keyword": 0.0589,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1879,
-            "needs_review": false
+            "confidence_gap": 0.0157,
+            "needs_review": true
           },
           {
             "owasp_id": "LLM02",
@@ -240,14 +240,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5342,
+            "score": 0.5337,
             "signals": {
-              "bridge": 0.2647,
+              "bridge": 0.2639,
               "semantic": 0.6772,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1842,
+            "confidence_gap": 0.1837,
             "needs_review": false
           },
           {
@@ -256,14 +256,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5146,
+            "score": 0.5142,
             "signals": {
-              "bridge": 0.2239,
+              "bridge": 0.2233,
               "semantic": 0.6924,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1646,
+            "confidence_gap": 0.1642,
             "needs_review": false
           }
         ]
@@ -293,15 +293,15 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5591,
+            "score": 0.6073,
             "signals": {
-              "bridge": 0.0702,
+              "bridge": 0.1416,
               "semantic": 0.9357,
               "keyword": 0.0681,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0091,
-            "needs_review": true
+            "confidence_gap": 0.0573,
+            "needs_review": false
           }
         ]
       },
@@ -320,14 +320,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.6033,
+            "score": 0.6507,
             "signals": {
-              "bridge": 0.0946,
+              "bridge": 0.165,
               "semantic": 0.9458,
-              "keyword": 0.143,
+              "keyword": 0.1427,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0533,
+            "confidence_gap": 0.1007,
             "needs_review": false
           }
         ]
@@ -357,15 +357,15 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5342,
+            "score": 0.5513,
             "signals": {
-              "bridge": 0.0735,
+              "bridge": 0.099,
               "semantic": 0.9058,
               "keyword": 0.0299,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1842,
-            "needs_review": false
+            "confidence_gap": 0.0013,
+            "needs_review": true
           }
         ]
       },
@@ -394,10 +394,27 @@
         "control_title": "Code Signing",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5179,
+            "signals": {
+              "bridge": 0.0364,
+              "semantic": 0.9235,
+              "keyword": 0.0284,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1679,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.M0014",
@@ -424,14 +441,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.6296,
+            "score": 0.6377,
             "signals": {
-              "bridge": 0.2071,
+              "bridge": 0.2191,
               "semantic": 0.9232,
-              "keyword": 0.0169,
+              "keyword": 0.017,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0796,
+            "confidence_gap": 0.0877,
             "needs_review": false
           },
           {
@@ -440,14 +457,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.538,
+            "score": 0.5331,
             "signals": {
-              "bridge": 0.3303,
+              "bridge": 0.3218,
               "semantic": 0.3956,
-              "keyword": 0.3577,
+              "keyword": 0.3604,
               "function_match": 1.0
             },
-            "confidence_gap": 0.188,
+            "confidence_gap": 0.1831,
             "needs_review": false
           }
         ]
@@ -467,14 +484,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5307,
+            "score": 0.5306,
             "signals": {
-              "bridge": 0.0655,
+              "bridge": 0.0654,
               "semantic": 0.9139,
-              "keyword": 0.0222,
+              "keyword": 0.0221,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1807,
+            "confidence_gap": 0.1806,
             "needs_review": false
           }
         ]
@@ -494,14 +511,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5085,
+            "score": 0.5313,
             "signals": {
-              "bridge": 0.026,
+              "bridge": 0.0599,
               "semantic": 0.9138,
               "keyword": 0.0372,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1585,
+            "confidence_gap": 0.1813,
             "needs_review": false
           }
         ]
@@ -531,14 +548,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5977,
+            "score": 0.5965,
             "signals": {
-              "bridge": 0.3019,
+              "bridge": 0.3001,
               "semantic": 0.7503,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0477,
+            "confidence_gap": 0.0465,
             "needs_review": true
           },
           {
@@ -547,15 +564,15 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5402,
+            "score": 0.5699,
             "signals": {
-              "bridge": 0.068,
+              "bridge": 0.1119,
               "semantic": 0.9114,
-              "keyword": 0.0526,
+              "keyword": 0.0527,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1902,
-            "needs_review": false
+            "confidence_gap": 0.0199,
+            "needs_review": true
           }
         ]
       },
@@ -574,14 +591,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5167,
+            "score": 0.5495,
             "signals": {
-              "bridge": 0.0768,
+              "bridge": 0.1252,
               "semantic": 0.8602,
-              "keyword": 0.0443,
+              "keyword": 0.0445,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1667,
+            "confidence_gap": 0.1995,
             "needs_review": false
           }
         ]
@@ -601,15 +618,15 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5926,
+            "score": 0.6052,
             "signals": {
-              "bridge": 0.3341,
+              "bridge": 0.3549,
               "semantic": 0.6629,
-              "keyword": 0.0635,
+              "keyword": 0.059,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0426,
-            "needs_review": true
+            "confidence_gap": 0.0552,
+            "needs_review": false
           },
           {
             "owasp_id": "LLM04",
@@ -617,14 +634,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5565,
+            "score": 0.5837,
             "signals": {
-              "bridge": 0.1812,
+              "bridge": 0.2215,
               "semantic": 0.8143,
               "keyword": 0.0224,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0065,
+            "confidence_gap": 0.0337,
             "needs_review": true
           }
         ]
@@ -644,15 +661,15 @@
             "relevance": "Secondary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.5152,
+            "score": 0.5784,
             "signals": {
-              "bridge": 0.0274,
+              "bridge": 0.1211,
               "semantic": 0.9296,
-              "keyword": 0.0289,
+              "keyword": 0.0288,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1652,
-            "needs_review": false
+            "confidence_gap": 0.0284,
+            "needs_review": true
           }
         ]
       },
@@ -671,14 +688,14 @@
             "relevance": "Secondary",
             "rationale_code": "ISOLATE",
             "rationale_label": "Isolate and contain",
-            "score": 0.5531,
+            "score": 0.5524,
             "signals": {
-              "bridge": 0.0176,
+              "bridge": 0.0175,
               "semantic": 0.886,
-              "keyword": 0.2533,
+              "keyword": 0.2513,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0031,
+            "confidence_gap": 0.0024,
             "needs_review": true
           }
         ]
@@ -698,14 +715,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5612,
+            "score": 0.5783,
             "signals": {
-              "bridge": 0.1325,
+              "bridge": 0.1578,
               "semantic": 0.8911,
-              "keyword": 0.0133,
+              "keyword": 0.0134,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0112,
+            "confidence_gap": 0.0283,
             "needs_review": true
           },
           {
@@ -741,15 +758,15 @@
             "relevance": "Secondary",
             "rationale_code": "DISCLOSE",
             "rationale_label": "Disclose and calibrate",
-            "score": 0.5321,
+            "score": 0.5556,
             "signals": {
-              "bridge": 0.0678,
+              "bridge": 0.1026,
               "semantic": 0.9264,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1821,
-            "needs_review": false
+            "confidence_gap": 0.0056,
+            "needs_review": true
           }
         ]
       },
@@ -828,20 +845,54 @@
         "control_title": "Input and Output Validation for AI Agent Components",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5535,
+            "signals": {
+              "bridge": 0.102,
+              "semantic": 0.9076,
+              "keyword": 0.0273,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0035,
+            "needs_review": true
+          }
+        ]
       },
       {
         "control_id": "AML.M0034",
         "control_title": "Deepfake Detection",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5013,
+            "signals": {
+              "bridge": 0.0403,
+              "semantic": 0.8947,
+              "keyword": 0.0145,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1513,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0000",
@@ -928,14 +979,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5281,
+            "score": 0.5253,
             "signals": {
-              "bridge": 0.0536,
+              "bridge": 0.0494,
               "semantic": 0.9225,
-              "keyword": 0.0255,
+              "keyword": 0.0254,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1781,
+            "confidence_gap": 0.1753,
             "needs_review": false
           }
         ]
@@ -975,14 +1026,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5276,
+            "score": 0.5493,
             "signals": {
-              "bridge": 0.0449,
+              "bridge": 0.0771,
               "semantic": 0.9296,
               "keyword": 0.0308,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1776,
+            "confidence_gap": 0.1993,
             "needs_review": false
           }
         ]
@@ -1002,14 +1053,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5442,
+            "score": 0.5459,
             "signals": {
-              "bridge": 0.0172,
+              "bridge": 0.0198,
               "semantic": 0.9239,
               "keyword": 0.1583,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1942,
+            "confidence_gap": 0.1959,
             "needs_review": false
           }
         ]
@@ -1029,15 +1080,15 @@
             "relevance": "Secondary",
             "rationale_code": "ISOLATE",
             "rationale_label": "Isolate and contain",
-            "score": 0.5229,
+            "score": 0.5564,
             "signals": {
-              "bridge": 0.0366,
+              "bridge": 0.0863,
               "semantic": 0.9184,
               "keyword": 0.0535,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1729,
-            "needs_review": false
+            "confidence_gap": 0.0064,
+            "needs_review": true
           }
         ]
       },
@@ -1066,10 +1117,27 @@
         "control_title": "Discover AI Artifacts",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.509,
+            "signals": {
+              "bridge": 0.0554,
+              "semantic": 0.881,
+              "keyword": 0.0302,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.159,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0008",
@@ -1116,15 +1184,15 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.6337,
+            "score": 0.5929,
             "signals": {
-              "bridge": 0.2667,
+              "bridge": 0.2062,
               "semantic": 0.8643,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0837,
-            "needs_review": false
+            "confidence_gap": 0.0429,
+            "needs_review": true
           }
         ]
       },
@@ -1173,14 +1241,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5966,
+            "score": 0.5961,
             "signals": {
               "bridge": 0.0469,
               "semantic": 0.863,
-              "keyword": 0.3728,
+              "keyword": 0.3712,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0466,
+            "confidence_gap": 0.0461,
             "needs_review": true
           }
         ]
@@ -1200,14 +1268,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5484,
+            "score": 0.5473,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.8253,
-              "keyword": 0.3836,
+              "keyword": 0.38,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1984,
+            "confidence_gap": 0.1973,
             "needs_review": false
           }
         ]
@@ -1227,15 +1295,15 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5404,
+            "score": 0.5541,
             "signals": {
-              "bridge": 0.0725,
+              "bridge": 0.0927,
               "semantic": 0.9362,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1904,
-            "needs_review": false
+            "confidence_gap": 0.0041,
+            "needs_review": true
           }
         ]
       },
@@ -1254,15 +1322,15 @@
             "relevance": "Secondary",
             "rationale_code": "DISCLOSE",
             "rationale_label": "Disclose and calibrate",
-            "score": 0.5966,
+            "score": 0.6093,
             "signals": {
-              "bridge": 0.1622,
+              "bridge": 0.181,
               "semantic": 0.9069,
               "keyword": 0.0367,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0466,
-            "needs_review": true
+            "confidence_gap": 0.0593,
+            "needs_review": false
           }
         ]
       },
@@ -1281,14 +1349,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.564,
+            "score": 0.5915,
             "signals": {
-              "bridge": 0.0879,
+              "bridge": 0.1288,
               "semantic": 0.9445,
               "keyword": 0.0293,
               "function_match": 1.0
             },
-            "confidence_gap": 0.014,
+            "confidence_gap": 0.0415,
             "needs_review": true
           }
         ]
@@ -1328,14 +1396,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5116,
+            "score": 0.5098,
             "signals": {
-              "bridge": 0.0476,
+              "bridge": 0.0449,
               "semantic": 0.9133,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1616,
+            "confidence_gap": 0.1598,
             "needs_review": false
           }
         ]
@@ -1355,14 +1423,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5215,
+            "score": 0.5305,
             "signals": {
-              "bridge": 0.0417,
+              "bridge": 0.055,
               "semantic": 0.9322,
               "keyword": 0.013,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1715,
+            "confidence_gap": 0.1805,
             "needs_review": false
           }
         ]
@@ -1382,14 +1450,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5029,
+            "score": 0.5135,
             "signals": {
-              "bridge": 0.029,
+              "bridge": 0.0447,
               "semantic": 0.9206,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1529,
+            "confidence_gap": 0.1635,
             "needs_review": false
           }
         ]
@@ -1409,14 +1477,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5261,
+            "score": 0.5211,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.8508,
-              "keyword": 0.2646,
+              "keyword": 0.2479,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1761,
+            "confidence_gap": 0.1711,
             "needs_review": false
           }
         ]
@@ -1456,14 +1524,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5192,
+            "score": 0.5361,
             "signals": {
-              "bridge": 0.0462,
+              "bridge": 0.0712,
               "semantic": 0.9077,
               "keyword": 0.0382,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1692,
+            "confidence_gap": 0.1861,
             "needs_review": false
           }
         ]
@@ -1483,14 +1551,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5062,
+            "score": 0.5253,
             "signals": {
-              "bridge": 0.0405,
+              "bridge": 0.0687,
               "semantic": 0.8851,
               "keyword": 0.0473,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1562,
+            "confidence_gap": 0.1753,
             "needs_review": false
           }
         ]
@@ -1510,14 +1578,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5617,
+            "score": 0.5669,
             "signals": {
-              "bridge": 0.0822,
+              "bridge": 0.0898,
               "semantic": 0.9288,
-              "keyword": 0.0619,
+              "keyword": 0.062,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0117,
+            "confidence_gap": 0.0169,
             "needs_review": true
           }
         ]
@@ -1597,15 +1665,15 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5925,
+            "score": 0.6106,
             "signals": {
-              "bridge": 0.0946,
+              "bridge": 0.1214,
               "semantic": 0.9438,
               "keyword": 0.1105,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0425,
-            "needs_review": true
+            "confidence_gap": 0.0606,
+            "needs_review": false
           }
         ]
       },
@@ -1624,14 +1692,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5561,
+            "score": 0.5985,
             "signals": {
-              "bridge": 0.0676,
+              "bridge": 0.1303,
               "semantic": 0.9434,
               "keyword": 0.0507,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0061,
+            "confidence_gap": 0.0485,
             "needs_review": true
           }
         ]
@@ -1651,15 +1719,15 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.528,
+            "score": 0.5516,
             "signals": {
-              "bridge": 0.0435,
+              "bridge": 0.0785,
               "semantic": 0.9378,
               "keyword": 0.0209,
               "function_match": 1.0
             },
-            "confidence_gap": 0.178,
-            "needs_review": false
+            "confidence_gap": 0.0016,
+            "needs_review": true
           }
         ]
       },
@@ -1668,10 +1736,27 @@
         "control_title": "Embed Malware",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5033,
+            "signals": {
+              "bridge": 0.0182,
+              "semantic": 0.9159,
+              "keyword": 0.034,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1533,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0019",
@@ -1688,14 +1773,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.6381,
+            "score": 0.6308,
             "signals": {
-              "bridge": 0.2034,
+              "bridge": 0.1926,
               "semantic": 0.9377,
               "keyword": 0.0284,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0881,
+            "confidence_gap": 0.0808,
             "needs_review": false
           }
         ]
@@ -1715,14 +1800,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.6188,
+            "score": 0.6603,
             "signals": {
-              "bridge": 0.1446,
+              "bridge": 0.2057,
               "semantic": 0.9388,
-              "keyword": 0.0945,
+              "keyword": 0.0954,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0688,
+            "confidence_gap": 0.1103,
             "needs_review": false
           }
         ]
@@ -1742,9 +1827,9 @@
         "control_title": "Exfiltration via AI Inference API",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 1,
+        "mapping_count": 2,
         "primary_count": 0,
-        "secondary_count": 1,
+        "secondary_count": 2,
         "mappings": [
           {
             "owasp_id": "LLM02",
@@ -1752,14 +1837,30 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5446,
+            "score": 0.5465,
             "signals": {
               "bridge": 0.1362,
               "semantic": 0.8451,
-              "keyword": 0.0299,
+              "keyword": 0.0362,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1946,
+            "confidence_gap": 0.1965,
+            "needs_review": false
+          },
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5136,
+            "signals": {
+              "bridge": 0.074,
+              "semantic": 0.8522,
+              "keyword": 0.0542,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1636,
             "needs_review": false
           }
         ]
@@ -1779,14 +1880,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5061,
+            "score": 0.5396,
             "signals": {
-              "bridge": 0.0366,
+              "bridge": 0.0863,
               "semantic": 0.8789,
-              "keyword": 0.0664,
+              "keyword": 0.0663,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1561,
+            "confidence_gap": 0.1896,
             "needs_review": false
           }
         ]
@@ -1806,14 +1907,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5139,
+            "score": 0.5475,
             "signals": {
-              "bridge": 0.0366,
+              "bridge": 0.0863,
               "semantic": 0.9015,
               "keyword": 0.0532,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1639,
+            "confidence_gap": 0.1975,
             "needs_review": false
           }
         ]
@@ -1833,14 +1934,14 @@
             "relevance": "Secondary",
             "rationale_code": "ISOLATE",
             "rationale_label": "Isolate and contain",
-            "score": 0.5533,
+            "score": 0.5818,
             "signals": {
-              "bridge": 0.0778,
+              "bridge": 0.1199,
               "semantic": 0.935,
               "keyword": 0.0332,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0033,
+            "confidence_gap": 0.0318,
             "needs_review": true
           }
         ]
@@ -1860,14 +1961,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5023,
+            "score": 0.5107,
             "signals": {
-              "bridge": 0.0968,
+              "bridge": 0.1093,
               "semantic": 0.8323,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1523,
+            "confidence_gap": 0.1607,
             "needs_review": false
           }
         ]
@@ -1887,14 +1988,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5202,
+            "score": 0.5355,
             "signals": {
-              "bridge": 0.0769,
+              "bridge": 0.0995,
               "semantic": 0.892,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1702,
+            "confidence_gap": 0.1855,
             "needs_review": false
           }
         ]
@@ -1914,14 +2015,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5551,
+            "score": 0.5612,
             "signals": {
-              "bridge": 0.0806,
+              "bridge": 0.0897,
               "semantic": 0.9226,
               "keyword": 0.0544,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0051,
+            "confidence_gap": 0.0112,
             "needs_review": true
           }
         ]
@@ -1931,10 +2032,27 @@
         "control_title": "Cost Harvesting",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5121,
+            "signals": {
+              "bridge": 0.0835,
+              "semantic": 0.8641,
+              "keyword": 0.0069,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1621,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0034.000",
@@ -1981,14 +2099,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5192,
+            "score": 0.5365,
             "signals": {
-              "bridge": 0.0282,
+              "bridge": 0.0538,
               "semantic": 0.9306,
               "keyword": 0.0386,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1692,
+            "confidence_gap": 0.1865,
             "needs_review": false
           }
         ]
@@ -2028,14 +2146,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.501,
+            "score": 0.5347,
             "signals": {
-              "bridge": 0.013,
+              "bridge": 0.0629,
               "semantic": 0.9112,
               "keyword": 0.0463,
               "function_match": 1.0
             },
-            "confidence_gap": 0.151,
+            "confidence_gap": 0.1847,
             "needs_review": false
           }
         ]
@@ -2065,15 +2183,15 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5291,
+            "score": 0.5651,
             "signals": {
-              "bridge": 0.0602,
+              "bridge": 0.1135,
               "semantic": 0.9163,
               "keyword": 0.0247,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1791,
-            "needs_review": false
+            "confidence_gap": 0.0151,
+            "needs_review": true
           }
         ]
       },
@@ -2092,14 +2210,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.6213,
+            "score": 0.6485,
             "signals": {
-              "bridge": 0.1875,
+              "bridge": 0.2278,
               "semantic": 0.9189,
               "keyword": 0.0412,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0713,
+            "confidence_gap": 0.0985,
             "needs_review": false
           }
         ]
@@ -2119,15 +2237,15 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5344,
+            "score": 0.5553,
             "signals": {
-              "bridge": 0.0886,
+              "bridge": 0.1196,
               "semantic": 0.8859,
               "keyword": 0.0316,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1844,
-            "needs_review": false
+            "confidence_gap": 0.0053,
+            "needs_review": true
           }
         ]
       },
@@ -2146,15 +2264,15 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5465,
+            "score": 0.5806,
             "signals": {
-              "bridge": 0.0706,
+              "bridge": 0.1211,
               "semantic": 0.9386,
               "keyword": 0.0204,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1965,
-            "needs_review": false
+            "confidence_gap": 0.0306,
+            "needs_review": true
           }
         ]
       },
@@ -2173,15 +2291,15 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5499,
+            "score": 0.556,
             "signals": {
-              "bridge": 0.0806,
+              "bridge": 0.0897,
               "semantic": 0.9288,
               "keyword": 0.0261,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1999,
-            "needs_review": false
+            "confidence_gap": 0.006,
+            "needs_review": true
           }
         ]
       },
@@ -2200,14 +2318,14 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5629,
+            "score": 0.5785,
             "signals": {
-              "bridge": 0.08,
+              "bridge": 0.103,
               "semantic": 0.9277,
               "keyword": 0.073,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0129,
+            "confidence_gap": 0.0285,
             "needs_review": true
           }
         ]
@@ -2227,14 +2345,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5279,
+            "score": 0.5479,
             "signals": {
-              "bridge": 0.0882,
+              "bridge": 0.1179,
               "semantic": 0.8673,
               "keyword": 0.0434,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1779,
+            "confidence_gap": 0.1979,
             "needs_review": false
           }
         ]
@@ -2254,14 +2372,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5204,
+            "score": 0.5355,
             "signals": {
-              "bridge": 0.0323,
+              "bridge": 0.0546,
               "semantic": 0.9169,
               "keyword": 0.0575,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1704,
+            "confidence_gap": 0.1855,
             "needs_review": false
           }
         ]
@@ -2281,14 +2399,14 @@
             "relevance": "Secondary",
             "rationale_code": "GATE",
             "rationale_label": "Human gate",
-            "score": 0.5025,
+            "score": 0.5226,
             "signals": {
-              "bridge": 0.0441,
+              "bridge": 0.074,
               "semantic": 0.8876,
               "keyword": 0.0224,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1525,
+            "confidence_gap": 0.1726,
             "needs_review": false
           }
         ]
@@ -2368,14 +2486,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5369,
+            "score": 0.5456,
             "signals": {
-              "bridge": 0.0833,
+              "bridge": 0.0962,
               "semantic": 0.8974,
               "keyword": 0.0317,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1869,
+            "confidence_gap": 0.1956,
             "needs_review": false
           }
         ]
@@ -2415,14 +2533,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.6182,
+            "score": 0.6431,
             "signals": {
-              "bridge": 0.1583,
+              "bridge": 0.2017,
               "semantic": 0.8499,
-              "keyword": 0.2169,
+              "keyword": 0.2026,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0682,
+            "confidence_gap": 0.0931,
             "needs_review": false
           }
         ]
@@ -2432,10 +2550,27 @@
         "control_title": "Direct",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM01",
+            "owasp_title": "Prompt Injection",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5167,
+            "signals": {
+              "bridge": 0.0771,
+              "semantic": 0.8773,
+              "keyword": 0.0136,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1667,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0051.001",
@@ -2462,15 +2597,15 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5482,
+            "score": 0.5706,
             "signals": {
-              "bridge": 0.0366,
+              "bridge": 0.0771,
               "semantic": 0.848,
-              "keyword": 0.261,
+              "keyword": 0.2446,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1982,
-            "needs_review": false
+            "confidence_gap": 0.0206,
+            "needs_review": true
           }
         ]
       },
@@ -2499,20 +2634,54 @@
         "control_title": "AI Agent Tool Invocation",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5001,
+            "signals": {
+              "bridge": 0.0717,
+              "semantic": 0.8498,
+              "keyword": 0.0186,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1501,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0054",
         "control_title": "LLM Jailbreak",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5128,
+            "signals": {
+              "bridge": 0.0718,
+              "semantic": 0.8748,
+              "keyword": 0.017,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1628,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0055",
@@ -2539,14 +2708,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5615,
+            "score": 0.5634,
             "signals": {
-              "bridge": 0.0519,
+              "bridge": 0.0648,
               "semantic": 0.7996,
-              "keyword": 0.3554,
+              "keyword": 0.3328,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0115,
+            "confidence_gap": 0.0134,
             "needs_review": true
           }
         ]
@@ -2556,10 +2725,27 @@
         "control_title": "LLM Data Leakage",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM02",
+            "owasp_title": "Sensitive Information Disclosure",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5057,
+            "signals": {
+              "bridge": 0.0177,
+              "semantic": 0.8447,
+              "keyword": 0.1678,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1557,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0058",
@@ -2576,14 +2762,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5333,
+            "score": 0.5322,
             "signals": {
-              "bridge": 0.0392,
+              "bridge": 0.0376,
               "semantic": 0.9423,
               "keyword": 0.0403,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1833,
+            "confidence_gap": 0.1822,
             "needs_review": false
           }
         ]
@@ -2603,14 +2789,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.6426,
+            "score": 0.6357,
             "signals": {
-              "bridge": 0.2353,
+              "bridge": 0.2251,
               "semantic": 0.9215,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0926,
+            "confidence_gap": 0.0857,
             "needs_review": false
           }
         ]
@@ -2640,14 +2826,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5637,
+            "score": 0.567,
             "signals": {
-              "bridge": 0.0519,
+              "bridge": 0.0648,
               "semantic": 0.8446,
-              "keyword": 0.2842,
+              "keyword": 0.2659,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0137,
+            "confidence_gap": 0.017,
             "needs_review": true
           }
         ]
@@ -2667,14 +2853,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5028,
+            "score": 0.5354,
             "signals": {
-              "bridge": 0.0633,
+              "bridge": 0.1116,
               "semantic": 0.8763,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1528,
+            "confidence_gap": 0.1854,
             "needs_review": false
           }
         ]
@@ -2684,10 +2870,27 @@
         "control_title": "Discover AI Model Outputs",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.516,
+            "signals": {
+              "bridge": 0.0435,
+              "semantic": 0.9042,
+              "keyword": 0.04,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.166,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0064",
@@ -2918,14 +3121,14 @@
             "relevance": "Secondary",
             "rationale_code": "ISOLATE",
             "rationale_label": "Isolate and contain",
-            "score": 0.5116,
+            "score": 0.5071,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.8139,
-              "keyword": 0.2809,
+              "keyword": 0.2661,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1616,
+            "confidence_gap": 0.1571,
             "needs_review": false
           }
         ]
@@ -2955,14 +3158,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5025,
+            "score": 0.5024,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.906,
-              "keyword": 0.0896,
+              "keyword": 0.0894,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1525,
+            "confidence_gap": 0.1524,
             "needs_review": false
           }
         ]
@@ -3202,14 +3405,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5401,
+            "score": 0.536,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.901,
-              "keyword": 0.2236,
+              "keyword": 0.2099,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1901,
+            "confidence_gap": 0.186,
             "needs_review": false
           }
         ]
@@ -3279,10 +3482,27 @@
         "control_title": "Data Destruction via AI Agent Tool Invocation",
         "domain": "",
         "function_class": "GOVERN",
-        "mapping_count": 0,
+        "mapping_count": 1,
         "primary_count": 0,
-        "secondary_count": 0,
-        "mappings": []
+        "secondary_count": 1,
+        "mappings": [
+          {
+            "owasp_id": "LLM04",
+            "owasp_title": "Data and Model Poisoning",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5142,
+            "signals": {
+              "bridge": 0.0273,
+              "semantic": 0.9236,
+              "keyword": 0.036,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1642,
+            "needs_review": false
+          }
+        ]
       },
       {
         "control_id": "AML.T0102",
@@ -3383,7 +3603,7 @@
             "signals": {
               "bridge": 0.0,
               "semantic": 0.936,
-              "keyword": 0.0949,
+              "keyword": 0.0948,
               "function_match": 1.0
             },
             "confidence_gap": 0.1699,
@@ -3406,14 +3626,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5148,
+            "score": 0.5256,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.8691,
-              "keyword": 0.1952,
+              "keyword": 0.2311,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1648,
+            "confidence_gap": 0.1756,
             "needs_review": false
           }
         ]
@@ -3471,11 +3691,11 @@
         "owasp_id": "LLM01",
         "owasp_title": "Prompt Injection",
         "owasp_rank": 1,
-        "mapping_count": 9,
+        "mapping_count": 10,
         "primary_count": 0,
-        "secondary_count": 9,
+        "secondary_count": 10,
         "function_coverage": {
-          "GOVERN": 5,
+          "GOVERN": 6,
           "PREV": 3,
           "ISOLATE": 1
         },
@@ -3495,14 +3715,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.6182,
+            "score": 0.6431,
             "signals": {
-              "bridge": 0.1583,
+              "bridge": 0.2017,
               "semantic": 0.8499,
-              "keyword": 0.2169,
+              "keyword": 0.2026,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0682,
+            "confidence_gap": 0.0931,
             "needs_review": false
           },
           {
@@ -3513,14 +3733,32 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5926,
+            "score": 0.6052,
             "signals": {
-              "bridge": 0.3341,
+              "bridge": 0.3549,
               "semantic": 0.6629,
-              "keyword": 0.0635,
+              "keyword": 0.059,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0426,
+            "confidence_gap": 0.0552,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0051.002",
+            "control_title": "Triggered",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5706,
+            "signals": {
+              "bridge": 0.0771,
+              "semantic": 0.848,
+              "keyword": 0.2446,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0206,
             "needs_review": true
           },
           {
@@ -3531,14 +3769,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5637,
+            "score": 0.567,
             "signals": {
-              "bridge": 0.0519,
+              "bridge": 0.0648,
               "semantic": 0.8446,
-              "keyword": 0.2842,
+              "keyword": 0.2659,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0137,
+            "confidence_gap": 0.017,
             "needs_review": true
           },
           {
@@ -3549,33 +3787,15 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5615,
+            "score": 0.5634,
             "signals": {
-              "bridge": 0.0519,
+              "bridge": 0.0648,
               "semantic": 0.7996,
-              "keyword": 0.3554,
+              "keyword": 0.3328,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0115,
+            "confidence_gap": 0.0134,
             "needs_review": true
-          },
-          {
-            "control_id": "AML.T0051.002",
-            "control_title": "Triggered",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5482,
-            "signals": {
-              "bridge": 0.0366,
-              "semantic": 0.848,
-              "keyword": 0.261,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1982,
-            "needs_review": false
           },
           {
             "control_id": "AML.T0094",
@@ -3585,14 +3805,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5401,
+            "score": 0.536,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.901,
-              "keyword": 0.2236,
+              "keyword": 0.2099,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1901,
+            "confidence_gap": 0.186,
             "needs_review": false
           },
           {
@@ -3603,14 +3823,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.538,
+            "score": 0.5331,
             "signals": {
-              "bridge": 0.3303,
+              "bridge": 0.3218,
               "semantic": 0.3956,
-              "keyword": 0.3577,
+              "keyword": 0.3604,
               "function_match": 1.0
             },
-            "confidence_gap": 0.188,
+            "confidence_gap": 0.1831,
             "needs_review": false
           },
           {
@@ -3621,14 +3841,32 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5261,
+            "score": 0.5211,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.8508,
-              "keyword": 0.2646,
+              "keyword": 0.2479,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1761,
+            "confidence_gap": 0.1711,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0051.000",
+            "control_title": "Direct",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5167,
+            "signals": {
+              "bridge": 0.0771,
+              "semantic": 0.8773,
+              "keyword": 0.0136,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1667,
             "needs_review": false
           },
           {
@@ -3639,14 +3877,14 @@
             "relevance": "Secondary",
             "rationale_code": "ISOLATE",
             "rationale_label": "Isolate and contain",
-            "score": 0.5116,
+            "score": 0.5071,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.8139,
-              "keyword": 0.2809,
+              "keyword": 0.2661,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1616,
+            "confidence_gap": 0.1571,
             "needs_review": false
           }
         ]
@@ -3655,12 +3893,12 @@
         "owasp_id": "LLM02",
         "owasp_title": "Sensitive Information Disclosure",
         "owasp_rank": 1,
-        "mapping_count": 4,
+        "mapping_count": 5,
         "primary_count": 0,
-        "secondary_count": 4,
+        "secondary_count": 5,
         "function_coverage": {
           "PREV": 1,
-          "GOVERN": 1,
+          "GOVERN": 2,
           "SCOPE": 2
         },
         "uncovered_functions": [
@@ -3679,14 +3917,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5977,
+            "score": 0.5965,
             "signals": {
-              "bridge": 0.3019,
+              "bridge": 0.3001,
               "semantic": 0.7503,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0477,
+            "confidence_gap": 0.0465,
             "needs_review": true
           },
           {
@@ -3697,14 +3935,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5446,
+            "score": 0.5465,
             "signals": {
               "bridge": 0.1362,
               "semantic": 0.8451,
-              "keyword": 0.0299,
+              "keyword": 0.0362,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1946,
+            "confidence_gap": 0.1965,
             "needs_review": false
           },
           {
@@ -3715,14 +3953,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5411,
+            "score": 0.5433,
             "signals": {
               "bridge": 0.0845,
               "semantic": 0.9025,
-              "keyword": 0.0342,
+              "keyword": 0.0414,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1911,
+            "confidence_gap": 0.1933,
             "needs_review": false
           },
           {
@@ -3733,14 +3971,32 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5342,
+            "score": 0.5337,
             "signals": {
-              "bridge": 0.2647,
+              "bridge": 0.2639,
               "semantic": 0.6772,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1842,
+            "confidence_gap": 0.1837,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0057",
+            "control_title": "LLM Data Leakage",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5057,
+            "signals": {
+              "bridge": 0.0177,
+              "semantic": 0.8447,
+              "keyword": 0.1678,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1557,
             "needs_review": false
           }
         ]
@@ -3773,14 +4029,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5966,
+            "score": 0.5961,
             "signals": {
               "bridge": 0.0469,
               "semantic": 0.863,
-              "keyword": 0.3728,
+              "keyword": 0.3712,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0466,
+            "confidence_gap": 0.0461,
             "needs_review": true
           },
           {
@@ -3791,14 +4047,14 @@
             "relevance": "Secondary",
             "rationale_code": "ISOLATE",
             "rationale_label": "Isolate and contain",
-            "score": 0.5531,
+            "score": 0.5524,
             "signals": {
-              "bridge": 0.0176,
+              "bridge": 0.0175,
               "semantic": 0.886,
-              "keyword": 0.2533,
+              "keyword": 0.2513,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0031,
+            "confidence_gap": 0.0024,
             "needs_review": true
           },
           {
@@ -3809,14 +4065,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5484,
+            "score": 0.5473,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.8253,
-              "keyword": 0.3836,
+              "keyword": 0.38,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1984,
+            "confidence_gap": 0.1973,
             "needs_review": false
           },
           {
@@ -3827,14 +4083,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5148,
+            "score": 0.5256,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.8691,
-              "keyword": 0.1952,
+              "keyword": 0.2311,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1648,
+            "confidence_gap": 0.1756,
             "needs_review": false
           }
         ]
@@ -3843,111 +4099,21 @@
         "owasp_id": "LLM04",
         "owasp_title": "Data and Model Poisoning",
         "owasp_rank": 1,
-        "mapping_count": 60,
+        "mapping_count": 71,
         "primary_count": 0,
-        "secondary_count": 60,
+        "secondary_count": 71,
         "function_coverage": {
-          "GOVERN": 27,
-          "PREV": 7,
+          "DETECT": 11,
           "SCOPE": 7,
-          "DETECT": 10,
+          "PREV": 11,
+          "GOVERN": 31,
           "DISCLOSE": 2,
-          "VALID": 2,
-          "ISOLATE": 3,
+          "ISOLATE": 4,
+          "VALID": 3,
           "GATE": 2
         },
         "uncovered_functions": [],
         "mappings": [
-          {
-            "control_id": "AML.T0059",
-            "control_title": "Erode Dataset Integrity",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.6426,
-            "signals": {
-              "bridge": 0.2353,
-              "semantic": 0.9215,
-              "keyword": 0.0,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0926,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0019",
-            "control_title": "Publish Poisoned Datasets",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.6381,
-            "signals": {
-              "bridge": 0.2034,
-              "semantic": 0.9377,
-              "keyword": 0.0284,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0881,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0008.002",
-            "control_title": "Domains",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.6337,
-            "signals": {
-              "bridge": 0.2667,
-              "semantic": 0.8643,
-              "keyword": 0.0,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0837,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.M0015",
-            "control_title": "Adversarial Input Detection",
-            "domain": "",
-            "function_class": "PREV",
-            "relevance": "Secondary",
-            "rationale_code": "PREV",
-            "rationale_label": "Prevent",
-            "score": 0.6296,
-            "signals": {
-              "bridge": 0.2071,
-              "semantic": 0.9232,
-              "keyword": 0.0169,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0796,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0043",
-            "control_title": "Craft Adversarial Data",
-            "domain": "",
-            "function_class": "SCOPE",
-            "relevance": "Secondary",
-            "rationale_code": "SCOPE",
-            "rationale_label": "Constrain scope",
-            "score": 0.6213,
-            "signals": {
-              "bridge": 0.1875,
-              "semantic": 0.9189,
-              "keyword": 0.0412,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0713,
-            "needs_review": false
-          },
           {
             "control_id": "AML.T0020",
             "control_title": "Poison Training Data",
@@ -3956,32 +4122,14 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.6188,
+            "score": 0.6603,
             "signals": {
-              "bridge": 0.1446,
+              "bridge": 0.2057,
               "semantic": 0.9388,
-              "keyword": 0.0945,
+              "keyword": 0.0954,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0688,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.M0004",
-            "control_title": "Restrict Number of AI Model Queries",
-            "domain": "",
-            "function_class": "SCOPE",
-            "relevance": "Secondary",
-            "rationale_code": "SCOPE",
-            "rationale_label": "Constrain scope",
-            "score": 0.6138,
-            "signals": {
-              "bridge": 0.2491,
-              "semantic": 0.8356,
-              "keyword": 0.0232,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0638,
+            "confidence_gap": 0.1103,
             "needs_review": false
           },
           {
@@ -3992,14 +4140,122 @@
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.6033,
+            "score": 0.6507,
             "signals": {
-              "bridge": 0.0946,
+              "bridge": 0.165,
               "semantic": 0.9458,
-              "keyword": 0.143,
+              "keyword": 0.1427,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0533,
+            "confidence_gap": 0.1007,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0043",
+            "control_title": "Craft Adversarial Data",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.6485,
+            "signals": {
+              "bridge": 0.2278,
+              "semantic": 0.9189,
+              "keyword": 0.0412,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0985,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0015",
+            "control_title": "Adversarial Input Detection",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.6377,
+            "signals": {
+              "bridge": 0.2191,
+              "semantic": 0.9232,
+              "keyword": 0.017,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0877,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0059",
+            "control_title": "Erode Dataset Integrity",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6357,
+            "signals": {
+              "bridge": 0.2251,
+              "semantic": 0.9215,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0857,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0004",
+            "control_title": "Restrict Number of AI Model Queries",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.634,
+            "signals": {
+              "bridge": 0.279,
+              "semantic": 0.8356,
+              "keyword": 0.0232,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.084,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0019",
+            "control_title": "Publish Poisoned Datasets",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6308,
+            "signals": {
+              "bridge": 0.1926,
+              "semantic": 0.9377,
+              "keyword": 0.0284,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0808,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0018",
+            "control_title": "Manipulate AI Model",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.6106,
+            "signals": {
+              "bridge": 0.1214,
+              "semantic": 0.9438,
+              "keyword": 0.1105,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0606,
             "needs_review": false
           },
           {
@@ -4010,32 +4266,68 @@
             "relevance": "Secondary",
             "rationale_code": "DISCLOSE",
             "rationale_label": "Disclose and calibrate",
-            "score": 0.5966,
+            "score": 0.6093,
             "signals": {
-              "bridge": 0.1622,
+              "bridge": 0.181,
               "semantic": 0.9069,
               "keyword": 0.0367,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0466,
+            "confidence_gap": 0.0593,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0007",
+            "control_title": "Sanitize Training Data",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.6073,
+            "signals": {
+              "bridge": 0.1416,
+              "semantic": 0.9357,
+              "keyword": 0.0681,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0573,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0018.000",
+            "control_title": "Poison AI Model",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5985,
+            "signals": {
+              "bridge": 0.1303,
+              "semantic": 0.9434,
+              "keyword": 0.0507,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0485,
             "needs_review": true
           },
           {
-            "control_id": "AML.T0018",
-            "control_title": "Manipulate AI Model",
+            "control_id": "AML.T0008.002",
+            "control_title": "Domains",
             "domain": "",
             "function_class": "GOVERN",
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5925,
+            "score": 0.5929,
             "signals": {
-              "bridge": 0.0946,
-              "semantic": 0.9438,
-              "keyword": 0.1105,
+              "bridge": 0.2062,
+              "semantic": 0.8643,
+              "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0425,
+            "confidence_gap": 0.0429,
             "needs_review": true
           },
           {
@@ -4046,86 +4338,14 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.564,
+            "score": 0.5915,
             "signals": {
-              "bridge": 0.0879,
+              "bridge": 0.1288,
               "semantic": 0.9445,
               "keyword": 0.0293,
               "function_match": 1.0
             },
-            "confidence_gap": 0.014,
-            "needs_review": true
-          },
-          {
-            "control_id": "AML.T0043.003",
-            "control_title": "Manual Modification",
-            "domain": "",
-            "function_class": "VALID",
-            "relevance": "Secondary",
-            "rationale_code": "VALID",
-            "rationale_label": "Validate and test",
-            "score": 0.5629,
-            "signals": {
-              "bridge": 0.08,
-              "semantic": 0.9277,
-              "keyword": 0.073,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0129,
-            "needs_review": true
-          },
-          {
-            "control_id": "AML.T0015",
-            "control_title": "Evade AI Model",
-            "domain": "",
-            "function_class": "PREV",
-            "relevance": "Secondary",
-            "rationale_code": "PREV",
-            "rationale_label": "Prevent",
-            "score": 0.5617,
-            "signals": {
-              "bridge": 0.0822,
-              "semantic": 0.9288,
-              "keyword": 0.0619,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0117,
-            "needs_review": true
-          },
-          {
-            "control_id": "AML.M0024",
-            "control_title": "AI Telemetry Logging",
-            "domain": "",
-            "function_class": "DETECT",
-            "relevance": "Secondary",
-            "rationale_code": "DETECT",
-            "rationale_label": "Detect and trace",
-            "score": 0.5612,
-            "signals": {
-              "bridge": 0.1325,
-              "semantic": 0.8911,
-              "keyword": 0.0133,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0112,
-            "needs_review": true
-          },
-          {
-            "control_id": "AML.M0007",
-            "control_title": "Sanitize Training Data",
-            "domain": "",
-            "function_class": "PREV",
-            "relevance": "Secondary",
-            "rationale_code": "PREV",
-            "rationale_label": "Prevent",
-            "score": 0.5591,
-            "signals": {
-              "bridge": 0.0702,
-              "semantic": 0.9357,
-              "keyword": 0.0681,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0091,
+            "confidence_gap": 0.0415,
             "needs_review": true
           },
           {
@@ -4136,50 +4356,14 @@
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5565,
+            "score": 0.5837,
             "signals": {
-              "bridge": 0.1812,
+              "bridge": 0.2215,
               "semantic": 0.8143,
               "keyword": 0.0224,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0065,
-            "needs_review": true
-          },
-          {
-            "control_id": "AML.T0018.000",
-            "control_title": "Poison AI Model",
-            "domain": "",
-            "function_class": "SCOPE",
-            "relevance": "Secondary",
-            "rationale_code": "SCOPE",
-            "rationale_label": "Constrain scope",
-            "score": 0.5561,
-            "signals": {
-              "bridge": 0.0676,
-              "semantic": 0.9434,
-              "keyword": 0.0507,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0061,
-            "needs_review": true
-          },
-          {
-            "control_id": "AML.T0031",
-            "control_title": "Erode AI Model Integrity",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5551,
-            "signals": {
-              "bridge": 0.0806,
-              "semantic": 0.9226,
-              "keyword": 0.0544,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.0051,
+            "confidence_gap": 0.0337,
             "needs_review": true
           },
           {
@@ -4190,14 +4374,194 @@
             "relevance": "Secondary",
             "rationale_code": "ISOLATE",
             "rationale_label": "Isolate and contain",
-            "score": 0.5533,
+            "score": 0.5818,
             "signals": {
-              "bridge": 0.0778,
+              "bridge": 0.1199,
               "semantic": 0.935,
               "keyword": 0.0332,
               "function_match": 1.0
             },
-            "confidence_gap": 0.0033,
+            "confidence_gap": 0.0318,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0043.001",
+            "control_title": "Black-Box Optimization",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5806,
+            "signals": {
+              "bridge": 0.1211,
+              "semantic": 0.9386,
+              "keyword": 0.0204,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0306,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0043.003",
+            "control_title": "Manual Modification",
+            "domain": "",
+            "function_class": "VALID",
+            "relevance": "Secondary",
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.5785,
+            "signals": {
+              "bridge": 0.103,
+              "semantic": 0.9277,
+              "keyword": 0.073,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0285,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0022",
+            "control_title": "Generative AI Model Alignment",
+            "domain": "",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.5784,
+            "signals": {
+              "bridge": 0.1211,
+              "semantic": 0.9296,
+              "keyword": 0.0288,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0284,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0024",
+            "control_title": "AI Telemetry Logging",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5783,
+            "signals": {
+              "bridge": 0.1578,
+              "semantic": 0.8911,
+              "keyword": 0.0134,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0283,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0019",
+            "control_title": "Control Access to AI Models and Data in Production",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5699,
+            "signals": {
+              "bridge": 0.1119,
+              "semantic": 0.9114,
+              "keyword": 0.0527,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0199,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0015",
+            "control_title": "Evade AI Model",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5669,
+            "signals": {
+              "bridge": 0.0898,
+              "semantic": 0.9288,
+              "keyword": 0.062,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0169,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0005",
+            "control_title": "Control Access to AI Models and Data at Rest",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5657,
+            "signals": {
+              "bridge": 0.109,
+              "semantic": 0.9039,
+              "keyword": 0.0589,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0157,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0042",
+            "control_title": "Verify Attack",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5651,
+            "signals": {
+              "bridge": 0.1135,
+              "semantic": 0.9163,
+              "keyword": 0.0247,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0151,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0031",
+            "control_title": "Erode AI Model Integrity",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5612,
+            "signals": {
+              "bridge": 0.0897,
+              "semantic": 0.9226,
+              "keyword": 0.0544,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0112,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.T0005.001",
+            "control_title": "Train Proxy via Replication",
+            "domain": "",
+            "function_class": "ISOLATE",
+            "relevance": "Secondary",
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5564,
+            "signals": {
+              "bridge": 0.0863,
+              "semantic": 0.9184,
+              "keyword": 0.0535,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.0064,
             "needs_review": true
           },
           {
@@ -4208,177 +4572,15 @@
             "relevance": "Secondary",
             "rationale_code": "VALID",
             "rationale_label": "Validate and test",
-            "score": 0.5499,
+            "score": 0.556,
             "signals": {
-              "bridge": 0.0806,
+              "bridge": 0.0897,
               "semantic": 0.9288,
               "keyword": 0.0261,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1999,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0043.001",
-            "control_title": "Black-Box Optimization",
-            "domain": "",
-            "function_class": "DETECT",
-            "relevance": "Secondary",
-            "rationale_code": "DETECT",
-            "rationale_label": "Detect and trace",
-            "score": 0.5465,
-            "signals": {
-              "bridge": 0.0706,
-              "semantic": 0.9386,
-              "keyword": 0.0204,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1965,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0005.000",
-            "control_title": "Train Proxy via Gathered AI Artifacts",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5442,
-            "signals": {
-              "bridge": 0.0172,
-              "semantic": 0.9239,
-              "keyword": 0.1583,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1942,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0010.001",
-            "control_title": "AI Software",
-            "domain": "",
-            "function_class": "DETECT",
-            "relevance": "Secondary",
-            "rationale_code": "DETECT",
-            "rationale_label": "Detect and trace",
-            "score": 0.5404,
-            "signals": {
-              "bridge": 0.0725,
-              "semantic": 0.9362,
-              "keyword": 0.0,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1904,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.M0019",
-            "control_title": "Control Access to AI Models and Data in Production",
-            "domain": "",
-            "function_class": "PREV",
-            "relevance": "Secondary",
-            "rationale_code": "PREV",
-            "rationale_label": "Prevent",
-            "score": 0.5402,
-            "signals": {
-              "bridge": 0.068,
-              "semantic": 0.9114,
-              "keyword": 0.0526,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1902,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.M0005",
-            "control_title": "Control Access to AI Models and Data at Rest",
-            "domain": "",
-            "function_class": "SCOPE",
-            "relevance": "Secondary",
-            "rationale_code": "SCOPE",
-            "rationale_label": "Constrain scope",
-            "score": 0.5379,
-            "signals": {
-              "bridge": 0.068,
-              "semantic": 0.9039,
-              "keyword": 0.0582,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1879,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0048.004",
-            "control_title": "AI Intellectual Property Theft",
-            "domain": "",
-            "function_class": "SCOPE",
-            "relevance": "Secondary",
-            "rationale_code": "SCOPE",
-            "rationale_label": "Constrain scope",
-            "score": 0.5369,
-            "signals": {
-              "bridge": 0.0833,
-              "semantic": 0.8974,
-              "keyword": 0.0317,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1869,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0043.000",
-            "control_title": "White-Box Optimization",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5344,
-            "signals": {
-              "bridge": 0.0886,
-              "semantic": 0.8859,
-              "keyword": 0.0316,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1844,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.M0010",
-            "control_title": "Input Restoration",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5342,
-            "signals": {
-              "bridge": 0.0735,
-              "semantic": 0.9058,
-              "keyword": 0.0299,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1842,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0058",
-            "control_title": "Publish Poisoned Models",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5333,
-            "signals": {
-              "bridge": 0.0392,
-              "semantic": 0.9423,
-              "keyword": 0.0403,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1833,
-            "needs_review": false
+            "confidence_gap": 0.006,
+            "needs_review": true
           },
           {
             "control_id": "AML.M0025",
@@ -4388,69 +4590,69 @@
             "relevance": "Secondary",
             "rationale_code": "DISCLOSE",
             "rationale_label": "Disclose and calibrate",
-            "score": 0.5321,
+            "score": 0.5556,
             "signals": {
-              "bridge": 0.0678,
+              "bridge": 0.1026,
               "semantic": 0.9264,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1821,
-            "needs_review": false
+            "confidence_gap": 0.0056,
+            "needs_review": true
           },
           {
-            "control_id": "AML.M0016",
-            "control_title": "Vulnerability Scanning",
+            "control_id": "AML.T0043.000",
+            "control_title": "White-Box Optimization",
             "domain": "",
             "function_class": "GOVERN",
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5307,
+            "score": 0.5553,
             "signals": {
-              "bridge": 0.0655,
-              "semantic": 0.9139,
-              "keyword": 0.0222,
+              "bridge": 0.1196,
+              "semantic": 0.8859,
+              "keyword": 0.0316,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1807,
-            "needs_review": false
+            "confidence_gap": 0.0053,
+            "needs_review": true
           },
           {
-            "control_id": "AML.T0042",
-            "control_title": "Verify Attack",
+            "control_id": "AML.T0010.001",
+            "control_title": "AI Software",
             "domain": "",
             "function_class": "DETECT",
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5291,
+            "score": 0.5541,
             "signals": {
-              "bridge": 0.0602,
-              "semantic": 0.9163,
-              "keyword": 0.0247,
+              "bridge": 0.0927,
+              "semantic": 0.9362,
+              "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1791,
-            "needs_review": false
+            "confidence_gap": 0.0041,
+            "needs_review": true
           },
           {
-            "control_id": "AML.T0002.001",
-            "control_title": "Models",
+            "control_id": "AML.M0033",
+            "control_title": "Input and Output Validation for AI Agent Components",
             "domain": "",
-            "function_class": "GOVERN",
+            "function_class": "PREV",
             "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5281,
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5535,
             "signals": {
-              "bridge": 0.0536,
-              "semantic": 0.9225,
-              "keyword": 0.0255,
+              "bridge": 0.102,
+              "semantic": 0.9076,
+              "keyword": 0.0273,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1781,
-            "needs_review": false
+            "confidence_gap": 0.0035,
+            "needs_review": true
           },
           {
             "control_id": "AML.T0018.001",
@@ -4460,32 +4662,50 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.528,
+            "score": 0.5516,
             "signals": {
-              "bridge": 0.0435,
+              "bridge": 0.0785,
               "semantic": 0.9378,
               "keyword": 0.0209,
               "function_match": 1.0
             },
-            "confidence_gap": 0.178,
-            "needs_review": false
+            "confidence_gap": 0.0016,
+            "needs_review": true
           },
           {
-            "control_id": "AML.T0043.004",
-            "control_title": "Insert Backdoor Trigger",
+            "control_id": "AML.M0010",
+            "control_title": "Input Restoration",
             "domain": "",
             "function_class": "GOVERN",
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5279,
+            "score": 0.5513,
             "signals": {
-              "bridge": 0.0882,
-              "semantic": 0.8673,
-              "keyword": 0.0434,
+              "bridge": 0.099,
+              "semantic": 0.9058,
+              "keyword": 0.0299,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1779,
+            "confidence_gap": 0.0013,
+            "needs_review": true
+          },
+          {
+            "control_id": "AML.M0020",
+            "control_title": "Generative AI Guardrails",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5495,
+            "signals": {
+              "bridge": 0.1252,
+              "semantic": 0.8602,
+              "keyword": 0.0445,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1995,
             "needs_review": false
           },
           {
@@ -4496,68 +4716,158 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5276,
+            "score": 0.5493,
             "signals": {
-              "bridge": 0.0449,
+              "bridge": 0.0771,
               "semantic": 0.9296,
               "keyword": 0.0308,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1776,
+            "confidence_gap": 0.1993,
             "needs_review": false
           },
           {
-            "control_id": "AML.T0005.001",
-            "control_title": "Train Proxy via Replication",
-            "domain": "",
-            "function_class": "ISOLATE",
-            "relevance": "Secondary",
-            "rationale_code": "ISOLATE",
-            "rationale_label": "Isolate and contain",
-            "score": 0.5229,
-            "signals": {
-              "bridge": 0.0366,
-              "semantic": 0.9184,
-              "keyword": 0.0535,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1729,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0011.000",
-            "control_title": "Unsafe AI Artifacts",
+            "control_id": "AML.T0043.004",
+            "control_title": "Insert Backdoor Trigger",
             "domain": "",
             "function_class": "GOVERN",
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5215,
+            "score": 0.5479,
             "signals": {
-              "bridge": 0.0417,
-              "semantic": 0.9322,
-              "keyword": 0.013,
+              "bridge": 0.1179,
+              "semantic": 0.8673,
+              "keyword": 0.0434,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1715,
+            "confidence_gap": 0.1979,
             "needs_review": false
           },
           {
-            "control_id": "AML.T0044",
-            "control_title": "Full AI Model Access",
+            "control_id": "AML.T0024.001",
+            "control_title": "Invert AI Model",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5475,
+            "signals": {
+              "bridge": 0.0863,
+              "semantic": 0.9015,
+              "keyword": 0.0532,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1975,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0005.000",
+            "control_title": "Train Proxy via Gathered AI Artifacts",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5459,
+            "signals": {
+              "bridge": 0.0198,
+              "semantic": 0.9239,
+              "keyword": 0.1583,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1959,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0048.004",
+            "control_title": "AI Intellectual Property Theft",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5456,
+            "signals": {
+              "bridge": 0.0962,
+              "semantic": 0.8974,
+              "keyword": 0.0317,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1956,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0024.000",
+            "control_title": "Infer Training Data Membership",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5396,
+            "signals": {
+              "bridge": 0.0863,
+              "semantic": 0.8789,
+              "keyword": 0.0663,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1896,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0001",
+            "control_title": "Limit Model Artifact Release",
+            "domain": "",
+            "function_class": "SCOPE",
+            "relevance": "Secondary",
+            "rationale_code": "SCOPE",
+            "rationale_label": "Constrain scope",
+            "score": 0.5368,
+            "signals": {
+              "bridge": 0.0852,
+              "semantic": 0.88,
+              "keyword": 0.0578,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1868,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0035",
+            "control_title": "AI Artifact Collection",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5365,
+            "signals": {
+              "bridge": 0.0538,
+              "semantic": 0.9306,
+              "keyword": 0.0386,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1865,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0013",
+            "control_title": "Discover AI Model Ontology",
             "domain": "",
             "function_class": "DETECT",
             "relevance": "Secondary",
             "rationale_code": "DETECT",
             "rationale_label": "Detect and trace",
-            "score": 0.5204,
+            "score": 0.5361,
             "signals": {
-              "bridge": 0.0323,
-              "semantic": 0.9169,
-              "keyword": 0.0575,
+              "bridge": 0.0712,
+              "semantic": 0.9077,
+              "keyword": 0.0382,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1704,
+            "confidence_gap": 0.1861,
             "needs_review": false
           },
           {
@@ -4568,14 +4878,194 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5202,
+            "score": 0.5355,
             "signals": {
-              "bridge": 0.0769,
+              "bridge": 0.0995,
               "semantic": 0.892,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1702,
+            "confidence_gap": 0.1855,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0044",
+            "control_title": "Full AI Model Access",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5355,
+            "signals": {
+              "bridge": 0.0546,
+              "semantic": 0.9169,
+              "keyword": 0.0575,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1855,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0062",
+            "control_title": "Discover LLM Hallucinations",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5354,
+            "signals": {
+              "bridge": 0.1116,
+              "semantic": 0.8763,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1854,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0040",
+            "control_title": "AI Model Inference API Access",
+            "domain": "",
+            "function_class": "DETECT",
+            "relevance": "Secondary",
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.5347,
+            "signals": {
+              "bridge": 0.0629,
+              "semantic": 0.9112,
+              "keyword": 0.0463,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1847,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0058",
+            "control_title": "Publish Poisoned Models",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5322,
+            "signals": {
+              "bridge": 0.0376,
+              "semantic": 0.9423,
+              "keyword": 0.0403,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1822,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0017",
+            "control_title": "AI Model Distribution Methods",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5313,
+            "signals": {
+              "bridge": 0.0599,
+              "semantic": 0.9138,
+              "keyword": 0.0372,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1813,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.M0016",
+            "control_title": "Vulnerability Scanning",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5306,
+            "signals": {
+              "bridge": 0.0654,
+              "semantic": 0.9139,
+              "keyword": 0.0221,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1806,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0011.000",
+            "control_title": "Unsafe AI Artifacts",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5305,
+            "signals": {
+              "bridge": 0.055,
+              "semantic": 0.9322,
+              "keyword": 0.013,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1805,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0002.001",
+            "control_title": "Models",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5253,
+            "signals": {
+              "bridge": 0.0494,
+              "semantic": 0.9225,
+              "keyword": 0.0254,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1753,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0014",
+            "control_title": "Discover AI Model Family",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5253,
+            "signals": {
+              "bridge": 0.0687,
+              "semantic": 0.8851,
+              "keyword": 0.0473,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1753,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0046",
+            "control_title": "Spamming AI System with Chaff Data",
+            "domain": "",
+            "function_class": "GATE",
+            "relevance": "Secondary",
+            "rationale_code": "GATE",
+            "rationale_label": "Human gate",
+            "score": 0.5226,
+            "signals": {
+              "bridge": 0.074,
+              "semantic": 0.8876,
+              "keyword": 0.0224,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1726,
             "needs_review": false
           },
           {
@@ -4590,100 +5080,64 @@
             "signals": {
               "bridge": 0.0,
               "semantic": 0.936,
-              "keyword": 0.0949,
+              "keyword": 0.0948,
               "function_match": 1.0
             },
             "confidence_gap": 0.1699,
             "needs_review": false
           },
           {
-            "control_id": "AML.T0035",
-            "control_title": "AI Artifact Collection",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5192,
-            "signals": {
-              "bridge": 0.0282,
-              "semantic": 0.9306,
-              "keyword": 0.0386,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1692,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0013",
-            "control_title": "Discover AI Model Ontology",
-            "domain": "",
-            "function_class": "DETECT",
-            "relevance": "Secondary",
-            "rationale_code": "DETECT",
-            "rationale_label": "Detect and trace",
-            "score": 0.5192,
-            "signals": {
-              "bridge": 0.0462,
-              "semantic": 0.9077,
-              "keyword": 0.0382,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1692,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.M0020",
-            "control_title": "Generative AI Guardrails",
+            "control_id": "AML.M0013",
+            "control_title": "Code Signing",
             "domain": "",
             "function_class": "PREV",
             "relevance": "Secondary",
             "rationale_code": "PREV",
             "rationale_label": "Prevent",
-            "score": 0.5167,
+            "score": 0.5179,
             "signals": {
-              "bridge": 0.0768,
-              "semantic": 0.8602,
-              "keyword": 0.0443,
+              "bridge": 0.0364,
+              "semantic": 0.9235,
+              "keyword": 0.0284,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1667,
+            "confidence_gap": 0.1679,
             "needs_review": false
           },
           {
-            "control_id": "AML.M0001",
-            "control_title": "Limit Model Artifact Release",
+            "control_id": "AML.T0063",
+            "control_title": "Discover AI Model Outputs",
             "domain": "",
-            "function_class": "SCOPE",
+            "function_class": "DETECT",
             "relevance": "Secondary",
-            "rationale_code": "SCOPE",
-            "rationale_label": "Constrain scope",
-            "score": 0.5154,
+            "rationale_code": "DETECT",
+            "rationale_label": "Detect and trace",
+            "score": 0.516,
             "signals": {
-              "bridge": 0.0529,
-              "semantic": 0.88,
-              "keyword": 0.0589,
+              "bridge": 0.0435,
+              "semantic": 0.9042,
+              "keyword": 0.04,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1654,
+            "confidence_gap": 0.166,
             "needs_review": false
           },
           {
-            "control_id": "AML.M0022",
-            "control_title": "Generative AI Model Alignment",
+            "control_id": "AML.T0101",
+            "control_title": "Data Destruction via AI Agent Tool Invocation",
             "domain": "",
-            "function_class": "GATE",
+            "function_class": "GOVERN",
             "relevance": "Secondary",
-            "rationale_code": "GATE",
-            "rationale_label": "Human gate",
-            "score": 0.5152,
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5142,
             "signals": {
-              "bridge": 0.0274,
-              "semantic": 0.9296,
-              "keyword": 0.0289,
+              "bridge": 0.0273,
+              "semantic": 0.9236,
+              "keyword": 0.036,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1652,
+            "confidence_gap": 0.1642,
             "needs_review": false
           },
           {
@@ -4705,21 +5159,93 @@
             "needs_review": false
           },
           {
-            "control_id": "AML.T0024.001",
-            "control_title": "Invert AI Model",
+            "control_id": "AML.T0024",
+            "control_title": "Exfiltration via AI Inference API",
             "domain": "",
             "function_class": "GOVERN",
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5139,
+            "score": 0.5136,
             "signals": {
-              "bridge": 0.0366,
-              "semantic": 0.9015,
-              "keyword": 0.0532,
+              "bridge": 0.074,
+              "semantic": 0.8522,
+              "keyword": 0.0542,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1639,
+            "confidence_gap": 0.1636,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0011.001",
+            "control_title": "Malicious Package",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5135,
+            "signals": {
+              "bridge": 0.0447,
+              "semantic": 0.9206,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1635,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0054",
+            "control_title": "LLM Jailbreak",
+            "domain": "",
+            "function_class": "PREV",
+            "relevance": "Secondary",
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5128,
+            "signals": {
+              "bridge": 0.0718,
+              "semantic": 0.8748,
+              "keyword": 0.017,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1628,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0034",
+            "control_title": "Cost Harvesting",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5121,
+            "signals": {
+              "bridge": 0.0835,
+              "semantic": 0.8641,
+              "keyword": 0.0069,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1621,
+            "needs_review": false
+          },
+          {
+            "control_id": "AML.T0025",
+            "control_title": "Exfiltration via Cyber Means",
+            "domain": "",
+            "function_class": "GOVERN",
+            "relevance": "Secondary",
+            "rationale_code": "GOVERN",
+            "rationale_label": "Policy and governance",
+            "score": 0.5107,
+            "signals": {
+              "bridge": 0.1093,
+              "semantic": 0.8323,
+              "keyword": 0.0,
+              "function_match": 1.0
+            },
+            "confidence_gap": 0.1607,
             "needs_review": false
           },
           {
@@ -4730,68 +5256,32 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5116,
+            "score": 0.5098,
             "signals": {
-              "bridge": 0.0476,
+              "bridge": 0.0449,
               "semantic": 0.9133,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1616,
+            "confidence_gap": 0.1598,
             "needs_review": false
           },
           {
-            "control_id": "AML.M0017",
-            "control_title": "AI Model Distribution Methods",
+            "control_id": "AML.T0007",
+            "control_title": "Discover AI Artifacts",
             "domain": "",
-            "function_class": "PREV",
+            "function_class": "VALID",
             "relevance": "Secondary",
-            "rationale_code": "PREV",
-            "rationale_label": "Prevent",
-            "score": 0.5085,
+            "rationale_code": "VALID",
+            "rationale_label": "Validate and test",
+            "score": 0.509,
             "signals": {
-              "bridge": 0.026,
-              "semantic": 0.9138,
-              "keyword": 0.0372,
+              "bridge": 0.0554,
+              "semantic": 0.881,
+              "keyword": 0.0302,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1585,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0014",
-            "control_title": "Discover AI Model Family",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5062,
-            "signals": {
-              "bridge": 0.0405,
-              "semantic": 0.8851,
-              "keyword": 0.0473,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1562,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0024.000",
-            "control_title": "Infer Training Data Membership",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5061,
-            "signals": {
-              "bridge": 0.0366,
-              "semantic": 0.8789,
-              "keyword": 0.0664,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1561,
+            "confidence_gap": 0.159,
             "needs_review": false
           },
           {
@@ -4831,39 +5321,21 @@
             "needs_review": false
           },
           {
-            "control_id": "AML.T0011.001",
-            "control_title": "Malicious Package",
+            "control_id": "AML.T0018.002",
+            "control_title": "Embed Malware",
             "domain": "",
-            "function_class": "GOVERN",
+            "function_class": "ISOLATE",
             "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5029,
+            "rationale_code": "ISOLATE",
+            "rationale_label": "Isolate and contain",
+            "score": 0.5033,
             "signals": {
-              "bridge": 0.029,
-              "semantic": 0.9206,
-              "keyword": 0.0,
+              "bridge": 0.0182,
+              "semantic": 0.9159,
+              "keyword": 0.034,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1529,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0062",
-            "control_title": "Discover LLM Hallucinations",
-            "domain": "",
-            "function_class": "GOVERN",
-            "relevance": "Secondary",
-            "rationale_code": "GOVERN",
-            "rationale_label": "Policy and governance",
-            "score": 0.5028,
-            "signals": {
-              "bridge": 0.0633,
-              "semantic": 0.8763,
-              "keyword": 0.0,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.1528,
+            "confidence_gap": 0.1533,
             "needs_review": false
           },
           {
@@ -4874,68 +5346,50 @@
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5025,
+            "score": 0.5024,
             "signals": {
               "bridge": 0.0,
               "semantic": 0.906,
-              "keyword": 0.0896,
+              "keyword": 0.0894,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1525,
+            "confidence_gap": 0.1524,
             "needs_review": false
           },
           {
-            "control_id": "AML.T0046",
-            "control_title": "Spamming AI System with Chaff Data",
+            "control_id": "AML.M0034",
+            "control_title": "Deepfake Detection",
             "domain": "",
-            "function_class": "GATE",
+            "function_class": "PREV",
             "relevance": "Secondary",
-            "rationale_code": "GATE",
-            "rationale_label": "Human gate",
-            "score": 0.5025,
+            "rationale_code": "PREV",
+            "rationale_label": "Prevent",
+            "score": 0.5013,
             "signals": {
-              "bridge": 0.0441,
-              "semantic": 0.8876,
-              "keyword": 0.0224,
+              "bridge": 0.0403,
+              "semantic": 0.8947,
+              "keyword": 0.0145,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1525,
+            "confidence_gap": 0.1513,
             "needs_review": false
           },
           {
-            "control_id": "AML.T0025",
-            "control_title": "Exfiltration via Cyber Means",
+            "control_id": "AML.T0053",
+            "control_title": "AI Agent Tool Invocation",
             "domain": "",
             "function_class": "GOVERN",
             "relevance": "Secondary",
             "rationale_code": "GOVERN",
             "rationale_label": "Policy and governance",
-            "score": 0.5023,
+            "score": 0.5001,
             "signals": {
-              "bridge": 0.0968,
-              "semantic": 0.8323,
-              "keyword": 0.0,
+              "bridge": 0.0717,
+              "semantic": 0.8498,
+              "keyword": 0.0186,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1523,
-            "needs_review": false
-          },
-          {
-            "control_id": "AML.T0040",
-            "control_title": "AI Model Inference API Access",
-            "domain": "",
-            "function_class": "DETECT",
-            "relevance": "Secondary",
-            "rationale_code": "DETECT",
-            "rationale_label": "Detect and trace",
-            "score": 0.501,
-            "signals": {
-              "bridge": 0.013,
-              "semantic": 0.9112,
-              "keyword": 0.0463,
-              "function_match": 1.0
-            },
-            "confidence_gap": 0.151,
+            "confidence_gap": 0.1501,
             "needs_review": false
           }
         ]
@@ -5006,14 +5460,14 @@
             "relevance": "Secondary",
             "rationale_code": "SCOPE",
             "rationale_label": "Constrain scope",
-            "score": 0.5146,
+            "score": 0.5142,
             "signals": {
-              "bridge": 0.2239,
+              "bridge": 0.2233,
               "semantic": 0.6924,
               "keyword": 0.0,
               "function_match": 1.0
             },
-            "confidence_gap": 0.1646,
+            "confidence_gap": 0.1642,
             "needs_review": false
           },
           {
@@ -5183,13 +5637,6 @@
         "gap_reason": "Below mapping threshold for all target entries"
       },
       {
-        "control_id": "AML.M0013",
-        "control_title": "Code Signing",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
         "control_id": "AML.M0014",
         "control_title": "Verify AI Artifacts",
         "domain": "",
@@ -5248,20 +5695,6 @@
       {
         "control_id": "AML.M0032",
         "control_title": "Segmentation of AI Agent Components",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
-        "control_id": "AML.M0033",
-        "control_title": "Input and Output Validation for AI Agent Components",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
-        "control_id": "AML.M0034",
-        "control_title": "Deepfake Detection",
         "domain": "",
         "function_class": "GOVERN",
         "gap_reason": "Below mapping threshold for all target entries"
@@ -5339,13 +5772,6 @@
       {
         "control_id": "AML.T0006",
         "control_title": "Active Scanning",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
-        "control_id": "AML.T0007",
-        "control_title": "Discover AI Artifacts",
         "domain": "",
         "function_class": "GOVERN",
         "gap_reason": "Below mapping threshold for all target entries"
@@ -5463,22 +5889,8 @@
         "gap_reason": "Below mapping threshold for all target entries"
       },
       {
-        "control_id": "AML.T0018.002",
-        "control_title": "Embed Malware",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
         "control_id": "AML.T0021",
         "control_title": "Establish Accounts",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
-        "control_id": "AML.T0034",
-        "control_title": "Cost Harvesting",
         "domain": "",
         "function_class": "GOVERN",
         "gap_reason": "Below mapping threshold for all target entries"
@@ -5582,13 +5994,6 @@
         "gap_reason": "Below mapping threshold for all target entries"
       },
       {
-        "control_id": "AML.T0051.000",
-        "control_title": "Direct",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
         "control_id": "AML.T0051.001",
         "control_title": "Indirect",
         "domain": "",
@@ -5610,20 +6015,6 @@
         "gap_reason": "Below mapping threshold for all target entries"
       },
       {
-        "control_id": "AML.T0053",
-        "control_title": "AI Agent Tool Invocation",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
-        "control_id": "AML.T0054",
-        "control_title": "LLM Jailbreak",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
         "control_id": "AML.T0055",
         "control_title": "Unsecured Credentials",
         "domain": "",
@@ -5631,22 +6022,8 @@
         "gap_reason": "Below mapping threshold for all target entries"
       },
       {
-        "control_id": "AML.T0057",
-        "control_title": "LLM Data Leakage",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
         "control_id": "AML.T0060",
         "control_title": "Publish Hallucinated Entities",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
-        "control_id": "AML.T0063",
-        "control_title": "Discover AI Model Outputs",
         "domain": "",
         "function_class": "GOVERN",
         "gap_reason": "Below mapping threshold for all target entries"
@@ -5967,13 +6344,6 @@
         "gap_reason": "Below mapping threshold for all target entries"
       },
       {
-        "control_id": "AML.T0101",
-        "control_title": "Data Destruction via AI Agent Tool Invocation",
-        "domain": "",
-        "function_class": "GOVERN",
-        "gap_reason": "Below mapping threshold for all target entries"
-      },
-      {
         "control_id": "AML.T0102",
         "control_title": "Generate Malicious Commands",
         "domain": "",
@@ -6044,128 +6414,205 @@
         "gap_reason": "Below mapping threshold for all target entries"
       }
     ],
-    "unmapped_count": 129,
+    "unmapped_count": 117,
     "note": "Unmapped controls did not reach the Related threshold under the current pipeline.",
-    "needs_review_count": 17,
+    "needs_review_count": 28,
     "needs_review": [
       {
-        "source_node_id": "mitre_atlas:AML.M0007",
+        "source_node_id": "mitre_atlas:AML.M0005",
         "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5591,
+        "score": 0.5657,
         "tier": "Direct",
-        "confidence_gap": 0.0091
+        "confidence_gap": 0.0157
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0010",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5513,
+        "tier": "Direct",
+        "confidence_gap": 0.0013
       },
       {
         "source_node_id": "mitre_atlas:AML.M0019",
         "target_node_id": "owasp_llm:LLM02",
-        "score": 0.5977,
+        "score": 0.5965,
         "tier": "Direct",
-        "confidence_gap": 0.0477
+        "confidence_gap": 0.0465
       },
       {
-        "source_node_id": "mitre_atlas:AML.M0021",
-        "target_node_id": "owasp_llm:LLM01",
-        "score": 0.5926,
+        "source_node_id": "mitre_atlas:AML.M0019",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5699,
         "tier": "Direct",
-        "confidence_gap": 0.0426
+        "confidence_gap": 0.0199
       },
       {
         "source_node_id": "mitre_atlas:AML.M0021",
         "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5565,
+        "score": 0.5837,
         "tier": "Direct",
-        "confidence_gap": 0.0065
+        "confidence_gap": 0.0337
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0022",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5784,
+        "tier": "Direct",
+        "confidence_gap": 0.0284
       },
       {
         "source_node_id": "mitre_atlas:AML.M0023",
         "target_node_id": "owasp_llm:LLM03",
-        "score": 0.5531,
+        "score": 0.5524,
         "tier": "Direct",
-        "confidence_gap": 0.0031
+        "confidence_gap": 0.0024
       },
       {
         "source_node_id": "mitre_atlas:AML.M0024",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5783,
+        "tier": "Direct",
+        "confidence_gap": 0.0283
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0025",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5556,
+        "tier": "Direct",
+        "confidence_gap": 0.0056
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.M0033",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5535,
+        "tier": "Direct",
+        "confidence_gap": 0.0035
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0005.001",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5564,
+        "tier": "Direct",
+        "confidence_gap": 0.0064
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0008.002",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5929,
+        "tier": "Direct",
+        "confidence_gap": 0.0429
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0010",
+        "target_node_id": "owasp_llm:LLM03",
+        "score": 0.5961,
+        "tier": "Direct",
+        "confidence_gap": 0.0461
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0010.001",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5541,
+        "tier": "Direct",
+        "confidence_gap": 0.0041
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0010.003",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5915,
+        "tier": "Direct",
+        "confidence_gap": 0.0415
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0015",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5669,
+        "tier": "Direct",
+        "confidence_gap": 0.0169
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0018.000",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5985,
+        "tier": "Direct",
+        "confidence_gap": 0.0485
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0018.001",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5516,
+        "tier": "Direct",
+        "confidence_gap": 0.0016
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0024.002",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5818,
+        "tier": "Direct",
+        "confidence_gap": 0.0318
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0031",
         "target_node_id": "owasp_llm:LLM04",
         "score": 0.5612,
         "tier": "Direct",
         "confidence_gap": 0.0112
       },
       {
-        "source_node_id": "mitre_atlas:AML.T0010",
-        "target_node_id": "owasp_llm:LLM03",
-        "score": 0.5966,
+        "source_node_id": "mitre_atlas:AML.T0042",
+        "target_node_id": "owasp_llm:LLM04",
+        "score": 0.5651,
         "tier": "Direct",
-        "confidence_gap": 0.0466
+        "confidence_gap": 0.0151
       },
       {
-        "source_node_id": "mitre_atlas:AML.T0010.002",
+        "source_node_id": "mitre_atlas:AML.T0043.000",
         "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5966,
+        "score": 0.5553,
         "tier": "Direct",
-        "confidence_gap": 0.0466
+        "confidence_gap": 0.0053
       },
       {
-        "source_node_id": "mitre_atlas:AML.T0010.003",
+        "source_node_id": "mitre_atlas:AML.T0043.001",
         "target_node_id": "owasp_llm:LLM04",
-        "score": 0.564,
+        "score": 0.5806,
         "tier": "Direct",
-        "confidence_gap": 0.014
+        "confidence_gap": 0.0306
       },
       {
-        "source_node_id": "mitre_atlas:AML.T0015",
+        "source_node_id": "mitre_atlas:AML.T0043.002",
         "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5617,
+        "score": 0.556,
         "tier": "Direct",
-        "confidence_gap": 0.0117
-      },
-      {
-        "source_node_id": "mitre_atlas:AML.T0018",
-        "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5925,
-        "tier": "Direct",
-        "confidence_gap": 0.0425
-      },
-      {
-        "source_node_id": "mitre_atlas:AML.T0018.000",
-        "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5561,
-        "tier": "Direct",
-        "confidence_gap": 0.0061
-      },
-      {
-        "source_node_id": "mitre_atlas:AML.T0024.002",
-        "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5533,
-        "tier": "Direct",
-        "confidence_gap": 0.0033
-      },
-      {
-        "source_node_id": "mitre_atlas:AML.T0031",
-        "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5551,
-        "tier": "Direct",
-        "confidence_gap": 0.0051
+        "confidence_gap": 0.006
       },
       {
         "source_node_id": "mitre_atlas:AML.T0043.003",
         "target_node_id": "owasp_llm:LLM04",
-        "score": 0.5629,
+        "score": 0.5785,
         "tier": "Direct",
-        "confidence_gap": 0.0129
+        "confidence_gap": 0.0285
+      },
+      {
+        "source_node_id": "mitre_atlas:AML.T0051.002",
+        "target_node_id": "owasp_llm:LLM01",
+        "score": 0.5706,
+        "tier": "Direct",
+        "confidence_gap": 0.0206
       },
       {
         "source_node_id": "mitre_atlas:AML.T0056",
         "target_node_id": "owasp_llm:LLM01",
-        "score": 0.5615,
+        "score": 0.5634,
         "tier": "Direct",
-        "confidence_gap": 0.0115
+        "confidence_gap": 0.0134
       },
       {
         "source_node_id": "mitre_atlas:AML.T0061",
         "target_node_id": "owasp_llm:LLM01",
-        "score": 0.5637,
+        "score": 0.567,
         "tier": "Direct",
-        "confidence_gap": 0.0137
+        "confidence_gap": 0.017
       }
     ]
   }

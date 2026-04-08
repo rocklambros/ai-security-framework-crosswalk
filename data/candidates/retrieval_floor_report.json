@@ -1,412 +1,200 @@
 {
   "k_initial": 20,
-  "k_max": 50,
-  "k_used": 50,
+  "k_max": 100,
+  "k_used": 100,
   "frozen_total": 400,
-  "hit_at_20": 203,
-  "hit_at_k_used": 221,
-  "coverage_at_20": 0.5075,
-  "coverage_at_k_used": 0.5525,
+  "hit_at_20": 260,
+  "hit_at_k_used": 353,
+  "coverage_at_20": 0.65,
+  "coverage_at_k_used": 0.8825,
   "miss_rows": [
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__csa_aicm",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
-    },
-    {
-      "pair_key": "aiuc_1__eu_gpai_cop",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
       "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     },
     {
-      "pair_key": "aiuc_1__mitre_atlas",
-      "reason": "source_not_in_pool"
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
     }
   ]
 }

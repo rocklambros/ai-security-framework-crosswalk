@@ -35,3 +35,22 @@ FRAMEWORK_PAIRS: list[tuple[str, str]] = [
     ("aiuc_1",             "nist_rmf"),        # 12
 ]
 assert len(FRAMEWORK_PAIRS) == 12
+
+
+import json
+from collections import defaultdict
+from classifier.config import DATA_DIR
+
+NODES_PATH = DATA_DIR / "processed/nodes.json"
+
+
+def load_nodes_by_framework() -> dict[str, list[dict]]:
+    """Load the 983-node graph and group by framework id."""
+    raw = json.loads(NODES_PATH.read_text())
+    nodes = raw if isinstance(raw, list) else raw.get("nodes", list(raw.values()))
+    out: dict[str, list[dict]] = defaultdict(list)
+    for n in nodes:
+        fw = (n.get("framework") or n.get("framework_id") or "").replace("-", "_")
+        if fw:
+            out[fw].append(n)
+    return dict(out)

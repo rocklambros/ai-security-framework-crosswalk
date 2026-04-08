@@ -14,3 +14,26 @@ def test_every_framework_in_at_least_two_pairs():
         appearances[t] += 1
     for fw in FRAMEWORKS:
         assert appearances[fw] >= 2, f"{fw} appears in <2 pairs"
+
+
+from classifier.data.candidates import load_nodes_by_framework
+
+
+def test_load_nodes_has_all_9():
+    by_fw = load_nodes_by_framework()
+    for fw in ["aiuc_1", "csa_aicm", "mitre_atlas", "nist_rmf",
+               "owasp_llm", "owasp_agentic", "owasp_ai_exchange",
+               "eu_gpai_cop", "cosai_rm"]:
+        assert fw in by_fw, f"{fw} missing"
+        assert len(by_fw[fw]) > 0, f"{fw} empty"
+
+
+def test_load_nodes_counts_match_known():
+    by_fw = load_nodes_by_framework()
+    expected = {
+        "aiuc_1": 189, "csa_aicm": 261, "mitre_atlas": 218,
+        "nist_rmf": 76, "owasp_llm": 10, "owasp_agentic": 10,
+        "owasp_ai_exchange": 88, "eu_gpai_cop": 70, "cosai_rm": 61,
+    }
+    for fw, n in expected.items():
+        assert len(by_fw[fw]) == n, f"{fw}: got {len(by_fw[fw])}, expected {n}"

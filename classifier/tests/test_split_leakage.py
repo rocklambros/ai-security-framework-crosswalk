@@ -42,3 +42,12 @@ def test_no_pair_key_leakage():
     frozen = pd.read_json(SPLITS_DIR / "human_test_frozen.jsonl", lines=True)
     overlap = set(cal["pair_key"]) & set(frozen["pair_key"])
     assert not overlap, f"{len(overlap)} pair_keys leaked between cal and frozen: {list(overlap)[:5]}"
+
+
+def test_cal_and_frozen_cover_full_pool():
+    import pandas as pd
+    pool = pd.read_json(SPLITS_DIR / "sme_pool_full.jsonl", lines=True)
+    cal = pd.read_json(SPLITS_DIR / "human_cal.jsonl", lines=True)
+    frozen = pd.read_json(SPLITS_DIR / "human_test_frozen.jsonl", lines=True)
+    assert len(pool) == 550
+    assert set(cal["pair_key"]) | set(frozen["pair_key"]) == set(pool["pair_key"])

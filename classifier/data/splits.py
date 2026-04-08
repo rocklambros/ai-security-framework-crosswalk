@@ -8,16 +8,24 @@ CAL_SIZE = 150
 FROZEN_SIZE = 400  # 550 - 150
 
 
-def build_splits(df: pd.DataFrame, seed: int = SEED) -> dict[str, pd.DataFrame]:
+def build_splits(
+    df: pd.DataFrame,
+    seed: int = SEED,
+    cal_size: int = CAL_SIZE,
+    frozen_size: int = FROZEN_SIZE,
+) -> dict[str, pd.DataFrame]:
     """Stratify on (framework_pair × expert_tier). Return cal + frozen splits."""
-    assert len(df) == CAL_SIZE + FROZEN_SIZE, f"unexpected pool size {len(df)}"
+    if len(df) != cal_size + frozen_size:
+        raise ValueError(
+            f"unexpected pool size {len(df)}, expected {cal_size + frozen_size}"
+        )
     strata = df["framework_pair"].astype(str) + "::" + df["expert_tier"].astype(str)
     counts = strata.value_counts()
     if (counts < 2).any():
         strata = df["framework_pair"].astype(str)
     cal, frozen = train_test_split(
         df,
-        train_size=CAL_SIZE,
+        train_size=cal_size,
         random_state=seed,
         stratify=strata,
         shuffle=True,

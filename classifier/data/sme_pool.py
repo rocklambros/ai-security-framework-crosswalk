@@ -7,6 +7,17 @@ from classifier.config import LABELING_SHEETS_DIR
 
 EXPECTED_TOTAL = 550  # 11 sheets × 50 rows
 
+COLUMNS: tuple[str, ...] = (
+    "pair_key",
+    "pair_name",
+    "framework_pair",
+    "source_node_id",
+    "target_node_id",
+    "source_text",
+    "target_text",
+    "expert_tier",
+)
+
 
 def _load_sheet(path: Path) -> list[dict]:
     data = yaml.safe_load(path.read_text())
@@ -22,8 +33,6 @@ def _load_sheet(path: Path) -> list[dict]:
             "source_text": (c.get("source_description") or c.get("source_name") or "").strip(),
             "target_text": (c.get("target_description") or c.get("target_name") or "").strip(),
             "expert_tier": c.get("expert_tier") or "None",
-            "composite_score": c.get("composite_score"),
-            "signals": c.get("signals"),
         })
     return rows
 
@@ -41,4 +50,5 @@ def load_sme_pool() -> pd.DataFrame:
             f"SME pool size {len(df)} != expected {EXPECTED_TOTAL}. "
             f"Per-sheet counts: {df.groupby('pair_name').size().to_dict()}"
         )
+    df = df[list(COLUMNS)]
     return df

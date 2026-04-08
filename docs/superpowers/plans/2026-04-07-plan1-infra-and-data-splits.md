@@ -1296,7 +1296,7 @@ from huggingface_hub import HfApi, create_repo
 from classifier.config import require_secrets
 
 MODEL_REPO = "rockCO78/ai-security-crosswalk-classifier"
-DATASET_REPO = "rockCO78/ai-security-crosswalk-eval"
+DATASET_REPO = "rockCO78/ai_security_crosswalk_eval"
 
 
 def main() -> None:

@@ -1,0 +1,11 @@
+{
+  "_meta": {
+    "cal_size": 150,
+    "frozen_size": 400,
+    "pool_size": 550,
+    "seed": 42
+  },
+  "human_cal.jsonl": "bcaa54d389fced286141a9d5a8b30623062c72fb393432482b3f94e88d4481d8",
+  "human_test_frozen.jsonl": "981f4e79c236fa29fedae0e6443199c3af4ad2c4890e6d53d76cbf8b640edb7b",
+  "sme_pool_full.jsonl": "5ced5d6a800bc19234a3227f81347ed0bf8660764f972cb29dcd2cfdf1d807cd"
+}

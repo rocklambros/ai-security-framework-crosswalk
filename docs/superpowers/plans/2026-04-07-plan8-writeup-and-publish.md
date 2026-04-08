@@ -1153,6 +1153,59 @@ git add README.md LICENSE classifier/tests/repo/__init__.py \
 git commit -m "plan8: README reproduction + LICENSE Apache-2.0 + badges"
 ```
 
+### Task F1.5: Delete the pre-classifier archive
+
+Plan 1 Task A1.5 quarantined stale artifacts under `archive/pre-classifier-refactor/`. After the sacred-run lockfile lands (Plan 6 Phase E), those artifacts are provably unused — git history is the system of record. Delete the archive to keep the published repo clean.
+
+**Files:**
+- Delete: `archive/pre-classifier-refactor/`
+- Test: `classifier/tests/repo/test_archive_removed.py`
+
+- [ ] **Step 1: Write the failing test**
+
+```python
+# classifier/tests/repo/test_archive_removed.py
+from pathlib import Path
+REPO = Path(__file__).resolve().parents[3]
+
+def test_pre_classifier_archive_is_gone():
+    assert not (REPO / "archive" / "pre-classifier-refactor").exists(), \
+        "archive/pre-classifier-refactor must be deleted in Plan 8 F1.5"
+
+def test_sacred_lockfile_exists():
+    # gate: do not delete the archive until the sacred run has occurred
+    assert any((REPO / "data" / "sacred").glob("lock_*.json")), \
+        "refuse to delete archive before sacred-run lockfile lands"
+```
+
+- [ ] **Step 2: Run test — expect failure**
+
+Run: `pytest classifier/tests/repo/test_archive_removed.py -v`
+Expected: `test_pre_classifier_archive_is_gone` fails (archive still present).
+
+- [ ] **Step 3: Verify sacred-run lockfile is in place**
+
+Run: `ls data/sacred/lock_*.json`
+Expected: at least one lockfile (proves Plan 6 ran). If absent, STOP.
+
+- [ ] **Step 4: Delete the archive**
+
+```bash
+git rm -r archive/pre-classifier-refactor/
+```
+
+- [ ] **Step 5: Run test — expect pass**
+
+Run: `pytest classifier/tests/repo/test_archive_removed.py -v`
+Expected: 2 passed.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add classifier/tests/repo/test_archive_removed.py
+git commit -m "plan8: delete pre-classifier archive after sacred run"
+```
+
 ### Task F2: CITATION.cff + frozen requirements.txt
 
 **Files:**

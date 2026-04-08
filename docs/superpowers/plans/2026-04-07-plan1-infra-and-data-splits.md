@@ -97,6 +97,147 @@ git add requirements-classifier.txt
 git commit -m "plan1: pin Plan 1 deps"
 ```
 
+### Task A1.5: Audit and quarantine stale artifacts
+
+The classifier refactor obsoletes several mapping_engine artifacts (session-7/8 labeling sheet snapshots, intermediate parquets, prune debug dumps, old run dirs). Move them to `archive/pre-classifier-refactor/` so they remain in git history but stop polluting the working tree. Plan 8 Phase F1.5 deletes the archive after the sacred run lockfile lands.
+
+**Files:**
+- Create: `archive/pre-classifier-refactor/` (directory)
+- Create: `archive/pre-classifier-refactor/MANIFEST.md` (one-line description per moved item)
+- Create: `scripts/audit_stale_artifacts.py`
+- Test: `classifier/tests/test_stale_audit.py`
+
+- [ ] **Step 1: Write the failing audit test**
+
+```python
+# classifier/tests/test_stale_audit.py
+from pathlib import Path
+import subprocess
+
+REPO = Path(__file__).resolve().parents[2]
+
+STALE_GLOBS = [
+    "mapping_engine/output/labeling_sheets/*__candidates.yaml.bak*",
+    "mapping_engine/output/prune_debug/**",
+    "mapping_engine/output/runs/s[0-9]*",
+    "checkpoints/*",
+    "wandb/run-*",
+]
+
+def test_no_stale_artifacts_in_tree():
+    leaks = []
+    for g in STALE_GLOBS:
+        leaks.extend(REPO.glob(g))
+    assert not leaks, f"Stale artifacts must live under archive/: {leaks}"
+
+def test_archive_manifest_lists_every_archived_path():
+    archive = REPO / "archive" / "pre-classifier-refactor"
+    if not archive.exists():
+        return  # nothing archived yet
+    manifest = (archive / "MANIFEST.md").read_text()
+    for p in archive.rglob("*"):
+        if p.is_file() and p.name != "MANIFEST.md":
+            rel = p.relative_to(archive).as_posix()
+            assert rel in manifest, f"Archived file not in MANIFEST.md: {rel}"
+```
+
+- [ ] **Step 2: Run test — expect failure**
+
+Run: `pytest classifier/tests/test_stale_audit.py -v`
+Expected: `test_no_stale_artifacts_in_tree` fails listing current stale files (or passes if tree is already clean).
+
+- [ ] **Step 3: Implement `scripts/audit_stale_artifacts.py`**
+
+```python
+"""Quarantine stale pre-classifier artifacts.
+
+Lists everything matching STALE_GLOBS, then with --apply moves each
+match under archive/pre-classifier-refactor/<original-relative-path>
+and appends a line to MANIFEST.md.
+
+Idempotent: re-running is a no-op once the tree is clean.
+"""
+from __future__ import annotations
+import argparse
+import shutil
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[1]
+ARCHIVE = REPO / "archive" / "pre-classifier-refactor"
+MANIFEST = ARCHIVE / "MANIFEST.md"
+
+STALE_GLOBS = [
+    "mapping_engine/output/labeling_sheets/*__candidates.yaml.bak*",
+    "mapping_engine/output/prune_debug/**",
+    "mapping_engine/output/runs/s[0-9]*",
+    "checkpoints/*",
+    "wandb/run-*",
+]
+
+
+def find_stale() -> list[Path]:
+    out: list[Path] = []
+    for g in STALE_GLOBS:
+        out.extend(REPO.glob(g))
+    return sorted(set(out))
+
+
+def quarantine(paths: list[Path]) -> None:
+    ARCHIVE.mkdir(parents=True, exist_ok=True)
+    if not MANIFEST.exists():
+        MANIFEST.write_text("# Quarantined pre-classifier artifacts\n\n")
+    lines = []
+    for p in paths:
+        rel = p.relative_to(REPO)
+        dest = ARCHIVE / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(p), str(dest))
+        lines.append(f"- `{rel.as_posix()}` — quarantined {__import__('datetime').date.today()}\n")
+    with MANIFEST.open("a") as f:
+        f.writelines(lines)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--apply", action="store_true", help="actually move files")
+    args = ap.parse_args()
+    stale = find_stale()
+    if not stale:
+        print("clean: no stale artifacts found")
+        return 0
+    print(f"found {len(stale)} stale paths:")
+    for p in stale:
+        print(f"  {p.relative_to(REPO)}")
+    if args.apply:
+        quarantine(stale)
+        print(f"quarantined to {ARCHIVE}")
+    else:
+        print("(dry run — pass --apply to move)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+```
+
+- [ ] **Step 4: Dry-run, then apply**
+
+Run: `python scripts/audit_stale_artifacts.py`
+Then: `python scripts/audit_stale_artifacts.py --apply`
+Expected: dry run lists candidates; --apply moves them under `archive/pre-classifier-refactor/` and appends manifest entries.
+
+- [ ] **Step 5: Run tests — expect pass**
+
+Run: `pytest classifier/tests/test_stale_audit.py -v`
+Expected: 2 passed.
+
+- [ ] **Step 6: Commit**
+
+```bash
+git add scripts/audit_stale_artifacts.py classifier/tests/test_stale_audit.py archive/pre-classifier-refactor/
+git commit -m "plan1: quarantine stale pre-classifier artifacts under archive/"
+```
+
 ### Task A2: Create `.env.example` and verify `.gitignore`
 
 **Files:**
@@ -107,7 +248,9 @@ git commit -m "plan1: pin Plan 1 deps"
 
 ```
 # Copy to .env and fill in. .env is .gitignored.
-ANTHROPIC_API_KEY=sk-ant-REPLACE
+# NOTE: ANTHROPIC_API_KEY is intentionally NOT in .env — it is read
+# from the local password-store (`pass show anthropic/api-key`).
+# See classifier/config.py for the resolution order.
 HF_TOKEN=hf_REPLACE
 WANDB_API_KEY=REPLACE
 ```
@@ -179,14 +322,23 @@ def test_repo_root_exists(repo_root):
 def test_required_secrets_raises_when_missing(monkeypatch):
     for key in ("ANTHROPIC_API_KEY", "HF_TOKEN", "WANDB_API_KEY"):
         monkeypatch.delenv(key, raising=False)
+    # block the pass fallback by routing it at a nonexistent entry
+    monkeypatch.setenv("ANTHROPIC_API_KEY_PASS_PATH", "nonexistent/entry")
     with pytest.raises(config.MissingSecretError) as excinfo:
         config.require_secrets(["ANTHROPIC_API_KEY"])
     assert "ANTHROPIC_API_KEY" in str(excinfo.value)
 
-def test_required_secrets_ok(monkeypatch):
+def test_required_secrets_env_takes_precedence(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-test")
     out = config.require_secrets(["ANTHROPIC_API_KEY"])
     assert out["ANTHROPIC_API_KEY"] == "sk-ant-test"
+
+def test_required_secrets_pass_fallback(monkeypatch):
+    # env unset, but pass entry exists at the default path
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.delenv("ANTHROPIC_API_KEY_PASS_PATH", raising=False)
+    out = config.require_secrets(["ANTHROPIC_API_KEY"])
+    assert out["ANTHROPIC_API_KEY"].startswith("sk-ant-")
 ```
 
 - [ ] **Step 2: Run tests — expect failure (module not found)**
@@ -197,11 +349,21 @@ Expected: `ModuleNotFoundError: No module named 'classifier.config'`
 - [ ] **Step 3: Implement `classifier/config.py`**
 
 ```python
-"""Config: .env loading, secret validation, canonical repo paths."""
+"""Config: secret resolution (env → pass), canonical repo paths.
+
+Secrets resolve in this order:
+  1. process environment (e.g., set by CI, Lambda, or shell)
+  2. `pass show <PASS_PATHS[key]>` from the local password-store
+
+`.env` is intentionally NOT consulted — storing ANTHROPIC_API_KEY in
+`.env` was confusing Claude Code (it would inherit a stale key from
+shell init). The `pass` fallback keeps the key out of any file the
+agent can read directly.
+"""
 from __future__ import annotations
 import os
+import subprocess
 from pathlib import Path
-from dotenv import load_dotenv
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO_ROOT / "data"
@@ -209,25 +371,58 @@ SPLITS_DIR = DATA_DIR / "splits"
 CANDIDATES_DIR = DATA_DIR / "candidates"
 LABELING_SHEETS_DIR = REPO_ROOT / "mapping_engine/output/labeling_sheets"
 
-load_dotenv(REPO_ROOT / ".env", override=False)
+# Maps env-var name → pass entry path. Override with `<KEY>_PASS_PATH` env.
+PASS_PATHS = {
+    "ANTHROPIC_API_KEY": "anthropic/api-key",
+    "HF_TOKEN": "huggingface/token",
+    "WANDB_API_KEY": "wandb/api-key",
+}
 
 
 class MissingSecretError(RuntimeError):
     pass
 
 
+def _pass_show(path: str) -> str | None:
+    try:
+        out = subprocess.run(
+            ["pass", "show", path],
+            capture_output=True, text=True, check=True, timeout=5,
+        )
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired, FileNotFoundError):
+        return None
+    return out.stdout.strip().splitlines()[0] if out.stdout.strip() else None
+
+
+def _resolve(key: str) -> str | None:
+    if v := os.environ.get(key):
+        return v
+    pass_path = os.environ.get(f"{key}_PASS_PATH") or PASS_PATHS.get(key)
+    if pass_path:
+        return _pass_show(pass_path)
+    return None
+
+
 def require_secrets(keys: list[str]) -> dict[str, str]:
     """Return a dict of key->value for the listed secrets.
 
+    Resolves env first, then `pass show <PASS_PATHS[key]>`.
     Raises MissingSecretError listing every missing key.
     """
-    missing = [k for k in keys if not os.environ.get(k)]
+    resolved: dict[str, str] = {}
+    missing: list[str] = []
+    for k in keys:
+        v = _resolve(k)
+        if v is None:
+            missing.append(k)
+        else:
+            resolved[k] = v
     if missing:
-        raise MissingSecretError(
-            f"Missing required environment variables: {', '.join(missing)}. "
-            f"Copy .env.example to .env and fill them in."
+        hints = ", ".join(
+            f"{k} (env or `pass insert {PASS_PATHS.get(k, k)}`)" for k in missing
         )
-    return {k: os.environ[k] for k in keys}
+        raise MissingSecretError(f"Missing required secrets: {hints}")
+    return resolved
 ```
 
 - [ ] **Step 4: Run tests — expect pass**

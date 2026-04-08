@@ -1,0 +1,13 @@
+{
+  "upstream_repo": "https://github.com/GenAI-Security-Project/GenAI-Data-Security-Initiative",
+  "upstream_commit_sha": "1e286efa6dd78b6e044ea16dc3f64d854f9cd069",
+  "retrieved_at": "2026-04-08T19:05:27.974324Z",
+  "license": "CC-BY-SA-4.0",
+  "attribution": "GenAI Security Project \u2014 GenAI Data Security Initiative crosswalk. Licensed under CC BY-SA 4.0.",
+  "entry_count": 41,
+  "entry_breakdown": {
+    "LLM": 10,
+    "ASI": 10,
+    "DSGAI": 21
+  }
+}

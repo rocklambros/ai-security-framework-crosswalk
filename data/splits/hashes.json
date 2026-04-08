@@ -18,8 +18,8 @@
     "data/frameworks/owasp-dsgai/MANIFEST.json": "519ea7ec7c7c507c009f4a1bb8d4af7282b9533b84269f8d6513bfbd92a7f1fa",
     "data/frameworks/owasp-dsgai/OWASP-GenAI-Data-Security-Risks-and-Mitigations-2026-v1.0.txt": "32664b8202cb8dece6d65bb78f7be5f997eb51235e0164e327dbf6eb2013fdcf",
     "data/processed/frameworks/owasp_dsgai.json": "50c5ab040bf577f7939a33a50ed3a4c2e4093c8a46f08b321a430096c0ad1499",
-    "data/upstream/crossrefs_v1.jsonl": "2936eb9cbc7f5ed9c3c23374f7dab34676d54ffd6b7615b25b2ee5c688d4b55f",
-    "data/upstream/mappings_v1.jsonl": "45ba59a18e00683ecad764341595e1f668726bfe9108598d346e3a7fac7dd277",
+    "data/upstream/crossrefs_v1.jsonl": "937fa01ab6ec51f28f4db0d74ed8ea042dc0d932d869f72fa8174aa0e4429210",
+    "data/upstream/mappings_v1.jsonl": "497e4d52dd8f2ca50565e0e65270b93b147a25748071288f288fe4105b259452",
     "data/upstream/partition.json": "b7085e78dcd3be7b02be36b2d0fad9ebce53b55e99b84931fa2ae58b8ad33f16",
     "third_party/genai-crosswalk/MANIFEST.json": "c5eb33c3a887b3e3621b635dfb488c644063eb909a72fe4ef0f80643c07e4169"
   }

@@ -49,14 +49,20 @@ def compute_partition(
 
     for r in upstream_rows:
         src_tuple = (r["source_framework"], r["source_id"])
+        # Rule 2 uses the canonicalized target_node_id so the firewall actually
+        # matches against the frozen test's (src_fw, src_id, tgt_fw, tgt_local)
+        # tuples. Rows with target_id_unresolved=True cannot evaluate Rule 2
+        # and fall through to Rule 1 only.
+        tgt_node_id = r.get("target_node_id")
+        tgt_local = tgt_node_id.split(":", 1)[1] if tgt_node_id and ":" in tgt_node_id else ""
         full_tuple = (
             r["source_framework"],
             r["source_id"],
             r["target_framework"],
-            r.get("target_control_id") or "",
+            tgt_local,
         )
         rule1 = src_tuple in frozen_src_tuples
-        rule2 = full_tuple in frozen_full_tuples
+        rule2 = bool(tgt_local) and full_tuple in frozen_full_tuples
         if rule1:
             rule1_hits += 1
         if rule2:

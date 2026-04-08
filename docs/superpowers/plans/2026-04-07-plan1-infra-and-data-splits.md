@@ -247,12 +247,19 @@ git commit -m "plan1: quarantine stale pre-classifier artifacts under archive/"
 - [ ] **Step 1: Write `.env.example`**
 
 ```
-# Copy to .env and fill in. .env is .gitignored.
-# NOTE: ANTHROPIC_API_KEY is intentionally NOT in .env — it is read
-# from the local password-store (`pass show anthropic/api-key`).
-# See classifier/config.py for the resolution order.
-HF_TOKEN=hf_REPLACE
-WANDB_API_KEY=REPLACE
+# .env is intentionally minimal — all API keys are read from the local
+# password-store (`pass`), not from .env. The agent (Claude Code) was
+# inheriting stale env values from shell init, so secrets now live in pass:
+#
+#   ANTHROPIC_API_KEY  ← pass show anthropic/api-key
+#   HF_TOKEN           ← pass show huggingface/token
+#   WANDB_API_KEY      ← pass show wandb/api-key
+#
+# See classifier/config.py PASS_PATHS for the mapping. Override any one
+# entry by exporting <KEY>_PASS_PATH or by setting the env var directly
+# (env takes precedence over pass).
+#
+# Non-secret config (model name, batch size, etc.) can still go here.
 ```
 
 - [ ] **Step 2: Verify `.env` is still ignored**
@@ -1471,7 +1478,7 @@ if __name__ == "__main__":
 - [ ] **Step 2: Run it**
 
 Run: `python -m classifier.scripts.init_wandb`
-Expected: one run appears in the W&B dashboard, named `plan1-init`, logs `{ok: 1}`. If `MissingSecretError`, add `WANDB_API_KEY` to `.env` first.
+Expected: one run appears in the W&B dashboard, named `plan1-init`, logs `{ok: 1}`. If `MissingSecretError`, run `pass insert wandb/api-key` first.
 
 - [ ] **Step 3: Commit**
 

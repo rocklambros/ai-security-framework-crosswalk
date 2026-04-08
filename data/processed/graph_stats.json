@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-07T17:33:06.687880+00:00",
+  "generated_at": "2026-04-08T12:44:45.206184+00:00",
   "node_count": 983,
-  "edge_count": 5813,
+  "edge_count": 6047,
   "frameworks": {
     "aiuc_1": {
       "nodes": 189,
@@ -15,7 +15,7 @@
     },
     "csa_aicm": {
       "nodes": 261,
-      "outbound_edges": 2012,
+      "outbound_edges": 2122,
       "inbound_edges": 2335
     },
     "eu_gpai_cop": {
@@ -25,18 +25,18 @@
     },
     "mitre_atlas": {
       "nodes": 218,
-      "outbound_edges": 421,
+      "outbound_edges": 515,
       "inbound_edges": 482
     },
     "nist_rmf": {
       "nodes": 76,
-      "outbound_edges": 0,
+      "outbound_edges": 30,
       "inbound_edges": 152
     },
     "owasp_agentic": {
       "nodes": 10,
       "outbound_edges": 0,
-      "inbound_edges": 119
+      "inbound_edges": 259
     },
     "owasp_ai_exchange": {
       "nodes": 88,
@@ -46,7 +46,7 @@
     "owasp_llm": {
       "nodes": 10,
       "outbound_edges": 0,
-      "inbound_edges": 78
+      "inbound_edges": 172
     }
   },
   "orphan_count": 40,

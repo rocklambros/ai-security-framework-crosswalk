@@ -87193,5 +87193,4685 @@
     "score": null,
     "signals": null,
     "notes": null
+  },
+  {
+    "edge_id": "csa_aicm:GRC-09--owasp_agentic:ASI01--GATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-09",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Primary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.4431,
+    "signals": {
+      "bridge": 0.2216,
+      "semantic": 0.533,
+      "keyword": 0.0459,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:GRC-15--owasp_agentic:ASI01--GATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-15",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Primary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.4743,
+    "signals": {
+      "bridge": 0.1424,
+      "semantic": 0.7128,
+      "keyword": 0.0133,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:I-S-05--owasp_agentic:ASI07--ISOLATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:I-S-05",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Primary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.4434,
+    "signals": {
+      "bridge": 0.065,
+      "semantic": 0.761,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:I-S-05--owasp_agentic:ASI10--ISOLATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:I-S-05",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Primary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.456,
+    "signals": {
+      "bridge": 0.0659,
+      "semantic": 0.7838,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-03--owasp_agentic:ASI03--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-03",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6826,
+    "signals": {
+      "bridge": 0.2724,
+      "semantic": 0.9255,
+      "keyword": 0.0429,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-05--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-05",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6811,
+    "signals": {
+      "bridge": 0.2778,
+      "semantic": 0.9037,
+      "keyword": 0.0639,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-06--owasp_agentic:ASI03--GOVERN--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-06",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.684,
+    "signals": {
+      "bridge": 0.2778,
+      "semantic": 0.9155,
+      "keyword": 0.0528,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-09--owasp_agentic:ASI03--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-09",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6767,
+    "signals": {
+      "bridge": 0.2778,
+      "semantic": 0.9097,
+      "keyword": 0.0388,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-14--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-14",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.7592,
+    "signals": {
+      "bridge": 0.393,
+      "semantic": 0.9017,
+      "keyword": 0.0684,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-17--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-17",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.694,
+    "signals": {
+      "bridge": 0.3109,
+      "semantic": 0.8778,
+      "keyword": 0.0776,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-01--owasp_agentic:ASI07--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-01",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6989,
+    "signals": {
+      "bridge": 0.4038,
+      "semantic": 0.8119,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-04--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-04",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6951,
+    "signals": {
+      "bridge": 0.3274,
+      "semantic": 0.8954,
+      "keyword": 0.0133,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-09--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-09",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6755,
+    "signals": {
+      "bridge": 0.3274,
+      "semantic": 0.8568,
+      "keyword": 0.0157,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-12--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-12",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.7135,
+    "signals": {
+      "bridge": 0.3274,
+      "semantic": 0.9063,
+      "keyword": 0.0556,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-08--owasp_agentic:ASI07--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-08",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6772,
+    "signals": {
+      "bridge": 0.3726,
+      "semantic": 0.8027,
+      "keyword": 0.0142,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:UEM-08--owasp_agentic:ASI07--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:UEM-08",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.7451,
+    "signals": {
+      "bridge": 0.4158,
+      "semantic": 0.8825,
+      "keyword": 0.0035,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0007--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0007",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6073,
+    "signals": {
+      "bridge": 0.1416,
+      "semantic": 0.9357,
+      "keyword": 0.0681,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0022--owasp_llm:LLM04--GATE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0022",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5784,
+    "signals": {
+      "bridge": 0.1211,
+      "semantic": 0.9296,
+      "keyword": 0.0288,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0033--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0033",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5535,
+    "signals": {
+      "bridge": 0.102,
+      "semantic": 0.9076,
+      "keyword": 0.0273,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0018.000--owasp_llm:LLM04--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0018.000",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6063,
+    "signals": {
+      "bridge": 0.0676,
+      "semantic": 0.9434,
+      "keyword": 0.0376,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0020--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0020",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6603,
+    "signals": {
+      "bridge": 0.2057,
+      "semantic": 0.9388,
+      "keyword": 0.0954,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0042--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0042",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5651,
+    "signals": {
+      "bridge": 0.1135,
+      "semantic": 0.9163,
+      "keyword": 0.0247,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0043.001--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0043.001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5959,
+    "signals": {
+      "bridge": 0.0706,
+      "semantic": 0.9386,
+      "keyword": 0.016,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0051--owasp_llm:LLM01--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0051",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6431,
+    "signals": {
+      "bridge": 0.2017,
+      "semantic": 0.8499,
+      "keyword": 0.2026,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0051.000--owasp_llm:LLM01--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0051.000",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.547,
+    "signals": {
+      "bridge": 0.0366,
+      "semantic": 0.8773,
+      "keyword": 0.0134,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0051.002--owasp_llm:LLM01--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0051.002",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5706,
+    "signals": {
+      "bridge": 0.0771,
+      "semantic": 0.848,
+      "keyword": 0.2446,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:GOVERN-3.2--owasp_agentic:ASI01--GATE--mapping_engine_v2",
+    "source_node_id": "nist_rmf:GOVERN-3.2",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Primary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.4579,
+    "signals": {
+      "bridge": 0.1521,
+      "semantic": 0.6755,
+      "keyword": 0.0019,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MAP-3.5--owasp_agentic:ASI01--GATE--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MAP-3.5",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Primary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.4668,
+    "signals": {
+      "bridge": 0.169,
+      "semantic": 0.6719,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.1--owasp_agentic:ASI05--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.1",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.7123,
+    "signals": {
+      "bridge": 0.3955,
+      "semantic": 0.8356,
+      "keyword": 0.0221,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:A-A-03--owasp_agentic:ASI01--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:A-A-03",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5224,
+    "signals": {
+      "bridge": 0.1129,
+      "semantic": 0.8435,
+      "keyword": 0.011,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:AIS-03--owasp_agentic:ASI10--GOVERN--mapping_engine_v2",
+    "source_node_id": "csa_aicm:AIS-03",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5062,
+    "signals": {
+      "bridge": 0.0472,
+      "semantic": 0.8913,
+      "keyword": 0.0213,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:AIS-05--owasp_agentic:ASI01--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:AIS-05",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5359,
+    "signals": {
+      "bridge": 0.2186,
+      "semantic": 0.7317,
+      "keyword": 0.0138,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:AIS-05--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:AIS-05",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5575,
+    "signals": {
+      "bridge": 0.1444,
+      "semantic": 0.867,
+      "keyword": 0.0163,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:AIS-09--owasp_agentic:ASI01--PREV--mapping_engine_v2",
+    "source_node_id": "csa_aicm:AIS-09",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5214,
+    "signals": {
+      "bridge": 0.2466,
+      "semantic": 0.6676,
+      "keyword": 0.015,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:AIS-09--owasp_agentic:ASI05--PREV--mapping_engine_v2",
+    "source_node_id": "csa_aicm:AIS-09",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5848,
+    "signals": {
+      "bridge": 0.226,
+      "semantic": 0.8018,
+      "keyword": 0.0375,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:AIS-09--owasp_agentic:ASI10--PREV--mapping_engine_v2",
+    "source_node_id": "csa_aicm:AIS-09",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5258,
+    "signals": {
+      "bridge": 0.1555,
+      "semantic": 0.7901,
+      "keyword": 0.02,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:AIS-10--owasp_agentic:ASI10--GOVERN--mapping_engine_v2",
+    "source_node_id": "csa_aicm:AIS-10",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5409,
+    "signals": {
+      "bridge": 0.1646,
+      "semantic": 0.8167,
+      "keyword": 0.0035,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:AIS-13--owasp_agentic:ASI10--PREV--mapping_engine_v2",
+    "source_node_id": "csa_aicm:AIS-13",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5068,
+    "signals": {
+      "bridge": 0.129,
+      "semantic": 0.7687,
+      "keyword": 0.0536,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:BCR-09--owasp_agentic:ASI08--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:BCR-09",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5439,
+    "signals": {
+      "bridge": 0.1931,
+      "semantic": 0.7799,
+      "keyword": 0.0137,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:BCR-10--owasp_agentic:ASI08--GOVERN--mapping_engine_v2",
+    "source_node_id": "csa_aicm:BCR-10",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5279,
+    "signals": {
+      "bridge": 0.1931,
+      "semantic": 0.7517,
+      "keyword": 0.0096,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:CCC-02--owasp_agentic:ASI08--GATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:CCC-02",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5154,
+    "signals": {
+      "bridge": 0.0884,
+      "semantic": 0.8664,
+      "keyword": 0.0027,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:CEK-16--owasp_agentic:ASI07--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:CEK-16",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5346,
+    "signals": {
+      "bridge": 0.126,
+      "semantic": 0.8527,
+      "keyword": 0.0061,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:GRC-09--owasp_agentic:ASI02--GATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-09",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.518,
+    "signals": {
+      "bridge": 0.104,
+      "semantic": 0.818,
+      "keyword": 0.0611,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:GRC-09--owasp_agentic:ASI09--GATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-09",
+    "target_node_id": "owasp_agentic:ASI09",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5181,
+    "signals": {
+      "bridge": 0.1558,
+      "semantic": 0.7005,
+      "keyword": 0.1505,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:GRC-10--owasp_agentic:ASI01--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-10",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5013,
+    "signals": {
+      "bridge": 0.0914,
+      "semantic": 0.8281,
+      "keyword": 0.0161,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:GRC-10--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-10",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5035,
+    "signals": {
+      "bridge": 0.0874,
+      "semantic": 0.8351,
+      "keyword": 0.0202,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:GRC-11--owasp_agentic:ASI09--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-11",
+    "target_node_id": "owasp_agentic:ASI09",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5471,
+    "signals": {
+      "bridge": 0.1331,
+      "semantic": 0.8489,
+      "keyword": 0.0384,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:GRC-11--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-11",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5073,
+    "signals": {
+      "bridge": 0.091,
+      "semantic": 0.8399,
+      "keyword": 0.0164,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:GRC-15--owasp_agentic:ASI09--GATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:GRC-15",
+    "target_node_id": "owasp_agentic:ASI09",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5705,
+    "signals": {
+      "bridge": 0.1243,
+      "semantic": 0.8489,
+      "keyword": 0.1365,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:I-S-05--owasp_agentic:ASI05--ISOLATE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:I-S-05",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Primary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.3617,
+    "signals": {
+      "bridge": 0.0558,
+      "semantic": 0.6172,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-01--owasp_agentic:ASI02--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-01",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5211,
+    "signals": {
+      "bridge": 0.2414,
+      "semantic": 0.6513,
+      "keyword": 0.054,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-01--owasp_agentic:ASI03--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-01",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.644,
+    "signals": {
+      "bridge": 0.2381,
+      "semantic": 0.8905,
+      "keyword": 0.0527,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-02--owasp_agentic:ASI03--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-02",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6209,
+    "signals": {
+      "bridge": 0.2381,
+      "semantic": 0.8765,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-05--owasp_agentic:ASI02--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-05",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5594,
+    "signals": {
+      "bridge": 0.2715,
+      "semantic": 0.6752,
+      "keyword": 0.0725,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-05--owasp_agentic:ASI07--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-05",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5078,
+    "signals": {
+      "bridge": 0.1588,
+      "semantic": 0.7364,
+      "keyword": 0.0468,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-08--owasp_agentic:ASI02--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-08",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5145,
+    "signals": {
+      "bridge": 0.2351,
+      "semantic": 0.6533,
+      "keyword": 0.0427,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-08--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-08",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6495,
+    "signals": {
+      "bridge": 0.2343,
+      "semantic": 0.9035,
+      "keyword": 0.0567,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-09--owasp_agentic:ASI02--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-09",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5526,
+    "signals": {
+      "bridge": 0.2715,
+      "semantic": 0.6751,
+      "keyword": 0.0498,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-13--owasp_agentic:ASI02--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-13",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5297,
+    "signals": {
+      "bridge": 0.2414,
+      "semantic": 0.6986,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-13--owasp_agentic:ASI03--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-13",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.628,
+    "signals": {
+      "bridge": 0.2381,
+      "semantic": 0.8901,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-14--owasp_agentic:ASI02--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-14",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5705,
+    "signals": {
+      "bridge": 0.3875,
+      "semantic": 0.555,
+      "keyword": 0.0587,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-14--owasp_agentic:ASI07--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-14",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6308,
+    "signals": {
+      "bridge": 0.2944,
+      "semantic": 0.7854,
+      "keyword": 0.0656,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-15--owasp_agentic:ASI02--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-15",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5179,
+    "signals": {
+      "bridge": 0.2414,
+      "semantic": 0.676,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-15--owasp_agentic:ASI03--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-15",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6176,
+    "signals": {
+      "bridge": 0.2381,
+      "semantic": 0.8703,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-16--owasp_agentic:ASI02--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-16",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5545,
+    "signals": {
+      "bridge": 0.2414,
+      "semantic": 0.71,
+      "keyword": 0.0625,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-16--owasp_agentic:ASI03--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-16",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6255,
+    "signals": {
+      "bridge": 0.2381,
+      "semantic": 0.8547,
+      "keyword": 0.0535,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-17--owasp_agentic:ASI02--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-17",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5926,
+    "signals": {
+      "bridge": 0.3307,
+      "semantic": 0.6275,
+      "keyword": 0.1331,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-17--owasp_agentic:ASI07--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-17",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5899,
+    "signals": {
+      "bridge": 0.1911,
+      "semantic": 0.7963,
+      "keyword": 0.1428,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-19--owasp_agentic:ASI02--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-19",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5553,
+    "signals": {
+      "bridge": 0.166,
+      "semantic": 0.8016,
+      "keyword": 0.0748,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:IAM-19--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:IAM-19",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.581,
+    "signals": {
+      "bridge": 0.1403,
+      "semantic": 0.8815,
+      "keyword": 0.0784,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-01--owasp_agentic:ASI05--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-01",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5304,
+    "signals": {
+      "bridge": 0.176,
+      "semantic": 0.784,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-04--owasp_agentic:ASI07--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-04",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5634,
+    "signals": {
+      "bridge": 0.2216,
+      "semantic": 0.7843,
+      "keyword": 0.0068,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-05--owasp_agentic:ASI01--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-05",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5493,
+    "signals": {
+      "bridge": 0.1316,
+      "semantic": 0.8746,
+      "keyword": 0.0044,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-05--owasp_agentic:ASI07--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-05",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6099,
+    "signals": {
+      "bridge": 0.3664,
+      "semantic": 0.6892,
+      "keyword": 0.0023,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-09--owasp_agentic:ASI02--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-09",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5178,
+    "signals": {
+      "bridge": 0.3214,
+      "semantic": 0.5712,
+      "keyword": 0.0035,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-09--owasp_agentic:ASI07--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-09",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5178,
+    "signals": {
+      "bridge": 0.2216,
+      "semantic": 0.6993,
+      "keyword": 0.0038,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-10--owasp_agentic:ASI07--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-10",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5576,
+    "signals": {
+      "bridge": 0.1321,
+      "semantic": 0.8869,
+      "keyword": 0.0094,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-12--owasp_agentic:ASI02--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-12",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5114,
+    "signals": {
+      "bridge": 0.3214,
+      "semantic": 0.5278,
+      "keyword": 0.0581,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-12--owasp_agentic:ASI07--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-12",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5741,
+    "signals": {
+      "bridge": 0.2216,
+      "semantic": 0.7792,
+      "keyword": 0.0515,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-13--owasp_agentic:ASI08--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-13",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.555,
+    "signals": {
+      "bridge": 0.105,
+      "semantic": 0.9009,
+      "keyword": 0.037,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-14--owasp_agentic:ASI05--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-14",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6037,
+    "signals": {
+      "bridge": 0.2268,
+      "semantic": 0.8501,
+      "keyword": 0.0143,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-15--owasp_agentic:ASI05--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-15",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5913,
+    "signals": {
+      "bridge": 0.1717,
+      "semantic": 0.8905,
+      "keyword": 0.0262,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:LOG-15--owasp_agentic:ASI08--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:LOG-15",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5008,
+    "signals": {
+      "bridge": 0.1845,
+      "semantic": 0.7051,
+      "keyword": 0.0203,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-01--owasp_agentic:ASI02--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-01",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5055,
+    "signals": {
+      "bridge": 0.1818,
+      "semantic": 0.7264,
+      "keyword": 0.0046,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-02--owasp_agentic:ASI02--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-02",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5114,
+    "signals": {
+      "bridge": 0.1645,
+      "semantic": 0.7596,
+      "keyword": 0.0054,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-02--owasp_agentic:ASI05--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-02",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5051,
+    "signals": {
+      "bridge": 0.1842,
+      "semantic": 0.7213,
+      "keyword": 0.0069,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-06--owasp_agentic:ASI01--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-06",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5685,
+    "signals": {
+      "bridge": 0.2142,
+      "semantic": 0.7872,
+      "keyword": 0.0354,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-06--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-06",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5639,
+    "signals": {
+      "bridge": 0.2066,
+      "semantic": 0.7879,
+      "keyword": 0.036,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-07--owasp_agentic:ASI01--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-07",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6094,
+    "signals": {
+      "bridge": 0.3015,
+      "semantic": 0.7587,
+      "keyword": 0.0251,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-07--owasp_agentic:ASI05--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-07",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5542,
+    "signals": {
+      "bridge": 0.3241,
+      "semantic": 0.6211,
+      "keyword": 0.0314,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-07--owasp_agentic:ASI06--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-07",
+    "target_node_id": "owasp_agentic:ASI06",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5043,
+    "signals": {
+      "bridge": 0.3668,
+      "semantic": 0.4766,
+      "keyword": 0.0218,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-07--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-07",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5263,
+    "signals": {
+      "bridge": 0.2262,
+      "semantic": 0.7014,
+      "keyword": 0.0176,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-08--owasp_agentic:ASI10--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-08",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5345,
+    "signals": {
+      "bridge": 0.1408,
+      "semantic": 0.8269,
+      "keyword": 0.018,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-09--owasp_agentic:ASI03--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-09",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.511,
+    "signals": {
+      "bridge": 0.1705,
+      "semantic": 0.7541,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-10--owasp_agentic:ASI02--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-10",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5015,
+    "signals": {
+      "bridge": 0.3037,
+      "semantic": 0.5609,
+      "keyword": 0.0067,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-10--owasp_agentic:ASI05--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-10",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6011,
+    "signals": {
+      "bridge": 0.2759,
+      "semantic": 0.7781,
+      "keyword": 0.0211,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-10--owasp_agentic:ASI07--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-10",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6193,
+    "signals": {
+      "bridge": 0.3324,
+      "semantic": 0.7418,
+      "keyword": 0.0184,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-10--owasp_agentic:ASI08--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-10",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6123,
+    "signals": {
+      "bridge": 0.3879,
+      "semantic": 0.662,
+      "keyword": 0.0098,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-10--owasp_agentic:ASI10--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-10",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5186,
+    "signals": {
+      "bridge": 0.234,
+      "semantic": 0.6869,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-11--owasp_agentic:ASI08--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-11",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6271,
+    "signals": {
+      "bridge": 0.2288,
+      "semantic": 0.8783,
+      "keyword": 0.0388,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:MDS-11--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:MDS-11",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5548,
+    "signals": {
+      "bridge": 0.2015,
+      "semantic": 0.7914,
+      "keyword": 0.0112,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:SEF-05--owasp_agentic:ASI10--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:SEF-05",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5881,
+    "signals": {
+      "bridge": 0.2077,
+      "semantic": 0.8476,
+      "keyword": 0.0096,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:SEF-07--owasp_agentic:ASI08--GOVERN--mapping_engine_v2",
+    "source_node_id": "csa_aicm:SEF-07",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5152,
+    "signals": {
+      "bridge": 0.3109,
+      "semantic": 0.5617,
+      "keyword": 0.0351,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:STA-01--owasp_agentic:ASI04--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:STA-01",
+    "target_node_id": "owasp_agentic:ASI04",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5212,
+    "signals": {
+      "bridge": 0.0816,
+      "semantic": 0.837,
+      "keyword": 0.089,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:STA-08--owasp_agentic:ASI04--GOVERN--mapping_engine_v2",
+    "source_node_id": "csa_aicm:STA-08",
+    "target_node_id": "owasp_agentic:ASI04",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5395,
+    "signals": {
+      "bridge": 0.035,
+      "semantic": 0.9171,
+      "keyword": 0.1144,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:STA-13--owasp_agentic:ASI04--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:STA-13",
+    "target_node_id": "owasp_agentic:ASI04",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5328,
+    "signals": {
+      "bridge": 0.0809,
+      "semantic": 0.8725,
+      "keyword": 0.067,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-01--owasp_agentic:ASI01--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-01",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5013,
+    "signals": {
+      "bridge": 0.2803,
+      "semantic": 0.592,
+      "keyword": 0.0043,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-02--owasp_agentic:ASI01--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-02",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5304,
+    "signals": {
+      "bridge": 0.2253,
+      "semantic": 0.7044,
+      "keyword": 0.0285,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-03--owasp_agentic:ASI04--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-03",
+    "target_node_id": "owasp_agentic:ASI04",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5173,
+    "signals": {
+      "bridge": 0.1028,
+      "semantic": 0.8532,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-03--owasp_agentic:ASI06--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-03",
+    "target_node_id": "owasp_agentic:ASI06",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5701,
+    "signals": {
+      "bridge": 0.2844,
+      "semantic": 0.7124,
+      "keyword": 0.0137,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-04--owasp_agentic:ASI07--DETECT--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-04",
+    "target_node_id": "owasp_agentic:ASI07",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5129,
+    "signals": {
+      "bridge": 0.1293,
+      "semantic": 0.8062,
+      "keyword": 0.0077,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-05--owasp_agentic:ASI04--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-05",
+    "target_node_id": "owasp_agentic:ASI04",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6248,
+    "signals": {
+      "bridge": 0.183,
+      "semantic": 0.8791,
+      "keyword": 0.1326,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-05--owasp_agentic:ASI05--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-05",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5361,
+    "signals": {
+      "bridge": 0.3259,
+      "semantic": 0.5575,
+      "keyword": 0.0782,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-07--owasp_agentic:ASI04--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-07",
+    "target_node_id": "owasp_agentic:ASI04",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5122,
+    "signals": {
+      "bridge": 0.0964,
+      "semantic": 0.8517,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-11--owasp_agentic:ASI01--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-11",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5587,
+    "signals": {
+      "bridge": 0.2337,
+      "semantic": 0.7611,
+      "keyword": 0.0045,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-11--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-11",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5822,
+    "signals": {
+      "bridge": 0.1974,
+      "semantic": 0.8489,
+      "keyword": 0.011,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-12--owasp_agentic:ASI05--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-12",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5459,
+    "signals": {
+      "bridge": 0.2761,
+      "semantic": 0.6785,
+      "keyword": 0.0111,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-12--owasp_agentic:ASI06--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-12",
+    "target_node_id": "owasp_agentic:ASI06",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5146,
+    "signals": {
+      "bridge": 0.399,
+      "semantic": 0.4645,
+      "keyword": 0.0047,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:TVM-12--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:TVM-12",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5832,
+    "signals": {
+      "bridge": 0.234,
+      "semantic": 0.8025,
+      "keyword": 0.0133,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:UEM-08--owasp_agentic:ASI02--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:UEM-08",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5133,
+    "signals": {
+      "bridge": 0.2646,
+      "semantic": 0.6324,
+      "keyword": 0.0089,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:UEM-08--owasp_agentic:ASI03--SCOPE--mapping_engine_v2",
+    "source_node_id": "csa_aicm:UEM-08",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6169,
+    "signals": {
+      "bridge": 0.261,
+      "semantic": 0.8094,
+      "keyword": 0.0524,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "csa_aicm:UEM-09--owasp_agentic:ASI05--PREV--mapping_engine_v2",
+    "source_node_id": "csa_aicm:UEM-09",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5021,
+    "signals": {
+      "bridge": 0.1764,
+      "semantic": 0.7296,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "csa_aicm:UEM-14--owasp_agentic:ASI03--VALID--mapping_engine_v2",
+    "source_node_id": "csa_aicm:UEM-14",
+    "target_node_id": "owasp_agentic:ASI03",
+    "source_framework": "csa_aicm",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5161,
+    "signals": {
+      "bridge": 0.1563,
+      "semantic": 0.779,
+      "keyword": 0.0056,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0000--owasp_llm:LLM02--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0000",
+    "target_node_id": "owasp_llm:LLM02",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5433,
+    "signals": {
+      "bridge": 0.0845,
+      "semantic": 0.9025,
+      "keyword": 0.0414,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0001--owasp_llm:LLM04--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5368,
+    "signals": {
+      "bridge": 0.0852,
+      "semantic": 0.88,
+      "keyword": 0.0578,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0004--owasp_llm:LLM04--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0004",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.634,
+    "signals": {
+      "bridge": 0.279,
+      "semantic": 0.8356,
+      "keyword": 0.0232,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0004--owasp_llm:LLM06--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0004",
+    "target_node_id": "owasp_llm:LLM06",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5279,
+    "signals": {
+      "bridge": 0.1922,
+      "semantic": 0.7584,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0004--owasp_llm:LLM10--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0004",
+    "target_node_id": "owasp_llm:LLM10",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6147,
+    "signals": {
+      "bridge": 0.2837,
+      "semantic": 0.8061,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0005--owasp_llm:LLM02--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0005",
+    "target_node_id": "owasp_llm:LLM02",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5337,
+    "signals": {
+      "bridge": 0.2639,
+      "semantic": 0.6772,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0005--owasp_llm:LLM04--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0005",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5657,
+    "signals": {
+      "bridge": 0.109,
+      "semantic": 0.9039,
+      "keyword": 0.0589,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0005--owasp_llm:LLM06--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0005",
+    "target_node_id": "owasp_llm:LLM06",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5142,
+    "signals": {
+      "bridge": 0.2233,
+      "semantic": 0.6924,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0008--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0008",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6507,
+    "signals": {
+      "bridge": 0.165,
+      "semantic": 0.9458,
+      "keyword": 0.1427,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0010--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0010",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5513,
+    "signals": {
+      "bridge": 0.099,
+      "semantic": 0.9058,
+      "keyword": 0.0299,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0013--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0013",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5179,
+    "signals": {
+      "bridge": 0.0364,
+      "semantic": 0.9235,
+      "keyword": 0.0284,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0015--owasp_llm:LLM01--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0015",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5331,
+    "signals": {
+      "bridge": 0.3218,
+      "semantic": 0.3956,
+      "keyword": 0.3604,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0015--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0015",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6377,
+    "signals": {
+      "bridge": 0.2191,
+      "semantic": 0.9232,
+      "keyword": 0.017,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0016--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0016",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5306,
+    "signals": {
+      "bridge": 0.0654,
+      "semantic": 0.9139,
+      "keyword": 0.0221,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0017--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0017",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5313,
+    "signals": {
+      "bridge": 0.0599,
+      "semantic": 0.9138,
+      "keyword": 0.0372,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0019--owasp_llm:LLM02--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0019",
+    "target_node_id": "owasp_llm:LLM02",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5965,
+    "signals": {
+      "bridge": 0.3001,
+      "semantic": 0.7503,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0019--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0019",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5699,
+    "signals": {
+      "bridge": 0.1119,
+      "semantic": 0.9114,
+      "keyword": 0.0527,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0020--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0020",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5495,
+    "signals": {
+      "bridge": 0.1252,
+      "semantic": 0.8602,
+      "keyword": 0.0445,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0021--owasp_llm:LLM01--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0021",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6052,
+    "signals": {
+      "bridge": 0.3549,
+      "semantic": 0.6629,
+      "keyword": 0.059,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0021--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0021",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5837,
+    "signals": {
+      "bridge": 0.2215,
+      "semantic": 0.8143,
+      "keyword": 0.0224,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0023--owasp_llm:LLM03--ISOLATE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0023",
+    "target_node_id": "owasp_llm:LLM03",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5524,
+    "signals": {
+      "bridge": 0.0175,
+      "semantic": 0.886,
+      "keyword": 0.2513,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0024--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0024",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5783,
+    "signals": {
+      "bridge": 0.1578,
+      "semantic": 0.8911,
+      "keyword": 0.0134,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0024--owasp_llm:LLM06--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0024",
+    "target_node_id": "owasp_llm:LLM06",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5121,
+    "signals": {
+      "bridge": 0.2348,
+      "semantic": 0.6736,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0025--owasp_llm:LLM04--DISCLOSE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0025",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DISCLOSE",
+    "rationale_label": "Disclose and calibrate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5556,
+    "signals": {
+      "bridge": 0.1026,
+      "semantic": 0.9264,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.M0034--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.M0034",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5013,
+    "signals": {
+      "bridge": 0.0403,
+      "semantic": 0.8947,
+      "keyword": 0.0145,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0002.001--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0002.001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5253,
+    "signals": {
+      "bridge": 0.0494,
+      "semantic": 0.9225,
+      "keyword": 0.0254,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0005--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0005",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5493,
+    "signals": {
+      "bridge": 0.0771,
+      "semantic": 0.9296,
+      "keyword": 0.0308,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0005.000--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0005.000",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5459,
+    "signals": {
+      "bridge": 0.0198,
+      "semantic": 0.9239,
+      "keyword": 0.1583,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0005.001--owasp_llm:LLM04--ISOLATE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0005.001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5564,
+    "signals": {
+      "bridge": 0.0863,
+      "semantic": 0.9184,
+      "keyword": 0.0535,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0007--owasp_llm:LLM04--VALID--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0007",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.509,
+    "signals": {
+      "bridge": 0.0554,
+      "semantic": 0.881,
+      "keyword": 0.0302,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0008.002--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0008.002",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5929,
+    "signals": {
+      "bridge": 0.2062,
+      "semantic": 0.8643,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0010--owasp_llm:LLM03--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0010",
+    "target_node_id": "owasp_llm:LLM03",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5961,
+    "signals": {
+      "bridge": 0.0469,
+      "semantic": 0.863,
+      "keyword": 0.3712,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0010.000--owasp_llm:LLM03--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0010.000",
+    "target_node_id": "owasp_llm:LLM03",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5473,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.8253,
+      "keyword": 0.38,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0010.001--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0010.001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5541,
+    "signals": {
+      "bridge": 0.0927,
+      "semantic": 0.9362,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0010.002--owasp_llm:LLM04--DISCLOSE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0010.002",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DISCLOSE",
+    "rationale_label": "Disclose and calibrate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6093,
+    "signals": {
+      "bridge": 0.181,
+      "semantic": 0.9069,
+      "keyword": 0.0367,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0010.003--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0010.003",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5915,
+    "signals": {
+      "bridge": 0.1288,
+      "semantic": 0.9445,
+      "keyword": 0.0293,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0011--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0011",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5098,
+    "signals": {
+      "bridge": 0.0449,
+      "semantic": 0.9133,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0011.000--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0011.000",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5305,
+    "signals": {
+      "bridge": 0.055,
+      "semantic": 0.9322,
+      "keyword": 0.013,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0011.001--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0011.001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5135,
+    "signals": {
+      "bridge": 0.0447,
+      "semantic": 0.9206,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0011.002--owasp_llm:LLM01--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0011.002",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5211,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.8508,
+      "keyword": 0.2479,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0013--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0013",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5361,
+    "signals": {
+      "bridge": 0.0712,
+      "semantic": 0.9077,
+      "keyword": 0.0382,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0014--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0014",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5253,
+    "signals": {
+      "bridge": 0.0687,
+      "semantic": 0.8851,
+      "keyword": 0.0473,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0015--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0015",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5669,
+    "signals": {
+      "bridge": 0.0898,
+      "semantic": 0.9288,
+      "keyword": 0.062,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0018--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0018",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6106,
+    "signals": {
+      "bridge": 0.1214,
+      "semantic": 0.9438,
+      "keyword": 0.1105,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0018.001--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0018.001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5516,
+    "signals": {
+      "bridge": 0.0785,
+      "semantic": 0.9378,
+      "keyword": 0.0209,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0018.002--owasp_llm:LLM04--ISOLATE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0018.002",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5033,
+    "signals": {
+      "bridge": 0.0182,
+      "semantic": 0.9159,
+      "keyword": 0.034,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0019--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0019",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6308,
+    "signals": {
+      "bridge": 0.1926,
+      "semantic": 0.9377,
+      "keyword": 0.0284,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0024--owasp_llm:LLM02--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0024",
+    "target_node_id": "owasp_llm:LLM02",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5465,
+    "signals": {
+      "bridge": 0.1362,
+      "semantic": 0.8451,
+      "keyword": 0.0362,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0024--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0024",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5136,
+    "signals": {
+      "bridge": 0.074,
+      "semantic": 0.8522,
+      "keyword": 0.0542,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0024.000--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0024.000",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5396,
+    "signals": {
+      "bridge": 0.0863,
+      "semantic": 0.8789,
+      "keyword": 0.0663,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0024.001--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0024.001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5475,
+    "signals": {
+      "bridge": 0.0863,
+      "semantic": 0.9015,
+      "keyword": 0.0532,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0024.002--owasp_llm:LLM04--ISOLATE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0024.002",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5818,
+    "signals": {
+      "bridge": 0.1199,
+      "semantic": 0.935,
+      "keyword": 0.0332,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0025--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0025",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5107,
+    "signals": {
+      "bridge": 0.1093,
+      "semantic": 0.8323,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0029--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0029",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5355,
+    "signals": {
+      "bridge": 0.0995,
+      "semantic": 0.892,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0031--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0031",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5612,
+    "signals": {
+      "bridge": 0.0897,
+      "semantic": 0.9226,
+      "keyword": 0.0544,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0034--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0034",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5121,
+    "signals": {
+      "bridge": 0.0835,
+      "semantic": 0.8641,
+      "keyword": 0.0069,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0035--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0035",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5365,
+    "signals": {
+      "bridge": 0.0538,
+      "semantic": 0.9306,
+      "keyword": 0.0386,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0040--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0040",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5347,
+    "signals": {
+      "bridge": 0.0629,
+      "semantic": 0.9112,
+      "keyword": 0.0463,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0043--owasp_llm:LLM04--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0043",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6485,
+    "signals": {
+      "bridge": 0.2278,
+      "semantic": 0.9189,
+      "keyword": 0.0412,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0043.000--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0043.000",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5553,
+    "signals": {
+      "bridge": 0.1196,
+      "semantic": 0.8859,
+      "keyword": 0.0316,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0043.002--owasp_llm:LLM04--VALID--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0043.002",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.556,
+    "signals": {
+      "bridge": 0.0897,
+      "semantic": 0.9288,
+      "keyword": 0.0261,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0043.003--owasp_llm:LLM04--VALID--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0043.003",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5785,
+    "signals": {
+      "bridge": 0.103,
+      "semantic": 0.9277,
+      "keyword": 0.073,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0043.004--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0043.004",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5479,
+    "signals": {
+      "bridge": 0.1179,
+      "semantic": 0.8673,
+      "keyword": 0.0434,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0044--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0044",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5355,
+    "signals": {
+      "bridge": 0.0546,
+      "semantic": 0.9169,
+      "keyword": 0.0575,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0046--owasp_llm:LLM04--GATE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0046",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5226,
+    "signals": {
+      "bridge": 0.074,
+      "semantic": 0.8876,
+      "keyword": 0.0224,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0048.004--owasp_llm:LLM04--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0048.004",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5456,
+    "signals": {
+      "bridge": 0.0962,
+      "semantic": 0.8974,
+      "keyword": 0.0317,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0053--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0053",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5001,
+    "signals": {
+      "bridge": 0.0717,
+      "semantic": 0.8498,
+      "keyword": 0.0186,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0054--owasp_llm:LLM04--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0054",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5128,
+    "signals": {
+      "bridge": 0.0718,
+      "semantic": 0.8748,
+      "keyword": 0.017,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0056--owasp_llm:LLM01--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0056",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5634,
+    "signals": {
+      "bridge": 0.0648,
+      "semantic": 0.7996,
+      "keyword": 0.3328,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0057--owasp_llm:LLM02--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0057",
+    "target_node_id": "owasp_llm:LLM02",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5057,
+    "signals": {
+      "bridge": 0.0177,
+      "semantic": 0.8447,
+      "keyword": 0.1678,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0058--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0058",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5322,
+    "signals": {
+      "bridge": 0.0376,
+      "semantic": 0.9423,
+      "keyword": 0.0403,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0059--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0059",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6357,
+    "signals": {
+      "bridge": 0.2251,
+      "semantic": 0.9215,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0061--owasp_llm:LLM01--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0061",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.567,
+    "signals": {
+      "bridge": 0.0648,
+      "semantic": 0.8446,
+      "keyword": 0.2659,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0062--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0062",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5354,
+    "signals": {
+      "bridge": 0.1116,
+      "semantic": 0.8763,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0063--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0063",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.516,
+    "signals": {
+      "bridge": 0.0435,
+      "semantic": 0.9042,
+      "keyword": 0.04,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0064--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0064",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5142,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.9301,
+      "keyword": 0.0861,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0076--owasp_llm:LLM04--DETECT--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0076",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.504,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.9335,
+      "keyword": 0.0464,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0078--owasp_llm:LLM01--ISOLATE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0078",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5071,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.8139,
+      "keyword": 0.2661,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0080--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0080",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5024,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.906,
+      "keyword": 0.0894,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0094--owasp_llm:LLM01--PREV--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0094",
+    "target_node_id": "owasp_llm:LLM01",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "PREV",
+    "rationale_label": "Prevent",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.536,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.901,
+      "keyword": 0.2099,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0101--owasp_llm:LLM04--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0101",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5142,
+    "signals": {
+      "bridge": 0.0273,
+      "semantic": 0.9236,
+      "keyword": 0.036,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0110--owasp_llm:LLM04--SCOPE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0110",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5199,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.936,
+      "keyword": 0.0948,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0111--owasp_llm:LLM03--GOVERN--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0111",
+    "target_node_id": "owasp_llm:LLM03",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5256,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.8691,
+      "keyword": 0.2311,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "mitre_atlas:AML.T0112.001--owasp_llm:LLM04--ISOLATE--mapping_engine_v2",
+    "source_node_id": "mitre_atlas:AML.T0112.001",
+    "target_node_id": "owasp_llm:LLM04",
+    "source_framework": "mitre_atlas",
+    "target_framework": "owasp_llm",
+    "rationale_code": "ISOLATE",
+    "rationale_label": "Isolate and contain",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5034,
+    "signals": {
+      "bridge": 0.0,
+      "semantic": 0.9357,
+      "keyword": 0.0405,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:GOVERN-1.5--owasp_agentic:ASI05--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:GOVERN-1.5",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5936,
+    "signals": {
+      "bridge": 0.2316,
+      "semantic": 0.8262,
+      "keyword": 0.0116,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:GOVERN-1.5--owasp_agentic:ASI08--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:GOVERN-1.5",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5137,
+    "signals": {
+      "bridge": 0.1752,
+      "semantic": 0.7532,
+      "keyword": 0.0,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:GOVERN-4.3--owasp_agentic:ASI02--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:GOVERN-4.3",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5468,
+    "signals": {
+      "bridge": 0.1335,
+      "semantic": 0.8586,
+      "keyword": 0.0198,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:GOVERN-4.3--owasp_agentic:ASI05--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:GOVERN-4.3",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6257,
+    "signals": {
+      "bridge": 0.311,
+      "semantic": 0.7913,
+      "keyword": 0.0011,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:GOVERN-4.3--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:GOVERN-4.3",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5226,
+    "signals": {
+      "bridge": 0.289,
+      "semantic": 0.615,
+      "keyword": 0.0156,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MANAGE-3.1--owasp_agentic:ASI02--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MANAGE-3.1",
+    "target_node_id": "owasp_agentic:ASI02",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5139,
+    "signals": {
+      "bridge": 0.0454,
+      "semantic": 0.8615,
+      "keyword": 0.1032,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MANAGE-4.1--owasp_agentic:ASI01--GATE--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MANAGE-4.1",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Primary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.4881,
+    "signals": {
+      "bridge": 0.1291,
+      "semantic": 0.7555,
+      "keyword": 0.0141,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MANAGE-4.3--owasp_agentic:ASI08--GOVERN--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MANAGE-4.3",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5457,
+    "signals": {
+      "bridge": 0.1919,
+      "semantic": 0.7872,
+      "keyword": 0.0097,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MAP-2.2--owasp_agentic:ASI05--SCOPE--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MAP-2.2",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5437,
+    "signals": {
+      "bridge": 0.1312,
+      "semantic": 0.8567,
+      "keyword": 0.018,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MAP-3.4--owasp_agentic:ASI05--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MAP-3.4",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5214,
+    "signals": {
+      "bridge": 0.1005,
+      "semantic": 0.8634,
+      "keyword": 0.001,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MAP-3.5--owasp_agentic:ASI09--GATE--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MAP-3.5",
+    "target_node_id": "owasp_agentic:ASI09",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GATE",
+    "rationale_label": "Human gate",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5559,
+    "signals": {
+      "bridge": 0.1955,
+      "semantic": 0.7646,
+      "keyword": 0.075,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MAP-4.2--owasp_agentic:ASI05--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MAP-4.2",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5339,
+    "signals": {
+      "bridge": 0.1244,
+      "semantic": 0.8361,
+      "keyword": 0.0366,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-1.3--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-1.3",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5278,
+    "signals": {
+      "bridge": 0.144,
+      "semantic": 0.8161,
+      "keyword": 0.0073,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.1--owasp_agentic:ASI06--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.1",
+    "target_node_id": "owasp_agentic:ASI06",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5481,
+    "signals": {
+      "bridge": 0.2585,
+      "semantic": 0.7041,
+      "keyword": 0.0131,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.4--owasp_agentic:ASI01--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.4",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5635,
+    "signals": {
+      "bridge": 0.3032,
+      "semantic": 0.6762,
+      "keyword": 0.0128,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.4--owasp_agentic:ASI05--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.4",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6094,
+    "signals": {
+      "bridge": 0.2905,
+      "semantic": 0.779,
+      "keyword": 0.0144,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.4--owasp_agentic:ASI10--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.4",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5649,
+    "signals": {
+      "bridge": 0.224,
+      "semantic": 0.7775,
+      "keyword": 0.0184,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.5--owasp_agentic:ASI05--SCOPE--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.5",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.561,
+    "signals": {
+      "bridge": 0.221,
+      "semantic": 0.7838,
+      "keyword": 0.0011,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.6--owasp_agentic:ASI10--SCOPE--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.6",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "SCOPE",
+    "rationale_label": "Constrain scope",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6075,
+    "signals": {
+      "bridge": 0.1987,
+      "semantic": 0.8965,
+      "keyword": 0.009,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.7--owasp_agentic:ASI01--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.7",
+    "target_node_id": "owasp_agentic:ASI01",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5162,
+    "signals": {
+      "bridge": 0.2601,
+      "semantic": 0.6475,
+      "keyword": 0.0022,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.7--owasp_agentic:ASI05--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.7",
+    "target_node_id": "owasp_agentic:ASI05",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5187,
+    "signals": {
+      "bridge": 0.315,
+      "semantic": 0.5742,
+      "keyword": 0.0154,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.7--owasp_agentic:ASI10--VALID--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.7",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "VALID",
+    "rationale_label": "Validate and test",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5947,
+    "signals": {
+      "bridge": 0.1983,
+      "semantic": 0.8662,
+      "keyword": 0.0202,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.8--owasp_agentic:ASI08--GOVERN--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.8",
+    "target_node_id": "owasp_agentic:ASI08",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5705,
+    "signals": {
+      "bridge": 0.164,
+      "semantic": 0.8738,
+      "keyword": 0.0033,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-2.8--owasp_agentic:ASI10--GOVERN--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-2.8",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "GOVERN",
+    "rationale_label": "Policy and governance",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5622,
+    "signals": {
+      "bridge": 0.1538,
+      "semantic": 0.8447,
+      "keyword": 0.0499,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-4.1--owasp_agentic:ASI10--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-4.1",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5294,
+    "signals": {
+      "bridge": 0.144,
+      "semantic": 0.8225,
+      "keyword": 0.0015,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-4.2--owasp_agentic:ASI09--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-4.2",
+    "target_node_id": "owasp_agentic:ASI09",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.6144,
+    "signals": {
+      "bridge": 0.1846,
+      "semantic": 0.8975,
+      "keyword": 0.0619,
+      "function_match": 1.0
+    },
+    "notes": "tier=Direct"
+  },
+  {
+    "edge_id": "nist_rmf:MEASURE-4.2--owasp_agentic:ASI10--DETECT--mapping_engine_v2",
+    "source_node_id": "nist_rmf:MEASURE-4.2",
+    "target_node_id": "owasp_agentic:ASI10",
+    "source_framework": "nist_rmf",
+    "target_framework": "owasp_agentic",
+    "rationale_code": "DETECT",
+    "rationale_label": "Detect and trace",
+    "relevance": "Secondary",
+    "confidence": "inferred",
+    "provenance": "mapping_engine_v2",
+    "score": 0.5078,
+    "signals": {
+      "bridge": 0.1568,
+      "semantic": 0.7577,
+      "keyword": 0.0139,
+      "function_match": 1.0
+    },
+    "notes": "tier=Related"
   }
 ]

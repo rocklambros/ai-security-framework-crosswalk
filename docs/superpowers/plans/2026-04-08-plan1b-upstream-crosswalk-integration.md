@@ -14,11 +14,11 @@
 
 ---
 
-## ⚠ Two design-drift items that need user confirmation BEFORE Task 12 executes
+## Scope note
 
-1. **ISO/IEC 42001:2023 corpus is paywalled (~CHF 198).** The spec §5.2 lists ISO 42001 as a required new target. Spec §2 D6 requires real prose for source/target corpora ("upstream JSON entries have no long-form descriptive text; embeddings need the real prose"). These two are in tension. Task 12 implements the only legal option — a "bootstrap from upstream" pattern that extracts ISO-42001 control IDs + names + notes from upstream's mapping rows and uses them as a thin corpus. This is a deviation from §2 D6's principle. **Action:** before Task 12 executes, ask the user to confirm OR pivot to swap ISO 42001 for OWASP ASVS 4.0.3 (free, full text, dense upstream coverage). The plan is structured so the swap is a one-task replacement.
+ISO/IEC 42001:2023 was dropped from the Tier-B target set (user decision 2026-04-08): paywalled, cannot legally redistribute, and we don't need another framework right now. The new Tier-B targets shipped by this plan are **NIST SP 800-53 rev5** and **EU AI Act** only. The pair matrix is 22 pairs (12 original + 4 DSGAI-as-source + 6 existing-source × new-target).
 
-2. **`prompts/` was added to `.gitignore`** in an uncommitted local change. The orchestrator pre-flight requires a clean tree. Recommended (and approved by user during brainstorm flow) action: commit the `.gitignore` change before starting Task 1.
+The `prompts/` `.gitignore` change is committed on `main` as Task 0 (user-approved) so the feature branch starts from a clean tree.
 
 ---
 
@@ -31,7 +31,6 @@
 - `classifier/data/frameworks/dsgai.py` — DSGAI markdown → node ingester
 - `classifier/data/frameworks/nist_800_53.py` — NIST SP 800-53 rev5 OSCAL → node ingester
 - `classifier/data/frameworks/eu_ai_act.py` — EU AI Act HTML → node ingester
-- `classifier/data/frameworks/iso_42001.py` — ISO 42001 bootstrap-from-upstream ingester
 - `classifier/data/frameworks/merge_nodes.py` — merges per-framework node files into `data/processed/nodes.json`
 - `classifier/scripts/build_candidates.py` — leftover Plan 1 C-4
 - `classifier/data/retrieval_floor.py` — leftover Plan 1 C-5
@@ -43,7 +42,6 @@
 - `classifier/tests/test_dsgai_ingester.py`
 - `classifier/tests/test_nist_800_53_ingester.py`
 - `classifier/tests/test_eu_ai_act_ingester.py`
-- `classifier/tests/test_iso_42001_ingester.py`
 - `classifier/tests/test_upstream_loader.py`
 - `classifier/tests/test_contamination.py` (the pre-registered honesty firewall test)
 - `classifier/tests/test_candidates.py` — extended with Task 1 test
@@ -57,7 +55,6 @@
 - `data/processed/frameworks/owasp_dsgai.json` (derived per-framework nodes)
 - `data/processed/frameworks/nist_800_53.json` (derived)
 - `data/processed/frameworks/eu_ai_act.json` (derived)
-- `data/processed/frameworks/iso_42001.json` (derived)
 - `data/processed/nodes.json.bak.20260408` (backup of the original 9-framework nodes file)
 - `data/candidates/pool_v1.jsonl` (FINAL artifact; produced once on Tier-B matrix)
 - `data/candidates/retrieval_floor_report.json`
@@ -733,9 +730,6 @@ TARGET_FRAMEWORK_TABLE: dict[str, str] = {
     "EU GPAI Code of Practice": "eu_gpai_cop",
     "CoSAI": "cosai_rm",
     "COSAI": "cosai_rm",
-    "ISO-42001": "iso_42001",
-    "ISO/IEC 42001": "iso_42001",
-    "ISO/IEC 42001:2023": "iso_42001",
     "NIST SP 800-53": "nist_800_53",
     "NIST SP 800-53 Rev 5": "nist_800_53",
     "NIST-800-53": "nist_800_53",
@@ -1601,156 +1595,6 @@ git commit -m "plan1b: EU AI Act ingester (~110 article nodes)"
 
 ---
 
-## Task 12: ISO/IEC 42001 ingester (bootstrap-from-upstream pattern — ⚠ DESIGN DRIFT)
-
-> ⚠ **Stop and check with the user before this task.** ISO/IEC 42001:2023 is paywalled. The plan §"Two design-drift items" header at the top calls this out. Two options:
-> - **Option A (default in this task):** bootstrap a thin ISO 42001 corpus from upstream's mapping rows, using upstream's `control_id` + `control_name` + `notes` fields as our text. Violates spec §2 D6's "real prose" principle but stays legal.
-> - **Option B:** swap ISO 42001 for OWASP ASVS 4.0.3, which is free and full-text. Replace this entire task with an ASVS ingester (same shape as Task 10/11 with different download URL).
->
-> If the user picks Option B, skip this task and execute the ASVS substitute (template at the end of this task). If they confirm Option A, execute the steps below.
-
-**Files (Option A):**
-- Create: `data/frameworks/iso-42001/MANIFEST.json` (bootstrap mode, no source PDF)
-- Create: `classifier/data/frameworks/iso_42001.py`
-- Create: `classifier/tests/test_iso_42001_ingester.py`
-- Output: `data/processed/frameworks/iso_42001.json`
-
-- [ ] **Step 1: Write the MANIFEST**
-
-```bash
-mkdir -p data/frameworks/iso-42001
-cat > data/frameworks/iso-42001/MANIFEST.json <<'EOF'
-{
-  "framework_id": "iso_42001",
-  "framework_name": "ISO/IEC 42001:2023 — AI Management System",
-  "version": "2023",
-  "release_date": "2023-12",
-  "source_file": null,
-  "source_url": "https://www.iso.org/standard/81230.html (paywalled, not redistributed)",
-  "license": "Standard text is paywalled and copyrighted by ISO. This corpus is bootstrapped from upstream GenAI-Data-Security-Initiative crosswalk mapping rows (CC BY-SA 4.0); the control IDs and names are facts not subject to copyright in most jurisdictions, and the descriptive `notes` text is from upstream which is independently licensed CC BY-SA 4.0.",
-  "attribution": "Control IDs and names: ISO/IEC 42001:2023 (© ISO). Bootstrap text: GenAI Security Project (CC BY-SA 4.0).",
-  "format": "bootstrap-from-upstream",
-  "design_drift": "Spec §2 D6 requires real prose for source/target corpora; this corpus uses upstream's notes field as a thin substitute because the standard is paywalled. See plan top-of-file design-drift note.",
-  "expected_min_node_count": 20
-}
-EOF
-```
-
-- [ ] **Step 2: Write the failing test**
-
-```python
-# classifier/tests/test_iso_42001_ingester.py
-from pathlib import Path
-from classifier.data.frameworks.iso_42001 import ingest_iso_42001
-
-REPO = Path(__file__).resolve().parents[2]
-UPSTREAM = REPO / "data" / "upstream" / "mappings_v1.jsonl"
-
-
-def test_ingest_returns_unique_iso_controls():
-    nodes = ingest_iso_42001(UPSTREAM)
-    assert len(nodes) >= 20, f"expected >=20 unique ISO 42001 controls, got {len(nodes)}"
-    ids = [n["local_id"] for n in nodes]
-    assert len(ids) == len(set(ids)), "duplicate local_ids in ISO 42001 nodes"
-    for n in nodes:
-        assert n["framework"] == "iso_42001"
-        assert n["node_id"].startswith("iso_42001:")
-```
-
-- [ ] **Step 3: Run — expect failure**
-
-```bash
-pytest classifier/tests/test_iso_42001_ingester.py -v
-```
-
-- [ ] **Step 4: Implement the ingester**
-
-```python
-# classifier/data/frameworks/iso_42001.py
-"""ISO/IEC 42001:2023 bootstrap ingester.
-
-⚠ DESIGN DRIFT: ISO 42001 is paywalled. We cannot redistribute the standard
-text. This ingester reads upstream's mapping rows for ISO 42001 (which include
-control_id, control_name, and free-text notes per mapping) and synthesizes a
-thin per-control node by aggregating all notes for each unique control_id.
-
-This corpus is significantly thinner than the other framework corpora and the
-classifier should be expected to underperform on iso_42001 pairs vs. other
-targets. Consider replacing with OWASP ASVS 4.0.3 (free, full text) if a richer
-corpus is required.
-"""
-from __future__ import annotations
-import json
-from collections import defaultdict
-from pathlib import Path
-
-
-def ingest_iso_42001(upstream_mappings_path: Path) -> list[dict]:
-    by_id: dict[str, dict] = {}
-    notes_by_id: dict[str, list[str]] = defaultdict(list)
-
-    with open(upstream_mappings_path) as f:
-        for line in f:
-            r = json.loads(line)
-            if r.get("target_framework") != "iso_42001":
-                continue
-            cid = (r.get("target_control_id") or "").strip()
-            cname = (r.get("target_control_name") or "").strip()
-            if not cid:
-                continue
-            by_id.setdefault(cid, {"local_id": cid, "title": cname})
-            note = (r.get("notes") or "").strip()
-            if note:
-                notes_by_id[cid].append(note)
-
-    nodes: list[dict] = []
-    for cid, meta in sorted(by_id.items()):
-        text_parts = [meta["title"]] + notes_by_id.get(cid, [])
-        nodes.append({
-            "node_id": f"iso_42001:{cid}",
-            "local_id": cid,
-            "framework": "iso_42001",
-            "title": meta["title"] or cid,
-            "text": "\n".join(p for p in text_parts if p) or meta["title"] or cid,
-        })
-    return nodes
-```
-
-- [ ] **Step 5: Run — expect pass**
-
-```bash
-pytest classifier/tests/test_iso_42001_ingester.py -v
-```
-
-- [ ] **Step 6: Run the ingester**
-
-```bash
-python -c "
-import json
-from pathlib import Path
-from classifier.data.frameworks.iso_42001 import ingest_iso_42001
-nodes = ingest_iso_42001(Path('data/upstream/mappings_v1.jsonl'))
-Path('data/processed/frameworks/iso_42001.json').write_text(json.dumps(nodes, indent=2))
-print(f'wrote {len(nodes)} ISO 42001 controls')
-"
-```
-
-- [ ] **Step 7: Commit**
-
-```bash
-git add data/frameworks/iso-42001/ classifier/data/frameworks/iso_42001.py classifier/tests/test_iso_42001_ingester.py data/processed/frameworks/iso_42001.json
-git commit -m "plan1b: ISO 42001 bootstrap-from-upstream ingester (DESIGN DRIFT, see manifest)"
-```
-
-**Option B substitute (OWASP ASVS 4.0.3):** if the user picks the swap, replace Task 12 with the same-shape ingester pattern from Task 10/11, with these specifics:
-- Source: `https://raw.githubusercontent.com/OWASP/ASVS/v4.0.3/4.0/OWASP%20Application%20Security%20Verification%20Standard%204.0.3-en.json`
-- License: CC BY-SA 4.0
-- Framework ID: `owasp_asvs`
-- Expected node count: ~290 controls
-- Update `TARGET_FRAMEWORK_TABLE` in `upstream_loader.py` to map `OWASP-ASVS` and `OWASP ASVS` → `owasp_asvs`
-- Update `FRAMEWORK_PAIRS` in Task 13 to use `owasp_asvs` instead of `iso_42001`
-
----
 
 ## Task 13: Update FRAMEWORKS and FRAMEWORK_PAIRS to Tier-B matrix + merge nodes.json
 
@@ -1877,7 +1721,7 @@ result = merge_into_nodes_json(
 print(result)
 "
 ```
-Expected: prints `{'base': <original count>, 'added': <≈1100-1200>, 'total': <sum>}`. The added count comes from DSGAI (21) + NIST 800-53 (~1000) + EU AI Act (~110) + ISO 42001 (~20-50) = ~1150.
+Expected: prints `{'base': <original count>, 'added': <≈1100-1200>, 'total': <sum>}`. The added count comes from DSGAI (21) + NIST 800-53 (~1000) + EU AI Act (~110) ≈ ~1130.
 
 - [ ] **Step 7: Update FRAMEWORKS and FRAMEWORK_PAIRS in candidates.py**
 
@@ -1890,7 +1734,7 @@ FRAMEWORKS: list[str] = [
     "owasp_llm", "owasp_agentic", "owasp_ai_exchange",
     "eu_gpai_cop", "cosai_rm",
     # New (Plan 1-B Tier B)
-    "owasp_dsgai", "iso_42001", "nist_800_53", "eu_ai_act",
+    "owasp_dsgai", "nist_800_53", "eu_ai_act",
 ]
 
 FRAMEWORK_PAIRS: list[tuple[str, str]] = [
@@ -1913,17 +1757,14 @@ FRAMEWORK_PAIRS: list[tuple[str, str]] = [
     ("owasp_dsgai",        "nist_rmf"),         # 15
     ("owasp_dsgai",        "mitre_atlas"),      # 16
     # New targets against existing sources
-    ("owasp_llm",          "iso_42001"),        # 17
-    ("owasp_agentic",      "iso_42001"),        # 18
-    ("owasp_dsgai",        "iso_42001"),        # 19
-    ("owasp_llm",          "nist_800_53"),      # 20
-    ("owasp_agentic",      "nist_800_53"),      # 21
-    ("owasp_dsgai",        "nist_800_53"),      # 22
-    ("owasp_llm",          "eu_ai_act"),        # 23
-    ("owasp_agentic",      "eu_ai_act"),        # 24
-    ("owasp_dsgai",        "eu_ai_act"),        # 25
+    ("owasp_llm",          "nist_800_53"),      # 17
+    ("owasp_agentic",      "nist_800_53"),      # 18
+    ("owasp_dsgai",        "nist_800_53"),      # 19
+    ("owasp_llm",          "eu_ai_act"),        # 20
+    ("owasp_agentic",      "eu_ai_act"),        # 21
+    ("owasp_dsgai",        "eu_ai_act"),        # 22
 ]
-assert len(FRAMEWORK_PAIRS) == 25
+assert len(FRAMEWORK_PAIRS) == 22
 # Coverage check: every framework appears in >=2 pairs
 from collections import Counter
 _counts = Counter(fw for pair in FRAMEWORK_PAIRS for fw in pair)
@@ -2050,7 +1891,7 @@ gh pr create --title "Plan 1-B: upstream crosswalk integration + Tier-B framewor
 - Vendors GenAI-Data-Security-Initiative crosswalk repo as a pinned read-only dependency under `third_party/genai-crosswalk/`
 - Adds upstream loader producing `data/upstream/{mappings_v1,crossrefs_v1}.jsonl`
 - Adds strict source-id-level contamination partition + pre-registered honesty-firewall test (`classifier/tests/test_contamination.py`)
-- Adds DSGAI as a 3rd source list (21 nodes) and three new target frameworks: NIST SP 800-53 rev5, EU AI Act, ISO/IEC 42001 (bootstrap-from-upstream — see design-drift note in plan)
+- Adds DSGAI as a 3rd source list (21 nodes) and two new target frameworks: NIST SP 800-53 rev5 and EU AI Act
 - Expands FRAMEWORK_PAIRS from 12 → 25 covering all 13 frameworks with ≥2 appearances each
 - Builds `data/candidates/pool_v1.jsonl` and retrieval floor report on the new matrix
 - Adds THIRD_PARTY_NOTICES.md and extends data/splits/hashes.json with upstream + plan1b sections

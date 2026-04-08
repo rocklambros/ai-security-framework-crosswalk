@@ -14,6 +14,8 @@ The existing `ai-security-framework-crosswalk` project has built a 983-node, 188
 
 **Target audience:** AI security researchers, data scientists, machine learning engineers. Deliverable is a portfolio artifact (repo + HF model/dataset/Space + blog post + arXiv preprint) with rigor appropriate for arXiv review.
 
+**Coursework boundary (COMP 4433):** Weights & Biases is used exclusively for `mapping_engine/` training telemetry on Lambda. It must not appear in Project 1 (matplotlib/seaborn notebook) or Project 2 (Plotly/Dash app) deliverables, which remain on the course-approved visualization stack.
+
 ---
 
 ## 1. Problem Statement and Success Criteria

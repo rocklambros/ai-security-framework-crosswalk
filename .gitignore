@@ -11,4 +11,5 @@ build/
 venv/
 data/frameworks/csa-aicm/*.xlsx
 .DS_Store
+prompts/
 data/frameworks/eu-gpai-code-of-practice/*.pdf

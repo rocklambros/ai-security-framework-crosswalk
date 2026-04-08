@@ -1,0 +1,200 @@
+{
+  "k_initial": 20,
+  "k_max": 100,
+  "k_used": 100,
+  "frozen_total": 400,
+  "hit_at_20": 260,
+  "hit_at_k_used": 353,
+  "coverage_at_20": 0.65,
+  "coverage_at_k_used": 0.8825,
+  "miss_rows": [
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__csa_aicm",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "aiuc_1__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    },
+    {
+      "pair_key": "cosai_rm__mitre_atlas",
+      "reason": "target_below_k=100"
+    }
+  ]
+}

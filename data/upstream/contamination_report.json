@@ -1,0 +1,11 @@
+{
+  "upstream_total": 3210,
+  "train_eligible_count": 1521,
+  "held_out_count": 1689,
+  "rule1_hits": 1689,
+  "rule2_hits": 0,
+  "frozen_src_tuples_count": 369,
+  "frozen_full_tuples_count": 400,
+  "held_out_pct": 0.5261682242990654,
+  "projection": "Strict partitioning per spec \u00a74.4. Held-out rows are reserved for the upstream benchmark (spec \u00a76) and MUST NOT enter training batches."
+}

@@ -1132,6 +1132,90 @@ def _create_owasp_agentic_nodes(nodes, warnings):
             ))
 
 
+def _enrich_owasp_llm_from_markdown(nodes, warnings):
+    """Parse descriptions out of the OWASP LLM Top 10 2025 markdown.
+
+    The document contains exactly ten ``#### **Description**`` sections,
+    one per risk, in LLM01..LLM10 order. For each, we capture the body
+    until the next ``####`` heading, and also pick up
+    "Common Examples of Vulnerability" / "Common Examples of Risk(s)" /
+    "Example Attack Scenarios" / "Sample Attack Scenarios", and
+    "Prevention and Mitigation Strategies" sections when present.
+    Mitigations are stored under ``mitigation_text`` rather than
+    ``mitigations`` so get_node_semantic_text does not embed them,
+    mirroring the owasp_agentic enrichment contract.
+    """
+    path = os.path.join(
+        FRAMEWORKS_DIR, "owasp-llm-top10", "owasp_llm_top_10_2025.md"
+    )
+    text = read_text(path)
+    if not text:
+        warnings.append("OWASP LLM Top 10 markdown not found")
+        return
+
+    # Split on #### headings (bolded), keeping heading text.
+    parts = re.split(r"^####\s+\*\*([^*]+)\*\*\s*$", text, flags=re.MULTILINE)
+    sections = []
+    for i in range(1, len(parts) - 1, 2):
+        sections.append((parts[i].strip(), parts[i + 1]))
+
+    def _clean(body: str) -> str:
+        body = re.sub(r"genai\.owasp\.org Page \d+", " ", body)
+        body = re.sub(r"\*\*", " ", body)
+        body = re.sub(r"(?<!\w)_([^_]+)_(?!\w)", r"\1", body)
+        body = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", body)
+        body = re.sub(r"^\s*(?:[-*]|\d+\.)\s+", " ", body, flags=re.MULTILINE)
+        body = re.sub(r"\s+", " ", body).strip()
+        return body
+
+    llm_ids = [f"LLM{n:02d}" for n in range(1, 11)]
+    risk_idx = -1
+    buckets: dict[str, dict[str, str]] = {lid: {} for lid in llm_ids}
+    for heading, body in sections:
+        h = heading.strip()
+        if h == "Description":
+            risk_idx += 1
+            if risk_idx >= len(llm_ids):
+                break
+            buckets[llm_ids[risk_idx]]["description"] = _clean(body)
+        elif risk_idx < 0 or risk_idx >= len(llm_ids):
+            continue
+        elif h in (
+            "Common Examples of Vulnerability",
+            "Common Examples of Risk",
+            "Common Examples of Risks",
+            "Types of Prompt Injection Vulnerabilities",
+        ):
+            buckets[llm_ids[risk_idx]]["examples"] = _clean(body)
+        elif h in ("Example Attack Scenarios", "Sample Attack Scenarios"):
+            buckets[llm_ids[risk_idx]].setdefault("examples", "")
+            ex = buckets[llm_ids[risk_idx]]["examples"]
+            scen = _clean(body)
+            buckets[llm_ids[risk_idx]]["examples"] = (ex + " " + scen).strip()
+        elif h == "Prevention and Mitigation Strategies":
+            buckets[llm_ids[risk_idx]]["mitigations"] = _clean(body)
+
+    filled = 0
+    for lid in llm_ids:
+        nid = f"owasp_llm:{lid}"
+        if nid not in nodes:
+            continue
+        data = buckets.get(lid, {})
+        desc = data.get("description")
+        if desc:
+            nodes[nid]["description"] = desc[:2000]
+            filled += 1
+        mit = data.get("mitigations")
+        if mit:
+            nodes[nid]["mitigation_text"] = mit[:4000]
+
+    log.info("OWASP LLM enrichment: %d/10 risks got descriptions", filled)
+    if filled < 10:
+        warnings.append(
+            f"OWASP LLM enrichment only populated {filled}/10 risks"
+        )
+
+
 def _enrich_owasp_agentic_from_markdown(nodes, warnings):
     """Parse descriptions out of the OWASP Agentic Top 10 2026 PDF-sourced markdown.
 
@@ -1534,6 +1618,7 @@ def create_cross_framework_category_edges(nodes, edges, warnings):
 def create_stub_nodes(nodes, edges, warnings):
     """Task 7: Create stub nodes for frameworks with only markdown sources."""
     _create_owasp_llm_nodes(nodes, warnings)
+    _enrich_owasp_llm_from_markdown(nodes, warnings)
     _create_owasp_agentic_nodes(nodes, warnings)
     _enrich_owasp_agentic_from_markdown(nodes, warnings)
 

@@ -1,0 +1,12 @@
+{
+  "framework_id": "nist_800_53",
+  "framework_name": "NIST SP 800-53 Rev 5 — Security and Privacy Controls",
+  "version": "rev5",
+  "release_date": "2020-09",
+  "source_file": "NIST_SP-800-53_rev5_catalog.json",
+  "source_url": "https://github.com/usnistgov/oscal-content/tree/main/nist.gov/SP800-53/rev5/json",
+  "license": "Public Domain (US Government work, 17 USC § 105)",
+  "attribution": "NIST Special Publication 800-53 Rev. 5. Public domain.",
+  "format": "OSCAL JSON catalog",
+  "expected_min_node_count": 300
+}

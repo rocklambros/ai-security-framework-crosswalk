@@ -8,7 +8,7 @@ from classifier.data.candidates import FRAMEWORK_PAIRS, build_candidate_pool
 
 def main() -> None:
     CANDIDATES_DIR.mkdir(parents=True, exist_ok=True)
-    pool = build_candidate_pool(pairs=FRAMEWORK_PAIRS, k=20)
+    pool = build_candidate_pool(pairs=FRAMEWORK_PAIRS, k=100)
     out_path = CANDIDATES_DIR / "pool_v1.jsonl"
     with out_path.open("w") as f:
         for pair_key, rows in pool.items():

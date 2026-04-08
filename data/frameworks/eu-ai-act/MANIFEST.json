@@ -1,0 +1,12 @@
+{
+  "framework_id": "eu_ai_act",
+  "framework_name": "EU AI Act — Regulation (EU) 2024/1689",
+  "version": "2024/1689",
+  "release_date": "2024-07-12",
+  "source_file": "eu_ai_act_2024_1689.html",
+  "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+  "license": "Commission Decision 2011/833/EU (reuse permitted with attribution)",
+  "attribution": "© European Union, 1998-2026. Reuse permitted with attribution per Commission Decision 2011/833/EU.",
+  "format": "HTML (EUR-Lex)",
+  "expected_min_node_count": 100
+}

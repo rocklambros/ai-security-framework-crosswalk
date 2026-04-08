@@ -1295,8 +1295,8 @@ from __future__ import annotations
 from huggingface_hub import HfApi, create_repo
 from classifier.config import require_secrets
 
-MODEL_REPO = "rocklambros/ai-security-crosswalk-classifier"
-DATASET_REPO = "rocklambros/ai-security-crosswalk-eval"
+MODEL_REPO = "rockCO78/ai-security-crosswalk-classifier"
+DATASET_REPO = "rockCO78/ai-security-crosswalk-eval"
 
 
 def main() -> None:

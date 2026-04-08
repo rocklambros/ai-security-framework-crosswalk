@@ -54,3 +54,60 @@ def load_nodes_by_framework() -> dict[str, list[dict]]:
         if fw:
             out[fw].append(n)
     return dict(out)
+
+
+from pathlib import Path
+import numpy as np
+
+
+def _node_text(n: dict) -> str:
+    name = n.get("name") or n.get("title") or n.get("id") or ""
+    desc = n.get("description") or n.get("text") or n.get("summary") or ""
+    return f"{name}. {desc}".strip()
+
+
+def build_candidate_pool(
+    pairs: list[tuple[str, str]],
+    k: int = 20,
+    model_name: str = "BAAI/bge-small-en-v1.5",
+    cache_dir: Path | None = None,
+) -> dict[str, list[dict]]:
+    """For each (src_fw, tgt_fw) pair, return top-k target nodes per source node by cosine.
+
+    Deterministic given the same model weights. Uses sentence-transformers.
+    """
+    from sentence_transformers import SentenceTransformer
+
+    model = SentenceTransformer(model_name, cache_folder=str(cache_dir) if cache_dir else None)
+    by_fw = load_nodes_by_framework()
+    out: dict[str, list[dict]] = {}
+
+    for src_fw, tgt_fw in pairs:
+        src_nodes = by_fw.get(src_fw, [])
+        tgt_nodes = by_fw.get(tgt_fw, [])
+        if not src_nodes or not tgt_nodes:
+            out[f"{src_fw}__{tgt_fw}"] = []
+            continue
+        src_texts = [_node_text(n) for n in src_nodes]
+        tgt_texts = [_node_text(n) for n in tgt_nodes]
+        src_emb = model.encode(src_texts, normalize_embeddings=True, show_progress_bar=False)
+        tgt_emb = model.encode(tgt_texts, normalize_embeddings=True, show_progress_bar=False)
+        sims = np.asarray(src_emb) @ np.asarray(tgt_emb).T
+
+        pair_rows = []
+        for i, src in enumerate(src_nodes):
+            topk = np.argsort(-sims[i])[:k]
+            cands = [
+                {
+                    "rank": r + 1,
+                    "target_node_id": tgt_nodes[j].get("id") or tgt_nodes[j].get("node_id"),
+                    "score": float(sims[i, j]),
+                }
+                for r, j in enumerate(topk)
+            ]
+            pair_rows.append({
+                "source_node_id": src.get("id") or src.get("node_id"),
+                "candidates": cands,
+            })
+        out[f"{src_fw}__{tgt_fw}"] = pair_rows
+    return out

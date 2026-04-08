@@ -37,3 +37,22 @@ def test_load_nodes_counts_match_known():
     }
     for fw, n in expected.items():
         assert len(by_fw[fw]) == n, f"{fw}: got {len(by_fw[fw])}, expected {n}"
+
+
+from classifier.data.candidates import build_candidate_pool
+
+
+def test_build_candidate_pool_one_pair(tmp_path):
+    out = build_candidate_pool(
+        pairs=[("aiuc_1", "owasp_agentic")],
+        k=5,
+        model_name="BAAI/bge-small-en-v1.5",
+        cache_dir=tmp_path,
+    )
+    assert "aiuc_1__owasp_agentic" in out
+    pool = out["aiuc_1__owasp_agentic"]
+    assert len(pool) > 0
+    first = pool[0]
+    assert {"source_node_id", "candidates"} <= first.keys()
+    assert len(first["candidates"]) <= 5
+    assert first["candidates"][0]["rank"] == 1

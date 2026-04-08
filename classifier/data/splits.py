@@ -1,0 +1,28 @@
+"""Stratified 150/400 split of the 550-row SME pool. Seed 42. Deterministic."""
+from __future__ import annotations
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+SEED = 42
+CAL_SIZE = 150
+FROZEN_SIZE = 400  # 550 - 150
+
+
+def build_splits(df: pd.DataFrame, seed: int = SEED) -> dict[str, pd.DataFrame]:
+    """Stratify on (framework_pair × expert_tier). Return cal + frozen splits."""
+    assert len(df) == CAL_SIZE + FROZEN_SIZE, f"unexpected pool size {len(df)}"
+    strata = df["framework_pair"].astype(str) + "::" + df["expert_tier"].astype(str)
+    counts = strata.value_counts()
+    if (counts < 2).any():
+        strata = df["framework_pair"].astype(str)
+    cal, frozen = train_test_split(
+        df,
+        train_size=CAL_SIZE,
+        random_state=seed,
+        stratify=strata,
+        shuffle=True,
+    )
+    return {
+        "human_cal": cal.sort_values("pair_key").reset_index(drop=True),
+        "human_test_frozen": frozen.sort_values("pair_key").reset_index(drop=True),
+    }

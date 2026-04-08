@@ -17844,7 +17844,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "A Prompt Injection Vulnerability occurs when user prompts alter the LLM\u2019s behavior or output in unintended ways. These inputs can affect the model even if they are imperceptible to humans, therefore prompt injections do not need to be human-visible/readable, as long as the content is parsed by the model. Prompt Injection vulnerabilities exist in how models process prompts, and how input may force the model to incorrectly pass prompt data to other parts of the model, potentially causing them to violate guidelines, generate harmful content, enable unauthorized access, or influence critical decisions. While techniques like Retrieval Augmented Generation (RAG) and fine-tuning aim to make LLM outputs more relevant and accurate, research shows that they do not fully mitigate prompt injection vulnerabilities. While prompt injection and jailbreaking are related concepts in LLM security, they are often used interchangeably. Prompt injection involves manipulating model responses through specific inputs to alter its behavior, which can include bypassing safety measures. Jailbreaking is a form of prompt injection where the attacker provides inputs that cause the model to disregard its safety protocols entirely. Developers can build safeguards into system prompts and input handling to help mitigate prompt injection attacks, but effective prevention of jailbreaking requires ongoing updates to the model's training and safety mechanisms.",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17852,7 +17852,8 @@
     "applicable_capabilities": [],
     "keywords": [],
     "url": null,
-    "retired": false
+    "retired": false,
+    "mitigation_text": "Prompt injection vulnerabilities are possible due to the nature of generative AI. Given the stochastic influence at the heart of the way models work, it is unclear if there are fool-proof methods of prevention for prompt injection. However, the following measures can mitigate the impact of prompt injections: Constrain model behavior Provide specific instructions about the model's role, capabilities, and limitations within the system prompt. Enforce strict context adherence, limit responses to specific tasks or topics, and instruct the model to ignore attempts to modify core instructions. Define and validate expected output formats Specify clear output formats, request detailed reasoning and source citations, and use deterministic code to validate adherence to these formats. Implement input and output filtering Define sensitive categories and construct rules for identifying and handling such content. Apply semantic filters and use string-checking to scan for non-allowed content. Evaluate responses using the RAG Triad: Assess context relevance, groundedness, and question/answer relevance to identify potentially malicious outputs. genai.owasp.org 4 Implement human-in-the-loop controls for privileged operations to prevent unauthorizedOWASP Top 10 for LLM Applications v2.0 actions. Segregate and identify external content Separate and clearly denote untrusted content to limit its influence on user prompts. Conduct adversarial testing and attack simulations Perform regular penetration testing and breach simulations, treating the model as an untrusted user to test the effectiveness of trust boundaries and access controls."
   },
   {
     "node_id": "owasp_llm:LLM02",
@@ -17862,7 +17863,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "Sensitive information can affect both the LLM and its application context. This includes personal identifiable information (PII), financial details, health records, confidential business data, security credentials, and legal documents. Proprietary models may also have unique training methods and source code considered sensitive, especially in closed or foundation models. LLMs, especially when embedded in applications, risk exposing sensitive data, proprietary algorithms, or confidential details through their output. This can result in unauthorized data access, privacy violations, and intellectual property breaches. Consumers should be aware of how to interact safely with LLMs. They need to understand the risks of unintentionally providing sensitive data, which may later be disclosed in the model's output. To reduce this risk, LLM applications should perform adequate data sanitization to prevent user data from entering the training model. Application owners should also provide clear Terms of Use policies, allowing users to opt out of having their data included in the training model. Adding restrictions within the system prompt about data types that the LLM should return can provide mitigation against sensitive information disclosure. However, such restrictions may not always be honored and could be bypassed via prompt injection or other methods.",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17880,7 +17881,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "LLM supply chains are susceptible to various vulnerabilities, which can affect the integrity of training data, models, and deployment platforms. These risks can result in biased outputs, security breaches, or system failures. While traditional software vulnerabilities focus on issues like code flaws and dependencies, in ML the risks also extend to third-party pre-trained models and data. These external elements can be manipulated through tampering or poisoning attacks. Creating LLMs is a specialized task that often depends on third-party models. The rise of openaccess LLMs and new fine-tuning methods like \"LoRA\" (Low-Rank Adaptation) and \"PEFT\" (Parameter-Efficient Fine-Tuning), especially on platforms like Hugging Face, introduce new supply-chain risks. Finally, the emergence of on-device LLMs increase the attack surface and supply-chain risks for LLM applications. Some of the risks discussed here are also discussed in \"LLM04 Data and Model Poisoning.\" This entry focuses on the supply-chain aspect of the risks. A simple threat model can be found here.",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17888,7 +17889,8 @@
     "applicable_capabilities": [],
     "keywords": [],
     "url": null,
-    "retired": false
+    "retired": false,
+    "mitigation_text": "Carefully vet data sources and suppliers, including T&Cs and their privacy policies, only using trusted suppliers. Regularly review and audit supplier Security and Access, ensuring no changes in their security posture or T&Cs. Understand and apply the mitigations found in the OWASP Top Ten's \"A06:2021 \u2013 Vulnerable genai.owasp.org 12 controls in those environments, too. Decoding Trust is an example of a Trustworthy AI benchmark for LLMs but models canOWASP Top 10 for LLM Applications v2.0 finetuned to by pass published benchmarks. Use extensive AI Red Teaming to evaluate the model, especially in the use cases you are planning to use the model for. Maintain an up-to-date inventory of components using a Software Bill of Materials (SBOM) to ensure you have an up-to-date, accurate, and signed inventory, preventing tampering with deployed packages. SBOMs can be used to detect and alert for new, zero-date vulnerabilities quickly. AI BOMs and ML SBOMs are an emerging area and you should evaluate options starting with OWASP CycloneDX To mitigate AI licensing risks, create an inventory of all types of licenses involved using BOMs and conduct regular audits of all software, tools, and datasets, ensuring compliance and transparency through BOMs. Use automated license management tools for real-time monitoring and train teams on licensing models. Maintain detailed licensing documentation in BOMs. Only use models from verifiable sources and use third-party model integrity checks with signing and file hashes to compensate for the lack of strong model provenance. Similarly, use code signing for externally supplied code. Implement strict monitoring and auditing practices for collaborative model development environments to prevent and quickly detect any abuse. \"HuggingFace SF_Convertbot Scanner\" is an example of automated scripts to use. (Ref. link: HuggingFace SF_Convertbot Scanner) AAnomaly detection and adversarial robustness tests on supplied models and data can help detect tampering and poisoning as discussed in \"LLM04 Data and Model Poisoning; ideally, this should be part of MLOps and LLM pipelines; however, these are emerging techniques and may be easier to implement as part of red teaming exercises. Implement a patching policy to mitigate vulnerable or outdated components. Ensure the application relies on a maintained version of APIs and underlying model. Encrypt models deployed at AI edge with integrity checks and use vendor attestation APIs to prevent tampered apps and models and terminate applications of unrecognized firmware."
   },
   {
     "node_id": "owasp_llm:LLM04",
@@ -17898,7 +17900,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "Data poisoning occurs when pre-training, fine-tuning, or embedding data is manipulated to introduce vulnerabilities, backdoors, or biases. This manipulation can compromise model security, performance, or ethical behavior, leading to harmful outputs or impaired capabilities. Common risks include degraded model performance, biased or toxic content, and exploitation of downstream systems. Data poisoning can target different stages of the LLM lifecycle, including pre-training (learning from general data), fine-tuning (adapting models to specific tasks), and embedding (converting text into numerical vectors). Understanding these stages helps identify where vulnerabilities may originate. Data poisoning is considered an integrity attack since tampering with training data impacts the model's ability to make accurate predictions. The risks are particularly high with external data sources, which may contain unverified or malicious content. Moreover, models distributed through shared repositories or open-source platforms can carry risks beyond data poisoning, such as malware embedded through techniques like malicious pickling, which can execute harmful code when the model is loaded. Also, consider that poisoning may allow for the implementation of a backdoor. Such backdoors may leave the model's behavior untouched until a certain trigger causes it to change. This may make such changes hard to test for and detect, in effect creating the opportunity for a model to become a sleeper agent.",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17916,7 +17918,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "Improper Output Handling refers specifically to insufficient validation, sanitization, and handling of the outputs generated by large language models before they are passed downstream to other components and systems. Since LLM-generated content can be controlled by prompt input, this behavior is similar to providing users indirect access to additional functionality. Improper Output Handling differs from Overreliance in that it deals with LLM-generated outputs before they are passed downstream whereas Overreliance focuses on broader concerns around overdependence on the accuracy and appropriateness of LLM outputs. Successful exploitation of an Improper Output Handling vulnerability can result in XSS and CSRF in web browsers as well as SSRF, privilege escalation, or remote code execution on backend systems. The following conditions can increase the impact of this vulnerability: The application grants the LLM privileges beyond what is intended for end users, enabling escalation of privileges or remote code execution. The application is vulnerable to indirect prompt injection attacks, which could allow an attacker to gain privileged access to a target user's environment. 3rd party extensions do not adequately validate inputs. Lack of proper output encoding for different contexts (e.g., HTML, JavaScript, SQL) Insufficient monitoring and logging of LLM outputs Absence of rate limiting or anomaly detection for LLM usage",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17934,7 +17936,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "An LLM-based system is often granted a degree of agency by its developer - the ability to call functions or interface with other systems via extensions (sometimes referred to as tools, skills or plugins by different vendors) to undertake actions in response to a prompt. The decision over which extension to invoke may also be delegated to an LLM 'agent' to dynamically determine based on input prompt or LLM output. Agent-based systems will typically make repeated calls to an LLM using output from previous invocations to ground and direct subsequent invocations. Excessive Agency is the vulnerability that enables damaging actions to be performed in response to unexpected, ambiguous or manipulated outputs from an LLM, regardless of what is causing the LLM to malfunction. Common triggers include: hallucination/confabulation caused by poorly-engineered benign prompts, or just a poorly performing model; direct/indirect prompt injection from a malicious user, an earlier invocation of a malicious/compromised extension, or (in multi-agent/collaborative systems) a malicious/compromised peer agent. The root cause of Excessive Agency is typically one or more of: excessive functionality; excessive permissions; excessive autonomy. Excessive Agency can lead to a broad range of impacts across the confidentiality, integrity and availability spectrum, and is dependent on which systems an LLM-based app is able to interact with. Note: Excessive Agency differs from Insecure Output Handling which is concerned with insufficient scrutiny of LLM outputs.",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17942,7 +17944,8 @@
     "applicable_capabilities": [],
     "keywords": [],
     "url": null,
-    "retired": false
+    "retired": false,
+    "mitigation_text": "The following actions can prevent Excessive Agency: Minimize extensions Limit the extensions that LLM agents are allowed to call to only the minimum necessary. For example, if an LLM-based system does not require the ability to fetch the contents of a URL then such an extension should not be offered to the LLM agent. Minimize extension functionality Limit the functions that are implemented in LLM extensions to the minimum necessary. For example, an extension that accesses a user's mailbox to summarise emails may only require the ability to read emails, so the extension should not contain other functionality such as deleting or sending messages. Avoid open-ended extensions genai.owasp.org 23 writing extension that only implements that specific functionality.OWASP Top 10 for LLM Applications v2.0 Minimize extension permissions Limit the permissions that LLM extensions are granted to other systems to the minimum necessary in order to limit the scope of undesirable actions. For example, an LLM agent that uses a product database in order to make purchase recommendations to a customer might only need read access to a 'products' table; it should not have access to other tables, nor the ability to insert, update or delete records. This should be enforced by applying appropriate database permissions for the identity that the LLM extension uses to connect to the database. Execute extensions in user's context Track user authorization and security scope to ensure actions taken on behalf of a user are executed on downstream systems in the context of that specific user, and with the minimum privileges necessary. For example, an LLM extension that reads a user's code repo should require the user to authenticate via OAuth and with the minimum scope required. Require user approval Utilise human-in-the-loop control to require a human to approve high-impact actions before they are taken. This may be implemented in a downstream system (outside the scope of the LLM application) or within the LLM extension itself. For example, an LLM-based app that creates and posts social media content on behalf of a user should include a user approval routine within the extension that implements the 'post' operation. Complete mediation Implement authorization in downstream systems rather than relying on an LLM to decide if an action is allowed or not. Enforce the complete mediation principle so that all requests made to downstream systems via extensions are validated against security policies. Sanitise LLM inputs and outputs Follow secure coding best practice, such as applying OWASP\u2019s recommendations in ASVS (Application Security Verification Standard), with a particularly strong focus on input sanitisation. Use Static Application Security Testing (SAST) and Dynamic and Interactive application testing (DAST, IAST) in development pipelines. The following options will not prevent Excessive Agency, but can limit the level of damage caused: Log and monitor the activity of LLM extensions and downstream systems to identify where undesirable actions are taking place, and respond accordingly. Implement rate-limiting to reduce the number of undesirable actions that can take place within a given time period, increasing the opportunity to discover undesirable actions through monitoring before significant damage can occur. genai.owasp.org 24"
   },
   {
     "node_id": "owasp_llm:LLM07",
@@ -17952,7 +17955,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "The system prompt leakage vulnerability in LLMs refers to the risk that the system prompts or instructions used to steer the behavior of the model can also contain sensitive information that was not intended to be discovered. System prompts are designed to guide the model's output based on the requirements of the application, but may inadvertently contain secrets. When discovered, this information can be used to facilitate other attacks. It's important to understand that the system prompt should not be considered a secret, nor should it be used as a security control. Accordingly, sensitive data such as credentials, connection strings, etc. should not be contained within the system prompt language. Similarly, if a system prompt contains information describing different roles and permissions, or sensitive data like connection strings or passwords, while the disclosure of such information may be helpful, the fundamental security risk is not that these have been disclosed, it is that the application allows bypassing strong session management and authorization checks by delegating these to the LLM, and that sensitive data is being stored in a place that it should not be. In short: disclosure of the system prompt itself does not present the real risk -- the security risk lies with the underlying elements, whether that be sensitive information disclosure, system guardrails bypass, improper separation of privileges, etc. Even if the exact wording is not disclosed, attackers interacting with the system will almost certainly be able to determine many of the guardrails and formatting restrictions that are present in system prompt language in the course of using the application, sending utterances to the model, and observing the results.",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17960,7 +17963,8 @@
     "applicable_capabilities": [],
     "keywords": [],
     "url": null,
-    "retired": false
+    "retired": false,
+    "mitigation_text": "Separate Sensitive Data from System Prompts Avoid embedding any sensitive information (e.g. API keys, auth keys, database names, user roles, permission structure of the application) directly in the system prompts. Instead, externalize such information to the systems that the model does not directly access. Avoid Reliance on System Prompts for Strict Behavior Control Since LLMs are susceptible to other attacks like prompt injections which can alter the system prompt, it is recommended to avoid using system prompts to control the model behavior where possible. Instead, rely on systems outside of the LLM to ensure this behavior. For example, detecting and preventing harmful content should be done in external systems. Implement Guardrails Implement a system of guardrails outside of the LLM itself. While training particular behavior into a model can be effective, such as training it not to reveal its system prompt, it is not a guarantee that the model will always adhere to this. An independent system that can inspect the output to determine if the model is in compliance with expectations is preferable to system prompt instructions. Ensure that security controls are enforced independently from the LLM Critical controls such as privilege separation, authorization bounds checks, and similar must genai.owasp.org 27 needed to perform the desired tasks. OWASP Top 10 for LLM Applications v2.0"
   },
   {
     "node_id": "owasp_llm:LLM08",
@@ -17970,7 +17974,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "Vectors and embeddings vulnerabilities present significant security risks in systems utilizing Retrieval Augmented Generation (RAG) with Large Language Models (LLMs). Weaknesses in how vectors and embeddings are generated, stored, or retrieved can be exploited by malicious actions (intentional or unintentional) to inject harmful content, manipulate model outputs, or access sensitive information. Retrieval Augmented Generation (RAG) is a model adaptation technique that enhances the performance and contextual relevance of responses from LLM Applications, by combining pretrained language models with external knowledge sources.Retrieval Augmentation uses vector mechanisms and embedding. (Ref #1)",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17978,7 +17982,8 @@
     "applicable_capabilities": [],
     "keywords": [],
     "url": null,
-    "retired": false
+    "retired": false,
+    "mitigation_text": "Permission and access control Implement fine-grained access controls and permission-aware vector and embedding stores. Ensure strict logical and access partitioning of datasets in the vector database to prevent unauthorized access between different classes of users or different groups. Data validation & source authentication Implement robust data validation pipelines for knowledge sources. Regularly audit and validate the integrity of the knowledge base for hidden codes and data poisoning. Accept data only from trusted and verified sources. Data review for combination & classification When combining data from different sources, thoroughly review the combined dataset. Tag and classify data within the knowledge base to control access levels and prevent data mismatch errors. Monitoring and Logging Maintain detailed immutable logs of retrieval activities to detect and respond promptly to suspicious behavior."
   },
   {
     "node_id": "owasp_llm:LLM09",
@@ -17988,7 +17993,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "Misinformation from LLMs poses a core vulnerability for applications relying on these models. Misinformation occurs when LLMs produce false or misleading information that appears credible. This vulnerability can lead to security breaches, reputational damage, and legal liability. One of the major causes of misinformation is hallucination\u2014when the LLM generates content that seems accurate but is fabricated. Hallucinations occur when LLMs fill gaps in their training data using statistical patterns, without truly understanding the content. As a result, the model may produce answers that sound correct but are completely unfounded. While hallucinations are a major source of misinformation, they are not the only cause; biases introduced by the training data and incomplete information can also contribute. A related issue is overreliance. Overreliance occurs when users place excessive trust in LLMgenerated content, failing to verify its accuracy. This overreliance exacerbates the impact of misinformation, as users may integrate incorrect data into critical decisions or processes without adequate scrutiny.",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -17996,7 +18001,8 @@
     "applicable_capabilities": [],
     "keywords": [],
     "url": null,
-    "retired": false
+    "retired": false,
+    "mitigation_text": "Retrieval-Augmented Generation (RAG) Use Retrieval-Augmented Generation to enhance the reliability of model outputs by retrieving relevant and verified information from trusted external databases during response generation. This helps mitigate the risk of hallucinations and misinformation. Model Fine-Tuning Enhance the model with fine-tuning or embeddings to improve output quality. Techniques such as parameter-efficient tuning (PET) and chain-of-thought prompting can help reduce the incidence of misinformation. Cross-Verification and Human Oversight Encourage users to cross-check LLM outputs with trusted external sources to ensure the accuracy of the information. Implement human oversight and fact-checking processes, especially for critical or sensitive information. Ensure that human reviewers are properly trained to avoid overreliance on AI-generated content. Automatic Validation Mechanisms Implement tools and processes to automatically validate key outputs, especially output from high-stakes environments. Risk Communication Identify the risks and possible harms associated with LLM-generated content, then clearly communicate these risks and limitations to users, including the potential for misinformation. Secure Coding Practices Establish secure coding practices to prevent the integration of vulnerabilities due to incorrect code suggestions. User Interface Design Design APIs and user interfaces that encourage responsible use of LLMs, such as integrating content filters, clearly labeling AI-generated content and informing users on limitations of reliability and accuracy. Be specific about the intended field of use limitations. Training and Education Provide comprehensive training for users on the limitations of LLMs, the importance of independent verification of generated content, and the need for critical thinking. In specific genai.owasp.org 33 outputs within their field of expertise."
   },
   {
     "node_id": "owasp_llm:LLM10",
@@ -18006,7 +18012,7 @@
     "entry_type": "risk",
     "parent_node_id": null,
     "domain": "",
-    "description": "",
+    "description": "Unbounded Consumption refers to the process where a Large Language Model (LLM) generates outputs based on input queries or prompts. Inference is a critical function of LLMs, involving the application of learned patterns and knowledge to produce relevant responses or predictions. Attacks designed to disrupt service, deplete the target's financial resources, or even steal intellectual property by cloning a model\u2019s behavior all depend on a common class of security vulnerability in order to succeed. Unbounded Consumption occurs when a Large Language Model (LLM) application allows users to conduct excessive and uncontrolled inferences, leading to risks such as denial of service (DoS), economic losses, model theft, and service degradation. The high computational demands of LLMs, especially in cloud environments, make them vulnerable to resource exploitation and unauthorized usage.",
     "function_class": null,
     "classification": null,
     "control_type": null,
@@ -18014,7 +18020,8 @@
     "applicable_capabilities": [],
     "keywords": [],
     "url": null,
-    "retired": false
+    "retired": false,
+    "mitigation_text": "Input Validation Implement strict input validation to ensure that inputs do not exceed reasonable size limits. Limit Exposure of Logits and Logprobs Restrict or obfuscate the exposure of `logit_bias` and `logprobs` in API responses. Provide only the necessary information without revealing detailed probabilities. Rate Limiting Apply rate limiting and user quotas to restrict the number of requests a single source entity can make in a given time period. Resource Allocation Management Monitor and manage resource allocation dynamically to prevent any single user or request from consuming excessive resources. Timeouts and Throttling Set timeouts and throttle processing for resource-intensive operations to prevent prolonged resource consumption. 6.Sandbox Techniques Restrict the LLM's access to network resources, internal services, and APIs. This is particularly significant for all common scenarios as it encompasses insider risks and threats. Furthermore, it governs the extent of access the LLM application has to data and resources, thereby serving as a crucial control mechanism to mitigate or prevent side-channel attacks. Comprehensive Logging, Monitoring and Anomaly Detection Continuously monitor resource usage and implement logging to detect and respond to unusual patterns of resource consumption. Watermarking Implement watermarking frameworks to embed and detect unauthorized use of LLM outputs. Graceful Degradation genai.owasp.org 36 rather than complete failure. consistent system performance.OWASP Top 10 for LLM Applications v2.0 Adversarial Robustness Training Train models to detect and mitigate adversarial queries and extraction attempts. Glitch Token Filtering Build lists of known glitch tokens and scan output before adding it to the model\u2019s context window. Access Controls Implement strong access controls, including role-based access control (RBAC) and the principle of least privilege, to limit unauthorized access to LLM model repositories and training environments. Centralized ML Model Inventory Use a centralized ML model inventory or registry for models used in production, ensuring proper governance and access control. Automated MLOps Deployment Implement automated MLOps deployment with governance, tracking, and approval workflows to tighten access and deployment controls within the infrastructure."
   },
   {
     "node_id": "eu_ai_act:Art1",

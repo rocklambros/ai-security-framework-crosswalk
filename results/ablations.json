@@ -1,0 +1,330 @@
+{
+  "baseline_only": {
+    "description": "Only baseline features (BM25, BGE, bridge)",
+    "disable": [
+      "gat"
+    ],
+    "macro_f1": 0.31323864803238155,
+    "n_features": 3,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.3333333333333333,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.24561403508771928,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.6501766784452296,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.16666666666666666,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.5461741424802111
+  },
+  "full": {
+    "description": "Full ensemble (baseline)",
+    "disable": [],
+    "macro_f1": 0.3954975433922802,
+    "n_features": 38,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.3333333333333333,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.14035087719298245,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.7561837455830389,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.5833333333333334,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.6358839050131926
+  },
+  "gat_only": {
+    "description": "Only GAT features",
+    "disable": [
+      "bge",
+      "bm25",
+      "bridge"
+    ],
+    "macro_f1": 0.4366758315214634,
+    "n_features": 35,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.3333333333333333,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.2631578947368421,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.7137809187279152,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.625,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.6253298153034301
+  },
+  "lexical_only": {
+    "description": "Only BM25",
+    "disable": [
+      "gat",
+      "bge",
+      "bridge"
+    ],
+    "macro_f1": 0.18812457552898915,
+    "n_features": 1,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.13333333333333333,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.49122807017543857,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.26855123674911663,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.08333333333333333,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.2849604221635884
+  },
+  "no_bge": {
+    "description": "Drop BGE cosine score",
+    "disable": [
+      "bge"
+    ],
+    "macro_f1": 0.3972165627996165,
+    "n_features": 37,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.2,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.12280701754385964,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.8551236749116607,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.3333333333333333,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.6860158311345647
+  },
+  "no_bm25": {
+    "description": "Drop BM25 score",
+    "disable": [
+      "bm25"
+    ],
+    "macro_f1": 0.39094838818736677,
+    "n_features": 37,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.26666666666666666,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.15789473684210525,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.7561837455830389,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.5833333333333334,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.6358839050131926
+  },
+  "no_bridge": {
+    "description": "Drop bridge score",
+    "disable": [
+      "bridge"
+    ],
+    "macro_f1": 0.39366080042875623,
+    "n_features": 37,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.26666666666666666,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.19298245614035087,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.7455830388692579,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.5416666666666666,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.6306068601583114
+  },
+  "no_conformal": {
+    "description": "Drop conformal wrapper; raw argmax",
+    "disable": [
+      "conformal"
+    ],
+    "macro_f1": 0.3762693490704256,
+    "n_features": 38,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.26666666666666666,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.15789473684210525,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.734982332155477,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.5833333333333334,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.6200527704485488
+  },
+  "no_gat": {
+    "description": "Drop all GAT features",
+    "disable": [
+      "gat"
+    ],
+    "macro_f1": 0.30799799096967245,
+    "n_features": 3,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.4,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.21052631578947367,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.6289752650176679,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.16666666666666666,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.5277044854881267
+  },
+  "no_gat_diff": {
+    "description": "Drop GAT diff features, keep scalars",
+    "disable": [
+      "gat_diff"
+    ],
+    "macro_f1": 0.3479182226723211,
+    "n_features": 6,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.26666666666666666,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.14035087719298245,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.7632508833922261,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.3333333333333333,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.6226912928759895
+  },
+  "no_router": {
+    "description": "Drop abstention router",
+    "disable": [
+      "router"
+    ],
+    "macro_f1": 0.3799029964790592,
+    "n_features": 38,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.26666666666666666,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.12280701754385964,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.7879858657243817,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.4583333333333333,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.6464379947229552
+  },
+  "single_feature_bge": {
+    "description": "BGE only",
+    "disable": [
+      "bm25",
+      "bridge",
+      "gat"
+    ],
+    "macro_f1": 0.2690875411832894,
+    "n_features": 1,
+    "per_class": {
+      "equivalent": {
+        "accuracy": 0.7333333333333333,
+        "count": 15
+      },
+      "partial": {
+        "accuracy": 0.15789473684210525,
+        "count": 57
+      },
+      "related": {
+        "accuracy": 0.37809187279151946,
+        "count": 283
+      },
+      "unrelated": {
+        "accuracy": 0.5,
+        "count": 24
+      }
+    },
+    "tier_accuracy": 0.36675461741424803
+  }
+}

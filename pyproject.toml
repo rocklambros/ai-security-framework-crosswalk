@@ -1,0 +1,9 @@
+[tool.pytest.ini_options]
+markers = [
+    "integration: end-to-end integration tests (may be slow)",
+    "timeout: wall-clock timeout in seconds (requires pytest-timeout)",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:sklearn.*:",
+    "ignore::FutureWarning:sklearn.*:",
+]

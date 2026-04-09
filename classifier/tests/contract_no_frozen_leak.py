@@ -1,12 +1,12 @@
 """Cross-phase honesty-firewall contract test.
 
-**Status:** informative-not-load-bearing. The LOAD-BEARING check is
+**Status:** informative-not-load-bearing. The LOAD-BEARING check will be
 `classifier.ensemble.training_batches.iter_weighted_rows` Contract 10
-layer 0, which fires on every training batch row at the last mile before
-the model sees it. This test is an earlier, independent check that catches
-producer-level bugs before they propagate into training — it depends on
-producer adapters below, and those adapters may silently skip if paths
-or schemas drift. Do NOT rely on this test alone; rely on Contract 10.
+layer 0 (Plan 5 — not yet implemented), which will fire on every training
+batch row at the last mile before the model sees it. This test is an
+earlier, independent check that catches producer-level bugs before they
+propagate into training — it depends on producer adapters below, and those
+adapters may silently skip if paths or schemas drift.
 
 This test is the cross-phase check that NO training row produced
 by ANY phase of the pipeline intersects data/splits/frozen_tuples.json on

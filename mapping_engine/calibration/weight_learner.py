@@ -34,7 +34,7 @@ def train_logistic(train_df: pd.DataFrame) -> tuple[LogisticRegression, dict[str
     """Fit an L2-regularized, class-balanced logistic regression."""
     X, y = _xy(train_df)
     model = LogisticRegression(
-        penalty="l2", C=1.0, class_weight="balanced", max_iter=1000, solver="lbfgs"
+        C=1.0, class_weight="balanced", max_iter=1000, solver="lbfgs"
     )
     model.fit(X, y)
     coefs = {f: float(c) for f, c in zip(FEATURES, model.coef_[0])}

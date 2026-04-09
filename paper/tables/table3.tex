@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{Ablation matrix on llm\_val}
+\begin{tabular}{lrrrr}
+\toprule
+Ablation & Features & Tier Acc & Macro F1 & Δ Acc \\
+\midrule
+baseline_only & 3 & 0.5462 & 0.3132 & -0.0897 \\
+full & 38 & 0.6359 & 0.3955 & +0.0000 \\
+gat_only & 35 & 0.6253 & 0.4367 & -0.0106 \\
+lexical_only & 1 & 0.2850 & 0.1881 & -0.3509 \\
+no_bge & 37 & 0.6860 & 0.3972 & +0.0501 \\
+no_bm25 & 37 & 0.6359 & 0.3909 & +0.0000 \\
+no_bridge & 37 & 0.6306 & 0.3937 & -0.0053 \\
+no_conformal & 38 & 0.6201 & 0.3763 & -0.0158 \\
+no_gat & 3 & 0.5277 & 0.3080 & -0.1082 \\
+no_gat_diff & 6 & 0.6227 & 0.3479 & -0.0132 \\
+no_router & 38 & 0.6464 & 0.3799 & +0.0106 \\
+single_feature_bge & 1 & 0.3668 & 0.2691 & -0.2691 \\
+\bottomrule
+\end{tabular}
+\end{table}

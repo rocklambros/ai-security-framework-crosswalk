@@ -1,0 +1,14 @@
+| Metric | Value |
+|---|---|
+| N pairs | 400 |
+| Tier accuracy | 0.3725 |
+| Macro F1 | 0.2259 |
+| 95% CI | [0.3275, 0.4200] |
+|   equivalent (58) | 0.0000 |
+|   partial (78) | 0.1026 |
+|   related (186) | 0.6559 |
+|   unrelated (78) | 0.2436 |
+| Conformal avg set size | 2.22 |
+| Conformal coverage | 0.6925 |
+| Router abstained | 400/400 |
+| Precision on passed | 0.0000 |

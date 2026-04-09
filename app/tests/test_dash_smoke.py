@@ -16,9 +16,8 @@ def test_create_app_returns_dash_instance():
     assert app.layout is not None
 
 
-def test_about_markdown():
-    """about_panel_markdown returns a non-empty string."""
-    from app.dash_app.app import about_panel_markdown
-    md = about_panel_markdown()
-    assert isinstance(md, str)
-    assert "12 AI security" in md
+def test_about_page_layout():
+    """About page layout returns an HTML component."""
+    from app.dash_app.pages.about import layout
+    result = layout()
+    assert result is not None

@@ -25,6 +25,23 @@ BASE_FEATURE_COLS = ["score_bge_cosine", "score_bm25", "score_bridge"]
 GAT_SCALAR_COLS = ["score_gat", "gat_l2", "gat_dot"]
 GAT_DIFF_COLS = [f"gat_diff_{d:02d}" for d in range(32)]
 FEATURE_COLS = BASE_FEATURE_COLS + GAT_SCALAR_COLS + GAT_DIFF_COLS
+
+# V2 features: Multi-encoder ensemble
+CE_MODEL_NAMES = ["deberta", "roberta", "electra"]
+CE_LOGIT_COLS = [f"{m}_logit_{i}" for m in CE_MODEL_NAMES for i in range(4)]
+CE_CLS_SIM_COLS = [f"{m}_cls_sim" for m in CE_MODEL_NAMES]
+GAT_V2_DIFF_COLS = [f"gat_diff_{d:02d}" for d in range(64)]
+GAT_V2_SCALAR_COLS = ["gat_dot", "gat_cosine"]
+BASELINE_V2_COLS = ["score_bm25", "score_bridge"]
+
+FEATURE_COLS_V2 = (
+    CE_LOGIT_COLS       # 12 (3 models x 4 logits)
+    + CE_CLS_SIM_COLS   # 3
+    + GAT_V2_DIFF_COLS  # 64
+    + GAT_V2_SCALAR_COLS  # 2
+    + BASELINE_V2_COLS  # 2
+)  # Total: 83
+
 LABEL_COL = "label"
 N_CLASSES = 4
 REGISTRY_PATH = Path("runs/registry.jsonl")
@@ -33,11 +50,12 @@ REGISTRY_PATH = Path("runs/registry.jsonl")
 class LGBMStacker:
     """LightGBM multiclass stacker."""
 
-    def __init__(self, params: dict | None = None):
+    def __init__(self, params: dict | None = None, version: str = "v1"):
         self.params = params or {}
         self.model: lgb.Booster | None = None
         self.run_id: str = ""
-        self.feature_cols = FEATURE_COLS
+        self.version = version
+        self.feature_cols = FEATURE_COLS if version == "v1" else FEATURE_COLS_V2
 
     def fit(
         self,

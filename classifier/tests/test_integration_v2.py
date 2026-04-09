@@ -13,9 +13,9 @@ def test_tier_mapper_to_training_data(tmp_path):
     from classifier.data.tier_mapper import map_upstream_tier, TierLabel
 
     test_cases = [
-        {"tier": "Foundational", "scope": "Direct", "expected": TierLabel.EQUIVALENT},
-        {"tier": "Foundational", "scope": "Broader", "expected": TierLabel.RELATED},
-        {"tier": "Expanded", "scope": "Both", "expected": TierLabel.PARTIAL},
+        {"tier": "Foundational", "scope": "Both", "expected": TierLabel.EQUIVALENT},
+        {"tier": "Hardening", "scope": "Both", "expected": TierLabel.RELATED},
+        {"tier": "Advanced", "scope": "Both", "expected": TierLabel.PARTIAL},
     ]
     for tc in test_cases:
         result = map_upstream_tier(tier=tc["tier"], scope=tc["scope"])

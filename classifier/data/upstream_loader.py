@@ -17,6 +17,7 @@ SOURCE_LIST_TO_FRAMEWORK: dict[str, str] = {
 }
 
 TARGET_FRAMEWORK_TABLE: dict[str, str] = {
+    # --- Existing (Plan 1-A) ---
     "MITRE ATLAS": "mitre_atlas",
     "MITRE-ATLAS": "mitre_atlas",
     "NIST AI RMF 1.0": "nist_rmf",
@@ -25,7 +26,7 @@ TARGET_FRAMEWORK_TABLE: dict[str, str] = {
     "AIUC-1": "aiuc_1",
     "CSA AICM": "csa_aicm",
     "CSA-AICM": "csa_aicm",
-    "MAESTRO": "csa_aicm",
+    "MAESTRO": "maestro",
     "OWASP AI Exchange": "owasp_ai_exchange",
     "OWASP-AI-Exchange": "owasp_ai_exchange",
     "EU GPAI Code of Practice": "eu_gpai_cop",
@@ -36,6 +37,25 @@ TARGET_FRAMEWORK_TABLE: dict[str, str] = {
     "NIST-800-53": "nist_800_53",
     "EU AI Act": "eu_ai_act",
     "EU-AI-Act": "eu_ai_act",
+    # --- Plan 4 framework expansion (nodes pending, ids resolve once registries exist) ---
+    "ISO/IEC 27001:2022": "iso_27001",
+    "ISO/IEC 42001:2023": "iso_42001",
+    "NIST CSF 2.0": "nist_csf",
+    "NIST SP 800-218A": "nist_800_218a",
+    "NIST SP 800-82 Rev 3": "nist_800_82",
+    "OWASP SAMM v2.0": "owasp_samm",
+    "OWASP ASVS 4.0.3": "owasp_asvs",
+    "OWASP NHI Top 10": "owasp_nhi",
+    "OWASP AI Testing Guide": "owasp_ai_testing",
+    "PCI DSS v4.0": "pci_dss",
+    "SOC 2": "soc_2",
+    "CIS Controls v8.1": "cis_controls",
+    "CWE/CVE": "cwe_cve",
+    "DORA": "dora",
+    "ENISA Multilayer Framework": "enisa_mlf",
+    "FedRAMP": "fedramp",
+    "ISA/IEC 62443": "isa_62443",
+    "STRIDE": "stride",
 }
 
 

@@ -1002,8 +1002,124 @@ Same table shape.
 | `crossrefs_v1.jsonl` uses node ids absent from `nodes.json` (e.g. DSGAI not yet ingested) | Loader drops the row with a warning and the report shows the skipped count; if DSGAI nodes are missing entirely, block on Plan 1-B Task 4 (DSGAI ingester) rather than partially injecting |
 | Bridge metric regresses on enrichment (high-confidence edges shift the graph centroid the wrong way) | Report, don't mask. The script does not assert direction; Phase F Task F1 explicitly requires interpretation of regressions. If a regression is real, Plan 5 will weight `upstream_crossref` edges lower via `edge_weight_by_type` config — a single-line hook that already exists in `bridge.py`. |
 | Node2vec non-determinism muddies the A/B | Use a fixed seed in `train_and_save` (already pinned in `train_node2vec.py`) and run each condition once; don't bootstrap in this plan — that is Plan 5 work |
-| Crossref held-out set is empty because partition rule 1 put all crossref provenance_shas on the train-eligible side | The benchmark then reports `n=0`. That is still a valid, honest result; the report must call it out, and the remediation (expand held-out rule to crossrefs_v1 explicitly) belongs in a follow-on spec amendment, not in this plan |
+| Crossref held-out set is empty because partition rule 1 put all crossref provenance_shas on the train-eligible side | **FIXED in Plan 1-D.** The crossref prior-edge loader now applies the `data/splits/frozen_tuples.json` layer-0 firewall (see Task Extension below): any crossref row whose `(source_framework, source_id)` OR `(target_framework, target_node_id)` intersects the frozen tuple sets is (a) dropped from graph injection AND (b) redirected into the held-out set used by `benchmark_crossref.py`. This guarantees `benchmark_crossref.py` reports `n > 0` unless upstream genuinely has zero frozen-test overlap. A CI gate `test_upstream_prior_edges.py::test_frozen_firewall_drops_leaking_crossrefs` fails if any injected edge touches a frozen tuple. |
+
+### Task Extension — Frozen-tuple firewall on crossref edges (Plan 1-D)
+
+**Files to modify:**
+- `mapping_engine/engine/upstream_prior_edges.py` — `load_upstream_prior_edges(...)` signature MUST accept `frozen_tuples_path: Path = Path("data/splits/frozen_tuples.json")` and REFUSE to run if the file is missing.
+- `mapping_engine/scripts/benchmark_crossref.py` — held-out set is the UNION of `partition.json["held_out"]` crossref provenance_shas AND the set of crossref rows dropped by the frozen firewall.
+
+**New loader behavior:**
+
+```python
+def load_upstream_prior_edges(
+    crossrefs_path: Path,
+    partition_path: Path,
+    present_node_ids: set[str],
+    frozen_tuples_path: Path = Path("data/splits/frozen_tuples.json"),
+) -> tuple[list[dict], list[dict]]:
+    """Returns (injected_edges, firewall_held_out_rows).
+
+    firewall_held_out_rows is the new held-out benchmark set.
+    """
+    if not frozen_tuples_path.exists():
+        raise RuntimeError(
+            f"Plan 1-D frozen_tuples.json missing at {frozen_tuples_path}. "
+            "Refusing to inject upstream crossref edges."
+        )
+    frozen = json.loads(frozen_tuples_path.read_text())
+    frozen_src = {tuple(t) for t in frozen["source_tuples"]}
+    frozen_tgt = {tuple(t) for t in frozen["target_tuples"]}
+
+    held_sha = set(json.loads(partition_path.read_text()).get("held_out", []))
+    injected, firewall_out = [], []
+    for row in _iter_jsonl(crossrefs_path):
+        src_tup = (row["source_framework"], row["source_id"])
+        tgt = row["target_node_id"]
+        tgt_fw, _, tgt_id = tgt.partition(":")
+        tgt_tup = (tgt_fw, tgt_id)
+        # Layer 0 firewall — provenance-agnostic
+        if src_tup in frozen_src or tgt_tup in frozen_tgt:
+            firewall_out.append(row)
+            continue
+        # Belt-and-braces: partition.held_out
+        if row.get("provenance_sha") in held_sha:
+            firewall_out.append(row)
+            continue
+        # Only inject if both endpoints are present in the graph
+        if row["source_node_id"] in present_node_ids and tgt in present_node_ids:
+            injected.append(_make_edge(row))
+    return injected, firewall_out
+```
+
+**New test** `test_frozen_firewall_drops_leaking_crossrefs`:
+
+```python
+def test_frozen_firewall_drops_leaking_crossrefs(tmp_path):
+    # Write a crossref row whose source_id is in frozen_tuples.source_tuples
+    crossrefs = tmp_path / "crossrefs.jsonl"
+    crossrefs.write_text(json.dumps({
+        "source_framework": "owasp_llm", "source_id": "LLM02",
+        "source_node_id": "owasp_llm:LLM02",
+        "target_framework": "mitre_atlas",
+        "target_node_id": "mitre_atlas:AML.T0054",
+        "provenance_sha": "local_sha",
+    }) + "\n")
+    partition = tmp_path / "partition.json"
+    partition.write_text(json.dumps({"held_out": [], "train_eligible": ["local_sha"]}))
+    frozen = tmp_path / "frozen.json"
+    frozen.write_text(json.dumps({
+        "source_tuples": [["owasp_llm", "LLM02"]],
+        "target_tuples": [["_none_", "_none_"]],
+        "pair_tuples": [],
+    }))
+    present = {"owasp_llm:LLM02", "mitre_atlas:AML.T0054"}
+    injected, firewall_out = load_upstream_prior_edges(
+        crossrefs, partition, present, frozen
+    )
+    assert injected == []  # layer 0 dropped it
+    assert len(firewall_out) == 1
+```
+
+**`benchmark_crossref.py` change:** when held_out from partition is empty, fall back to `firewall_out` as the evaluation set. Report both sizes in the output JSON so the paper can cite which path produced the benchmark.
 | `scripts/build_graph.py` is rerun in CI and Plan 1-B upstream artifacts are absent | Injection is wrapped in `if not crossrefs_path.exists()` with a warning; the graph build remains green in all environments |
+
+---
+
+## Task Extension: Framework Expansion (Option C — all 19 new frameworks)
+
+**Context (Plan 1-D brainstorm, 2026-04-09):** The GenAI-Data-Security-Initiative
+crosswalk data (`third_party/genai-crosswalk`) contains 3,210 mappings across
+23 target frameworks. Currently only 4 are resolved (mitre_atlas, nist_rmf,
+aiuc_1, eu_ai_act → 546 rows). 2,538 rows target 18 frameworks we don't have
+node registries for. Adding node registries would unlock a ~6x training data
+increase.
+
+**Scope:** For each of the 18 new target frameworks:
+
+1. Obtain the canonical control list (from the framework's official source)
+2. Build `data/frameworks/<fw_key>/nodes.json` with `node_id`, `control_id`,
+   `control_name`, `description` for each control
+3. Add the framework's display name → our key mapping to
+   `classifier/data/upstream_loader.py::TARGET_FRAMEWORK_TABLE`
+4. Re-run `python -m classifier.scripts.build_upstream` to resolve rows
+5. Re-run `python -m classifier.scripts.run_contamination_audit` to partition
+6. Add the new framework nodes to `data/processed/nodes.json` and embeddings
+7. Extend the graph with the newly resolved edges
+
+**Priority order (by unlocked row count):**
+OWASP SAMM (187), SOC 2 (168), ISO 27001 (167), PCI DSS (166),
+ISO 42001 (164), NIST CSF (164), ENISA MLF (164), NIST 800-82 (154),
+OWASP ASVS (151), FedRAMP (147), DORA (147), ISA 62443 (144),
+CIS Controls (138), NIST 800-218A (136), CWE/CVE (130), OWASP NHI (120),
+OWASP AI Testing (60), STRIDE (22).
+
+**Firewall:** The Plan 1-D canonical (direction-agnostic) frozen tuple check
+in `frozen_tuples.json` ensures any reversed-direction overlap is caught.
+No additional firewall work is needed for framework expansion.
+
+**See:** `docs/upstream_unresolvable.md` Category B2 for the full breakdown.
 
 ---
 

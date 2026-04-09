@@ -16,10 +16,12 @@ Category A frameworks (format mismatch, fixable here):
 Category B frameworks (corpus-absent, canonicalizer returns None):
   - csa_aicm:    upstream uses tier designators L1..L7 which do not map to
                  any control id in the csa_aicm corpus.
-  - mitre_atlas: upstream usually uses technique IDs AML.T#### which do
-                 resolve (nodes.json has both M and T entries); a handful
-                 of techniques (e.g. AML.T0027, AML.T0045) are absent from
-                 the current ATLAS snapshot and will stay unresolved.
+
+mitre_atlas ID aliases (GenAI-Data-Security-Initiative uses older ATLAS IDs):
+  - AML.T0022 -> AML.T0012 (Valid Accounts — renumbered)
+  - AML.T0032 -> AML.T0020 (Data Poisoning -> Poison Training Data)
+  - AML.T0027, AML.T0030, AML.T0045: absent from current ATLAS snapshot,
+    no clear alias. These 6 rows (3 unique IDs) stay unresolved.
 """
 from __future__ import annotations
 import re
@@ -36,6 +38,12 @@ _EU_AI_ACT_ART_RE = re.compile(r"^\s*Art\.?\s*(\d+)")
 _NIST_RMF_RE = re.compile(r"^(GV|MP|MS|MG)-(.+)$")
 _AIUC_DOMAIN_RE = re.compile(r"^[A-F]$")
 _AIUC_CONTROL_RE = re.compile(r"^[A-F]\d{3}(?:\.\d+)?$")
+
+# MITRE ATLAS ID aliases — GenAI-Data-Security-Initiative uses older IDs
+_ATLAS_ALIASES: dict[str, str] = {
+    "AML.T0022": "AML.T0012",  # Valid Accounts (renumbered)
+    "AML.T0032": "AML.T0020",  # Data Poisoning -> Poison Training Data
+}
 
 
 def canonicalize_eu_ai_act(raw_control_id: Optional[str], raw_control_name: Optional[str]) -> Optional[str]:
@@ -72,6 +80,14 @@ def canonicalize_aiuc_1(raw: Optional[str]) -> Optional[str]:
     return None
 
 
+def canonicalize_mitre_atlas(raw: Optional[str]) -> Optional[str]:
+    """Apply ATLAS ID aliases, then identity passthrough."""
+    if not raw:
+        return None
+    s = raw.strip()
+    return _ATLAS_ALIASES.get(s, s)
+
+
 def canonicalize_identity(raw: Optional[str]) -> Optional[str]:
     """For frameworks whose upstream ids already match nodes.json."""
     if not raw:
@@ -103,6 +119,8 @@ def canonicalize(
         local = canonicalize_aiuc_1(raw_control_id)
     elif target_framework == "csa_aicm":
         local = canonicalize_corpus_absent(raw_control_id)
+    elif target_framework == "mitre_atlas":
+        local = canonicalize_mitre_atlas(raw_control_id)
     else:
         local = canonicalize_identity(raw_control_id)
 

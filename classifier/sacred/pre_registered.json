@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "description": "Pre-registered constants for Plan 6 sacred run and Plan 5 ensemble wrappers. Any drift between these values and runtime code is a Contract 15 violation and aborts the sacred run. These values are committed to git before the sacred run fires; any post-hoc edit invalidates the preregistration and MUST trigger a --break-glass justification.",
+  "registered_at": "2026-04-08",
+  "registered_on_commit": "plan1d/frozen-tuples-firewall",
+  "conformal": {
+    "alpha": 0.10,
+    "coverage_target": 0.90,
+    "coverage_tolerance_pp": 2.0,
+    "mondrian_partition": "expert_tier",
+    "calibration_set": "human_cal + autonomous_calibration_v1"
+  },
+  "abstention": {
+    "precision_floor": 0.95,
+    "signal": "kl_disagreement",
+    "tuning_set": "llm_val"
+  },
+  "statistical_tests": {
+    "bootstrap_alpha": 0.05,
+    "bootstrap_n_resamples": 10000,
+    "permutation_n": 10000,
+    "bh_fdr_alpha": 0.05,
+    "framework_pair_count": 12
+  },
+  "retrieval": {
+    "candidate_depth_k": 100,
+    "floor_at_20": 0.65,
+    "floor_at_100": 0.88
+  },
+  "labeling_weights": {
+    "upstream_v1": 1.0,
+    "llm_sme_v1": 0.6,
+    "human_cal_v1": 1.0
+  },
+  "seeds": {
+    "sacred_run_seed": 20260408,
+    "sampler_seed": 20260408,
+    "ensemble_seed": 20260408
+  }
+}

@@ -458,6 +458,15 @@ Implements §6 (evaluation strategy — three benchmarks), §7 Plan 8 delta (hel
 
 Each of `abstract.tex`, `method.tex`, `ablations.tex`, `limitations.tex`, `ethics.tex`, `reproducibility.tex` contains a `\section{...}` header and a `% TODO(author)` comment block listing the paragraphs the human author must write, plus concrete `\input` / `\includegraphics` hooks. Plan 6 tables referenced elsewhere in the paper feed in via `\input{../tables/tableX_frozen.tex}` and friends.
 
+**`limitations.tex` is NOT a free-form stub.** It MUST contain, verbatim, four named subsections, each populated with a `% REQUIRED:` checklist that `test_limitations_sections_present.py` enforces by grep. The subsections are:
+
+1. **Retrieval floor as ceiling.** State the Plan 1-B retrieval floor numerically (0.65@20 / 0.88@100 at the time of sacred run) and explain that downstream recall@1 is upper-bounded by the top-k pool: at least `1 - 0.88 = 12%` of frozen-test pairs are unrecoverable by any reranker/GAT/stacker because the true target never enters the candidate pool at k=100. Report what fraction of sacred-run errors are attributable to this ceiling vs. reranker/stacker error. Do not let reviewers mistake a retrieval-pool artifact for a classifier failure.
+2. **Upstream-benchmark circularity.** Explicitly name that `upstream_heldout` shares a label source with two-thirds of the training data (via upstream train-eligible rows), so agreement on that benchmark measures *mimicry of upstream's labeling distribution*, not generalization. Reference `frozen_test` and `crossref` as the non-circular benchmarks. Report the delta between `upstream_heldout` and `frozen_test` metrics — a large gap is evidence of circularity leakage.
+3. **Calibration substitution bias.** Point at `docs/methodology_notes/plan6-calibration-substitution.md`. Quantify the drift: report `conformal coverage on human_cal` vs. `conformal coverage on fresh_75` (both computed in Plan 6). A gap > 5pp is a known-limitation and MUST be flagged in the results section, not buried here. Mondrian coverage guarantees are marginal over the calibration distribution; if calibration ≠ deployment distribution the 90% is unreliable.
+4. **csa_aicm tier-level rows unresolvable.** Reference `docs/upstream_unresolvable.md`. Acknowledge the 61 csa_aicm rows whose upstream `target_control_id` is a tier level (`L1..L7`) rather than a control id. They are excluded from training and from `upstream_heldout`. Report the per-framework coverage that this excludes.
+
+Contract 17 (NEW — enforced by `classifier/tests/paper/test_limitations_sections_present.py`): `limitations.tex` contains all four subsection headers verbatim and the REQUIRED keyword list for each. Missing any one fails CI.
+
 - [ ] **Step 12: Write `paper/latexmkrc`**
 
 ```perl
@@ -1337,7 +1346,18 @@ git commit -m "plan8: CI incl. paper section guards + table renderers"
 
 ### Task H1: `Makefile` + `make reproduce`
 
-Unchanged from 2026-04-07 Task H1. `make reproduce` still runs `verify-hashes → eval-llm-val → diff-sacred`. The three new benchmarks are built by Plan 5 and Plan 6 and surfaced here read-only; Plan 8's `make reproduce` does not re-run them.
+Unchanged from 2026-04-07 Task H1. `make reproduce` still runs `verify-hashes → eval-llm-val → diff-sacred`. The three new benchmarks (frozen / upstream_heldout / crossref) are built by Plan 5 and Plan 6 and surfaced here read-only; Plan 8's `make reproduce` does not re-run them.
+
+**Prerequisite contract (Plan 1-D addition).** `make reproduce` MUST fail fast with a clear message if any of the following is missing:
+- `data/sacred_run/results.json` (Plan 6 output)
+- `data/ensemble/<ensemble_scorer_artifact>` (Plan 5 output)
+- `results/ablations/ablations.json` (Plan 6 output)
+- `classifier/sacred/pre_registered.json` with matching hash in `hashes.json`
+- `data/splits/frozen_tuples.json` with matching hash in `hashes.json`
+
+The Makefile's `reproduce` target runs `python -m classifier.repo.check_reproduce_prereqs` BEFORE `verify-hashes`. That module prints exactly which artifacts are missing and a pointer to the phase plan that produces each one. Do NOT silently skip a missing artifact.
+
+**Sacred-run staleness guard (Contract 18).** `results.json` carries a `git_sha` field. Every paper-table rendering script and the `make reproduce` diff step MUST call `classifier.sacred.staleness.assert_fresh()` which loads `results.json["git_sha"]` and compares against `git rev-parse HEAD`. A mismatch raises `RuntimeError("Contract 18: sacred_run/results.json is stale — produced at <sha>, HEAD is <sha>. Re-run Plan 6 sacred run.")`. Allow override only via `--allow-stale` for paper-edit iteration, never in CI.
 
 - [ ] **Step 1: Write `Makefile`** (verbatim from 2026-04-07).
 - [ ] **Step 2: Write the test** (verbatim from 2026-04-07).

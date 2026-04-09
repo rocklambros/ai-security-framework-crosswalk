@@ -122,17 +122,46 @@ Implements:
 All nine contracts (1–9) from `2026-04-07-plan5-gat-stacking-conformal.md`
 remain in force. This delta adds:
 
-- **Contract 10 (NEW) — runtime contamination assertion.** Every batch yielded
-  by `classifier.ensemble.training_batches.iter_weighted_rows` is checked
-  row-by-row against the set
-  `json.loads(Path("data/upstream/partition.json").read_text())["held_out"]`.
-  If any row's `provenance_sha` is in that set, the loader raises
-  `RuntimeError("Contract 10: held-out upstream provenance_sha <...> reached "
-  "training batch loader")` and aborts training. The held-out set is loaded
-  **once at loader construction** and cached as a `frozenset`. This contract
-  is the second layer of the spec §4.4 two-layer defense; it is complementary
-  to, and does not replace, the pre-registered static CI gate
-  `classifier/tests/test_contamination.py`.
+**Plan 5 self-review step (Plan 1-D addition):** Before the Plan 5 branch
+is opened for review, grep for every call site of `iter_weighted_rows(` in
+the repo and verify each caller passes `frozen_tuples_path` explicitly (or
+accepts the default `data/splits/frozen_tuples.json`). Also grep every
+`.fit(` call in `classifier/ensemble/` and verify the rows being fed were
+routed through `iter_weighted_rows`, not read directly from disk. A single
+caller bypassing the loader nullifies Contract 10. Run:
+`grep -rn "iter_weighted_rows\|LGBMClassifier\|GATConv\|torch_geometric" classifier/ensemble/`
+and document the audit in the PR description.
+
+- **Contract 10 (NEW) — runtime contamination assertion, TWO LAYERS.** Every
+  batch yielded by `classifier.ensemble.training_batches.iter_weighted_rows`
+  is checked row-by-row against two independent sets loaded once at loader
+  construction and cached as `frozenset`s:
+
+  1. **Layer 0 — Frozen-test tuple firewall (Plan 1-D, provenance-agnostic).**
+     Loads `data/splits/frozen_tuples.json`. For every row the loader extracts
+     `(source_framework, source_id)` and `(target_framework, target_id)` from
+     the row's `source_node_id` / `target_node_id` (or explicit fields) and
+     REFUSES any row whose source tuple is in `frozen_tuples.source_tuples`,
+     whose target tuple is in `frozen_tuples.target_tuples`, or whose full
+     pair is in `frozen_tuples.pair_tuples`. This layer fires regardless of
+     `provenance_tag` — it catches upstream_v1, llm_sme_v1, human_cal_v1, and
+     any future provenance source with a single invariant. It is the ONLY
+     layer that protects against leaks via newly-generated provenance_shas
+     (e.g. Plan 2 silver labels for a frozen source_id).
+
+  2. **Layer 1 — Upstream held-out provenance_sha check (belt-and-braces).**
+     Loads `json.loads(Path("data/upstream/partition.json").read_text())["held_out"]`.
+     If any row's `provenance_sha` is in that set, raise. This is a second,
+     stricter layer on upstream-origin rows and catches upstream-partition
+     logic regressions that don't alter identifiers.
+
+  Any violation of either layer raises `RuntimeError` with a message
+  identifying the layer, the offending identifiers, and the row index, and
+  aborts training. The loader REFUSES to start if `frozen_tuples.json` is
+  missing — no silent fallback. This contract is the runtime half of the
+  spec §4.4 two-layer defense; it is complementary to, and does not replace,
+  the pre-registered static CI gate `classifier/tests/test_contamination.py`
+  nor the cross-phase integration test `classifier/tests/contract_no_frozen_leak.py`.
 
 ---
 
@@ -165,40 +194,110 @@ def _empty_partition(tmp_path):
     p.write_text(json.dumps({"held_out": [], "train_eligible": [], "upstream_total": 0}))
     return p
 
+def _empty_frozen(tmp_path):
+    """A non-empty-but-harmless frozen_tuples fixture. Must have at least one
+    entry in src and tgt so the loader doesn't refuse as 'empty'."""
+    p = tmp_path / "frozen_tuples.json"
+    p.write_text(json.dumps({
+        "source_tuples": [["_none_", "_none_"]],
+        "target_tuples": [["_none_", "_none_"]],
+        "pair_tuples": [],
+    }))
+    return p
+
+def _row(pair_key, tag, sha, src_fw, src_id, tgt_fw, tgt_id, label=1):
+    return {
+        "pair_key": pair_key, "provenance_tag": tag, "provenance_sha": sha,
+        "source_framework": src_fw, "source_id": src_id,
+        "target_framework": tgt_fw, "target_id": tgt_id,
+        "label": label,
+    }
+
 def test_default_weights_per_tag(tmp_path):
     rows = [
-        {"pair_key": "p1", "provenance_tag": "upstream_v1",  "provenance_sha": "sha1", "label": 1},
-        {"pair_key": "p2", "provenance_tag": "llm_sme_v1",   "provenance_sha": "sha2", "label": 0},
-        {"pair_key": "p3", "provenance_tag": "human_cal_v1", "provenance_sha": "sha3", "label": 1},
+        _row("p1", "upstream_v1",  "sha1", "owasp_llm", "LLM01", "mitre_atlas", "AML.T0051.000"),
+        _row("p2", "llm_sme_v1",   "sha2", "owasp_llm", "LLM02", "mitre_atlas", "AML.T0052"),
+        _row("p3", "human_cal_v1", "sha3", "owasp_llm", "LLM03", "mitre_atlas", "AML.T0053"),
     ]
     rows_path = _write(tmp_path, "rows.jsonl", rows)
     out = list(iter_weighted_rows(
         rows_path=rows_path,
         partition_path=_empty_partition(tmp_path),
         label_weights=DEFAULT_LABEL_WEIGHTS,
+        frozen_tuples_path=_empty_frozen(tmp_path),
     ))
     weights = [r["sample_weight"] for r in out]
     assert weights == [1.0, 0.6, 1.0]
     assert DEFAULT_LABEL_WEIGHTS == {"upstream_v1": 1.0, "llm_sme_v1": 0.6, "human_cal_v1": 1.0}
 
 def test_cli_weight_override(tmp_path):
-    rows = [{"pair_key": "p1", "provenance_tag": "llm_sme_v1", "provenance_sha": "sha1", "label": 1}]
+    rows = [_row("p1", "llm_sme_v1", "sha1", "owasp_llm", "LLM01", "mitre_atlas", "AML.T0051.000")]
     rows_path = _write(tmp_path, "rows.jsonl", rows)
     out = list(iter_weighted_rows(
         rows_path=rows_path,
         partition_path=_empty_partition(tmp_path),
         label_weights={"upstream_v1": 1.0, "llm_sme_v1": 0.8, "human_cal_v1": 1.0},
+        frozen_tuples_path=_empty_frozen(tmp_path),
     ))
     assert out[0]["sample_weight"] == 0.8
 
 def test_missing_tag_raises(tmp_path):
-    rows = [{"pair_key": "p1", "provenance_tag": "mystery_tag", "provenance_sha": "sha1", "label": 1}]
+    rows = [_row("p1", "mystery_tag", "sha1", "owasp_llm", "LLM01", "mitre_atlas", "AML.T0051.000")]
     rows_path = _write(tmp_path, "rows.jsonl", rows)
     with pytest.raises(ValueError, match="unknown provenance_tag"):
         list(iter_weighted_rows(
             rows_path=rows_path,
             partition_path=_empty_partition(tmp_path),
             label_weights=DEFAULT_LABEL_WEIGHTS,
+            frozen_tuples_path=_empty_frozen(tmp_path),
+        ))
+
+def test_missing_frozen_tuples_refuses(tmp_path):
+    """Contract 10 layer 0: missing frozen_tuples.json MUST refuse to run."""
+    rows = [_row("p1", "upstream_v1", "sha1", "owasp_llm", "LLM01", "mitre_atlas", "AML.T0051.000")]
+    rows_path = _write(tmp_path, "rows.jsonl", rows)
+    with pytest.raises(RuntimeError, match="Contract 10 layer 0.*missing"):
+        list(iter_weighted_rows(
+            rows_path=rows_path,
+            partition_path=_empty_partition(tmp_path),
+            label_weights=DEFAULT_LABEL_WEIGHTS,
+            frozen_tuples_path=tmp_path / "does_not_exist.json",
+        ))
+
+def test_frozen_source_tuple_raises(tmp_path):
+    """Contract 10 layer 0: a row whose source tuple is frozen MUST raise,
+    regardless of provenance_tag (this is the Plan 2 silver-label leak path)."""
+    frozen = tmp_path / "frozen_tuples.json"
+    frozen.write_text(json.dumps({
+        "source_tuples": [["owasp_llm", "LLM02"]],
+        "target_tuples": [["_none_", "_none_"]],
+        "pair_tuples": [],
+    }))
+    rows = [_row("p1", "llm_sme_v1", "local_sha_new", "owasp_llm", "LLM02", "mitre_atlas", "AML.T0999")]
+    rows_path = _write(tmp_path, "rows.jsonl", rows)
+    with pytest.raises(RuntimeError, match="Contract 10 layer 0.*source tuple.*owasp_llm.*LLM02"):
+        list(iter_weighted_rows(
+            rows_path=rows_path,
+            partition_path=_empty_partition(tmp_path),
+            label_weights=DEFAULT_LABEL_WEIGHTS,
+            frozen_tuples_path=frozen,
+        ))
+
+def test_frozen_target_tuple_raises(tmp_path):
+    frozen = tmp_path / "frozen_tuples.json"
+    frozen.write_text(json.dumps({
+        "source_tuples": [["_none_", "_none_"]],
+        "target_tuples": [["mitre_atlas", "AML.T0999"]],
+        "pair_tuples": [],
+    }))
+    rows = [_row("p1", "human_cal_v1", "sha1", "owasp_llm", "LLM99", "mitre_atlas", "AML.T0999")]
+    rows_path = _write(tmp_path, "rows.jsonl", rows)
+    with pytest.raises(RuntimeError, match="Contract 10 layer 0.*target tuple.*mitre_atlas.*AML.T0999"):
+        list(iter_weighted_rows(
+            rows_path=rows_path,
+            partition_path=_empty_partition(tmp_path),
+            label_weights=DEFAULT_LABEL_WEIGHTS,
+            frozen_tuples_path=frozen,
         ))
 ```
 
@@ -214,12 +313,12 @@ Expected: `ImportError: classifier.ensemble.training_batches`.
 """Provenance-tagged training-batch loader.
 
 Implements spec §4.5 (per-tag weights) and spec §4.4 runtime contamination
-assertion (Contract 10 of Plan 5, the second layer of the two-layer defense).
+assertion (Contract 10 of Plan 5, the runtime half of the two-layer defense).
 """
 from __future__ import annotations
 import json
 from pathlib import Path
-from typing import Dict, Iterator, Mapping, Optional
+from typing import Dict, Iterator, Mapping, Optional, Tuple
 
 DEFAULT_LABEL_WEIGHTS: Dict[str, float] = {
     "upstream_v1":  1.0,
@@ -227,40 +326,122 @@ DEFAULT_LABEL_WEIGHTS: Dict[str, float] = {
     "human_cal_v1": 1.0,
 }
 
+DEFAULT_FROZEN_TUPLES_PATH = Path("data/splits/frozen_tuples.json")
+DEFAULT_PARTITION_PATH = Path("data/upstream/partition.json")
+
 
 def _load_held_out(partition_path: Path) -> frozenset[str]:
     data = json.loads(Path(partition_path).read_text())
     return frozenset(data.get("held_out", []))
 
 
+def _load_frozen_sets(
+    frozen_path: Path,
+) -> Tuple[frozenset, frozenset, frozenset]:
+    """Load Plan 1-D frozen tuple sets. Refuses if file is missing or empty."""
+    p = Path(frozen_path)
+    if not p.exists():
+        raise RuntimeError(
+            f"Contract 10 layer 0: frozen_tuples.json missing at {p}. "
+            "Run scripts/build_frozen_tuples.py. Training REFUSED."
+        )
+    data = json.loads(p.read_text())
+    src = frozenset(tuple(t) for t in data.get("source_tuples", []))
+    tgt = frozenset(tuple(t) for t in data.get("target_tuples", []))
+    pair = frozenset(tuple(t) for t in data.get("pair_tuples", []))
+    if not src and not tgt:
+        raise RuntimeError(
+            "Contract 10 layer 0: frozen_tuples.json has empty source/target "
+            "sets. Training REFUSED."
+        )
+    return src, tgt, pair
+
+
+def _split_node_id(node_id) -> Tuple[str, str]:
+    if not isinstance(node_id, str) or ":" not in node_id:
+        raise ValueError(f"node_id missing framework prefix: {node_id!r}")
+    fw, _, rest = node_id.partition(":")
+    return fw, rest
+
+
+def _row_identifiers(row: dict) -> Tuple[Tuple[str, str], Tuple[str, str]]:
+    """Extract ((src_fw, src_id), (tgt_fw, tgt_id)) from a row.
+
+    Prefers explicit source_framework/source_id/target_framework/target_id;
+    falls back to splitting source_node_id/target_node_id.
+    """
+    if "source_framework" in row and "source_id" in row:
+        src_tup = (row["source_framework"], row["source_id"])
+    else:
+        src_tup = _split_node_id(row.get("source_node_id"))
+    if "target_framework" in row and "target_id" in row:
+        tgt_tup = (row["target_framework"], row["target_id"])
+    elif "target_node_id" in row:
+        tgt_tup = _split_node_id(row["target_node_id"])
+    else:
+        raise ValueError(f"row missing target identifiers: keys={list(row.keys())}")
+    return src_tup, tgt_tup
+
+
 def iter_weighted_rows(
     rows_path: Path,
-    partition_path: Path,
+    partition_path: Path = DEFAULT_PARTITION_PATH,
     label_weights: Optional[Mapping[str, float]] = None,
+    frozen_tuples_path: Path = DEFAULT_FROZEN_TUPLES_PATH,
 ) -> Iterator[dict]:
     """Yield provenance-tagged rows with a `sample_weight` field.
 
-    - Looks up per-row weight via `label_weights[row['provenance_tag']]`
-      (defaults to `DEFAULT_LABEL_WEIGHTS`).
-    - Unknown tags raise `ValueError("unknown provenance_tag: <tag>")`.
-    - Asserts each row's `provenance_sha` is NOT in the held-out set from
-      `partition.json`; a hit raises `RuntimeError` with the Contract 10
-      message. The held-out set is cached per-call as a `frozenset`.
+    Contract 10 (two layers, both MUST pass for every row):
+      - **Layer 0 (Plan 1-D frozen firewall).** Extracts (src_fw, src_id) and
+        (tgt_fw, tgt_id) from the row and refuses if either tuple OR the full
+        pair appears in `frozen_tuples.json`. Fires regardless of provenance.
+      - **Layer 1 (upstream held_out).** Refuses if `provenance_sha` is in
+        `partition.json["held_out"]`.
+
+    Per-row sample_weight is looked up via `label_weights[row['provenance_tag']]`
+    (defaults to `DEFAULT_LABEL_WEIGHTS`). Unknown tags raise ValueError.
+    Both held-out sets are cached per-call as frozenset-equivalents.
     """
     weights = dict(label_weights or DEFAULT_LABEL_WEIGHTS)
+    # Layer 0: load frozen firewall BEFORE opening rows. Refuses on missing.
+    frozen_src, frozen_tgt, frozen_pair = _load_frozen_sets(Path(frozen_tuples_path))
+    # Layer 1: upstream held-out
     held_out = _load_held_out(Path(partition_path))
+
     with open(rows_path) as f:
-        for line in f:
+        for idx, line in enumerate(f):
             row = json.loads(line)
             tag = row.get("provenance_tag")
             if tag not in weights:
                 raise ValueError(f"unknown provenance_tag: {tag!r}")
+
+            # Layer 0 firewall (all provenance)
+            src_tup, tgt_tup = _row_identifiers(row)
+            pair_tup = (src_tup[0], src_tup[1], tgt_tup[0], tgt_tup[1])
+            if src_tup in frozen_src:
+                raise RuntimeError(
+                    f"Contract 10 layer 0: row {idx} source tuple {src_tup} "
+                    f"(tag={tag}) is in frozen_tuples.source_tuples"
+                )
+            if tgt_tup in frozen_tgt:
+                raise RuntimeError(
+                    f"Contract 10 layer 0: row {idx} target tuple {tgt_tup} "
+                    f"(tag={tag}) is in frozen_tuples.target_tuples"
+                )
+            if pair_tup in frozen_pair:
+                raise RuntimeError(
+                    f"Contract 10 layer 0: row {idx} pair tuple {pair_tup} "
+                    f"(tag={tag}) is in frozen_tuples.pair_tuples"
+                )
+
+            # Layer 1 firewall (upstream held-out)
             sha = row.get("provenance_sha")
             if sha and sha in held_out:
                 raise RuntimeError(
-                    f"Contract 10: held-out upstream provenance_sha {sha} "
-                    "reached training batch loader"
+                    f"Contract 10 layer 1: row {idx} held-out upstream "
+                    f"provenance_sha {sha} reached training batch loader"
                 )
+
             row["sample_weight"] = float(weights[tag])
             yield row
 ```
@@ -290,6 +471,23 @@ import json
 import pytest
 from classifier.ensemble.training_batches import iter_weighted_rows, DEFAULT_LABEL_WEIGHTS
 
+def _frozen(tmp_path):
+    p = tmp_path / "frozen_tuples.json"
+    p.write_text(json.dumps({
+        "source_tuples": [["_none_", "_none_"]],
+        "target_tuples": [["_none_", "_none_"]],
+        "pair_tuples": [],
+    }))
+    return p
+
+def _row(pair_key, tag, sha):
+    return {
+        "pair_key": pair_key, "provenance_tag": tag, "provenance_sha": sha,
+        "source_framework": "owasp_llm", "source_id": "LLM_OK",
+        "target_framework": "mitre_atlas", "target_id": "AML.T0051.000",
+        "label": 1,
+    }
+
 def test_held_out_sha_raises(tmp_path):
     partition = tmp_path / "partition.json"
     partition.write_text(json.dumps({
@@ -299,14 +497,9 @@ def test_held_out_sha_raises(tmp_path):
     }))
     rows = tmp_path / "rows.jsonl"
     with open(rows, "w") as f:
-        f.write(json.dumps({
-            "pair_key": "p1",
-            "provenance_tag": "upstream_v1",
-            "provenance_sha": "HELDOUT_SHA",
-            "label": 1,
-        }) + "\n")
-    with pytest.raises(RuntimeError, match="Contract 10: held-out upstream provenance_sha HELDOUT_SHA"):
-        list(iter_weighted_rows(rows, partition, DEFAULT_LABEL_WEIGHTS))
+        f.write(json.dumps(_row("p1", "upstream_v1", "HELDOUT_SHA")) + "\n")
+    with pytest.raises(RuntimeError, match="Contract 10 layer 1.*HELDOUT_SHA"):
+        list(iter_weighted_rows(rows, partition, DEFAULT_LABEL_WEIGHTS, _frozen(tmp_path)))
 
 def test_train_eligible_sha_passes(tmp_path):
     partition = tmp_path / "partition.json"
@@ -317,13 +510,8 @@ def test_train_eligible_sha_passes(tmp_path):
     }))
     rows = tmp_path / "rows.jsonl"
     with open(rows, "w") as f:
-        f.write(json.dumps({
-            "pair_key": "p1",
-            "provenance_tag": "upstream_v1",
-            "provenance_sha": "OK_SHA",
-            "label": 1,
-        }) + "\n")
-    out = list(iter_weighted_rows(rows, partition, DEFAULT_LABEL_WEIGHTS))
+        f.write(json.dumps(_row("p1", "upstream_v1", "OK_SHA")) + "\n")
+    out = list(iter_weighted_rows(rows, partition, DEFAULT_LABEL_WEIGHTS, _frozen(tmp_path)))
     assert len(out) == 1 and out[0]["sample_weight"] == 1.0
 ```
 

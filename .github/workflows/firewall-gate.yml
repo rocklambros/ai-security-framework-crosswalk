@@ -1,0 +1,42 @@
+name: Honesty firewall gate
+
+# Runs the three firewall contract tests on every push and every PR.
+# Author-time light — no torch, no onnx, no CUDA. Plan 8 installs the
+# heavier CI matrix; this gate stays minimal so it can never be disabled
+# for "CI speed" reasons.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  firewall:
+    name: frozen_tuples + Contract 10 layer 0 + pre_registered
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install minimal deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+
+      - name: Verify frozen_tuples.json not stale
+        run: |
+          python -m pytest classifier/tests/contract_no_frozen_leak.py::test_frozen_tuples_not_stale -x -q
+
+      - name: Run cross-phase firewall contract
+        run: |
+          python -m pytest classifier/tests/contract_no_frozen_leak.py -x -q
+
+      - name: Run pre-registered lockfile contract
+        run: |
+          python -m pytest classifier/tests/test_pre_registered_lockfile.py -x -q

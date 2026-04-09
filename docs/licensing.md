@@ -14,15 +14,9 @@ this data.
 
 ## Released trained model weights
 
-**RECOMMENDED: CC BY-SA 4.0 — pending user ratification.**
+**RATIFIED: CC BY-SA 4.0 (2026-04-09).**
 
-> **Status:** This is a recommendation from the Plan 1-D review, not a
-> ratified decision. Before any non-dry-run HF model push (Plan 7 or
-> Plan 8), the user MUST confirm this choice in writing on the PR. If the
-> user chooses a different license (MIT on weights, CC BY 4.0 on weights,
-> no public distribution), this file MUST be updated before the push.
-
-The default recommendation below stands unless overridden.
+> **Status:** Ratified by project owner on 2026-04-09.
 
 ### Reasoning
 

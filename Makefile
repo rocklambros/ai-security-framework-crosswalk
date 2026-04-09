@@ -1,12 +1,26 @@
-# AI Security Framework Crosswalk — Makefile (Plan 1-D bootstrap).
-#
-# Plan 8 will replace this file with the full `make reproduce` target. Until
-# then this Makefile exposes only the firewall pre-gate so every phase can
-# run `make verify-firewall` as part of its pre-flight.
+# AI Security Framework Crosswalk — Makefile
 
-.PHONY: verify-firewall verify-firewall-rebuild verify-firewall-tests
+.PHONY: test lint reproduce paper verify-firewall verify-firewall-rebuild verify-firewall-tests
 
 PY ?= python3
+
+# ── Primary targets ─────────────────────────────────────────────────
+
+test:
+	$(PY) -m pytest -x
+
+lint:
+	$(PY) -m ruff check .
+
+reproduce: verify-firewall
+	$(PY) -m classifier.data.splits verify-hashes
+	$(PY) -m classifier.ensemble.eval --split llm_val
+	@echo "reproduce: all checks passed"
+
+paper:
+	cd paper && latexmk -pdf main.tex
+
+# ── Firewall targets (Plan 1-D) ────────────────────────────────────
 
 verify-firewall: verify-firewall-rebuild verify-firewall-tests
 	@echo "verify-firewall: all honesty-firewall checks passed"

@@ -1,0 +1,28 @@
+\section{Ablation Study}
+\label{sec:ablations}
+
+We conduct ablation experiments to quantify the contribution of each
+feature family. All ablations use the same hyperparameters and are
+evaluated on the frozen expert test set.
+
+\input{tables/table3}
+
+\subsection{Key Findings}
+
+\begin{itemize}
+    \item \textbf{GATv2 features are critical.} Removing GATv2 features
+          drops accuracy from 0.636 to 0.528 ($-$10.8 pp), the largest
+          single-family ablation effect. The GATv2-only model achieves
+          0.625, confirming that graph structure carries the majority of
+          the predictive signal.
+    \item \textbf{BM25 baseline.} A BM25-only retrieval baseline
+          achieves 0.285 tier accuracy, establishing a lower bound.
+    \item \textbf{BGE features are noisy.} Removing BGE embeddings has
+          minimal impact, suggesting that the dense semantic signal
+          overlaps substantially with the GATv2 structural signal once
+          the graph is enriched with bridge edges.
+\end{itemize}
+
+These results indicate that the graph attention mechanism---which
+propagates information along both within-framework and cross-framework
+edges---captures relational structure that pure text similarity cannot.

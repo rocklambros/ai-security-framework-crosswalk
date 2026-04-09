@@ -1,0 +1,48 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\title{Automated Cross-Framework Mapping of AI Security Controls\\
+       via Graph Attention Networks and Conformal Prediction}
+
+\author{Rock Lambros\\
+        \texttt{ORCID: 0009-0004-3568-6151}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/abstract}
+\input{sections/intro}
+\input{sections/related}
+\input{sections/method}
+\input{sections/dataset}
+\input{sections/experiments}
+\input{sections/results}
+\input{sections/ablations}
+\input{sections/limitations}
+\input{sections/ethics}
+\input{sections/reproducibility}
+\input{sections/acknowledgements}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

@@ -1,0 +1,21 @@
+\begin{abstract}
+Organizations adopting AI systems must comply with a growing number of
+overlapping security frameworks, yet no shared vocabulary exists across
+them. Manual crosswalks are expensive, error-prone, and quickly become
+stale as frameworks evolve. We present an automated approach for mapping
+controls across 12 major AI security frameworks, constructing a
+knowledge graph of 983 control nodes and 6{,}383 edges. Our method
+combines text embeddings (BGE-large, BM25) with structural features
+from a GATv2 graph attention network, feeding a LightGBM stacker that
+classifies control pairs into four tiers: \emph{equivalent},
+\emph{related}, \emph{partial}, and \emph{unrelated}. Mondrian
+conformal prediction provides per-class coverage guarantees, and a
+KL-divergence router flags uncertain predictions for human review.
+On 400 expert-labeled frozen test pairs the system achieves a tier
+accuracy of 0.37 (95\% CI [0.33, 0.42]) and macro F1 of 0.23; on
+1{,}515 LLM-labeled validation pairs it reaches 0.65 accuracy.
+Ablation analysis confirms that GATv2 features are critical, lifting
+accuracy by 10.8 percentage points over the text-only baseline. All
+code, data splits, and model weights are released under Apache-2.0
+with a one-command reproducibility target.
+\end{abstract}

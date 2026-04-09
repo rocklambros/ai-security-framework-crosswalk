@@ -1,0 +1,49 @@
+\section{Dataset}
+\label{sec:dataset}
+
+\subsection{Frameworks}
+
+We ingest 12 AI security frameworks spanning governance, technical
+controls, and threat modeling:
+NIST AI RMF, NIST SP~800-53, MITRE ATLAS, OWASP LLM Top~10,
+OWASP ML Top~10, ISO/IEC~42001, EU AI Act, AISI Inspect,
+CSA AI Controls Matrix, MAESTRO, Google SAIF, and the OWASP AI
+Exchange. Together these yield 983 control nodes.
+
+\subsection{Graph Structure}
+
+The control graph contains 6{,}383 edges from three sources:
+(1)~within-framework parent--child hierarchies,
+(2)~cross-framework prior edges from the GenAI Security Project
+crosswalk (CC~BY-SA~4.0), and
+(3)~algorithmically generated bridge edges from high-confidence
+BM25 matches. The graph spans 26 framework pairs.
+
+\subsection{Labeling Protocol}
+
+We employ a two-stage labeling protocol:
+\begin{enumerate}
+    \item \textbf{LLM-SME silver labels.} A structured prompt elicits
+          tier judgments from a large language model acting as a
+          simulated subject matter expert. Each pair receives a tier
+          label (0--3) and a free-text rationale. 1{,}515 training pairs
+          and 379 validation pairs are labeled this way.
+    \item \textbf{Expert gold labels.} A human expert independently
+          labels 400 pairs using the same 4-tier scheme. These form
+          the frozen test set (\texttt{v1\_frozen}) used for all
+          reported metrics. The frozen split is SHA-verified and never
+          used during training or hyperparameter selection.
+\end{enumerate}
+
+\subsection{Tier Scheme}
+
+The four tiers capture decreasing degrees of semantic overlap:
+\begin{description}
+    \item[Equivalent (3):] Controls address the same requirement with
+          comparable specificity.
+    \item[Related (2):] Controls address overlapping concerns but differ
+          in scope or granularity.
+    \item[Partial (1):] One control partially addresses the other's
+          requirement.
+    \item[Unrelated (0):] No meaningful semantic overlap.
+\end{description}

@@ -1,0 +1,39 @@
+\section{Introduction}
+\label{sec:intro}
+
+The rapid proliferation of AI security frameworks---from NIST AI RMF
+and MITRE ATLAS to OWASP LLM Top~10, the EU AI Act, and ISO/IEC
+42001---has created a compliance landscape in which organizations must
+simultaneously satisfy multiple overlapping standards. Each framework
+uses its own taxonomy, control identifiers, and terminology, making it
+difficult for practitioners to determine which controls in one framework
+correspond to controls in another.
+
+Manual crosswalk construction is the current industry practice. Subject
+matter experts review pairs of controls across frameworks and assign
+equivalence judgments. This process is slow (a single 12-framework
+crosswalk can take hundreds of hours), subjective (inter-annotator
+agreement is often low for partial-overlap cases), and brittle (each
+framework revision invalidates portions of the mapping).
+
+We propose an automated crosswalk system that scales to arbitrary
+framework pairs. Our pipeline ingests framework control texts, builds a
+multi-framework knowledge graph, and trains a supervised classifier to
+assign one of four relationship tiers to each candidate control pair.
+The system incorporates three signal families: (1)~lexical similarity
+via BM25, (2)~dense semantic similarity via BGE-large embeddings, and
+(3)~structural graph features extracted from a GATv2 attention network
+trained on the full control graph.
+
+A Mondrian conformal prediction wrapper provides finite-sample coverage
+guarantees per class, and a KL-divergence router identifies predictions
+where the model is uncertain, routing them to human reviewers. The
+result is a human-in-the-loop system that automates the bulk of
+crosswalk construction while preserving expert oversight where it
+matters most.
+
+We evaluate on 400 expert-labeled frozen test pairs across 26 framework
+pairs, achieving tier accuracy of 0.37 with a bootstrap 95\% confidence
+interval of [0.33, 0.42]. On LLM-labeled validation data the system
+reaches 0.65 accuracy, highlighting a significant distribution gap
+between expert and LLM labeling that we analyze in detail.

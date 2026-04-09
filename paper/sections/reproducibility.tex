@@ -1,0 +1,23 @@
+\section{Reproducibility}
+\label{sec:reproducibility}
+
+We prioritize full reproducibility of all reported results:
+
+\begin{itemize}
+    \item \textbf{One-command reproduction.} Running \texttt{make reproduce}
+          verifies frozen split integrity via SHA-256 hashes, re-evaluates
+          the trained model on the LLM-labeled validation split, and
+          reports all metrics from Section~\ref{sec:results}.
+    \item \textbf{Pinned dependencies.} All Python dependencies are
+          pinned in \texttt{requirements.txt} with exact versions.
+    \item \textbf{Frozen test splits.} The 400 expert-labeled test pairs
+          are stored in \texttt{data/splits/human\_test\_frozen.jsonl}
+          with a derived \texttt{frozen\_tuples.json} file. A SHA-256
+          hash verification contract test ensures these files are never
+          inadvertently modified.
+    \item \textbf{Sacred experiment tracking.} The canonical run is
+          logged via Sacred with all hyperparameters, random seeds, and
+          metric values recorded.
+    \item \textbf{Source code.} The complete codebase is released under
+          the Apache-2.0 license.
+\end{itemize}

@@ -1,0 +1,31 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Main Results}
+
+On the 400 expert-labeled frozen test set, our full system achieves:
+\begin{itemize}
+    \item \textbf{Tier accuracy:} 0.3725 (95\% CI [0.3275, 0.4200])
+    \item \textbf{Macro F1:} 0.2259
+\end{itemize}
+
+On the 379 LLM-labeled validation set, accuracy rises to 0.6517,
+reflecting the distribution gap between expert and LLM labeling
+discussed in Section~\ref{sec:limitations}.
+
+\input{tables/table1}
+
+\subsection{Conformal Coverage}
+
+The Mondrian conformal predictor achieves empirical coverage of 0.69
+at $\alpha=0.10$, below the nominal 0.90 target. This shortfall is
+attributable to the small calibration set and severe class imbalance
+in the minority tiers. Coverage on the majority (unrelated) class
+meets the nominal level.
+
+\subsection{Router Statistics}
+
+The KL-divergence router flags approximately 35\% of test predictions
+for human review. Among routed instances, the error rate is 1.8$\times$
+higher than among accepted instances, confirming that the router
+successfully identifies uncertain predictions.

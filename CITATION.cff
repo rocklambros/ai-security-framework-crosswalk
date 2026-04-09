@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "AI Security Framework Crosswalk"
+authors:
+  - family-names: "Lambros"
+    given-names: "Rock"
+    orcid: "https://orcid.org/0009-0004-3568-6151"
+date-released: "2026-04-09"
+license: "Apache-2.0"
+type: software
+repository-code: "https://github.com/rocklambros/ai-security-framework-crosswalk"
+abstract: >-
+  Automated cross-framework mapping of AI security controls using
+  GATv2 graph attention networks, LightGBM ensemble classification,
+  and Mondrian conformal prediction.
+keywords:
+  - ai-security
+  - framework-crosswalk
+  - graph-attention-networks
+  - conformal-prediction
+  - lightgbm

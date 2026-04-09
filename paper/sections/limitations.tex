@@ -1,0 +1,31 @@
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Expert--LLM label gap.}
+The most significant limitation is the 28-point accuracy gap between
+LLM-labeled validation (0.65) and expert-labeled test (0.37). This
+indicates that the LLM-SME labeling protocol produces systematically
+different judgments from human experts, particularly for partial-overlap
+and related tiers where the distinction is inherently subjective.
+
+\paragraph{Class imbalance.}
+The equivalent class (tier~3) has 0\% recall on the frozen test set.
+The model never predicts this class with sufficient confidence, as
+equivalent pairs are rare ($<$5\% of the dataset) and the LightGBM
+stacker is biased toward the majority class despite inverse-frequency
+weighting.
+
+\paragraph{Conformal coverage gap.}
+Empirical conformal coverage (0.69) falls short of the nominal 0.90
+target. With only 400 test instances and four classes, the calibration
+set is too small to achieve reliable per-class coverage for minority
+tiers.
+
+\paragraph{Framework coverage.}
+While 12 frameworks are included, the system has not been evaluated on
+frameworks outside this set. Generalization to new frameworks would
+require additional prior edges or zero-shot graph construction methods.
+
+\paragraph{Temporal validity.}
+Framework versions are pinned at ingestion time. As frameworks evolve,
+the crosswalk will require periodic re-ingestion and re-evaluation.

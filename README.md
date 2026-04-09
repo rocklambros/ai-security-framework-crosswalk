@@ -360,6 +360,16 @@ timeline
 
 Detailed per-session notes live in [`docs/SESSION_CONTEXT.md`](docs/SESSION_CONTEXT.md) and phase-level status lives in [`docs/IMPROVEMENT_PLAN.md`](docs/IMPROVEMENT_PLAN.md).
 
+## Reproducibility
+
+To verify frozen splits and reproduce the main evaluation metrics:
+
+```bash
+make reproduce
+```
+
+This verifies SHA-256 hashes of the frozen test split, re-evaluates the trained model on the LLM-labeled validation split, and reports all metrics. See `paper/README.md` for paper build instructions.
+
 ## License and attribution
 
-Analysis code, the mapping engine, the notebook, and the derived graph are released under the **MIT License**. Framework source content in `data/frameworks/` retains the original license of each source framework, which is one of CC-BY-SA 4.0 (OWASP, OWASP AI Exchange), Apache 2.0 (MITRE ATLAS), public domain (NIST), a proprietary CSA license (CSA AICM, distributed content derived from their public JSON only), and public terms from AIUC-1 and CoSAI. If you reuse the graph or the mapping engine, please preserve attribution to the original framework authors and to this repository.
+Analysis code, the mapping engine, the notebook, and the derived graph are released under the **Apache-2.0 License**. Framework source content in `data/frameworks/` retains the original license of each source framework, which is one of CC-BY-SA 4.0 (OWASP, OWASP AI Exchange), Apache 2.0 (MITRE ATLAS), public domain (NIST), a proprietary CSA license (CSA AICM, distributed content derived from their public JSON only), and public terms from AIUC-1 and CoSAI. If you reuse the graph or the mapping engine, please preserve attribution to the original framework authors and to this repository.

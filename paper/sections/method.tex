@@ -1,0 +1,59 @@
+\section{Method}
+\label{sec:method}
+
+Our pipeline comprises four stages: feature extraction, graph learning,
+stacking classification, and uncertainty quantification.
+
+\subsection{Text Embeddings}
+
+For each control node we compute two text representations:
+\begin{itemize}
+    \item \textbf{BGE-large} dense embeddings (1024-d), producing
+          cosine similarity features for each candidate pair.
+    \item \textbf{BM25} sparse lexical scores, computed over
+          control titles and descriptions after standard tokenization
+          and stopword removal.
+\end{itemize}
+
+\subsection{Graph Construction and GATv2}
+
+We construct a heterogeneous control graph with 983 nodes (one per
+control across all 12 frameworks) and 6{,}383 edges derived from
+within-framework hierarchies, cross-framework prior edges from the
+GenAI Security Project crosswalk, and high-confidence BM25 bridge edges.
+
+A two-layer GATv2~\citep{brody2022gatv2} network is trained on this
+graph using a link-prediction objective. The resulting node embeddings
+(128-d) capture structural proximity: controls that are connected
+through multiple paths in the graph receive similar representations
+regardless of surface-level text overlap.
+
+For each candidate pair $(u, v)$, we extract four GATv2-derived
+features: cosine similarity of node embeddings, L2 distance, element-wise
+product pooling, and a bridge centrality score.
+
+\subsection{LightGBM Stacker}
+
+All features---text similarity, graph structural, and metadata---are
+concatenated into a 38-dimensional feature vector and fed to a
+LightGBM~\citep{ke2017lightgbm} multiclass classifier. The model
+predicts one of four tiers: \emph{unrelated} (0), \emph{partial} (1),
+\emph{related} (2), and \emph{equivalent} (3). Inverse-frequency class
+weights address the severe class imbalance. Hyperparameters are tuned
+via Optuna with 5-fold cross-validation.
+
+\subsection{Mondrian Conformal Prediction}
+
+We wrap the LightGBM classifier with a Mondrian conformal predictor
+that provides per-class coverage guarantees. For each test instance, the
+conformal predictor outputs a prediction set guaranteed to contain the
+true label with probability $\geq 1-\alpha$ within each class stratum.
+
+\subsection{KL-Divergence Router}
+
+A KL-divergence router compares the predicted class distribution against
+a uniform reference distribution. Instances with high KL divergence
+(confident predictions) are accepted; those with low divergence
+(uncertain predictions) are routed to human review. This creates a
+natural human-in-the-loop workflow where experts focus on the most
+ambiguous cases.

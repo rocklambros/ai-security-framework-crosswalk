@@ -2,6 +2,7 @@
 """Local orchestrator: provision Lambda, bootstrap, train, rsync, terminate."""
 from __future__ import annotations
 
+import importlib
 import json
 import os
 import subprocess
@@ -10,12 +11,11 @@ import threading
 import time
 from pathlib import Path
 
-from classifier.lambda.provision import (
-    get_running_instances,
-    poll_for_instance,
-    provision_instance,
-    terminate_instance,
-)
+_provision = importlib.import_module("classifier.lambda.provision")
+get_running_instances = _provision.get_running_instances
+poll_for_instance = _provision.poll_for_instance
+provision_instance = _provision.provision_instance
+terminate_instance = _provision.terminate_instance
 
 SSH_KEY = os.path.expanduser("~/.ssh/id_ed25519")
 SSH_OPTS = f"-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -i {SSH_KEY}"

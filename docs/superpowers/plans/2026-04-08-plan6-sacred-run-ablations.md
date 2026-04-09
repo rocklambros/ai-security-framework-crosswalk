@@ -110,7 +110,102 @@ From Plans 1–5, Plan 1-B, and from sessions 6–8 ralph-loop learnings (see `M
 - **Contract 8 — `human_test_frozen` access ONLY via Phase F's `sacred_run.py`.** Enforced by `test_frozen_access_grep.py`, which greps the entire repo (excluding `classifier/sacred/sacred_run.py`, `classifier/data/splits.py`, `data/splits/`, `docs/`, and tests that explicitly assert the string) for the literal `human_test_frozen` and fails if any other file references it. The upstream-cal sampler MUST NOT reference `human_test_frozen` directly — it reads `data/upstream/partition.json` (which was pre-computed against the frozen set by Plan 1-B's contamination auditor, and thus already encodes the firewall).
 - **Contract 10 — one-shot environment.** `sacred_run.py` aborts unless: (1) `git status --porcelain` is empty, (2) current branch is `main`, (3) current HEAD is not ahead of `@{u}` without `--allow-unpushed`. Tested in `test_one_shot_contract.py`.
 - **Contract 11 — fresh-75 labels must be human.** `classifier/fresh75/load_labels.py::load_fresh_75_labels()` requires every row to have `labeler == "human_sme"` and `labeler_id` matching the single configured user id in `.env` (`FRESH75_LABELER_ID`). Any `labeler` starting with `llm_`, `claude`, `gpt`, or `auto` hard-fails. Contract 11 governs **fresh-75 only** — it is deliberately NOT extended to the calibration set, because §2 D7 redefines calibration as upstream-sourced. Tested in `test_load_labels.py`.
+- **Contract 15 (NEW) — pre-registered constants integrity.** All §6 numeric thresholds (α, coverage target, abstention precision floor, BH-FDR α, bootstrap/permutation n, framework_pair_count, seeds, label weights) MUST be read at runtime via `classifier.sacred.pre_registered.load()`, which hash-verifies `classifier/sacred/pre_registered.json` against the pin in `data/splits/hashes.json["pre_registered"]["sha256"]`. Any drift aborts the sacred run. A grep-enforced contract test (`classifier/tests/sacred/test_pre_registered_consumed.py`) asserts that no runtime module under `classifier/sacred/`, `classifier/ensemble/conformal.py`, or `classifier/ensemble/abstention.py` contains hardcoded literals for `0.10`, `0.90`, `0.95`, or `20260408` — they must all come from `pre_registered.load()`. See Phase 0.4 below.
+
+- **Contract 16 (NEW) — frozen-tuple firewall (Plan 1-D).** Every Plan 6 training-row producer (upstream cal sampler, fresh-75 sampler, any synthetic row generator) MUST load `data/splits/frozen_tuples.json` and reject any row whose `(source_framework, source_id)` or `(target_framework, target_id)` tuple appears in the frozen sets. This is redundant with Plan 5 Contract 10 layer 0 but runs earlier in the pipeline (at the producer rather than the consumer) so a leak is caught at write time, not at train time. Enforced by `classifier/tests/contract_no_frozen_leak.py` (cross-phase contract test that CI runs at the start of every phase).
+
 - **Contract 12 (NEW) — calibration provenance.** `classifier/calibration/upstream_cal_sampler.py` emits exactly 150 rows where every row satisfies: (a) `provenance_sha` appears in `data/upstream/partition.json["train_eligible"]` and NOT in `["held_out"]`; (b) `target_id_unresolved is False and target_node_id is not None`; (c) `provenance_tag == "human_cal_v1"`; (d) the row's `(source_framework, source_id)` tuple does not appear in `data/splits/human_test_frozen.jsonl` (double-check via the contamination auditor's own output, not by re-reading the frozen file). Tested in `test_upstream_cal_sampler.py`.
+
+---
+
+## Phase 0.4 — Pre-registered constants loader (Contract 15)
+
+**Files:**
+- Create: `classifier/sacred/pre_registered.py`
+- Create: `classifier/tests/sacred/test_pre_registered_consumed.py`
+
+- [ ] **Step 1: Implement the loader**
+
+```python
+# classifier/sacred/pre_registered.py
+from __future__ import annotations
+import hashlib, json
+from functools import lru_cache
+from pathlib import Path
+
+PRE_REG_PATH = Path("classifier/sacred/pre_registered.json")
+HASHES_PATH = Path("data/splits/hashes.json")
+
+
+@lru_cache(maxsize=1)
+def load() -> dict:
+    if not PRE_REG_PATH.exists():
+        raise RuntimeError(f"pre_registered.json missing at {PRE_REG_PATH}")
+    sha = hashlib.sha256(PRE_REG_PATH.read_bytes()).hexdigest()
+    pinned = json.loads(HASHES_PATH.read_text()).get("pre_registered", {}).get("sha256")
+    if not pinned:
+        raise RuntimeError("pre_registered.json has no sha256 pin in hashes.json")
+    if pinned != sha:
+        raise RuntimeError(
+            f"Contract 15: pre_registered.json sha {sha} != pinned {pinned}"
+        )
+    return json.loads(PRE_REG_PATH.read_text())
+```
+
+- [ ] **Step 2: Write the grep contract test**
+
+```python
+# classifier/tests/sacred/test_pre_registered_consumed.py
+import re
+from pathlib import Path
+import pytest
+
+FORBIDDEN_LITERALS = [
+    r"\b0\.10\b", r"\b0\.90\b", r"\b0\.95\b",
+    r"\b10000\b", r"\b20260408\b",
+]
+RUNTIME_PATHS = [
+    "classifier/sacred",
+    "classifier/ensemble/conformal.py",
+    "classifier/ensemble/abstention.py",
+]
+ALLOWED_FILES = {"classifier/sacred/pre_registered.py"}
+
+@pytest.mark.parametrize("literal", FORBIDDEN_LITERALS)
+def test_no_hardcoded_literals(literal):
+    hits = []
+    for p in RUNTIME_PATHS:
+        root = Path(p)
+        if root.is_file():
+            candidates = [root]
+        else:
+            candidates = list(root.rglob("*.py"))
+        for f in candidates:
+            if str(f) in ALLOWED_FILES:
+                continue
+            for i, line in enumerate(f.read_text().splitlines(), 1):
+                if "# pragma: pre_reg_allowed" in line:
+                    continue
+                if re.search(literal, line):
+                    hits.append(f"{f}:{i}: {line.strip()}")
+    assert not hits, (
+        f"Contract 15: hardcoded literal {literal!r} in runtime code. "
+        f"Read via pre_registered.load() instead. Hits: {hits[:5]}"
+    )
+
+def test_loader_verifies_hash():
+    from classifier.sacred.pre_registered import load
+    data = load()
+    assert data["conformal"]["alpha"] == 0.10
+    assert data["abstention"]["precision_floor"] == 0.95
+```
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add classifier/sacred/pre_registered.py classifier/tests/sacred/test_pre_registered_consumed.py
+git commit -m "plan6: pre_registered constants loader with sha256 pin (Contract 15)"
+```
 
 ---
 

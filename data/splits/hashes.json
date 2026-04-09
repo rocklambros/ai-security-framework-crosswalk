@@ -12,6 +12,10 @@
     "data/candidates/retrieval_floor_report.json": "b55175840aada9359ae870a6a500024824bf283a0f7e82b0c12c3335f262f210",
     "data/processed/nodes.json": "5c0570a51a2c22f7922335af61c8b326933796cadfffc61ccbe9778ca32243a6"
   },
+  "pre_registered": {
+    "path": "classifier/sacred/pre_registered.json",
+    "sha256": "d8e2fa831bac6cdb363b6b295b3a4b49620eaee2b446c04cb224295bbf617a7a"
+  },
   "sme_pool_full.jsonl": "9213607e92a726a90ddb9e79b6fa540d791f2000df6ae902cad71fdf104b9feb",
   "splits": {
     "frozen_tuples_json": {

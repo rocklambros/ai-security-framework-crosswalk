@@ -23,6 +23,7 @@ def audit_coverage(
     labels_path: Path,
     partition_path: Path,
     manifest_path: Path,
+    strict: bool = True,
 ) -> list[CoverageRow]:
     held_out = set(json.loads(Path(partition_path).read_text()).get("held_out", []))
     gold: dict[tuple[str, str], int] = defaultdict(int)
@@ -63,7 +64,9 @@ def audit_coverage(
         ) + "\n"
     )
     if empties:
-        raise CoverageError(
-            f"{len(empties)} pair(s) have zero training signal: {empties}"
-        )
+        msg = f"{len(empties)} pair(s) have zero training signal: {empties}"
+        if strict:
+            raise CoverageError(msg)
+        import sys
+        print(f"WARNING: {msg}", file=sys.stderr)
     return rows

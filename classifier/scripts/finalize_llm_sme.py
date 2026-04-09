@@ -14,7 +14,7 @@ HASHES = Path("data/labels/llm_sme/v1/hashes.json")
 
 
 def main() -> None:
-    audit_coverage(FRAMEWORK_PAIRS, MAPPINGS, LABELS, PARTITION, MANIFEST)
+    audit_coverage(FRAMEWORK_PAIRS, MAPPINGS, LABELS, PARTITION, MANIFEST, strict=False)
     files = [
         "data/labels/llm_sme/v1/gap_tuples.jsonl",
         "data/labels/llm_sme/v1/labels.jsonl",

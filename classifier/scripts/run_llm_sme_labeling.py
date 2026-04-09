@@ -15,7 +15,7 @@ LABELS = Path("data/labels/llm_sme/v1/labels.jsonl")
 CACHE = Path("data/labels/llm_sme/v1/cache")
 LEDGER = Path("data/cost_ledger.jsonl")
 NODES = Path("data/processed/nodes.json")
-MODEL = "claude-sonnet-4-5-20251101"
+MODEL = os.environ.get("LLM_SME_MODEL", "claude-3-haiku-20240307")
 
 
 def _get_api_key() -> str:

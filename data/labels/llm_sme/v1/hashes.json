@@ -1,0 +1,7 @@
+{
+  "llm_sme_v1": {
+    "data/labels/llm_sme/v1/coverage_manifest.json": "222fac876c627191cce1b28a9c6beb05764cdcd44e354195917cddb95a5444d2",
+    "data/labels/llm_sme/v1/gap_tuples.jsonl": "3d76422661f04c8109c312fb9a35abadfec9256b832eef6a51b615dfedca190e",
+    "data/labels/llm_sme/v1/labels.jsonl": "f2bbab6c2e36430db3e519ffc175e1218251622c21186f4cafbac1a8cbbefc96"
+  }
+}

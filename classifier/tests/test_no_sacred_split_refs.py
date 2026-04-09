@@ -16,7 +16,11 @@ PLAN5_SCRIPTS = {
 
 
 def test_no_human_test_frozen_in_ensemble():
+    # leakage_firewall.py is the designated guardian of frozen splits
+    excluded = {"leakage_firewall.py"}
     for py_file in ENSEMBLE_DIR.glob("**/*.py"):
+        if py_file.name in excluded:
+            continue
         content = py_file.read_text()
         assert "human_test_frozen" not in content, (
             f"Contract 8: {py_file} references human_test_frozen"

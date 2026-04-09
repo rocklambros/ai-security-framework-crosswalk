@@ -63,3 +63,13 @@ def test_not_fitted_raises():
     stacker = LGBMStacker()
     with pytest.raises(RuntimeError, match="not fitted"):
         stacker.predict_proba(np.zeros((5, 3)))
+
+
+def test_v2_feature_cols_count():
+    from classifier.ensemble.stacker import FEATURE_COLS_V2
+    assert len(FEATURE_COLS_V2) == 83
+
+
+def test_stacker_v2_init():
+    s = LGBMStacker(version="v2")
+    assert len(s.feature_cols) == 83

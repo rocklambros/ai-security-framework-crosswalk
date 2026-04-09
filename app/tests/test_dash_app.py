@@ -1,4 +1,3 @@
-# app/tests/test_dash_app.py
 """Playwright GUI tests for the Dash app.
 
 Run with: python -m pytest app/tests/test_dash_app.py -v

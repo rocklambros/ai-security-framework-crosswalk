@@ -17,6 +17,11 @@ import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 
+# Ensure project root is on sys.path for mapping_engine imports
+_PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, _PROJECT_ROOT)
+
 try:
     import yaml
 except ImportError:
@@ -1615,6 +1620,60 @@ def create_cross_framework_category_edges(nodes, edges, warnings):
     logging.info(f"Cross-framework category edges added: {n_added}")
 
 
+def inject_upstream_crossref_edges(nodes, edges, warnings):
+    """Inject upstream_crossref_v1 prior edges into the working edge dict.
+
+    Gracefully skips if either input file is absent. Added edges go
+    through ``add_edge`` so dedup + confidence ordering is honored.
+    """
+    from pathlib import Path
+
+    crossrefs_path = Path("data/upstream/crossrefs_v1.jsonl")
+    partition_path = Path("data/upstream/partition.json")
+    frozen_tuples_path = Path("data/splits/frozen_tuples.json")
+    if not crossrefs_path.exists() or not partition_path.exists():
+        warnings.append(
+            "inject_upstream_crossref_edges: upstream artifacts not found; skipping"
+        )
+        return 0
+
+    from mapping_engine.engine.upstream_prior_edges import load_upstream_prior_edges
+
+    present = set(nodes.keys())
+    local_warnings: list[str] = []
+    ft_path = frozen_tuples_path if frozen_tuples_path.exists() else None
+    new_edges, firewall_out = load_upstream_prior_edges(
+        crossrefs_path, partition_path, present_node_ids=present,
+        frozen_tuples_path=ft_path, warnings=local_warnings,
+    )
+    warnings.extend(local_warnings)
+
+    added = 0
+    for raw in new_edges:
+        e = make_edge(
+            source_node_id=raw["source_node_id"],
+            target_node_id=raw["target_node_id"],
+            rationale_code=raw["rationale_code"],
+            rationale_label=raw["rationale_label"],
+            relevance=raw["relevance"],
+            confidence=raw["confidence"],
+            provenance=raw["provenance"],
+        )
+        e["edge_type"] = "upstream_crossref"
+        e["notes"] = raw["notes"]
+        before = len(edges)
+        add_edge(edges, e)
+        if len(edges) > before or edges[edge_key(e)] is e:
+            added += 1
+
+    warnings.append(
+        f"inject_upstream_crossref_edges: added {added} upstream_crossref edges "
+        f"({len(firewall_out)} firewalled, {len(local_warnings)} skipped)"
+    )
+    logging.info(f"Upstream crossref edges: {added} added, {len(firewall_out)} firewalled")
+    return added
+
+
 def create_stub_nodes(nodes, edges, warnings):
     """Task 7: Create stub nodes for frameworks with only markdown sources."""
     _create_owasp_llm_nodes(nodes, warnings)
@@ -1788,6 +1847,9 @@ def main():
 
     # Session 7.6 S9: cross-framework category links
     create_cross_framework_category_edges(nodes, edges, warnings)
+
+    # Plan 4: upstream crossref prior edges
+    inject_upstream_crossref_edges(nodes, edges, warnings)
 
     # Task 8: Write output (includes dedup and validation)
     write_output(nodes, edges, warnings)

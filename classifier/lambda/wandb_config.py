@@ -1,0 +1,40 @@
+"""WANDB project and sweep configurations for crosswalk-v2."""
+from __future__ import annotations
+
+WANDB_PROJECT = "crosswalk-v2"
+WANDB_ENTITY = None
+
+CE_SWEEP_CONFIG = {
+    "method": "bayes",
+    "metric": {"name": "val_macro_f1", "goal": "maximize"},
+    "parameters": {
+        "learning_rate": {"distribution": "log_uniform_values", "min": 1e-6, "max": 5e-5},
+        "batch_size": {"values": [32, 64, 128]},
+        "epochs": {"values": [3, 5, 8, 10, 15]},
+        "warmup_ratio": {"distribution": "uniform", "min": 0.0, "max": 0.2},
+        "weight_decay": {"distribution": "log_uniform_values", "min": 1e-4, "max": 1e-1},
+        "dropout": {"distribution": "uniform", "min": 0.05, "max": 0.3},
+    },
+    "early_terminate": {"type": "hyperband", "min_iter": 3, "eta": 3},
+}
+
+STACKER_SWEEP_CONFIG = {
+    "method": "bayes",
+    "metric": {"name": "oof_macro_f1", "goal": "maximize"},
+    "parameters": {
+        "n_estimators": {"values": [100, 200, 300, 500]},
+        "max_depth": {"values": [3, 5, 7, 10, -1]},
+        "learning_rate": {"distribution": "log_uniform_values", "min": 0.01, "max": 0.3},
+        "min_child_samples": {"values": [5, 10, 20, 50]},
+        "reg_alpha": {"distribution": "log_uniform_values", "min": 1e-4, "max": 10},
+        "reg_lambda": {"distribution": "log_uniform_values", "min": 1e-4, "max": 10},
+        "subsample": {"distribution": "uniform", "min": 0.6, "max": 1.0},
+        "colsample_bytree": {"distribution": "uniform", "min": 0.6, "max": 1.0},
+    },
+}
+
+CROSS_ENCODER_MODELS = [
+    {"name": "deberta", "model_id": "microsoft/deberta-v3-large", "group": "ce-deberta-sweep"},
+    {"name": "roberta", "model_id": "roberta-large", "group": "ce-roberta-sweep"},
+    {"name": "electra", "model_id": "google/electra-large-discriminator", "group": "ce-electra-sweep"},
+]

@@ -13,6 +13,15 @@
     "data/processed/nodes.json": "5c0570a51a2c22f7922335af61c8b326933796cadfffc61ccbe9778ca32243a6"
   },
   "sme_pool_full.jsonl": "9213607e92a726a90ddb9e79b6fa540d791f2000df6ae902cad71fdf104b9feb",
+  "splits": {
+    "frozen_tuples_json": {
+      "n_pair_tuples": 400,
+      "n_source_tuples": 237,
+      "n_target_tuples": 163,
+      "path": "data/splits/frozen_tuples.json",
+      "sha256": "d45b7d589d95948444a1b97ca72dd9b5cd3be63937a5fd83866b33617396b85b"
+    }
+  },
   "upstream_v1": {
     "THIRD_PARTY_NOTICES.md": "91511a743780bdff46e94b7d8a76f815cc7635f5b9bbf834a52bad85e080eec1",
     "data/frameworks/owasp-dsgai/MANIFEST.json": "519ea7ec7c7c507c009f4a1bb8d4af7282b9533b84269f8d6513bfbd92a7f1fa",

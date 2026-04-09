@@ -277,7 +277,9 @@ git commit -m "plan2: pydantic schemas for gap tuples, llm_sme_v1 labels, covera
 
 ## Task 3 — Gap selector (the heart of the plan)
 
-The selector consumes `data/candidates/pool_v1.jsonl` (the 26-pair candidate pool from Plan 1-B) and `data/upstream/mappings_v1.jsonl` + `data/upstream/partition.json` (from Plan 1-B/1-C), and emits only those candidate tuples that are NOT already covered by a train-eligible upstream row. Train-eligible is defined as spec §4.5: `target_id_unresolved=False AND target_node_id IS NOT NULL AND held_out=False` (i.e., the row is not in `partition.json["held_out"]`).
+The selector consumes `data/candidates/pool_v1.jsonl` (the 26-pair candidate pool from Plan 1-B), `data/upstream/mappings_v1.jsonl` + `data/upstream/partition.json` (from Plan 1-B/1-C), **and `data/splits/frozen_tuples.json` (from Plan 1-D)**, and emits only those candidate tuples that are (a) NOT already covered by a train-eligible upstream row AND (b) do NOT touch the frozen-test honesty firewall.
+
+**Honesty firewall (Plan 1-D, non-negotiable):** A candidate tuple is rejected as a gap label target if `(source_framework, source_id)` appears in `frozen_tuples.json["source_tuples"]` OR `(target_framework, target_id)` appears in `frozen_tuples.json["target_tuples"]`. This is the layer-0 firewall — it does not rely on upstream provenance, so it catches any frozen-test source/target regardless of whether an upstream row exists. Train-eligibility (held_out provenance_sha) is a secondary layer for upstream-covered rows.
 
 **Files:**
 - Create: `classifier/labeling/gap_selector.py`
@@ -299,26 +301,30 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
             fh.write(json.dumps(r, sort_keys=True) + "\n")
 
 
-def test_gap_selector_excludes_upstream_gold_and_held_out(tmp_path):
+def test_gap_selector_excludes_upstream_covered_frozen_and_heldout(tmp_path):
     pool = tmp_path / "pool.jsonl"
     mappings = tmp_path / "mappings.jsonl"
     partition = tmp_path / "partition.json"
+    frozen = tmp_path / "frozen_tuples.json"
 
     _write_jsonl(
         pool,
         [
-            # covered by upstream gold (train-eligible)
+            # covered by upstream gold (train-eligible) → NOT a gap
             {"source_framework": "owasp_llm", "source_id": "LLM01",
              "target_framework": "mitre_atlas", "target_node_id": "mitre_atlas:AML.T0051.000"},
-            # upstream held-out (contamination) → gap
+            # upstream held-out AND source_id in frozen test → MUST NOT be a gap (layer 0 firewall)
             {"source_framework": "owasp_llm", "source_id": "LLM02",
              "target_framework": "mitre_atlas", "target_node_id": "mitre_atlas:AML.T0054"},
-            # upstream row exists but target_id_unresolved → gap
+            # upstream row exists but target_id_unresolved → gap IF source/target not frozen
             {"source_framework": "owasp_llm", "source_id": "LLM03",
              "target_framework": "csa_aicm", "target_node_id": "csa_aicm:AIS-01"},
-            # no upstream row at all → gap
+            # no upstream row at all → gap IF source/target not frozen
             {"source_framework": "owasp_llm", "source_id": "LLM04",
              "target_framework": "nist_rmf", "target_node_id": "nist_rmf:GOVERN-1.6"},
+            # target_node_id appears in frozen target set → MUST NOT be a gap (layer 0 firewall)
+            {"source_framework": "owasp_llm", "source_id": "LLM05",
+             "target_framework": "mitre_atlas", "target_node_id": "mitre_atlas:AML.T0999"},
         ],
     )
     _write_jsonl(
@@ -336,10 +342,29 @@ def test_gap_selector_excludes_upstream_gold_and_held_out(tmp_path):
         ],
     )
     partition.write_text(json.dumps({"held_out": ["b" * 64]}))
+    frozen.write_text(json.dumps({
+        "source_tuples": [["owasp_llm", "LLM02"]],
+        "target_tuples": [["mitre_atlas", "AML.T0999"]],
+        "pair_tuples": [["owasp_llm", "LLM02", "mitre_atlas", "AML.T0054"]],
+    }))
 
-    gaps = select_gap_tuples(pool, mappings, partition)
+    gaps = select_gap_tuples(pool, mappings, partition, frozen)
     ids = sorted(g.source_id for g in gaps)
-    assert ids == ["LLM02", "LLM03", "LLM04"]
+    # LLM01 covered; LLM02 firewall (src); LLM05 firewall (tgt); LLM03/LLM04 legitimate gaps
+    assert ids == ["LLM03", "LLM04"]
+
+
+def test_gap_selector_refuses_when_frozen_tuples_missing(tmp_path):
+    """Contract: if frozen_tuples.json is missing, the selector MUST refuse to run."""
+    import pytest
+    pool = tmp_path / "pool.jsonl"
+    mappings = tmp_path / "mappings.jsonl"
+    partition = tmp_path / "partition.json"
+    _write_jsonl(pool, [])
+    _write_jsonl(mappings, [])
+    partition.write_text(json.dumps({"held_out": []}))
+    with pytest.raises((FileNotFoundError, RuntimeError)):
+        select_gap_tuples(pool, mappings, partition, tmp_path / "does-not-exist.json")
 ```
 
 Run: `pytest classifier/tests/test_gap_selector.py -x`
@@ -354,6 +379,8 @@ import json
 from pathlib import Path
 from .schemas import GapTuple
 
+DEFAULT_FROZEN_TUPLES = Path("data/splits/frozen_tuples.json")
+
 
 def _train_eligible(row: dict, held_out: set[str]) -> bool:
     if row.get("target_id_unresolved", True):
@@ -366,22 +393,45 @@ def _train_eligible(row: dict, held_out: set[str]) -> bool:
 
 
 def _pair_key(row: dict) -> tuple[str, str, str, str]:
+    tgt = row["target_node_id"]
+    # target_node_id may be fully qualified ("mitre_atlas:AML.T0001") — strip prefix
+    if isinstance(tgt, str) and ":" in tgt:
+        _, _, tgt = tgt.partition(":")
     return (
         row["source_framework"],
         row["source_id"],
         row["target_framework"],
-        row["target_node_id"],
+        tgt,
     )
+
+
+def _load_frozen_sets(frozen_path: Path) -> tuple[set[tuple[str, str]], set[tuple[str, str]], set[tuple[str, str, str, str]]]:
+    if not frozen_path.exists():
+        raise FileNotFoundError(
+            f"frozen_tuples.json missing at {frozen_path} — run scripts/build_frozen_tuples.py. "
+            "Gap selector REFUSES to run without the honesty firewall artifact."
+        )
+    data = json.loads(Path(frozen_path).read_text())
+    src = {tuple(t) for t in data.get("source_tuples", [])}
+    tgt = {tuple(t) for t in data.get("target_tuples", [])}
+    pair = {tuple(t) for t in data.get("pair_tuples", [])}
+    if not src and not tgt:
+        raise RuntimeError("frozen_tuples.json is empty — refusing to run")
+    return src, tgt, pair
 
 
 def select_gap_tuples(
     pool_path: Path,
     mappings_path: Path,
     partition_path: Path,
+    frozen_tuples_path: Path = DEFAULT_FROZEN_TUPLES,
 ) -> list[GapTuple]:
+    # Layer 0: honesty firewall — load frozen tuple sets. REFUSES to run if missing.
+    frozen_src, frozen_tgt, frozen_pair = _load_frozen_sets(Path(frozen_tuples_path))
+
+    # Layer 1: upstream train-eligible coverage (gap = not covered)
     partition = json.loads(Path(partition_path).read_text())
     held_out: set[str] = set(partition.get("held_out", []))
-
     covered: set[tuple[str, str, str, str]] = set()
     with Path(mappings_path).open() as fh:
         for line in fh:
@@ -399,6 +449,16 @@ def select_gap_tuples(
                 continue
             row = json.loads(line)
             key = _pair_key(row)
+            src_tup = (key[0], key[1])
+            tgt_tup = (key[2], key[3])
+            # Layer 0 firewall: reject if either endpoint OR the pair touches frozen test
+            if src_tup in frozen_src:
+                continue
+            if tgt_tup in frozen_tgt:
+                continue
+            if key in frozen_pair:
+                continue
+            # Layer 1: skip upstream-covered + dedupe
             if key in covered or key in seen:
                 continue
             seen.add(key)

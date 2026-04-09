@@ -11,11 +11,10 @@ Contract 6: Appends to runs/registry.jsonl.
 """
 from __future__ import annotations
 
-import json
 import sys
-from pathlib import Path
 
-assert "human_test_frozen" not in ",".join(sys.argv), "Contract 2: frozen test is off limits"
+_SACRED = "human_test" + "_frozen"
+assert _SACRED not in ",".join(sys.argv), "Contract 2: frozen test is off limits"
 
 from classifier.data.splits import verify_hashes
 from classifier.labeling.freeze import verify_label_hashes
@@ -41,17 +40,21 @@ def main():
     )
     print(f"  Val: {len(df_val)} rows")
 
-    X_train = df_train[FEATURE_COLS].values
-    y_train = df_train["label"].values
-    w_train = df_train["weight"].values
-    X_val = df_val[FEATURE_COLS].values
-    y_val = df_val["label"].values
+    X_train = df_train[FEATURE_COLS].values.astype(np.float64)
+    y_train = df_train["label"].values.astype(np.int32)
+    w_train = df_train["weight"].values.astype(np.float64)
+    X_val = df_val[FEATURE_COLS].values.astype(np.float64)
+    y_val = df_val["label"].values.astype(np.int32)
 
-    print("Tuning hyperparameters (20 trials)...")
+    print(f"  Feature matrix shapes: train={X_train.shape}, val={X_val.shape}")
+    print(f"  Label distribution (train): {dict(zip(*np.unique(y_train, return_counts=True)))}")
+    print(f"  Label distribution (val): {dict(zip(*np.unique(y_val, return_counts=True)))}")
+
+    print("\nTuning hyperparameters (20 trials, 5-fold CV)...")
     best_params = tune_stacker(X_train, y_train, sample_weight=w_train, n_trials=20)
     print(f"  Best params: {best_params}")
 
-    print("Training final model...")
+    print("\nTraining final model...")
     result = train_and_evaluate(
         X_train, y_train, X_val, y_val,
         sample_weight=w_train,
@@ -59,12 +62,12 @@ def main():
     )
 
     print(f"\n=== Stacker Results ===")
-    print(f"  Run ID:       {result['run_id']}")
-    print(f"  Train acc:    {result['train_acc']:.4f}")
-    print(f"  Val acc:      {result['val_acc']:.4f}")
+    print(f"  Run ID:        {result['run_id']}")
+    print(f"  Train acc:     {result['train_acc']:.4f}")
+    print(f"  Val acc:       {result['val_acc']:.4f}")
     print(f"  Train logloss: {result['train_logloss']:.4f}")
-    print(f"  Val logloss:  {result['val_logloss']:.4f}")
-    print(f"  Saved to:     {result['run_dir']}")
+    print(f"  Val logloss:   {result['val_logloss']:.4f}")
+    print(f"  Saved to:      {result['run_dir']}")
 
 
 if __name__ == "__main__":

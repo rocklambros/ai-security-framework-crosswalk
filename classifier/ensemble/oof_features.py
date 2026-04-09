@@ -29,17 +29,47 @@ def _pair_key(row: dict) -> str:
 
 
 def _compute_bridge_scores(pairs: list[dict], G) -> np.ndarray:
-    """Compute bridge score for each (source, target) pair."""
-    scores = []
-    for r in pairs:
+    """Compute bridge score for each (source, target) pair.
+
+    Groups by target framework to batch bridge score computation.
+    """
+    # Group pairs by target framework for batched computation
+    from collections import defaultdict
+    by_tgt_fw: dict[str, list[tuple[int, str, str]]] = defaultdict(list)
+    for i, r in enumerate(pairs):
         src = f"{r['source_framework']}:{r['source_id']}"
         tgt = r["target_node_id"]
+        tgt_fw = r.get("target_framework") or tgt.split(":")[0]
         if src in G and tgt in G:
-            s = graph_bridge_scores(G, [src], [tgt], {})
-            scores.append(float(s[0][0]))
-        else:
-            scores.append(0.0)
-    return np.array(scores)
+            by_tgt_fw[tgt_fw].append((i, src, tgt))
+
+    scores = np.zeros(len(pairs))
+
+    for tgt_fw, group in by_tgt_fw.items():
+        # Get all unique sources and targets for this framework
+        indices = [g[0] for g in group]
+        srcs = [g[1] for g in group]
+        tgts = [g[2] for g in group]
+
+        # Get unique targets in this framework for the bridge
+        unique_tgts = sorted(set(tgts))
+        tgt_to_col = {t: j for j, t in enumerate(unique_tgts)}
+
+        # Batch compute: bridge_scores shape = (len(srcs), len(unique_tgts))
+        # But we need per-pair, so compute in chunks
+        batch_size = 50
+        for batch_start in range(0, len(srcs), batch_size):
+            batch_end = min(batch_start + batch_size, len(srcs))
+            batch_srcs = srcs[batch_start:batch_end]
+            batch_tgts = tgts[batch_start:batch_end]
+            batch_indices = indices[batch_start:batch_end]
+
+            # For small batches, compute individually (bridge is fast per pair)
+            for k, (src, tgt, idx) in enumerate(zip(batch_srcs, batch_tgts, batch_indices)):
+                s = graph_bridge_scores(G, [src], [tgt], {})
+                scores[idx] = float(s[0][0])
+
+    return scores
 
 
 def build_feature_matrix(

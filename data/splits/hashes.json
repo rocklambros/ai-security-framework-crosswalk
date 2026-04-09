@@ -19,11 +19,13 @@
   "sme_pool_full.jsonl": "9213607e92a726a90ddb9e79b6fa540d791f2000df6ae902cad71fdf104b9feb",
   "splits": {
     "frozen_tuples_json": {
+      "n_canonical_pair_tuples": 400,
+      "n_frozen_endpoints": 369,
       "n_pair_tuples": 400,
       "n_source_tuples": 237,
       "n_target_tuples": 163,
       "path": "data/splits/frozen_tuples.json",
-      "sha256": "d45b7d589d95948444a1b97ca72dd9b5cd3be63937a5fd83866b33617396b85b"
+      "sha256": "0de7aefc70f59a5277f4e7ac3992581dc2906314bdffcbb9fd73ac147458c054"
     }
   },
   "upstream_v1": {

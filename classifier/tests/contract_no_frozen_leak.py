@@ -34,12 +34,25 @@ import pytest
 FROZEN_TUPLES = Path("data/splits/frozen_tuples.json")
 
 
-def load_frozen_sets() -> tuple[set[tuple[str, str]], set[tuple[str, str]], set[tuple[str, str, str, str]]]:
+def _canonical_pair(a: tuple[str, str], b: tuple[str, str]) -> tuple[str, str, str, str]:
+    """Sort two endpoints into canonical order for direction-agnostic matching."""
+    if a <= b:
+        return (*a, *b)
+    return (*b, *a)
+
+
+def load_frozen_sets() -> tuple[set[tuple[str, str]], set[tuple[str, str]], set[tuple[str, str, str, str]], set[tuple[str, str, str, str]]]:
     data = json.loads(FROZEN_TUPLES.read_text())
     src = {tuple(t) for t in data["source_tuples"]}
     tgt = {tuple(t) for t in data["target_tuples"]}
     pair = {tuple(t) for t in data["pair_tuples"]}
-    return src, tgt, pair
+    # canonical_pair_tuples: direction-agnostic check for reversed-direction data
+    if "canonical_pair_tuples" in data:
+        canonical = {tuple(t) for t in data["canonical_pair_tuples"]}
+    else:
+        # Fallback for schema_version 1 — derive on the fly
+        canonical = {_canonical_pair(t[:2], t[2:]) for t in pair}  # type: ignore[arg-type]
+    return src, tgt, pair, canonical
 
 
 def _split_node(node_id: str) -> tuple[str, str]:
@@ -209,7 +222,7 @@ def frozen_sets():
 
 @pytest.mark.parametrize("producer_name", sorted(PRODUCERS.keys()))
 def test_no_frozen_tuple_in_producer(producer_name, frozen_sets):
-    frozen_src, frozen_tgt, frozen_pair = frozen_sets
+    frozen_src, frozen_tgt, frozen_pair, frozen_canonical = frozen_sets
     producer = PRODUCERS[producer_name]
     violations: list[str] = []
     n_checked = 0
@@ -218,8 +231,12 @@ def test_no_frozen_tuple_in_producer(producer_name, frozen_sets):
         pair = (src_fw, src_id, tgt_fw, tgt_id)
         src_tup = (src_fw, src_id)
         tgt_tup = (tgt_fw, tgt_id)
+        cpair = _canonical_pair(src_tup, tgt_tup)
         if pair in frozen_pair:
             violations.append(f"PAIR {pair}")
+        elif cpair in frozen_canonical:
+            # Direction-reversed match: same pair, opposite source/target
+            violations.append(f"CANONICAL {cpair} (from {pair})")
         elif src_tup in frozen_src and tgt_tup in frozen_tgt:
             # Both endpoints in frozen test, even if exact pair not — still a leak
             violations.append(f"SRC+TGT {src_tup} {tgt_tup}")
@@ -232,8 +249,9 @@ def test_no_frozen_tuple_in_producer(producer_name, frozen_sets):
 
 
 def test_frozen_tuples_nonempty(frozen_sets):
-    src, tgt, pair = frozen_sets
+    src, tgt, pair, canonical = frozen_sets
     assert len(src) > 0 and len(tgt) > 0 and len(pair) > 0
+    assert len(canonical) > 0, "canonical_pair_tuples must not be empty"
 
 
 def test_frozen_tuples_hash_registered():
@@ -252,6 +270,7 @@ def test_frozen_tuples_not_stale():
     rebuilt_src: set[tuple[str, str]] = set()
     rebuilt_tgt: set[tuple[str, str]] = set()
     rebuilt_pair: set[tuple[str, str, str, str]] = set()
+    rebuilt_canonical: set[tuple[str, str, str, str]] = set()
     with frozen_jsonl.open() as fh:
         for line in fh:
             row = json.loads(line)
@@ -260,11 +279,15 @@ def test_frozen_tuples_not_stale():
             rebuilt_src.add((src_fw, src_id))
             rebuilt_tgt.add((tgt_fw, tgt_id))
             rebuilt_pair.add((src_fw, src_id, tgt_fw, tgt_id))
+            rebuilt_canonical.add(
+                _canonical_pair((src_fw, src_id), (tgt_fw, tgt_id))
+            )
 
     committed = json.loads(FROZEN_TUPLES.read_text())
     committed_src = {tuple(t) for t in committed["source_tuples"]}
     committed_tgt = {tuple(t) for t in committed["target_tuples"]}
     committed_pair = {tuple(t) for t in committed["pair_tuples"]}
+    committed_canonical = {tuple(t) for t in committed.get("canonical_pair_tuples", [])}
 
     assert rebuilt_src == committed_src, (
         "frozen_tuples.source_tuples is stale vs. human_test_frozen.jsonl. "
@@ -275,4 +298,8 @@ def test_frozen_tuples_not_stale():
     )
     assert rebuilt_pair == committed_pair, (
         "frozen_tuples.pair_tuples is stale vs. human_test_frozen.jsonl"
+    )
+    assert rebuilt_canonical == committed_canonical, (
+        "frozen_tuples.canonical_pair_tuples is stale vs. human_test_frozen.jsonl. "
+        "Re-run scripts/build_frozen_tuples.py and commit."
     )

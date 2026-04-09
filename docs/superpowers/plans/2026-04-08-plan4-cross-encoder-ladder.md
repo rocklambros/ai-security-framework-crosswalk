@@ -1087,6 +1087,42 @@ def test_frozen_firewall_drops_leaking_crossrefs(tmp_path):
 
 ---
 
+## Task Extension: Framework Expansion (Option C — all 19 new frameworks)
+
+**Context (Plan 1-D brainstorm, 2026-04-09):** The GenAI-Data-Security-Initiative
+crosswalk data (`third_party/genai-crosswalk`) contains 3,210 mappings across
+23 target frameworks. Currently only 4 are resolved (mitre_atlas, nist_rmf,
+aiuc_1, eu_ai_act → 546 rows). 2,538 rows target 18 frameworks we don't have
+node registries for. Adding node registries would unlock a ~6x training data
+increase.
+
+**Scope:** For each of the 18 new target frameworks:
+
+1. Obtain the canonical control list (from the framework's official source)
+2. Build `data/frameworks/<fw_key>/nodes.json` with `node_id`, `control_id`,
+   `control_name`, `description` for each control
+3. Add the framework's display name → our key mapping to
+   `classifier/data/upstream_loader.py::TARGET_FRAMEWORK_TABLE`
+4. Re-run `python -m classifier.scripts.build_upstream` to resolve rows
+5. Re-run `python -m classifier.scripts.run_contamination_audit` to partition
+6. Add the new framework nodes to `data/processed/nodes.json` and embeddings
+7. Extend the graph with the newly resolved edges
+
+**Priority order (by unlocked row count):**
+OWASP SAMM (187), SOC 2 (168), ISO 27001 (167), PCI DSS (166),
+ISO 42001 (164), NIST CSF (164), ENISA MLF (164), NIST 800-82 (154),
+OWASP ASVS (151), FedRAMP (147), DORA (147), ISA 62443 (144),
+CIS Controls (138), NIST 800-218A (136), CWE/CVE (130), OWASP NHI (120),
+OWASP AI Testing (60), STRIDE (22).
+
+**Firewall:** The Plan 1-D canonical (direction-agnostic) frozen tuple check
+in `frozen_tuples.json` ensures any reversed-direction overlap is caught.
+No additional firewall work is needed for framework expansion.
+
+**See:** `docs/upstream_unresolvable.md` Category B2 for the full breakdown.
+
+---
+
 ## Done criteria
 
 Plan 4 is complete when:

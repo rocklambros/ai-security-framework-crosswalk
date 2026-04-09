@@ -1,0 +1,212 @@
+{
+  "pairs": [
+    {
+      "empty": true,
+      "llm_sme_silver": 0,
+      "source_framework": "aiuc_1",
+      "target_framework": "owasp_agentic",
+      "total": 0,
+      "upstream_gold": 0
+    },
+    {
+      "empty": true,
+      "llm_sme_silver": 0,
+      "source_framework": "aiuc_1",
+      "target_framework": "owasp_llm",
+      "total": 0,
+      "upstream_gold": 0
+    },
+    {
+      "empty": true,
+      "llm_sme_silver": 0,
+      "source_framework": "csa_aicm",
+      "target_framework": "owasp_agentic",
+      "total": 0,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 482,
+      "source_framework": "csa_aicm",
+      "target_framework": "mitre_atlas",
+      "total": 482,
+      "upstream_gold": 0
+    },
+    {
+      "empty": true,
+      "llm_sme_silver": 0,
+      "source_framework": "mitre_atlas",
+      "target_framework": "owasp_llm",
+      "total": 0,
+      "upstream_gold": 0
+    },
+    {
+      "empty": true,
+      "llm_sme_silver": 0,
+      "source_framework": "nist_rmf",
+      "target_framework": "owasp_agentic",
+      "total": 0,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 98,
+      "source_framework": "nist_rmf",
+      "target_framework": "eu_gpai_cop",
+      "total": 98,
+      "upstream_gold": 0
+    },
+    {
+      "empty": true,
+      "llm_sme_silver": 0,
+      "source_framework": "owasp_ai_exchange",
+      "target_framework": "owasp_llm",
+      "total": 0,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 210,
+      "source_framework": "eu_gpai_cop",
+      "target_framework": "owasp_ai_exchange",
+      "total": 210,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 64,
+      "source_framework": "cosai_rm",
+      "target_framework": "mitre_atlas",
+      "total": 64,
+      "upstream_gold": 0
+    },
+    {
+      "empty": true,
+      "llm_sme_silver": 0,
+      "source_framework": "cosai_rm",
+      "target_framework": "owasp_agentic",
+      "total": 0,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 131,
+      "source_framework": "aiuc_1",
+      "target_framework": "nist_rmf",
+      "total": 131,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 59,
+      "source_framework": "owasp_dsgai",
+      "target_framework": "aiuc_1",
+      "total": 131,
+      "upstream_gold": 72
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 61,
+      "source_framework": "owasp_dsgai",
+      "target_framework": "csa_aicm",
+      "total": 61,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 27,
+      "source_framework": "owasp_dsgai",
+      "target_framework": "nist_rmf",
+      "total": 111,
+      "upstream_gold": 84
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 45,
+      "source_framework": "owasp_dsgai",
+      "target_framework": "mitre_atlas",
+      "total": 106,
+      "upstream_gold": 61
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 30,
+      "source_framework": "owasp_llm",
+      "target_framework": "nist_800_53",
+      "total": 30,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 30,
+      "source_framework": "owasp_agentic",
+      "target_framework": "nist_800_53",
+      "total": 30,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 63,
+      "source_framework": "owasp_dsgai",
+      "target_framework": "nist_800_53",
+      "total": 63,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 30,
+      "source_framework": "owasp_llm",
+      "target_framework": "eu_ai_act",
+      "total": 30,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 30,
+      "source_framework": "owasp_agentic",
+      "target_framework": "eu_ai_act",
+      "total": 30,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 47,
+      "source_framework": "owasp_dsgai",
+      "target_framework": "eu_ai_act",
+      "total": 107,
+      "upstream_gold": 60
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 197,
+      "source_framework": "aiuc_1",
+      "target_framework": "csa_aicm",
+      "total": 197,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 131,
+      "source_framework": "aiuc_1",
+      "target_framework": "eu_gpai_cop",
+      "total": 131,
+      "upstream_gold": 0
+    },
+    {
+      "empty": false,
+      "llm_sme_silver": 159,
+      "source_framework": "aiuc_1",
+      "target_framework": "mitre_atlas",
+      "total": 159,
+      "upstream_gold": 0
+    },
+    {
+      "empty": true,
+      "llm_sme_silver": 0,
+      "source_framework": "cosai_rm",
+      "target_framework": "owasp_llm",
+      "total": 0,
+      "upstream_gold": 0
+    }
+  ]
+}

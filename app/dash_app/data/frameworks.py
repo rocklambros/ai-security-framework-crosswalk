@@ -1,4 +1,4 @@
-"""Framework metadata: colors and display labels for cytoscape graph."""
+"""Framework metadata: colors, labels, tiers, and categories for the Dash app."""
 
 FRAMEWORK_COLORS: dict[str, str] = {
     "mitre_atlas": "#d62728",
@@ -14,6 +14,7 @@ FRAMEWORK_COLORS: dict[str, str] = {
     "owasp_agentic": "#aec7e8",
     "owasp_ai_exchange": "#ffbb78",
     "owasp_dsgai": "#98df8a",
+    "maestro": "#ff9896",
 }
 
 FRAMEWORK_LABELS: dict[str, str] = {
@@ -30,4 +31,44 @@ FRAMEWORK_LABELS: dict[str, str] = {
     "owasp_agentic": "OWASP Agentic Top 10",
     "owasp_ai_exchange": "OWASP AI Exchange",
     "owasp_dsgai": "OWASP DSG AI",
+    "maestro": "MAESTRO",
+}
+
+TIER_LABELS: dict[str, str] = {
+    "equivalent": "Equivalent",
+    "related": "Related",
+    "partial": "Partial",
+    "unrelated": "Unrelated",
+}
+
+TIER_COLORS: dict[str, str] = {
+    "equivalent": "#2ca02c",
+    "related": "#1f77b4",
+    "partial": "#ff7f0e",
+    "unrelated": "#d62728",
+}
+
+FRAMEWORK_CATEGORIES: dict[str, list[str]] = {
+    "Threat & Attack": [
+        "mitre_atlas",
+        "owasp_llm",
+        "owasp_agentic",
+        "owasp_ai_exchange",
+    ],
+    "Governance & Risk": [
+        "nist_ai_rmf",
+        "nist_800_53",
+        "nist_ai_600_1",
+        "eu_ai_act",
+        "eu_gpai",
+    ],
+    "Controls & Practices": [
+        "csa_aicm",
+        "cosai",
+        "maestro",
+    ],
+    "Data & Domain": [
+        "aiuc",
+        "owasp_dsgai",
+    ],
 }

@@ -1,0 +1,67 @@
+{
+  "bootstrap_ci_95": {
+    "lower": 0.3275,
+    "point": 0.3725,
+    "upper": 0.42
+  },
+  "break_glass": null,
+  "conformal": {
+    "avg_set_size": 2.22,
+    "marginal_coverage": 0.6925
+  },
+  "confusion_matrix": {
+    "equivalent": {
+      "equivalent": 0,
+      "partial": 8,
+      "related": 31,
+      "unrelated": 19
+    },
+    "partial": {
+      "equivalent": 0,
+      "partial": 8,
+      "related": 55,
+      "unrelated": 15
+    },
+    "related": {
+      "equivalent": 0,
+      "partial": 37,
+      "related": 122,
+      "unrelated": 27
+    },
+    "unrelated": {
+      "equivalent": 0,
+      "partial": 7,
+      "related": 52,
+      "unrelated": 19
+    }
+  },
+  "macro_f1": 0.22588338997328833,
+  "n_pairs": 400,
+  "per_class": {
+    "equivalent": {
+      "accuracy": 0.0,
+      "count": 58
+    },
+    "partial": {
+      "accuracy": 0.10256410256410256,
+      "count": 78
+    },
+    "related": {
+      "accuracy": 0.6559139784946236,
+      "count": 186
+    },
+    "unrelated": {
+      "accuracy": 0.24358974358974358,
+      "count": 78
+    }
+  },
+  "router": {
+    "n_abstained": 400,
+    "n_passed": 0,
+    "precision_on_passed": 0.0
+  },
+  "run_dir": "runs/stacker/stacker-48d0d19d-20260409T160345",
+  "sacred_run": true,
+  "tier_accuracy": 0.3725,
+  "timestamp": "2026-04-09T17:50:51.682742+00:00"
+}

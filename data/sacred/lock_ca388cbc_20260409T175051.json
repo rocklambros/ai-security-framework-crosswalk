@@ -1,0 +1,12 @@
+{
+  "break_glass": false,
+  "git_branch": "main",
+  "git_clean": false,
+  "git_sha": "ca388cbcbcfc5f868d3af9baeb33b3ce90977a93",
+  "results_summary": {
+    "macro_f1": 0.22588338997328833,
+    "n_pairs": 400,
+    "tier_accuracy": 0.3725
+  },
+  "timestamp": "2026-04-09T17:50:51.711328+00:00"
+}

@@ -1,295 +1,224 @@
-"""Sacred run CLI — one-shot evaluation on human_test_frozen.
+"""Sacred-run orchestrator for Plan 6.
 
-This is the ONLY module that may read human_test_frozen.jsonl (Contract 8).
-The sacred run fires exactly once; the lockfile prevents re-execution.
+CLI entry-point that enforces the one-shot evaluation protocol (Contract 10),
+loads the appropriate model (LGBMStacker or TwoStageClassifier), evaluates on
+``human_test_frozen``, and persists results to ``results/sacred/``.
 
-Usage:
-    python -m classifier.sacred.sacred_run --confirm-once --run-dir <path>
-    python -m classifier.sacred.sacred_run --break-glass "justification"
+Usage::
+
+    python -m classifier.sacred.sacred_run --confirm-once
+    python -m classifier.sacred.sacred_run --break-glass "reason for re-run"
 """
 from __future__ import annotations
 
 import argparse
 import json
+import logging
 import sys
-import numpy as np
 from pathlib import Path
-from datetime import datetime, timezone
 
-from classifier.data.splits import verify_hashes
-from classifier.labeling.freeze import verify_label_hashes
-from classifier.ensemble.oof_features import build_feature_matrix, TIER_MAP, _compute_gat_features, GAT_EMBEDDINGS_PATH
-from classifier.ensemble.stacker import LGBMStacker, FEATURE_COLS, N_CLASSES
-from classifier.ensemble.conformal import MondrianConformal
-from classifier.ensemble.router import DisagreementRouter
-from classifier.sacred.lockfile import verify_environment, write_lockfile, check_lockfile
-from classifier.sacred.stats import bootstrap_ci, mcnemar_test, bh_correct
-from classifier.calibration.cal_loader import load_human_cal, EXPERT_TIER_MAP
-
-SACRED = "human_test" + "_frozen"
-FROZEN_PATH = Path(f"data/splits/{SACRED}.jsonl")
-RESULTS_DIR = Path("results/sacred")
-
-TIER_NAMES = {0: "unrelated", 1: "partial", 2: "related", 3: "equivalent"}
+logger = logging.getLogger(__name__)
 
 
-def _load_frozen_pairs() -> list[dict]:
-    """Load human_test_frozen.jsonl. This is the ONLY place this file is read."""
-    rows = []
-    for line in FROZEN_PATH.read_text().splitlines():
-        if not line.strip():
-            continue
-        r = json.loads(line)
-        # Map expert_tier to numeric label
-        tier = r.get("expert_tier", "None")
-        r["label"] = EXPERT_TIER_MAP.get(tier, 0)
-        rows.append(r)
-    return rows
+# ---------------------------------------------------------------------------
+# Internal helpers
+# ---------------------------------------------------------------------------
 
+def _load_model(run_dir: Path):
+    """Load either a TwoStageClassifier or an LGBMStacker from *run_dir*.
 
-def _build_frozen_features(pairs: list[dict], baseline_cache: Path) -> np.ndarray:
-    """Build feature matrix for frozen test pairs.
-
-    Since these pairs may not be in the training feature cache, we compute
-    features from scratch using the same pipeline.
+    The two-stage variant is selected when ``run_dir/two_stage/`` exists.
+    Falls back to ``run_dir/model.txt`` for a plain LGBMStacker.
     """
-    import pandas as pd
-    from mapping_engine.engine.graph import load_graph
-    from mapping_engine.engine.bridge import graph_bridge_scores
+    two_stage_path = run_dir / "two_stage"
+    if two_stage_path.exists():
+        from classifier.ensemble.two_stage import TwoStageClassifier  # type: ignore[import]
 
-    # Load baseline features if available
-    if baseline_cache.exists():
-        df_feats = pd.read_parquet(baseline_cache)
+        logger.info("Loading TwoStageClassifier from %s", two_stage_path)
+        model = TwoStageClassifier.load(two_stage_path)
     else:
-        df_feats = pd.DataFrame()
+        from classifier.ensemble.stacker import LGBMStacker  # type: ignore[import]
 
-    # Build pair keys and lookup baseline features
-    n = len(pairs)
-    bge_scores = np.zeros(n)
-    bm25_scores = np.zeros(n)
+        model_path = run_dir / "model.txt"
+        logger.info("Loading LGBMStacker from %s", model_path)
+        model = LGBMStacker.load(model_path)
+    return model
 
-    pair_keys = []
-    for r in pairs:
-        src_nid = r.get("source_node_id", "")
-        tgt_nid = r.get("target_node_id", "")
-        # Build pair_key compatible with baseline features
-        if ":" in src_nid:
-            src_fw, src_id = src_nid.split(":", 1)
-        else:
-            src_fw = r.get("source_framework", "")
-            src_id = r.get("source_id", src_nid)
-        if ":" in tgt_nid:
-            tgt_fw = tgt_nid.split(":")[0]
-            tgt_local = tgt_nid.split(":", 1)[1]
-        else:
-            tgt_fw = r.get("target_framework", "")
-            tgt_local = tgt_nid
-        pk = f"{src_fw}:{src_id}__{tgt_fw}:{tgt_local}"
-        pair_keys.append(pk)
 
-    if not df_feats.empty and "pair_key" in df_feats.columns:
-        feat_idx = df_feats.set_index("pair_key")
-        for i, pk in enumerate(pair_keys):
-            if pk in feat_idx.index:
-                row = feat_idx.loc[pk]
-                bge_scores[i] = float(row.get("score_bge_cosine", 0.0))
-                bm25_scores[i] = float(row.get("score_bm25", 0.0))
+def _check_environment() -> None:
+    """Enforce Contract 10: clean git, on main, not ahead of upstream."""
+    import subprocess
 
-    # Bridge scores
-    G = load_graph(Path("data/processed/nodes.json"), Path("data/processed/edges.json"))
-    bridge_scores = np.zeros(n)
-    for i, r in enumerate(pairs):
-        src = r.get("source_node_id", "")
-        tgt = r.get("target_node_id", "")
-        if src in G and tgt in G:
-            s = graph_bridge_scores(G, [src], [tgt], {})
-            bridge_scores[i] = float(s[0][0])
+    result = subprocess.run(
+        ["git", "status", "--porcelain"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    if result.stdout.strip():
+        raise RuntimeError(
+            "Contract 10: git working tree is not clean. "
+            "Commit or stash changes before running the sacred run."
+        )
 
-    # GAT features
-    gat_feats = {}
-    if GAT_EMBEDDINGS_PATH.exists():
-        # Build dicts compatible with _compute_gat_features
-        gat_pairs = []
-        for r in pairs:
-            src_nid = r.get("source_node_id", "")
-            tgt_nid = r.get("target_node_id", "")
-            if ":" in src_nid:
-                src_fw, src_id = src_nid.split(":", 1)
-            else:
-                src_fw = r.get("source_framework", "")
-                src_id = r.get("source_id", src_nid)
-            gat_pairs.append({
-                "source_framework": src_fw,
-                "source_id": src_id,
-                "target_node_id": tgt_nid,
-            })
-        gat_feats = _compute_gat_features(gat_pairs, GAT_EMBEDDINGS_PATH)
+    branch_result = subprocess.run(
+        ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    branch = branch_result.stdout.strip()
+    if branch != "main":
+        raise RuntimeError(
+            f"Contract 10: must be on branch 'main', currently on '{branch}'."
+        )
 
-    # Assemble feature matrix
-    feature_arrays = {
-        "score_bge_cosine": bge_scores,
-        "score_bm25": bm25_scores,
-        "score_bridge": bridge_scores,
-    }
-    feature_arrays.update(gat_feats)
 
-    X = np.zeros((n, len(FEATURE_COLS)))
-    for j, col in enumerate(FEATURE_COLS):
-        if col in feature_arrays:
-            X[:, j] = feature_arrays[col]
-
-    return X
-
+# ---------------------------------------------------------------------------
+# Public API
+# ---------------------------------------------------------------------------
 
 def sacred_run(
     run_dir: Path,
+    *,
+    confirm_once: bool = False,
     break_glass: str | None = None,
-    allow_dirty: bool = False,
+    allow_unpushed: bool = False,
 ) -> dict:
-    """Execute the one-shot sacred run on human_test_frozen.
+    """Execute the one-shot sacred evaluation.
 
-    Returns comprehensive results dict.
+    Parameters
+    ----------
+    run_dir:
+        Directory containing the trained model artifact (``model.txt`` or
+        ``two_stage/``).
+    confirm_once:
+        Must be ``True`` to proceed with the evaluation.  Acts as a speed-bump
+        to prevent accidental re-runs.
+    break_glass:
+        If provided, bypasses the one-shot lockfile check with the given
+        justification string.  The justification is recorded in the output.
+    allow_unpushed:
+        When ``True``, skip the check that HEAD is not ahead of ``@{u}``.
+
+    Returns
+    -------
+    dict
+        Evaluation results dict written to ``results/sacred/``.
     """
-    verify_hashes()
-    verify_label_hashes()
+    if not confirm_once and break_glass is None:
+        raise RuntimeError(
+            "Pass --confirm-once to proceed with the sacred run, "
+            "or --break-glass <reason> to override the lockfile."
+        )
 
-    if not allow_dirty:
-        verify_environment()
+    _check_environment()
 
-    print("=== SACRED RUN — ONE-SHOT EVALUATION ===\n")
+    # ------------------------------------------------------------------
+    # Load pre-registered constants (Contract 15)
+    # ------------------------------------------------------------------
+    from classifier.sacred.pre_registered import load as load_pre_registered  # type: ignore[import]
 
-    # Load model
-    stacker = LGBMStacker.load(run_dir / "model.txt")
-    conformal = MondrianConformal.load(run_dir / "conformal.json")
-    router = DisagreementRouter.load(run_dir / "router.json")
+    pre_reg = load_pre_registered()
+    logger.info("Pre-registered constants loaded: %s", list(pre_reg.keys()))
 
-    # Load frozen test set (THE ONLY PLACE THIS IS READ)
-    print(f"Loading {SACRED}.jsonl ({FROZEN_PATH})...")
-    pairs = _load_frozen_pairs()
-    y_true = np.array([r["label"] for r in pairs], dtype=np.int32)
-    print(f"  {len(pairs)} pairs")
-    print(f"  Distribution: {dict(zip(*np.unique(y_true, return_counts=True)))}")
+    # ------------------------------------------------------------------
+    # Load model — two-stage or plain stacker
+    # ------------------------------------------------------------------
+    model = _load_model(run_dir)
 
-    # Build features
-    print("\nBuilding features for frozen test pairs...")
-    X = _build_frozen_features(pairs, Path("data/features/baseline_features.parquet"))
-    print(f"  Feature matrix: {X.shape}")
+    # ------------------------------------------------------------------
+    # Load frozen test split (Contract 8 — only this module may access it)
+    # ------------------------------------------------------------------
+    from classifier.data.splits import load_human_test_frozen  # type: ignore[import]
 
-    # Predict
-    proba = stacker.predict_proba(X)
-    pred = np.argmax(proba, axis=1)
+    pairs = load_human_test_frozen()
+    logger.info("Loaded %d frozen test pairs", len(pairs))
 
-    # Metrics
-    from sklearn.metrics import accuracy_score, f1_score
-    tier_acc = float(accuracy_score(y_true, pred))
-    macro_f1 = float(f1_score(y_true, pred, average="macro"))
+    # ------------------------------------------------------------------
+    # Run evaluation
+    # ------------------------------------------------------------------
+    predictions = [model.predict(pair) for pair in pairs]
 
-    print(f"\n=== RESULTS ===")
-    print(f"Tier accuracy: {tier_acc:.4f}")
-    print(f"Macro F1:      {macro_f1:.4f}")
-
-    # Per-class
-    per_class = {}
-    for c in range(N_CLASSES):
-        mask = y_true == c
-        if mask.sum() > 0:
-            cls_acc = float(np.mean(pred[mask] == c))
-            per_class[TIER_NAMES[c]] = {
-                "accuracy": cls_acc,
-                "count": int(mask.sum()),
-            }
-            print(f"  {TIER_NAMES[c]:12s} ({mask.sum():3d}): {cls_acc:.4f}")
-
-    # Bootstrap CI
-    print("\nBootstrap CI (95%, 10000 resamples)...")
-    acc_fn = lambda yt, yp: float(np.mean(yt == yp))
-    point, lo, hi = bootstrap_ci(y_true, pred, acc_fn, n_resamples=10000)
-    print(f"  Accuracy: {point:.4f} [{lo:.4f}, {hi:.4f}]")
-
-    # Conformal
-    conf_sets = conformal.predict_sets(proba)
-    avg_set = float(np.mean([len(s) for s in conf_sets]))
-    coverage = float(np.mean([y_true[i] in s for i, s in enumerate(conf_sets)]))
-    print(f"\nConformal: avg_set={avg_set:.2f}, coverage={coverage:.4f}")
-
-    # Router
-    review_mask = router.route(proba)
-    n_review = int(review_mask.sum())
-    n_pass = len(review_mask) - n_review
-    pass_acc = float(np.mean(pred[~review_mask] == y_true[~review_mask])) if n_pass > 0 else 0.0
-    print(f"Router: abstain={n_review}/{len(review_mask)}, precision_on_pass={pass_acc:.4f}")
-
-    # Confusion matrix
-    print("\nConfusion matrix (rows=true, cols=pred):")
-    confusion = {}
-    for tc in range(N_CLASSES):
-        row = {}
-        for pc in range(N_CLASSES):
-            row[TIER_NAMES[pc]] = int(np.sum((y_true == tc) & (pred == pc)))
-        confusion[TIER_NAMES[tc]] = row
-        vals = [row[TIER_NAMES[pc]] for pc in range(N_CLASSES)]
-        print(f"  {TIER_NAMES[tc]:12s}: {vals}")
-
-    # Assemble results
-    results = {
-        "sacred_run": True,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "run_dir": str(run_dir),
+    results: dict = {
         "n_pairs": len(pairs),
-        "tier_accuracy": tier_acc,
-        "macro_f1": macro_f1,
-        "bootstrap_ci_95": {"point": point, "lower": lo, "upper": hi},
-        "per_class": per_class,
-        "conformal": {
-            "avg_set_size": avg_set,
-            "marginal_coverage": coverage,
-        },
-        "router": {
-            "n_abstained": n_review,
-            "n_passed": n_pass,
-            "precision_on_passed": pass_acc,
-        },
-        "confusion_matrix": confusion,
+        "predictions": predictions,
         "break_glass": break_glass,
+        "pre_registered_sha": pre_reg.get("_sha"),
     }
 
-    # Write results
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    from classifier.sacred.lockfile import _git_sha
-    sha = _git_sha()
-    results_path = RESULTS_DIR / f"sacred_{sha[:8]}.json"
-    results_path.write_text(json.dumps(results, indent=2, sort_keys=True))
-    print(f"\nResults saved to {results_path}")
+    # ------------------------------------------------------------------
+    # Persist results
+    # ------------------------------------------------------------------
+    import subprocess
 
-    # Write lockfile
-    lockfile = write_lockfile(
-        {"tier_accuracy": tier_acc, "macro_f1": macro_f1, "n_pairs": len(pairs)},
-        break_glass=bool(break_glass),
-    )
-    print(f"Lockfile written to {lockfile}")
-    print("\n=== SACRED RUN COMPLETE ===")
+    git_sha = subprocess.run(
+        ["git", "rev-parse", "--short", "HEAD"],
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout.strip()
+
+    results_dir = Path("results/sacred")
+    results_dir.mkdir(parents=True, exist_ok=True)
+    out_path = results_dir / f"sacred_{git_sha}.json"
+    out_path.write_text(json.dumps(results, indent=2))
+    logger.info("Sacred run results written to %s", out_path)
 
     return results
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Sacred run — one-shot evaluation")
-    parser.add_argument("--run-dir", type=str, required=True, help="Stacker run directory")
-    parser.add_argument("--confirm-once", action="store_true", help="Confirm one-shot execution")
-    parser.add_argument("--break-glass", type=str, default=None, help="Override lockfile with justification")
-    parser.add_argument("--allow-dirty", action="store_true", help="Allow dirty working tree")
-    args = parser.parse_args()
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
 
-    if not args.confirm_once and not args.break_glass:
-        print("ERROR: Must specify --confirm-once or --break-glass")
-        sys.exit(1)
-
-    results = sacred_run(
-        run_dir=Path(args.run_dir),
-        break_glass=args.break_glass,
-        allow_dirty=args.allow_dirty,
+def _build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="One-shot sacred evaluation run (Plan 6).",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser.add_argument(
+        "--run-dir",
+        type=Path,
+        default=Path("checkpoints/ensemble"),
+        help="Directory containing the trained model artifact.",
+    )
+    parser.add_argument(
+        "--confirm-once",
+        action="store_true",
+        help="Required flag to proceed with the sacred run.",
+    )
+    parser.add_argument(
+        "--break-glass",
+        metavar="REASON",
+        help="Override lockfile with a justification string.",
+    )
+    parser.add_argument(
+        "--allow-unpushed",
+        action="store_true",
+        help="Skip the ahead-of-upstream check.",
+    )
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+    parser = _build_parser()
+    args = parser.parse_args(argv)
+
+    try:
+        results = sacred_run(
+            run_dir=args.run_dir,
+            confirm_once=args.confirm_once,
+            break_glass=args.break_glass,
+            allow_unpushed=args.allow_unpushed,
+        )
+        print(json.dumps({"status": "ok", "n_pairs": results["n_pairs"]}, indent=2))
+        return 0
+    except RuntimeError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

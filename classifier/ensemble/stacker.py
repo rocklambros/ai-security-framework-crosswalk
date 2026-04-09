@@ -1,0 +1,178 @@
+"""LightGBM multiclass meta-stacker with Optuna tuning.
+
+Trains on 5-fold OOF features from Plan 3 baselines + bridge scores.
+Outputs class probabilities for {unrelated, partial, related, equivalent}.
+
+Contract 5: Only trains on v1_frozen labels.
+Contract 6: Appends to runs/registry.jsonl.
+"""
+from __future__ import annotations
+
+import json
+import uuid
+from datetime import datetime, timezone
+from pathlib import Path
+
+import lightgbm as lgb
+import numpy as np
+import optuna
+from sklearn.metrics import accuracy_score, log_loss
+from sklearn.model_selection import StratifiedKFold
+
+optuna.logging.set_verbosity(optuna.logging.WARNING)
+
+FEATURE_COLS = ["score_bge_cosine", "score_bm25", "score_bridge"]
+LABEL_COL = "label"
+N_CLASSES = 4
+REGISTRY_PATH = Path("runs/registry.jsonl")
+
+
+class LGBMStacker:
+    """LightGBM multiclass stacker."""
+
+    def __init__(self, params: dict | None = None):
+        self.params = params or {}
+        self.model: lgb.Booster | None = None
+        self.run_id: str = ""
+        self.feature_cols = FEATURE_COLS
+
+    def fit(
+        self,
+        X: np.ndarray,
+        y: np.ndarray,
+        sample_weight: np.ndarray | None = None,
+    ) -> "LGBMStacker":
+        ds = lgb.Dataset(X, label=y, weight=sample_weight)
+        params = {
+            "objective": "multiclass",
+            "num_class": N_CLASSES,
+            "metric": "multi_logloss",
+            "verbosity": -1,
+            "seed": 42,
+            **self.params,
+        }
+        self.model = lgb.train(
+            params,
+            ds,
+            num_boost_round=self.params.get("n_estimators", 200),
+        )
+        return self
+
+    def predict_proba(self, X: np.ndarray) -> np.ndarray:
+        """Return (n, N_CLASSES) probability matrix."""
+        if self.model is None:
+            raise RuntimeError("Model not fitted")
+        return self.model.predict(X)
+
+    def predict(self, X: np.ndarray) -> np.ndarray:
+        return np.argmax(self.predict_proba(X), axis=1)
+
+    def save(self, path: Path) -> None:
+        if self.model is None:
+            raise RuntimeError("Model not fitted")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        self.model.save_model(str(path))
+
+    @classmethod
+    def load(cls, path: Path) -> "LGBMStacker":
+        obj = cls()
+        obj.model = lgb.Booster(model_file=str(path))
+        return obj
+
+
+def tune_stacker(
+    X: np.ndarray,
+    y: np.ndarray,
+    sample_weight: np.ndarray | None = None,
+    n_trials: int = 20,
+    n_splits: int = 5,
+    seed: int = 42,
+) -> dict:
+    """Optuna hyperparameter search for the stacker."""
+
+    def objective(trial):
+        params = {
+            "num_leaves": trial.suggest_int("num_leaves", 8, 64),
+            "learning_rate": trial.suggest_float("learning_rate", 0.01, 0.3, log=True),
+            "min_child_samples": trial.suggest_int("min_child_samples", 5, 50),
+            "subsample": trial.suggest_float("subsample", 0.5, 1.0),
+            "colsample_bytree": trial.suggest_float("colsample_bytree", 0.5, 1.0),
+            "reg_alpha": trial.suggest_float("reg_alpha", 1e-8, 10.0, log=True),
+            "reg_lambda": trial.suggest_float("reg_lambda", 1e-8, 10.0, log=True),
+            "n_estimators": trial.suggest_int("n_estimators", 50, 500),
+        }
+        skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=seed)
+        losses = []
+        for train_idx, val_idx in skf.split(X, y):
+            X_tr, X_val = X[train_idx], X[val_idx]
+            y_tr, y_val = y[train_idx], y[val_idx]
+            w_tr = sample_weight[train_idx] if sample_weight is not None else None
+            stacker = LGBMStacker(params)
+            stacker.fit(X_tr, y_tr, sample_weight=w_tr)
+            proba = stacker.predict_proba(X_val)
+            losses.append(log_loss(y_val, proba, labels=list(range(N_CLASSES))))
+        return np.mean(losses)
+
+    study = optuna.create_study(direction="minimize")
+    study.optimize(objective, n_trials=n_trials)
+    return study.best_params
+
+
+def train_and_evaluate(
+    X_train: np.ndarray,
+    y_train: np.ndarray,
+    X_val: np.ndarray,
+    y_val: np.ndarray,
+    sample_weight: np.ndarray | None = None,
+    params: dict | None = None,
+    run_dir: Path | None = None,
+) -> dict:
+    """Train stacker, evaluate on val, save model, return metrics."""
+    run_id = f"stacker-{uuid.uuid4().hex[:8]}-{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')}"
+
+    if run_dir is None:
+        run_dir = Path(f"runs/stacker/{run_id}")
+    if run_dir.exists():
+        raise FileExistsError(f"Contract 3: {run_dir} exists")
+    run_dir.mkdir(parents=True, exist_ok=True)
+
+    stacker = LGBMStacker(params or {})
+    stacker.fit(X_train, y_train, sample_weight=sample_weight)
+    stacker.run_id = run_id
+
+    # Eval
+    train_proba = stacker.predict_proba(X_train)
+    val_proba = stacker.predict_proba(X_val)
+    train_pred = np.argmax(train_proba, axis=1)
+    val_pred = np.argmax(val_proba, axis=1)
+
+    metrics = {
+        "train_acc": float(accuracy_score(y_train, train_pred)),
+        "val_acc": float(accuracy_score(y_val, val_pred)),
+        "train_logloss": float(log_loss(y_train, train_proba, labels=list(range(N_CLASSES)))),
+        "val_logloss": float(log_loss(y_val, val_proba, labels=list(range(N_CLASSES)))),
+    }
+
+    # Save model
+    model_path = run_dir / "model.txt"
+    stacker.save(model_path)
+
+    # Save config + metrics
+    row = {
+        "run_id": run_id,
+        "component": "stacker",
+        "utc": datetime.now(timezone.utc).isoformat(),
+        "params": params or {},
+        "metrics": metrics,
+        "model_path": str(model_path),
+        "status": "completed",
+    }
+    config_path = run_dir / "config.json"
+    config_path.write_text(json.dumps(row, sort_keys=True, indent=2))
+
+    # Append to registry
+    REGISTRY_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with REGISTRY_PATH.open("a") as f:
+        f.write(json.dumps(row, sort_keys=True, ensure_ascii=True) + "\n")
+
+    return {**metrics, "run_id": run_id, "run_dir": str(run_dir), "stacker": stacker}

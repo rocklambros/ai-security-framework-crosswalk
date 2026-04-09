@@ -21,7 +21,10 @@ from sklearn.model_selection import StratifiedKFold
 
 optuna.logging.set_verbosity(optuna.logging.WARNING)
 
-FEATURE_COLS = ["score_bge_cosine", "score_bm25", "score_bridge"]
+BASE_FEATURE_COLS = ["score_bge_cosine", "score_bm25", "score_bridge"]
+GAT_SCALAR_COLS = ["score_gat", "gat_l2", "gat_dot"]
+GAT_DIFF_COLS = [f"gat_diff_{d:02d}" for d in range(32)]
+FEATURE_COLS = BASE_FEATURE_COLS + GAT_SCALAR_COLS + GAT_DIFF_COLS
 LABEL_COL = "label"
 N_CLASSES = 4
 REGISTRY_PATH = Path("runs/registry.jsonl")

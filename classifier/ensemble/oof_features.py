@@ -21,6 +21,55 @@ from mapping_engine.engine.bridge import graph_bridge_scores
 
 TIER_MAP = {"equivalent": 3, "related": 2, "partial": 1, "unrelated": 0}
 FEATURE_CACHE = Path("data/features/baseline_features.parquet")
+GAT_EMBEDDINGS_PATH = Path("data/features/gat_embeddings.npz")
+
+
+def _compute_gat_features(pairs: list[dict], gat_path: Path) -> dict[str, np.ndarray]:
+    """Compute GAT embedding-derived features for each pair.
+
+    Returns dict with:
+      - score_gat: cosine similarity (n,)
+      - gat_l2: L2 distance (n,)
+      - gat_dot: dot product (n,)
+      - gat_src_*: source embedding columns (n, emb_dim)
+      - gat_tgt_*: target embedding columns (n, emb_dim)
+      - gat_diff_*: abs difference columns (n, emb_dim)
+
+    This function only uses numpy (no torch_geometric dependency).
+    """
+    data = np.load(gat_path, allow_pickle=True)
+    embeddings = data["embeddings"]
+    node_ids = data["node_ids"].tolist()
+    node_to_idx = {nid: i for i, nid in enumerate(node_ids)}
+    emb_dim = embeddings.shape[1]
+
+    n = len(pairs)
+    cosine = np.zeros(n)
+    l2 = np.zeros(n)
+    dot = np.zeros(n)
+    src_embs = np.zeros((n, emb_dim))
+    tgt_embs = np.zeros((n, emb_dim))
+
+    for i, r in enumerate(pairs):
+        src = f"{r['source_framework']}:{r['source_id']}"
+        tgt = r["target_node_id"]
+        if src in node_to_idx and tgt in node_to_idx:
+            emb_src = embeddings[node_to_idx[src]]
+            emb_tgt = embeddings[node_to_idx[tgt]]
+            src_embs[i] = emb_src
+            tgt_embs[i] = emb_tgt
+            norm_src = np.linalg.norm(emb_src)
+            norm_tgt = np.linalg.norm(emb_tgt)
+            if norm_src > 0 and norm_tgt > 0:
+                cosine[i] = float(np.dot(emb_src, emb_tgt) / (norm_src * norm_tgt))
+            l2[i] = np.linalg.norm(emb_src - emb_tgt)
+            dot[i] = np.dot(emb_src, emb_tgt)
+
+    result = {"score_gat": cosine, "gat_l2": l2, "gat_dot": dot}
+    diff = np.abs(src_embs - tgt_embs)
+    for d in range(emb_dim):
+        result[f"gat_diff_{d:02d}"] = diff[:, d]
+    return result
 
 
 def _pair_key(row: dict) -> str:
@@ -77,6 +126,7 @@ def build_feature_matrix(
     feature_cache_path: str = str(FEATURE_CACHE),
     nodes_path: str = "data/processed/nodes.json",
     edges_path: str = "data/processed/edges.json",
+    gat_embeddings_path: str | None = None,
 ) -> pd.DataFrame:
     """Build the wide feature matrix for stacker training.
 
@@ -111,6 +161,17 @@ def build_feature_matrix(
     G = load_graph(Path(nodes_path), Path(edges_path))
     bridge_scores = _compute_bridge_scores(labels, G)
     df["score_bridge"] = bridge_scores
+
+    # Compute GAT embedding-derived features
+    gat_path = Path(gat_embeddings_path) if gat_embeddings_path else GAT_EMBEDDINGS_PATH
+    if gat_path.exists():
+        gat_feats = _compute_gat_features(labels, gat_path)
+        for col_name, col_vals in gat_feats.items():
+            df[col_name] = col_vals
+    else:
+        df["score_gat"] = 0.0
+        df["gat_l2"] = 0.0
+        df["gat_dot"] = 0.0
 
     return df
 

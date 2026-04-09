@@ -1,0 +1,23 @@
+{
+  "abstention_rate": 0.9709762532981531,
+  "conformal_avg_set_size": 1.8311345646437995,
+  "conformal_marginal_coverage": 0.8944591029023746,
+  "label_distribution": {
+    "0": 24,
+    "1": 57,
+    "2": 283,
+    "3": 15
+  },
+  "mrr": 0.8076077396657872,
+  "per_class_accuracy": {
+    "equivalent": 0.26666666666666666,
+    "partial": 0.12280701754385964,
+    "related": 0.7950530035335689,
+    "unrelated": 0.4583333333333333
+  },
+  "precision_on_passed": 1.0,
+  "router_tau": 1.127534181427917,
+  "run_id": "stacker-48d0d19d-20260409T160345",
+  "tier_accuracy": 0.6517150395778364,
+  "val_samples": 379
+}

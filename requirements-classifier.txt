@@ -8,3 +8,8 @@ huggingface_hub==0.26.2
 wandb==0.18.7
 pytest==8.3.3
 tenacity==9.0.0
+
+# Plan 2 additions
+anthropic==0.39.0
+jinja2==3.1.4
+pydantic==2.9.2

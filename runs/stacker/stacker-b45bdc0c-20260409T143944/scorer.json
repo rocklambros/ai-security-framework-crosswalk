@@ -1,0 +1,22 @@
+{
+  "calibration_split": "llm_val",
+  "conformal_alpha": 0.1,
+  "conformal_path": "runs/stacker/stacker-b45bdc0c-20260409T143944/conformal.json",
+  "feature_cols": [
+    "score_bge_cosine",
+    "score_bm25",
+    "score_bridge"
+  ],
+  "n_classes": 4,
+  "router_path": "runs/stacker/stacker-b45bdc0c-20260409T143944/router.json",
+  "router_tau": 0.9171902500399651,
+  "scorer_name": "ensemble_v1",
+  "stacker_path": "runs/stacker/stacker-b45bdc0c-20260409T143944/model.txt",
+  "val_metrics": {
+    "abstention_rate": 0.8654353562005277,
+    "avg_conformal_set_size": 1.007915567282322,
+    "precision_on_passed": 0.9411764705882353,
+    "val_acc": 0.7440633245382586
+  },
+  "version": "0.1.0"
+}

@@ -122,6 +122,16 @@ Implements:
 All nine contracts (1–9) from `2026-04-07-plan5-gat-stacking-conformal.md`
 remain in force. This delta adds:
 
+**Plan 5 self-review step (Plan 1-D addition):** Before the Plan 5 branch
+is opened for review, grep for every call site of `iter_weighted_rows(` in
+the repo and verify each caller passes `frozen_tuples_path` explicitly (or
+accepts the default `data/splits/frozen_tuples.json`). Also grep every
+`.fit(` call in `classifier/ensemble/` and verify the rows being fed were
+routed through `iter_weighted_rows`, not read directly from disk. A single
+caller bypassing the loader nullifies Contract 10. Run:
+`grep -rn "iter_weighted_rows\|LGBMClassifier\|GATConv\|torch_geometric" classifier/ensemble/`
+and document the audit in the PR description.
+
 - **Contract 10 (NEW) — runtime contamination assertion, TWO LAYERS.** Every
   batch yielded by `classifier.ensemble.training_batches.iter_weighted_rows`
   is checked row-by-row against two independent sets loaded once at loader

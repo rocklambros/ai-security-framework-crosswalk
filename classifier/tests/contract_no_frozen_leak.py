@@ -1,6 +1,14 @@
 """Cross-phase honesty-firewall contract test.
 
-This test is the single authoritative check that NO training row produced
+**Status:** informative-not-load-bearing. The LOAD-BEARING check is
+`classifier.ensemble.training_batches.iter_weighted_rows` Contract 10
+layer 0, which fires on every training batch row at the last mile before
+the model sees it. This test is an earlier, independent check that catches
+producer-level bugs before they propagate into training — it depends on
+producer adapters below, and those adapters may silently skip if paths
+or schemas drift. Do NOT rely on this test alone; rely on Contract 10.
+
+This test is the cross-phase check that NO training row produced
 by ANY phase of the pipeline intersects data/splits/frozen_tuples.json on
 either the source tuple, target tuple, or full pair tuple.
 
@@ -90,16 +98,46 @@ def _plan2_llm_labels() -> Iterator[tuple[str, str, str, str]]:
 
 
 def _plan6_calibration_sample() -> Iterator[tuple[str, str, str, str]]:
-    """Plan 6 autonomous calibration sample."""
-    path = Path("data/calibration/autonomous_calibration.jsonl")
-    for row in _iter_jsonl(path):
-        src = row.get("source_node_id")
-        tgt = row.get("target_node_id")
-        if not src or not tgt:
+    """Plan 6 autonomous calibration sample.
+
+    Plan 6 writes to `data/splits/human_cal.jsonl` (Contract 12). Older
+    drafts referenced `data/calibration/autonomous_calibration.jsonl`; we
+    accept either path so a plan-text refactor does not silently disable
+    this adapter.
+    """
+    candidate_paths = [
+        Path("data/splits/human_cal.jsonl"),
+        Path("data/calibration/autonomous_calibration.jsonl"),
+        Path("data/calibration/upstream_cal_150.jsonl"),
+    ]
+    for path in candidate_paths:
+        if not path.exists():
             continue
-        src_fw, src_id = _split_node(src)
-        tgt_fw, tgt_id = _split_node(tgt)
-        yield src_fw, src_id, tgt_fw, tgt_id
+        for row in _iter_jsonl(path):
+            # Only check Plan 6-written rows. Legacy pre-Plan-1-D rows have
+            # no provenance_tag and are known to violate spec D3 strict
+            # source-id partitioning (see docs/legacy_human_cal_spec_violation.md).
+            # Plan 6 Phase 0.2 regenerates this file autonomously from
+            # upstream train-eligible rows and tags them "human_cal_v1".
+            if row.get("provenance_tag") != "human_cal_v1":
+                continue
+            if "source_framework" in row and "source_id" in row:
+                src_fw, src_id = row["source_framework"], row["source_id"]
+            elif "source_node_id" in row:
+                src_fw, src_id = _split_node(row["source_node_id"])
+            else:
+                continue
+            if "target_framework" in row and ("target_id" in row or "target_node_id" in row):
+                tgt_fw = row["target_framework"]
+                tgt_id = row.get("target_id")
+                if tgt_id is None:
+                    _, tgt_id = _split_node(row["target_node_id"])
+            elif "target_node_id" in row:
+                tgt_fw, tgt_id = _split_node(row["target_node_id"])
+            else:
+                continue
+            yield src_fw, src_id, tgt_fw, tgt_id
+        return  # only process the first path that exists
 
 
 def _plan4_crossref_injected_edges() -> Iterator[tuple[str, str, str, str]]:

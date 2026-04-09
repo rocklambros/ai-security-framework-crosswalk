@@ -30,9 +30,13 @@ class BM25Scorer:
         out: list[ScoreRecord] = []
         for p in pairs:
             query = _tokenize(p.source_text)
-            corpus = [_tokenize(p.target_text)]
-            bm25 = BM25Okapi(corpus, k1=self.k1, b=self.b)
-            s = float(bm25.get_scores(query)[0])
+            target_tokens = _tokenize(p.target_text)
+            if not query or not target_tokens:
+                s = float("nan")
+            else:
+                corpus = [target_tokens]
+                bm25 = BM25Okapi(corpus, k1=self.k1, b=self.b)
+                s = float(bm25.get_scores(query)[0])
             out.append(ScoreRecord(
                 pair_key=p.pair_key, scorer_name=self.name, scorer_version=self.version,
                 score=s, tier_pred=None, tier_probs=None,

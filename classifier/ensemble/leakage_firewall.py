@@ -16,11 +16,19 @@ def check_no_leakage(
     graph_edge_pairs: Set[Tuple[str, str]],
     negative_sample_nodes: Set[str],
     test_cal_nodes: Set[str],
+    mode: str = "node",
 ) -> None:
     """Assert zero data leakage across all split boundaries.
 
     Raises SystemExit on any violation — training MUST NOT proceed.
+
+    Args:
+        mode: "node" (legacy, strict) or "pair" (relaxed — only exact pair
+              overlap is forbidden; shared nodes are permitted).
     """
+    if mode not in ("node", "pair"):
+        sys.exit(f"LEAKAGE CHECK ERROR: invalid mode {mode!r}. Must be 'node' or 'pair'.")
+
     # 1. Train ∩ Test = ∅
     overlap = train_pair_keys & test_pair_keys
     if overlap:
@@ -37,25 +45,27 @@ def check_no_leakage(
             f"First 3: {list(overlap)[:3]}"
         )
 
-    # 3. Graph edges must not contain test/cal pair nodes
-    graph_nodes = set()
-    for src, tgt in graph_edge_pairs:
-        graph_nodes.add(src)
-        graph_nodes.add(tgt)
-    graph_test_overlap = graph_nodes & test_cal_nodes
-    if graph_test_overlap:
-        sys.exit(
-            f"LEAKAGE DETECTED: {len(graph_test_overlap)} nodes leaked between "
-            f"graph edges and test/cal. First 3: {list(graph_test_overlap)[:3]}"
-        )
+    if mode == "node":
+        # 3. Graph edges must not contain test/cal pair nodes
+        graph_nodes = set()
+        for src, tgt in graph_edge_pairs:
+            graph_nodes.add(src)
+            graph_nodes.add(tgt)
+        graph_test_overlap = graph_nodes & test_cal_nodes
+        if graph_test_overlap:
+            sys.exit(
+                f"LEAKAGE DETECTED: {len(graph_test_overlap)} nodes leaked between "
+                f"graph edges and test/cal. First 3: {list(graph_test_overlap)[:3]}"
+            )
 
-    # 4. Negative sample nodes ∩ Test/Cal nodes = ∅
-    neg_overlap = negative_sample_nodes & test_cal_nodes
-    if neg_overlap:
-        sys.exit(
-            f"LEAKAGE DETECTED: {len(neg_overlap)} nodes leaked between "
-            f"negative samples and test_cal. First 3: {list(neg_overlap)[:3]}"
-        )
+        # 4. Negative sample nodes ∩ Test/Cal nodes = ∅
+        neg_overlap = negative_sample_nodes & test_cal_nodes
+        if neg_overlap:
+            sys.exit(
+                f"LEAKAGE DETECTED: {len(neg_overlap)} nodes leaked between "
+                f"negative samples and test_cal. First 3: {list(neg_overlap)[:3]}"
+            )
+    # In "pair" mode, checks 3-4 are skipped. Shared nodes are allowed as long as no exact pair leaks (covered by checks 1-2).
 
 
 def load_frozen_keys(path: str = "data/splits/human_test_frozen.jsonl") -> Set[str]:

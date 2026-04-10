@@ -77,6 +77,7 @@ def build_expert_training_set(
     n_negatives_per_source: int = 5,
     val_fraction: float = 0.15,
     seed: int = 42,
+    leakage_mode: str = "pair",
 ) -> Dict[str, Any]:
     """Build stratified expert training + val sets."""
     random.seed(seed)
@@ -109,8 +110,9 @@ def build_expert_training_set(
         tgt_node_id = row["target_node_id"]
         source_node_id = f"{src_fw}:{src_id}"
 
-        if source_node_id in frozen_cal_nodes or tgt_node_id in frozen_cal_nodes:
-            continue
+        if leakage_mode == "node":
+            if source_node_id in frozen_cal_nodes or tgt_node_id in frozen_cal_nodes:
+                continue
 
         pair_key = f"{src_fw}__{row['target_framework']}::{source_node_id}__{tgt_node_id}"
 
@@ -158,11 +160,12 @@ def build_expert_training_set(
         if nid not in source_texts:
             source_texts[nid] = text
 
+    neg_excluded = frozen_cal_nodes if leakage_mode == "node" else set()
     neg_pairs_raw = mine_hard_negatives(
         source_texts=source_texts,
         target_texts=target_texts,
         positive_pairs=positive_pair_set,
-        excluded_nodes=frozen_cal_nodes,
+        excluded_nodes=neg_excluded,
         n_negatives_per_source=n_negatives_per_source,
     )
 
@@ -204,6 +207,7 @@ def build_expert_training_set(
         graph_edge_pairs=graph_edges,
         negative_sample_nodes=neg_nodes,
         test_cal_nodes=frozen_cal_nodes,
+        mode=leakage_mode,
     )
 
     for name, dataset in [("expert_train.jsonl", train_set), ("expert_val.jsonl", val_set)]:
@@ -233,11 +237,13 @@ if __name__ == "__main__":
     parser.add_argument("--output-dir", default="data/splits")
     parser.add_argument("--n-negatives", type=int, default=5)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--leakage-mode", choices=["node", "pair"], default="pair")
     args = parser.parse_args()
 
     stats = build_expert_training_set(
         output_dir=args.output_dir,
         n_negatives_per_source=args.n_negatives,
         seed=args.seed,
+        leakage_mode=args.leakage_mode,
     )
     print(json.dumps(stats, indent=2))

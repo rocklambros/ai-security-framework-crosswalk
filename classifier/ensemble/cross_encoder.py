@@ -1,8 +1,8 @@
-"""Cross-encoder classifier with CORN ordinal head.
+"""Cross-encoder classifier with ordinal head (KL or CORN).
 
 Wraps a HuggingFace transformer model as a pair classifier.
 Input: (source_text, target_text) pair
-Output: CORN logits (n_classes-1 binary tasks) + CLS embedding
+Output: ordinal logits + CLS embedding
 """
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ from transformers import AutoModel, AutoTokenizer
 
 
 class CrossEncoderClassifier(nn.Module):
-    """Cross-encoder with CORN ordinal head for pair classification."""
+    """Cross-encoder with ordinal head (KL or CORN) for pair classification."""
 
     def __init__(
         self,
@@ -24,18 +24,21 @@ class CrossEncoderClassifier(nn.Module):
         n_classes: int = 4,
         max_length: int = 512,
         dropout: float = 0.1,
+        head_type: str = "corn",
     ):
         super().__init__()
         self.model_name = model_name
         self.n_classes = n_classes
         self.max_length = max_length
+        self.head_type = head_type
 
         self.encoder = AutoModel.from_pretrained(model_name)
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
         hidden_size = self.encoder.config.hidden_size
         self.dropout = nn.Dropout(dropout)
-        self.classifier = nn.Linear(hidden_size, n_classes - 1)
+        out_dim = n_classes if head_type == "kl" else n_classes - 1
+        self.classifier = nn.Linear(hidden_size, out_dim)
 
     def tokenize_pair(
         self, text_a: str, text_b: str
@@ -87,8 +90,6 @@ class CrossEncoderClassifier(nn.Module):
         self, texts_a: List[str], texts_b: List[str], batch_size: int = 32
     ) -> np.ndarray:
         """Predict class probabilities for a list of pairs."""
-        from classifier.ensemble.corn_loss import corn_proba_from_logits
-
         self.eval()
         all_probs = []
 
@@ -99,7 +100,11 @@ class CrossEncoderClassifier(nn.Module):
                 tokens = self.tokenize_batch(batch_a, batch_b)
                 tokens = {k: v.to(next(self.parameters()).device) for k, v in tokens.items()}
                 logits, _ = self.forward(tokens["input_ids"], tokens["attention_mask"])
-                probs = corn_proba_from_logits(logits, self.n_classes)
+                if self.head_type == "kl":
+                    probs = torch.softmax(logits, dim=1)
+                else:
+                    from classifier.ensemble.corn_loss import corn_proba_from_logits
+                    probs = corn_proba_from_logits(logits, self.n_classes)
                 all_probs.append(probs.cpu().numpy())
 
         return np.concatenate(all_probs, axis=0)
@@ -110,16 +115,25 @@ class CrossEncoderClassifier(nn.Module):
         path.mkdir(parents=True, exist_ok=True)
         self.encoder.save_pretrained(path / "encoder")
         self.tokenizer.save_pretrained(path / "encoder")
-        torch.save(
-            {"classifier": self.classifier.state_dict(), "dropout": self.dropout.p},
-            path / "head.pt",
-        )
+        torch.save({
+            "classifier_state": self.classifier.state_dict(),
+            "dropout_p": self.dropout.p,
+            "n_classes": self.n_classes,
+            "max_length": self.max_length,
+            "head_type": self.head_type,
+        }, path / "head.pt")
 
     @classmethod
-    def load(cls, path: Path, n_classes: int = 4) -> "CrossEncoderClassifier":
+    def load(cls, path: Path) -> "CrossEncoderClassifier":
         """Load a saved cross-encoder."""
         path = Path(path)
-        ce = cls(model_name=str(path / "encoder"), n_classes=n_classes)
-        head_state = torch.load(path / "head.pt", map_location="cpu")
-        ce.classifier.load_state_dict(head_state["classifier"])
-        return ce
+        head_data = torch.load(path / "head.pt", map_location="cpu", weights_only=False)
+        obj = cls(
+            model_name=str(path / "encoder"),
+            n_classes=head_data["n_classes"],
+            max_length=head_data["max_length"],
+            dropout=head_data["dropout_p"],
+            head_type=head_data.get("head_type", "corn"),
+        )
+        obj.classifier.load_state_dict(head_data["classifier_state"])
+        return obj

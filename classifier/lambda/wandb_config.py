@@ -9,11 +9,13 @@ CE_SWEEP_CONFIG = {
     "metric": {"name": "val_macro_f1", "goal": "maximize"},
     "parameters": {
         "learning_rate": {"distribution": "log_uniform_values", "min": 1e-6, "max": 5e-5},
-        "batch_size": {"values": [32, 64, 128]},
-        "epochs": {"values": [3, 5, 8, 10, 15]},
+        "batch_size": {"values": [16, 32]},
+        "epochs": {"values": [3, 5, 8, 10]},
         "warmup_ratio": {"distribution": "uniform", "min": 0.0, "max": 0.2},
         "weight_decay": {"distribution": "log_uniform_values", "min": 1e-4, "max": 1e-1},
         "dropout": {"distribution": "uniform", "min": 0.05, "max": 0.3},
+        "loss_type": {"values": ["kl", "corn"]},
+        "sigma": {"distribution": "uniform", "min": 0.3, "max": 1.5},
     },
     "early_terminate": {"type": "hyperband", "min_iter": 3, "eta": 3},
 }
@@ -23,13 +25,14 @@ STACKER_SWEEP_CONFIG = {
     "metric": {"name": "oof_macro_f1", "goal": "maximize"},
     "parameters": {
         "n_estimators": {"values": [100, 200, 300, 500]},
-        "max_depth": {"values": [3, 5, 7, 10, -1]},
+        "max_depth": {"values": [3, 5, 7, -1]},
         "learning_rate": {"distribution": "log_uniform_values", "min": 0.01, "max": 0.3},
-        "min_child_samples": {"values": [5, 10, 20, 50]},
+        "min_child_samples": {"values": [15, 20, 30, 50]},
+        "num_leaves": {"values": [8, 16, 24, 31]},
         "reg_alpha": {"distribution": "log_uniform_values", "min": 1e-4, "max": 10},
         "reg_lambda": {"distribution": "log_uniform_values", "min": 1e-4, "max": 10},
         "subsample": {"distribution": "uniform", "min": 0.6, "max": 1.0},
-        "colsample_bytree": {"distribution": "uniform", "min": 0.6, "max": 1.0},
+        "colsample_bytree": {"distribution": "uniform", "min": 0.5, "max": 1.0},
     },
 }
 

@@ -20,18 +20,19 @@ from typing import Any
 
 def phase1_build_data() -> dict[str, Any]:
     print("\n" + "=" * 60)
-    print("PHASE 1: Build expert training set")
+    print("PHASE 1: Build expert training set (pair-level exclusion)")
     print("=" * 60)
 
     from classifier.scripts.build_expert_training import build_expert_training_set
 
     t0 = time.time()
-    result = build_expert_training_set()
+    result = build_expert_training_set(leakage_mode="pair")
     elapsed = time.time() - t0
 
     print(f"  [phase1] done in {elapsed:.1f}s")
     print(f"  [phase1] train={result['n_train']}, val={result['n_val']}, "
           f"pos={result['n_positives']}, neg={result['n_negatives']}")
+    print(f"  [phase1] leakage_mode=pair (standard STS protocol)")
     return {"phase": 1, "elapsed": elapsed, **result}
 
 
@@ -56,15 +57,15 @@ def phase2_contrastive() -> dict[str, Any]:
         print(f"  [phase2] {name} ({model_id})")
         t0 = time.time()
 
-        output_dir = Path(f"runs/ce_v2/contrastive")
-        output_dir.mkdir(parents=True, exist_ok=True)
+        out_dir = Path(f"runs/ce_v2/contrastive/{name}")
+        out_dir.mkdir(parents=True, exist_ok=True)
 
         train_contrastive(
-            model_name_or_path=model_id,
+            model_name=model_id,
             train_path="data/splits/expert_train.jsonl",
-            output_path=str(output_dir / f"{name}_simcse.pt"),
+            output_dir=str(out_dir),
             epochs=5,
-            batch_size=64,
+            batch_size=32,
         )
         elapsed = time.time() - t0
         print(f"  [phase2] {name} done in {elapsed:.1f}s")
@@ -85,7 +86,7 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
     import importlib
     import wandb
     from classifier.ensemble.cross_encoder import CrossEncoderClassifier
-    from classifier.ensemble.corn_loss import corn_loss
+    from classifier.ensemble.corn_loss import corn_loss, corn_label_from_logits
     _wc = importlib.import_module("classifier.lambda.wandb_config")
     CE_SWEEP_CONFIG = _wc.CE_SWEEP_CONFIG
     CROSS_ENCODER_MODELS = _wc.CROSS_ENCODER_MODELS
@@ -100,8 +101,8 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
         output_dir.mkdir(parents=True, exist_ok=True)
 
         # Check if a pretrained SimCSE checkpoint exists
-        simcse_path = Path(f"runs/ce_v2/contrastive/{name}_simcse.pt")
-        init_from = str(simcse_path) if simcse_path.exists() else model_id
+        simcse_dir = Path(f"runs/ce_v2/contrastive/{name}")
+        init_from = str(simcse_dir) if (simcse_dir / "config.json").exists() else model_id
 
         print(f"  [phase3] creating WANDB sweep for {name}")
         sweep_cfg = {**CE_SWEEP_CONFIG, "name": f"ce-sweep-{name}"}
@@ -109,20 +110,32 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
 
         def train_fn(model_name=name, model_path=init_from, out=str(output_dir)):
             """WANDB agent function — one trial."""
+            import torch
+            import numpy as np
+            from sklearn.metrics import f1_score, accuracy_score
+
+            # Clear GPU memory from previous trial
+            torch.cuda.empty_cache()
+
             run = wandb.init()
             config = dict(run.config)
 
-            # Build and train cross-encoder with CORN loss
-            model = CrossEncoderClassifier(
-                model_name_or_path=model_path,
-                n_classes=4,
-                dropout=config.get("dropout", 0.1),
-            )
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            use_amp = device.type == "cuda"
+            scaler = torch.amp.GradScaler("cuda") if use_amp else None
 
-            import torch
-            import numpy as np
-            from torch.utils.data import DataLoader, TensorDataset
-            from classifier.ensemble.cross_encoder import tokenize_batch
+            loss_type = config.get("loss_type", "kl")
+            sigma = config.get("sigma", 0.75)
+
+            # Build cross-encoder with appropriate head
+            model = CrossEncoderClassifier(
+                model_name=model_path,
+                n_classes=4,
+                max_length=256,
+                dropout=config.get("dropout", 0.1),
+                head_type=loss_type,
+            )
+            model = model.to(device)
 
             # Load training data
             train_data = []
@@ -135,14 +148,14 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
                 for line in f:
                     val_data.append(json.loads(line))
 
-            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            model = model.to(device)
-
             lr = config.get("learning_rate", 2e-5)
             bs = config.get("batch_size", 32)
             epochs = config.get("epochs", 5)
             warmup_ratio = config.get("warmup_ratio", 0.1)
             wd = config.get("weight_decay", 0.01)
+
+            # Clamp batch size for GPU memory safety
+            bs = min(bs, 32)
 
             optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=wd)
             n_steps = (len(train_data) // bs) * epochs
@@ -166,16 +179,28 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
                     texts_b = [r["target_text"] for r in batch]
                     labels = torch.tensor([r["tier_label"] for r in batch], device=device)
 
-                    encoding = tokenize_batch(model.tokenizer, texts_a, texts_b, max_length=256)
+                    encoding = model.tokenize_batch(texts_a, texts_b)
                     encoding = {k: v.to(device) for k, v in encoding.items()}
 
-                    logits = model(encoding)
-                    loss = corn_loss(logits, labels, n_classes=4)
+                    with torch.amp.autocast("cuda", enabled=use_amp):
+                        logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+                        if loss_type == "kl":
+                            from classifier.ensemble.kl_ordinal_loss import kl_ordinal_loss
+                            loss = kl_ordinal_loss(logits, labels, n_classes=4, sigma=sigma)
+                        else:
+                            loss = corn_loss(logits, labels, n_classes=4)
 
                     optimizer.zero_grad()
-                    loss.backward()
-                    torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-                    optimizer.step()
+                    if scaler:
+                        scaler.scale(loss).backward()
+                        scaler.unscale_(optimizer)
+                        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                        scaler.step(optimizer)
+                        scaler.update()
+                    else:
+                        loss.backward()
+                        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                        optimizer.step()
                     scheduler.step()
 
                     epoch_loss += loss.item()
@@ -185,7 +210,6 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
 
                 # Validation
                 model.eval()
-                from sklearn.metrics import f1_score, accuracy_score
                 val_preds = []
                 val_labels = []
                 with torch.no_grad():
@@ -195,11 +219,15 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
                         texts_b = [r["target_text"] for r in batch]
                         labels_batch = [r["tier_label"] for r in batch]
 
-                        encoding = tokenize_batch(model.tokenizer, texts_a, texts_b, max_length=256)
+                        encoding = model.tokenize_batch(texts_a, texts_b)
                         encoding = {k: v.to(device) for k, v in encoding.items()}
 
-                        logits = model(encoding)
-                        preds = torch.argmax(logits, dim=1).cpu().tolist()
+                        with torch.amp.autocast("cuda", enabled=use_amp):
+                            logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+                        if loss_type == "kl":
+                            preds = logits.argmax(dim=1).cpu().tolist()
+                        else:
+                            preds = corn_label_from_logits(logits, n_classes=4).cpu().tolist()
                         val_preds.extend(preds)
                         val_labels.extend(labels_batch)
 
@@ -212,12 +240,14 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
                     "val_macro_f1": val_f1,
                     "val_tier_accuracy": val_acc,
                     "learning_rate": optimizer.param_groups[0]["lr"],
+                    "loss_type": loss_type,
+                    "sigma": sigma if loss_type == "kl" else 0.0,
                 })
 
                 if val_f1 > best_f1:
                     best_f1 = val_f1
                     patience_counter = 0
-                    model.save(Path(out) / "best_model.pt")
+                    model.save(Path(out) / "best")
                     wandb.log({"best_epoch": epoch, "best_val_macro_f1": best_f1})
                 else:
                     patience_counter += 1
@@ -225,6 +255,11 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
                         print(f"    Early stopping at epoch {epoch}")
                         break
 
+            # Clean up GPU memory
+            del model, optimizer
+            if scaler:
+                del scaler
+            torch.cuda.empty_cache()
             run.finish()
 
         print(f"  [phase3] launching {sweep_count} agents for {name}")
@@ -247,7 +282,7 @@ def phase4_extract_features() -> dict[str, Any]:
     import importlib
     import torch
     import numpy as np
-    from classifier.ensemble.cross_encoder import CrossEncoderClassifier, tokenize_batch
+    from classifier.ensemble.cross_encoder import CrossEncoderClassifier
     _wc = importlib.import_module("classifier.lambda.wandb_config")
     CROSS_ENCODER_MODELS = _wc.CROSS_ENCODER_MODELS
 
@@ -275,7 +310,7 @@ def phase4_extract_features() -> dict[str, Any]:
 
     for model_cfg in CROSS_ENCODER_MODELS:
         name = model_cfg["name"]
-        model_path = Path(f"runs/ce_v2/{name}/best_model.pt")
+        model_path = Path(f"runs/ce_v2/{name}/best")
         if not model_path.exists():
             print(f"  [phase4] WARNING: no checkpoint for {name}, skipping")
             continue
@@ -283,9 +318,11 @@ def phase4_extract_features() -> dict[str, Any]:
         print(f"  [phase4] loading {name} from {model_path}")
         model = CrossEncoderClassifier.load(model_path).to(device)
         model.eval()
+        head_type = getattr(model, "head_type", "corn")
+        print(f"  [phase4] {name}: head_type={head_type}")
 
         logits_all = []
-        cls_sims_all = []
+        cls_embs_all = []
 
         with torch.no_grad():
             for i in range(0, len(all_pairs), 64):
@@ -293,24 +330,17 @@ def phase4_extract_features() -> dict[str, Any]:
                 texts_a = [r.get("source_text", "") for r in batch]
                 texts_b = [r.get("target_text", "") for r in batch]
 
-                encoding = tokenize_batch(model.tokenizer, texts_a, texts_b, max_length=256)
+                encoding = model.tokenize_batch(texts_a, texts_b)
                 encoding = {k: v.to(device) for k, v in encoding.items()}
 
-                batch_logits = model(encoding)
+                batch_logits, batch_cls = model.forward(encoding["input_ids"], encoding["attention_mask"])
                 logits_all.append(batch_logits.cpu().numpy())
-
-                # CLS similarity: cosine between [CLS] of text_a and text_b
-                cls_sims_all.append(
-                    torch.cosine_similarity(
-                        batch_logits[:, :2].float(),
-                        batch_logits[:, 2:].float(),
-                        dim=1,
-                    ).cpu().numpy()
-                )
+                cls_embs_all.append(batch_cls.cpu().numpy())
 
         features[f"{name}_logits"] = np.concatenate(logits_all, axis=0)
-        features[f"{name}_cls_sim"] = np.concatenate(cls_sims_all, axis=0)
-        print(f"  [phase4] {name}: logits shape={features[f'{name}_logits'].shape}")
+        features[f"{name}_cls_emb"] = np.concatenate(cls_embs_all, axis=0)
+        features[f"{name}_head_type"] = head_type
+        print(f"  [phase4] {name}: logits shape={features[f'{name}_logits'].shape}, cls_emb shape={features[f'{name}_cls_emb'].shape}")
 
     # Save features
     output_path = Path("data/processed/ce_features_v2.npz")
@@ -392,15 +422,16 @@ def phase6_stacker_sweep() -> dict[str, Any]:
             train_labels.append(json.loads(line)["tier_label"])
     y = np.array(train_labels)
 
-    # Assemble feature matrix
+    # Assemble feature matrix: logits (3×3=9) + CLS embeddings (3×1024=3072)
+    # GAT features omitted (Plan 5 deferred)
     feature_parts = []
     for model in ["deberta", "roberta", "electra"]:
         key = f"{model}_logits"
         if key in ce_data:
             feature_parts.append(ce_data[key][:len(y)])
-        key = f"{model}_cls_sim"
+        key = f"{model}_cls_emb"
         if key in ce_data:
-            feature_parts.append(ce_data[key][:len(y)].reshape(-1, 1))
+            feature_parts.append(ce_data[key][:len(y)])
 
     if gat_path.exists():
         gat_data = np.load(str(gat_path))
@@ -410,7 +441,7 @@ def phase6_stacker_sweep() -> dict[str, Any]:
             feature_parts.append(gat_data["gat_scalars"][:len(y)])
 
     X = np.concatenate(feature_parts, axis=1)
-    print(f"  [phase6] feature matrix: {X.shape} (target: 83 cols)")
+    print(f"  [phase6] feature matrix: {X.shape}")
 
     t0 = time.time()
     best_params = tune_stacker(X, y, n_trials=50, n_splits=5)
@@ -459,8 +490,8 @@ def phase7_two_stage() -> dict[str, Any]:
         for model in ["deberta", "roberta", "electra"]:
             if f"{model}_logits" in data:
                 parts.append(data[f"{model}_logits"][:n])
-            if f"{model}_cls_sim" in data:
-                parts.append(data[f"{model}_cls_sim"][:n].reshape(-1, 1))
+            if f"{model}_cls_emb" in data:
+                parts.append(data[f"{model}_cls_emb"][:n])
         gat_path = Path("data/features/gat_embeddings.npz")
         if gat_path.exists():
             gat = np.load(str(gat_path))

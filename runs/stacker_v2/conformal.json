@@ -1,0 +1,6 @@
+{
+  "alpha": 0.1,
+  "n_cal": 150,
+  "marginal_coverage": 0.9,
+  "method": "mondrian"
+}

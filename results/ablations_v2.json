@@ -1,0 +1,32 @@
+{
+  "ce_deberta_only": {
+    "description": "DeBERTa cross-encoder logits only (argmax)",
+    "tier_accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  "ce_deberta_corn": {
+    "description": "DeBERTa with CORN ordinal loss",
+    "tier_accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  "ce_plus_gat": {
+    "description": "DeBERTa + GAT diff features in stacker",
+    "tier_accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  "multi_ce": {
+    "description": "3x cross-encoder ensemble in stacker",
+    "tier_accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  "full_v2": {
+    "description": "Full v2 ensemble: 3x CE + GAT + BM25 + bridge",
+    "tier_accuracy": 0.0,
+    "macro_f1": 0.0
+  },
+  "full_v2_two_stage": {
+    "description": "Full v2 with two-stage binary->ordinal",
+    "tier_accuracy": 0.0,
+    "macro_f1": 0.0
+  }
+}

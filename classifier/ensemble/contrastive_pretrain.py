@@ -79,6 +79,7 @@ def train_contrastive(
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModel.from_pretrained(model_name).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr)
+    scaler = torch.amp.GradScaler("cuda") if device.type == "cuda" else None
 
     model.train()
     avg_loss = 0.0
@@ -98,18 +99,24 @@ def train_contrastive(
             tok_b = tokenizer(others, padding=True, truncation=True,
                               max_length=256, return_tensors="pt").to(device)
 
-            emb_a = model(**tok_a).last_hidden_state[:, 0, :]
-            emb_b = model(**tok_b).last_hidden_state[:, 0, :]
+            with torch.amp.autocast("cuda", enabled=device.type == "cuda"):
+                emb_a = model(**tok_a).last_hidden_state[:, 0, :]
+                emb_b = model(**tok_b).last_hidden_state[:, 0, :]
 
-            emb_a = F.normalize(emb_a, dim=1)
-            emb_b = F.normalize(emb_b, dim=1)
-            sim = torch.sum(emb_a * emb_b, dim=1) / temperature
+                emb_a = F.normalize(emb_a, dim=1)
+                emb_b = F.normalize(emb_b, dim=1)
+                sim = torch.sum(emb_a * emb_b, dim=1) / temperature
 
-            loss = F.binary_cross_entropy_with_logits(sim, labels)
+                loss = F.binary_cross_entropy_with_logits(sim, labels)
 
             optimizer.zero_grad()
-            loss.backward()
-            optimizer.step()
+            if scaler:
+                scaler.scale(loss).backward()
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                loss.backward()
+                optimizer.step()
 
             epoch_loss += loss.item()
             n_batches += 1

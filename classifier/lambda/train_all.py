@@ -398,131 +398,124 @@ def phase5_gat_retrain() -> dict[str, Any]:
 
 def phase6_stacker_sweep() -> dict[str, Any]:
     print("\n" + "=" * 60)
-    print("PHASE 6: LightGBM stacker sweep (Optuna)")
+    print("PHASE 6: LightGBM stacker sweep (Optuna + PCA features)")
     print("=" * 60)
 
     import numpy as np
+    from classifier.ensemble.feature_pipeline import FeaturePipeline
     from classifier.ensemble.stacker import tune_stacker
+    from classifier.ensemble.label_shift import estimate_prior
+    from classifier.data.tier_mapper import map_expert_tier
 
-    # Load V2 features
     ce_path = Path("data/processed/ce_features_v2.npz")
-    gat_path = Path("data/features/gat_embeddings.npz")
-
     if not ce_path.exists():
         print("  [phase6] ERROR: CE features not found. Run Phase 4 first.")
         return {"phase": 6, "status": "error", "reason": "missing ce_features_v2.npz"}
 
-    ce_data = np.load(str(ce_path))
-    print(f"  [phase6] loaded CE features: {list(ce_data.keys())}")
+    ce_data = dict(np.load(str(ce_path)))
 
-    # Load labels from training data
+    # Load training labels
     train_labels = []
     with open("data/splits/expert_train.jsonl") as f:
         for line in f:
             train_labels.append(json.loads(line)["tier_label"])
     y = np.array(train_labels)
 
-    # Assemble feature matrix: logits (3×3=9) + CLS embeddings (3×1024=3072)
-    # GAT features omitted (Plan 5 deferred)
-    feature_parts = []
-    for model in ["deberta", "roberta", "electra"]:
-        key = f"{model}_logits"
-        if key in ce_data:
-            feature_parts.append(ce_data[key][:len(y)])
-        key = f"{model}_cls_emb"
-        if key in ce_data:
-            feature_parts.append(ce_data[key][:len(y)])
+    # Estimate target-domain prior from human_cal
+    cal_labels = []
+    with open("data/splits/human_cal.jsonl") as f:
+        for line in f:
+            row = json.loads(line)
+            cal_labels.append(int(map_expert_tier(row["expert_tier"])))
+    target_prior = estimate_prior(np.array(cal_labels), n_classes=4)
+    print(f"  [phase6] target prior (from cal): {target_prior}")
 
-    if gat_path.exists():
-        gat_data = np.load(str(gat_path))
-        if "gat_diffs" in gat_data:
-            feature_parts.append(gat_data["gat_diffs"][:len(y)])
-        if "gat_scalars" in gat_data:
-            feature_parts.append(gat_data["gat_scalars"][:len(y)])
+    # Build features via pipeline
+    pipe = FeaturePipeline(pca_variance=0.95)
+    X = pipe.fit_transform(ce_data, n_train=len(y))
+    print(f"  [phase6] feature matrix: {X.shape} (was 3081 raw)")
+    print(f"  [phase6] features: {pipe.feature_names()[:10]}... ({len(pipe.feature_names())} total)")
 
-    X = np.concatenate(feature_parts, axis=1)
-    print(f"  [phase6] feature matrix: {X.shape}")
+    # Compute class weights from target prior
+    source_prior = estimate_prior(y, n_classes=4)
+    class_weight = {k: target_prior[k] / max(source_prior[k], 1e-6) for k in range(4)}
+    print(f"  [phase6] class weights: {class_weight}")
 
     t0 = time.time()
-    best_params = tune_stacker(X, y, n_trials=50, n_splits=5)
+    best_params = tune_stacker(X, y, n_trials=100, n_splits=5)
     elapsed = time.time() - t0
 
     print(f"  [phase6] best params in {elapsed:.1f}s: {best_params}")
 
-    # Save best params
-    params_path = Path("runs/stacker_v2/best_params.json")
-    params_path.parent.mkdir(parents=True, exist_ok=True)
-    params_path.write_text(json.dumps(best_params, indent=2))
+    # Save
+    out = Path("runs/stacker_v2")
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "best_params.json").write_text(json.dumps(best_params, indent=2))
+    pipe.save(out / "feature_pipeline")
 
-    return {"phase": 6, "elapsed": elapsed, "best_params": best_params}
+    return {"phase": 6, "elapsed": elapsed, "best_params": best_params,
+            "n_features": X.shape[1], "target_prior": target_prior.tolist()}
 
 
 # ---------------------------------------------------------------------------
 # Phase 7: Two-stage classifier (CPU)
 # ---------------------------------------------------------------------------
 
-def phase7_two_stage() -> dict[str, Any]:
+def phase7_train_stacker() -> dict[str, Any]:
     print("\n" + "=" * 60)
-    print("PHASE 7: Two-Stage Classifier")
+    print("PHASE 7: Train final stacker with best params")
     print("=" * 60)
 
     import numpy as np
-    from classifier.ensemble.two_stage import TwoStageClassifier
-    from sklearn.metrics import f1_score, accuracy_score
+    from classifier.ensemble.feature_pipeline import FeaturePipeline
+    from classifier.ensemble.stacker import train_and_evaluate
+    from classifier.data.tier_mapper import map_expert_tier
+    from classifier.ensemble.label_shift import estimate_prior
 
-    # Load features and labels
-    ce_data = np.load("data/processed/ce_features_v2.npz")
-    train_labels = []
+    ce_data = dict(np.load("data/processed/ce_features_v2.npz"))
+
+    # Load labels
+    train_labels, val_labels = [], []
     with open("data/splits/expert_train.jsonl") as f:
         for line in f:
             train_labels.append(json.loads(line)["tier_label"])
-    y_train = np.array(train_labels)
-
-    val_labels = []
     with open("data/splits/expert_val.jsonl") as f:
         for line in f:
             val_labels.append(json.loads(line)["tier_label"])
+    y_train = np.array(train_labels)
     y_val = np.array(val_labels)
 
-    # Assemble feature matrices
-    def assemble_features(data, n):
-        parts = []
-        for model in ["deberta", "roberta", "electra"]:
-            if f"{model}_logits" in data:
-                parts.append(data[f"{model}_logits"][:n])
-            if f"{model}_cls_emb" in data:
-                parts.append(data[f"{model}_cls_emb"][:n])
-        gat_path = Path("data/features/gat_embeddings.npz")
-        if gat_path.exists():
-            gat = np.load(str(gat_path))
-            if "gat_diffs" in gat:
-                parts.append(gat["gat_diffs"][:n])
-            if "gat_scalars" in gat:
-                parts.append(gat["gat_scalars"][:n])
-        return np.concatenate(parts, axis=1)
+    # Load feature pipeline
+    pipe = FeaturePipeline.load(Path("runs/stacker_v2/feature_pipeline"))
+    X_all = pipe.transform(ce_data)
+    X_train = X_all[:len(y_train)]
+    X_val = X_all[len(y_train):len(y_train)+len(y_val)]
 
-    X_train = assemble_features(ce_data, len(y_train))
-    n_val_start = len(y_train)
-    X_val = assemble_features(ce_data, n_val_start + len(y_val))[n_val_start:]
+    # Load best params
+    best_params = json.loads(Path("runs/stacker_v2/best_params.json").read_text())
 
-    clf = TwoStageClassifier()
+    # Compute sample weights from label shift
+    cal_labels = []
+    with open("data/splits/human_cal.jsonl") as f:
+        for line in f:
+            row = json.loads(line)
+            cal_labels.append(int(map_expert_tier(row["expert_tier"])))
+    target_prior = estimate_prior(np.array(cal_labels), n_classes=4)
+    source_prior = estimate_prior(y_train, n_classes=4)
+    sample_weights = np.array([target_prior[y] / max(source_prior[y], 1e-6) for y in y_train])
+
     t0 = time.time()
-    clf.fit(X_train, y_train)
+    result = train_and_evaluate(
+        X_train, y_train, X_val, y_val,
+        sample_weight=sample_weights,
+        params=best_params,
+    )
     elapsed = time.time() - t0
 
-    # Evaluate
-    val_preds = clf.predict(X_val)
-    val_f1 = f1_score(y_val, val_preds, average="macro")
-    val_acc = accuracy_score(y_val, val_preds)
+    print(f"  [phase7] train_acc={result['train_acc']:.4f}, val_acc={result['val_acc']:.4f}")
+    print(f"  [phase7] train_logloss={result['train_logloss']:.4f}, val_logloss={result['val_logloss']:.4f}")
 
-    print(f"  [phase7] fit in {elapsed:.1f}s — val_macro_f1={val_f1:.4f}, val_acc={val_acc:.4f}")
-
-    # Save
-    save_dir = Path("runs/stacker_v2/two_stage")
-    clf.save(save_dir)
-    print(f"  [phase7] saved to {save_dir}")
-
-    return {"phase": 7, "elapsed": elapsed, "val_macro_f1": val_f1, "val_accuracy": val_acc}
+    return {"phase": 7, "elapsed": elapsed, **{k: v for k, v in result.items() if k != 'stacker'}}
 
 
 # ---------------------------------------------------------------------------
@@ -535,44 +528,91 @@ def phase8_conformal() -> dict[str, Any]:
     print("=" * 60)
 
     import numpy as np
-    from classifier.ensemble.two_stage import TwoStageClassifier
+    from classifier.ensemble.feature_pipeline import FeaturePipeline
+    from classifier.ensemble.stacker import LGBMStacker
+    from classifier.ensemble.label_shift import adjust_label_shift, estimate_prior
+    from classifier.data.tier_mapper import map_expert_tier
 
-    # Load calibration data
+    ce_data = dict(np.load("data/processed/ce_features_v2.npz"))
+    pipe = FeaturePipeline.load(Path("runs/stacker_v2/feature_pipeline"))
+
+    # Find the latest stacker run
+    registry = Path("runs/registry.jsonl")
+    last_run = None
+    if registry.exists():
+        with registry.open() as f:
+            for line in f:
+                last_run = json.loads(line)
+    if not last_run:
+        return {"phase": 8, "status": "error", "reason": "no stacker run found"}
+
+    model_path = Path(last_run["model_path"])
+    stacker = LGBMStacker.load(model_path)
+
+    # Load calibration data with proper labels
     cal_data = []
-    cal_path = Path("data/splits/human_cal.jsonl")
-    if not cal_path.exists():
-        print("  [phase8] WARNING: human_cal.jsonl not found, skipping")
-        return {"phase": 8, "status": "skipped"}
-
-    with cal_path.open() as f:
+    cal_labels = []
+    with open("data/splits/human_cal.jsonl") as f:
         for line in f:
-            cal_data.append(json.loads(line))
+            row = json.loads(line)
+            cal_data.append(row)
+            cal_labels.append(int(map_expert_tier(row["expert_tier"])))
+    y_cal = np.array(cal_labels)
 
-    # Load model
-    clf = TwoStageClassifier.load(Path("runs/stacker_v2/two_stage"))
+    # Get calibration features (cal is after train+val in ce_features)
+    n_train_val = 0
+    for split in ["expert_train.jsonl", "expert_val.jsonl"]:
+        with open(f"data/splits/{split}") as f:
+            n_train_val += sum(1 for _ in f)
+
+    X_all = pipe.transform(ce_data)
+    X_cal = X_all[n_train_val:n_train_val+len(cal_data)]
 
     # Get calibration probabilities
-    ce_data = np.load("data/processed/ce_features_v2.npz")
+    proba_cal = stacker.predict_proba(X_cal)
 
-    alpha = 0.10  # Target 90% coverage
+    # Apply label shift correction
+    train_labels = []
+    with open("data/splits/expert_train.jsonl") as f:
+        for line in f:
+            train_labels.append(json.loads(line)["tier_label"])
+    source_prior = estimate_prior(np.array(train_labels), n_classes=4)
+    target_prior = estimate_prior(y_cal, n_classes=4)
+    proba_adjusted = adjust_label_shift(proba_cal, source_prior, target_prior)
+
+    # Mondrian conformal: per-class nonconformity scores
+    alpha = 0.10
     n_classes = 4
+    q_hat = {}
+    coverage = {}
 
-    # Compute nonconformity scores per class (Mondrian)
-    cal_scores = {c: [] for c in range(n_classes)}
+    for c in range(n_classes):
+        mask = y_cal == c
+        if mask.sum() == 0:
+            q_hat[str(c)] = 1.0
+            coverage[str(c)] = 1.0
+            continue
+        scores = 1.0 - proba_adjusted[mask, c]
+        n_c = mask.sum()
+        q_level = min(np.ceil((n_c + 1) * (1 - alpha)) / n_c, 1.0)
+        q_hat[str(c)] = float(np.quantile(scores, q_level))
+        coverage[str(c)] = float((scores <= q_hat[str(c)]).mean())
 
-    print(f"  [phase8] calibrating on {len(cal_data)} examples, alpha={alpha}")
-
-    # Save calibration results
     conformal = {
         "alpha": alpha,
         "n_cal": len(cal_data),
         "marginal_coverage": 1 - alpha,
         "method": "mondrian",
+        "q_hat": q_hat,
+        "coverage": coverage,
+        "label_shift_applied": True,
+        "source_prior": source_prior.tolist(),
+        "target_prior": target_prior.tolist(),
     }
 
-    output = Path("runs/stacker_v2/conformal.json")
-    output.write_text(json.dumps(conformal, indent=2))
-    print(f"  [phase8] saved to {output}")
+    out = Path("runs/stacker_v2/conformal.json")
+    out.write_text(json.dumps(conformal, indent=2))
+    print(f"  [phase8] conformal: {conformal}")
 
     return {"phase": 8, **conformal}
 
@@ -589,55 +629,135 @@ def phase9_sacred_run() -> dict[str, Any]:
     import subprocess
     import numpy as np
     from sklearn.metrics import f1_score, accuracy_score, confusion_matrix
+    from classifier.ensemble.feature_pipeline import FeaturePipeline
+    from classifier.ensemble.stacker import LGBMStacker
+    from classifier.ensemble.label_shift import adjust_label_shift, estimate_prior
+    from classifier.data.tier_mapper import map_expert_tier, TierLabel
 
-    # Get git SHA for contract 10
     sha = subprocess.run(
         ["git", "rev-parse", "--short", "HEAD"],
         capture_output=True, text=True,
     ).stdout.strip()
-
     print(f"  [phase9] git SHA: {sha}")
 
-    # Load frozen test data
+    # Load frozen test data with proper label conversion
     test_data = []
+    test_labels = []
     with open("data/splits/human_test_frozen.jsonl") as f:
         for line in f:
-            test_data.append(json.loads(line))
+            row = json.loads(line)
+            test_data.append(row)
+            test_labels.append(int(map_expert_tier(row["expert_tier"])))
+    y_test = np.array(test_labels)
     print(f"  [phase9] {len(test_data)} frozen test pairs")
+    print(f"  [phase9] test label dist: {dict(zip(*np.unique(y_test, return_counts=True)))}")
 
-    # Load model and predict
-    from classifier.ensemble.two_stage import TwoStageClassifier
-    clf = TwoStageClassifier.load(Path("runs/stacker_v2/two_stage"))
+    # Load model and features
+    ce_data = dict(np.load("data/processed/ce_features_v2.npz"))
+    pipe = FeaturePipeline.load(Path("runs/stacker_v2/feature_pipeline"))
+    X_all = pipe.transform(ce_data)
 
-    # Ablation matrix
-    from classifier.sacred.ablation_registry import V2_ABLATIONS
+    # Test features are after train+val+cal
+    n_before_test = 0
+    for split in ["expert_train.jsonl", "expert_val.jsonl", "human_cal.jsonl"]:
+        with open(f"data/splits/{split}") as f:
+            n_before_test += sum(1 for _ in f)
+    X_test = X_all[n_before_test:n_before_test+len(test_data)]
 
-    ablation_results = {}
-    for name, config in V2_ABLATIONS.items():
-        print(f"  [phase9] ablation: {name} — {config['description']}")
-        ablation_results[name] = {
-            "description": config["description"],
-            "tier_accuracy": 0.0,
-            "macro_f1": 0.0,
+    # Load stacker
+    registry = Path("runs/registry.jsonl")
+    last_run = None
+    with registry.open() as f:
+        for line in f:
+            last_run = json.loads(line)
+    stacker = LGBMStacker.load(Path(last_run["model_path"]))
+
+    # Predict with label shift correction
+    proba_raw = stacker.predict_proba(X_test)
+
+    train_labels = []
+    with open("data/splits/expert_train.jsonl") as f:
+        for line in f:
+            train_labels.append(json.loads(line)["tier_label"])
+    source_prior = estimate_prior(np.array(train_labels), n_classes=4)
+
+    cal_labels = []
+    with open("data/splits/human_cal.jsonl") as f:
+        for line in f:
+            cal_labels.append(int(map_expert_tier(json.loads(line)["expert_tier"])))
+    target_prior = estimate_prior(np.array(cal_labels), n_classes=4)
+
+    proba_adj = adjust_label_shift(proba_raw, source_prior, target_prior)
+    y_pred = proba_adj.argmax(axis=1)
+
+    # Metrics
+    tier_acc = float(accuracy_score(y_test, y_pred))
+    macro_f1 = float(f1_score(y_test, y_pred, average="macro"))
+    cm = confusion_matrix(y_test, y_pred, labels=[0, 1, 2, 3])
+
+    tier_names = ["unrelated", "partial", "related", "equivalent"]
+    cm_dict = {}
+    per_class = {}
+    for i, name_i in enumerate(tier_names):
+        cm_dict[name_i] = {tier_names[j]: int(cm[i, j]) for j in range(4)}
+        per_class[name_i] = {
+            "accuracy": float(cm[i, i] / max(cm[i].sum(), 1)),
+            "count": int(cm[i].sum()),
         }
 
-    # Save sacred results
+    # Conformal prediction sets
+    conformal_data = json.loads(Path("runs/stacker_v2/conformal.json").read_text())
+    q_hat = conformal_data.get("q_hat", {})
+    set_sizes = []
+    covered = 0
+    for i in range(len(y_test)):
+        pred_set = []
+        for c in range(4):
+            score = 1.0 - proba_adj[i, c]
+            if score <= float(q_hat.get(str(c), 1.0)):
+                pred_set.append(c)
+        set_sizes.append(len(pred_set))
+        if y_test[i] in pred_set:
+            covered += 1
+
+    # Bootstrap CI
+    rng = np.random.RandomState(42)
+    n_boot = 2000
+    boot_accs = []
+    for _ in range(n_boot):
+        idx = rng.choice(len(y_test), size=len(y_test), replace=True)
+        boot_accs.append(float(accuracy_score(y_test[idx], y_pred[idx])))
+    boot_accs.sort()
+
     sacred_result = {
-        "git_sha": sha,
-        "n_test": len(test_data),
-        "ablations": ablation_results,
-        "status": "completed",
+        "tier_accuracy": tier_acc,
+        "macro_f1": macro_f1,
+        "n_pairs": len(test_data),
+        "confusion_matrix": cm_dict,
+        "per_class": per_class,
+        "bootstrap_ci_95": {
+            "lower": boot_accs[int(0.025 * n_boot)],
+            "point": tier_acc,
+            "upper": boot_accs[int(0.975 * n_boot)],
+        },
+        "conformal": {
+            "marginal_coverage": covered / len(y_test),
+            "avg_set_size": float(np.mean(set_sizes)),
+        },
+        "label_shift_applied": True,
+        "sacred_run": True,
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S+00:00", time.gmtime()),
     }
 
+    print(f"  [phase9] tier_accuracy={tier_acc:.4f}")
+    print(f"  [phase9] macro_f1={macro_f1:.4f}")
+    print(f"  [phase9] bootstrap 95% CI: [{sacred_result['bootstrap_ci_95']['lower']:.4f}, {sacred_result['bootstrap_ci_95']['upper']:.4f}]")
+    print(f"  [phase9] conformal coverage={sacred_result['conformal']['marginal_coverage']:.4f}, avg_set_size={sacred_result['conformal']['avg_set_size']:.2f}")
+
+    # Save
     output = Path(f"results/sacred/sacred_{sha}.json")
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(sacred_result, indent=2))
-    print(f"  [phase9] saved to {output}")
-
-    # Save ablation summary
-    abl_output = Path("results/ablations_v2.json")
-    abl_output.write_text(json.dumps(ablation_results, indent=2))
-    print(f"  [phase9] ablation summary saved to {abl_output}")
 
     return {"phase": 9, "sha": sha, **sacred_result}
 
@@ -653,7 +773,7 @@ PHASES: dict[int, Any] = {
     4: phase4_extract_features,
     5: phase5_gat_retrain,
     6: phase6_stacker_sweep,
-    7: phase7_two_stage,
+    7: phase7_train_stacker,
     8: phase8_conformal,
     9: phase9_sacred_run,
 }
@@ -665,7 +785,7 @@ PHASE_NAMES: dict[int, str] = {
     4: "extract_features",
     5: "gat_retrain",
     6: "stacker_sweep",
-    7: "two_stage",
+    7: "train_stacker",
     8: "conformal",
     9: "sacred_run",
 }

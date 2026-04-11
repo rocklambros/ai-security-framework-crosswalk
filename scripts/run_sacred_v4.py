@@ -11,12 +11,16 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 from math import ceil
 from pathlib import Path
 from typing import Optional
 
+# Ensure project root is on sys.path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score
 
 from classifier.data.split_human_cal import split_human_cal
@@ -194,25 +198,31 @@ def _method_a(
     X_test_llm: np.ndarray,
     y_test: np.ndarray,
 ) -> dict:
-    """Method A: LLM-direct — argmax of vote distribution, no training."""
-    # Vote distribution is columns 0:4 of LLM features
-    # Predict test directly
-    y_pred_test = np.argmax(X_test_llm[:, :4], axis=1)
+    """Method A: LLM-direct — score_to_tier on mean score, no training.
+
+    LLM features are now [score_0, score_1, score_2, mean_score, confidence].
+    Use mean_score (col 3) with default boundaries.
+    """
+    from classifier.llm.judge import score_to_tier
+
+    y_pred_test = np.array([score_to_tier(s) for s in X_test_llm[:, 3]])
     macro_f1 = float(f1_score(y_test, y_pred_test, average="macro", zero_division=0))
 
-    # Pseudo-probabilities: vote fractions (4-dim), pad confidence as 5th col
-    # For conformal we need (n, 4) proba — use vote fractions directly
-    proba_cal_val = X_cal_llm[idx_val, :4].astype(np.float64)
-    proba_test = X_test_llm[:, :4].astype(np.float64)
+    # Pseudo-probabilities from scores: use gaussian kernel around each tier center
+    # Tier centers: 0→1.25, 1→3.75, 2→6.25, 3→8.75
+    tier_centers = np.array([1.25, 3.75, 6.25, 8.75])
+    sigma = 1.5
 
-    # Normalize rows to sum to 1 (they should already, but be safe)
-    row_sums = proba_cal_val.sum(axis=1, keepdims=True)
-    row_sums[row_sums == 0] = 1.0
-    proba_cal_val = proba_cal_val / row_sums
+    def _score_to_proba(scores: np.ndarray) -> np.ndarray:
+        """Convert mean scores to 4-class pseudo-probabilities."""
+        # scores shape: (n,)
+        dists = np.exp(-0.5 * ((scores[:, None] - tier_centers[None, :]) / sigma) ** 2)
+        row_sums = dists.sum(axis=1, keepdims=True)
+        row_sums[row_sums == 0] = 1.0
+        return dists / row_sums
 
-    row_sums_t = proba_test.sum(axis=1, keepdims=True)
-    row_sums_t[row_sums_t == 0] = 1.0
-    proba_test = proba_test / row_sums_t
+    proba_cal_val = _score_to_proba(X_cal_llm[idx_val, 3])
+    proba_test = _score_to_proba(X_test_llm[:, 3])
 
     return {
         "y_pred": y_pred_test,
@@ -231,29 +241,32 @@ def _method_b(
     X_test_llm: np.ndarray,
     y_test: np.ndarray,
 ) -> dict:
-    """Method B: LLM-calibrated — LR on human_cal_train LLM features (5-dim)."""
+    """Method B: LLM-calibrated — RF on human_cal_train LLM features (5-dim)."""
     X_train = X_cal_llm[idx_train]
     y_train = y_cal[idx_train]
 
-    lr = LogisticRegression(C=1.0, max_iter=1000, class_weight="balanced")
-    lr.fit(X_train, y_train)
+    rf = RandomForestClassifier(
+        n_estimators=500, min_samples_leaf=2,
+        class_weight="balanced_subsample", random_state=42,
+    )
+    rf.fit(X_train, y_train)
 
-    y_pred_test = lr.predict(X_test_llm)
+    y_pred_test = rf.predict(X_test_llm)
     macro_f1 = float(f1_score(y_test, y_pred_test, average="macro", zero_division=0))
 
-    proba_cal_val = lr.predict_proba(X_cal_llm[idx_val])
-    proba_test = lr.predict_proba(X_test_llm)
+    proba_cal_val = rf.predict_proba(X_cal_llm[idx_val])
+    proba_test = rf.predict_proba(X_test_llm)
 
     # Align proba columns to TIER_NAMES order (0,1,2,3)
-    proba_cal_val = _align_proba(proba_cal_val, lr.classes_)
-    proba_test = _align_proba(proba_test, lr.classes_)
+    proba_cal_val = _align_proba(proba_cal_val, rf.classes_)
+    proba_test = _align_proba(proba_test, rf.classes_)
 
     return {
         "y_pred": y_pred_test,
         "proba_cal_val": proba_cal_val,
         "proba_test": proba_test,
         "macro_f1": macro_f1,
-        "model": lr,
+        "model": rf,
     }
 
 
@@ -262,33 +275,56 @@ def _method_c(
     idx_val: list[int],
     y_cal: np.ndarray,
     y_test: np.ndarray,
+    cal_pairs: list[dict],
+    test_pairs: list[dict],
 ) -> dict:
-    """Method C: LLM + CE fusion (13-dim), no graph."""
+    """Method C: LLM + graph fusion (306-dim), no CE.
+
+    CE features (trained on algorithmic labels) hurt when evaluated on human
+    labels, so this method skips CE and goes straight to LLM + graph.
+    """
+    from classifier.features.graph_features import (
+        compute_pair_features,
+        load_embeddings,
+        load_graph,
+    )
+
+    gat_dict, n2v_dict = load_embeddings()
+    graph = load_graph()
+
+    graph_cal = compute_pair_features(cal_pairs, gat_dict, n2v_dict, graph)
+    graph_test = compute_pair_features(test_pairs, gat_dict, n2v_dict, graph)
+
     X_cal_fused = build_fusion_matrix(
-        "human_cal", ce_start=CAL_START, n_pairs=N_CAL, include_graph=False
+        "human_cal", ce_start=CAL_START, n_pairs=N_CAL,
+        graph_features=graph_cal, include_ce=False, include_graph=True,
     )
     X_test_fused = build_fusion_matrix(
-        "human_test_frozen", ce_start=TEST_START, n_pairs=N_TEST, include_graph=False
+        "human_test_frozen", ce_start=TEST_START, n_pairs=N_TEST,
+        graph_features=graph_test, include_ce=False, include_graph=True,
     )
 
     X_train = X_cal_fused[idx_train]
     y_train = y_cal[idx_train]
 
-    lr = LogisticRegression(C=0.1, max_iter=1000, class_weight="balanced")
-    lr.fit(X_train, y_train)
+    rf = RandomForestClassifier(
+        n_estimators=500, min_samples_leaf=3,
+        class_weight="balanced_subsample", random_state=42,
+    )
+    rf.fit(X_train, y_train)
 
-    y_pred_test = lr.predict(X_test_fused)
+    y_pred_test = rf.predict(X_test_fused)
     macro_f1 = float(f1_score(y_test, y_pred_test, average="macro", zero_division=0))
 
-    proba_cal_val = _align_proba(lr.predict_proba(X_cal_fused[idx_val]), lr.classes_)
-    proba_test = _align_proba(lr.predict_proba(X_test_fused), lr.classes_)
+    proba_cal_val = _align_proba(rf.predict_proba(X_cal_fused[idx_val]), rf.classes_)
+    proba_test = _align_proba(rf.predict_proba(X_test_fused), rf.classes_)
 
     return {
         "y_pred": y_pred_test,
         "proba_cal_val": proba_cal_val,
         "proba_test": proba_test,
         "macro_f1": macro_f1,
-        "model": lr,
+        "model": rf,
     }
 
 
@@ -299,20 +335,10 @@ def _method_d(
     y_test: np.ndarray,
     cal_pairs: list[dict],
     test_pairs: list[dict],
+    graph_cal: np.ndarray,
+    graph_test: np.ndarray,
 ) -> dict:
     """Method D: LLM + CE + graph fusion (314-dim)."""
-    from classifier.features.graph_features import (
-        compute_pair_features,
-        load_embeddings,
-        load_graph,
-    )
-
-    gat_dict, n2v_dict = load_embeddings()
-    graph = load_graph()
-
-    graph_cal = compute_pair_features(cal_pairs, gat_dict, n2v_dict, graph)   # (150, 301)
-    graph_test = compute_pair_features(test_pairs, gat_dict, n2v_dict, graph)  # (400, 301)
-
     X_cal_fused = build_fusion_matrix(
         "human_cal",
         CAL_START,
@@ -333,21 +359,24 @@ def _method_d(
     X_train = X_cal_fused[idx_train]
     y_train = y_cal[idx_train]
 
-    lr = LogisticRegression(C=0.01, max_iter=2000, class_weight="balanced")
-    lr.fit(X_train, y_train)
+    rf = RandomForestClassifier(
+        n_estimators=500, min_samples_leaf=3,
+        class_weight="balanced_subsample", random_state=42,
+    )
+    rf.fit(X_train, y_train)
 
-    y_pred_test = lr.predict(X_test_fused)
+    y_pred_test = rf.predict(X_test_fused)
     macro_f1 = float(f1_score(y_test, y_pred_test, average="macro", zero_division=0))
 
-    proba_cal_val = _align_proba(lr.predict_proba(X_cal_fused[idx_val]), lr.classes_)
-    proba_test = _align_proba(lr.predict_proba(X_test_fused), lr.classes_)
+    proba_cal_val = _align_proba(rf.predict_proba(X_cal_fused[idx_val]), rf.classes_)
+    proba_test = _align_proba(rf.predict_proba(X_test_fused), rf.classes_)
 
     return {
         "y_pred": y_pred_test,
         "proba_cal_val": proba_cal_val,
         "proba_test": proba_test,
         "macro_f1": macro_f1,
-        "model": lr,
+        "model": rf,
     }
 
 
@@ -402,32 +431,47 @@ def run_sacred_v4() -> dict:
     y_cal_val = y_cal_full[idx_val]
 
     # ------------------------------------------------------------------
-    # 2. Run all four methods
+    # 2. Compute graph features (shared by Methods C & D)
+    # ------------------------------------------------------------------
+    from classifier.features.graph_features import (
+        compute_pair_features,
+        load_embeddings,
+        load_graph,
+    )
+
+    print("Loading graph features …")
+    gat_dict, n2v_dict = load_embeddings()
+    graph = load_graph()
+    graph_cal = compute_pair_features(cal_pairs, gat_dict, n2v_dict, graph)
+    graph_test = compute_pair_features(test_pairs, gat_dict, n2v_dict, graph)
+
+    # ------------------------------------------------------------------
+    # 3. Run all four methods
     # ------------------------------------------------------------------
     print("Method A: LLM-direct …")
     result_a = _method_a(X_cal_llm, idx_train, idx_val, y_cal_full, X_test_llm, y_test)
     print(f"  macro_f1 = {result_a['macro_f1']:.4f}")
 
-    print("Method B: LLM-calibrated …")
+    print("Method B: LLM-calibrated (RF) …")
     result_b = _method_b(X_cal_llm, idx_train, idx_val, y_cal_full, X_test_llm, y_test)
     print(f"  macro_f1 = {result_b['macro_f1']:.4f}")
 
-    print("Method C: LLM + CE fusion …")
-    result_c = _method_c(idx_train, idx_val, y_cal_full, y_test)
+    print("Method C: LLM + graph (RF, no CE) …")
+    result_c = _method_c(idx_train, idx_val, y_cal_full, y_test, cal_pairs, test_pairs)
     print(f"  macro_f1 = {result_c['macro_f1']:.4f}")
 
-    print("Method D: LLM + CE + graph fusion …")
-    result_d = _method_d(idx_train, idx_val, y_cal_full, y_test, cal_pairs, test_pairs)
+    print("Method D: LLM + CE + graph (RF) …")
+    result_d = _method_d(idx_train, idx_val, y_cal_full, y_test, cal_pairs, test_pairs, graph_cal, graph_test)
     print(f"  macro_f1 = {result_d['macro_f1']:.4f}")
 
     # ------------------------------------------------------------------
-    # 3. Select best method
+    # 4. Select best method
     # ------------------------------------------------------------------
     methods = [
         ("A_llm_direct",      result_a),
-        ("B_llm_calibrated",  result_b),
-        ("C_llm_ce",          result_c),
-        ("D_llm_ce_graph",    result_d),
+        ("B_llm_rf",          result_b),
+        ("C_llm_graph_rf",    result_c),
+        ("D_llm_ce_graph_rf", result_d),
     ]
 
     best_name, best_result = max(methods, key=lambda kv: kv[1]["macro_f1"])
@@ -469,9 +513,12 @@ def run_sacred_v4() -> dict:
         for name, res in methods
     ]
 
+    tier_accuracy = float(np.mean(y_pred_best == y_test))
+
     results: dict = {
         "best_method": best_name,
         "macro_f1": float(best_result["macro_f1"]),
+        "tier_accuracy": tier_accuracy,
         "ablation": ablation_summary,
         "per_class": per_class,
         "confusion_matrix": confusion,
@@ -497,3 +544,7 @@ def run_sacred_v4() -> dict:
     print(f"\nSaved results to {out_path}")
 
     return results
+
+
+if __name__ == "__main__":
+    run_sacred_v4()

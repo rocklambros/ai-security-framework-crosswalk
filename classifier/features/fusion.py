@@ -30,18 +30,19 @@ _CE_DEFAULT = _ROOT / "data" / "processed" / "ce_features_v2.npz"
 # ---------------------------------------------------------------------------
 
 def load_llm_features(split_name: str) -> np.ndarray:
-    """Load LLM vote features for a split.
+    """Load LLM score features for a split.
 
     Parameters
     ----------
     split_name:
-        Name of the split, e.g. ``"train"``, ``"val"``, ``"test"``.
+        Name of the split, e.g. ``"human_cal"``, ``"human_test_frozen"``.
         Resolved to ``data/processed/llm_scores_v4/{split_name}.jsonl``.
 
     Returns
     -------
     np.ndarray of shape (n_pairs, 5):
-        Columns 0-3: vote distribution (fraction of votes for each tier 0-3).
+        Columns 0-2: individual Sonnet scores (0-10 scale).
+        Column 3:    mean score (final_score).
         Column 4:    confidence score.
     """
     path = _LLM_DIR / f"{split_name}.jsonl"
@@ -52,15 +53,15 @@ def load_llm_features(split_name: str) -> np.ndarray:
             if not line:
                 continue
             rec = json.loads(line)
-            votes: list[int] = rec["sonnet_votes"]
-            n_votes = len(votes) if votes else 1
-            dist = np.zeros(4, dtype=np.float32)
-            for v in votes:
-                if 0 <= v <= 3:
-                    dist[v] += 1
-            dist /= n_votes
-            confidence = float(rec["confidence"])
-            rows.append(np.append(dist, confidence))
+            scores = rec.get("sonnet_scores", [])
+            # Pad/truncate to exactly 3 scores
+            while len(scores) < 3:
+                scores.append(rec.get("final_score", 0.0))
+            feats = scores[:3] + [
+                float(rec.get("final_score", 0.0)),
+                float(rec.get("confidence", 0.0)),
+            ]
+            rows.append(feats)
     return np.array(rows, dtype=np.float32)
 
 

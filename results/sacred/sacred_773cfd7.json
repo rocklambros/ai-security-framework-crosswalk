@@ -1,0 +1,98 @@
+{
+  "best_method": "B_llm_rf",
+  "macro_f1": 0.4465448529964659,
+  "tier_accuracy": 0.4675,
+  "ablation": [
+    {
+      "method": "A_llm_direct",
+      "macro_f1": 0.34756367493737983
+    },
+    {
+      "method": "B_llm_rf",
+      "macro_f1": 0.4465448529964659
+    },
+    {
+      "method": "C_llm_graph_rf",
+      "macro_f1": 0.44075264160929495
+    },
+    {
+      "method": "D_llm_ce_graph_rf",
+      "macro_f1": 0.3436743195774149
+    }
+  ],
+  "per_class": [
+    {
+      "tier": "unrelated",
+      "count": 78,
+      "accuracy": 0.6794871794871795,
+      "f1": 0.5698924731182796
+    },
+    {
+      "tier": "partial",
+      "count": 78,
+      "accuracy": 0.24358974358974358,
+      "f1": 0.26573426573426573
+    },
+    {
+      "tier": "related",
+      "count": 186,
+      "accuracy": 0.46236559139784944,
+      "f1": 0.5043988269794721
+    },
+    {
+      "tier": "equivalent",
+      "count": 58,
+      "accuracy": 0.5,
+      "f1": 0.4461538461538462
+    }
+  ],
+  "confusion_matrix": {
+    "unrelated": {
+      "unrelated": 53,
+      "partial": 11,
+      "related": 10,
+      "equivalent": 4
+    },
+    "partial": {
+      "unrelated": 21,
+      "partial": 19,
+      "related": 33,
+      "equivalent": 5
+    },
+    "related": {
+      "unrelated": 33,
+      "partial": 33,
+      "related": 86,
+      "equivalent": 34
+    },
+    "equivalent": {
+      "unrelated": 1,
+      "partial": 2,
+      "related": 26,
+      "equivalent": 29
+    }
+  },
+  "conformal": {
+    "q_hat": 0.8511700032196268,
+    "q_level": 0.92,
+    "coverage": 0.865,
+    "mean_set_size": 2.7575
+  },
+  "bootstrap_ci": {
+    "mean": 0.4447151700956799,
+    "ci_lower": 0.39447771879963706,
+    "ci_upper": 0.49343708796465724,
+    "n_resamples": 2000
+  },
+  "n_test": 400,
+  "n_cal_train": 100,
+  "n_cal_val": 50,
+  "tier_names": [
+    "unrelated",
+    "partial",
+    "related",
+    "equivalent"
+  ],
+  "alpha": 0.1,
+  "git_sha": "773cfd7"
+}

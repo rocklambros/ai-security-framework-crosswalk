@@ -78,7 +78,7 @@ def phase2_contrastive() -> dict[str, Any]:
 # Phase 3: Cross-encoder fine-tuning sweeps (GPU + WANDB)
 # ---------------------------------------------------------------------------
 
-def phase3_finetune_sweeps(sweep_count: int = 30) -> dict[str, Any]:
+def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = None) -> dict[str, Any]:
     print("\n" + "=" * 60)
     print(f"PHASE 3: Cross-encoder fine-tuning with human-label domain adaptation ({sweep_count} trials/model)")
     print("=" * 60)
@@ -92,8 +92,15 @@ def phase3_finetune_sweeps(sweep_count: int = 30) -> dict[str, Any]:
     WANDB_ENTITY = _wc.WANDB_ENTITY
     WANDB_PROJECT = _wc.WANDB_PROJECT
 
+    models_to_run = CROSS_ENCODER_MODELS
+    if model_filter:
+        models_to_run = [m for m in CROSS_ENCODER_MODELS if m["name"] == model_filter]
+        if not models_to_run:
+            raise ValueError(f"Unknown model: {model_filter}. Choose from: {[m['name'] for m in CROSS_ENCODER_MODELS]}")
+        print(f"  [phase3] running single model: {model_filter}")
+
     sweep_ids = []
-    for model_cfg in CROSS_ENCODER_MODELS:
+    for model_cfg in models_to_run:
         name = model_cfg["name"]
         model_id = model_cfg["model_id"]
         output_dir = Path(f"runs/ce_v2/{name}")
@@ -886,13 +893,18 @@ def build_parser() -> argparse.ArgumentParser:
         "--sweep-count", type=int, default=30, dest="sweep_count",
         help="WANDB sweep trials per model for phase 3 (default: 30).",
     )
+    parser.add_argument(
+        "--model", type=str, default=None,
+        choices=["deberta", "roberta", "electra"],
+        help="Run phase 3 for a single model (for parallel GPU execution).",
+    )
     return parser
 
 
-def run_phase(phase_num: int, sweep_count: int) -> dict[str, Any]:
+def run_phase(phase_num: int, sweep_count: int, model: str | None = None) -> dict[str, Any]:
     fn = PHASES[phase_num]
     if phase_num == 3:
-        return fn(sweep_count=sweep_count)
+        return fn(sweep_count=sweep_count, model_filter=model)
     return fn()
 
 
@@ -907,7 +919,7 @@ def main() -> None:
     if args.phase is not None:
         name = PHASE_NAMES[args.phase]
         print(f"\nRunning phase {args.phase}: {name}")
-        result = run_phase(args.phase, args.sweep_count)
+        result = run_phase(args.phase, args.sweep_count, args.model)
         print(f"\nPhase {args.phase} result:")
         print(json.dumps(result, indent=2, default=str))
         return

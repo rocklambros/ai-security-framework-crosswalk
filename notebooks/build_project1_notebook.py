@@ -420,7 +420,7 @@ _fivenum(
 )
 
 fig.suptitle(
-    "Figure 3.0 · Table profile — schema (dtype + fill rate) and "
+    "Figure 3.0 · Table profile: schema (dtype + fill rate) and "
     "five-number summary per continuous column",
     fontsize=13, fontweight="bold", y=1.02,
 )
@@ -595,7 +595,7 @@ md(
 )
 
 plain_english(
-    "Most entries in the catalog are short — a sentence or two — and the "
+    "Most entries in the catalog are short, a sentence or two, and the "
     "hierarchy is mostly two levels deep, like a folder with subfolders. "
     "Some frameworks write in bullet points (OWASP), others in full "
     "paragraphs (AIUC-1, CSA AICM), and you can actually see that writing "
@@ -603,8 +603,8 @@ plain_english(
 )
 
 code(r"""
-# Figure 3.2. Missing-data audit. Two horizontal bar charts side by side —
-# node columns on the left, edge columns on the right — showing the fraction
+# Figure 3.2. Missing-data audit. Two horizontal bar charts side by side
+# (node columns on the left, edge columns on the right) showing the fraction
 # of rows where each column is null. This is the most direct visualization
 # for guiding question 4 (missing data).
 node_nulls = nodes_df.isna().mean().sort_values(ascending=True)
@@ -669,8 +669,8 @@ md(
 
 plain_english(
     "The blank cells in the raw tables are all in places where blanks are "
-    "supposed to be there — like a top-level folder having no parent "
-    "folder. The features the classifier actually uses are computed from "
+    "supposed to be there (like a top-level folder having no parent "
+    "folder). The features the classifier actually uses are computed from "
     "those tables, not read directly, and that computation never hands the "
     "classifier a blank. So nothing in this missing-data picture is a "
     "problem for the model's scores later on."
@@ -1100,8 +1100,8 @@ plain_english(
     "the four relationship tiers. You want the violins to 'staircase' from "
     "left to right: low for 'unrelated' pairs, higher for 'related' pairs. "
     "The Opus feature staircases best, the graph-based features do decent "
-    "work in the middle, and the LLM-confidence score is flat — meaning "
-    "that score isn't helping the model tell cases apart."
+    "work in the middle, and the LLM-confidence score is flat, which "
+    "means that score isn't helping the model tell cases apart."
 )
 
 code(r"""
@@ -1158,7 +1158,7 @@ md(
 
 plain_english(
     "Points that the experts called 'the same thing in different words' "
-    "(red) end up in the top-right corner — where both graph measurements "
+    "(red) end up in the top-right corner, where both graph measurements "
     "agree that the two entries live in similar neighborhoods. Unrelated "
     "pairs cluster at the origin. The messy middle is the 'kind of related' "
     "and 'partially related' pairs, and telling those two apart is the main "
@@ -1322,7 +1322,7 @@ md(
 
 plain_english(
     "The model's 'favorite clues' are the two measurements of how close "
-    "two entries are in the framework graph — not the pure text similarity "
+    "two entries are in the framework graph, not the pure text similarity "
     "or the LLM's own vote. In other words, *who your neighbors are* turns "
     "out to matter more than *what you say*. A small handful of the 22 "
     "features do most of the work, and the bottom half of the list could "
@@ -1547,8 +1547,8 @@ md(
 
 plain_english(
     "An 'orphan' here is a catalog entry nobody has connected to anything "
-    "else yet. A few orphans are normal — for example, a framework's "
-    "top-level heading has no neighbors by design — but a pile of orphans "
+    "else yet. A few orphans are normal (for example, a framework's "
+    "top-level heading has no neighbors by design), but a pile of orphans "
     "inside a framework that *should* talk to its peers is a to-do list "
     "for whoever does the next round of human mapping work."
 )
@@ -1704,7 +1704,7 @@ plain_english(
     "'what the model guessed,' arranged as a grid. Big numbers on the "
     "diagonal mean the model and the expert agree. The biggest mistake the "
     "model makes is calling some 'related' pairs 'unrelated,' and it has "
-    "the hardest time with the two middle tiers — those are the cases "
+    "the hardest time with the two middle tiers, which are the cases "
     "where even humans disagree with each other."
 )
 
@@ -1818,7 +1818,7 @@ md(
 plain_english(
     "The simplest possible model does not do as well as the production one, "
     "so the extra complexity is earning its keep. Translation: the signal "
-    "the model needs isn't in neat straight lines — it's in the way "
+    "the model needs isn't in neat straight lines. It's in the way "
     "features combine, which the gradient boosting method handles better "
     "than a single linear cut."
 )
@@ -2037,7 +2037,7 @@ plain_english(
     "In plain terms: the model works, it beats the easy baselines, and "
     "when it's wrong it's usually wrong by one step, not three. Its "
     "biggest blind spot is the boundary between 'unrelated' and "
-    "'loosely related' — but that boundary is also where the human "
+    "'loosely related,' but that boundary is also where the human "
     "experts disagree with each other the most, so it may be unfixable "
     "without rewriting the label definitions themselves."
 )
@@ -2063,7 +2063,7 @@ plain_english(
     "Right now this notebook is a static report. The follow-up project "
     "turns the same model into a web app where a security team can click "
     "through the most uncertain mappings, correct them, and feed those "
-    "corrections back into the next training round — closing the loop "
+    "corrections back into the next training round, closing the loop "
     "between the model's guesses and human expertise."
 )
 
@@ -2380,7 +2380,7 @@ for i, row in lineage.iterrows():
                           facecolor="white", edgecolor=band_color, lw=1.0))
 
 fig.suptitle(
-    "Figure A.0 · Pipeline lineage — six generations of the crosswalk classifier",
+    "Figure A.0 · Pipeline lineage: six generations of the crosswalk classifier",
     fontsize=14.5, fontweight="bold", y=0.975,
 )
 plt.show()
@@ -2402,7 +2402,7 @@ plain_english(
     "Six attempts to build this classifier. The first three were measured "
     "on a different yardstick, so their scores aren't directly comparable "
     "and the cards show 'n/a' where a fair number doesn't exist. The "
-    "newest version (v6) is the one you see elsewhere in this notebook — "
+    "newest version (v6) is the one you see elsewhere in this notebook: "
     "fewer features, higher accuracy, and honest uncertainty on top."
 )
 
@@ -2570,8 +2570,8 @@ md(
 
 plain_english(
     "The surprising move is at version 6: I *removed* features and the "
-    "accuracy went *up*. That's the main lesson of the whole rebuild — "
-    "more ingredients aren't automatically better; noisy ingredients "
+    "accuracy went *up*. That's the main lesson of the whole rebuild. "
+    "More ingredients aren't automatically better; noisy ingredients "
     "confuse the model. The final version has fewer features than v5 "
     "but a cleaner signal."
 )

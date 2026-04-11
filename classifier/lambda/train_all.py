@@ -1,5 +1,5 @@
 # classifier/lambda/train_all.py
-"""Lambda training orchestrator — 9-phase pipeline for crosswalk-v2.
+"""Lambda training orchestrator — 9-phase pipeline for crosswalk-v3.
 
 Each phase function imports its dependencies lazily so the script can be
 loaded on a CPU-only machine and still run CPU-only phases.
@@ -78,15 +78,14 @@ def phase2_contrastive() -> dict[str, Any]:
 # Phase 3: Cross-encoder fine-tuning sweeps (GPU + WANDB)
 # ---------------------------------------------------------------------------
 
-def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
+def phase3_finetune_sweeps(sweep_count: int = 30) -> dict[str, Any]:
     print("\n" + "=" * 60)
-    print(f"PHASE 3: Cross-encoder fine-tuning ({sweep_count} trials/model)")
+    print(f"PHASE 3: Cross-encoder fine-tuning with human-label domain adaptation ({sweep_count} trials/model)")
     print("=" * 60)
 
     import importlib
     import wandb
     from classifier.ensemble.cross_encoder import CrossEncoderClassifier
-    from classifier.ensemble.corn_loss import corn_loss, corn_label_from_logits
     _wc = importlib.import_module("classifier.lambda.wandb_config")
     CE_SWEEP_CONFIG = _wc.CE_SWEEP_CONFIG
     CROSS_ENCODER_MODELS = _wc.CROSS_ENCODER_MODELS
@@ -109,10 +108,13 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
         sweep_id = wandb.sweep(sweep_cfg, project=WANDB_PROJECT, entity=WANDB_ENTITY)
 
         def train_fn(model_name=name, model_path=init_from, out=str(output_dir)):
-            """WANDB agent function — one trial."""
+            """WANDB agent function — one trial with human-label domain adaptation."""
             import torch
             import numpy as np
+            from torch.utils.data import WeightedRandomSampler
             from sklearn.metrics import f1_score, accuracy_score
+            from classifier.data.split_human_cal import split_human_cal
+            from classifier.ensemble.kl_ordinal_loss import kl_ordinal_loss
 
             # Clear GPU memory from previous trial
             torch.cuda.empty_cache()
@@ -124,40 +126,74 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
             use_amp = device.type == "cuda"
             scaler = torch.amp.GradScaler("cuda") if use_amp else None
 
-            loss_type = config.get("loss_type", "kl")
             sigma = config.get("sigma", 0.75)
 
-            # Build cross-encoder with appropriate head
+            # Build cross-encoder with KL head (always)
             model = CrossEncoderClassifier(
                 model_name=model_path,
                 n_classes=4,
                 max_length=256,
                 dropout=config.get("dropout", 0.1),
-                head_type=loss_type,
+                head_type="kl",
             )
             model = model.to(device)
 
-            # Load training data
+            # Load algorithmic training data
             train_data = []
             with open("data/splits/expert_train.jsonl") as f:
                 for line in f:
                     train_data.append(json.loads(line))
 
-            val_data = []
+            # Load human-labeled calibration data
+            human_train, human_val, _, _ = split_human_cal()
+
+            # Build sample weights: 1.0 for algorithmic, human_cal_weight for human
+            human_cal_weight = config.get("human_cal_weight", 10)
+            sample_weights = np.array(
+                [1.0] * len(train_data) + [float(human_cal_weight)] * len(human_train)
+            )
+            train_data = train_data + human_train  # 6,728 + ~100 = ~6,828
+
+            # SECONDARY validation: expert_val
+            val_data_expert = []
             with open("data/splits/expert_val.jsonl") as f:
                 for line in f:
-                    val_data.append(json.loads(line))
+                    val_data_expert.append(json.loads(line))
+
+            # PRIMARY validation: human_cal val split
+            val_data = human_val  # ~50 pairs
 
             lr = config.get("learning_rate", 2e-5)
             bs = config.get("batch_size", 32)
             epochs = config.get("epochs", 5)
             warmup_ratio = config.get("warmup_ratio", 0.1)
             wd = config.get("weight_decay", 0.01)
+            frozen_epochs = config.get("frozen_epochs", 2)
+            encoder_lr_factor = config.get("encoder_lr_factor", 0.1)
 
             # Clamp batch size for GPU memory safety
             bs = min(bs, 32)
 
-            optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=wd)
+            # Class-balanced sampling weights
+            class_counts = np.bincount([r["tier_label"] for r in train_data], minlength=4)
+            class_weights_arr = 1.0 / np.maximum(class_counts, 1)
+            per_sample_class_weight = np.array([class_weights_arr[r["tier_label"]] for r in train_data])
+            # Combine class weight with human_cal source weight
+            combined_weight = per_sample_class_weight * sample_weights
+
+            # Start with encoder frozen
+            for param in model.encoder.parameters():
+                param.requires_grad = False
+
+            # Separate parameter groups with discriminative learning rates
+            head_params = [p for n, p in model.named_parameters() if "classifier" in n]
+            encoder_params = [p for n, p in model.named_parameters() if "classifier" not in n]
+
+            optimizer = torch.optim.AdamW([
+                {"params": head_params, "lr": lr},
+                {"params": encoder_params, "lr": lr * encoder_lr_factor},
+            ], weight_decay=wd)
+
             n_steps = (len(train_data) // bs) * epochs
             warmup_steps = int(n_steps * warmup_ratio)
             scheduler = torch.optim.lr_scheduler.LinearLR(
@@ -168,13 +204,28 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
             patience_counter = 0
 
             for epoch in range(epochs):
+                # Unfreeze encoder after frozen_epochs
+                if epoch == frozen_epochs:
+                    for param in model.encoder.parameters():
+                        param.requires_grad = True
+                    print(f"    Encoder unfrozen at epoch {epoch}")
+
                 model.train()
-                np.random.shuffle(train_data)
+
+                # Weighted sampling per epoch
+                sampler = WeightedRandomSampler(
+                    weights=torch.DoubleTensor(combined_weight),
+                    num_samples=len(train_data),
+                    replacement=True,
+                )
+                epoch_indices = list(sampler)
+                epoch_data = [train_data[i] for i in epoch_indices]
+
                 epoch_loss = 0.0
                 n_batches = 0
 
-                for i in range(0, len(train_data), bs):
-                    batch = train_data[i:i+bs]
+                for i in range(0, len(epoch_data), bs):
+                    batch = epoch_data[i:i+bs]
                     texts_a = [r["source_text"] for r in batch]
                     texts_b = [r["target_text"] for r in batch]
                     labels = torch.tensor([r["tier_label"] for r in batch], device=device)
@@ -184,11 +235,7 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
 
                     with torch.amp.autocast("cuda", enabled=use_amp):
                         logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
-                        if loss_type == "kl":
-                            from classifier.ensemble.kl_ordinal_loss import kl_ordinal_loss
-                            loss = kl_ordinal_loss(logits, labels, n_classes=4, sigma=sigma)
-                        else:
-                            loss = corn_loss(logits, labels, n_classes=4)
+                        loss = kl_ordinal_loss(logits, labels, n_classes=4, sigma=sigma)
 
                     optimizer.zero_grad()
                     if scaler:
@@ -208,47 +255,80 @@ def phase3_finetune_sweeps(sweep_count: int = 50) -> dict[str, Any]:
 
                 avg_loss = epoch_loss / max(n_batches, 1)
 
-                # Validation
+                # PRIMARY validation: human_cal_val
                 model.eval()
-                val_preds = []
-                val_labels = []
+                val_preds_human = []
+                val_labels_human = []
                 with torch.no_grad():
                     for i in range(0, len(val_data), bs):
                         batch = val_data[i:i+bs]
                         texts_a = [r["source_text"] for r in batch]
                         texts_b = [r["target_text"] for r in batch]
                         labels_batch = [r["tier_label"] for r in batch]
-
                         encoding = model.tokenize_batch(texts_a, texts_b)
                         encoding = {k: v.to(device) for k, v in encoding.items()}
-
                         with torch.amp.autocast("cuda", enabled=use_amp):
                             logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
-                        if loss_type == "kl":
-                            preds = logits.argmax(dim=1).cpu().tolist()
-                        else:
-                            preds = corn_label_from_logits(logits, n_classes=4).cpu().tolist()
-                        val_preds.extend(preds)
-                        val_labels.extend(labels_batch)
+                        preds = logits.argmax(dim=1).cpu().tolist()
+                        val_preds_human.extend(preds)
+                        val_labels_human.extend(labels_batch)
 
-                val_f1 = f1_score(val_labels, val_preds, average="macro")
-                val_acc = accuracy_score(val_labels, val_preds)
+                human_val_f1 = f1_score(val_labels_human, val_preds_human, average="macro")
+                human_val_acc = accuracy_score(val_labels_human, val_preds_human)
+                n_unique_preds = len(set(val_preds_human))
+
+                # SECONDARY validation: expert_val
+                val_preds_expert = []
+                val_labels_expert = []
+                with torch.no_grad():
+                    for i in range(0, len(val_data_expert), bs):
+                        batch = val_data_expert[i:i+bs]
+                        texts_a = [r["source_text"] for r in batch]
+                        texts_b = [r["target_text"] for r in batch]
+                        labels_batch = [r["tier_label"] for r in batch]
+                        encoding = model.tokenize_batch(texts_a, texts_b)
+                        encoding = {k: v.to(device) for k, v in encoding.items()}
+                        with torch.amp.autocast("cuda", enabled=use_amp):
+                            logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+                        preds = logits.argmax(dim=1).cpu().tolist()
+                        val_preds_expert.extend(preds)
+                        val_labels_expert.extend(labels_batch)
+
+                expert_val_f1 = f1_score(val_labels_expert, val_preds_expert, average="macro")
+
+                # COLLAPSE GUARD
+                if n_unique_preds < 3:
+                    combined_f1 = 0.0
+                    print(f"    COLLAPSE DETECTED: only {n_unique_preds} unique preds")
+                else:
+                    combined_f1 = 0.7 * human_val_f1 + 0.3 * expert_val_f1
+
+                # Per-class F1
+                per_class_f1 = f1_score(val_labels_human, val_preds_human, average=None, labels=[0, 1, 2, 3])
 
                 wandb.log({
                     "epoch": epoch,
                     "train_loss": avg_loss,
-                    "val_macro_f1": val_f1,
-                    "val_tier_accuracy": val_acc,
+                    "human_val_macro_f1": human_val_f1,
+                    "human_val_tier_accuracy": human_val_acc,
+                    "expert_val_macro_f1": expert_val_f1,
+                    "combined_f1": combined_f1,
+                    "n_unique_preds": n_unique_preds,
+                    "f1_class_0": per_class_f1[0] if len(per_class_f1) > 0 else 0.0,
+                    "f1_class_1": per_class_f1[1] if len(per_class_f1) > 1 else 0.0,
+                    "f1_class_2": per_class_f1[2] if len(per_class_f1) > 2 else 0.0,
+                    "f1_class_3": per_class_f1[3] if len(per_class_f1) > 3 else 0.0,
                     "learning_rate": optimizer.param_groups[0]["lr"],
-                    "loss_type": loss_type,
-                    "sigma": sigma if loss_type == "kl" else 0.0,
+                    "loss_type": "kl",
+                    "sigma": sigma,
                 })
 
-                if val_f1 > best_f1:
-                    best_f1 = val_f1
+                # Best model selection on combined_f1
+                if combined_f1 > best_f1:
+                    best_f1 = combined_f1
                     patience_counter = 0
                     model.save(Path(out) / "best")
-                    wandb.log({"best_epoch": epoch, "best_val_macro_f1": best_f1})
+                    wandb.log({"best_epoch": epoch, "best_combined_f1": best_f1})
                 else:
                     patience_counter += 1
                     if patience_counter >= 3:
@@ -794,7 +874,7 @@ PHASE_NAMES: dict[int, str] = {
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="train_all",
-        description="Lambda training orchestrator — crosswalk-v2 (9-phase pipeline)",
+        description="Lambda training orchestrator — crosswalk-v3 (9-phase pipeline)",
     )
     parser.add_argument(
         "--phase", type=int, default=None,
@@ -802,8 +882,8 @@ def build_parser() -> argparse.ArgumentParser:
         help="Run a single phase (1-9). Omit to run all.",
     )
     parser.add_argument(
-        "--sweep-count", type=int, default=50, dest="sweep_count",
-        help="WANDB sweep trials per model for phase 3 (default: 50).",
+        "--sweep-count", type=int, default=30, dest="sweep_count",
+        help="WANDB sweep trials per model for phase 3 (default: 30).",
     )
     return parser
 
@@ -820,7 +900,7 @@ def main() -> None:
     args = parser.parse_args()
 
     print("\n" + "#" * 60)
-    print("  crosswalk-v2  |  Lambda training orchestrator")
+    print("  crosswalk-v3  |  Lambda training orchestrator")
     print("#" * 60)
 
     if args.phase is not None:

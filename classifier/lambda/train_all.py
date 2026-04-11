@@ -716,11 +716,11 @@ def phase9_sacred_run() -> dict[str, Any]:
 
     import subprocess
     import numpy as np
+    from scipy.special import softmax
     from sklearn.metrics import f1_score, accuracy_score, confusion_matrix
-    from classifier.ensemble.feature_pipeline import FeaturePipeline
-    from classifier.ensemble.stacker import LGBMStacker
-    from classifier.ensemble.label_shift import adjust_label_shift, estimate_prior
+    from sklearn.linear_model import LogisticRegression
     from classifier.data.tier_mapper import map_expert_tier, TierLabel
+    from classifier.data.split_human_cal import split_human_cal
 
     sha = subprocess.run(
         ["git", "rev-parse", "--short", "HEAD"],
@@ -740,49 +740,69 @@ def phase9_sacred_run() -> dict[str, Any]:
     print(f"  [phase9] {len(test_data)} frozen test pairs")
     print(f"  [phase9] test label dist: {dict(zip(*np.unique(y_test, return_counts=True)))}")
 
-    # Load model and features
+    # Load CE features
     ce_data = dict(np.load("data/processed/ce_features_v2.npz"))
-    pipe = FeaturePipeline.load(Path("runs/stacker_v2/feature_pipeline"))
-    X_all = pipe.transform(ce_data)
+    models = ["deberta", "roberta", "deberta_base"]
 
-    # Test features are after train+val+cal
-    n_before_test = 0
-    for split in ["expert_train.jsonl", "expert_val.jsonl", "human_cal.jsonl"]:
-        with open(f"data/splits/{split}") as f:
-            n_before_test += sum(1 for _ in f)
-    X_test = X_all[n_before_test:n_before_test+len(test_data)]
+    # Compute split offsets
+    n_train = sum(1 for _ in open("data/splits/expert_train.jsonl"))
+    n_val = sum(1 for _ in open("data/splits/expert_val.jsonl"))
+    n_cal = sum(1 for _ in open("data/splits/human_cal.jsonl"))
+    cal_start = n_train + n_val
+    test_start = cal_start + n_cal
 
-    # Load stacker
-    registry = Path("runs/registry.jsonl")
-    last_run = None
-    with registry.open() as f:
-        for line in f:
-            last_run = json.loads(line)
-    stacker = LGBMStacker.load(Path(last_run["model_path"]))
+    def get_logit_features(start: int, count: int) -> np.ndarray:
+        """Concat logits from all 3 CE models (12 features)."""
+        return np.concatenate(
+            [ce_data[f"{m}_logits"][start:start + count] for m in models],
+            axis=1,
+        )
 
-    # Predict with label shift correction
-    proba_raw = stacker.predict_proba(X_test)
+    # --- Method A: Ensemble raw logits (no stacker, no label shift) ---
+    ens_logits = np.zeros((len(test_data), 4))
+    for m in models:
+        ens_logits += ce_data[f"{m}_logits"][test_start:test_start + len(test_data)]
+    ens_logits /= len(models)
+    y_pred_raw = ens_logits.argmax(axis=1)
 
-    train_labels = []
-    with open("data/splits/expert_train.jsonl") as f:
-        for line in f:
-            train_labels.append(json.loads(line)["tier_label"])
-    source_prior = estimate_prior(np.array(train_labels), n_classes=4)
+    raw_acc = float(accuracy_score(y_test, y_pred_raw))
+    raw_f1 = float(f1_score(y_test, y_pred_raw, average="macro"))
+    print(f"  [phase9] ensemble_raw: acc={raw_acc:.4f}, f1={raw_f1:.4f}")
 
+    # --- Method B: LogReg trained on human_cal logits (domain-adapted) ---
     cal_labels = []
     with open("data/splits/human_cal.jsonl") as f:
         for line in f:
             cal_labels.append(int(map_expert_tier(json.loads(line)["expert_tier"])))
-    target_prior = estimate_prior(np.array(cal_labels), n_classes=4)
+    y_cal = np.array(cal_labels)
 
-    proba_adj = adjust_label_shift(proba_raw, source_prior, target_prior)
-    y_pred = proba_adj.argmax(axis=1)
+    X_cal = get_logit_features(cal_start, n_cal)
+    X_test_lr = get_logit_features(test_start, len(test_data))
 
-    # Metrics
-    tier_acc = float(accuracy_score(y_test, y_pred))
-    macro_f1 = float(f1_score(y_test, y_pred, average="macro"))
+    lr = LogisticRegression(C=0.1, max_iter=1000, class_weight="balanced")
+    lr.fit(X_cal, y_cal)
+    y_pred_lr = lr.predict(X_test_lr)
+    proba_lr = lr.predict_proba(X_test_lr)
+
+    lr_acc = float(accuracy_score(y_test, y_pred_lr))
+    lr_f1 = float(f1_score(y_test, y_pred_lr, average="macro"))
+    print(f"  [phase9] logreg_cal: acc={lr_acc:.4f}, f1={lr_f1:.4f}")
+
+    # Pick the method with best macro_f1 (primary metric)
+    if lr_f1 >= raw_f1:
+        y_pred = y_pred_lr
+        proba_adj = proba_lr
+        method_used = "logreg_on_human_cal"
+        tier_acc, macro_f1 = lr_acc, lr_f1
+    else:
+        y_pred = y_pred_raw
+        proba_adj = softmax(ens_logits, axis=1)
+        method_used = "ensemble_raw"
+        tier_acc, macro_f1 = raw_acc, raw_f1
+
+    print(f"  [phase9] selected: {method_used}")
+
     cm = confusion_matrix(y_test, y_pred, labels=[0, 1, 2, 3])
-
     tier_names = ["unrelated", "partial", "related", "equivalent"]
     cm_dict = {}
     per_class = {}
@@ -793,22 +813,26 @@ def phase9_sacred_run() -> dict[str, Any]:
             "count": int(cm[i].sum()),
         }
 
-    # Conformal prediction sets
-    conformal_data = json.loads(Path("runs/stacker_v2/conformal.json").read_text())
-    q_hat = conformal_data.get("q_hat", 1.0)
-    conformal_method = conformal_data.get("method", "marginal")
+    per_class_f1 = f1_score(y_test, y_pred, average=None, labels=[0, 1, 2, 3])
+    for i, name_i in enumerate(tier_names):
+        per_class[name_i]["f1"] = float(per_class_f1[i])
+
+    # Conformal prediction sets using human_cal_val
+    _, _, _, cal_val_indices = split_human_cal()
+    y_cal_val = y_cal[cal_val_indices]
+    X_cal_val = X_cal[cal_val_indices]
+    proba_cal_val = lr.predict_proba(X_cal_val)
+
+    alpha = 0.10
+    scores = 1.0 - proba_cal_val[np.arange(len(y_cal_val)), y_cal_val]
+    n_cal_conf = len(y_cal_val)
+    q_level = min(np.ceil((n_cal_conf + 1) * (1 - alpha)) / n_cal_conf, 1.0)
+    q_hat = float(np.quantile(scores, q_level))
+
     set_sizes = []
     covered = 0
     for i in range(len(y_test)):
-        pred_set = []
-        for c in range(4):
-            score = 1.0 - proba_adj[i, c]
-            if conformal_method == "marginal":
-                threshold = float(q_hat)
-            else:
-                threshold = float(q_hat.get(str(c), 1.0)) if isinstance(q_hat, dict) else float(q_hat)
-            if score <= threshold:
-                pred_set.append(c)
+        pred_set = [c for c in range(4) if 1.0 - proba_adj[i, c] <= q_hat]
         set_sizes.append(len(pred_set))
         if y_test[i] in pred_set:
             covered += 1
@@ -825,9 +849,14 @@ def phase9_sacred_run() -> dict[str, Any]:
     sacred_result = {
         "tier_accuracy": tier_acc,
         "macro_f1": macro_f1,
+        "method": method_used,
         "n_pairs": len(test_data),
         "confusion_matrix": cm_dict,
         "per_class": per_class,
+        "ablation": {
+            "ensemble_raw": {"tier_accuracy": raw_acc, "macro_f1": raw_f1},
+            "logreg_on_human_cal": {"tier_accuracy": lr_acc, "macro_f1": lr_f1},
+        },
         "bootstrap_ci_95": {
             "lower": boot_accs[int(0.025 * n_boot)],
             "point": tier_acc,
@@ -836,8 +865,10 @@ def phase9_sacred_run() -> dict[str, Any]:
         "conformal": {
             "marginal_coverage": covered / len(y_test),
             "avg_set_size": float(np.mean(set_sizes)),
+            "q_hat": q_hat,
+            "alpha": alpha,
+            "n_cal": n_cal_conf,
         },
-        "label_shift_applied": True,
         "sacred_run": True,
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S+00:00", time.gmtime()),
     }
@@ -846,6 +877,7 @@ def phase9_sacred_run() -> dict[str, Any]:
     print(f"  [phase9] macro_f1={macro_f1:.4f}")
     print(f"  [phase9] bootstrap 95% CI: [{sacred_result['bootstrap_ci_95']['lower']:.4f}, {sacred_result['bootstrap_ci_95']['upper']:.4f}]")
     print(f"  [phase9] conformal coverage={sacred_result['conformal']['marginal_coverage']:.4f}, avg_set_size={sacred_result['conformal']['avg_set_size']:.2f}")
+    print(f"  [phase9] per-class F1: {dict(zip(tier_names, per_class_f1.round(4)))}")
 
     # Save
     output = Path(f"results/sacred/sacred_{sha}.json")

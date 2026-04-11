@@ -900,7 +900,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--model", type=str, default=None,
-        choices=["deberta", "roberta", "electra", "deberta_base"],
+        choices=["deberta", "roberta", "deberta_base"],
         help="Run phase 3 for a single model (for parallel GPU execution).",
     )
     return parser

@@ -36,12 +36,14 @@ def build_zip():
         if src.exists():
             shutil.copy(src, v6_dir / name)
 
-    # Copy results (sacred)
+    # Copy results (sacred). The notebook only loads sacred_3c2e531.json
+    # (the v6-reframed run), so the zip only needs that one file.
     results_dir = staging / "results"
     results_sacred = results_dir / "sacred"
     results_sacred.mkdir(parents=True)
-    for f in Path("results/sacred").glob("sacred_*.json"):
-        shutil.copy(f, results_sacred / f.name)
+    sacred_src = Path("results/sacred/sacred_3c2e531.json")
+    if sacred_src.exists():
+        shutil.copy(sacred_src, results_sacred / sacred_src.name)
 
     # Create zip
     output = Path("notebooks/project1_lambros")

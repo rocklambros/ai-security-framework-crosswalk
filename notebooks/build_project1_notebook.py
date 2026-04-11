@@ -447,6 +447,15 @@ md(
     "variables the marginal distribution figure below is built on."
 )
 
+plain_english(
+    "Think of this as the 'sticker on the side of the box' for the two "
+    "spreadsheets the project runs on. Each bar shows one column: how long "
+    "the bar is tells you how often that column is actually filled in, and "
+    "the color tells you whether it holds words, whole numbers, decimals, "
+    "or yes/no values. The three little summaries at the bottom show the "
+    "shortest, middle, and longest values in the columns that hold numbers."
+)
+
 code(r"""
 # Figure 3.1. Four-panel marginal distribution figure answering COMP 4433
 # guiding questions 1 (continuous distributions) and 3 (conditional central
@@ -585,6 +594,14 @@ md(
     "between a categorical axis and a continuous feature in the dataset."
 )
 
+plain_english(
+    "Most entries in the catalog are short — a sentence or two — and the "
+    "hierarchy is mostly two levels deep, like a folder with subfolders. "
+    "Some frameworks write in bullet points (OWASP), others in full "
+    "paragraphs (AIUC-1, CSA AICM), and you can actually see that writing "
+    "style show up as a difference in how long their entries are."
+)
+
 code(r"""
 # Figure 3.2. Missing-data audit. Two horizontal bar charts side by side —
 # node columns on the left, edge columns on the right — showing the fraction
@@ -648,6 +665,15 @@ md(
     "rationale labels or reviewer metadata as a source of signal needs to "
     "restrict itself to reviewed edges, because those columns are empty on "
     "suggestive rows by design."
+)
+
+plain_english(
+    "The blank cells in the raw tables are all in places where blanks are "
+    "supposed to be there — like a top-level folder having no parent "
+    "folder. The features the classifier actually uses are computed from "
+    "those tables, not read directly, and that computation never hands the "
+    "classifier a blank. So nothing in this missing-data picture is a "
+    "problem for the model's scores later on."
 )
 
 code(r"""
@@ -908,6 +934,14 @@ md(
     "mapping should be interpreted with its confidence level in mind."
 )
 
+plain_english(
+    "One framework (AIUC-1) has done most of the work of connecting itself "
+    "to the others, with a second framework (CSA AICM) a distant second. "
+    "Everybody else has been mapped *into* but has barely been mapped *out*. "
+    "Also, most of the connections are 'computer-suggested' rather than "
+    "'person-confirmed,' so treat any single link as a lead, not a fact."
+)
+
 code(r"""
 # Figure 4.2. Stacked bar chart of entry-type composition. Row-normalized so
 # the bars all reach 1.0 and the comparison is about proportions rather than
@@ -1061,6 +1095,15 @@ md(
     "at the quartile lines inside each violin."
 )
 
+plain_english(
+    "Each violin shows, for one feature, how its scores spread out across "
+    "the four relationship tiers. You want the violins to 'staircase' from "
+    "left to right: low for 'unrelated' pairs, higher for 'related' pairs. "
+    "The Opus feature staircases best, the graph-based features do decent "
+    "work in the middle, and the LLM-confidence score is flat — meaning "
+    "that score isn't helping the model tell cases apart."
+)
+
 code(r"""
 # Figure 5.2. Scatter of Node2Vec cosine against GAT cosine, colored by
 # expert tier. These are the two structural features with the largest GBM
@@ -1111,6 +1154,15 @@ md(
     "(Pearson `r` for this pair is reported in figure 5.3 below), which is "
     "why the GBM benefits from keeping both of them in the feature set rather "
     "than collapsing to a single structural score."
+)
+
+plain_english(
+    "Points that the experts called 'the same thing in different words' "
+    "(red) end up in the top-right corner — where both graph measurements "
+    "agree that the two entries live in similar neighborhoods. Unrelated "
+    "pairs cluster at the origin. The messy middle is the 'kind of related' "
+    "and 'partially related' pairs, and telling those two apart is the main "
+    "thing the rest of the model has to do."
 )
 
 code(r"""
@@ -1268,6 +1320,15 @@ md(
     "is near zero so I keep them in the production model."
 )
 
+plain_english(
+    "The model's 'favorite clues' are the two measurements of how close "
+    "two entries are in the framework graph — not the pure text similarity "
+    "or the LLM's own vote. In other words, *who your neighbors are* turns "
+    "out to matter more than *what you say*. A small handful of the 22 "
+    "features do most of the work, and the bottom half of the list could "
+    "be deleted without really hurting accuracy."
+)
+
 code(r"""
 # Figure 6.2. Ablation study bar chart. Each bar is a GBM retrained on a
 # different feature subset. The right-most bar ('All (22d)') is the
@@ -1422,6 +1483,15 @@ md(
     "every possible pairing in the crosswalk."
 )
 
+plain_english(
+    "Only a few framework-to-framework pairings have been mapped densely; "
+    "most of the grid is sparse or empty. So when the model scores well, "
+    "it scores well on the 'busy streets' of the crosswalk, not on "
+    "every possible intersection. If you're planning what to label next, "
+    "the empty rows are the places where a little labeling effort goes a "
+    "long way."
+)
+
 code(r"""
 # Figure 7.2. Orphan nodes by framework. An orphan is a node that has zero
 # inbound and zero outbound edges (no neighbors at all). I compute this
@@ -1473,6 +1543,14 @@ md(
     "a common baseline, which is the perceptual channel Cleveland and "
     "McGill identified as most accurate for quantitative comparison, so "
     "the reader can rank the frameworks reliably."
+)
+
+plain_english(
+    "An 'orphan' here is a catalog entry nobody has connected to anything "
+    "else yet. A few orphans are normal — for example, a framework's "
+    "top-level heading has no neighbors by design — but a pile of orphans "
+    "inside a framework that *should* talk to its peers is a to-do list "
+    "for whoever does the next round of human mapping work."
 )
 
 code(r"""
@@ -1621,6 +1699,14 @@ md(
     "inline so the reader does not have to cross-reference a separate table."
 )
 
+plain_english(
+    "A 'confusion matrix' is just a tally of 'what the expert said' versus "
+    "'what the model guessed,' arranged as a grid. Big numbers on the "
+    "diagonal mean the model and the expert agree. The biggest mistake the "
+    "model makes is calling some 'related' pairs 'unrelated,' and it has "
+    "the hardest time with the two middle tiers — those are the cases "
+    "where even humans disagree with each other."
+)
 
 
 md("### 8.1 · sklearn baseline comparison")
@@ -1633,6 +1719,13 @@ md(
     "150-pair calibration split and evaluated on the 400-pair frozen test "
     "set, which is the same split protocol the v6 GBM uses. No threshold "
     "tuning happens inside this cell."
+)
+
+plain_english(
+    "Before believing the fancy model, it's fair to ask 'could the simplest "
+    "possible model have done just as well?' This sub-section runs that "
+    "check by fitting a plain logistic regression on the same 22 numbers "
+    "and comparing the two head-to-head on the exact same test pairs."
 )
 
 code(r"""
@@ -1720,6 +1813,14 @@ md(
     "the GBM's ability to capture non-linear interactions between the "
     "structural and LLM features. Second, it gives the grader a simple "
     "reference classifier to sanity-check the headline numbers against."
+)
+
+plain_english(
+    "The simplest possible model does not do as well as the production one, "
+    "so the extra complexity is earning its keep. Translation: the signal "
+    "the model needs isn't in neat straight lines — it's in the way "
+    "features combine, which the gradient boosting method handles better "
+    "than a single linear cut."
 )
 
 md("### 8.2 · Headline accuracy vs baselines")
@@ -1865,6 +1966,15 @@ md(
     "procedure."
 )
 
+plain_english(
+    "The model will give you its answer along with a 'hedge': instead of "
+    "saying 'it's tier 2,' it says 'it's either tier 2 or tier 3.' The hedge "
+    "contains the right answer 94% of the time, which is better than the "
+    "90% we asked for. The catch is that for almost half of test pairs the "
+    "hedge lists all four possible tiers, which is the model's honest way "
+    "of saying 'I have no idea.'"
+)
+
 md(
     "### Analytical approaches worth trying next\n\n"
     "Three directions that would most likely move the numbers the fastest, "
@@ -1888,6 +1998,13 @@ md(
     "learning that picks unlabeled pairs whose conformal set size is four "
     "and whose v6 tier prediction is *Partial* would put labeling effort "
     "exactly where the classifier is least confident.\n"
+)
+
+plain_english(
+    "Three concrete ways to make the next version better: write the Opus "
+    "prompt more carefully, treat the four tiers as an ordered ladder "
+    "instead of four disconnected bins, and label more examples in the "
+    "tricky middle tiers where the model struggles the most."
 )
 
 md(
@@ -1916,6 +2033,15 @@ md(
     "inter-annotator agreement on that tier is the lowest of the four.\n"
 )
 
+plain_english(
+    "In plain terms: the model works, it beats the easy baselines, and "
+    "when it's wrong it's usually wrong by one step, not three. Its "
+    "biggest blind spot is the boundary between 'unrelated' and "
+    "'loosely related' — but that boundary is also where the human "
+    "experts disagree with each other the most, so it may be unfixable "
+    "without rewriting the label definitions themselves."
+)
+
 md(
     "### Future work: Project 2\n\n"
     "The interactive Dash application planned as Project 2 will:\n\n"
@@ -1933,6 +2059,14 @@ md(
     "useful for security teams managing multi-framework compliance."
 )
 
+plain_english(
+    "Right now this notebook is a static report. The follow-up project "
+    "turns the same model into a web app where a security team can click "
+    "through the most uncertain mappings, correct them, and feed those "
+    "corrections back into the next training round — closing the loop "
+    "between the model's guesses and human expertise."
+)
+
 
 
 md("### 9.1 · statsmodels ordinal regression demonstrator")
@@ -1945,6 +2079,14 @@ md(
     "demonstrator, not a new production model: I fit it once on the "
     "calibration split and plot the fitted cumulative probabilities as a "
     "sanity check that the ordinal structure is real in the data."
+)
+
+plain_english(
+    "Small proof-of-concept: treat the four tiers as a ladder instead of "
+    "four disconnected buckets. If moving one feature up makes the "
+    "prediction slide smoothly up the ladder, the ordered structure "
+    "really is in the data and a future version built on this idea "
+    "could do better than the current flat classifier."
 )
 
 code(r"""
@@ -2123,19 +2265,125 @@ lineage = pd.DataFrame(
     ]
 )
 
-lineage_display = lineage[["version", "era", "n_features",
-                           "frozen_tier_acc", "frozen_macro_f1",
-                           "sacred_run"]].copy()
-lineage_display["frozen_tier_acc"] = lineage_display["frozen_tier_acc"].map(
-    lambda v: "n/a" if pd.isna(v) else f"{v:.3f}")
-lineage_display["frozen_macro_f1"] = lineage_display["frozen_macro_f1"].map(
-    lambda v: "n/a" if pd.isna(v) else f"{v:.3f}")
-lineage_display.columns = ["v", "Era", "#feat", "tier acc", "macro F1", "sacred run"]
-print(lineage_display.to_string(index=False))
-print()
-print("What I learned per iteration:")
-for _, row in lineage.iterrows():
-    print(f"  [{row['version']}] {row['learned']}")
+# Figure A.0. The pipeline lineage rendered as a 2x3 grid of version cards.
+# Each card is a matplotlib subplot with no axes, just positioned text and
+# rectangles. A colored header band encodes the "era color" for the version;
+# the body shows the era name, feature count, frozen-test metrics (or a
+# tagged "no frozen eval" block for v1-v3), the sacred run ID, and the
+# lesson I took away from that generation. v6 gets a thicker border and a
+# warm-tinted background to mark it as the current production version.
+import textwrap as _textwrap
+
+ERA_COLORS = {
+    "v1": "#264653", "v2": "#2a6f97", "v3": "#6096ba",
+    "v4": "#8ac926", "v5": "#f4a261", "v6": "#e76f51",
+}
+
+fig = plt.figure(figsize=(15, 9.5))
+gs = gridspec.GridSpec(2, 3, figure=fig, hspace=0.22, wspace=0.12,
+                       left=0.03, right=0.97, top=0.92, bottom=0.04)
+
+for i, row in lineage.iterrows():
+    ax = fig.add_subplot(gs[i // 3, i % 3])
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    version = row["version"]
+    is_winner = version == "v6"
+    bg_color = "#fff7ed" if is_winner else "#ffffff"
+    border_w = 2.4 if is_winner else 1.1
+    band_color = ERA_COLORS[version]
+
+    # Card background + border
+    ax.set_facecolor(bg_color)
+    for spine in ax.spines.values():
+        spine.set_linewidth(border_w)
+        spine.set_edgecolor(band_color if is_winner else "#cccccc")
+
+    # Colored header band (top 18% of the card)
+    ax.add_patch(plt.Rectangle((0, 0.82), 1, 0.18,
+                               transform=ax.transAxes,
+                               facecolor=band_color, edgecolor="none",
+                               zorder=1))
+
+    # Version label (left of band)
+    ax.text(0.04, 0.91, version.upper(),
+            transform=ax.transAxes, fontsize=22, fontweight="bold",
+            color="white", va="center", ha="left", zorder=2)
+
+    # Feature count badge (right of band)
+    ax.text(0.96, 0.91, f"{int(row['n_features'])} features",
+            transform=ax.transAxes, fontsize=11, fontweight="bold",
+            color="white", va="center", ha="right", zorder=2)
+
+    # Era name
+    ax.text(0.04, 0.74, row["era"],
+            transform=ax.transAxes, fontsize=11.5, fontweight="bold",
+            color="#1a1a1a", va="top", ha="left")
+
+    # Metrics row (or n/a banner for v1-v3)
+    if pd.isna(row["frozen_tier_acc"]):
+        ax.add_patch(plt.Rectangle((0.04, 0.55), 0.92, 0.10,
+                                   transform=ax.transAxes,
+                                   facecolor="#f0f0f0", edgecolor="#cccccc",
+                                   linewidth=0.8, zorder=1))
+        ax.text(0.5, 0.60, "no frozen-test eval (pre-v4)",
+                transform=ax.transAxes, fontsize=10, style="italic",
+                color="#666666", va="center", ha="center", zorder=2)
+    else:
+        # tier acc badge
+        ax.add_patch(plt.Rectangle((0.04, 0.56), 0.44, 0.11,
+                                   transform=ax.transAxes,
+                                   facecolor="#eef2ff", edgecolor="#6366f1",
+                                   linewidth=0.8, zorder=1))
+        ax.text(0.26, 0.625, f"tier acc  {row['frozen_tier_acc']:.3f}",
+                transform=ax.transAxes, fontsize=10, fontweight="bold",
+                color="#3730a3", va="center", ha="center", zorder=2)
+        # macro F1 badge
+        ax.add_patch(plt.Rectangle((0.52, 0.56), 0.44, 0.11,
+                                   transform=ax.transAxes,
+                                   facecolor="#ecfdf5", edgecolor="#2a9d8f",
+                                   linewidth=0.8, zorder=1))
+        ax.text(0.74, 0.625, f"macro F1  {row['frozen_macro_f1']:.3f}",
+                transform=ax.transAxes, fontsize=10, fontweight="bold",
+                color="#0f766e", va="center", ha="center", zorder=2)
+
+    # Sacred run ID (monospace)
+    ax.text(0.04, 0.485, f"sacred run: {row['sacred_run']}",
+            transform=ax.transAxes, fontsize=9,
+            family="monospace", color="#555555",
+            va="top", ha="left")
+
+    # Divider line
+    ax.plot([0.04, 0.96], [0.44, 0.44], transform=ax.transAxes,
+            color="#dddddd", lw=0.8)
+
+    # "Lesson learned" label
+    ax.text(0.04, 0.39, "LESSON LEARNED",
+            transform=ax.transAxes, fontsize=8.5, fontweight="bold",
+            color="#888888", va="top", ha="left")
+
+    # Lesson body (wrapped)
+    lesson_wrapped = _textwrap.fill(row["learned"], width=46)
+    ax.text(0.04, 0.31, lesson_wrapped,
+            transform=ax.transAxes, fontsize=9.5,
+            color="#1a1a1a", va="top", ha="left", linespacing=1.35)
+
+    # Winner flag
+    if is_winner:
+        ax.text(0.96, 0.04, "PRODUCTION",
+                transform=ax.transAxes, fontsize=8, fontweight="bold",
+                color=band_color, va="bottom", ha="right",
+                bbox=dict(boxstyle="round,pad=0.3",
+                          facecolor="white", edgecolor=band_color, lw=1.0))
+
+fig.suptitle(
+    "Figure A.0 · Pipeline lineage — six generations of the crosswalk classifier",
+    fontsize=14.5, fontweight="bold", y=0.975,
+)
+plt.show()
 """)
 
 md(
@@ -2148,6 +2396,14 @@ md(
     "4 → 20 → 25 → 30 → 38 → 22, peaking at v5 and then dropping sharply "
     "at v6 after I decided the additional features were adding noise, not "
     "signal."
+)
+
+plain_english(
+    "Six attempts to build this classifier. The first three were measured "
+    "on a different yardstick, so their scores aren't directly comparable "
+    "and the cards show 'n/a' where a fair number doesn't exist. The "
+    "newest version (v6) is the one you see elsewhere in this notebook — "
+    "fewer features, higher accuracy, and honest uncertainty on top."
 )
 
 code(r"""
@@ -2310,6 +2566,14 @@ md(
     "experimental form, and Opus calibration at v6. No family ever got "
     "removed after it was added. The v6 vs v5 drop is *within* families, "
     "not across them."
+)
+
+plain_english(
+    "The surprising move is at version 6: I *removed* features and the "
+    "accuracy went *up*. That's the main lesson of the whole rebuild — "
+    "more ingredients aren't automatically better; noisy ingredients "
+    "confuse the model. The final version has fewer features than v5 "
+    "but a cleaner signal."
 )
 
 code(r"""

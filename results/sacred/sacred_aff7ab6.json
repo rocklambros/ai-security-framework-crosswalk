@@ -1,0 +1,51 @@
+{
+  "version": "v5-best",
+  "method": "LLM(5) + SetFit-PCA30 + RF(500, balanced)",
+  "tier_accuracy": 0.505,
+  "macro_f1": 0.4653,
+  "bootstrap_ci": {
+    "f1_95": [
+      0.4125,
+      0.5173
+    ],
+    "acc_95": [
+      0.4575,
+      0.555
+    ]
+  },
+  "conformal": {
+    "alpha": 0.1,
+    "coverage": 0.3975,
+    "mean_set_size": 0.71
+  },
+  "per_class": [
+    {
+      "tier": 0,
+      "name": "Unrelated",
+      "f1": 0.5257,
+      "accuracy": 0.5897
+    },
+    {
+      "tier": 1,
+      "name": "Partial",
+      "f1": 0.3934,
+      "accuracy": 0.3077
+    },
+    {
+      "tier": 2,
+      "name": "Related",
+      "f1": 0.5798,
+      "accuracy": 0.586
+    },
+    {
+      "tier": 3,
+      "name": "Equivalent",
+      "f1": 0.3622,
+      "accuracy": 0.3966
+    }
+  ],
+  "features": "LLM scores (5) + SetFit fine-tuned BAAI/bge-large-en-v1.5 PCA-30",
+  "n_cal": 150,
+  "n_test": 400,
+  "sha": "aff7ab6"
+}

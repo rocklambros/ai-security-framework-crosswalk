@@ -111,6 +111,7 @@ code(r"""
 # seaborn, sklearn, statsmodels. Loading everything up front makes it obvious
 # which files the notebook depends on and fails fast if any are missing.
 import json
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -119,6 +120,14 @@ import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.patches import Patch
 import seaborn as sns
+
+# Silence a cosmetic matplotlib warning that fires when tight_layout is
+# combined with annotated gridspec panels. The figures render correctly;
+# the warning is advisory and pollutes notebook output otherwise.
+warnings.filterwarnings(
+    "ignore",
+    message="This figure includes Axes that are not compatible with tight_layout",
+)
 
 # Resolve the repo root in a way that works whether the notebook is launched
 # from the repo root, from notebooks/, or from a fresh unzipped submission

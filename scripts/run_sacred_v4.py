@@ -413,7 +413,6 @@ def run_sacred_v4() -> dict:
     print("Loading human_cal split …")
     train_records, val_records, idx_train, idx_val = split_human_cal()
 
-    # Labels for the full cal set (150), indexed into by idx_train / idx_val
     cal_pairs = _load_human_cal_pairs()
     y_cal_full = np.array(
         [TIER_MAP[r["expert_tier"]] for r in cal_pairs], dtype=np.int64
@@ -422,12 +421,10 @@ def run_sacred_v4() -> dict:
     test_pairs = _load_test_pairs()
     y_test = _load_test_labels()
 
-    # LLM features for cal and test (used in Methods A & B)
     print("Loading LLM features …")
-    X_cal_llm = load_llm_features("human_cal")      # (150, 5)
+    X_cal_llm = load_llm_features("human_cal")           # (150, 5)
     X_test_llm = load_llm_features("human_test_frozen")  # (400, 5)
 
-    # Labels for validation slice
     y_cal_val = y_cal_full[idx_val]
 
     # ------------------------------------------------------------------
@@ -446,7 +443,7 @@ def run_sacred_v4() -> dict:
     graph_test = compute_pair_features(test_pairs, gat_dict, n2v_dict, graph)
 
     # ------------------------------------------------------------------
-    # 3. Run all four methods
+    # 3. Run ablation (train/val split for method comparison)
     # ------------------------------------------------------------------
     print("Method A: LLM-direct …")
     result_a = _method_a(X_cal_llm, idx_train, idx_val, y_cal_full, X_test_llm, y_test)
@@ -464,40 +461,61 @@ def run_sacred_v4() -> dict:
     result_d = _method_d(idx_train, idx_val, y_cal_full, y_test, cal_pairs, test_pairs, graph_cal, graph_test)
     print(f"  macro_f1 = {result_d['macro_f1']:.4f}")
 
-    # ------------------------------------------------------------------
-    # 4. Select best method
-    # ------------------------------------------------------------------
-    methods = [
+    ablation_methods = [
         ("A_llm_direct",      result_a),
         ("B_llm_rf",          result_b),
         ("C_llm_graph_rf",    result_c),
         ("D_llm_ce_graph_rf", result_d),
     ]
-
-    best_name, best_result = max(methods, key=lambda kv: kv[1]["macro_f1"])
-    print(f"\nBest method: {best_name} (macro_f1={best_result['macro_f1']:.4f})")
-
-    y_pred_best = best_result["y_pred"]
+    best_ablation_name, _ = max(ablation_methods, key=lambda kv: kv[1]["macro_f1"])
+    print(f"\nAblation winner: {best_ablation_name}")
 
     # ------------------------------------------------------------------
-    # 4. Per-class metrics
+    # 4. Final model: RF on ALL 150 cal pairs (best method = B)
+    # ------------------------------------------------------------------
+    from sklearn.model_selection import cross_val_predict
+
+    print("\nFinal model: RF trained on all 150 human_cal pairs …")
+    final_rf = RandomForestClassifier(
+        n_estimators=500, min_samples_leaf=2,
+        class_weight="balanced_subsample", random_state=42,
+    )
+    final_rf.fit(X_cal_llm, y_cal_full)
+
+    y_pred_best = final_rf.predict(X_test_llm)
+    proba_test = final_rf.predict_proba(X_test_llm)
+    proba_test = _align_proba(proba_test, final_rf.classes_)
+
+    macro_f1 = float(f1_score(y_test, y_pred_best, average="macro", zero_division=0))
+    tier_accuracy = float(np.mean(y_pred_best == y_test))
+    print(f"  macro_f1 = {macro_f1:.4f}, tier_accuracy = {tier_accuracy:.4f}")
+
+    # ------------------------------------------------------------------
+    # 5. Per-class metrics + confusion matrix
     # ------------------------------------------------------------------
     per_class = _per_class_metrics(y_test, y_pred_best)
-
-    # ------------------------------------------------------------------
-    # 5. Confusion matrix
-    # ------------------------------------------------------------------
     confusion = _confusion_matrix_dict(y_test, y_pred_best)
 
     # ------------------------------------------------------------------
-    # 6. Conformal prediction (marginal)
+    # 6. Conformal prediction (cross-val on all 150 cal pairs)
     # ------------------------------------------------------------------
+    print("Cross-val conformal calibration (150 cal pairs) …")
+    proba_cal_cv = cross_val_predict(
+        RandomForestClassifier(
+            n_estimators=500, min_samples_leaf=2,
+            class_weight="balanced_subsample", random_state=42,
+        ),
+        X_cal_llm, y_cal_full, cv=5, method="predict_proba",
+    )
+    proba_cal_cv = _align_proba(proba_cal_cv, np.arange(4))
+
     conformal = _conformal_coverage(
-        proba_cal=best_result["proba_cal_val"],
-        y_cal=y_cal_val,
-        proba_test=best_result["proba_test"],
+        proba_cal=proba_cal_cv,
+        y_cal=y_cal_full,
+        proba_test=proba_test,
         y_test=y_test,
     )
+    print(f"  coverage = {conformal['coverage']:.4f}, set_size = {conformal['mean_set_size']:.2f}")
 
     # ------------------------------------------------------------------
     # 7. Bootstrap CI
@@ -510,21 +528,21 @@ def run_sacred_v4() -> dict:
     # ------------------------------------------------------------------
     ablation_summary = [
         {"method": name, "macro_f1": float(res["macro_f1"])}
-        for name, res in methods
+        for name, res in ablation_methods
     ]
 
-    tier_accuracy = float(np.mean(y_pred_best == y_test))
-
     results: dict = {
-        "best_method": best_name,
-        "macro_f1": float(best_result["macro_f1"]),
+        "best_method": "B_llm_rf_all150",
+        "macro_f1": macro_f1,
         "tier_accuracy": tier_accuracy,
         "ablation": ablation_summary,
+        "ablation_winner": best_ablation_name,
         "per_class": per_class,
         "confusion_matrix": confusion,
         "conformal": conformal,
         "bootstrap_ci": bootstrap,
         "n_test": int(len(y_test)),
+        "n_cal_total": int(len(y_cal_full)),
         "n_cal_train": int(len(idx_train)),
         "n_cal_val": int(len(idx_val)),
         "tier_names": TIER_NAMES,

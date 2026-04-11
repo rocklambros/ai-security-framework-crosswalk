@@ -1,0 +1,100 @@
+{
+  "best_method": "B_llm_rf_all150",
+  "macro_f1": 0.4450035874480275,
+  "tier_accuracy": 0.4575,
+  "ablation": [
+    {
+      "method": "A_llm_direct",
+      "macro_f1": 0.34756367493737983
+    },
+    {
+      "method": "B_llm_rf",
+      "macro_f1": 0.4465448529964659
+    },
+    {
+      "method": "C_llm_graph_rf",
+      "macro_f1": 0.44075264160929495
+    },
+    {
+      "method": "D_llm_ce_graph_rf",
+      "macro_f1": 0.3436743195774149
+    }
+  ],
+  "ablation_winner": "B_llm_rf",
+  "per_class": [
+    {
+      "tier": "unrelated",
+      "count": 78,
+      "accuracy": 0.6794871794871795,
+      "f1": 0.5578947368421052
+    },
+    {
+      "tier": "partial",
+      "count": 78,
+      "accuracy": 0.2948717948717949,
+      "f1": 0.2929936305732484
+    },
+    {
+      "tier": "related",
+      "count": 186,
+      "accuracy": 0.41935483870967744,
+      "f1": 0.48297213622291024
+    },
+    {
+      "tier": "equivalent",
+      "count": 58,
+      "accuracy": 0.5,
+      "f1": 0.4461538461538462
+    }
+  ],
+  "confusion_matrix": {
+    "unrelated": {
+      "unrelated": 53,
+      "partial": 12,
+      "related": 9,
+      "equivalent": 4
+    },
+    "partial": {
+      "unrelated": 23,
+      "partial": 23,
+      "related": 27,
+      "equivalent": 5
+    },
+    "related": {
+      "unrelated": 34,
+      "partial": 40,
+      "related": 78,
+      "equivalent": 34
+    },
+    "equivalent": {
+      "unrelated": 2,
+      "partial": 4,
+      "related": 23,
+      "equivalent": 29
+    }
+  },
+  "conformal": {
+    "q_hat": 0.8706922449365265,
+    "q_level": 0.9066666666666666,
+    "coverage": 0.95,
+    "mean_set_size": 2.985
+  },
+  "bootstrap_ci": {
+    "mean": 0.44345204443531816,
+    "ci_lower": 0.39377524235683065,
+    "ci_upper": 0.4918330745855773,
+    "n_resamples": 2000
+  },
+  "n_test": 400,
+  "n_cal_total": 150,
+  "n_cal_train": 100,
+  "n_cal_val": 50,
+  "tier_names": [
+    "unrelated",
+    "partial",
+    "related",
+    "equivalent"
+  ],
+  "alpha": 0.1,
+  "git_sha": "a0b7364"
+}

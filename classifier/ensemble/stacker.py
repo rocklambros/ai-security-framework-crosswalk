@@ -16,7 +16,7 @@ from pathlib import Path
 import lightgbm as lgb
 import numpy as np
 import optuna
-from sklearn.metrics import accuracy_score, log_loss
+from sklearn.metrics import accuracy_score, f1_score, log_loss
 from sklearn.model_selection import StratifiedKFold
 
 optuna.logging.set_verbosity(optuna.logging.WARNING)
@@ -123,18 +123,18 @@ def tune_stacker(
             "n_estimators": trial.suggest_int("n_estimators", 50, 500),
         }
         skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=seed)
-        losses = []
+        f1s = []
         for train_idx, val_idx in skf.split(X, y):
             X_tr, X_val = X[train_idx], X[val_idx]
             y_tr, y_val = y[train_idx], y[val_idx]
             w_tr = sample_weight[train_idx] if sample_weight is not None else None
             stacker = LGBMStacker(params)
             stacker.fit(X_tr, y_tr, sample_weight=w_tr)
-            proba = stacker.predict_proba(X_val)
-            losses.append(log_loss(y_val, proba, labels=list(range(N_CLASSES))))
-        return np.mean(losses)
+            preds = stacker.predict(X_val)
+            f1s.append(f1_score(y_val, preds, average="macro"))
+        return np.mean(f1s)
 
-    study = optuna.create_study(direction="minimize")
+    study = optuna.create_study(direction="maximize")
     study.optimize(objective, n_trials=n_trials)
     return study.best_params
 

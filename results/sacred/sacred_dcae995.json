@@ -1,0 +1,50 @@
+{
+  "version": "v5",
+  "sha": "dcae995",
+  "tier_accuracy": 0.5025,
+  "macro_f1": 0.4628029507660266,
+  "best_model": "rf",
+  "models_evaluated": {
+    "rf": {
+      "accuracy": 0.5025,
+      "macro_f1": 0.4628029507660266
+    },
+    "lgbm": {
+      "accuracy": 0.4725,
+      "macro_f1": 0.41949241979474133
+    }
+  },
+  "conformal": {
+    "alpha": 0.1,
+    "q_hat": 0.4263,
+    "coverage": 0.9067,
+    "mean_set_size": 0.91,
+    "median_set_size": 1
+  },
+  "ablation": {
+    "full": {
+      "macro_f1": 0.4628029507660266,
+      "accuracy": 0.5025
+    },
+    "drop_llm": {
+      "macro_f1": 0.4591516067417455,
+      "delta": -0.0036513440242811335
+    },
+    "drop_hierarchical": {
+      "macro_f1": 0.47436834957076296,
+      "delta": 0.011565398804736338
+    },
+    "drop_sbert_cos": {
+      "macro_f1": 0.4791812911280592,
+      "delta": 0.016378340362032562
+    },
+    "drop_nli": {
+      "macro_f1": 0.47615526948489684,
+      "delta": 0.013352318718870215
+    },
+    "drop_setfit_pca": {
+      "macro_f1": 0.44320354538506557,
+      "delta": -0.019599405380961055
+    }
+  }
+}

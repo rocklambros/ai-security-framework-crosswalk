@@ -22,6 +22,13 @@ def code(text: str) -> None:
     cells.append(nbf.v4.new_code_cell(text.strip("\n")))
 
 
+def plain_english(text: str) -> None:
+    """Add a 'Plain English' callout explaining the concept for non-specialists."""
+    cells.append(nbf.v4.new_markdown_cell(
+        f"> **Plain English:** {text.strip()}"
+    ))
+
+
 # ============================================================
 # Section 1
 # ============================================================
@@ -54,6 +61,16 @@ is informative for that question. No model training happens in the notebook
 itself. All learned coefficients, embeddings, and benchmark numbers are read
 from pre-computed CSV and JSON artifacts produced by the mapping pipeline.
 """)
+
+plain_english(
+    "We built a tool that automatically connects the dots between nine different "
+    "AI security rulebooks. Think of it like a Rosetta Stone for cybersecurity "
+    "standards — if you already comply with one framework, our tool tells you "
+    "which parts of other frameworks you've already covered and where you still "
+    "have gaps. The tool uses machine learning to figure out when two rules from "
+    "different frameworks are really saying the same thing, even if they use "
+    "completely different wording."
+)
 
 
 # ============================================================
@@ -389,6 +406,15 @@ md(
     "bridge signal exploits exactly this asymmetry, which is why it carries "
     "more weight in the production composite than the simpler keyword "
     "overlap signal does."
+)
+
+plain_english(
+    "Not all frameworks contribute equally to the crosswalk. AIUC-1 is like a "
+    "massive encyclopedia of security controls, so it naturally has the most "
+    "connections. Other frameworks are more specialized. This matters because "
+    "our model might perform better on well-connected frameworks and worse on "
+    "sparse ones. It's like studying for an exam — you'll score higher on "
+    "topics the textbook covered thoroughly."
 )
 
 
@@ -727,6 +753,14 @@ md(
     "shape shifts meaningfully across levels of a categorical feature."
 )
 
+plain_english(
+    "We gave the machine four different ways to judge whether two security rules "
+    "match: (1) Do they share a common parent category? (2) Do they use similar "
+    "words? (3) Do they have overlapping keywords? (4) Are they describing the "
+    "same type of thing (like a control vs. a risk)? Each approach has blind "
+    "spots, which is why we combine all four signals into a single score."
+)
+
 
 # ============================================================
 # Section 5
@@ -821,6 +855,15 @@ md(
     "McGill identified as the most accurate available for quantitative "
     "comparison, so visual ranking across the four strategies is reliable "
     "to within a few percent."
+)
+
+plain_english(
+    "We tested four different recipes for combining our signals, then asked: "
+    "which signal actually matters most? The bridge score (shared ancestry) "
+    "turned out to be the strongest predictor. The machine learning model "
+    "figured out what experienced security auditors already know — if two "
+    "controls sit under the same category heading in their respective "
+    "frameworks, they're probably related."
 )
 
 
@@ -951,6 +994,14 @@ md(
     "The bar chart format makes it easy to compare counts across frameworks "
     "at a glance, which is what a labeling planner actually needs in order "
     "to allocate review hours."
+)
+
+plain_english(
+    "An 'orphan node' is a security control that has no connections to anything "
+    "in any other framework. These are either genuinely unique concepts that no "
+    "other standard covers, or they're gaps in our mapping that need human "
+    "review. Finding these gaps is the whole point — they tell security teams "
+    "exactly where they need to focus their compliance effort."
 )
 
 code(r"""
@@ -1105,84 +1156,466 @@ md(
     "mapping problem, not a judgment on which one is correct."
 )
 
+plain_english(
+    "We compared our automated mappings against a hand-crafted expert crosswalk "
+    "to see how well the machine agrees with humans. About 48% of the expert "
+    "mappings were also found by our tool. The other 52% were either missed by "
+    "the tool (false negatives) or newly discovered by the tool (true positives "
+    "the expert overlooked). Neither the human nor the machine is perfectly "
+    "right — they complement each other."
+)
+
 
 # ============================================================
-# Section 7
+# Section 7: Model Training Results
 # ============================================================
-md("## 7 · Analytical Approaches and Next Steps")
-md(r"""
-This notebook is deliberately descriptive. It characterizes the dataset and the
-signals the mapping engine uses without making causal claims about which
-framework is the best or which mapping is the most important. The next phases
-of the project layer on top of it as follows.
+md("## 7 · Model Training Results and Evaluation")
+md(
+    "This section reports the v6-reframed pipeline results. The pipeline uses "
+    "a 22-dimensional feature set combining LLM similarity judgments (7 features "
+    "from Claude Sonnet 4 triple-voting), structural graph features (13 features "
+    "from GAT/Node2Vec embeddings and control metadata), and Opus calibration "
+    "scores (2 features). A Gradient Boosting classifier trained on 150 human-"
+    "labeled calibration pairs predicts four tiers: Unrelated, Partial, Related, "
+    "and Equivalent. Evaluation uses 400 frozen holdout pairs with expert labels."
+)
+plain_english(
+    "We combined three types of information — language model similarity ratings, "
+    "graph structure features, and a second language model's calibration scores — "
+    "into a 22-feature classifier. We trained it on 150 expert-labeled pairs and "
+    "tested on 400 pairs the model never saw. The numbers below show how often "
+    "the machine agrees with the human experts."
+)
 
-### Cross encoder reranking
-
-Sessions 9 and 9B evaluated two cross encoder rerankers (`ms-marco-MiniLM-L-6-v2`
-and `BAAI/bge-reranker-v2-m3`) on a pool of 550 SME labeled candidates. Both
-rerankers were rejected for global adoption because they underperform on the
-uncertainty sampled labeling pool. The active learner deliberately chose the
-cases where the composite was least confident, which is exactly the kind of
-input where rerankers struggle, so a per pair toggle remains an option but the
-production composite is unchanged. This was a diagnostic exercise: the
-rerankers were tested against the hypothesis that more sophisticated semantic
-models would beat the existing ensemble, and the answer on this evaluation
-pool was no.
-
-### Active learning
-
-Uncertainty sampling, which picks the candidate where the composite score is
-closest to a tier boundary, is the technique that generated the labeling
-sheets feeding into the comparisons in this notebook. As a method it is
-descriptive in the sense that it takes the model as given and asks where to
-label next. It becomes explanatory once the new labels are folded back into
-the training pool and the weights are refit, because the comparison between
-the old and new fits is a controlled experiment in which the only thing that
-changed was the data.
-
-### Contrastive fine tuning
-
-The `finetune_benchmark.json` results show the realistic ceiling for the
-semantic signal alone. A `bge-large-en-v1.5` encoder fine tuned on curated
-triples from the labeled data improves precision at 5 from 0.81 to 1.00 on
-the AIUC anchor set. That ceiling is expensive to reach because it requires
-curated triples and GPU time, but it is the most likely path to compressing
-the high baseline problem that figure 4.2 visualizes. The honest finding is
-that better semantic signal would help, and the production system is
-currently leaving that improvement on the table.
-
-### LambdaMART and graph neural networks
-
-Phase E of session 9B fit an XGBoost `rank:pairwise` model on the 550 unified
-labels with group K fold cross validation by pair. The held out gain on
-NDCG at 5 was a real positive number (around +0.078), but the train versus
-held out gap was 0.31, far above the 0.10 overfit threshold the team set in
-advance. The booster was rejected per the same honest rejection ledger as the
-rerankers. A graph neural network for link prediction would inherit the same
-overfitting risk on this label volume and is queued for after a non
-uncertainty biased evaluation set exists.
-
-### Transition to project 2
-
-The dashboard for project 2 will turn the visualizations above into
-interactive views. The cross framework heatmap becomes a clickable matrix in
-which selecting a cell drills into the underlying mappings. The embedding
-scatter becomes a brushable scatter linked to the underlying node text. The
-confusion matrices become a per pair drill down. The reason this notebook is
-static and matplotlib only is that the analytical case for each visualization
-should be settled first, since interactivity can hide a weak underlying chart
-behind motion and selection.
-
-### Naming the methods using course vocabulary
-
-| Approach | Type | Purpose |
-| --- | --- | --- |
-| Heatmaps, bar charts, histograms in this notebook | Descriptive | Characterize the dataset |
-| Mapped versus unmapped distribution comparison (Figs 4.1, 4.2) | Diagnostic | Detect the high baseline problem |
-| Hand tuned versus learned weight comparison (Sec 5) | Explanatory | Test which signals carry independent information |
-| Coverage and orphan diagnostics (Sec 6) | Diagnostic | Identify where the next labeling round should go |
-| Reranker and LambdaMART experiments (Sessions 9, 9B) | Confirmatory | Decide whether to adopt new components |
+code(r"""
+# Load the sacred evaluation results from the frozen test run.
+sacred_files = sorted(Path(REPO / "results" / "sacred").glob("sacred_*.json"))
+if sacred_files:
+    sacred_path = sacred_files[-1]
+    sacred = json.loads(sacred_path.read_text())
+    print(f"Sacred run: {sacred_path.name}  (version: {sacred.get('version', 'unknown')})")
+    print(f"Best method: {sacred['best_method']}")
+    print(f"Features: {sacred.get('features', 'N/A')}")
+    print(f"Tier accuracy: {sacred['tier_accuracy']:.1%}")
+    print(f"Macro F1: {sacred['macro_f1']:.4f}")
+    print(f"Adjacent accuracy: {sacred['adjacent_accuracy']:.1%}")
+    print(f"Binary accuracy: {sacred['binary_accuracy']:.1%}")
+    ci_acc = sacred["bootstrap_ci"]["acc_95"]
+    ci_f1 = sacred["bootstrap_ci"]["f1_95"]
+    print(f"Bootstrap 95% CI (acc): [{ci_acc[0]:.1%}, {ci_acc[1]:.1%}]")
+    print(f"Bootstrap 95% CI (F1):  [{ci_f1[0]:.4f}, {ci_f1[1]:.4f}]")
+    print(f"Conformal coverage: {sacred['conformal']['coverage']:.1%}")
+    print(f"Avg conformal set size: {sacred['conformal']['mean_set_size']:.2f}")
+    if "ablation" in sacred:
+        print("\nAblation study:")
+        for m in sacred["ablation"]:
+            print(f"  {m['name']:25s}  acc={m['accuracy']:.1%}  F1={m['macro_f1']:.4f}  adj={m['adjacent_accuracy']:.1%}")
+else:
+    print("No sacred results found yet — run the training pipeline first.")
+    sacred = None
 """)
+
+code(r"""
+# Figure 7.1: Confusion matrix + per-class accuracy on frozen test set.
+if sacred is not None and "confusion_matrix" in sacred:
+    tier_names = ["Unrelated", "Partial", "Related", "Equivalent"]
+    cm = sacred["confusion_matrix"]
+    cm_array = np.array([[cm[t1.lower()][t2.lower()] for t2 in tier_names]
+                         for t1 in tier_names])
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5),
+                                   gridspec_kw={"width_ratios": [1.2, 1]})
+
+    # Panel A: Confusion matrix heatmap
+    sns.heatmap(cm_array, annot=True, fmt="d", cmap="Blues",
+                xticklabels=tier_names, yticklabels=tier_names, ax=ax1)
+    ax1.set_xlabel("Predicted")
+    ax1.set_ylabel("True (Expert)")
+    ax1.set_title("Figure 7.1A · Confusion matrix (v6 reframed, n=400)")
+
+    # Highlight dominant off-diagonal error
+    max_off_diag = 0
+    max_ij = (0, 0)
+    for i in range(4):
+        for j in range(4):
+            if i != j and cm_array[i, j] > max_off_diag:
+                max_off_diag = cm_array[i, j]
+                max_ij = (i, j)
+    ax1.annotate(
+        f"Largest error:\n{tier_names[max_ij[0]]}\u2192{tier_names[max_ij[1]]}",
+        xy=(max_ij[1] + 0.5, max_ij[0] + 0.5),
+        xytext=(max_ij[1] + 1.5, max(max_ij[0] - 0.5, 0)),
+        fontsize=9, arrowprops=dict(arrowstyle="->", lw=1.0),
+    )
+
+    # Panel B: Per-class accuracy bar chart
+    per_class_map = {p["tier"]: p for p in sacred["per_class"]}
+    accs = [per_class_map[i]["accuracy"] for i in range(4)]
+    counts = [per_class_map[i]["count"] for i in range(4)]
+    f1s = [per_class_map[i]["f1"] for i in range(4)]
+    colors = ["#264653", "#2a9d8f", "#e9c46a", "#e76f51"]
+    bars = ax2.bar(tier_names, accs, color=colors, edgecolor="black", linewidth=0.5)
+    ax2.set_ylabel("Per-class accuracy")
+    ax2.set_title("Figure 7.1B · Per-class accuracy & F1")
+    ax2.set_ylim(0, 1.15)
+    for b, a, n, f in zip(bars, accs, counts, f1s):
+        ax2.text(b.get_x() + b.get_width() / 2, a + 0.02,
+                 f"{a:.0%}\n(F1={f:.2f}, n={n})", ha="center", fontsize=8)
+    plt.tight_layout()
+    plt.show()
+""")
+
+plain_english(
+    "The confusion matrix shows where the model gets it right and where it "
+    "gets confused. Perfect performance would be a bright diagonal with zeros "
+    "everywhere else. The most common mistakes are between adjacent tiers — "
+    "confusing 'related' with 'unrelated' or 'partial' — which is a reasonable "
+    "kind of error. The per-class chart reveals that Related (tier 2) is the "
+    "strongest class, while Partial (tier 1) remains the hardest to predict."
+)
+
+code(r"""
+# Figure 7.2: Binary vs 4-tier vs adjacent accuracy comparison.
+if sacred is not None:
+    metrics = {
+        "4-Tier\nAccuracy": sacred["tier_accuracy"],
+        "Adjacent\nAccuracy": sacred["adjacent_accuracy"],
+        "Binary\nAccuracy": sacred["binary_accuracy"],
+    }
+    majority_baseline = max(p["count"] for p in sacred["per_class"]) / sacred["n_test"]
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+    x = np.arange(len(metrics))
+    vals = list(metrics.values())
+    bar_colors = ["#264653", "#2a9d8f", "#e76f51"]
+    bars = ax.bar(x, vals, color=bar_colors, edgecolor="black", linewidth=0.5, width=0.55)
+    ax.axhline(majority_baseline, color="gray", linestyle="--", linewidth=1.2, label=f"Majority baseline ({majority_baseline:.0%})")
+    ax.axhline(0.25, color="lightgray", linestyle=":", linewidth=1.0, label="Random baseline (25%)")
+    ax.set_xticks(x)
+    ax.set_xticklabels(list(metrics.keys()), fontsize=11)
+    ax.set_ylabel("Accuracy", fontsize=12)
+    ax.set_ylim(0, 1.05)
+    ax.set_title("Figure 7.2 · Accuracy metrics vs baselines (v6 reframed)", fontsize=13)
+    for b, v in zip(bars, vals):
+        ax.text(b.get_x() + b.get_width() / 2, v + 0.02, f"{v:.1%}",
+                ha="center", fontsize=12, fontweight="bold")
+    ax.legend(loc="lower right", fontsize=10)
+    plt.tight_layout()
+    plt.show()
+""")
+
+plain_english(
+    "This chart puts the model's 53.2% four-tier accuracy in context. "
+    "The majority baseline (always guessing 'Related') would score 46.5%. "
+    "Adjacent accuracy (allowing off-by-one errors) reaches 84.2%, meaning "
+    "most mistakes are between neighboring tiers rather than catastrophic. "
+    "Binary accuracy (related vs unrelated) is 71.2%."
+)
+
+code(r"""
+# Figure 7.3: Feature importance by source (horizontal bar chart).
+v6_results_path = Path(REPO / "data" / "processed" / "v6_results" / "v6_all_results.json")
+if v6_results_path.exists():
+    v6_results = json.loads(v6_results_path.read_text())
+    fi = v6_results["tier4"]["feature_importances"]
+
+    # Sort by importance
+    sorted_fi = sorted(fi.items(), key=lambda x: x[1], reverse=True)
+    names = [x[0] for x in sorted_fi]
+    imps = [x[1] for x in sorted_fi]
+
+    # Color by source
+    def feature_color(name):
+        if name.startswith("llm_"):
+            return "#3b82f6"   # blue — LLM
+        elif name.startswith("opus_"):
+            return "#f59e0b"   # gold — Opus
+        else:
+            return "#14b8a6"   # teal — Structural
+    colors = [feature_color(n) for n in names]
+
+    fig, ax = plt.subplots(figsize=(10, 7))
+    y_pos = np.arange(len(names))
+    ax.barh(y_pos, imps, color=colors, edgecolor="black", linewidth=0.3)
+    ax.set_yticks(y_pos)
+    ax.set_yticklabels(names, fontsize=9)
+    ax.invert_yaxis()
+    ax.set_xlabel("Feature Importance (GBM)", fontsize=11)
+    ax.set_title("Figure 7.3 · Feature importance by source", fontsize=13)
+
+    # Legend
+    from matplotlib.patches import Patch
+    legend_elements = [
+        Patch(facecolor="#3b82f6", edgecolor="black", label="LLM (7d)"),
+        Patch(facecolor="#14b8a6", edgecolor="black", label="Structural (13d)"),
+        Patch(facecolor="#f59e0b", edgecolor="black", label="Opus (2d)"),
+    ]
+    ax.legend(handles=legend_elements, loc="lower right", fontsize=10)
+    plt.tight_layout()
+    plt.show()
+else:
+    print("v6_all_results.json not found — run the v6 pipeline first.")
+""")
+
+plain_english(
+    "Feature importance reveals that graph-based cosine similarities (GAT, "
+    "Node2Vec) and text-length features dominate. The LLM aggregate score "
+    "ranks mid-table, while Opus calibration scores contribute modestly. "
+    "This suggests the gradient boosting model relies on structural signals "
+    "to separate tiers that LLM scores alone cannot distinguish."
+)
+
+code(r"""
+# Figure 7.4: Opus score calibration gap — violin plot by tier.
+opus_path = Path(REPO / "data" / "processed" / "v5_features" / "opus_scores_human_test_frozen.jsonl")
+if opus_path.exists():
+    opus_records = [json.loads(line) for line in opus_path.read_text().strip().split("\n")]
+    # Filter to records with expert labels
+    opus_df = pd.DataFrame(opus_records)
+    opus_df = opus_df[opus_df["expert_label"].notna() & (opus_df["expert_tier"] != "None")]
+    opus_df["expert_label"] = opus_df["expert_label"].astype(int)
+
+    tier_labels = {0: "Unrelated", 1: "Partial", 2: "Related", 3: "Equivalent"}
+    opus_df["tier_name"] = opus_df["expert_label"].map(tier_labels)
+
+    fig, ax = plt.subplots(figsize=(9, 5))
+    tier_order = ["Unrelated", "Partial", "Related", "Equivalent"]
+    palette = ["#264653", "#2a9d8f", "#e9c46a", "#e76f51"]
+    parts = ax.violinplot(
+        [opus_df[opus_df["tier_name"] == t]["score"].values for t in tier_order],
+        positions=range(4), showmeans=True, showmedians=True
+    )
+    for i, pc in enumerate(parts["bodies"]):
+        pc.set_facecolor(palette[i])
+        pc.set_alpha(0.7)
+    ax.set_xticks(range(4))
+    ax.set_xticklabels(tier_order, fontsize=11)
+    ax.set_ylabel("Opus Score (0-10)", fontsize=11)
+    ax.set_title("Figure 7.4 · Opus score distribution by expert tier", fontsize=13)
+
+    # Annotate means
+    for i, t in enumerate(tier_order):
+        subset = opus_df[opus_df["tier_name"] == t]["score"]
+        ax.text(i, subset.mean() + 0.3, f"\u03bc={subset.mean():.1f}",
+                ha="center", fontsize=9, fontweight="bold")
+    plt.tight_layout()
+    plt.show()
+else:
+    print("Opus scores file not found — run the Opus scoring pipeline first.")
+""")
+
+plain_english(
+    "The violin plot shows how well the Opus language model's raw similarity "
+    "scores separate the four expert tiers. Ideally each tier would occupy a "
+    "distinct score range. In practice, Unrelated and Partial overlap heavily "
+    "in the 1-3 range, which explains why the classifier struggles most with "
+    "these two tiers. Related and Equivalent show better separation at higher scores."
+)
+
+md(
+    "### Section 7 Summary\n\n"
+    "The v6-reframed GBM achieves **53.2% tier accuracy** (95% CI: 48.5-58.0%) "
+    "and **0.489 macro F1** on 400 frozen holdout pairs. Adjacent accuracy is "
+    "84.2%, meaning errors are overwhelmingly off-by-one rather than catastrophic. "
+    "The ablation study shows that the full 22-feature set (LLM + Structural + Opus) "
+    "outperforms any single feature family, with structural features providing the "
+    "largest individual contribution through GAT and Node2Vec cosine similarities. "
+    "The Partial tier (F1=0.36) remains the primary bottleneck due to score overlap "
+    "with both Unrelated and Related categories."
+)
+
+
+# ============================================================
+# Section 8: Conclusion
+# ============================================================
+md("## 8 · Conclusion: Is This Good or Bad?")
+md(
+    "The v6-reframed pipeline replaces earlier approaches with a three-source "
+    "feature architecture: LLM triple-voting (Claude Sonnet 4), structural "
+    "graph features (GAT, Node2Vec, metadata), and Opus calibration scores, "
+    "fed into a Gradient Boosting classifier. Conformal prediction provides "
+    "calibrated uncertainty sets at the 90% coverage level. This section "
+    "evaluates the pipeline against pre-registered thresholds and examines "
+    "conformal set behavior across tiers."
+)
+plain_english(
+    "We combined language model ratings, graph structure, and a calibration "
+    "model into a 22-feature classifier. Instead of just predicting one label, "
+    "the system also outputs a 'prediction set' — a list of plausible tiers — "
+    "that is guaranteed to contain the true answer at least 90% of the time."
+)
+
+code(r"""
+# Final evaluation against pre-registered thresholds.
+if sacred is not None:
+    tier_acc = sacred["tier_accuracy"]
+    macro_f1 = sacred["macro_f1"]
+    adj_acc = sacred["adjacent_accuracy"]
+    bin_acc = sacred["binary_accuracy"]
+    ci_acc = sacred["bootstrap_ci"]["acc_95"]
+    ci_f1 = sacred["bootstrap_ci"]["f1_95"]
+    coverage = sacred["conformal"]["coverage"]
+    avg_set = sacred["conformal"]["mean_set_size"]
+
+    print("=" * 60)
+    print("FINAL EVALUATION — v6 REFRAMED PIPELINE")
+    print("=" * 60)
+
+    if tier_acc >= 0.80:
+        verdict = "STRONG — exceeds 80% threshold"
+    elif tier_acc >= 0.70:
+        verdict = "COMPETITIVE — between 70-80%"
+    elif tier_acc >= 0.55:
+        verdict = "PARTIAL SUCCESS — between 55-70%"
+    else:
+        verdict = "BELOW TARGET — under 55%"
+
+    print(f"Tier accuracy:     {tier_acc:.1%}  (95% CI: [{ci_acc[0]:.1%}, {ci_acc[1]:.1%}])")
+    print(f"Verdict:           {verdict}")
+    print(f"Macro F1:          {macro_f1:.4f} (95% CI: [{ci_f1[0]:.4f}, {ci_f1[1]:.4f}])")
+    print(f"Adjacent accuracy: {adj_acc:.1%}")
+    print(f"Binary accuracy:   {bin_acc:.1%}")
+    print(f"Conformal coverage: {coverage:.1%} (target: >= 90%)")
+    print(f"Avg set size:      {avg_set:.2f} (out of 4 classes)")
+    print()
+    print("Per-class breakdown:")
+    for p in sacred["per_class"]:
+        print(f"  Tier {p['tier']} ({p['name']:12s}):  acc={p['accuracy']:.1%}  F1={p['f1']:.4f}  n={p['count']}")
+else:
+    print("Sacred results not available — run the training pipeline first.")
+""")
+
+code(r"""
+# Figure 8.1: Conformal prediction set sizes by tier (multi-panel GridSpec).
+import matplotlib.gridspec as gridspec
+
+preds_path = Path(REPO / "data" / "processed" / "v6_results" / "v6_pair_predictions.jsonl")
+if preds_path.exists() and sacred is not None:
+    preds = [json.loads(line) for line in preds_path.read_text().strip().split("\n")]
+    preds_df = pd.DataFrame(preds)
+    preds_df["set_size"] = preds_df["conformal_set"].apply(len)
+
+    tier_names = ["Unrelated", "Partial", "Related", "Equivalent"]
+
+    fig = plt.figure(figsize=(14, 8))
+    gs = gridspec.GridSpec(2, 3, figure=fig, hspace=0.35, wspace=0.3)
+
+    # Panels 0-3: per-tier histograms
+    palette = ["#264653", "#2a9d8f", "#e9c46a", "#e76f51"]
+    for idx in range(4):
+        row, col = divmod(idx, 2)
+        ax = fig.add_subplot(gs[row, col])
+        subset = preds_df[preds_df["expert_tier"] == idx]
+        if len(subset) > 0:
+            counts = subset["set_size"].value_counts().sort_index()
+            sizes = range(1, 5)
+            heights = [counts.get(s, 0) for s in sizes]
+            ax.bar(sizes, heights, color=palette[idx], edgecolor="black", linewidth=0.5)
+            ax.set_title(f"{tier_names[idx]} (n={len(subset)})", fontsize=11)
+            ax.set_xlabel("Set size")
+            ax.set_ylabel("Count")
+            ax.set_xticks([1, 2, 3, 4])
+            mean_sz = subset["set_size"].mean()
+            ax.axvline(mean_sz, color="red", linestyle="--", linewidth=1.2)
+            ax.text(mean_sz + 0.1, ax.get_ylim()[1] * 0.85,
+                    f"\u03bc={mean_sz:.1f}", color="red", fontsize=9)
+
+    # Panel 4 (right column, spanning both rows): overall summary
+    ax_summary = fig.add_subplot(gs[:, 2])
+    overall_counts = preds_df["set_size"].value_counts().sort_index()
+    sizes = range(1, 5)
+    heights = [overall_counts.get(s, 0) for s in sizes]
+    pct = [h / len(preds_df) * 100 for h in heights]
+    bars = ax_summary.bar(sizes, pct, color="#6366f1", edgecolor="black", linewidth=0.5)
+    ax_summary.set_xlabel("Conformal Set Size", fontsize=11)
+    ax_summary.set_ylabel("Percentage of Pairs", fontsize=11)
+    ax_summary.set_title("Overall Distribution\n(all 400 pairs)", fontsize=11)
+    ax_summary.set_xticks([1, 2, 3, 4])
+    for b, p in zip(bars, pct):
+        ax_summary.text(b.get_x() + b.get_width() / 2, p + 1,
+                        f"{p:.0f}%", ha="center", fontsize=10, fontweight="bold")
+
+    # Coverage annotation
+    ax_summary.text(0.5, 0.02,
+                    f"Coverage: {sacred['conformal']['coverage']:.1%}\n"
+                    f"Mean size: {sacred['conformal']['mean_set_size']:.1f}",
+                    transform=ax_summary.transAxes, fontsize=10,
+                    ha="center", va="bottom",
+                    bbox=dict(boxstyle="round,pad=0.4", facecolor="#f0f0f0", edgecolor="gray"))
+
+    fig.suptitle("Figure 8.1 · Conformal prediction set sizes by tier",
+                 fontsize=14, fontweight="bold", y=1.01)
+    plt.tight_layout()
+    plt.show()
+else:
+    print("Pair predictions not found — run the v6 pipeline first.")
+""")
+
+plain_english(
+    "Each panel shows how many tiers the model includes in its 'prediction set' "
+    "for that expert tier. A set size of 1 means the model is confident in a "
+    "single answer; size 4 means it cannot narrow it down at all. The red line "
+    "marks the average. The guarantee is that across all pairs, 90% or more of "
+    "the prediction sets contain the correct tier."
+)
+
+md(
+    "### What worked\n\n"
+    "1. **Three-source features outperform any single family.** The full 22-feature "
+    "GBM (LLM + Structural + Opus) achieves 53.2% tier accuracy and 0.489 macro F1, "
+    "beating LLM-only (46.7%), Structural-only (39.2%), and Opus-only (52.2%) "
+    "configurations in the ablation study.\n\n"
+    "2. **Adjacent accuracy is high at 84.2%.** Most errors are off-by-one tier "
+    "confusions (e.g., Related predicted as Partial), not catastrophic misclassifications "
+    "like labeling an Equivalent pair as Unrelated.\n\n"
+    "3. **Conformal coverage exceeds the 90% target** at 93.8% with mean set size "
+    "3.2. This provides calibrated uncertainty — when the model is unsure, it "
+    "tells you which tiers it is considering rather than forcing a single guess.\n\n"
+    "4. **Structural graph features are the top contributors.** GAT cosine (15.5%) "
+    "and Node2Vec cosine (14.1%) dominate feature importance, capturing framework "
+    "structure that LLM scores alone miss.\n\n"
+    "### What did not work\n\n"
+    "1. **Partial tier remains the bottleneck** at 30.8% accuracy and 0.36 F1. "
+    "Opus scores for Unrelated and Partial overlap heavily, and the LLM triple-vote "
+    "cannot reliably separate 'no connection' from 'weak thematic connection.'\n\n"
+    "2. **Conformal set sizes are large.** 47% of pairs get the maximum set size "
+    "of 4, reducing the practical utility of conformal prediction for actionable "
+    "triage. Tighter sets require a stronger base classifier.\n\n"
+    "3. **Opus-only achieves 52.2% accuracy with just 2 features** — nearly matching "
+    "the full 22-feature model. This suggests substantial redundancy in the feature "
+    "set and indicates that a simpler model with Opus scores plus a few structural "
+    "features might suffice.\n\n"
+    "### The bottom line\n\n"
+    "The v6-reframed pipeline achieves 53.2% tier accuracy and 0.489 macro F1 — "
+    "double the 25% random baseline and above the 46.5% majority baseline. The "
+    "conformal prediction sets provide honest uncertainty quantification at 93.8% "
+    "coverage. The main limitation is the Partial tier, where LLM and Opus scores "
+    "cannot separate weak thematic connections from absence of connection. "
+    "Future work should focus on improving the base classifier to reduce conformal "
+    "set sizes, potentially through few-shot prompting with tier-specific examples "
+    "or a two-stage binary-then-ordinal classification approach."
+)
+plain_english(
+    "The short answer: the system works meaningfully better than random (25%) and "
+    "the majority-class baseline (46.5%), and provides honest uncertainty estimates. "
+    "Its main weakness is telling apart 'completely unrelated' from 'loosely related' — "
+    "a distinction that is genuinely hard even for human experts. The conformal "
+    "prediction sets mean that when the system is uncertain, it tells you which "
+    "categories it is considering rather than just guessing."
+)
+
+md(
+    "### Future Work: Project 2\n\n"
+    "The interactive Dash application will:\n"
+    "- Visualize the crosswalk as a navigable network graph\n"
+    "- Surface the model's most uncertain predictions (large conformal sets) for human review\n"
+    "- Allow experts to correct mappings through a feedback interface\n"
+    "- Display conformal prediction sets so users see calibrated uncertainty\n"
+    "- Connect to the training pipeline for active learning iteration\n\n"
+    "The transition from static analysis (this notebook) to interactive "
+    "exploration (Project 2) is where this work becomes operationally useful "
+    "for security teams managing multi-framework compliance."
+)
 
 
 # ============================================================

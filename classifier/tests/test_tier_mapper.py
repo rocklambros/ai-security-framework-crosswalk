@@ -3,20 +3,20 @@ import pytest
 from classifier.data.tier_mapper import map_upstream_tier, TierLabel
 
 
-def test_foundational_direct_scope():
-    assert map_upstream_tier(tier="Foundational", scope="Direct") == TierLabel.EQUIVALENT
-
-
-def test_foundational_both_scope():
+def test_foundational_maps_to_equivalent():
     assert map_upstream_tier(tier="Foundational", scope="Both") == TierLabel.EQUIVALENT
 
 
-def test_foundational_broader_scope():
-    assert map_upstream_tier(tier="Foundational", scope="Broader") == TierLabel.RELATED
+def test_foundational_build_scope():
+    assert map_upstream_tier(tier="Foundational", scope="Build") == TierLabel.EQUIVALENT
 
 
-def test_foundational_partial_overlap():
-    assert map_upstream_tier(tier="Foundational", scope="Partial") == TierLabel.RELATED
+def test_hardening_maps_to_related():
+    assert map_upstream_tier(tier="Hardening", scope="Both") == TierLabel.RELATED
+
+
+def test_advanced_maps_to_partial():
+    assert map_upstream_tier(tier="Advanced", scope="Both") == TierLabel.PARTIAL
 
 
 def test_expanded_maps_to_partial():

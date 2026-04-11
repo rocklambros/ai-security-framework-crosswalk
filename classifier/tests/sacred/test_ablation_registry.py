@@ -2,6 +2,7 @@
 from classifier.sacred.ablation_registry import (
     ABLATIONS,
     V2_ABLATIONS,
+    V2_1_ABLATIONS,
     ALL_ABLATIONS,
     get_ablation,
 )
@@ -33,8 +34,8 @@ def test_v2_registry_has_required_keys():
     assert V2_REQUIRED.issubset(set(V2_ABLATIONS.keys()))
 
 
-def test_all_ablations_merges_both():
-    assert set(ALL_ABLATIONS.keys()) == set(ABLATIONS.keys()) | set(V2_ABLATIONS.keys())
+def test_all_ablations_merges_all():
+    assert set(ALL_ABLATIONS.keys()) == set(ABLATIONS.keys()) | set(V2_ABLATIONS.keys()) | set(V2_1_ABLATIONS.keys())
 
 
 def test_registry_values_are_dicts():

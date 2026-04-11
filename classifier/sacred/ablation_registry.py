@@ -79,9 +79,64 @@ V2_ABLATIONS: dict[str, dict] = {
 }
 
 # ---------------------------------------------------------------------------
-# Unified view: all known ablation names across v1 and v2
+# V2.1 ablations — Spec 1.1 pipeline rebuild (KL loss, PCA, label shift)
 # ---------------------------------------------------------------------------
-ALL_ABLATIONS: dict[str, dict] = {**ABLATIONS, **V2_ABLATIONS}
+V2_1_ABLATIONS: dict[str, dict] = {
+    "single_deberta_kl": {
+        "description": "Single DeBERTa with KL ordinal loss",
+        "models": ["deberta"],
+        "loss": "kl",
+    },
+    "single_deberta_corn": {
+        "description": "Single DeBERTa with CORN ordinal loss",
+        "models": ["deberta"],
+        "loss": "corn",
+    },
+    "multi_ce_kl": {
+        "description": "3-model CE ensemble with KL ordinal loss",
+        "models": ["deberta", "roberta", "electra"],
+        "loss": "kl",
+    },
+    "multi_ce_corn": {
+        "description": "3-model CE ensemble with CORN ordinal loss",
+        "models": ["deberta", "roberta", "electra"],
+        "loss": "corn",
+    },
+    "multi_ce_kl_pca": {
+        "description": "3-model KL + PCA stacker features",
+        "models": ["deberta", "roberta", "electra"],
+        "loss": "kl",
+        "features": "pca",
+    },
+    "multi_ce_kl_pca_shift": {
+        "description": "3-model KL + PCA + label shift correction",
+        "models": ["deberta", "roberta", "electra"],
+        "loss": "kl",
+        "features": "pca",
+        "label_shift": True,
+    },
+    "pair_level_full": {
+        "description": "Full pipeline with pair-level leakage exclusion",
+        "models": ["deberta", "roberta", "electra"],
+        "loss": "kl",
+        "features": "pca",
+        "label_shift": True,
+        "leakage_mode": "pair",
+    },
+    "node_level_full": {
+        "description": "Full pipeline with node-level leakage (ablation)",
+        "models": ["deberta", "roberta", "electra"],
+        "loss": "kl",
+        "features": "pca",
+        "label_shift": True,
+        "leakage_mode": "node",
+    },
+}
+
+# ---------------------------------------------------------------------------
+# Unified view: all known ablation names across v1, v2, and v2.1
+# ---------------------------------------------------------------------------
+ALL_ABLATIONS: dict[str, dict] = {**ABLATIONS, **V2_ABLATIONS, **V2_1_ABLATIONS}
 
 
 def get_ablation(name: str) -> dict:

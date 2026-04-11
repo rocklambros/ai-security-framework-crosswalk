@@ -1,0 +1,50 @@
+{
+  "gate_passed": false,
+  "min_macro_f1": 0.45,
+  "macro_f1": 0.38575036075036073,
+  "tier_accuracy": 0.42,
+  "per_class_f1": {
+    "tier_0": 0.6,
+    "tier_1": 0.35714285714285715,
+    "tier_2": 0.36363636363636365,
+    "tier_3": 0.2222222222222222
+  },
+  "confusion_matrix": [
+    [
+      9,
+      3,
+      0,
+      0
+    ],
+    [
+      3,
+      5,
+      1,
+      0
+    ],
+    [
+      6,
+      9,
+      6,
+      0
+    ],
+    [
+      0,
+      2,
+      5,
+      1
+    ]
+  ],
+  "n_val": 50,
+  "n_unanimous": 47,
+  "n_unanimous_before_tiebreaker": 47,
+  "n_votes": 3,
+  "use_opus_tiebreaker": true,
+  "cost_summary": {
+    "call_count": 153,
+    "input_tokens": 1318011,
+    "output_tokens": 20734,
+    "total_tokens": 1338745,
+    "total_cost_usd": 4.604535
+  }
+}

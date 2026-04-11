@@ -1,0 +1,128 @@
+{
+  "version": "v6-reframed",
+  "method": "GBM(22d: LLM+Struct+Opus) {'n_estimators': 500, 'lr': 0.05, 'msl': 5}",
+  "best_method": "GBM {'n_estimators': 500, 'lr': 0.05, 'msl': 5}",
+  "tier_accuracy": 0.5325,
+  "macro_f1": 0.4888,
+  "adjacent_accuracy": 0.8425,
+  "binary_accuracy": 0.7125,
+  "bootstrap_ci": {
+    "acc_95": [
+      0.485,
+      0.5801
+    ],
+    "f1_95": [
+      0.4326,
+      0.5383
+    ]
+  },
+  "conformal": {
+    "alpha": 0.1,
+    "coverage": 0.9375,
+    "mean_set_size": 3.2
+  },
+  "confusion_matrix": {
+    "unrelated": {
+      "unrelated": 48,
+      "partial": 9,
+      "related": 20,
+      "equivalent": 1
+    },
+    "partial": {
+      "unrelated": 19,
+      "partial": 24,
+      "related": 35,
+      "equivalent": 0
+    },
+    "related": {
+      "unrelated": 34,
+      "partial": 17,
+      "related": 119,
+      "equivalent": 16
+    },
+    "equivalent": {
+      "unrelated": 4,
+      "partial": 4,
+      "related": 28,
+      "equivalent": 22
+    }
+  },
+  "per_class": [
+    {
+      "tier": 0,
+      "name": "Unrelated",
+      "f1": 0.5246,
+      "accuracy": 0.6154,
+      "count": 78
+    },
+    {
+      "tier": 1,
+      "name": "Partial",
+      "f1": 0.3636,
+      "accuracy": 0.3077,
+      "count": 78
+    },
+    {
+      "tier": 2,
+      "name": "Related",
+      "f1": 0.6134,
+      "accuracy": 0.6398,
+      "count": 186
+    },
+    {
+      "tier": 3,
+      "name": "Equivalent",
+      "f1": 0.4536,
+      "accuracy": 0.3793,
+      "count": 58
+    }
+  ],
+  "features": "LLM(7) + Structural(13) + Opus(2) = 22d",
+  "n_cal": 150,
+  "n_test": 400,
+  "sha": "3c2e531",
+  "ablation": [
+    {
+      "name": "LLM only (7d)",
+      "accuracy": 0.4675,
+      "macro_f1": 0.41798258405600053,
+      "adjacent_accuracy": 0.8575
+    },
+    {
+      "name": "Structural only (13d)",
+      "accuracy": 0.3925,
+      "macro_f1": 0.31709223449969304,
+      "adjacent_accuracy": 0.75
+    },
+    {
+      "name": "Opus only (2d)",
+      "accuracy": 0.5225,
+      "macro_f1": 0.3816248726243462,
+      "adjacent_accuracy": 0.8425
+    },
+    {
+      "name": "LLM+Struct (20d)",
+      "accuracy": 0.495,
+      "macro_f1": 0.44430782789190193,
+      "adjacent_accuracy": 0.855
+    },
+    {
+      "name": "LLM+Opus (9d)",
+      "accuracy": 0.4625,
+      "macro_f1": 0.4160475997432519,
+      "adjacent_accuracy": 0.8175
+    },
+    {
+      "name": "Struct+Opus (15d)",
+      "accuracy": 0.495,
+      "macro_f1": 0.4318225260335571,
+      "adjacent_accuracy": 0.835
+    },
+    {
+      "name": "All (22d)",
+      "accuracy": 0.525,
+      "macro_f1": 0.48014671470553827,
+      "adjacent_accuracy": 0.85
+    }
+  ]
+}

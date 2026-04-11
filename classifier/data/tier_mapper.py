@@ -1,12 +1,13 @@
 """Map upstream mapping tiers to 4-class labels for training.
 
-Upstream schema: tier ∈ {Foundational, Expanded}, scope ∈ {Direct, Both, Broader, Partial, ...}
+Upstream schema: tier ∈ {Foundational, Hardening, Advanced}, scope ∈ {Both, Build}
 Target schema:   TierLabel ∈ {UNRELATED=0, PARTIAL=1, RELATED=2, EQUIVALENT=3}
 
-Mapping rules (from spec §Data Foundation):
-  - Foundational + (Direct|Both|Identical) → EQUIVALENT
-  - Foundational + (Broader|Partial|Partial_overlap) → RELATED
-  - Expanded → PARTIAL
+Mapping rules:
+  - Foundational → EQUIVALENT (strong, well-established mappings)
+  - Hardening    → RELATED    (moderate, secondary mappings)
+  - Advanced     → PARTIAL    (specialized, rare mappings)
+  - Hard negatives (unmapped pairs mined during training) → UNRELATED
 """
 from __future__ import annotations
 
@@ -20,29 +21,20 @@ class TierLabel(enum.IntEnum):
     EQUIVALENT = 3
 
 
-_EQUIVALENT_SCOPES = frozenset({"Direct", "Both", "Identical", "direct", "both", "identical"})
-_RELATED_SCOPES = frozenset({
-    "Broader", "Partial", "Partial_overlap", "partial_overlap",
-    "broader", "partial",
-})
-
-
 def map_upstream_tier(*, tier: str, scope: str) -> TierLabel:
     """Convert a single upstream (tier, scope) pair to a 4-class TierLabel."""
     tier_lower = tier.strip().lower()
-    scope_normalized = scope.strip()
 
     if tier_lower == "foundational":
-        if scope_normalized in _EQUIVALENT_SCOPES:
-            return TierLabel.EQUIVALENT
-        if scope_normalized in _RELATED_SCOPES:
-            return TierLabel.RELATED
+        return TierLabel.EQUIVALENT
+
+    if tier_lower == "hardening":
         return TierLabel.RELATED
 
-    if tier_lower == "expanded":
+    if tier_lower in ("advanced", "expanded"):
         return TierLabel.PARTIAL
 
-    raise ValueError(f"Unknown tier: '{tier}'. Expected 'Foundational' or 'Expanded'.")
+    raise ValueError(f"Unknown tier: '{tier}'. Expected 'Foundational', 'Hardening', or 'Advanced'.")
 
 
 def map_expert_tier(expert_tier: str) -> TierLabel:

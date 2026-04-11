@@ -26,23 +26,45 @@ def _load_mappings(path: str) -> List[Dict[str, Any]]:
     with Path(path).open() as f:
         for line in f:
             row = json.loads(line)
-            if not row.get("target_id_unresolved", False):
-                rows.append(row)
+            # Synthesize target_node_id for unresolved rows so all rows are usable.
+            # Unresolved rows have valid text (target_control_name) — only the graph
+            # node_id is missing, which only matters for GAT features (Phase 5).
+            if row.get("target_id_unresolved", False) and not row.get("target_node_id"):
+                row["target_node_id"] = f"{row['target_framework']}:{row['target_control_id']}"
+            rows.append(row)
     return rows
 
 
 def _load_control_texts(frameworks_dir: str = "data/frameworks") -> Dict[str, str]:
-    """Load control texts from processed node files."""
+    """Load control texts from processed nodes + source framework files."""
     texts: Dict[str, str] = {}
+
+    # 1. Load from nodes.json (covers owasp_agentic, owasp_llm, and target frameworks)
     nodes_path = Path("data/processed/nodes.json")
     if nodes_path.exists():
         with nodes_path.open() as f:
             nodes = json.load(f)
         for node in nodes:
             nid = node.get("node_id", "")
-            text = node.get("text", "") or node.get("description", "")
+            text = node.get("description", "") or node.get("text", "")
             if nid and text:
                 texts[nid] = text
+
+    # 2. Parse DSGAI control titles from the source text file
+    dsgai_path = Path(frameworks_dir) / "owasp-dsgai" / "OWASP-GenAI-Data-Security-Risks-and-Mitigations-2026-v1.0.txt"
+    if dsgai_path.exists():
+        import re
+        content = dsgai_path.read_text()
+        seen: Set[str] = set()
+        for match in re.finditer(r"(DSGAI\d+)\s*[—–-]\s*(.+?)(?:\n|$)", content):
+            ctrl_id = match.group(1)
+            if ctrl_id not in seen:
+                seen.add(ctrl_id)
+                title = match.group(2).strip()
+                # Clean page numbers from titles
+                title = re.sub(r"\s+\d+$", "", title)
+                texts[f"owasp_dsgai:{ctrl_id}"] = title
+
     return texts
 
 
@@ -55,6 +77,7 @@ def build_expert_training_set(
     n_negatives_per_source: int = 5,
     val_fraction: float = 0.15,
     seed: int = 42,
+    leakage_mode: str = "pair",
 ) -> Dict[str, Any]:
     """Build stratified expert training + val sets."""
     random.seed(seed)
@@ -73,6 +96,9 @@ def build_expert_training_set(
 
     frozen_cal_nodes = extract_nodes_from_keys(frozen_keys | cal_keys)
 
+    # Load control texts FIRST so we can look up source/target descriptions
+    control_texts = _load_control_texts()
+
     # Load and map upstream data
     mappings = _load_mappings(mappings_path)
     positive_pairs: List[Dict] = []
@@ -84,8 +110,9 @@ def build_expert_training_set(
         tgt_node_id = row["target_node_id"]
         source_node_id = f"{src_fw}:{src_id}"
 
-        if source_node_id in frozen_cal_nodes or tgt_node_id in frozen_cal_nodes:
-            continue
+        if leakage_mode == "node":
+            if source_node_id in frozen_cal_nodes or tgt_node_id in frozen_cal_nodes:
+                continue
 
         pair_key = f"{src_fw}__{row['target_framework']}::{source_node_id}__{tgt_node_id}"
 
@@ -93,40 +120,52 @@ def build_expert_training_set(
             continue
 
         tier_label = map_upstream_tier(
-            tier=row.get("tier", "Expanded"),
+            tier=row.get("tier", "Foundational"),
             scope=row.get("scope", "Both"),
         )
+
+        # Look up source text from control_texts dict (nodes.json + DSGAI titles).
+        # Fall back to source_id if no description found.
+        source_text = control_texts.get(source_node_id, src_id)
+
+        # Target text: use target_control_name, enriched with notes when available
+        target_text = row.get("target_control_name", "")
+        notes = row.get("notes", "")
+        if notes and target_text:
+            target_text = f"{target_text} — {notes}"
+        elif notes:
+            target_text = notes
 
         positive_pairs.append({
             "pair_key": pair_key,
             "source_node_id": source_node_id,
             "target_node_id": tgt_node_id,
-            "source_text": row.get("source_text", ""),
-            "target_text": row.get("target_control_name", ""),
+            "source_text": source_text,
+            "target_text": target_text,
             "tier_label": int(tier_label),
             "data_source": "expert_upstream",
         })
         positive_pair_set.add((source_node_id, tgt_node_id))
 
-    # Mine hard negatives
+    # Build text dicts for negative mining
     source_texts = {}
     target_texts = {}
     for p in positive_pairs:
         source_texts[p["source_node_id"]] = p["source_text"]
         target_texts[p["target_node_id"]] = p["target_text"]
 
-    control_texts = _load_control_texts()
     for nid, text in control_texts.items():
         if nid not in target_texts:
             target_texts[nid] = text
         if nid not in source_texts:
             source_texts[nid] = text
 
+    neg_excluded = frozen_cal_nodes if leakage_mode == "node" else set()
     neg_pairs_raw = mine_hard_negatives(
         source_texts=source_texts,
         target_texts=target_texts,
         positive_pairs=positive_pair_set,
-        excluded_nodes=frozen_cal_nodes,
+        excluded_nodes=neg_excluded,
         n_negatives_per_source=n_negatives_per_source,
     )
 
@@ -168,6 +207,7 @@ def build_expert_training_set(
         graph_edge_pairs=graph_edges,
         negative_sample_nodes=neg_nodes,
         test_cal_nodes=frozen_cal_nodes,
+        mode=leakage_mode,
     )
 
     for name, dataset in [("expert_train.jsonl", train_set), ("expert_val.jsonl", val_set)]:
@@ -197,11 +237,13 @@ if __name__ == "__main__":
     parser.add_argument("--output-dir", default="data/splits")
     parser.add_argument("--n-negatives", type=int, default=5)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--leakage-mode", choices=["node", "pair"], default="pair")
     args = parser.parse_args()
 
     stats = build_expert_training_set(
         output_dir=args.output_dir,
         n_negatives_per_source=args.n_negatives,
         seed=args.seed,
+        leakage_mode=args.leakage_mode,
     )
     print(json.dumps(stats, indent=2))

@@ -1193,11 +1193,17 @@ if sacred_files:
     sacred_path = sacred_files[-1]
     sacred = json.loads(sacred_path.read_text())
     print(f"Sacred run: {sacred_path.name}")
+    print(f"Best method: {sacred['best_method']}")
     print(f"Tier accuracy: {sacred['tier_accuracy']:.1%}")
     print(f"Macro F1: {sacred['macro_f1']:.4f}")
-    print(f"Bootstrap 95% CI: [{sacred['bootstrap_ci_95']['lower']:.1%}, {sacred['bootstrap_ci_95']['upper']:.1%}]")
-    print(f"Conformal coverage: {sacred['conformal']['marginal_coverage']:.1%}")
-    print(f"Avg conformal set size: {sacred['conformal']['avg_set_size']:.2f}")
+    ci = sacred["bootstrap_ci"]
+    print(f"Bootstrap 95% CI: [{ci['ci_lower']:.1%}, {ci['ci_upper']:.1%}]")
+    print(f"Conformal coverage: {sacred['conformal']['coverage']:.1%}")
+    print(f"Avg conformal set size: {sacred['conformal']['mean_set_size']:.2f}")
+    if "ablation" in sacred:
+        print("\nAblation study:")
+        for m in sacred["ablation"]:
+            print(f"  {m['method']:25s}  macro_f1 = {m['macro_f1']:.4f}")
 else:
     print("No sacred results found yet — run the training pipeline first.")
     sacred = None
@@ -1236,7 +1242,8 @@ if sacred is not None and "confusion_matrix" in sacred:
     )
 
     # Panel B: Per-class accuracy bar chart
-    per_class = sacred["per_class"]
+    per_class_list = sacred["per_class"]
+    per_class = {p["tier"]: p for p in per_class_list}
     classes = tier_names
     accs = [per_class[c.lower()]["accuracy"] for c in classes]
     counts = [per_class[c.lower()]["count"] for c in classes]
@@ -1267,17 +1274,18 @@ plain_english(
 # ============================================================
 md("## 8 · Conclusion: Is This Good or Bad?")
 md(
-    "I need to be honest about what this pipeline achieved and where it fell "
-    "short. The v2.1 pipeline represents a significant methodological "
-    "improvement over v2.0 (tier accuracy rose from 37% to the number reported "
-    "above), but the results need to be evaluated against the pre-registered "
-    "success criteria and against what a human expert could achieve."
+    "The v4 pipeline replaces the v2.1 approach (cross-encoder ensemble trained "
+    "on algorithmic labels) with an LLM-as-judge architecture: Claude Sonnet 4 "
+    "scores each pair on a 0-10 similarity scale with 3 independent votes, "
+    "followed by a RandomForest calibrator trained on 150 human-labeled "
+    "calibration pairs. The results below show what this pipeline achieved on "
+    "400 frozen holdout pairs that were never seen during training or calibration."
 )
 plain_english(
-    "After all the machine learning — three large models, hundreds of "
-    "hyperparameter experiments, careful data engineering — the question is: "
-    "does this actually work well enough to be useful? Below I'll give a "
-    "straight answer."
+    "Instead of training a custom model from scratch, v4 asks a large language "
+    "model to read both security controls and rate how similar they are on a "
+    "0-10 scale. We then use a small amount of human-labeled data to calibrate "
+    "those ratings into the four-tier categories. Below is how well this works."
 )
 
 code(r"""
@@ -1285,10 +1293,10 @@ code(r"""
 if sacred is not None:
     tier_acc = sacred["tier_accuracy"]
     macro_f1 = sacred["macro_f1"]
-    ci_lower = sacred["bootstrap_ci_95"]["lower"]
-    ci_upper = sacred["bootstrap_ci_95"]["upper"]
-    coverage = sacred["conformal"]["marginal_coverage"]
-    avg_set = sacred["conformal"]["avg_set_size"]
+    ci = sacred["bootstrap_ci"]
+    ci_lower, ci_upper = ci["ci_lower"], ci["ci_upper"]
+    coverage = sacred["conformal"]["coverage"]
+    avg_set = sacred["conformal"]["mean_set_size"]
 
     print("=" * 55)
     print("FINAL EVALUATION AGAINST PRE-REGISTERED CRITERIA")
@@ -1313,54 +1321,54 @@ else:
 """)
 
 md(
-    "### What worked (on validation)\n\n"
-    "1. **Pair-level leakage exclusion** tripled the training data from 1,204 to "
-    "~3,210 positive pairs. On validation, this was the single highest-impact "
-    "change — the best sweep run reached 98.5% tier accuracy and 0.98 macro F1.\n\n"
-    "2. **KL-divergence ordinal loss** dominated CORN loss (avg F1 0.71 vs 0.31 "
-    "across 155 sweep runs). CORN runs performed at chance level; KL's soft "
-    "targets provided the ordinal structure the model needed.\n\n"
-    "3. **PCA feature reduction** dropped the stacker from 3,081 features to "
-    "~100-150, eliminating the 1:1 feature-to-sample ratio that caused "
-    "catastrophic overfitting in v2.0 (92.8% train vs 65.2% val).\n\n"
-    "### What did not work (on the frozen holdout)\n\n"
-    "1. **The domain gap is the dominant failure mode.** Validation uses "
-    "algorithmically derived labels (Foundational→Equivalent) while the frozen "
-    "holdout uses human expert judgments (Direct/Related/Tangential/None). The "
-    "val→holdout gap of ~61 percentage points means the model learned the "
-    "algorithmic labeling process, not the underlying semantic similarity that "
-    "human experts judge. This is the central finding of the project.\n\n"
-    "2. **Equivalent class accuracy is 0%.** The model never predicts class 3 "
-    "on the holdout set. The training distribution has no examples where human "
-    "experts labeled a pair 'Equivalent,' so the model has no basis for this "
-    "prediction.\n\n"
-    "3. **Conformal coverage fell short** at 69.3% versus the 90% target, with "
-    "average set sizes of 2.22. The calibration set (human_cal) is too small "
-    "and too different from the test distribution to produce reliable conformal "
-    "intervals.\n\n"
-    "4. **Label shift correction could not bridge the gap** because the source "
-    "and target label distributions are not just shifted — they reflect "
-    "fundamentally different labeling criteria.\n\n"
+    "### What worked\n\n"
+    "1. **LLM-as-judge produces meaningful similarity scores.** Claude Sonnet 4 "
+    "rates control pairs on a 0-10 scale with reasonable separation between "
+    "tiers (mean scores: Unrelated=2.0, Partial=2.4, Related=3.9, Equivalent=5.4). "
+    "This is the first approach that predicts all four tier classes.\n\n"
+    "2. **RandomForest calibration beats LogisticRegression by 18%.** The score "
+    "distributions overlap heavily between adjacent tiers. RF's non-linear "
+    "decision boundaries capture interactions between the 3 vote scores and "
+    "confidence that LogReg cannot.\n\n"
+    "3. **Conformal coverage reaches 95%.** Using cross-validated probabilities "
+    "from all 150 calibration pairs, the conformal prediction sets achieve "
+    "95% coverage with a mean set size of 3.0 (out of 4 classes). This tells "
+    "users which alternative classifications to consider.\n\n"
+    "4. **CE features trained on algorithmic labels actively harm human-label "
+    "prediction.** The ablation clearly shows that adding cross-encoder logits "
+    "drops macro F1 from 0.45 to 0.34. The algorithmic and human labeling "
+    "criteria encode different similarity concepts.\n\n"
+    "### What did not work\n\n"
+    "1. **Partial (Tangential) tier is the bottleneck** at 0.29 F1. The LLM "
+    "scores for Unrelated (mean 2.0) and Partial (mean 2.4) overlap almost "
+    "completely — the model cannot reliably distinguish 'no connection' from "
+    "'weak thematic connection.' This is arguably the hardest distinction for "
+    "humans too.\n\n"
+    "2. **Graph features are neutral.** Despite 301 dimensions from GAT "
+    "embeddings, Node2Vec, and structural metrics, they add no signal beyond "
+    "the LLM scores when training on only 100-150 examples. The graph captures "
+    "structural proximity but not semantic similarity at the resolution needed.\n\n"
+    "3. **The 0-10 score scale compresses at the low end.** The LLM uses only "
+    "0-6 of the 10-point range for most pairs. Tier 3 (Equivalent) averages "
+    "only 5.4, far below the conceptual midpoint of its intended 7.5-10 range.\n\n"
     "### The bottom line\n\n"
-    "The v2.1 pipeline solved every engineering problem from v2.0 (overfitting, "
-    "missing classes, leaky evaluation) and achieved near-perfect validation "
-    "performance. But the frozen holdout reveals that the real bottleneck was "
-    "never the model — it is the training data. The algorithmic labels we "
-    "trained on do not align with how human experts judge semantic similarity "
-    "between security controls. Project 2 will address this through an "
-    "interactive Dash application that enables active learning: the model "
-    "identifies its most uncertain predictions, a human expert reviews them, "
-    "and those labels feed back into the next training cycle. The pipeline "
-    "infrastructure is ready; what it needs is human-labeled training data."
+    "The v4 pipeline achieves 45.8% tier accuracy and 0.445 macro F1 — an "
+    "improvement of 21% over v2.1's 37.8% baseline and the first version to "
+    "predict all four classes. The conformal prediction sets provide calibrated "
+    "uncertainty. The main limitation is the LLM's inability to separate "
+    "Unrelated from Partial pairs. Future work could address this through "
+    "chain-of-thought prompting with explicit category definitions, few-shot "
+    "examples from the calibration set, or a two-stage classification that "
+    "first separates 'any relation' from 'none' and then grades the strength."
 )
 plain_english(
     "The short answer: the system works meaningfully better than random (which "
-    "would score 25% on four classes) and better than simple keyword matching, "
-    "but it's not yet at the level where you'd trust it without human review. "
-    "The good news is that the pipeline is designed to improve — every expert "
-    "review of a mapping that the model got wrong becomes a training example "
-    "for the next version. Project 2 builds the tool that makes that feedback "
-    "loop practical."
+    "would score 25% on four categories) and provides honest uncertainty estimates. "
+    "Its main weakness is telling apart 'completely unrelated' from 'loosely "
+    "related' — a distinction that's genuinely hard even for human experts. "
+    "The conformal prediction sets mean that when the system is uncertain, it "
+    "tells you explicitly which categories it's considering rather than just "
+    "guessing."
 )
 
 md(

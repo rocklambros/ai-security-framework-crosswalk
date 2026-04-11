@@ -378,7 +378,7 @@ def phase4_extract_features() -> dict[str, Any]:
                     all_pairs.append(json.loads(line))
 
     # Also load frozen test + cal for full feature extraction
-    for split in ["human_test_frozen.jsonl", "human_cal.jsonl"]:
+    for split in ["human_cal.jsonl", "human_test_frozen.jsonl"]:
         path = Path(f"data/splits/{split}")
         if path.exists():
             with path.open() as f:
@@ -604,7 +604,7 @@ def phase7_train_stacker() -> dict[str, Any]:
 
 def phase8_conformal() -> dict[str, Any]:
     print("\n" + "=" * 60)
-    print("PHASE 8: Mondrian conformal calibration")
+    print("PHASE 8: Marginal conformal calibration (human_cal_val)")
     print("=" * 60)
 
     import numpy as np
@@ -612,11 +612,12 @@ def phase8_conformal() -> dict[str, Any]:
     from classifier.ensemble.stacker import LGBMStacker
     from classifier.ensemble.label_shift import adjust_label_shift, estimate_prior
     from classifier.data.tier_mapper import map_expert_tier
+    from classifier.data.split_human_cal import split_human_cal
 
     ce_data = dict(np.load("data/processed/ce_features_v2.npz"))
     pipe = FeaturePipeline.load(Path("runs/stacker_v2/feature_pipeline"))
 
-    # Find the latest stacker run
+    # Find the latest stacker run from registry
     registry = Path("runs/registry.jsonl")
     last_run = None
     if registry.exists():
@@ -629,24 +630,25 @@ def phase8_conformal() -> dict[str, Any]:
     model_path = Path(last_run["model_path"])
     stacker = LGBMStacker.load(model_path)
 
-    # Load calibration data with proper labels
-    cal_data = []
-    cal_labels = []
+    # Use only the 50 held-out human_cal_val pairs for conformal calibration
+    _, _, _, cal_val_indices = split_human_cal()
+
+    # Cal labels from the val split
+    cal_labels_all = []
     with open("data/splits/human_cal.jsonl") as f:
         for line in f:
             row = json.loads(line)
-            cal_data.append(row)
-            cal_labels.append(int(map_expert_tier(row["expert_tier"])))
-    y_cal = np.array(cal_labels)
+            cal_labels_all.append(int(map_expert_tier(row["expert_tier"])))
+    y_cal = np.array([cal_labels_all[i] for i in cal_val_indices])
 
-    # Get calibration features (cal is after train+val in ce_features)
-    n_train_val = 0
-    for split in ["expert_train.jsonl", "expert_val.jsonl"]:
-        with open(f"data/splits/{split}") as f:
-            n_train_val += sum(1 for _ in f)
+    # Feature indices: cal is at positions n_train+n_val through n_train+n_val+150
+    # We need only the val indices within that range
+    n_train = sum(1 for _ in open("data/splits/expert_train.jsonl"))
+    n_val = sum(1 for _ in open("data/splits/expert_val.jsonl"))
+    n_cal_start = n_train + n_val  # 6728 + 1187 = 7915
 
     X_all = pipe.transform(ce_data)
-    X_cal = X_all[n_train_val:n_train_val+len(cal_data)]
+    X_cal = X_all[[n_cal_start + i for i in cal_val_indices]]
 
     # Get calibration probabilities
     proba_cal = stacker.predict_proba(X_cal)
@@ -660,37 +662,31 @@ def phase8_conformal() -> dict[str, Any]:
     target_prior = estimate_prior(y_cal, n_classes=4)
     proba_adjusted = adjust_label_shift(proba_cal, source_prior, target_prior)
 
-    # Mondrian conformal: per-class nonconformity scores
+    # MARGINAL conformal: single threshold across all classes
+    # (50 pairs too few for per-class Mondrian — only ~12 per class)
     alpha = 0.10
-    n_classes = 4
-    q_hat = {}
-    coverage = {}
+    scores = 1.0 - proba_adjusted[np.arange(len(y_cal)), y_cal]
+    n_cal = len(y_cal)
+    q_level = min(np.ceil((n_cal + 1) * (1 - alpha)) / n_cal, 1.0)
+    q_hat = float(np.quantile(scores, q_level))
 
-    for c in range(n_classes):
-        mask = y_cal == c
-        if mask.sum() == 0:
-            q_hat[str(c)] = 1.0
-            coverage[str(c)] = 1.0
-            continue
-        scores = 1.0 - proba_adjusted[mask, c]
-        n_c = mask.sum()
-        q_level = min(np.ceil((n_c + 1) * (1 - alpha)) / n_c, 1.0)
-        q_hat[str(c)] = float(np.quantile(scores, q_level))
-        coverage[str(c)] = float((scores <= q_hat[str(c)]).mean())
+    # Coverage on calibration set
+    covered = int((scores <= q_hat).sum())
+    coverage = covered / n_cal
 
     conformal = {
         "alpha": alpha,
-        "n_cal": len(cal_data),
-        "marginal_coverage": 1 - alpha,
-        "method": "mondrian",
+        "n_cal": n_cal,
+        "marginal_coverage": coverage,
+        "method": "marginal",
         "q_hat": q_hat,
-        "coverage": coverage,
         "label_shift_applied": True,
         "source_prior": source_prior.tolist(),
         "target_prior": target_prior.tolist(),
     }
 
     out = Path("runs/stacker_v2/conformal.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(conformal, indent=2))
     print(f"  [phase8] conformal: {conformal}")
 
@@ -787,14 +783,19 @@ def phase9_sacred_run() -> dict[str, Any]:
 
     # Conformal prediction sets
     conformal_data = json.loads(Path("runs/stacker_v2/conformal.json").read_text())
-    q_hat = conformal_data.get("q_hat", {})
+    q_hat = conformal_data.get("q_hat", 1.0)
+    conformal_method = conformal_data.get("method", "marginal")
     set_sizes = []
     covered = 0
     for i in range(len(y_test)):
         pred_set = []
         for c in range(4):
             score = 1.0 - proba_adj[i, c]
-            if score <= float(q_hat.get(str(c), 1.0)):
+            if conformal_method == "marginal":
+                threshold = float(q_hat)
+            else:
+                threshold = float(q_hat.get(str(c), 1.0)) if isinstance(q_hat, dict) else float(q_hat)
+            if score <= threshold:
                 pred_set.append(c)
         set_sizes.append(len(pred_set))
         if y_test[i] in pred_set:

@@ -130,7 +130,9 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
             config = dict(run.config)
 
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            use_amp = device.type == "cuda"
+            # DeBERTa-v3 uses FP16 internally — AMP GradScaler conflicts with it
+            is_deberta = "deberta" in model_path.lower()
+            use_amp = device.type == "cuda" and not is_deberta
             scaler = torch.amp.GradScaler("cuda") if use_amp else None
 
             sigma = config.get("sigma", 0.75)
@@ -143,6 +145,9 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                 dropout=config.get("dropout", 0.1),
                 head_type="kl",
             )
+            # DeBERTa-v3 stores weights in FP16 — cast to FP32 for stable training
+            if is_deberta:
+                model = model.float()
             model = model.to(device)
 
             # Load algorithmic training data
@@ -895,7 +900,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--model", type=str, default=None,
-        choices=["deberta", "roberta", "electra"],
+        choices=["deberta", "roberta", "electra", "deberta_base"],
         help="Run phase 3 for a single model (for parallel GPU execution).",
     )
     return parser

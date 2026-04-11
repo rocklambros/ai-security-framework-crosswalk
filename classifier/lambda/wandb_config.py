@@ -42,5 +42,5 @@ STACKER_SWEEP_CONFIG = {
 CROSS_ENCODER_MODELS = [
     {"name": "deberta", "model_id": "microsoft/deberta-v3-large", "group": "ce-deberta-sweep"},
     {"name": "roberta", "model_id": "roberta-large", "group": "ce-roberta-sweep"},
-    {"name": "electra", "model_id": "google/electra-large-discriminator", "group": "ce-electra-sweep"},
+    {"name": "deberta_base", "model_id": "microsoft/deberta-v3-base", "group": "ce-deberta-base-sweep"},
 ]

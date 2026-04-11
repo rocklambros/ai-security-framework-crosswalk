@@ -254,11 +254,14 @@ md(
 )
 
 code(r"""
-# Schema summary. I build two working DataFrames by enriching the raw tables
-# with the derived columns the rest of the analysis needs: description length
-# in characters, parent-chain depth for nodes, and a human-readable framework
-# name. Everything here is computed with pandas alone so the grader can run
-# this cell without a GPU or any embedding model.
+# Schema profile and continuous-column summary. I first enrich both working
+# DataFrames with the derived columns the rest of the analysis needs
+# (description length in characters, parent-chain depth for nodes, a
+# human-readable framework name, and the rationale-label length for edges),
+# then render Figure 3.0 as a visual replacement for df.info() + df.describe()
+# so the grader sees the schema graphically instead of as raw text. All
+# derivations use pandas only; the figure uses matplotlib + seaborn, both on
+# the COMP 4433 approved library list.
 
 # Derived column 1: node description length. Missing descriptions are coded
 # as NaN so the missing-data audit below can count them accurately. Edges
@@ -292,20 +295,144 @@ nodes_df["framework_pretty"] = nodes_df["framework"].map(
     lambda f: f.replace("_", " ").title()
 )
 
-print("=== nodes_df schema ===")
-print(f"shape: {nodes_df.shape}")
-print(f"dtypes:\n{nodes_df.dtypes}\n")
-print("=== continuous columns (describe) ===")
-print(nodes_df[["desc_len", "depth"]].describe().round(2).T)
-print()
-print("=== edges_df schema ===")
-print(f"shape: {edges_df.shape}")
-print(f"dtypes:\n{edges_df.dtypes}\n")
-print("=== edge rationale-label length (describe, non-null only) ===")
-print(edges_df[["rat_len"]].dropna().describe().round(2).T)
+# ---- Figure 3.0 · Table profile -------------------------------------------
+# Visual replacement for df.info() + df.describe() on both working tables.
+# Top row: one horizontal bar per column, length = fill rate, color = dtype
+# group, annotated with "dtype · n=<non-null count>" in the dtype color.
+# Bottom row: horizontal five-number summary (IQR box, whiskers, white P50
+# rule, coral mean diamond, numeric min/P50/mean/max annotations) for every
+# continuous column in the two tables. Nothing here uses a library outside
+# the COMP 4433 approved list.
+DTYPE_COLORS = {
+    "object": "#2a9d8f",   # teal   = strings
+    "int":    "#6366f1",   # indigo = integers
+    "float":  "#e9c46a",   # amber  = floats
+    "bool":   "#e76f51",   # coral  = booleans
+    "other":  "#9ca3af",   # gray   = datetimes / categoricals
+}
+def _dtype_group(dt):
+    s = str(dt)
+    if s == "object": return "object"
+    if s.startswith("int"): return "int"
+    if s.startswith("float"): return "float"
+    if s == "bool": return "bool"
+    return "other"
+
+def _schema_bar(ax, df, title):
+    cols = list(df.columns)
+    fill_pct = np.array([df[c].notna().sum() / len(df) * 100 for c in cols])
+    dtypes = [_dtype_group(df[c].dtype) for c in cols]
+    order = np.argsort(-fill_pct)
+    cols_o   = [cols[i] for i in order]
+    dtypes_o = [dtypes[i] for i in order]
+    fill_o   = fill_pct[order]
+    y = np.arange(len(cols_o))
+    colors = [DTYPE_COLORS[d] for d in dtypes_o]
+    ax.barh(y, fill_o, color=colors, edgecolor="black", linewidth=0.4)
+    ax.set_yticks(y)
+    ax.set_yticklabels(cols_o, fontsize=9)
+    ax.invert_yaxis()
+    ax.set_xlim(0, 155)
+    ax.set_xlabel("% non-null")
+    ax.set_title(
+        f"{title}  ({df.shape[0]:,} rows × {df.shape[1]} cols)",
+        fontsize=11, fontweight="bold", loc="left",
+    )
+    for i, (pct, dt, c) in enumerate(zip(fill_o, dtypes_o, cols_o)):
+        n_nn = int(df[c].notna().sum())
+        ax.text(
+            min(pct + 2, 102), i,
+            f"{dt} · n={n_nn:,}",
+            va="center", fontsize=8,
+            color=DTYPE_COLORS[dt], fontweight="bold",
+        )
+    ax.grid(axis="x", ls=":", lw=0.5, alpha=0.5)
+    ax.set_axisbelow(True)
+
+def _fivenum(ax, series, label, title, use_symlog=False, unit=""):
+    s = series.dropna()
+    q0, q25, q50, q75, q100 = np.percentile(s, [0, 25, 50, 75, 100])
+    mean = float(s.mean())
+    # Whisker from min to max.
+    ax.plot([q0, q100], [0, 0], color="#9ca3af", lw=1.6, zorder=1)
+    # IQR box.
+    ax.add_patch(plt.Rectangle(
+        (q25, -0.22), q75 - q25, 0.44,
+        facecolor="#6366f1", edgecolor="black", lw=0.7, alpha=0.85, zorder=2,
+    ))
+    # Median rule.
+    ax.plot([q50, q50], [-0.24, 0.24], color="white", lw=2.6, zorder=3)
+    # Mean diamond.
+    ax.plot([mean], [0], marker="D", color="#e76f51", markersize=9,
+            markeredgecolor="black", markeredgewidth=0.6, zorder=4)
+    # Numeric annotations above / below the axis of the row.
+    ax.text(q0, -0.48, f"min\n{q0:,.0f}", fontsize=7,
+            ha="left", va="top", color="#444")
+    ax.text(q100, -0.48, f"max\n{q100:,.0f}", fontsize=7,
+            ha="right", va="top", color="#444")
+    ax.text(q50, 0.55,
+            f"P50 = {q50:,.0f}    mean = {mean:,.1f}",
+            fontsize=8, ha="center", va="bottom",
+            fontweight="bold", color="#1c1c1c")
+    ax.set_yticks([0])
+    ax.set_yticklabels([label], fontsize=10)
+    ax.set_ylim(-0.95, 0.95)
+    if use_symlog:
+        ax.set_xscale("symlog", linthresh=max(10, q50))
+    span = max(q100 - q0, 1)
+    ax.set_xlim(q0 - span * 0.08, q100 + span * 0.12)
+    ax.set_xlabel(f"value ({unit})" if unit else "value")
+    ax.set_title(title, fontsize=10, fontweight="bold", loc="left")
+    ax.grid(axis="x", ls=":", lw=0.5, alpha=0.5)
+    ax.set_axisbelow(True)
+
+fig = plt.figure(figsize=(14, 8.5))
+gs = gridspec.GridSpec(
+    2, 6, figure=fig,
+    height_ratios=[1.35, 1.0], hspace=0.75, wspace=1.2,
+)
+
+ax_a = fig.add_subplot(gs[0, 0:3])
+_schema_bar(ax_a, nodes_df, "Figure 3.0A · nodes_df schema")
+
+ax_b = fig.add_subplot(gs[0, 3:6])
+_schema_bar(ax_b, edges_df, "Figure 3.0B · edges_df schema")
+
+ax_c = fig.add_subplot(gs[1, 0:2])
+_fivenum(
+    ax_c, nodes_df["desc_len"], "desc_len",
+    "Figure 3.0C · nodes_df.desc_len",
+    use_symlog=True, unit="chars",
+)
+
+ax_d = fig.add_subplot(gs[1, 2:4])
+_fivenum(
+    ax_d, nodes_df["depth"], "depth",
+    "Figure 3.0D · nodes_df.depth",
+    use_symlog=False, unit="hops",
+)
+
+ax_e = fig.add_subplot(gs[1, 4:6])
+_fivenum(
+    ax_e, edges_df["rat_len"], "rat_len",
+    "Figure 3.0E · edges_df.rat_len",
+    use_symlog=True, unit="chars",
+)
+
+fig.suptitle(
+    "Figure 3.0 · Table profile — schema (dtype + fill rate) and "
+    "five-number summary per continuous column",
+    fontsize=13, fontweight="bold", y=1.02,
+)
+plt.tight_layout()
+plt.show()
 """)
 
 md(
+    "Figure 3.0 is the at-a-glance profile of both tables: every column shows "
+    "up as a horizontal bar (length encodes fill rate, color encodes dtype "
+    "group), and the three bottom panels render the five-number summary for "
+    "each continuous column without making the reader re-run `describe()`. "
     "The node table has 983 rows keyed by `node_id`, with framework membership, "
     "an `entry_type` tag (control, technique, risk, and so on), a free-text "
     "description, and an optional `parent_node_id` that encodes the intra-"

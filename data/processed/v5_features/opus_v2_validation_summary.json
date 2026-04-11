@@ -1,0 +1,17 @@
+{
+  "human_test_frozen": {
+    "split": "human_test_frozen",
+    "n_scored": 400,
+    "best_thresholds": [
+      1,
+      2,
+      7
+    ],
+    "best_accuracy": 0.4675,
+    "best_macro_f1": 0.4305502814038848,
+    "adjacent_accuracy": 0.8825,
+    "natural_accuracy": 0.29,
+    "natural_macro_f1": 0.24552144908998827,
+    "cost_usd": -4.670130000000002
+  }
+}

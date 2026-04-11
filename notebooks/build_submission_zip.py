@@ -17,29 +17,24 @@ def build_zip():
     data_dir.mkdir(parents=True)
     for name in [
         "nodes.json", "edges.json", "graph_stats.json",
-        "training_data.csv", "nist_validation_data.csv",
-        "bridge_comparison.csv", "weight_comparison.json",
-        "learned_weights.json", "finetune_benchmark.json",
-        "node2vec_projection.csv", "v1_vs_v2_comparison.json",
+        "node2vec_projection.csv",
     ]:
         src = Path("data/processed") / name
         if src.exists():
             shutil.copy(src, data_dir / name)
 
-    # Copy v6 results
+    # Copy v6 results (feature CSVs + training outputs)
     v6_dir = data_dir / "v6_results"
     v6_dir.mkdir(parents=True)
-    for name in ["v6_all_results.json", "v6_pair_predictions.jsonl"]:
+    for name in [
+        "v6_all_results.json",
+        "v6_pair_predictions.jsonl",
+        "v6_test_features.csv",
+        "v6_cal_features.csv",
+    ]:
         src = Path("data/processed/v6_results") / name
         if src.exists():
             shutil.copy(src, v6_dir / name)
-
-    # Copy Opus scores (needed for Figure 7.4)
-    v5_dir = data_dir / "v5_features"
-    v5_dir.mkdir(parents=True)
-    opus = Path("data/processed/v5_features/opus_scores_human_test_frozen.jsonl")
-    if opus.exists():
-        shutil.copy(opus, v5_dir / opus.name)
 
     # Copy results (sacred)
     results_dir = staging / "results"

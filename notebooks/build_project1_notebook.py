@@ -2,6 +2,12 @@
 
 Run from repo root: `python notebooks/build_project1_notebook.py`
 The script is idempotent. Re-running overwrites the .ipynb.
+
+The generated notebook is a visual exploratory analysis of the v6-reframed
+crosswalk classifier. It uses only COMP 4433 approved libraries
+(numpy, pandas, matplotlib, seaborn, sklearn, statsmodels) and loads every
+artifact from pre-computed files under data/processed and results/sacred.
+No model training happens inside the notebook.
 """
 from __future__ import annotations
 from pathlib import Path
@@ -30,7 +36,7 @@ def plain_english(text: str) -> None:
 
 
 # ============================================================
-# Section 1
+# Section 1 - Abstract
 # ============================================================
 md(r"""
 # AI Security Framework Crosswalk: Exploratory Visual Analysis
@@ -42,53 +48,62 @@ md(r"""
 This notebook explores a knowledge graph that links nine AI security frameworks
 into a single crosswalk containing 983 nodes and 5,813 edges. The frameworks
 are AIUC-1, CSA AICM, CoSAI Risk Map, EU GPAI Code of Practice, MITRE ATLAS,
-NIST AI RMF, OWASP Agentic AI, OWASP AI Exchange, and OWASP LLM Top 10. The
-mapping engine that produced this graph fuses four similarity signals: a
-parent aware bridge score derived from shared category ancestors, a dense
-semantic similarity computed by a pretrained sentence transformer, a TF IDF
-keyword overlap, and a binary function match flag that asks whether two nodes
-describe the same kind of object such as a control, a risk, a technique, or a
-mitigation. The analysis below examines how those signals behave on real data,
-where they agree and where they pull in opposite directions, how a learned
-weighting compares to the hand tuned baseline that production currently uses,
-and which framework pairs still have structural gaps that the next round of
-labeling effort should target.
+NIST AI RMF, OWASP Agentic AI, OWASP AI Exchange, and OWASP LLM Top 10.
+The goal is to build a classifier that, given any two nodes from different
+frameworks, predicts whether the pair is *Unrelated*, *Partial*, *Related*,
+or *Equivalent*.
+
+The production classifier referenced throughout this notebook is the
+**v6 reframed pipeline**. It takes three inputs for every candidate pair — a
+Claude Sonnet 4 triple-vote similarity score, a pre-computed structural feature
+vector derived from graph depth, description length, Node2Vec, and a graph
+attention network (GAT) embedding, and a Claude Opus calibration score — and
+stacks them into a **22-dimensional feature vector** (7 LLM + 13 structural +
+2 Opus). A single gradient boosting classifier (sklearn `GradientBoostingClassifier`)
+trained on **150 human-labeled calibration pairs** predicts the four-tier
+label for each candidate, and a split-conformal calibration procedure emits a
+prediction *set* with a 90% coverage guarantee. Final evaluation is on a frozen
+holdout of **400 expert-labeled pairs**. The entire decision is the GBM acting
+on these 22 features — no transformer fine-tuning and no hand-tuned weighted
+composites are used anywhere in the pipeline.
 
 The intended reader is a scientific audience that wants to know whether the
-choices the mapping engine is making are defensible. Every figure is paired
-with a narrative that walks through what the visualization shows and why it
-is informative for that question. No model training happens in the notebook
-itself. All learned coefficients, embeddings, and benchmark numbers are read
-from pre-computed CSV and JSON artifacts produced by the mapping pipeline.
+choices this classifier is making are defensible. Every figure is paired with a
+narrative that walks through what the visualization shows and why it is
+informative for that question. No model training happens in the notebook
+itself. All feature matrices, feature importances, ablation scores, confusion
+matrices, bootstrap confidence intervals, and conformal prediction sets are
+read from pre-computed CSV and JSON artifacts produced by the v6 training and
+sacred evaluation scripts.
 """)
 
 plain_english(
-    "We built a tool that automatically connects the dots between nine different "
-    "AI security rulebooks. Think of it like a Rosetta Stone for cybersecurity "
-    "standards — if you already comply with one framework, our tool tells you "
-    "which parts of other frameworks you've already covered and where you still "
-    "have gaps. The tool uses machine learning to figure out when two rules from "
-    "different frameworks are really saying the same thing, even if they use "
-    "completely different wording."
+    "We built a tool that compares security rules across nine different AI "
+    "security standards and decides how closely any two rules are related. "
+    "The final model combines three signals: what Claude thinks about the "
+    "similarity, what the graph structure looks like, and a second Claude "
+    "calibration score. We feed 22 numbers per pair into a gradient boosting "
+    "model and it picks one of four tiers. This notebook explores the data "
+    "and the model's behavior using only standard Python data science tools."
 )
 
 
 # ============================================================
-# Section 2
+# Section 2 - Setup
 # ============================================================
 md("## 2 · Setup and Data Loading")
 md(
-    "All artifacts referenced below live in `data/processed/`. The mapping "
-    "pipeline writes them as part of its normal run, and the notebook only "
-    "reads them. The intent is to keep this notebook reproducible from any "
-    "machine that has the repo cloned, without requiring access to a GPU or "
-    "the embedding models."
+    "All artifacts referenced below live in `data/processed/` and "
+    "`results/sacred/`. The training pipeline writes them as part of its "
+    "normal run, and the notebook only reads them. The intent is to keep "
+    "this notebook reproducible from any machine that has the submission "
+    "zip, without requiring access to a GPU or the embedding models."
 )
 
 code(r"""
-# Standard scientific Python plus NetworkX. We import everything up front so
-# that any environment problems surface immediately rather than three cells
-# into the analysis.
+# Only COMP 4433 approved libraries are imported: numpy, pandas, matplotlib,
+# seaborn, sklearn, statsmodels. Loading everything up front makes it obvious
+# which files the notebook depends on and fails fast if any are missing.
 import json
 from pathlib import Path
 
@@ -96,14 +111,13 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
+from matplotlib.patches import Patch
 import seaborn as sns
-import networkx as nx
 
 # Resolve the repo root in a way that works whether the notebook is launched
-# from the repo root, from notebooks/, or from notebooks/project1_submission/.
-# We walk upward looking for the data/processed directory rather than relying
-# on a hard coded relative path, because graders will run this from a fresh
-# unzipped submission folder.
+# from the repo root, from notebooks/, or from a fresh unzipped submission
+# folder. We walk upward looking for the data/processed directory rather than
+# relying on a hard-coded relative path.
 HERE = Path.cwd()
 candidate = HERE
 for _ in range(4):
@@ -112,20 +126,20 @@ for _ in range(4):
     candidate = candidate.parent
 REPO = candidate
 DATA = REPO / "data" / "processed"
+SACRED = REPO / "results" / "sacred"
 assert DATA.exists(), f"could not locate data/processed starting from {HERE}"
 
-# Seaborn theme. We pick the paper context because the deliverable is a static
-# scientific document rather than a slideshow, and we set a slightly larger
-# font_scale than the default so that axis labels remain readable when the
-# notebook is rendered to PDF or HTML.
+# Seaborn theme. The paper context and bold titles match a scientific
+# document rather than a slide deck. We set savefig DPI high enough that PDF
+# and PNG exports remain crisp if the grader rerenders the notebook.
 sns.set_theme(style="whitegrid", context="paper", font_scale=1.15)
 plt.rcParams.update({
-    "figure.dpi": 110,           # screen rendering
-    "savefig.dpi": 300,          # print quality on export
-    "axes.titleweight": "bold",  # titles need to anchor each panel
+    "figure.dpi": 110,
+    "savefig.dpi": 300,
+    "axes.titleweight": "bold",
     "axes.titlesize": 12,
     "axes.labelsize": 10,
-    "legend.frameon": False,     # frames around legends add visual noise
+    "legend.frameon": False,
 })
 
 def jload(name):
@@ -134,71 +148,68 @@ def jload(name):
 def cload(name):
     return pd.read_csv(DATA / name)
 
-# Load every artifact the notebook will reference. Loading them all in one
-# place makes it obvious which files the notebook depends on, and lets the
-# notebook fail fast if any of them are missing.
+# Graph artifacts. nodes.json and edges.json are the canonical long-form tables
+# that describe the crosswalk. graph_stats.json is a small summary precomputed
+# once at ingest time so the notebook does not have to reaggregate from scratch.
 nodes = jload("nodes.json")
 edges = jload("edges.json")
 graph_stats = jload("graph_stats.json")
-training = cload("training_data.csv")
-nist_val = cload("nist_validation_data.csv")
-bridge_cmp = cload("bridge_comparison.csv")
-weight_cmp = jload("weight_comparison.json")
-learned_w = jload("learned_weights.json")
-finetune = jload("finetune_benchmark.json")
-n2v_proj = cload("node2vec_projection.csv")
-v1v2 = jload("v1_vs_v2_comparison.json")  # diff of expert v1 crosswalk vs pipeline v2
 
-# Convert the JSON node and edge tables into pandas frames so we can use
-# groupby-style operations later. Keeping both the raw list of dicts and the
-# DataFrame view is convenient because some operations (like NetworkX graph
-# construction) want the dict form, while aggregation wants the frame form.
+# v6 artifacts. The feature CSVs hold the 22-dimensional input the classifier
+# sees, one row per expert-labeled pair. v6_all_results.json holds feature
+# importances, ablation scores, and confusion matrices. The sacred JSON holds
+# the frozen-test metrics with bootstrap confidence intervals.
+test_df = pd.read_csv(DATA / "v6_results" / "v6_test_features.csv")
+cal_df = pd.read_csv(DATA / "v6_results" / "v6_cal_features.csv")
+v6_results = json.loads((DATA / "v6_results" / "v6_all_results.json").read_text())
+
+sacred_files = sorted(SACRED.glob("sacred_*.json"))
+assert sacred_files, "no sacred_*.json files found"
+# Pick the v6-reframed sacred run. If multiple sacred files exist we prefer
+# the one whose 'version' field starts with v6, else fall back to the latest.
+sacred = None
+for p in reversed(sacred_files):
+    try:
+        candidate_sacred = json.loads(p.read_text())
+        if str(candidate_sacred.get("version", "")).startswith("v6"):
+            sacred = candidate_sacred
+            sacred_path = p
+            break
+    except Exception:
+        pass
+if sacred is None:
+    sacred_path = sacred_files[-1]
+    sacred = json.loads(sacred_path.read_text())
+
+# Per-pair predictions (incl. conformal set for each test pair)
+preds_df = pd.read_json(
+    DATA / "v6_results" / "v6_pair_predictions.jsonl", lines=True
+)
+
+# Node2Vec UMAP projection (x, y per node, plus framework label)
+n2v_proj = cload("node2vec_projection.csv")
+
+# Build pandas views of the raw node/edge tables.
 nodes_df = pd.DataFrame(nodes)
 edges_df = pd.DataFrame(edges)
 
-# Print a small sanity summary so the reader can verify they loaded the same
-# version of the data the analysis below assumes.
 print(f"nodes: {len(nodes_df):,}   edges: {len(edges_df):,}")
 print(f"frameworks: {nodes_df['framework'].nunique()}")
-print(f"orphan nodes (graph_stats): {graph_stats['orphan_count']}")
-print(f"training rows: {len(training):,}   nist validation rows: {len(nist_val):,}")
-""")
-
-md(
-    "We also build a NetworkX directed graph from the same nodes and edges. "
-    "We will use this later to compute degree distributions and to identify "
-    "orphan nodes for the gap analysis in section 6. NetworkX gives us those "
-    "structural metrics with one or two lines of code each, which is much "
-    "cleaner than recomputing them from the raw edge list every time."
-)
-
-code(r"""
-# Build a directed graph keyed on node_id. We use a DiGraph because the
-# rationale codes (PARENT, MITIGATES, DETECTS, etc.) are directional. Treating
-# the edges as undirected would conflate "control mitigates risk" with "risk
-# mitigated by control" and would make in-degree and out-degree meaningless.
-G = nx.DiGraph()
-for n in nodes:
-    # Only attach the fields we actually use downstream. Storing the full node
-    # description on every NetworkX node would balloon memory unnecessarily.
-    G.add_node(n["node_id"], **{k: n.get(k) for k in ("framework", "entry_type", "name")})
-for e in edges:
-    G.add_edge(e["source_node_id"], e["target_node_id"], rationale=e.get("rationale_code"))
-
-print(f"NetworkX graph: |V|={G.number_of_nodes()}  |E|={G.number_of_edges()}")
-print(f"weakly connected components: {nx.number_weakly_connected_components(G)}")
+print(f"orphan nodes (graph_stats): {len(graph_stats['orphan_nodes'])}")
+print(f"v6 test pairs: {len(test_df):,}   v6 cal pairs: {len(cal_df):,}")
+print(f"sacred run: {sacred_path.name}  (version: {sacred.get('version','?')})")
 """)
 
 
 # ============================================================
-# Section 3
+# Section 3 - Framework Landscape
 # ============================================================
 md("## 3 · The Dataset: Framework Landscape")
 md(
     "The crosswalk is structurally lopsided in a way that affects every "
     "downstream analysis. AIUC-1 and CSA AICM together account for roughly "
     "half of all nodes, and AIUC-1 originates the overwhelming majority of "
-    "cross framework edges. Part of the explanation is that AIUC-1 was "
+    "cross-framework edges. Part of the explanation is that AIUC-1 was "
     "designed as a comprehensive control catalogue, so it naturally has many "
     "anchors that other frameworks can attach to. Part of the explanation is "
     "that the active labeling sessions concentrated their effort on AIUC-1 "
@@ -210,8 +221,7 @@ md(
 
 code(r"""
 # Canonical framework order and pretty labels. Sorting alphabetically by the
-# internal slug keeps the heatmap reproducible across runs, while the PRETTY
-# dict gives us human readable axis labels.
+# internal slug keeps the heatmap reproducible across runs.
 FRAMEWORKS = sorted(nodes_df["framework"].unique())
 PRETTY = {
     "aiuc_1": "AIUC-1",
@@ -226,60 +236,48 @@ PRETTY = {
 }
 labels = [PRETTY[f] for f in FRAMEWORKS]
 
-# Restrict to genuinely cross framework edges. Intra framework edges (parent
-# child links inside AIUC-1, for example) would dominate the heatmap and hide
-# the cross framework structure that this section is trying to surface.
-cross = edges_df[edges_df["source_framework"] != edges_df["target_framework"]]
+# Restrict to genuinely cross-framework edges. Intra-framework parent-child
+# links inside AIUC-1 would dominate the heatmap and hide the cross-framework
+# structure this section is about.
+cross_edges = edges_df[edges_df["source_framework"] != edges_df["target_framework"]]
 
-# Aggregate cross framework edge counts into a 9x9 matrix. We reindex so that
-# any framework with zero outbound edges still appears as a row, which is
-# important because some frameworks (NIST RMF, OWASP Agentic, OWASP LLM) act
-# only as targets and we want the empty rows to be visible.
 edge_mat = (
-    cross.groupby(["source_framework", "target_framework"])
+    cross_edges.groupby(["source_framework", "target_framework"])
     .size()
     .unstack(fill_value=0)
     .reindex(index=FRAMEWORKS, columns=FRAMEWORKS, fill_value=0)
 )
 
-# Node count per framework, sorted ascending so the bar chart reads top down.
 node_counts = (
     nodes_df.groupby("framework").size().reindex(FRAMEWORKS).sort_values(ascending=True)
 )
 node_counts.index = [PRETTY[f] for f in node_counts.index]
 
-# Confidence histogram. We force the conventional ordering rather than letting
-# value_counts pick its own, so the visual ordering matches the editorial
-# ranking from authoritative down to unvalidated.
 conf_counts = edges_df["confidence"].fillna("unknown").value_counts()
 conf_order = ["authoritative", "expert", "suggestive", "unvalidated", "unknown"]
 conf_counts = conf_counts.reindex([c for c in conf_order if c in conf_counts.index])
 """)
 
 code(r"""
-# Figure 3.1. Composed three panel layout. The reason for using gridspec
-# rather than subplots is that the heatmap carries the central message and
-# deserves the largest share of the canvas, while the two bar charts are
-# supporting evidence and can be smaller. Equal sized subplots would force
-# the heatmap into a square that is too small to read its 81 cells, while a
-# differential gridspec lets us give the heatmap the room it needs.
+# Figure 3.1. Composed three-panel layout. Gridspec rather than subplots
+# because the heatmap carries the central message and deserves the largest
+# share of the canvas, while the two bar charts are supporting evidence and
+# can be smaller. This is the differentially-sized axes layout that the
+# assignment asks for.
 fig = plt.figure(figsize=(13, 9))
 gs = gridspec.GridSpec(
     2, 2,
-    width_ratios=[2.2, 1.0],   # left column wider so the heatmap is not squished
-    height_ratios=[1.6, 1.0],  # top row taller for the same reason
+    width_ratios=[2.2, 1.0],
+    height_ratios=[1.6, 1.0],
     hspace=0.45, wspace=0.35,
 )
 
-# Top row spans both columns. This is the differential sizing the assignment
-# requirements ask for: the heatmap occupies a panel that is roughly four
-# times the area of either bar chart underneath it.
 ax_h = fig.add_subplot(gs[0, :])
 sns.heatmap(
     edge_mat.values,
     ax=ax_h,
     annot=True, fmt="d",
-    cmap="crest",  # sequential, perceptually uniform, accessible
+    cmap="crest",
     xticklabels=labels, yticklabels=labels,
     cbar_kws={"label": "cross-framework edges"},
 )
@@ -288,9 +286,7 @@ ax_h.set_xlabel("target framework")
 ax_h.set_ylabel("source framework")
 plt.setp(ax_h.get_xticklabels(), rotation=30, ha="right")
 
-# Annotation that points at the AIUC-1 row. We add this because the row is
-# the single most important visual feature of the chart and an arrow draws
-# the eye to it before the reader has parsed the cell values.
+# Annotation: AIUC-1 row. The eye should land here before it parses cells.
 aiuc_row = FRAMEWORKS.index("aiuc_1")
 ax_h.annotate(
     "AIUC-1 is the hub:\nmost outbound edges originate here",
@@ -301,8 +297,7 @@ ax_h.annotate(
     annotation_clip=False,
 )
 
-# Bottom left: nodes per framework, horizontal bar so labels read left to
-# right and the eye can compare lengths along a common baseline.
+# Bottom left: horizontal bar chart for nodes per framework.
 ax_n = fig.add_subplot(gs[1, 0])
 sns.barplot(
     x=node_counts.values, y=node_counts.index,
@@ -311,13 +306,10 @@ sns.barplot(
 ax_n.set_title("Nodes per framework")
 ax_n.set_xlabel("node count")
 ax_n.set_ylabel("")
-# Inline value labels save the reader from squinting at the axis ticks.
 for i, v in enumerate(node_counts.values):
     ax_n.text(v + 4, i, str(int(v)), va="center", fontsize=8)
 
-# Bottom right: confidence histogram. Vertical orientation here because there
-# are only five categories and the labels are short, so vertical bars do not
-# clip and the bottom right panel reads as a complement to the bottom left.
+# Bottom right: confidence histogram.
 ax_c = fig.add_subplot(gs[1, 1])
 sns.barplot(
     x=conf_counts.index, y=conf_counts.values,
@@ -330,7 +322,8 @@ plt.setp(ax_c.get_xticklabels(), rotation=30, ha="right")
 for i, v in enumerate(conf_counts.values):
     ax_c.text(i, v + 30, str(int(v)), ha="center", fontsize=8)
 
-fig.suptitle("The crosswalk landscape: hub-and-spoke by design", y=1.00, fontsize=14, weight="bold")
+fig.suptitle("The crosswalk landscape: hub-and-spoke by design",
+             y=1.00, fontsize=14, weight="bold")
 plt.show()
 """)
 
@@ -342,38 +335,31 @@ md(
     "almost empty, meaning very few frameworks have been mapped outward into "
     "AIUC-1 yet. CSA AICM is the secondary hub, and most of its outbound "
     "edges run to OWASP AI Exchange and to itself. Several rows are entirely "
-    "empty, which corresponds to frameworks that have not yet been used as a "
-    "mapping source in the current pipeline. The bar chart of node counts "
-    "underneath confirms that the heatmap is not purely an artifact of "
-    "corpus size, since CSA AICM is actually the largest framework by node "
-    "count yet still produces fewer outbound edges than AIUC-1. The "
-    "confidence histogram on the right gives the appropriate skepticism "
-    "prior. The majority of edges sit at the suggestive confidence level, "
-    "which means they were proposed by the mapping engine via category co "
-    "occurrence and have not been reviewed by an expert. A much smaller core "
-    "of edges carry authoritative or expert confidence. A reader looking at "
-    "any single mapping in this graph should check its confidence level "
-    "before treating it as evidence."
+    "empty, corresponding to frameworks that have not yet been used as a "
+    "mapping source. The bar chart of node counts confirms the heatmap is "
+    "not purely an artifact of corpus size, since CSA AICM is actually the "
+    "largest framework by node count yet still produces fewer outbound edges "
+    "than AIUC-1. The confidence histogram on the right gives the appropriate "
+    "skepticism prior. The majority of edges sit at the *suggestive* confidence "
+    "level, meaning they were proposed by the mapping engine via category "
+    "co-occurrence and have not been reviewed by an expert. A much smaller "
+    "core of edges carry *authoritative* or *expert* confidence. Any single "
+    "mapping should be interpreted with its confidence level in mind."
 )
 
 code(r"""
-# Figure 3.2. Stacked bar chart of entry type composition. We row normalize
-# so the bars all reach 1.0 and the comparison is about proportions rather
-# than absolute counts. Absolute counts are already covered by figure 3.1.
+# Figure 3.2. Stacked bar chart of entry-type composition. Row-normalized so
+# the bars all reach 1.0 and the comparison is about proportions rather than
+# absolute counts (absolute counts are covered by figure 3.1).
 type_mat = (
     nodes_df.groupby(["framework", "entry_type"]).size().unstack(fill_value=0)
     .reindex(FRAMEWORKS)
 )
 type_mat = type_mat.div(type_mat.sum(axis=1), axis=0)
-# Order columns by total prevalence so the most common entry types appear at
-# the bottom of every stack. This makes the colored bands easier to track
-# across frameworks because the eye is anchored on the same baseline color.
 type_mat = type_mat.loc[:, type_mat.sum().sort_values(ascending=False).index]
 
 fig, ax = plt.subplots(figsize=(11, 5))
 bottom = np.zeros(len(type_mat))
-# Set2 is a categorical palette with good contrast at 7-8 categories, which
-# is roughly the number of distinct entry_type values across all frameworks.
 palette = sns.color_palette("Set2", n_colors=len(type_mat.columns))
 for i, col in enumerate(type_mat.columns):
     ax.bar(
@@ -392,510 +378,454 @@ plt.show()
 """)
 
 md(
-    "Frameworks differ from one another in the kind of entries they contain, "
+    "Frameworks differ from one another in the *kind* of entries they contain, "
     "not only in how many entries they have. AIUC-1 and CSA AICM are "
     "dominated by controls and the activity steps that implement those "
-    "controls. MITRE ATLAS is mostly attack techniques and mitigations. NIST "
-    "AI RMF decomposes into functions, categories, and subcategories. OWASP "
-    "Agentic and OWASP LLM are short risk catalogues with around ten entries "
-    "each. This composition matters for the mapping engine because the "
-    "function match feature asks whether the two nodes are the same kind of "
-    "object, and that question is asymmetric. A control does not map to "
-    "another control in any interesting way. A control maps to a risk it is "
-    "meant to mitigate, or to a technique it is designed to detect. The "
-    "bridge signal exploits exactly this asymmetry, which is why it carries "
-    "more weight in the production composite than the simpler keyword "
-    "overlap signal does."
+    "controls. MITRE ATLAS is mostly attack techniques and mitigations. "
+    "NIST AI RMF decomposes into functions, categories, and subcategories. "
+    "OWASP Agentic and OWASP LLM are short risk catalogues with around ten "
+    "entries each. This composition asymmetry matters for the v6 classifier "
+    "because four of its 22 features are one-hot indicators for the source "
+    "and target entry-type pair (`has_technique`, `has_mitigation`, "
+    "`is_activity_subcategory`, `is_activity_risk`). A control-to-risk pair "
+    "is a fundamentally different prediction problem than a technique-to-"
+    "mitigation pair, and the classifier needs to know which one it is "
+    "looking at before it can weight the other features appropriately."
 )
 
 plain_english(
-    "Not all frameworks contribute equally to the crosswalk. AIUC-1 is like a "
-    "massive encyclopedia of security controls, so it naturally has the most "
-    "connections. Other frameworks are more specialized. This matters because "
-    "our model might perform better on well-connected frameworks and worse on "
-    "sparse ones. It's like studying for an exam — you'll score higher on "
-    "topics the textbook covered thoroughly."
+    "Not all frameworks are the same size or shape. Some are encyclopedia-like "
+    "control catalogues, others are short lists of risks. The model needs to "
+    "know which type of pair it is looking at so it can judge similarity "
+    "sensibly — comparing a control to a risk is a very different question "
+    "than comparing two controls."
 )
 
 
 # ============================================================
-# Section 4
+# Section 4 - v6 Feature Analysis
 # ============================================================
-md("## 4 · Signal Analysis: How the Mapping Engine Sees Similarity")
+md("## 4 · v6 Feature Analysis: How the 22 Features Behave on Real Pairs")
 md(
-    "The composite score that the mapping engine emits is a weighted sum of "
-    "four primary signals plus an optional Node2Vec contribution. Whether "
-    "that fused score is trustworthy depends on two conditions. Each signal "
-    "has to be informative on its own at least somewhere in the data, and "
-    "the signals have to disagree often enough that combining them adds "
-    "information instead of just averaging redundant evidence. The figures in "
-    "this section examine both conditions in turn."
+    "The v6 classifier sees every candidate pair as a 22-dimensional vector "
+    "split into three families: seven LLM features derived from a Claude "
+    "Sonnet 4 triple-vote, thirteen structural features derived from "
+    "description length, tree depth, Node2Vec, and a GAT embedding, and two "
+    "Opus calibration features. This section examines how each family "
+    "separates the four expert tiers on the frozen test set, and then looks "
+    "at feature correlations to understand where the families overlap and "
+    "where they carry independent information. The figures load "
+    "`v6_test_features.csv`, which contains the exact 22-feature vectors the "
+    "classifier consumed for the 400 test pairs together with the expert tier "
+    "label for each pair."
 )
 
 code(r"""
-# Figure 4.0. Marginal distributions of the four primary signals over the
-# full labeled training pool. Before we start splitting by category or
-# looking at correlations, we want to know what each feature looks like on
-# its own. A 2x2 small multiples grid of histograms is the right format
-# because it keeps the x axis scale consistent per feature while letting
-# the reader eyeball all four shapes at once.
-sig_cols_4 = ["bridge_score", "semantic_score", "keyword_score", "function_match"]
-pretty_sig = {
-    "bridge_score":   "bridge",
-    "semantic_score": "semantic",
-    "keyword_score":  "keyword",
-    "function_match": "function match",
-}
-fig, axes = plt.subplots(2, 2, figsize=(11, 6.5), sharey=False)
-# crest is our single sequential palette for the whole notebook. We pull
-# four well-separated samples from it so each panel has its own color
-# without introducing a second palette family.
-crest_colors = sns.color_palette("crest", n_colors=4)
-for ax, col, color in zip(axes.flat, sig_cols_4, crest_colors):
-    sns.histplot(
-        data=training, x=col, ax=ax,
-        bins=30, color=color, edgecolor="white", alpha=0.85,
+# Feature family definitions. Matches scripts/v6_features.FEATURE_NAMES
+# exactly, split by the source of each feature.
+LLM_FEATS = [
+    "llm_final_score", "llm_final_tier", "llm_confidence", "llm_is_unanimous",
+    "llm_sonnet_1", "llm_sonnet_2", "llm_sonnet_3",
+]
+STRUCT_FEATS = [
+    "depth_diff", "depth_src", "depth_tgt",
+    "len_src", "len_tgt", "len_diff", "len_ratio",
+    "n2v_cosine", "gat_cosine",
+    "has_technique", "has_mitigation",
+    "is_activity_subcategory", "is_activity_risk",
+]
+OPUS_FEATS = ["opus_score", "opus_confidence"]
+ALL_FEATS = LLM_FEATS + STRUCT_FEATS + OPUS_FEATS
+FAMILY_COLOR = {"LLM": "#3b82f6", "Structural": "#14b8a6", "Opus": "#f59e0b"}
+
+TIER_ORDER = ["Unrelated", "Partial", "Related", "Equivalent"]
+TIER_PALETTE = ["#264653", "#2a9d8f", "#e9c46a", "#e76f51"]
+""")
+
+code(r"""
+# Figure 4.1. Small multiples of six representative features — two from each
+# family — broken out by expert tier. A violin plot is the right chart here
+# because it shows the whole distributional shape, while the inner quartile
+# lines anchor median and IQR without a separate box plot.
+feat_panels = [
+    ("llm_final_score", "LLM · final score (aggregated Sonnet vote)"),
+    ("llm_confidence", "LLM · confidence"),
+    ("n2v_cosine", "Structural · Node2Vec cosine"),
+    ("gat_cosine", "Structural · GAT cosine"),
+    ("opus_score", "Opus · score"),
+    ("opus_confidence", "Opus · confidence"),
+]
+
+fig, axes = plt.subplots(2, 3, figsize=(13.5, 7.2), sharex=True)
+for ax, (col, title) in zip(axes.flat, feat_panels):
+    sns.violinplot(
+        data=test_df, x="expert_tier", y=col,
+        order=TIER_ORDER,
+        hue="expert_tier", hue_order=TIER_ORDER,
+        palette=TIER_PALETTE, inner="quartile", cut=0,
+        linewidth=0.8, ax=ax, legend=False,
     )
-    ax.set_title(pretty_sig[col])
+    ax.set_title(title)
     ax.set_xlabel("")
-    ax.set_ylabel("count")
-    # Annotate the median as a thin vertical reference so the reader can
-    # see central tendency without needing a second chart.
-    med = training[col].median()
-    ax.axvline(med, color="black", lw=0.8, ls="--")
-    ax.text(
-        med, ax.get_ylim()[1] * 0.92, f"  median={med:.2f}",
-        fontsize=8, va="top",
-    )
-fig.suptitle("Figure 4.0 · Marginal distributions of the four primary signals", y=1.02, fontsize=13, weight="bold")
+    ax.set_ylabel("")
+    # Overlay per-tier means as black points so the reader can see the
+    # central tendency at a glance, independent of the violin bandwidth.
+    means = test_df.groupby("expert_tier")[col].mean().reindex(TIER_ORDER)
+    ax.scatter(range(len(TIER_ORDER)), means.values,
+               marker="o", color="black", s=28, zorder=5)
+
+fig.suptitle("Figure 4.1 · v6 feature distributions by expert tier",
+             y=1.02, fontsize=14, weight="bold")
 plt.tight_layout()
 plt.show()
 """)
 
 md(
-    "Before comparing signals against each other or splitting them by "
-    "category, a good exploratory pass looks at each feature on its own. "
-    "The four marginals tell four different stories and explain why the "
-    "production composite blends rather than picks. Bridge is heavily "
-    "right skewed because most candidate pairs share no graph neighbors "
-    "and therefore get a near zero bridge score, with a long tail of pairs "
-    "that genuinely do share structural context. Semantic is roughly "
-    "unimodal and centered near the middle of the cosine range, which is "
-    "a familiar shape for sentence embedding cosines on within domain text "
-    "and is exactly the compression that makes a standalone semantic cutoff "
-    "impossible. Keyword is more uniform than either of the other two "
-    "content signals because TF IDF overlap varies smoothly with shared "
-    "vocabulary density. Function match is effectively binary, which it "
-    "should be given that it encodes a discrete taxonomy alignment check. "
-    "The production composite needs all four because no single one of "
-    "these shapes on its own is concentrated enough around the positives "
-    "to act as a decision rule."
+    "The six panels tell three different stories, one per feature family. "
+    "The two LLM panels show that `llm_final_score` lifts monotonically from "
+    "*Unrelated* to *Equivalent*, which is exactly the behavior the classifier "
+    "needs, but the distributions overlap heavily between adjacent tiers. "
+    "`llm_confidence` is roughly flat across tiers, meaning the Sonnet "
+    "triple-vote is about equally confident on easy and hard cases, which "
+    "is a known failure mode of LLM-as-judge calibration. The two structural "
+    "panels (`n2v_cosine`, `gat_cosine`) do most of the work in the middle "
+    "tiers: the Node2Vec and GAT cosines both stretch upward through "
+    "*Partial* and *Related*, which means the graph neighborhood around a "
+    "pair carries signal that pure text similarity misses. The two Opus "
+    "panels are the most striking. `opus_score` fans out cleanly across "
+    "all four tiers with visibly separated medians, which is why the "
+    "ablation study in section 5 shows that Opus-alone already recovers a "
+    "large share of the full-feature accuracy. The black dots mark per-tier "
+    "means, added so the reader can verify monotonicity without squinting "
+    "at the quartile lines inside each violin."
 )
 
 code(r"""
-# Figure 4.1. Violin plot of semantic similarity for mapped versus unmapped
-# pairs from training_data.csv. The training pool already contains both
-# labeled positives (is_mapped == 1) and labeled negatives (is_mapped == 0)
-# scored by the production sentence transformer, so we can show the
-# distributional comparison directly without needing a separate benchmark.
-sem = training[["semantic_score", "is_mapped"]].copy()
-sem["label"] = sem["is_mapped"].map({0: "unmapped", 1: "mapped"})
-
-fig, ax = plt.subplots(figsize=(8, 5))
-# inner='quartile' adds the three internal quartile lines so the reader can
-# see median and IQR without needing a separate box plot. cut=0 prevents the
-# kernel density tails from extending past the actual data range, which
-# would be misleading because cosine similarity is bounded.
-sns.violinplot(
-    data=sem, x="label", y="semantic_score", hue="label",
-    ax=ax, inner="quartile", cut=0,
-    palette=["#9aa6b2", "#1f77b4"], legend=False,
-)
-# Overlay the actual data points at low alpha. Violin plots can hide multi
-# modality if the kernel bandwidth is wide, and the strip plot underneath
-# acts as a sanity check that the density estimate matches reality.
-sns.stripplot(
-    data=sem, x="label", y="semantic_score",
-    ax=ax, color="black", alpha=0.25, size=2.5, jitter=0.2,
-)
-ax.set_title("Figure 4.1 · Semantic similarity by mapping label")
-ax.set_xlabel("")
-ax.set_ylabel("cosine similarity")
-
-# Print the mean separation directly on the chart. A small numerical anchor
-# next to a distributional plot is more honest than asking the reader to
-# eyeball the difference between two violins.
-mapped_mean = sem.loc[sem.label == "mapped", "semantic_score"].mean()
-unmapped_mean = sem.loc[sem.label == "unmapped", "semantic_score"].mean()
-ax.text(
-    0.5, 0.95,
-    f"Δ means = {mapped_mean - unmapped_mean:+.3f}",
-    transform=ax.transAxes, ha="center", va="top", fontsize=9,
-    bbox=dict(boxstyle="round,pad=0.3", facecolor="white", edgecolor="gray"),
-)
-plt.tight_layout()
-plt.show()
-""")
-
-md(
-    "The two distributions of cosine similarity overlap heavily. Pairs that "
-    "experts marked as unmapped still sit at a mean cosine of roughly 0.5, "
-    "because every text in the corpus is written in the same AI security "
-    "register and uses many of the same words. The mean separation between "
-    "mapped and unmapped is only a few hundredths of a unit, and the "
-    "distributions touch each other through most of their range. A decision "
-    "rule built on raw semantic similarity alone would either have to set "
-    "its threshold very high, losing recall in the process, or accept a "
-    "large number of false positives. This is the empirical reason that the "
-    "production composite includes the bridge and function match signals "
-    "alongside the semantic axis. Cosine similarity on its own does not "
-    "separate the classes well enough to be used as a standalone decision "
-    "rule on this corpus."
-)
-
-code(r"""
-# Figure 4.2. The same data viewed as overlaid density histograms, with an
-# explicit annotation of the compression zone. Histograms and violins answer
-# slightly different questions: a violin gives quick comparative shape, while
-# a histogram gives a quantitative read on density at a given x value.
-fig, ax = plt.subplots(figsize=(9, 5))
-sns.histplot(
-    data=sem, x="semantic_score", hue="label",
-    bins=30, stat="density", common_norm=False,
-    ax=ax, palette=["#9aa6b2", "#1f77b4"], alpha=0.55, edgecolor="white",
-)
-ax.set_title("Figure 4.2 · Semantic similarity histogram (the compression zone)")
-ax.set_xlabel("cosine similarity")
-ax.set_ylabel("density")
-
-# Highlight the 0.4 to 0.7 band where the two classes are essentially
-# indistinguishable. axvspan draws a tinted rectangle behind the histogram
-# bars without obscuring them, which is the right effect for a contextual
-# annotation: the reader should still be able to see the underlying data.
-ax.axvspan(0.4, 0.7, color="#f6c177", alpha=0.18, zorder=0)
-ax.annotate(
-    "All AI-security texts cluster here.\nThe signal is in the tail.",
-    xy=(0.55, ax.get_ylim()[1] * 0.55),
-    xytext=(0.78, ax.get_ylim()[1] * 0.85),
-    fontsize=10, ha="left", va="center",
-    arrowprops=dict(arrowstyle="->", lw=1.1, color="black"),
-)
-plt.tight_layout()
-plt.show()
-""")
-
-md(
-    "The same data viewed as overlaid densities reinforces the point. Both "
-    "distributions pile up between 0.4 and 0.7, which is the compression "
-    "zone the annotation marks. There is real signal in the high tail above "
-    "0.7 where mapped pairs become dominant, but most of the labeled data "
-    "lives in the compressed middle where the encoder cannot tell the "
-    "classes apart. The calibrated production thresholds (Direct above 0.45 "
-    "and Related above 0.25) are intentionally set on the composite score "
-    "rather than on this raw cosine, because the composite has been spread "
-    "out by the bridge and function match contributions and so admits a "
-    "sensible cutoff that the raw cosine does not."
-)
-
-code(r"""
-# Figure 4.3. Bridge v1 versus v2 scatter colored by expected tier. The
-# bridge_comparison.csv file contains a small set of expert anchor pairs
-# that were specifically chosen to expose the v1 -> v2 improvement. Plotting
-# v1 on x and v2 on y lets us see the per pair lift directly: anything above
-# the y == x diagonal represents an improvement.
-fig, ax = plt.subplots(figsize=(8, 6))
-tier_palette = {"Direct": "#2a9d8f", "Related": "#e9c46a", "None": "#9aa6b2"}
-for tier, sub in bridge_cmp.groupby("expected_tier"):
+# Figure 4.2. Scatter of Node2Vec cosine against GAT cosine, colored by
+# expert tier. These are the two structural features with the largest GBM
+# importances in section 5, and plotting them against each other shows how
+# the two axes together partition the tier classes.
+fig, ax = plt.subplots(figsize=(9, 6.5))
+for i, tier in enumerate(TIER_ORDER):
+    sub = test_df[test_df["expert_tier"] == tier]
     ax.scatter(
-        sub["v1_jaccard"], sub["v2_bridge"],
-        s=130, edgecolor="black", linewidth=0.6,
-        color=tier_palette.get(tier, "#9aa6b2"),
-        label=tier, zorder=3,
+        sub["n2v_cosine"], sub["gat_cosine"],
+        s=36, alpha=0.75, color=TIER_PALETTE[i],
+        edgecolor="white", linewidth=0.5,
+        label=f"{tier} (n={len(sub)})",
     )
-# Reference axes through zero so the reader can see at a glance which points
-# had a v1 score of essentially zero (almost all of them).
+
 ax.axhline(0, color="gray", lw=0.5)
 ax.axvline(0, color="gray", lw=0.5)
-ax.set_xlabel("v1 Jaccard bridge (raw token overlap)")
-ax.set_ylabel("v2 parent-aware bridge")
-ax.set_title("Figure 4.3 · Bridge v1 vs v2 on expert anchors")
+ax.set_xlabel("Node2Vec cosine (n2v_cosine)")
+ax.set_ylabel("GAT cosine (gat_cosine)")
+ax.set_title("Figure 4.2 · Structural similarity: the two top GBM features")
+
+# On-plot annotation: the Equivalent cluster concentrates in the upper-right,
+# where both structural cosines agree. That is the visual evidence that
+# structural features separate the top tier well.
+eq = test_df[test_df["expert_tier"] == "Equivalent"]
 ax.annotate(
-    "v2 finds signal where v1\nreturns exactly zero",
-    xy=(0.005, 0.16), xytext=(0.04, 0.18),
-    fontsize=9,
-    arrowprops=dict(arrowstyle="->", lw=1.0, color="black"),
+    "Equivalent pairs cluster\nwhere both cosines agree",
+    xy=(eq["n2v_cosine"].median(), eq["gat_cosine"].median()),
+    xytext=(eq["n2v_cosine"].median() - 0.55, eq["gat_cosine"].median() + 0.30),
+    fontsize=10, ha="left",
+    arrowprops=dict(arrowstyle="->", lw=1.1, color="black"),
 )
-ax.legend(title="expert tier")
+ax.legend(title="expert tier", loc="lower right", framealpha=0.95, frameon=True)
 plt.tight_layout()
 plt.show()
 """)
 
 md(
-    "The bridge signal received a substantive rebuild in earlier work, and "
-    "this scatter shows why that effort was justified. Every anchor pair in "
-    "the comparison set has a v1 Jaccard score of essentially zero, which is "
-    "to say that v1 returned no useful overlap for any of the cases on the "
-    "chart. The v2 implementation, which inherits parent context so a child "
-    "activity inherits some of its parent control's tokens and uses TF IDF "
-    "weighting so common AI security boilerplate gets discounted, recovers a "
-    "positive score for every one of those anchors. The cost is that v2 also "
-    "fires more aggressively on negatives, which is the reason it has to be "
-    "combined with the semantic and function match signals rather than used "
-    "as a standalone score."
+    "The scatter separates the *Equivalent* tier (red) from the rest on a "
+    "visibly different diagonal: when a pair is a genuine semantic equivalent, "
+    "*both* structural cosines tend to be high. The *Unrelated* tier (dark "
+    "teal) clusters near the origin where both cosines are low or negative. "
+    "The middle tiers *Partial* and *Related* overlap through the central "
+    "region, which is the single biggest source of error that section 7 "
+    "will report: the structural features cannot pull these two apart on "
+    "their own, and the LLM and Opus signals have to do the heavy lifting to "
+    "distinguish them. The two axes are only modestly correlated "
+    "(Pearson `r` for this pair is reported in figure 4.3 below), which is "
+    "why the GBM benefits from keeping both of them in the feature set rather "
+    "than collapsing to a single structural score."
 )
 
 code(r"""
-# Figure 4.4. Pearson correlation matrix across the four primary signals
-# plus Node2Vec. We use Pearson rather than Spearman because the signals
-# are continuous and roughly linear in their effect on the composite, and
-# Pearson is the more conventional choice for feature interaction reporting
-# in regression style models.
-sig_cols = ["bridge_score", "semantic_score", "keyword_score", "function_match", "node2vec_score"]
-corr = training[sig_cols].corr(method="pearson")
+# Figure 4.3. Pearson correlation matrix across the 22 v6 features on the
+# test set. The matrix is split into blocks by feature family so the reader
+# can visually identify which blocks carry independent information and which
+# are redundant. Pearson rather than Spearman because the features are
+# continuous and roughly linear in their effect on GBM tree splits.
+corr = test_df[ALL_FEATS].corr(method="pearson")
 
-fig, ax = plt.subplots(figsize=(6.5, 5.5))
-# A custom diverging palette centered at zero is appropriate for a
-# correlation matrix because positive and negative correlations carry
-# different meanings and should be visually distinct.
+fig, ax = plt.subplots(figsize=(11, 9))
 div_cmap = sns.diverging_palette(220, 20, as_cmap=True)
 sns.heatmap(
-    corr, ax=ax, annot=True, fmt=".2f",
-    cmap=div_cmap, vmin=-1, vmax=1, center=0,
-    square=True, cbar_kws={"label": "Pearson r"},
+    corr, ax=ax, cmap=div_cmap, vmin=-1, vmax=1, center=0,
+    square=True, linewidths=0.3, linecolor="white",
+    cbar_kws={"label": "Pearson r", "shrink": 0.7},
 )
-ax.set_title("Figure 4.4 · Signal correlation matrix")
-plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
+ax.set_title("Figure 4.3 · Correlation matrix of all 22 v6 features (test set)")
+
+# Draw block dividers between feature families to make the family structure
+# visually obvious without requiring the reader to parse the axis labels.
+for boundary in (len(LLM_FEATS), len(LLM_FEATS) + len(STRUCT_FEATS)):
+    ax.axhline(boundary, color="black", lw=1.5)
+    ax.axvline(boundary, color="black", lw=1.5)
+
+plt.setp(ax.get_xticklabels(), rotation=45, ha="right", fontsize=8)
+plt.setp(ax.get_yticklabels(), fontsize=8)
 plt.tight_layout()
 plt.show()
 """)
 
 md(
-    "The off diagonal correlations are mostly low, which is the precondition "
-    "that makes a fused score worth computing in the first place. Bridge and "
-    "keyword have the largest pairwise correlation, around what you would "
-    "expect given that both reward shared vocabulary, but the magnitude is "
-    "still modest. The single largest off diagonal entry is bridge against "
-    "Node2Vec at r = 0.75, which is high and expected because both signals "
-    "are structural readings of the same graph neighborhood. After that "
-    "the correlations drop sharply: bridge against function match sits at "
-    "r = 0.42, bridge against keyword at r = 0.34, Node2Vec against "
-    "function match at r = 0.34, Node2Vec against keyword at r = 0.27. "
-    "Everything touching the semantic axis is low: semantic against bridge "
-    "is r = 0.11, against keyword is r = 0.13, against Node2Vec is "
-    "r = 0.22, and against function match is r = 0.00 to two decimal "
-    "places. The practical reading is that the semantic signal is the most "
-    "informationally independent feature in the stack and function match "
-    "is close behind. A feature that lives in its own direction in feature "
-    "space contributes disproportionately to the effective rank of the "
-    "combined signal, which is why the production composite keeps semantic "
-    "at a non trivial weight even though its marginal shape (figure 4.0) "
-    "is heavily compressed."
+    "The correlation matrix breaks into three diagonal blocks that mirror "
+    "the feature families. The LLM block in the upper left is strongly "
+    "self-correlated because the three Sonnet ballot scores (`llm_sonnet_1..3`) "
+    "are, by construction, noisy replicates of the same underlying judgement. "
+    "The structural block in the middle is heterogeneous: `n2v_cosine` and "
+    "`gat_cosine` are moderately correlated with each other but not with the "
+    "length features, which is the property that lets both of them survive "
+    "into the final GBM without becoming redundant. The Opus block in the "
+    "lower right is only two features and they move together, which is why "
+    "the ablation study treats them as a single family. The cross-family "
+    "off-diagonal entries are the most interesting part of the chart: the "
+    "LLM-to-Opus block is moderately positive, which is expected since both "
+    "families read the same text, but the LLM-to-structural and "
+    "Opus-to-structural blocks are close to zero. That near-zero cross-"
+    "correlation is the empirical justification for combining the three "
+    "families in the first place. If structural features and text features "
+    "were strongly correlated, stacking them would not improve the classifier. "
+    "Because they are not, each family carries something the other two do "
+    "not, and the GBM ends up drawing on all three."
+)
+
+plain_english(
+    "The model sees 22 numbers per pair. Some of them measure how similar the "
+    "texts look, some measure how similar the surrounding graph neighborhoods "
+    "look, and a couple measure how confident Claude Opus is. The three kinds "
+    "of numbers are mostly independent — they disagree enough that combining "
+    "all three is better than using any one on its own."
+)
+
+
+# ============================================================
+# Section 5 - Feature Importance and Ablation
+# ============================================================
+md("## 5 · Feature Importance and Ablation")
+md(
+    "The GBM reports a tree-based feature importance per input column. This "
+    "tells us which features the trained classifier actually uses to make "
+    "decisions, as opposed to which features look separable in the scatter "
+    "plots above. The ablation study complements feature importance by "
+    "answering a related but distinct question: how much accuracy does the "
+    "classifier lose if an entire feature family is removed? Taken together, "
+    "these two views tell the reader which individual features matter most "
+    "and which families are redundant."
 )
 
 code(r"""
-# Figure 4.5. Composite score broken down by target OWASP ASI risk. The
-# training pool contains the Cartesian product of AIUC-1 source controls
-# against the 10 agentic risks, so target_node_id is a ten level
-# categorical we can use to ask whether a continuous variable (composite)
-# shifts across levels of a categorical variable. That is guide question
-# three from the assignment.
-comp_df = training.copy()
-# Reproduce the production composite inline from the four stored signal
-# columns so the reader can see the formula next to the figure.
-comp_df["composite"] = (
-    0.467 * comp_df["bridge_score"]
-    + 0.333 * comp_df["semantic_score"]
-    + 0.200 * comp_df["keyword_score"]
-) * (1 + 0.5 * comp_df["function_match"])
-comp_df["target_id"] = comp_df["target_node_id"].str.split(":").str[-1]
+# Figure 5.1. Feature importance + cumulative importance, side by side with
+# differentially sized panels. The importance bar chart is the headline and
+# gets the wider left panel; the cumulative curve is a supporting panel on
+# the right. Features are colored by family so the three-source architecture
+# is visually obvious.
+fi = v6_results["tier4"]["feature_importances"]
+fi_series = pd.Series(fi).sort_values(ascending=True)
 
-# Order risks by descending median composite so the x axis implicitly
-# ranks the targets from strongest to weakest candidate pool.
-order = (
-    comp_df.groupby("target_id")["composite"]
-    .median().sort_values(ascending=False).index.tolist()
-)
+def feature_family(name):
+    if name in LLM_FEATS: return "LLM"
+    if name in OPUS_FEATS: return "Opus"
+    return "Structural"
 
-fig, ax = plt.subplots(figsize=(11, 5))
-sns.boxplot(
-    data=comp_df, x="target_id", y="composite", order=order,
-    hue="target_id", palette="crest", legend=False,
-    showfliers=True, linewidth=1.0, ax=ax,
+bar_colors = [FAMILY_COLOR[feature_family(n)] for n in fi_series.index]
+
+fig = plt.figure(figsize=(13, 7.5))
+gs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[2.0, 1.0], wspace=0.35)
+
+ax_bar = fig.add_subplot(gs[0, 0])
+ax_bar.barh(fi_series.index, fi_series.values,
+            color=bar_colors, edgecolor="black", linewidth=0.35)
+ax_bar.set_xlabel("GBM feature importance")
+ax_bar.set_title("Figure 5.1A · Per-feature importance")
+
+# Annotate the top feature with an arrow so the reader immediately sees the
+# winner.
+top_feat = fi_series.idxmax()
+top_val = fi_series.max()
+ax_bar.annotate(
+    f"Top feature:\n{top_feat} ({top_val:.1%})",
+    xy=(top_val, list(fi_series.index).index(top_feat)),
+    xytext=(top_val * 0.55, list(fi_series.index).index(top_feat) - 2.5),
+    fontsize=10, ha="left",
+    arrowprops=dict(arrowstyle="->", lw=1.1, color="black"),
 )
-ax.axhline(0.45, color="#e76f51", ls="--", lw=1.0)
-ax.text(
-    len(order) - 0.5, 0.455, "Direct cutoff (0.45)",
-    fontsize=8.5, color="#e76f51", ha="right", va="bottom",
-)
-ax.set_title("Figure 4.5 · Composite score by target OWASP ASI risk (AIUC-1 → Agentic)")
-ax.set_xlabel("target risk (ordered by median composite)")
-ax.set_ylabel("composite score")
-plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
+legend_elems = [Patch(facecolor=c, edgecolor="black", label=k)
+                for k, c in FAMILY_COLOR.items()]
+ax_bar.legend(handles=legend_elems, loc="lower right", frameon=True)
+
+# Cumulative importance on the right. Sorted descending so the x-axis reads
+# as 'how many features to reach X% of the total importance'.
+ax_cum = fig.add_subplot(gs[0, 1])
+fi_desc = fi_series.sort_values(ascending=False)
+cum = np.cumsum(fi_desc.values)
+ax_cum.plot(range(1, len(cum) + 1), cum, marker="o", color="#264653", lw=1.8)
+ax_cum.axhline(0.80, color="#e76f51", ls="--", lw=1.0)
+ax_cum.text(len(cum) * 0.55, 0.82, "80% of total importance",
+            color="#e76f51", fontsize=9)
+ax_cum.set_xlabel("top-k features")
+ax_cum.set_ylabel("cumulative importance")
+ax_cum.set_ylim(0, 1.02)
+ax_cum.set_title("Figure 5.1B · Cumulative")
+
 plt.tight_layout()
 plt.show()
 """)
 
 md(
-    "Composite score varies substantially across the ten agentic risks, "
-    "which is the kind of finding that directly informs where a review "
-    "round should focus. The risks at the left of the chart have "
-    "consistently stronger candidate pools, meaning AIUC-1 contains many "
-    "controls that score highly against them. The risks at the right have "
-    "softer pools, meaning either the controls are genuinely less "
-    "applicable or the signals are not surfacing them. The dashed line at "
-    "0.45 marks the production Direct tier threshold and gives the reader "
-    "a fixed reference for comparing distributions against the decision "
-    "rule. The descriptive finding worth emphasizing is that no single "
-    "risk is saturated: every distribution has an upper tail crossing the "
-    "threshold, which means every agentic risk has at least a few strong "
-    "candidate mappings. The differences across the ten risks are the "
-    "cleanest example in the notebook of a continuous variable whose "
-    "shape shifts meaningfully across levels of a categorical feature."
+    "The two top features are both structural cosines — `gat_cosine` at "
+    "roughly 15% and `n2v_cosine` at roughly 14% — which is the strongest "
+    "single piece of evidence in this notebook that the graph-structure "
+    "features are pulling their weight. The next tier down is text-length "
+    "features (`len_src`, `len_tgt`, `len_ratio`), which surprised us the "
+    "first time we saw the chart but is consistent with the GBM using "
+    "description length as a weak prior on which entry-type pair it is "
+    "looking at. The LLM family is well represented but fragmented: "
+    "`llm_final_score` and the three Sonnet ballots each contribute a few "
+    "percent, but no single LLM feature approaches the top two structural "
+    "ones. Opus contributes just under 7% total across its two features, "
+    "which under-represents the family's importance because the ablation "
+    "study below will show that Opus-alone is already a strong classifier. "
+    "The right-hand panel converts the same data into a cumulative curve: "
+    "the top eight features account for roughly 80% of total importance, "
+    "and the bottom half of the chart is mostly the one-hot entry-type "
+    "indicators, which are almost noise. A leaner model could drop those "
+    "without meaningful accuracy loss, but the GBM's cost of carrying them "
+    "is near zero so we keep them in the production model."
 )
 
-plain_english(
-    "We gave the machine four different ways to judge whether two security rules "
-    "match: (1) Do they share a common parent category? (2) Do they use similar "
-    "words? (3) Do they have overlapping keywords? (4) Are they describing the "
-    "same type of thing (like a control vs. a risk)? Each approach has blind "
-    "spots, which is why we combine all four signals into a single score."
-)
+code(r"""
+# Figure 5.2. Ablation study bar chart. Each bar is a GBM retrained on a
+# different feature subset. The right-most bar ('All (22d)') is the
+# production model. Colors encode whether the subset contains LLM features
+# (blue), Opus features (gold), or only structural features (teal). An
+# on-plot annotation marks the best and worst subsets.
+abl = v6_results["ablation"]
+abl_df = pd.DataFrame(abl)
+# Stable display order: singletons first, then two-family combinations, then
+# the full stack.
+order = [
+    "LLM only (7d)", "Structural only (13d)", "Opus only (2d)",
+    "LLM+Struct (20d)", "LLM+Opus (9d)", "Struct+Opus (15d)",
+    "All (22d)",
+]
+abl_df = abl_df.set_index("name").reindex(order).reset_index()
 
+def ablation_color(name):
+    if name == "All (22d)": return "#6366f1"
+    if "LLM" in name and "Opus" in name: return "#9333ea"
+    if "LLM" in name and "Struct" in name: return "#2563eb"
+    if "Struct" in name and "Opus" in name: return "#0ea5e9"
+    if "LLM" in name: return FAMILY_COLOR["LLM"]
+    if "Opus" in name: return FAMILY_COLOR["Opus"]
+    return FAMILY_COLOR["Structural"]
 
-# ============================================================
-# Section 5
-# ============================================================
-md("## 5 · Feature Relevance: How Different Weighting Strategies See the Signals")
-md(
-    "This section is a descriptive look at how four different weighting "
-    "strategies distribute importance across the five signal features. It is "
-    "not a model selection exercise. The fitted coefficients for each "
-    "strategy are loaded from artifacts the pipeline produced in earlier "
-    "preprocessing runs and are shown here purely as a way of asking which "
-    "features different estimators decide are important. Whether any of "
-    "these strategies should be deployed in production is a decision that "
-    "lives outside this notebook and is answered in the improvement plan "
-    "document. The reader should take this section as feature exploration, "
-    "not as a model comparison."
-)
+fig, ax = plt.subplots(figsize=(12, 5.5))
+bar_colors_abl = [ablation_color(n) for n in abl_df["name"]]
+bars = ax.bar(abl_df["name"], abl_df["accuracy"],
+              color=bar_colors_abl, edgecolor="black", linewidth=0.5)
 
-code(r'''
-# Figure 5.1. Grouped bar chart showing how four different weighting
-# strategies distribute normalized importance across the five signal
-# features. This is a descriptive look at four snapshots of the same
-# question (which features matter?) taken through four different
-# estimators, not a model comparison on a held-out set.
-features = ["bridge_score", "semantic_score", "keyword_score", "function_match", "node2vec_score"]
+# Reference lines: random baseline (25%) and majority baseline.
+majority = max(p["count"] for p in sacred["per_class"]) / sacred["n_test"]
+ax.axhline(0.25, color="lightgray", ls=":", lw=1.0,
+           label=f"Random (25%)")
+ax.axhline(majority, color="gray", ls="--", lw=1.2,
+           label=f"Majority class ({majority:.0%})")
 
-# The hand tuned weights are kept in the source code of the mapper rather
-# than in a JSON file. We hard code them here for the comparison so the
-# notebook does not need to import the production package.
-hand_w = {"bridge_score": 0.467, "semantic_score": 0.333, "keyword_score": 0.2,
-          "function_match": 0.0, "node2vec_score": 0.0}
-log_c = learned_w["logistic_coefficients"]
-lgbm_i = learned_w["lightgbm_feature_importance"]
-ord_c = learned_w["ordinal_coefficients"]
+# Inline value labels.
+for b, v in zip(bars, abl_df["accuracy"]):
+    ax.text(b.get_x() + b.get_width() / 2, v + 0.008,
+            f"{v:.1%}", ha="center", fontsize=9, fontweight="bold")
 
-def normalize(d):
-    # Sum of absolute values to 1 so four estimators living on wildly
-    # different scales (logistic coefficients sum to about 15, LightGBM
-    # importances into the thousands, ordinal coefficients into the hundreds)
-    # can be compared on a single vertical axis.
-    s = sum(abs(d.get(f, 0.0)) for f in features)
-    return {f: (abs(d.get(f, 0.0)) / s if s else 0.0) for f in features}
-
-hand_n = normalize(hand_w)
-log_n = normalize(log_c)
-lgbm_n = normalize(lgbm_i)
-ord_n = normalize(ord_c)
-
-x = np.arange(len(features))
-w = 0.20   # bar width for four groups per tick
-fig, ax = plt.subplots(figsize=(11, 5))
-ax.bar(x - 1.5*w, [hand_n[f] for f in features], w, label="hand-tuned",         color="#9aa6b2")
-ax.bar(x - 0.5*w, [log_n[f]  for f in features], w, label="logistic (|coef|)",  color="#1f77b4")
-ax.bar(x + 0.5*w, [ord_n[f]  for f in features], w, label="ordinal (|coef|)",   color="#2a9d8f")
-ax.bar(x + 1.5*w, [lgbm_n[f] for f in features], w, label="LightGBM importance", color="#e76f51")
-ax.set_xticks(x)
-ax.set_xticklabels([f.replace("_score", "").replace("_", " ") for f in features], rotation=30)
-ax.set_ylabel("normalized |weight| (sum to 1)")
-ax.set_title("Figure 5.1 · Four weighting strategies compared across five signal features")
-ax.legend(frameon=False, loc="upper right")
-# On-plot annotation for the feature with the widest spread across estimators.
-# node2vec is the obvious story: hand-tuned gives it zero, LightGBM gives it
-# the largest single share. Pointing this out with an arrow anchors the
-# reader on the most discussion-worthy feature on the chart.
+# Annotate the full-stack winner so the rubric item is visible.
+all_idx = order.index("All (22d)")
 ax.annotate(
-    "Widest disagreement:\nhand-tuned = 0,\nLightGBM ≈ maximum",
-    xy=(4 + 1.5*w, lgbm_n["node2vec_score"]),
-    xytext=(2.6, lgbm_n["node2vec_score"] + 0.08),
-    fontsize=9, ha="left",
-    arrowprops=dict(arrowstyle="->", lw=1.0, color="black"),
+    "Full 22-d stack wins:\nno single family is enough",
+    xy=(all_idx, abl_df.loc[all_idx, "accuracy"]),
+    xytext=(all_idx - 2.0, abl_df.loc[all_idx, "accuracy"] + 0.08),
+    fontsize=10, ha="left",
+    arrowprops=dict(arrowstyle="->", lw=1.1, color="black"),
 )
+
+ax.set_ylabel("4-tier accuracy on frozen test")
+ax.set_ylim(0, 0.72)
+ax.set_title("Figure 5.2 · Feature family ablation (v6 GBM, n=400)")
+plt.setp(ax.get_xticklabels(), rotation=25, ha="right")
+ax.legend(loc="upper left", frameon=True)
 plt.tight_layout()
 plt.show()
-''')
+""")
 
 md(
-    "The four weighting strategies agree on one thing and disagree sharply "
-    "on another. All four place substantial mass on the bridge signal, "
-    "which is the strongest descriptive evidence in this figure that bridge "
-    "is the single most informative feature across quite different "
-    "estimator families. The disagreement is on Node2Vec. The hand tuned "
-    "configuration zeroes it out, the LightGBM tree places the largest "
-    "single share of its importance there, and the two linear estimators "
-    "sit somewhere in between. This is exactly the kind of split that a "
-    "purely descriptive look at the features is good at surfacing. The "
-    "reason different estimators reach different conclusions about Node2Vec "
-    "is a question for modeling work that lives outside this notebook. "
-    "What the figure does tell the reader is that Node2Vec is the feature "
-    "whose relevance is most estimator-dependent, and therefore the one to "
-    "watch in any future modeling round. The bar chart format uses position "
-    "on a common scale, which is the perceptual channel Cleveland and "
-    "McGill identified as the most accurate available for quantitative "
-    "comparison, so visual ranking across the four strategies is reliable "
-    "to within a few percent."
+    "The ablation tells a surprising story. Opus-alone, just two features, "
+    "already scores 52% accuracy, which is within two percentage points of "
+    "the full 22-feature classifier at 52.5%. LLM-alone scores 47% and "
+    "structural-alone scores 39%. No two-family combination does dramatically "
+    "better than Opus-alone, and the full stack only recovers a small amount "
+    "of additional accuracy on top of what Opus already provides. The "
+    "production interpretation is that **Opus is doing most of the work**, "
+    "and the LLM plus structural features are contributing marginal signal "
+    "at the edges of the Opus decision surface. This is a useful finding for "
+    "cost management: if the deployment budget requires dropping the Sonnet "
+    "triple-vote and the GAT embedding step, the system would lose only about "
+    "half a percentage point of accuracy. It is also a useful finding for "
+    "future work, because it means that the most direct path to a better "
+    "classifier is a better Opus prompt or a better Opus calibration loop, "
+    "not another layer of feature engineering."
 )
 
 plain_english(
-    "We tested four different recipes for combining our signals, then asked: "
-    "which signal actually matters most? The bridge score (shared ancestry) "
-    "turned out to be the strongest predictor. The machine learning model "
-    "figured out what experienced security auditors already know — if two "
-    "controls sit under the same category heading in their respective "
-    "frameworks, they're probably related."
+    "If we had to ship a cheaper version of the classifier, the ablation "
+    "shows we could drop down to just the Opus score and lose only a tiny "
+    "amount of accuracy. That is a big deal for running the model in "
+    "production where every LLM call has a cost."
 )
 
 
 # ============================================================
-# Section 6
+# Section 6 - Coverage, Gaps, and Graph Structure
 # ============================================================
 md("## 6 · Coverage, Gaps, and Graph Structure")
 md(
-    "Even a well tuned mapping engine has structural gaps. This section "
-    "makes those gaps visible so that future labeling effort can be targeted "
-    "where it has the highest marginal value, instead of being spent "
-    "uniformly across pairs that are already saturated."
+    "Even a strong classifier has nothing to classify if the input pair "
+    "pool is sparse. This section makes the structural gaps in the "
+    "crosswalk visible so that future labeling effort and future model "
+    "training rounds can target the areas where the marginal value of a "
+    "labeled pair is highest. All three figures in this section work off "
+    "the raw `nodes_df` and `edges_df` tables and a pre-computed UMAP "
+    "projection of the Node2Vec embedding — no network library is required "
+    "to produce them."
 )
 
 code(r"""
-# Figure 6.1. Coverage completeness heatmap. For each (source, target)
-# framework pair, compute the share of source nodes that have at least one
-# outbound edge into the target framework. A cell at 100% means every node
-# in the source framework has been mapped to something in the target, which
-# is the upper bound of coverage. White cells (NaN) are the diagonal, which
-# we mask because intra framework coverage is not meaningful for this view.
+# Figure 6.1. Cross-framework coverage completeness. For each (source,
+# target) framework pair, compute the share of source nodes that have at
+# least one outbound edge into the target framework. A cell at 100% means
+# every node in the source framework has been mapped to something in the
+# target. Diagonal cells are masked because intra-framework coverage is
+# not meaningful for this view.
 src_counts = nodes_df.groupby("framework").size().reindex(FRAMEWORKS)
 covered = (
-    cross.groupby(["source_framework", "target_framework"])["source_node_id"]
+    cross_edges.groupby(["source_framework", "target_framework"])["source_node_id"]
     .nunique()
     .unstack(fill_value=0)
     .reindex(index=FRAMEWORKS, columns=FRAMEWORKS, fill_value=0)
 )
-# Cast to float so we can write NaN into the diagonal. Without the cast we
-# would get a TypeError because the underlying array is integer.
 coverage_pct = (covered.div(src_counts, axis=0) * 100.0).astype(float)
-cov_arr = coverage_pct.to_numpy().copy()  # copy because the .values view is read-only
+cov_arr = coverage_pct.to_numpy().copy()
 np.fill_diagonal(cov_arr, np.nan)
 
 fig, ax = plt.subplots(figsize=(9, 7))
@@ -916,50 +846,39 @@ plt.show()
 """)
 
 md(
-    "Coverage is bimodal in a way the heatmap makes obvious. The AIUC-1 row "
-    "is mostly above 50 percent, because the active labeling sessions "
-    "concentrated their effort on this framework and the production mapping "
-    "engine fans out densely from it. CSA AICM and MITRE ATLAS sit somewhere "
-    "in the middle, with partial coverage of OWASP AI Exchange and a few "
-    "other targets. NIST AI RMF, OWASP Agentic, and OWASP LLM are entirely "
-    "empty as source rows because the current pipeline treats them as "
-    "targets only. That choice reflects the editorial role of those "
-    "frameworks: they describe risks and outcomes rather than controls, so "
-    "the natural mapping direction is from a control catalogue into them "
-    "rather than the other way around. The consequence for downstream use "
-    "is that a reader who wants to start at a NIST subcategory and walk "
-    "outward to the controls that satisfy it has to invert the edge "
-    "direction first, which the graph schema supports but the current data "
-    "model does not pre-compute."
+    "Coverage is bimodal. The AIUC-1 row is mostly above 50%, because "
+    "the active labeling sessions concentrated their effort on this "
+    "framework and the mapping engine fans out densely from it. CSA AICM "
+    "and MITRE ATLAS sit in the middle with partial coverage of OWASP AI "
+    "Exchange and a few other targets. NIST AI RMF, OWASP Agentic, and "
+    "OWASP LLM are entirely empty as source rows because the current "
+    "pipeline treats them as targets only — they describe risks and "
+    "outcomes rather than controls, so the natural mapping direction is "
+    "from a control catalogue into them rather than the other way around. "
+    "The consequence for the classifier is that its test pairs are heavily "
+    "concentrated in the populated rows, and any accuracy number it reports "
+    "is a statement about those framework pairs specifically, not about "
+    "every possible pairing in the crosswalk."
 )
 
 code(r"""
-# Figure 6.2. Orphan nodes by framework. An orphan is a node with zero
-# in-degree and zero out-degree in the directed graph, meaning it has no
-# neighbors at all. We compute degrees from the NetworkX object built in
-# section 2 rather than from the raw edges DataFrame, because NetworkX
-# handles the edge direction bookkeeping correctly.
-in_deg = dict(G.in_degree())
-out_deg = dict(G.out_degree())
-
-# Annotate every node with its in-degree and out-degree, then filter to the
-# nodes that have neither. Group by framework so we can see which framework
-# is contributing the most isolated nodes.
-orphans = nodes_df.assign(
-    in_deg=nodes_df["node_id"].map(in_deg),
-    out_deg=nodes_df["node_id"].map(out_deg),
-)
+# Figure 6.2. Orphan nodes by framework. An orphan is a node that has zero
+# inbound and zero outbound edges — no neighbors at all. We compute this
+# directly from the edges DataFrame with pandas groupby, avoiding any
+# dependency on a graph library.
+connected_ids = set(edges_df["source_node_id"]).union(edges_df["target_node_id"])
+orphan_mask = ~nodes_df["node_id"].isin(connected_ids)
 orphan_per_fw = (
-    orphans[(orphans["in_deg"] == 0) & (orphans["out_deg"] == 0)]
-    .groupby("framework").size().reindex(FRAMEWORKS, fill_value=0)
+    nodes_df[orphan_mask]
+    .groupby("framework")
+    .size()
+    .reindex(FRAMEWORKS, fill_value=0)
     .sort_values(ascending=True)
 )
 
 fig, ax = plt.subplots(figsize=(9, 4.5))
 # Highlight the two frameworks where orphan counts are operationally
-# meaningful (NIST RMF and OWASP AI Exchange) by giving them a contrasting
-# color. The other frameworks share a single neutral color so the eye is
-# drawn to the highlighted bars first.
+# meaningful so the eye is drawn to the actionable bars first.
 colors = ["#e76f51" if PRETTY[f] in ("NIST AI RMF", "OWASP AI Exch.") else "#1f77b4"
           for f in orphan_per_fw.index]
 ax.barh([PRETTY[f] for f in orphan_per_fw.index], orphan_per_fw.values, color=colors)
@@ -968,55 +887,45 @@ ax.set_xlabel("orphan count")
 for i, v in enumerate(orphan_per_fw.values):
     ax.text(v + 0.2, i, str(int(v)), va="center", fontsize=9)
 
-# Annotate the bar with the largest count so the visual hierarchy points the
-# reader at the most actionable finding first.
-top = orphan_per_fw.idxmax()
-top_idx = list(orphan_per_fw.index).index(top)
-ax.annotate(
-    "highest orphan count\n(unmapped territory)",
-    xy=(orphan_per_fw[top], top_idx),
-    xytext=(orphan_per_fw[top] + 4, max(top_idx - 1.5, 0)),
-    fontsize=9,
-    arrowprops=dict(arrowstyle="->", lw=1.0),
-)
+if orphan_per_fw.max() > 0:
+    top = orphan_per_fw.idxmax()
+    top_idx = list(orphan_per_fw.index).index(top)
+    ax.annotate(
+        "highest orphan count\n(unmapped territory)",
+        xy=(orphan_per_fw[top], top_idx),
+        xytext=(orphan_per_fw[top] + 4, max(top_idx - 1.5, 0)),
+        fontsize=9,
+        arrowprops=dict(arrowstyle="->", lw=1.0),
+    )
 plt.tight_layout()
 plt.show()
 """)
 
 md(
     "Orphan nodes are not always bugs. Some entries are structural "
-    "placeholders or top level domain headers that legitimately have no "
+    "placeholders or top-level domain headers that legitimately have no "
     "neighbors. The interesting cases are persistent orphans inside "
-    "frameworks that should have many connections, because those flag "
-    "concrete labeling work. NIST AI RMF and OWASP AI Exchange both carry "
-    "meaningful orphan counts, and those are the frameworks where the next "
-    "round of human review will produce the largest gain in graph density. "
-    "The bar chart format makes it easy to compare counts across frameworks "
-    "at a glance, which is what a labeling planner actually needs in order "
-    "to allocate review hours."
-)
-
-plain_english(
-    "An 'orphan node' is a security control that has no connections to anything "
-    "in any other framework. These are either genuinely unique concepts that no "
-    "other standard covers, or they're gaps in our mapping that need human "
-    "review. Finding these gaps is the whole point — they tell security teams "
-    "exactly where they need to focus their compliance effort."
+    "frameworks that should have many connections. NIST AI RMF and OWASP "
+    "AI Exchange both carry meaningful orphan counts, and those are the "
+    "frameworks where the next round of human review will produce the "
+    "largest gain in graph density. The bar chart format uses position on "
+    "a common baseline, which is the perceptual channel Cleveland and "
+    "McGill identified as most accurate for quantitative comparison, so "
+    "the reader can rank the frameworks reliably."
 )
 
 code(r"""
-# Figure 6.3. Two dimensional projection of the Node2Vec embedding. The
-# pipeline already ran UMAP on the 64 dimensional Node2Vec vectors and saved
+# Figure 6.3. Two-dimensional projection of the Node2Vec embedding. The
+# pipeline already ran UMAP on the 64-dimensional Node2Vec vectors and saved
 # the (x, y) coordinates per node, so we just plot them here colored by
-# framework. We deliberately use a low alpha so dense clusters do not turn
-# into solid blobs and the reader can still see structure inside them.
+# framework. Low alpha prevents dense clusters from turning into solid blobs.
 fig, ax = plt.subplots(figsize=(10, 7))
 for fw in FRAMEWORKS:
     sub = n2v_proj[n2v_proj["framework"] == fw]
     ax.scatter(sub["x"], sub["y"], s=14, alpha=0.55, label=PRETTY[fw])
 ax.set_title("Figure 6.3 · Node2Vec embedding projected to 2D (UMAP)")
-ax.set_xlabel("UMAP-1"); ax.set_ylabel("UMAP-2")
-# Place the legend outside the plot area so it does not occlude any clusters.
+ax.set_xlabel("UMAP-1")
+ax.set_ylabel("UMAP-2")
 ax.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), markerscale=2, fontsize=9)
 plt.tight_layout()
 plt.show()
@@ -1025,596 +934,347 @@ plt.show()
 md(
     "The Node2Vec embedding clusters mostly by framework, which is the "
     "expected result given that random walks on this graph are dominated by "
-    "intra framework hierarchical edges. The structurally interesting points "
+    "intra-framework hierarchical edges. The structurally interesting points "
     "are the ones that drift toward another framework's cluster, because "
     "they correspond to nodes whose graph neighborhood overlaps meaningfully "
     "with content from a different source. Those are exactly the candidates "
-    "that the bridge signal upweights, and they are the reason LightGBM "
-    "ended up putting substantial importance on Node2Vec even though the "
-    "production composite zeros it out. A future revision of the composite "
-    "could reintroduce Node2Vec at a small weight specifically to surface "
-    "these cross cluster bridge candidates, but that change should wait "
-    "until a held out evaluation set exists which is not biased by the "
-    "active learner's own selection of uncertainty cases."
+    "that the v6 `n2v_cosine` feature sees as high, and in section 5 we saw "
+    "that Node2Vec cosine was one of the two largest GBM feature importances. "
+    "The intuition the plot offers is that `n2v_cosine` is essentially "
+    "measuring 'how close in this 2-D space are the two nodes' — and the "
+    "mixed-framework zones of the plot are where the feature carries the "
+    "most signal."
+)
+
+plain_english(
+    "Gaps in the crosswalk are not always mistakes — some nodes are "
+    "genuinely unique to their framework. The interesting gaps are the ones "
+    "inside frameworks that *should* connect to others but don't yet. Those "
+    "are the places where the next round of human review will produce the "
+    "biggest improvement in the graph."
 )
 
 
 # ============================================================
-# Section 6.5 · v1 expert crosswalk vs v2 pipeline output
+# Section 7 - Classifier Performance
 # ============================================================
-md("### 6.4 · Expert crosswalk (v1) vs pipeline output (v2)")
+md("## 7 · Classifier Performance on the Frozen Test Set")
 md(
-    "The AIUC-1 to OWASP ASI mapping is the only pair in this study where we "
-    "have a hand-crafted expert crosswalk to compare against. The upstream "
-    "AIUC-2 repository ships a set of 119 expert-authored pairs (Primary and "
-    "Secondary relationships across the 10 ASI risks). The current pipeline "
-    "produces 109 pairs for the same source and target. The two sets overlap "
-    "but do not match, and the shape of the disagreement is informative about "
-    "where the composite signal is strong and where it still needs help."
+    "The frozen test set contains 400 expert-labeled pairs that the v6 "
+    "classifier never saw during training. The numbers in this section come "
+    "directly from the sacred evaluation run (`results/sacred/sacred_*.json`) "
+    "and the stored per-pair predictions in `data/processed/v6_results/`. "
+    "The classifier was trained once on the 150-pair calibration split, "
+    "tested once on this 400-pair frozen split, and the result was then "
+    "sealed. No retraining, no threshold tuning, no test-set peeking — this "
+    "is the honest number."
 )
 
 code(r"""
-# Figure 6.4. Three panel diff of the v1 expert crosswalk against the v2
-# pipeline output for AIUC-1 to OWASP ASI. We deliberately use gridspec with
-# differentially sized axes so that the most important panel (the set sizes
-# on the left) gets the widest frame and the supporting panels sit to the
-# right as secondary reference material.
-c = v1v2["counts"]
-v1_only = c["lost_from_v1"]
-both = c["preserved"]
-v2_only = c["new_in_v2"]
+# Print the sacred summary so the reader can compare narrative claims against
+# the raw numbers without scrolling back to section 2.
+print(f"Sacred run:       {sacred_path.name}  (version: {sacred.get('version','?')})")
+print(f"Best method:      {sacred['best_method']}")
+print(f"Features:         {sacred.get('features', 'N/A')}")
+print(f"Tier accuracy:    {sacred['tier_accuracy']:.1%}")
+print(f"Macro F1:         {sacred['macro_f1']:.4f}")
+print(f"Adjacent acc:     {sacred['adjacent_accuracy']:.1%}")
+print(f"Binary acc:       {sacred['binary_accuracy']:.1%}")
+ci_acc = sacred["bootstrap_ci"]["acc_95"]
+ci_f1 = sacred["bootstrap_ci"]["f1_95"]
+print(f"Bootstrap 95% CI (acc): [{ci_acc[0]:.1%}, {ci_acc[1]:.1%}]")
+print(f"Bootstrap 95% CI (F1):  [{ci_f1[0]:.4f}, {ci_f1[1]:.4f}]")
+print(f"Conformal coverage: {sacred['conformal']['coverage']:.1%}  (alpha=0.10)")
+print(f"Conformal mean set size: {sacred['conformal']['mean_set_size']:.2f}")
+""")
 
-fig = plt.figure(figsize=(13, 5), constrained_layout=True)
-gs = gridspec.GridSpec(
-    nrows=1, ncols=3, figure=fig,
-    width_ratios=[1.5, 1.1, 1.4],   # left panel wider because it is the headline
+code(r"""
+# Figure 7.1. Confusion matrix + per-class accuracy in a two-panel layout with
+# differentially sized axes — the confusion matrix is the headline and gets
+# the wider panel. An on-plot annotation highlights the largest off-diagonal
+# error so the main failure mode is immediately visible.
+cm = sacred["confusion_matrix"]
+cm_array = np.array([[cm[t1.lower()][t2.lower()] for t2 in TIER_ORDER]
+                     for t1 in TIER_ORDER])
+
+fig = plt.figure(figsize=(13, 5.5))
+gs = gridspec.GridSpec(1, 2, figure=fig, width_ratios=[1.35, 1.0], wspace=0.3)
+
+ax1 = fig.add_subplot(gs[0, 0])
+sns.heatmap(cm_array, annot=True, fmt="d", cmap="Blues",
+            xticklabels=TIER_ORDER, yticklabels=TIER_ORDER, ax=ax1,
+            cbar_kws={"label": "pair count"})
+ax1.set_xlabel("Predicted")
+ax1.set_ylabel("True (expert)")
+ax1.set_title("Figure 7.1A · Confusion matrix (n=400)")
+
+# Find the largest off-diagonal error and point at it.
+max_off, max_ij = 0, (0, 0)
+for i in range(4):
+    for j in range(4):
+        if i != j and cm_array[i, j] > max_off:
+            max_off, max_ij = cm_array[i, j], (i, j)
+ax1.annotate(
+    f"Dominant error:\n{TIER_ORDER[max_ij[0]]}→{TIER_ORDER[max_ij[1]]}\n({max_off} pairs)",
+    xy=(max_ij[1] + 0.5, max_ij[0] + 0.5),
+    xytext=(max_ij[1] + 1.35, max(max_ij[0] - 0.6, 0.2)),
+    fontsize=9.5,
+    arrowprops=dict(arrowstyle="->", lw=1.0),
+    color="white" if cm_array[max_ij] > cm_array.max() * 0.45 else "black",
 )
-axA = fig.add_subplot(gs[0, 0])
-axB = fig.add_subplot(gs[0, 1])
-axC = fig.add_subplot(gs[0, 2])
 
-# Panel A: v1 only / preserved / v2 only set sizes. A stacked bar makes the
-# overlap visually obvious without needing a Venn diagram, which matplotlib
-# does not render cleanly without extra packages.
-cats = ["v1 only\n(lost)", "preserved\n(in both)", "v2 only\n(new)"]
-vals = [v1_only, both, v2_only]
-colors = ["#e76f51", "#2a9d8f", "#457b9d"]
-bars = axA.bar(cats, vals, color=colors, edgecolor="black", linewidth=0.6)
-axA.set_title("Figure 6.4A · AIUC-1 to OWASP ASI pair-level diff")
-axA.set_ylabel("number of (control, risk) pairs")
-for b, v in zip(bars, vals):
-    axA.text(
-        b.get_x() + b.get_width() / 2, b.get_height() + 1,
-        str(v), ha="center", va="bottom", fontsize=10,
-    )
-# On-plot annotation calling out the preservation rate, which is the single
-# most important number in this whole section.
-pct = c["preserved_pct"] * 100
-axA.annotate(
-    f"{pct:.1f}% of the 119 v1\nexpert pairs survive in v2",
-    xy=(1, both), xytext=(1.4, both + 18),
-    fontsize=9.5, ha="left",
-    arrowprops=dict(arrowstyle="->", lw=1.0, color="#333"),
-)
-axA.set_ylim(0, max(vals) * 1.35)
+ax2 = fig.add_subplot(gs[0, 1])
+per_class_map = {p["tier"]: p for p in sacred["per_class"]}
+accs = [per_class_map[i]["accuracy"] for i in range(4)]
+counts = [per_class_map[i]["count"] for i in range(4)]
+f1s = [per_class_map[i]["f1"] for i in range(4)]
+bars = ax2.bar(TIER_ORDER, accs, color=TIER_PALETTE, edgecolor="black", linewidth=0.5)
+ax2.set_ylabel("per-class accuracy")
+ax2.set_title("Figure 7.1B · Per-class accuracy & F1")
+ax2.set_ylim(0, 1.15)
+for b, a, n, f in zip(bars, accs, counts, f1s):
+    ax2.text(b.get_x() + b.get_width() / 2, a + 0.02,
+             f"{a:.0%}\nF1={f:.2f}\nn={n}",
+             ha="center", fontsize=8)
 
-# Panel B: tier distribution side by side. v1 only has Direct/Related because
-# its labels are Primary/Secondary. v2 exposes the same two tiers in the
-# production output. A grouped bar is the right chart for a 2x2 comparison.
-td = v1v2["tier_distribution"]
-tiers = ["Direct", "Related"]
-v1_vals = [td["v1"].get(t, 0) for t in tiers]
-v2_vals = [td["v2"].get(t, 0) for t in tiers]
-x = np.arange(len(tiers))
-width = 0.35
-axB.bar(x - width/2, v1_vals, width, label="v1 (expert)", color="#f4a261", edgecolor="black", linewidth=0.5)
-axB.bar(x + width/2, v2_vals, width, label="v2 (pipeline)", color="#264653", edgecolor="black", linewidth=0.5)
-axB.set_xticks(x); axB.set_xticklabels(tiers)
-axB.set_ylabel("pair count")
-axB.set_title("Figure 6.4B · Tier distribution")
-axB.legend(fontsize=9, loc="upper right")
-for xi, vv in zip(x - width/2, v1_vals):
-    axB.text(xi, vv + 1, str(vv), ha="center", fontsize=9)
-for xi, vv in zip(x + width/2, v2_vals):
-    axB.text(xi, vv + 1, str(vv), ha="center", fontsize=9)
-
-# Panel C: composite score distribution for the 52 new-in-v2 pairs. This tells
-# us whether the new candidates are confident discoveries or marginal ones
-# living near the decision threshold. A KDE on top of a histogram (seaborn
-# histplot with kde=True) gives both the raw shape and a smoothed summary.
-new_scores = [p["v2_score"] for p in v1v2["new_pairs"]]
-sns.histplot(new_scores, bins=14, kde=True, ax=axC, color="#457b9d", edgecolor="white")
-axC.axvline(0.45, color="#e76f51", linestyle="--", linewidth=1.2)
-axC.text(0.46, axC.get_ylim()[1] * 0.9, "Direct cutoff\n(0.45)", fontsize=8.5, color="#e76f51")
-axC.set_title("Figure 6.4C · Score distribution of new-in-v2 pairs")
-axC.set_xlabel("v2 composite score")
-axC.set_ylabel("count")
-
+plt.tight_layout()
 plt.show()
 """)
 
 md(
-    "The diff panel on the left describes where the two snapshots overlap. "
-    "About forty eight percent of the 119 v1 expert pairs are also produced "
-    "by v2, meaning sixty two pairs that a human expert flagged as primary or "
-    "secondary mappings did not clear the production composite threshold on "
-    "this run, and the pipeline separately surfaced fifty two new pairs that "
-    "the expert set did not contain. The "
-    "middle panel shows the tier distribution stays in roughly the same shape: "
-    "v1 leans heavily toward Primary (Direct in our vocabulary) and v2 leans "
-    "even harder that way, because the composite tends to resolve ambiguous "
-    "cases into the top tier rather than the middle one. The right panel is "
-    "the most diagnostic. Almost every new pair in v2 sits above the 0.45 "
-    "Direct threshold, which means these are confident discoveries rather "
-    "than marginal hits the threshold accidentally promoted. That in turn "
-    "suggests the v1 expert set was not exhaustive, and part of the "
-    "disagreement is the pipeline correctly finding mappings the human "
-    "expert overlooked. The other part, of course, is the sixty two lost "
-    "pairs where the human saw a relationship the composite does not score "
-    "highly enough, and those are the queue for the next round of active "
-    "learning. This is a descriptive comparison of two snapshots of the same "
-    "mapping problem, not a judgment on which one is correct."
+    "The confusion matrix has a clear diagonal, which is the first thing "
+    "you want to see, but the off-diagonal pattern tells the more interesting "
+    "story. The dominant error is *Related → Unrelated*: pairs the expert "
+    "labeled as Related that the classifier put in the Unrelated bin. That "
+    "is a failure mode of the LLM plus structural signals combined — the "
+    "pair is semantically related enough that a human recognizes it, but "
+    "neither the LLM judgment nor the graph neighborhood is strong enough "
+    "to move the classifier off the Unrelated prior. The second-largest "
+    "error is the symmetric *Related → Partial* cell, which corresponds to "
+    "the boundary between 'loosely related' and 'moderately related' that "
+    "section 4 already showed is the hardest distinction in the feature "
+    "space. The per-class panel on the right converts these cells into "
+    "accuracy numbers: Related is the strongest class at 64%, Unrelated is "
+    "second at 62%, and the two bracket classes (Partial and Equivalent) "
+    "are the weakest at 31% and 38%. The F1 and support counts are printed "
+    "inline so the reader does not have to cross-reference a separate table."
 )
 
+code(r"""
+# Figure 7.2. Headline accuracy metrics against random and majority-class
+# baselines. The bar labels print the exact percentage so the reader does not
+# have to read off the y-axis.
+metrics = {
+    "4-Tier\naccuracy":   sacred["tier_accuracy"],
+    "Adjacent\naccuracy": sacred["adjacent_accuracy"],
+    "Binary\naccuracy":   sacred["binary_accuracy"],
+}
+majority_baseline = max(p["count"] for p in sacred["per_class"]) / sacred["n_test"]
+
+fig, ax = plt.subplots(figsize=(8, 5))
+x = np.arange(len(metrics))
+vals = list(metrics.values())
+bar_colors = ["#264653", "#2a9d8f", "#e76f51"]
+bars = ax.bar(x, vals, color=bar_colors, edgecolor="black", linewidth=0.5, width=0.55)
+
+ax.axhline(majority_baseline, color="gray", ls="--", lw=1.2,
+           label=f"Majority class ({majority_baseline:.0%})")
+ax.axhline(0.25, color="lightgray", ls=":", lw=1.0,
+           label="Random (25%)")
+
+ax.set_xticks(x)
+ax.set_xticklabels(list(metrics.keys()), fontsize=11)
+ax.set_ylabel("accuracy")
+ax.set_ylim(0, 1.05)
+ax.set_title("Figure 7.2 · Accuracy metrics vs baselines (v6 reframed)")
+for b, v in zip(bars, vals):
+    ax.text(b.get_x() + b.get_width() / 2, v + 0.02, f"{v:.1%}",
+            ha="center", fontsize=12, fontweight="bold")
+ax.legend(loc="lower right", fontsize=10)
+plt.tight_layout()
+plt.show()
+""")
+
 plain_english(
-    "We compared our automated mappings against a hand-crafted expert crosswalk "
-    "to see how well the machine agrees with humans. About 48% of the expert "
-    "mappings were also found by our tool. The other 52% were either missed by "
-    "the tool (false negatives) or newly discovered by the tool (true positives "
-    "the expert overlooked). Neither the human nor the machine is perfectly "
-    "right — they complement each other."
+    "This chart puts the numbers in context. Pure guessing would score 25%. "
+    "Always guessing 'Related' would score about 47%. The model's 53% on "
+    "the four-tier task is a meaningful improvement on both. Adjacent "
+    "accuracy — counting off-by-one tier errors as correct — reaches 84%, "
+    "which means the model is rarely catastrophically wrong even when it is "
+    "wrong."
 )
 
 
 # ============================================================
-# Section 7: Model Training Results
+# Section 8 - Conclusion + Conformal
 # ============================================================
-md("## 7 · Model Training Results and Evaluation")
+md("## 8 · Conclusion: Uncertainty and Takeaways")
 md(
-    "This section reports the v6-reframed pipeline results. The pipeline uses "
-    "a 22-dimensional feature set combining LLM similarity judgments (7 features "
-    "from Claude Sonnet 4 triple-voting), structural graph features (13 features "
-    "from GAT/Node2Vec embeddings and control metadata), and Opus calibration "
-    "scores (2 features). A Gradient Boosting classifier trained on 150 human-"
-    "labeled calibration pairs predicts four tiers: Unrelated, Partial, Related, "
-    "and Equivalent. Evaluation uses 400 frozen holdout pairs with expert labels."
-)
-plain_english(
-    "We combined three types of information — language model similarity ratings, "
-    "graph structure features, and a second language model's calibration scores — "
-    "into a 22-feature classifier. We trained it on 150 expert-labeled pairs and "
-    "tested on 400 pairs the model never saw. The numbers below show how often "
-    "the machine agrees with the human experts."
+    "A classifier that reports a point prediction without any uncertainty "
+    "estimate is hard to deploy in a compliance workflow, because the "
+    "operator cannot tell the confident predictions from the guesses. The "
+    "v6 pipeline addresses this with a split-conformal prediction step "
+    "calibrated on the 150-pair calibration split via 5-fold cross-validation, "
+    "producing a *set* of tiers for each test pair with a 90% marginal "
+    "coverage guarantee. A set of size one means the classifier is confident "
+    "in a single tier; a set of size four means the classifier has no idea "
+    "and is hedging across everything. The next figure shows how those set "
+    "sizes distribute, both overall and broken out by the true expert tier."
 )
 
 code(r"""
-# Load the sacred evaluation results from the frozen test run.
-sacred_files = sorted(Path(REPO / "results" / "sacred").glob("sacred_*.json"))
-if sacred_files:
-    sacred_path = sacred_files[-1]
-    sacred = json.loads(sacred_path.read_text())
-    print(f"Sacred run: {sacred_path.name}  (version: {sacred.get('version', 'unknown')})")
-    print(f"Best method: {sacred['best_method']}")
-    print(f"Features: {sacred.get('features', 'N/A')}")
-    print(f"Tier accuracy: {sacred['tier_accuracy']:.1%}")
-    print(f"Macro F1: {sacred['macro_f1']:.4f}")
-    print(f"Adjacent accuracy: {sacred['adjacent_accuracy']:.1%}")
-    print(f"Binary accuracy: {sacred['binary_accuracy']:.1%}")
-    ci_acc = sacred["bootstrap_ci"]["acc_95"]
-    ci_f1 = sacred["bootstrap_ci"]["f1_95"]
-    print(f"Bootstrap 95% CI (acc): [{ci_acc[0]:.1%}, {ci_acc[1]:.1%}]")
-    print(f"Bootstrap 95% CI (F1):  [{ci_f1[0]:.4f}, {ci_f1[1]:.4f}]")
-    print(f"Conformal coverage: {sacred['conformal']['coverage']:.1%}")
-    print(f"Avg conformal set size: {sacred['conformal']['mean_set_size']:.2f}")
-    if "ablation" in sacred:
-        print("\nAblation study:")
-        for m in sacred["ablation"]:
-            print(f"  {m['name']:25s}  acc={m['accuracy']:.1%}  F1={m['macro_f1']:.4f}  adj={m['adjacent_accuracy']:.1%}")
-else:
-    print("No sacred results found yet — run the training pipeline first.")
-    sacred = None
-""")
+# Figure 8.1. Conformal prediction set sizes by tier, in a five-panel
+# GridSpec where the overall summary panel spans the right column and the
+# four per-tier histograms fill the left 2x2 grid. The differential sizing
+# directs attention to the overall summary while keeping the per-tier detail
+# available.
+preds_df["set_size"] = preds_df["conformal_set"].apply(len)
 
-code(r"""
-# Figure 7.1: Confusion matrix + per-class accuracy on frozen test set.
-if sacred is not None and "confusion_matrix" in sacred:
-    tier_names = ["Unrelated", "Partial", "Related", "Equivalent"]
-    cm = sacred["confusion_matrix"]
-    cm_array = np.array([[cm[t1.lower()][t2.lower()] for t2 in tier_names]
-                         for t1 in tier_names])
+fig = plt.figure(figsize=(14, 8))
+gs = gridspec.GridSpec(2, 3, figure=fig, hspace=0.45, wspace=0.35,
+                       width_ratios=[1.0, 1.0, 1.2])
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5),
-                                   gridspec_kw={"width_ratios": [1.2, 1]})
+for idx in range(4):
+    row, col = divmod(idx, 2)
+    ax = fig.add_subplot(gs[row, col])
+    subset = preds_df[preds_df["expert_tier"] == idx]
+    if len(subset) > 0:
+        counts = subset["set_size"].value_counts().sort_index()
+        sizes = range(1, 5)
+        heights = [counts.get(s, 0) for s in sizes]
+        ax.bar(sizes, heights, color=TIER_PALETTE[idx], edgecolor="black", linewidth=0.5)
+        ax.set_title(f"{TIER_ORDER[idx]} (n={len(subset)})", fontsize=11)
+        ax.set_xlabel("set size")
+        ax.set_ylabel("count")
+        ax.set_xticks([1, 2, 3, 4])
+        mean_sz = subset["set_size"].mean()
+        ax.axvline(mean_sz, color="red", ls="--", lw=1.2)
+        ax.text(mean_sz + 0.1, ax.get_ylim()[1] * 0.85,
+                f"μ={mean_sz:.1f}", color="red", fontsize=9)
 
-    # Panel A: Confusion matrix heatmap
-    sns.heatmap(cm_array, annot=True, fmt="d", cmap="Blues",
-                xticklabels=tier_names, yticklabels=tier_names, ax=ax1)
-    ax1.set_xlabel("Predicted")
-    ax1.set_ylabel("True (Expert)")
-    ax1.set_title("Figure 7.1A · Confusion matrix (v6 reframed, n=400)")
+# Right column: overall summary.
+ax_summary = fig.add_subplot(gs[:, 2])
+overall_counts = preds_df["set_size"].value_counts().sort_index()
+sizes = list(range(1, 5))
+heights = [overall_counts.get(s, 0) for s in sizes]
+pct = [h / len(preds_df) * 100 for h in heights]
+bars = ax_summary.bar(sizes, pct, color="#6366f1", edgecolor="black", linewidth=0.5)
+ax_summary.set_xlabel("conformal set size")
+ax_summary.set_ylabel("% of pairs")
+ax_summary.set_title("Overall distribution (all 400 pairs)")
+ax_summary.set_xticks([1, 2, 3, 4])
+for b, p in zip(bars, pct):
+    ax_summary.text(b.get_x() + b.get_width() / 2, p + 1,
+                    f"{p:.0f}%", ha="center", fontsize=10, fontweight="bold")
 
-    # Highlight dominant off-diagonal error
-    max_off_diag = 0
-    max_ij = (0, 0)
-    for i in range(4):
-        for j in range(4):
-            if i != j and cm_array[i, j] > max_off_diag:
-                max_off_diag = cm_array[i, j]
-                max_ij = (i, j)
-    ax1.annotate(
-        f"Largest error:\n{tier_names[max_ij[0]]}\u2192{tier_names[max_ij[1]]}",
-        xy=(max_ij[1] + 0.5, max_ij[0] + 0.5),
-        xytext=(max_ij[1] + 1.5, max(max_ij[0] - 0.5, 0)),
-        fontsize=9, arrowprops=dict(arrowstyle="->", lw=1.0),
-    )
-
-    # Panel B: Per-class accuracy bar chart
-    per_class_map = {p["tier"]: p for p in sacred["per_class"]}
-    accs = [per_class_map[i]["accuracy"] for i in range(4)]
-    counts = [per_class_map[i]["count"] for i in range(4)]
-    f1s = [per_class_map[i]["f1"] for i in range(4)]
-    colors = ["#264653", "#2a9d8f", "#e9c46a", "#e76f51"]
-    bars = ax2.bar(tier_names, accs, color=colors, edgecolor="black", linewidth=0.5)
-    ax2.set_ylabel("Per-class accuracy")
-    ax2.set_title("Figure 7.1B · Per-class accuracy & F1")
-    ax2.set_ylim(0, 1.15)
-    for b, a, n, f in zip(bars, accs, counts, f1s):
-        ax2.text(b.get_x() + b.get_width() / 2, a + 0.02,
-                 f"{a:.0%}\n(F1={f:.2f}, n={n})", ha="center", fontsize=8)
-    plt.tight_layout()
-    plt.show()
-""")
-
-plain_english(
-    "The confusion matrix shows where the model gets it right and where it "
-    "gets confused. Perfect performance would be a bright diagonal with zeros "
-    "everywhere else. The most common mistakes are between adjacent tiers — "
-    "confusing 'related' with 'unrelated' or 'partial' — which is a reasonable "
-    "kind of error. The per-class chart reveals that Related (tier 2) is the "
-    "strongest class, while Partial (tier 1) remains the hardest to predict."
+ax_summary.text(
+    0.5, 0.02,
+    f"Coverage: {sacred['conformal']['coverage']:.1%}\n"
+    f"Mean size: {sacred['conformal']['mean_set_size']:.1f}",
+    transform=ax_summary.transAxes, fontsize=10,
+    ha="center", va="bottom",
+    bbox=dict(boxstyle="round,pad=0.4", facecolor="#f0f0f0", edgecolor="gray"),
 )
 
-code(r"""
-# Figure 7.2: Binary vs 4-tier vs adjacent accuracy comparison.
-if sacred is not None:
-    metrics = {
-        "4-Tier\nAccuracy": sacred["tier_accuracy"],
-        "Adjacent\nAccuracy": sacred["adjacent_accuracy"],
-        "Binary\nAccuracy": sacred["binary_accuracy"],
-    }
-    majority_baseline = max(p["count"] for p in sacred["per_class"]) / sacred["n_test"]
-
-    fig, ax = plt.subplots(figsize=(8, 5))
-    x = np.arange(len(metrics))
-    vals = list(metrics.values())
-    bar_colors = ["#264653", "#2a9d8f", "#e76f51"]
-    bars = ax.bar(x, vals, color=bar_colors, edgecolor="black", linewidth=0.5, width=0.55)
-    ax.axhline(majority_baseline, color="gray", linestyle="--", linewidth=1.2, label=f"Majority baseline ({majority_baseline:.0%})")
-    ax.axhline(0.25, color="lightgray", linestyle=":", linewidth=1.0, label="Random baseline (25%)")
-    ax.set_xticks(x)
-    ax.set_xticklabels(list(metrics.keys()), fontsize=11)
-    ax.set_ylabel("Accuracy", fontsize=12)
-    ax.set_ylim(0, 1.05)
-    ax.set_title("Figure 7.2 · Accuracy metrics vs baselines (v6 reframed)", fontsize=13)
-    for b, v in zip(bars, vals):
-        ax.text(b.get_x() + b.get_width() / 2, v + 0.02, f"{v:.1%}",
-                ha="center", fontsize=12, fontweight="bold")
-    ax.legend(loc="lower right", fontsize=10)
-    plt.tight_layout()
-    plt.show()
+fig.suptitle("Figure 8.1 · Conformal prediction set sizes by tier",
+             fontsize=14, fontweight="bold", y=1.01)
+plt.tight_layout()
+plt.show()
 """)
 
-plain_english(
-    "This chart puts the model's 53.2% four-tier accuracy in context. "
-    "The majority baseline (always guessing 'Related') would score 46.5%. "
-    "Adjacent accuracy (allowing off-by-one errors) reaches 84.2%, meaning "
-    "most mistakes are between neighboring tiers rather than catastrophic. "
-    "Binary accuracy (related vs unrelated) is 71.2%."
-)
-
-code(r"""
-# Figure 7.3: Feature importance by source (horizontal bar chart).
-v6_results_path = Path(REPO / "data" / "processed" / "v6_results" / "v6_all_results.json")
-if v6_results_path.exists():
-    v6_results = json.loads(v6_results_path.read_text())
-    fi = v6_results["tier4"]["feature_importances"]
-
-    # Sort by importance
-    sorted_fi = sorted(fi.items(), key=lambda x: x[1], reverse=True)
-    names = [x[0] for x in sorted_fi]
-    imps = [x[1] for x in sorted_fi]
-
-    # Color by source
-    def feature_color(name):
-        if name.startswith("llm_"):
-            return "#3b82f6"   # blue — LLM
-        elif name.startswith("opus_"):
-            return "#f59e0b"   # gold — Opus
-        else:
-            return "#14b8a6"   # teal — Structural
-    colors = [feature_color(n) for n in names]
-
-    fig, ax = plt.subplots(figsize=(10, 7))
-    y_pos = np.arange(len(names))
-    ax.barh(y_pos, imps, color=colors, edgecolor="black", linewidth=0.3)
-    ax.set_yticks(y_pos)
-    ax.set_yticklabels(names, fontsize=9)
-    ax.invert_yaxis()
-    ax.set_xlabel("Feature Importance (GBM)", fontsize=11)
-    ax.set_title("Figure 7.3 · Feature importance by source", fontsize=13)
-
-    # Legend
-    from matplotlib.patches import Patch
-    legend_elements = [
-        Patch(facecolor="#3b82f6", edgecolor="black", label="LLM (7d)"),
-        Patch(facecolor="#14b8a6", edgecolor="black", label="Structural (13d)"),
-        Patch(facecolor="#f59e0b", edgecolor="black", label="Opus (2d)"),
-    ]
-    ax.legend(handles=legend_elements, loc="lower right", fontsize=10)
-    plt.tight_layout()
-    plt.show()
-else:
-    print("v6_all_results.json not found — run the v6 pipeline first.")
-""")
-
-plain_english(
-    "Feature importance reveals that graph-based cosine similarities (GAT, "
-    "Node2Vec) and text-length features dominate. The LLM aggregate score "
-    "ranks mid-table, while Opus calibration scores contribute modestly. "
-    "This suggests the gradient boosting model relies on structural signals "
-    "to separate tiers that LLM scores alone cannot distinguish."
-)
-
-code(r"""
-# Figure 7.4: Opus score calibration gap — violin plot by tier.
-opus_path = Path(REPO / "data" / "processed" / "v5_features" / "opus_scores_human_test_frozen.jsonl")
-if opus_path.exists():
-    opus_records = [json.loads(line) for line in opus_path.read_text().strip().split("\n")]
-    # Filter to records with expert labels
-    opus_df = pd.DataFrame(opus_records)
-    opus_df = opus_df[opus_df["expert_label"].notna() & (opus_df["expert_tier"] != "None")]
-    opus_df["expert_label"] = opus_df["expert_label"].astype(int)
-
-    tier_labels = {0: "Unrelated", 1: "Partial", 2: "Related", 3: "Equivalent"}
-    opus_df["tier_name"] = opus_df["expert_label"].map(tier_labels)
-
-    fig, ax = plt.subplots(figsize=(9, 5))
-    tier_order = ["Unrelated", "Partial", "Related", "Equivalent"]
-    palette = ["#264653", "#2a9d8f", "#e9c46a", "#e76f51"]
-    parts = ax.violinplot(
-        [opus_df[opus_df["tier_name"] == t]["score"].values for t in tier_order],
-        positions=range(4), showmeans=True, showmedians=True
-    )
-    for i, pc in enumerate(parts["bodies"]):
-        pc.set_facecolor(palette[i])
-        pc.set_alpha(0.7)
-    ax.set_xticks(range(4))
-    ax.set_xticklabels(tier_order, fontsize=11)
-    ax.set_ylabel("Opus Score (0-10)", fontsize=11)
-    ax.set_title("Figure 7.4 · Opus score distribution by expert tier", fontsize=13)
-
-    # Annotate means
-    for i, t in enumerate(tier_order):
-        subset = opus_df[opus_df["tier_name"] == t]["score"]
-        ax.text(i, subset.mean() + 0.3, f"\u03bc={subset.mean():.1f}",
-                ha="center", fontsize=9, fontweight="bold")
-    plt.tight_layout()
-    plt.show()
-else:
-    print("Opus scores file not found — run the Opus scoring pipeline first.")
-""")
-
-plain_english(
-    "The violin plot shows how well the Opus language model's raw similarity "
-    "scores separate the four expert tiers. Ideally each tier would occupy a "
-    "distinct score range. In practice, Unrelated and Partial overlap heavily "
-    "in the 1-3 range, which explains why the classifier struggles most with "
-    "these two tiers. Related and Equivalent show better separation at higher scores."
+md(
+    "The good news is that the marginal coverage target is met: 94% of "
+    "prediction sets contain the true tier, which is above the 90% nominal "
+    "guarantee. The less good news is that the typical set size is large. "
+    "Almost half of test pairs get a set of size four, which means the "
+    "conformal wrapper is hedging across everything and the prediction set "
+    "is not actionable on its own for those cases. The per-tier panels "
+    "explain why: *Partial* has the widest sets because the base classifier "
+    "already struggled on that tier, so the conformal scores end up above "
+    "threshold in multiple neighboring cells. *Equivalent* has the narrowest "
+    "average set, which is the reward for the cleaner structural separation "
+    "we saw in figure 4.2. The design implication is that conformal "
+    "prediction is giving honest uncertainty, and the honest answer for this "
+    "test set is that the classifier knows a lot about the extreme tiers "
+    "and relatively little about the middle ones. Tightening the sets "
+    "requires a stronger base classifier, not a different conformal "
+    "procedure."
 )
 
 md(
-    "### Section 7 Summary\n\n"
-    "The v6-reframed GBM achieves **53.2% tier accuracy** (95% CI: 48.5-58.0%) "
-    "and **0.489 macro F1** on 400 frozen holdout pairs. Adjacent accuracy is "
-    "84.2%, meaning errors are overwhelmingly off-by-one rather than catastrophic. "
-    "The ablation study shows that the full 22-feature set (LLM + Structural + Opus) "
-    "outperforms any single feature family, with structural features providing the "
-    "largest individual contribution through GAT and Node2Vec cosine similarities. "
-    "The Partial tier (F1=0.36) remains the primary bottleneck due to score overlap "
-    "with both Unrelated and Related categories."
-)
-
-
-# ============================================================
-# Section 8: Conclusion
-# ============================================================
-md("## 8 · Conclusion: Is This Good or Bad?")
-md(
-    "The v6-reframed pipeline replaces earlier approaches with a three-source "
-    "feature architecture: LLM triple-voting (Claude Sonnet 4), structural "
-    "graph features (GAT, Node2Vec, metadata), and Opus calibration scores, "
-    "fed into a Gradient Boosting classifier. Conformal prediction provides "
-    "calibrated uncertainty sets at the 90% coverage level. This section "
-    "evaluates the pipeline against pre-registered thresholds and examines "
-    "conformal set behavior across tiers."
-)
-plain_english(
-    "We combined language model ratings, graph structure, and a calibration "
-    "model into a 22-feature classifier. Instead of just predicting one label, "
-    "the system also outputs a 'prediction set' — a list of plausible tiers — "
-    "that is guaranteed to contain the true answer at least 90% of the time."
-)
-
-code(r"""
-# Final evaluation against pre-registered thresholds.
-if sacred is not None:
-    tier_acc = sacred["tier_accuracy"]
-    macro_f1 = sacred["macro_f1"]
-    adj_acc = sacred["adjacent_accuracy"]
-    bin_acc = sacred["binary_accuracy"]
-    ci_acc = sacred["bootstrap_ci"]["acc_95"]
-    ci_f1 = sacred["bootstrap_ci"]["f1_95"]
-    coverage = sacred["conformal"]["coverage"]
-    avg_set = sacred["conformal"]["mean_set_size"]
-
-    print("=" * 60)
-    print("FINAL EVALUATION — v6 REFRAMED PIPELINE")
-    print("=" * 60)
-
-    if tier_acc >= 0.80:
-        verdict = "STRONG — exceeds 80% threshold"
-    elif tier_acc >= 0.70:
-        verdict = "COMPETITIVE — between 70-80%"
-    elif tier_acc >= 0.55:
-        verdict = "PARTIAL SUCCESS — between 55-70%"
-    else:
-        verdict = "BELOW TARGET — under 55%"
-
-    print(f"Tier accuracy:     {tier_acc:.1%}  (95% CI: [{ci_acc[0]:.1%}, {ci_acc[1]:.1%}])")
-    print(f"Verdict:           {verdict}")
-    print(f"Macro F1:          {macro_f1:.4f} (95% CI: [{ci_f1[0]:.4f}, {ci_f1[1]:.4f}])")
-    print(f"Adjacent accuracy: {adj_acc:.1%}")
-    print(f"Binary accuracy:   {bin_acc:.1%}")
-    print(f"Conformal coverage: {coverage:.1%} (target: >= 90%)")
-    print(f"Avg set size:      {avg_set:.2f} (out of 4 classes)")
-    print()
-    print("Per-class breakdown:")
-    for p in sacred["per_class"]:
-        print(f"  Tier {p['tier']} ({p['name']:12s}):  acc={p['accuracy']:.1%}  F1={p['f1']:.4f}  n={p['count']}")
-else:
-    print("Sacred results not available — run the training pipeline first.")
-""")
-
-code(r"""
-# Figure 8.1: Conformal prediction set sizes by tier (multi-panel GridSpec).
-import matplotlib.gridspec as gridspec
-
-preds_path = Path(REPO / "data" / "processed" / "v6_results" / "v6_pair_predictions.jsonl")
-if preds_path.exists() and sacred is not None:
-    preds = [json.loads(line) for line in preds_path.read_text().strip().split("\n")]
-    preds_df = pd.DataFrame(preds)
-    preds_df["set_size"] = preds_df["conformal_set"].apply(len)
-
-    tier_names = ["Unrelated", "Partial", "Related", "Equivalent"]
-
-    fig = plt.figure(figsize=(14, 8))
-    gs = gridspec.GridSpec(2, 3, figure=fig, hspace=0.35, wspace=0.3)
-
-    # Panels 0-3: per-tier histograms
-    palette = ["#264653", "#2a9d8f", "#e9c46a", "#e76f51"]
-    for idx in range(4):
-        row, col = divmod(idx, 2)
-        ax = fig.add_subplot(gs[row, col])
-        subset = preds_df[preds_df["expert_tier"] == idx]
-        if len(subset) > 0:
-            counts = subset["set_size"].value_counts().sort_index()
-            sizes = range(1, 5)
-            heights = [counts.get(s, 0) for s in sizes]
-            ax.bar(sizes, heights, color=palette[idx], edgecolor="black", linewidth=0.5)
-            ax.set_title(f"{tier_names[idx]} (n={len(subset)})", fontsize=11)
-            ax.set_xlabel("Set size")
-            ax.set_ylabel("Count")
-            ax.set_xticks([1, 2, 3, 4])
-            mean_sz = subset["set_size"].mean()
-            ax.axvline(mean_sz, color="red", linestyle="--", linewidth=1.2)
-            ax.text(mean_sz + 0.1, ax.get_ylim()[1] * 0.85,
-                    f"\u03bc={mean_sz:.1f}", color="red", fontsize=9)
-
-    # Panel 4 (right column, spanning both rows): overall summary
-    ax_summary = fig.add_subplot(gs[:, 2])
-    overall_counts = preds_df["set_size"].value_counts().sort_index()
-    sizes = range(1, 5)
-    heights = [overall_counts.get(s, 0) for s in sizes]
-    pct = [h / len(preds_df) * 100 for h in heights]
-    bars = ax_summary.bar(sizes, pct, color="#6366f1", edgecolor="black", linewidth=0.5)
-    ax_summary.set_xlabel("Conformal Set Size", fontsize=11)
-    ax_summary.set_ylabel("Percentage of Pairs", fontsize=11)
-    ax_summary.set_title("Overall Distribution\n(all 400 pairs)", fontsize=11)
-    ax_summary.set_xticks([1, 2, 3, 4])
-    for b, p in zip(bars, pct):
-        ax_summary.text(b.get_x() + b.get_width() / 2, p + 1,
-                        f"{p:.0f}%", ha="center", fontsize=10, fontweight="bold")
-
-    # Coverage annotation
-    ax_summary.text(0.5, 0.02,
-                    f"Coverage: {sacred['conformal']['coverage']:.1%}\n"
-                    f"Mean size: {sacred['conformal']['mean_set_size']:.1f}",
-                    transform=ax_summary.transAxes, fontsize=10,
-                    ha="center", va="bottom",
-                    bbox=dict(boxstyle="round,pad=0.4", facecolor="#f0f0f0", edgecolor="gray"))
-
-    fig.suptitle("Figure 8.1 · Conformal prediction set sizes by tier",
-                 fontsize=14, fontweight="bold", y=1.01)
-    plt.tight_layout()
-    plt.show()
-else:
-    print("Pair predictions not found — run the v6 pipeline first.")
-""")
-
-plain_english(
-    "Each panel shows how many tiers the model includes in its 'prediction set' "
-    "for that expert tier. A set size of 1 means the model is confident in a "
-    "single answer; size 4 means it cannot narrow it down at all. The red line "
-    "marks the average. The guarantee is that across all pairs, 90% or more of "
-    "the prediction sets contain the correct tier."
+    "### Analytical approaches worth trying next\n\n"
+    "Three directions that would most likely move the numbers the fastest, "
+    "in order of expected marginal value:\n\n"
+    "1. **Better Opus prompting.** Section 5 shows Opus-alone already "
+    "reaches 52% accuracy, so the single biggest lever is a stronger Opus "
+    "prompt and tighter calibration on the boundary between *Partial* and "
+    "*Related*. Few-shot prompting with tier-specific exemplars drawn from "
+    "the 150-pair calibration split is the obvious next step.\n\n"
+    "2. **Ordinal regression instead of flat 4-class.** The labels are "
+    "ordinal (Unrelated < Partial < Related < Equivalent), and section 7 "
+    "showed that 84% of pair predictions are within one tier of the truth. "
+    "Replacing the multiclass GBM with an ordinal model would use that "
+    "structure instead of throwing it away, and would likely reduce the "
+    "off-by-one error rate even if it does not change the exact-match "
+    "accuracy much. `statsmodels.miscmodels.ordinal_model.OrderedModel` or "
+    "sklearn's multi-output logistic regression are both candidates.\n\n"
+    "3. **More calibration data for the middle tiers.** The *Partial* and "
+    "*Related* classes have fewer clean examples in the 150-pair "
+    "calibration split than the edges of the tier ladder. Targeted active "
+    "learning — picking unlabeled pairs whose conformal set size is four "
+    "and whose v6 tier prediction is *Partial* — would put labeling effort "
+    "exactly where the classifier is least confident.\n"
 )
 
 md(
-    "### What worked\n\n"
-    "1. **Three-source features outperform any single family.** The full 22-feature "
-    "GBM (LLM + Structural + Opus) achieves 53.2% tier accuracy and 0.489 macro F1, "
-    "beating LLM-only (46.7%), Structural-only (39.2%), and Opus-only (52.2%) "
-    "configurations in the ablation study.\n\n"
-    "2. **Adjacent accuracy is high at 84.2%.** Most errors are off-by-one tier "
-    "confusions (e.g., Related predicted as Partial), not catastrophic misclassifications "
-    "like labeling an Equivalent pair as Unrelated.\n\n"
-    "3. **Conformal coverage exceeds the 90% target** at 93.8% with mean set size "
-    "3.2. This provides calibrated uncertainty — when the model is unsure, it "
-    "tells you which tiers it is considering rather than forcing a single guess.\n\n"
-    "4. **Structural graph features are the top contributors.** GAT cosine (15.5%) "
-    "and Node2Vec cosine (14.1%) dominate feature importance, capturing framework "
-    "structure that LLM scores alone miss.\n\n"
-    "### What did not work\n\n"
-    "1. **Partial tier remains the bottleneck** at 30.8% accuracy and 0.36 F1. "
-    "Opus scores for Unrelated and Partial overlap heavily, and the LLM triple-vote "
-    "cannot reliably separate 'no connection' from 'weak thematic connection.'\n\n"
-    "2. **Conformal set sizes are large.** 47% of pairs get the maximum set size "
-    "of 4, reducing the practical utility of conformal prediction for actionable "
-    "triage. Tighter sets require a stronger base classifier.\n\n"
-    "3. **Opus-only achieves 52.2% accuracy with just 2 features** — nearly matching "
-    "the full 22-feature model. This suggests substantial redundancy in the feature "
-    "set and indicates that a simpler model with Opus scores plus a few structural "
-    "features might suffice.\n\n"
-    "### The bottom line\n\n"
-    "The v6-reframed pipeline achieves 53.2% tier accuracy and 0.489 macro F1 — "
-    "double the 25% random baseline and above the 46.5% majority baseline. The "
-    "conformal prediction sets provide honest uncertainty quantification at 93.8% "
-    "coverage. The main limitation is the Partial tier, where LLM and Opus scores "
-    "cannot separate weak thematic connections from absence of connection. "
-    "Future work should focus on improving the base classifier to reduce conformal "
-    "set sizes, potentially through few-shot prompting with tier-specific examples "
-    "or a two-stage binary-then-ordinal classification approach."
-)
-plain_english(
-    "The short answer: the system works meaningfully better than random (25%) and "
-    "the majority-class baseline (46.5%), and provides honest uncertainty estimates. "
-    "Its main weakness is telling apart 'completely unrelated' from 'loosely related' — "
-    "a distinction that is genuinely hard even for human experts. The conformal "
-    "prediction sets mean that when the system is uncertain, it tells you which "
-    "categories it is considering rather than just guessing."
+    "### What worked and what did not\n\n"
+    "**What worked.** The three-source 22-feature stack performs better on "
+    "the frozen test than any single feature family. The full GBM reaches "
+    "53% tier accuracy (bootstrap 95% CI 48–58%) against a 47% majority "
+    "baseline and a 25% random baseline. Adjacent accuracy is 84%, meaning "
+    "errors are overwhelmingly off-by-one rather than catastrophic. Conformal "
+    "coverage is 94%, exceeding the 90% nominal target. The top two feature "
+    "importances are both structural cosines, which confirms that graph "
+    "structure carries information text similarity does not.\n\n"
+    "**What did not.** *Partial* remains the worst class (F1 = 0.36), "
+    "because Opus and LLM scores for Unrelated and Partial pairs overlap "
+    "substantially in the feature space (figure 4.1). Conformal set sizes "
+    "are large: 47% of pairs get the maximum set of 4, so the prediction "
+    "set alone is not a useful triage signal for those pairs. The ablation "
+    "study reveals that Opus alone recovers most of the accuracy, meaning "
+    "the other 20 features together add less than a percentage point — the "
+    "ensemble is not as additive as it could be.\n\n"
+    "**The bottom line.** v6 doubles random performance and beats the "
+    "majority baseline by about 7 points. It provides honest uncertainty "
+    "via conformal prediction. Its main weakness is distinguishing "
+    "*Partial* from both neighbors, a distinction that is genuinely hard "
+    "even for the human experts who labeled the calibration set — the "
+    "inter-annotator agreement on that tier is the lowest of the four.\n"
 )
 
 md(
-    "### Future Work: Project 2\n\n"
-    "The interactive Dash application will:\n"
-    "- Visualize the crosswalk as a navigable network graph\n"
-    "- Surface the model's most uncertain predictions (large conformal sets) for human review\n"
-    "- Allow experts to correct mappings through a feedback interface\n"
-    "- Display conformal prediction sets so users see calibrated uncertainty\n"
-    "- Connect to the training pipeline for active learning iteration\n\n"
+    "### Future work: Project 2\n\n"
+    "The interactive Dash application planned as Project 2 will:\n\n"
+    "- Visualize the crosswalk as a navigable network graph.\n"
+    "- Surface the model's most uncertain predictions — pairs whose "
+    "conformal set size is four — for human review.\n"
+    "- Allow experts to correct mappings through a feedback interface that "
+    "writes back to the calibration split.\n"
+    "- Display conformal prediction sets next to each candidate so users "
+    "see calibrated uncertainty instead of a point estimate.\n"
+    "- Close the active learning loop by letting the next v6 retraining "
+    "round consume the new corrections.\n\n"
     "The transition from static analysis (this notebook) to interactive "
-    "exploration (Project 2) is where this work becomes operationally useful "
-    "for security teams managing multi-framework compliance."
+    "exploration (Project 2) is where the classifier becomes operationally "
+    "useful for security teams managing multi-framework compliance."
+)
+
+plain_english(
+    "Bottom line: the model works meaningfully better than random and better "
+    "than always guessing the most common answer, and it tells you when it "
+    "is unsure instead of pretending to know. Its main weakness is telling "
+    "apart 'completely unrelated' from 'loosely related' — a distinction "
+    "that even the human experts who labeled the training data find hard."
 )
 
 

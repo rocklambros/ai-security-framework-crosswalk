@@ -15,3 +15,4 @@ prompts/
 data/frameworks/eu-gpai-code-of-practice/*.pdf
 data/labels/llm_sme/v1/cache/
 data/cost_ledger.jsonl
+.superpowers/

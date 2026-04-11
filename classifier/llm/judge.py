@@ -10,13 +10,13 @@ import anthropic
 
 from classifier.llm.cost_tracker import CostTracker
 
-_DEFAULT_MODEL = "claude-3-5-sonnet-20241022"
+_DEFAULT_MODEL = "claude-sonnet-4-20250514"
 _TEMP_FIRST = 0.0
 _TEMP_RETRY = 0.3
 
-# Regex fallback: look for "tier": <digit>
+# Regex fallbacks
+_SCORE_RE = re.compile(r'"score"\s*:\s*(\d+(?:\.\d+)?)', re.IGNORECASE)
 _TIER_RE = re.compile(r'"tier"\s*:\s*([0-3])', re.IGNORECASE)
-# Strip markdown code fences
 _FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)```", re.IGNORECASE)
 
 
@@ -24,7 +24,8 @@ _FENCE_RE = re.compile(r"```(?:json)?\s*([\s\S]*?)```", re.IGNORECASE)
 class JudgeResult:
     """Result from a single LLM judge call."""
 
-    tier: int
+    score: float  # raw 0-10 score from LLM
+    tier: int     # mapped tier 0-3
     reasoning: str
     model: str
     input_tokens: int
@@ -32,13 +33,30 @@ class JudgeResult:
     raw_response: str
 
 
-def _parse_response(raw: str) -> tuple[int, str]:
-    """Extract (tier, reasoning) from the model's raw text output.
+def score_to_tier(score: float) -> int:
+    """Map a 0-10 similarity score to a tier (0-3).
 
-    Handles:
-      - Plain JSON
-      - JSON wrapped in markdown fences
-      - Fallback regex extraction of tier
+    Default boundaries (will be calibrated post-hoc):
+      0-2.5  → Tier 0 (Unrelated)
+      2.5-5  → Tier 1 (Partial)
+      5-7.5  → Tier 2 (Related)
+      7.5-10 → Tier 3 (Equivalent)
+    """
+    if score < 2.5:
+        return 0
+    elif score < 5.0:
+        return 1
+    elif score < 7.5:
+        return 2
+    else:
+        return 3
+
+
+def _parse_response(raw: str) -> tuple[float, str]:
+    """Extract (score, reasoning) from the model's raw text output.
+
+    The model outputs {"reasoning": "...", "score": N} where N is 0-10.
+    Also handles legacy {"reasoning": "...", "tier": N} format.
     """
     text = raw.strip()
 
@@ -50,19 +68,38 @@ def _parse_response(raw: str) -> tuple[int, str]:
     # Attempt full JSON parse
     try:
         data = json.loads(text)
-        tier = int(data["tier"])
-        if tier not in (0, 1, 2, 3):
-            raise ValueError(f"Tier out of range: {tier}")
-        return tier, str(data.get("reasoning", ""))
+        reasoning = str(data.get("reasoning", ""))
+
+        # Prefer "score" field (0-10 scale)
+        if "score" in data:
+            score = float(data["score"])
+            score = max(0.0, min(10.0, score))  # clamp
+            return score, reasoning
+
+        # Fallback: "tier" field (0-3 scale) → convert to score
+        if "tier" in data:
+            tier = int(data["tier"])
+            if tier in (0, 1, 2, 3):
+                score_map = {0: 1.0, 1: 4.0, 2: 7.0, 3: 9.0}
+                return score_map[tier], reasoning
+
     except (json.JSONDecodeError, KeyError, ValueError):
         pass
 
-    # Fallback: regex for tier value
+    # Regex fallback: score
+    m = _SCORE_RE.search(raw)
+    if m:
+        score = float(m.group(1))
+        return max(0.0, min(10.0, score)), ""
+
+    # Regex fallback: tier
     m = _TIER_RE.search(raw)
     if m:
-        return int(m.group(1)), ""
+        tier = int(m.group(1))
+        score_map = {0: 1.0, 1: 4.0, 2: 7.0, 3: 9.0}
+        return score_map.get(tier, 1.0), ""
 
-    raise ValueError(f"Could not parse tier from response: {raw[:200]!r}")
+    raise ValueError(f"Could not parse score from response: {raw[:200]!r}")
 
 
 async def judge_pair(
@@ -71,18 +108,17 @@ async def judge_pair(
     user_prompt: str,
     model: str = _DEFAULT_MODEL,
     cost_tracker: CostTracker | None = None,
-    max_retries: int = 3,
+    max_retries: int = 5,
 ) -> JudgeResult:
-    """Call the Anthropic API to classify a single pair, with retry.
+    """Call the Anthropic API to score a single pair, with retry.
 
-    Temperature is 0.0 on the first attempt and 0.3 on retries to
-    encourage different output if parsing fails or an error occurs.
+    Returns a JudgeResult with both a raw score (0-10) and mapped tier (0-3).
     """
     last_exc: Exception | None = None
 
     for attempt in range(max_retries):
         temperature = _TEMP_FIRST if attempt == 0 else _TEMP_RETRY
-        wait = 2 ** attempt  # exponential backoff: 1s, 2s, 4s
+        wait = 2 ** attempt
 
         try:
             response = await client.messages.create(
@@ -94,7 +130,7 @@ async def judge_pair(
             )
 
             raw = response.content[0].text
-            tier, reasoning = _parse_response(raw)
+            score, reasoning = _parse_response(raw)
 
             in_tok = response.usage.input_tokens
             out_tok = response.usage.output_tokens
@@ -103,7 +139,8 @@ async def judge_pair(
                 cost_tracker.add(model, in_tok, out_tok)
 
             return JudgeResult(
-                tier=tier,
+                score=score,
+                tier=score_to_tier(score),
                 reasoning=reasoning,
                 model=model,
                 input_tokens=in_tok,
@@ -113,7 +150,7 @@ async def judge_pair(
 
         except anthropic.RateLimitError as exc:
             last_exc = exc
-            await asyncio.sleep(wait * 5)  # longer backoff for rate limits
+            await asyncio.sleep(wait * 20)  # aggressive backoff for rate limits
         except anthropic.APIStatusError as exc:
             last_exc = exc
             if exc.status_code in (500, 529):
@@ -121,7 +158,6 @@ async def judge_pair(
             else:
                 raise
         except (ValueError, IndexError) as exc:
-            # Parse failure — retry with higher temperature
             last_exc = exc
             await asyncio.sleep(wait)
 

@@ -31,6 +31,7 @@ async def run_validation_gate(
     min_macro_f1: float = 0.45,
     n_votes: int = 3,
     use_opus_tiebreaker: bool = True,
+    model: str | None = None,
     wandb_run: Any = None,
 ) -> dict[str, Any]:
     """Run Phase 0 validation gate on human_cal_val pairs.
@@ -64,13 +65,16 @@ async def run_validation_gate(
     # 3. Score val pairs with Sonnet
     print(f"\n[3/5] Scoring {len(val_records)} val pairs × {n_votes} votes …")
     cost_tracker = CostTracker()
-    scored: list[ScoredPair] = await score_pairs_bulk(
-        pairs=val_records,
-        few_shot_examples=few_shot_examples,
-        n_votes=n_votes,
-        max_concurrent=20,
-        cost_tracker=cost_tracker,
-    )
+    bulk_kwargs: dict[str, Any] = {
+        "pairs": val_records,
+        "few_shot_examples": few_shot_examples,
+        "n_votes": n_votes,
+        "max_concurrent": 20,
+        "cost_tracker": cost_tracker,
+    }
+    if model is not None:
+        bulk_kwargs["model"] = model
+    scored: list[ScoredPair] = await score_pairs_bulk(**bulk_kwargs)
 
     # 4. Opus tiebreaker on non-unanimous pairs
     n_unanimous_before = sum(1 for sp in scored if sp.is_unanimous)

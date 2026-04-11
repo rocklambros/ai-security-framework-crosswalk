@@ -10,11 +10,11 @@ from typing import Any
 import anthropic
 
 from classifier.llm.cost_tracker import CostTracker
-from classifier.llm.judge import JudgeResult, judge_pair
+from classifier.llm.judge import JudgeResult, judge_pair, score_to_tier
 from classifier.llm.prompts import build_system_prompt, build_user_prompt
 
-_DEFAULT_SONNET = "claude-3-5-sonnet-20241022"
-_DEFAULT_OPUS = "claude-3-opus-20240229"
+_DEFAULT_SONNET = "claude-sonnet-4-20250514"
+_DEFAULT_OPUS = "claude-opus-4-20250514"
 
 
 @dataclass
@@ -22,45 +22,40 @@ class ScoredPair:
     """Scoring result for a single crosswalk pair."""
 
     pair: dict[str, Any]
-    sonnet_votes: list[int] = field(default_factory=list)
-    opus_vote: int | None = None
-    final_tier: int = -1
+    sonnet_scores: list[float] = field(default_factory=list)  # raw 0-10 scores
+    sonnet_tiers: list[int] = field(default_factory=list)     # mapped tiers 0-3
+    opus_score: float | None = None
+    opus_tier: int | None = None
+    final_score: float = -1.0      # mean of all scores
+    final_tier: int = -1           # from final_score
     confidence: float = 0.0
     is_unanimous: bool = False
     reasonings: list[str] = field(default_factory=list)
 
     def compute_consensus(self) -> None:
-        """Compute final_tier, confidence, and is_unanimous from votes.
+        """Compute final_score/tier from raw scores.
 
-        Uses majority vote among sonnet_votes. If a tie exists, opus_vote
-        breaks it. If opus_vote is unavailable on a tie, picks the lower tier.
+        Uses mean of all scores (Sonnet + Opus if available), maps to tier.
         """
-        if not self.sonnet_votes:
-            self.final_tier = -1
-            self.confidence = 0.0
-            self.is_unanimous = False
+        if not self.sonnet_scores:
             return
 
-        n = len(self.sonnet_votes)
-        counts: dict[int, int] = {}
-        for v in self.sonnet_votes:
-            counts[v] = counts.get(v, 0) + 1
+        all_scores = list(self.sonnet_scores)
+        if self.opus_score is not None:
+            all_scores.append(self.opus_score)
 
-        max_count = max(counts.values())
-        self.is_unanimous = max_count == n
-        self.confidence = max_count / n
+        self.final_score = sum(all_scores) / len(all_scores)
+        self.final_tier = score_to_tier(self.final_score)
 
-        # Tiers with the highest vote count
-        top_tiers = sorted(t for t, c in counts.items() if c == max_count)
-
-        if len(top_tiers) == 1:
-            self.final_tier = top_tiers[0]
-        elif self.opus_vote is not None:
-            # Opus breaks the tie
-            self.final_tier = self.opus_vote
+        # Unanimity: all sonnet tiers agree
+        self.is_unanimous = len(set(self.sonnet_tiers)) == 1
+        # Confidence: 1 - normalized std dev of scores
+        if len(all_scores) > 1:
+            import statistics
+            std = statistics.stdev(all_scores)
+            self.confidence = max(0.0, 1.0 - std / 5.0)  # normalize by half-range
         else:
-            # Default: lower (more conservative) tier
-            self.final_tier = top_tiers[0]
+            self.confidence = 0.5
 
 
 async def _score_one(
@@ -84,7 +79,8 @@ async def _score_one(
         results: list[JudgeResult] = await asyncio.gather(*tasks)
 
     for r in results:
-        scored.sonnet_votes.append(r.tier)
+        scored.sonnet_scores.append(r.score)
+        scored.sonnet_tiers.append(r.tier)
         scored.reasonings.append(r.reasoning)
 
     scored.compute_consensus()
@@ -99,11 +95,7 @@ async def score_pairs_bulk(
     max_concurrent: int = 50,
     cost_tracker: CostTracker | None = None,
 ) -> list[ScoredPair]:
-    """Score all pairs with Sonnet using `n_votes` independent calls each.
-
-    Uses an asyncio semaphore to cap concurrency at `max_concurrent` pairs
-    (each pair itself fires `n_votes` parallel API calls).
-    """
+    """Score all pairs with n_votes independent calls each."""
     system_prompt = build_system_prompt(few_shot_examples)
     semaphore = asyncio.Semaphore(max_concurrent)
     client = anthropic.AsyncAnthropic()
@@ -136,11 +128,7 @@ async def opus_tiebreaker(
     max_concurrent: int = 10,
     cost_tracker: CostTracker | None = None,
 ) -> list[ScoredPair]:
-    """Re-score non-unanimous pairs with Opus for a single tiebreaking vote.
-
-    Mutates each ScoredPair in-place (sets opus_vote, recomputes consensus).
-    Returns the same list for convenience.
-    """
+    """Re-score non-unanimous pairs with Opus for tiebreaking."""
     if not disagreed:
         return disagreed
 
@@ -157,7 +145,8 @@ async def opus_tiebreaker(
             result = await judge_pair(
                 client, system_prompt, user_prompt, model, cost_tracker
             )
-        sp.opus_vote = result.tier
+        sp.opus_score = result.score
+        sp.opus_tier = result.tier
         sp.reasonings.append(f"[opus] {result.reasoning}")
         sp.compute_consensus()
         return sp
@@ -167,16 +156,19 @@ async def opus_tiebreaker(
 
 
 def save_scores(scored: list[ScoredPair], path: str | Path) -> None:
-    """Save scored pairs to a JSONL file."""
+    """Save scored pairs to JSONL."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w") as f:
         for sp in scored:
             record = {
-                "source_id": sp.pair.get("source_id"),
-                "target_id": sp.pair.get("target_id"),
-                "sonnet_votes": sp.sonnet_votes,
-                "opus_vote": sp.opus_vote,
+                "source_id": sp.pair.get("source_node_id") or sp.pair.get("source_id"),
+                "target_id": sp.pair.get("target_node_id") or sp.pair.get("target_id"),
+                "sonnet_scores": sp.sonnet_scores,
+                "sonnet_tiers": sp.sonnet_tiers,
+                "opus_score": sp.opus_score,
+                "opus_tier": sp.opus_tier,
+                "final_score": sp.final_score,
                 "final_tier": sp.final_tier,
                 "confidence": sp.confidence,
                 "is_unanimous": sp.is_unanimous,
@@ -186,7 +178,7 @@ def save_scores(scored: list[ScoredPair], path: str | Path) -> None:
 
 
 def load_scores(path: str | Path) -> list[dict[str, Any]]:
-    """Load scored pairs from a JSONL file produced by save_scores."""
+    """Load scored pairs from JSONL."""
     path = Path(path)
     records: list[dict[str, Any]] = []
     with path.open() as f:

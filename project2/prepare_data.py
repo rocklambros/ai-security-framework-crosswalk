@@ -277,21 +277,34 @@ def compute_coverage_matrix(nodes, transitive_mappings):
 
             reached_direct = set()
             reached_transitive = set()
+            reached_by_confidence = defaultdict(set)
 
             for src_nid in fw_nodes[src_fw]:
                 mappings = transitive_mappings.get(src_nid, {})
                 for d in mappings.get("direct", []):
                     if d["target_framework"] == tgt_fw:
                         reached_direct.add(d["target_node_id"])
+                        conf = d.get("confidence", "unvalidated")
+                        reached_by_confidence[conf].add(d["target_node_id"])
                 for t in mappings.get("transitive", []):
                     if t["target_framework"] == tgt_fw:
                         reached_transitive.add(t["target_node_id"])
+                        conf = t.get("hop2_confidence", "unvalidated")
+                        reached_by_confidence[conf].add(t["target_node_id"])
 
             # Transitive-only = reached via transitive but NOT via direct
             transitive_only = reached_transitive - reached_direct
             all_reached = reached_direct | reached_transitive
 
             total = len(tgt_node_set)
+            confidence_breakdown = {}
+            for conf in ["authoritative", "expert", "suggestive", "unvalidated"]:
+                count = len(reached_by_confidence.get(conf, set()))
+                confidence_breakdown[conf] = {
+                    "count": count,
+                    "pct": round(count / total * 100, 1),
+                }
+
             matrix[src_fw][tgt_fw] = {
                 "total_pct": round(len(all_reached) / total * 100, 1),
                 "direct_pct": round(len(reached_direct) / total * 100, 1),
@@ -300,6 +313,7 @@ def compute_coverage_matrix(nodes, transitive_mappings):
                 "transitive_only_count": len(transitive_only),
                 "total_reached": len(all_reached),
                 "total_target": total,
+                "by_confidence": confidence_breakdown,
             }
 
     return matrix

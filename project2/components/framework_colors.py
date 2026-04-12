@@ -26,9 +26,13 @@ FRAMEWORK_SHORT_NAMES = {
     "owasp_llm": "LLM Top 10", "owasp_agentic": "Agentic Top 10",
 }
 
+CYBER_ACCENT = "#00d4ff"
+
+CONFIDENCE_ORDER = ["authoritative", "expert", "suggestive", "unvalidated"]
+
 CONFIDENCE_COLORS = {
     "authoritative": "#238636", "expert": "#1f6feb",
-    "suggestive": "#d9bf55", "unvalidated": "#6e7681",
+    "suggestive": "#d29922", "unvalidated": "#6e7681",
 }
 
 CONFIDENCE_LABELS = {

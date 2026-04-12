@@ -1,7 +1,8 @@
 """Tests for framework color palette and display names."""
 from components.framework_colors import (
     FRAMEWORK_COLORS, FRAMEWORK_DISPLAY_NAMES, FRAMEWORK_KEYS,
-    get_color, get_display_name,
+    CONFIDENCE_ORDER, CYBER_ACCENT,
+    get_color, get_display_name, get_short_name,
 )
 
 def test_all_nine_frameworks_have_colors():
@@ -26,6 +27,16 @@ def test_get_display_name_returns_string():
 
 def test_get_display_name_unknown_returns_key():
     assert get_display_name("unknown") == "unknown"
+
+def test_get_short_name():
+    assert get_short_name("csa_aicm") == "CSA AICM"
+    assert get_short_name("unknown") == "unknown"
+
+def test_confidence_order():
+    assert CONFIDENCE_ORDER == ["authoritative", "expert", "suggestive", "unvalidated"]
+
+def test_cyber_accent():
+    assert CYBER_ACCENT == "#00d4ff"
 
 def test_framework_keys_order():
     assert FRAMEWORK_KEYS[0] == "aiuc_1"

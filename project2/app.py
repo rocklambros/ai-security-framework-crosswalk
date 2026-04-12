@@ -4,6 +4,9 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc
 
+from components.navbar import create_navbar
+from components.theme import DARK_THEME_URL  # noqa: F401 - registers callbacks
+
 app = dash.Dash(
     __name__,
     use_pages=True,
@@ -19,8 +22,11 @@ app.layout = dbc.Container(
     [
         dcc.Store(id="theme-store", data="dark"),
         dcc.Location(id="url", refresh=False),
-        html.Div(id="navbar-container"),
-        dash.page_container,
+        create_navbar(),
+        html.Div(
+            dash.page_container,
+            className="pt-3 px-3",
+        ),
     ],
     fluid=True,
     className="px-0",

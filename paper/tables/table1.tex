@@ -1,22 +1,27 @@
 \begin{table}[t]
 \centering
-\caption{Sacred run results on human\_test\_frozen}
+\caption{Results on \texttt{human\_test\_frozen} ($n=400$). Per-class
+rows show F1 / accuracy with support counts in parentheses.}
+\label{tab:main_results}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
 \midrule
-N pairs & 400 \\
-Tier accuracy & 0.3725 \\
-Macro F1 & 0.2259 \\
-95% CI & [0.3275, 0.4200] \\
-  equivalent (58) & 0.0000 \\
-  partial (78) & 0.1026 \\
-  related (186) & 0.6559 \\
-  unrelated (78) & 0.2436 \\
-Conformal avg set size & 2.22 \\
-Conformal coverage & 0.6925 \\
-Router abstained & 400/400 \\
-Precision on passed & 0.0000 \\
+Tier accuracy & 0.5325 \\
+Macro F1 & 0.4888 \\
+Adjacent accuracy & 0.8425 \\
+Binary accuracy & 0.7125 \\
+95\% CI (accuracy) & [0.485, 0.580] \\
+95\% CI (F1) & [0.433, 0.538] \\
+\midrule
+Equivalent (58) & 0.454 / 0.379 \\
+Related (186) & 0.613 / 0.640 \\
+Partial (78) & 0.364 / 0.308 \\
+Unrelated (78) & 0.525 / 0.615 \\
+\midrule
+Conformal coverage ($\alpha{=}0.10$) & 0.9375 \\
+Mean prediction set size & 3.20 \\
+Calibration set size & 150 \\
 \bottomrule
 \end{tabular}
 \end{table}

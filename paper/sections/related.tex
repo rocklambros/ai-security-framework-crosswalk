@@ -7,32 +7,43 @@ NIST maintains mappings between SP~800-53 and ISO~27001, and the Cloud
 Security Alliance publishes the Cloud Controls Matrix with pre-built
 mappings to multiple standards. In the AI-specific domain, the
 \emph{GenAI Security Project} has produced a community-driven crosswalk
-covering several major AI security frameworks~\citep{genai_security_project}.
-Our work uses the GenAI Security Project crosswalk as an upstream data
-source for prior-edge construction and acknowledges its contribution
-under the CC~BY-SA~4.0 license. To our knowledge, no prior work has
-attempted to \emph{automate} the crosswalk process for AI security
-frameworks at this scale.
+covering several major AI security
+frameworks~\citep{genai_security_project}. Our work uses the GenAI
+Security Project crosswalk as an upstream data source for prior-edge
+construction and acknowledges its contribution under the CC~BY-SA~4.0
+license. To our knowledge, no prior work has attempted to
+\emph{automate} the crosswalk process for AI security frameworks using
+machine learning at this scale.
 
 \paragraph{Graph neural networks for knowledge graphs.}
 Graph attention networks~\citep{velickovic2018gat} and their successors
 such as GATv2~\citep{brody2022gatv2} have been widely used for link
-prediction and node classification in knowledge graphs. We adopt GATv2
-for its dynamic attention mechanism, which allows the model to attend to
-structurally important neighbors when computing control embeddings.
+prediction and node classification in knowledge graphs. While our
+current feature pipeline extracts structural graph features directly
+rather than training a GATv2 end-to-end, the graph construction and
+feature extraction approach is informed by this literature, and
+GATv2-based node embeddings remain a planned extension.
 
-\paragraph{Conformal prediction for NLP.}
+\paragraph{Conformal prediction for classification.}
 Conformal prediction~\citep{vovk2005conformal} provides
-distribution-free coverage guarantees for classification. Recent work
-has applied Mondrian conformal prediction to NLP tasks including
-text classification and question answering, where per-class calibration
-is essential due to class imbalance~\citep{romano2020malice}.
-We adopt Mondrian conformal prediction to provide per-tier coverage
-guarantees for our crosswalk classifier.
+distribution-free coverage guarantees for classification. Mondrian
+conformal prediction~\citep{romano2020malice} extends this to
+per-class calibration, which is essential in our setting due to severe
+class imbalance across the four tiers. We adopt Mondrian conformal
+prediction to provide per-tier coverage guarantees for the crosswalk
+classifier.
+
+\paragraph{LLM-as-judge evaluation.}
+Recent work has demonstrated that large language models can serve as
+effective evaluators for subjective tasks, including semantic similarity
+judgment and text classification. We incorporate LLM-as-judge tier
+scores as features in our stacking classifier, treating the LLM
+judgment as a calibrated prior that the gradient boosting model refines
+using structural and embedding-based evidence.
 
 \paragraph{Gradient-boosted ensembles.}
 LightGBM~\citep{ke2017lightgbm} is a widely adopted gradient boosting
 framework that handles heterogeneous feature types (dense embeddings,
-sparse lexical scores, graph metrics) in a single model. We use
-LightGBM as our stacking classifier over features from multiple signal
-families.
+sparse lexical scores, graph metrics, and discrete LLM judgments) in a
+single model. We use LightGBM as our stacking classifier over features
+from all three signal families.

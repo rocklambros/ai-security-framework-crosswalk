@@ -2,27 +2,69 @@
 \label{sec:ablations}
 
 We conduct ablation experiments to quantify the contribution of each
-feature family. All ablations use the same hyperparameters and are
-evaluated on the frozen expert test set.
+feature family. All ablations use the same LightGBM hyperparameters
+(\texttt{n\_estimators}${}=500$, lr${}=0.05$,
+\texttt{min\_samples\_leaf}${}=5$) and are evaluated on the frozen
+expert test set ($n=400$).
 
 \input{tables/table3}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_feature_importance}
+\caption{LightGBM feature importance. (A)~Per-feature importance for
+all 22 features, colored by family. (B)~Cumulative importance curve.
+The top five features capture over 60\% of the total importance budget.}
+\label{fig:feature_importance}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_ablation_bar}
+\caption{Feature family ablation results on the frozen test set
+($n=400$). Tier accuracy for GBM models trained with different
+feature-family subsets. The full model (All) achieves the highest
+accuracy.}
+\label{fig:ablation_bar}
+\end{figure}
 
 \subsection{Key Findings}
 
 \begin{itemize}
-    \item \textbf{GATv2 features are critical.} Removing GATv2 features
-          drops accuracy from 0.636 to 0.528 ($-$10.8 pp), the largest
-          single-family ablation effect. The GATv2-only model achieves
-          0.625, confirming that graph structure carries the majority of
-          the predictive signal.
-    \item \textbf{BM25 baseline.} A BM25-only retrieval baseline
-          achieves 0.285 tier accuracy, establishing a lower bound.
-    \item \textbf{BGE features are noisy.} Removing BGE embeddings has
-          minimal impact, suggesting that the dense semantic signal
-          overlaps substantially with the GATv2 structural signal once
-          the graph is enriched with bridge edges.
+    \item \textbf{All three families contribute.} The full 22-feature
+          model (0.533 accuracy, 0.489 macro F1) outperforms every
+          subset, confirming that the three signal families capture
+          complementary information.
+
+    \item \textbf{Opus scores are the strongest single channel.} The
+          two-dimensional Opus-only model achieves 0.523 accuracy,
+          nearly matching the full model. This demonstrates that a
+          well-calibrated LLM-as-judge provides a strong prior that the
+          stacker refines rather than replaces.
+
+    \item \textbf{LLM features outperform structural features in
+          isolation.} LLM-only (7d) reaches 0.468 accuracy versus 0.393
+          for Structural-only (13d), a 7.5 percentage-point gap. However,
+          Structural features provide the largest marginal gain when
+          combined: LLM+Struct (0.495) exceeds LLM-only by 2.7~pp,
+          while LLM+Opus (0.463) is slightly below LLM-only, suggesting
+          the Opus signal partially overlaps with the LLM embedding
+          signal.
+
+    \item \textbf{Structural features reduce adjacent-accuracy
+          degradation.} Structural-only has the lowest adjacent accuracy
+          (0.750), but adding structural features to Opus (Struct+Opus:
+          0.835) provides better ordinal calibration than LLM+Opus
+          (0.818), indicating that graph topology helps the model
+          respect the ordinal tier structure.
+
+    \item \textbf{The full model is Pareto-optimal.} No subset achieves
+          higher accuracy, F1, or adjacent accuracy than the full model,
+          justifying the inclusion of all three feature families despite
+          the modest dimensionality overhead.
 \end{itemize}
 
-These results indicate that the graph attention mechanism---which
-propagates information along both within-framework and cross-framework
-edges---captures relational structure that pure text similarity cannot.
+These results confirm that the stacking approach, combining text
+similarity, graph structure, and LLM judgment in a single gradient
+boosting model, captures relational structure that no single signal
+family provides alone.

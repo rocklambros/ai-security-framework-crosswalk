@@ -36,6 +36,20 @@ def build_zip():
         if src.exists():
             shutil.copy(src, v6_dir / name)
 
+    # Copy upstream data (mappings + cross-references used by Section 4 heatmaps)
+    upstream_dir = staging / "data" / "upstream"
+    upstream_dir.mkdir(parents=True)
+    for name in ["mappings_v1.jsonl", "crossrefs_v1.jsonl"]:
+        src = Path("data/upstream") / name
+        if src.exists():
+            shutil.copy(src, upstream_dir / name)
+
+    # Copy pair-config anchor YAMLs (used by Section 4 heatmaps)
+    pairs_dst = staging / "mapping_engine" / "config" / "pairs"
+    pairs_dst.mkdir(parents=True)
+    for yf in Path("mapping_engine/config/pairs").glob("*.yaml"):
+        shutil.copy(yf, pairs_dst / yf.name)
+
     # Copy results (sacred). The notebook only loads sacred_3c2e531.json
     # (the v6-reframed run), so the zip only needs that one file.
     results_dir = staging / "results"

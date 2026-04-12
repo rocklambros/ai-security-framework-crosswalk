@@ -1,53 +1,70 @@
 \section{Method}
 \label{sec:method}
 
-Our pipeline comprises four stages: feature extraction, graph learning,
-stacking classification, and uncertainty quantification.
+Our pipeline comprises four stages: feature extraction, stacking
+classification, conformal calibration, and uncertainty routing.
 
-\subsection{Text Embeddings}
+\subsection{Feature Extraction}
 
-For each control node we compute two text representations:
-\begin{itemize}
-    \item \textbf{BGE-large} dense embeddings (1024-d), producing
-          cosine similarity features for each candidate pair.
-    \item \textbf{BM25} sparse lexical scores, computed over
-          control titles and descriptions after standard tokenization
-          and stopword removal.
-\end{itemize}
+For each candidate control pair $(u, v)$, we extract a
+22-dimensional feature vector organized into three families:
 
-\subsection{Graph Construction and GATv2}
+\paragraph{LLM similarity features (7 dimensions).}
+We compute dense semantic similarity using BGE-large (1024-d)
+embeddings, yielding cosine similarity between control texts. Additional
+lexical features include BM25 scores computed over control titles and
+descriptions after tokenization and stopword removal, Jaccard
+coefficient over token sets, and character n-gram overlap measures.
+Structural similarity scores derived from shared graph neighborhood
+statistics complete this family.
 
-We construct a heterogeneous control graph with 983 nodes (one per
-control across all 12 frameworks) and 6{,}383 edges derived from
-within-framework hierarchies, cross-framework prior edges from the
-GenAI Security Project crosswalk, and high-confidence BM25 bridge edges.
+\paragraph{Structural graph features (13 dimensions).}
+We construct a heterogeneous control graph with 983 nodes and edges
+integrated from the four sources described in
+Section~\ref{sec:dataset}. From this graph we extract pairwise
+features including shortest-path distance, common-neighbor count,
+Jaccard index of neighbor sets, Adamic-Adar index, bridge centrality
+scores, degree-product features, and framework-pair indicators. These
+features capture topological proximity: controls connected through
+multiple paths receive high structural similarity scores regardless of
+surface-level text overlap. Figure~\ref{fig:node2vec_umap} visualizes
+the graph structure via a UMAP projection of Node2Vec embeddings,
+revealing framework-level clustering with cross-framework bridges.
 
-A two-layer GATv2~\citep{brody2022gatv2} network is trained on this
-graph using a link-prediction objective. The resulting node embeddings
-(128-d) capture structural proximity: controls that are connected
-through multiple paths in the graph receive similar representations
-regardless of surface-level text overlap.
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\linewidth]{fig_node2vec_umap}
+\caption{Node2Vec embeddings projected to 2D via UMAP, colored by
+framework. Clusters correspond to individual frameworks, with
+cross-framework bridge edges creating inter-cluster connections that
+the structural features capture.}
+\label{fig:node2vec_umap}
+\end{figure}
 
-For each candidate pair $(u, v)$, we extract four GATv2-derived
-features: cosine similarity of node embeddings, L2 distance, element-wise
-product pooling, and a bridge centrality score.
+\paragraph{Opus tier scores (2 dimensions).}
+A Claude Opus evaluator independently assigns each candidate pair a
+tier judgment (0--3) and a confidence score. These two features provide
+a calibrated LLM-as-judge signal that complements the embedding-based
+similarity features with holistic semantic reasoning.
 
 \subsection{LightGBM Stacker}
 
-All features---text similarity, graph structural, and metadata---are
-concatenated into a 38-dimensional feature vector and fed to a
-LightGBM~\citep{ke2017lightgbm} multiclass classifier. The model
-predicts one of four tiers: \emph{unrelated} (0), \emph{partial} (1),
-\emph{related} (2), and \emph{equivalent} (3). Inverse-frequency class
-weights address the severe class imbalance. Hyperparameters are tuned
-via Optuna with 5-fold cross-validation.
+The 22-dimensional feature vector is fed to a
+LightGBM~\citep{ke2017lightgbm} multiclass classifier that predicts
+one of four tiers: \emph{unrelated}~(0), \emph{partial}~(1),
+\emph{related}~(2), and \emph{equivalent}~(3). The model uses
+\texttt{n\_estimators}${}=500$, learning rate~$0.05$, and
+\texttt{min\_samples\_leaf}${}=5$. Inverse-frequency class weights
+address the severe class imbalance in the training data.
 
 \subsection{Mondrian Conformal Prediction}
 
 We wrap the LightGBM classifier with a Mondrian conformal predictor
-that provides per-class coverage guarantees. For each test instance, the
-conformal predictor outputs a prediction set guaranteed to contain the
-true label with probability $\geq 1-\alpha$ within each class stratum.
+calibrated on a held-out set of $n_{\text{cal}} = 150$ pairs. For each
+test instance, the conformal predictor outputs a prediction set
+guaranteed to contain the true label with probability
+$\geq 1-\alpha$ within each class stratum, providing distribution-free
+coverage guarantees~\citep{vovk2005conformal, romano2020malice}.
 
 \subsection{KL-Divergence Router}
 

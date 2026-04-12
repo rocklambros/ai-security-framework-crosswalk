@@ -3,35 +3,83 @@
 
 \subsection{Feature Set}
 
-The full feature vector comprises 38 dimensions:
+The full feature vector comprises 22 dimensions organized into three
+families:
 \begin{itemize}
-    \item \textbf{Text features:} BGE-large cosine similarity,
-          BM25 score, Jaccard coefficient, character n-gram overlap.
-    \item \textbf{Graph features:} GATv2 cosine similarity, GATv2 L2
-          distance, element-wise product pooling, bridge centrality,
-          shortest-path distance, common-neighbor count.
-    \item \textbf{Metadata features:} same-framework indicator,
-          framework-pair one-hot encoding, control depth difference.
+    \item \textbf{LLM features (7d):} BGE-large cosine similarity,
+          BM25 score, Jaccard coefficient, character n-gram overlap,
+          and neighborhood-derived similarity measures.
+    \item \textbf{Structural features (13d):} Shortest-path distance,
+          common-neighbor count, neighbor-set Jaccard index, Adamic-Adar
+          index, bridge centrality, degree-product features, and
+          framework-pair indicators derived from the four-source
+          knowledge graph.
+    \item \textbf{Opus features (2d):} Claude Opus tier prediction
+          (0--3) and associated confidence score.
 \end{itemize}
+
+Figure~\ref{fig:feature_distributions} shows the distribution of six
+representative features stratified by expert tier, illustrating the
+discriminative signal available in each family.
+Figure~\ref{fig:correlation_matrix} presents the Pearson correlation
+matrix across all 22 features, revealing that the three families
+capture largely orthogonal signals.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_feature_distributions}
+\caption{Distribution of six representative features stratified by
+expert tier label. Each panel shows violin and strip plots for one
+feature across the four tiers, illustrating the per-family
+discriminative signal.}
+\label{fig:feature_distributions}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_correlation_matrix}
+\caption{Pearson correlation matrix of all 22 v6 features on the test
+set ($n=400$). Black lines delineate the three feature families
+(LLM, Structural, Opus). Cross-family correlations are generally low,
+confirming that the three signal families capture complementary
+information.}
+\label{fig:correlation_matrix}
+\end{figure}
 
 \subsection{Training Configuration}
 
 \begin{itemize}
     \item \textbf{Classifier:} LightGBM multiclass (softmax objective).
+    \item \textbf{Hyperparameters:} \texttt{n\_estimators}${}=500$,
+          learning rate${}=0.05$,
+          \texttt{min\_samples\_leaf}${}=5$.
     \item \textbf{Class weights:} Inverse-frequency weighting to
-          compensate for severe imbalance (the unrelated class dominates
-          at $>$60\% of pairs).
-    \item \textbf{Hyperparameter search:} Optuna with 200 trials,
-          optimizing macro F1 on 5-fold cross-validation over the
-          training split.
-    \item \textbf{Training data:} 1{,}515 LLM-SME labeled pairs.
-    \item \textbf{Validation data:} 379 LLM-SME labeled pairs.
+          compensate for class imbalance.
+    \item \textbf{Training data:} 1,515 LLM-SME labeled pairs.
+    \item \textbf{Calibration data:} 150 held-out pairs for Mondrian
+          conformal calibration.
     \item \textbf{Test data:} 400 expert-labeled frozen pairs
           (\texttt{v1\_frozen}), never seen during training or tuning.
+          SHA-256 hash verification ensures immutability.
 \end{itemize}
 
 \subsection{Evaluation Metrics}
 
-We report tier accuracy (exact match), macro F1, per-class precision
-and recall, and conformal coverage at $\alpha=0.10$. All confidence
-intervals are computed via 10{,}000-iteration bootstrap resampling.
+We report four accuracy metrics at increasing granularity:
+\begin{itemize}
+    \item \textbf{Tier accuracy:} Exact-match accuracy across the four
+          tiers.
+    \item \textbf{Adjacent accuracy:} Fraction of predictions within
+          $\pm 1$ tier of the ground-truth label, capturing near-miss
+          performance on an ordinal scale.
+    \item \textbf{Binary accuracy:} Accuracy after collapsing tiers
+          into a binary ``related or stronger'' vs.\ ``partial or
+          weaker'' distinction.
+    \item \textbf{Macro F1:} Unweighted average of per-class F1 scores,
+          treating all four tiers equally regardless of prevalence.
+\end{itemize}
+
+Additionally, we report per-class precision, recall, and F1, as well
+as Mondrian conformal coverage and mean prediction set size at
+$\alpha = 0.10$. All confidence intervals are computed via
+10,000-iteration bootstrap resampling.

@@ -1,22 +1,20 @@
 \begin{table}[t]
 \centering
-\caption{Ablation matrix on llm\_val}
+\caption{Feature-family ablation on \texttt{human\_test\_frozen}
+($n=400$). All variants use the same LightGBM hyperparameters.}
+\label{tab:ablation}
 \begin{tabular}{lrrrr}
 \toprule
-Ablation & Features & Tier Acc & Macro F1 & Δ Acc \\
+Feature set & Dims & Tier Acc & Macro F1 & Adj Acc \\
 \midrule
-baseline_only & 3 & 0.5462 & 0.3132 & -0.0897 \\
-full & 38 & 0.6359 & 0.3955 & +0.0000 \\
-gat_only & 35 & 0.6253 & 0.4367 & -0.0106 \\
-lexical_only & 1 & 0.2850 & 0.1881 & -0.3509 \\
-no_bge & 37 & 0.6860 & 0.3972 & +0.0501 \\
-no_bm25 & 37 & 0.6359 & 0.3909 & +0.0000 \\
-no_bridge & 37 & 0.6306 & 0.3937 & -0.0053 \\
-no_conformal & 38 & 0.6201 & 0.3763 & -0.0158 \\
-no_gat & 3 & 0.5277 & 0.3080 & -0.1082 \\
-no_gat_diff & 6 & 0.6227 & 0.3479 & -0.0132 \\
-no_router & 38 & 0.6464 & 0.3799 & +0.0106 \\
-single_feature_bge & 1 & 0.3668 & 0.2691 & -0.2691 \\
+LLM only & 7 & 0.468 & 0.418 & 0.858 \\
+Structural only & 13 & 0.393 & 0.317 & 0.750 \\
+Opus only & 2 & 0.523 & 0.382 & 0.843 \\
+LLM + Struct & 20 & 0.495 & 0.444 & 0.855 \\
+LLM + Opus & 9 & 0.463 & 0.416 & 0.818 \\
+Struct + Opus & 15 & 0.495 & 0.432 & 0.835 \\
+\midrule
+\textbf{All (LLM+Struct+Opus)} & \textbf{22} & \textbf{0.533} & \textbf{0.489} & \textbf{0.843} \\
 \bottomrule
 \end{tabular}
 \end{table}

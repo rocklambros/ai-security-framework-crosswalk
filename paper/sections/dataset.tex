@@ -3,21 +3,97 @@
 
 \subsection{Frameworks}
 
-We ingest 12 AI security frameworks spanning governance, technical
-controls, and threat modeling:
-NIST AI RMF, NIST SP~800-53, MITRE ATLAS, OWASP LLM Top~10,
-OWASP ML Top~10, ISO/IEC~42001, EU AI Act, AISI Inspect,
-CSA AI Controls Matrix, MAESTRO, Google SAIF, and the OWASP AI
-Exchange. Together these yield 983 control nodes.
+We ingest nine AI security and governance frameworks spanning risk
+management, technical controls, threat modeling, and compliance guidance:
 
-\subsection{Graph Structure}
+\begin{enumerate}
+    \item \textbf{NIST AI RMF}~\citep{nist_ai_rmf} --- 76 controls
+          covering AI risk governance and lifecycle management.
+    \item \textbf{MITRE ATLAS}~\citep{mitre_atlas} --- 218 entries
+          cataloging adversarial tactics, techniques, and procedures
+          targeting AI systems.
+    \item \textbf{OWASP Top~10 for LLM Applications}~\citep{owasp_llm_top10}
+          --- 10 high-level vulnerability categories for large language
+          model deployments.
+    \item \textbf{OWASP Agentic AI Security Risks} --- 10 risk
+          categories specific to autonomous AI agent architectures.
+    \item \textbf{OWASP AI Exchange} --- 88 entries providing a
+          cross-cutting taxonomy of AI security threats and mitigations.
+    \item \textbf{CSA AI Controls Matrix}~\citep{csa_aicm} --- 261
+          controls organized by domain (IAM, data security, model
+          governance, etc.) for cloud-hosted AI workloads.
+    \item \textbf{CoSAI Risk Model} --- 61 risk entries from the
+          Coalition for Secure AI covering supply chain, inference,
+          and deployment risks.
+    \item \textbf{AI Use Case Framework (AIUC)} --- 189 entries
+          cataloging governance requirements across AI application
+          categories.
+    \item \textbf{EU GPAI Code of Practice} --- 70 entries derived
+          from the European Union's General-Purpose AI Code of Practice
+          for providers of foundation models.
+\end{enumerate}
 
-The control graph contains 6{,}383 edges from three sources:
-(1)~within-framework parent--child hierarchies,
-(2)~cross-framework prior edges from the GenAI Security Project
-crosswalk (CC~BY-SA~4.0), and
-(3)~algorithmically generated bridge edges from high-confidence
-BM25 matches. The graph spans 26 framework pairs.
+Together these yield 983 control nodes. Framework sizes range from 10
+entries (OWASP LLM, OWASP Agentic) to 261 (CSA AICM), reflecting the
+heterogeneous granularity of real-world AI governance standards.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_categorical_composition}
+\caption{Categorical composition of the corpus. (A)~Entry types per
+framework showing absolute counts. (B)~Overall entry-type distribution.
+(C)~Edge confidence distribution across the knowledge graph.}
+\label{fig:categorical_composition}
+\end{figure}
+
+\subsection{Graph Structure and Data Sources}
+
+The control knowledge graph integrates edges from four complementary
+sources, each capturing a different type of inter-control relationship:
+
+\begin{enumerate}
+    \item \textbf{Within-framework hierarchies and cross-framework
+          graph edges} (5,813 edges total: 1,090 intra-framework
+          parent-child relationships plus 4,723 cross-framework edges
+          derived from high-confidence BM25 bridge matching).
+    \item \textbf{Upstream community mappings} from the GenAI Security
+          Project crosswalk~\citep{genai_security_project} (3,210
+          total rows; 209 in-scope after filtering to the nine
+          included frameworks), used under CC~BY-SA~4.0.
+    \item \textbf{Upstream cross-reference tables} (363 total rows;
+          58 in-scope), capturing additional control relationships
+          published alongside framework documentation.
+    \item \textbf{Bootstrap-pruned anchor pairs} from 12 pair-config
+          files (816 total anchor pairs), generated via co-citation
+          analysis followed by bootstrap cross-validation pruning to
+          remove unstable candidates.
+\end{enumerate}
+
+After deduplication, these four sources produce cross-framework edges
+spanning 15 unique framework pairs out of the $\binom{9}{2} = 36$
+possible pairs, yielding a graph connectivity of 41.7\%.
+Figure~\ref{fig:cross_framework_heatmap} visualizes the direction-agnostic
+edge distribution across all framework pairs.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_cross_framework_heatmap}
+\caption{Cross-framework edge counts (direction-agnostic). Left: heatmap
+of pairwise edge counts after symmetrizing. Right: marginal totals per
+framework. CSA AICM and AIUC dominate connectivity due to their large
+control inventories and extensive upstream mappings.}
+\label{fig:cross_framework_heatmap}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_coverage_completeness}
+\caption{Cross-framework coverage completeness. Each cell shows the
+fraction of possible control pairs between two frameworks that have at
+least one edge in the unified knowledge graph. Coverage ranges from
+dense (e.g., AIUC--CSA AICM) to zero for unconnected pairs.}
+\label{fig:coverage_completeness}
+\end{figure}
 
 \subsection{Labeling Protocol}
 
@@ -26,10 +102,10 @@ We employ a two-stage labeling protocol:
     \item \textbf{LLM-SME silver labels.} A structured prompt elicits
           tier judgments from a large language model acting as a
           simulated subject matter expert. Each pair receives a tier
-          label (0--3) and a free-text rationale. 1{,}515 training pairs
+          label (0--3) and a free-text rationale. 1,515 training pairs
           and 379 validation pairs are labeled this way.
     \item \textbf{Expert gold labels.} A human expert independently
-          labels 400 pairs using the same 4-tier scheme. These form
+          labels 400 pairs using the same four-tier scheme. These form
           the frozen test set (\texttt{v1\_frozen}) used for all
           reported metrics. The frozen split is SHA-verified and never
           used during training or hyperparameter selection.
@@ -47,3 +123,7 @@ The four tiers capture decreasing degrees of semantic overlap:
           requirement.
     \item[Unrelated (0):] No meaningful semantic overlap.
 \end{description}
+
+The frozen test set is class-imbalanced: Related pairs dominate
+(186/400 = 46.5\%), with Unrelated and Partial each at 78/400 (19.5\%)
+and Equivalent at 58/400 (14.5\%).

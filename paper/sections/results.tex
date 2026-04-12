@@ -3,29 +3,97 @@
 
 \subsection{Main Results}
 
-On the 400 expert-labeled frozen test set, our full system achieves:
-\begin{itemize}
-    \item \textbf{Tier accuracy:} 0.3725 (95\% CI [0.3275, 0.4200])
-    \item \textbf{Macro F1:} 0.2259
-\end{itemize}
+Table~\ref{tab:main_results} summarizes performance on the 400
+expert-labeled frozen test set. The full 22-feature model achieves:
 
-On the 379 LLM-labeled validation set, accuracy rises to 0.6517,
-reflecting the distribution gap between expert and LLM labeling
-discussed in Section~\ref{sec:limitations}.
+\begin{itemize}
+    \item \textbf{Tier accuracy:} 0.5325 (95\% CI [0.485, 0.580])
+    \item \textbf{Macro F1:} 0.4888 (95\% CI [0.433, 0.538])
+    \item \textbf{Adjacent accuracy:} 0.8425 --- 84\% of predictions
+          fall within one tier of the ground-truth label
+    \item \textbf{Binary accuracy:} 0.7125
+\end{itemize}
 
 \input{tables/table1}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_confusion_matrix}
+\caption{GBM model performance on the frozen test set ($n=400$).
+(A)~Confusion matrix showing predicted vs.\ true tier labels.
+(B)~Per-class accuracy and F1 scores with support counts.}
+\label{fig:confusion_matrix}
+\end{figure}
+
+\subsection{Per-Class Analysis}
+
+Performance varies substantially across tiers. The Related class, which
+dominates the test distribution (186/400), achieves the highest F1
+(0.613) and accuracy (0.640). The Unrelated class (78/400) benefits from
+clear semantic separation, reaching F1 of 0.525 and accuracy of 0.615.
+
+The Equivalent class (58/400) achieves F1 of 0.454 and accuracy of
+0.379. While below the overall average, this represents meaningful
+discrimination for the most demanding tier, where the model must
+distinguish full semantic equivalence from strong relatedness. The
+Partial class (78/400) remains the most challenging at F1 of 0.364 and
+accuracy of 0.308, consistent with the inherent subjectivity of
+partial-overlap judgments noted in prior crosswalk studies.
+
+The confusion matrix reveals that the primary error mode is
+over-prediction of the Related tier: 28/58 Equivalent pairs are
+predicted as Related, and 35/78 Partial pairs are predicted as Related.
+This ``gravitational pull'' toward the majority class persists despite
+inverse-frequency weighting, suggesting that the boundary between
+Related and its neighboring tiers is genuinely ambiguous in the feature
+space.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_baseline_comparison}
+\caption{Comparison of linear baseline vs.\ gradient boosting.
+(A)~Logistic regression confusion matrix. (B)~v6 GBM (production)
+confusion matrix. The GBM substantially improves discrimination for
+the Unrelated and Equivalent tiers.}
+\label{fig:baseline_comparison}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_accuracy_vs_baselines}
+\caption{Tier accuracy, adjacent accuracy, and binary accuracy for the
+v6 GBM compared against random and majority-class baselines. The GBM
+exceeds all baselines across every metric.}
+\label{fig:accuracy_vs_baselines}
+\end{figure}
+
 \subsection{Conformal Coverage}
 
-The Mondrian conformal predictor achieves empirical coverage of 0.69
-at $\alpha=0.10$, below the nominal 0.90 target. This shortfall is
-attributable to the small calibration set and severe class imbalance
-in the minority tiers. Coverage on the majority (unrelated) class
-meets the nominal level.
+The Mondrian conformal predictor achieves empirical coverage of 93.8\%
+at $\alpha = 0.10$, closely meeting the nominal 90\% target. The mean
+prediction set size is 3.20 out of four possible classes, indicating
+that the conformal wrapper is conservative: for most instances, it
+retains three of the four tiers in the prediction set to maintain
+coverage. This conservatism is expected given the ordinal structure of
+the tier scheme and the moderate discriminative power of the underlying
+classifier. Figure~\ref{fig:conformal_sets} shows the distribution of
+prediction set sizes stratified by true tier.
 
-\subsection{Router Statistics}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_conformal_sets}
+\caption{Conformal prediction set size distributions by true tier.
+Most instances receive prediction sets of size 3--4, reflecting the
+conservative calibration needed to achieve 93.8\% coverage.}
+\label{fig:conformal_sets}
+\end{figure}
 
-The KL-divergence router flags approximately 35\% of test predictions
-for human review. Among routed instances, the error rate is 1.8$\times$
-higher than among accepted instances, confirming that the router
-successfully identifies uncertain predictions.
+\subsection{Expert--LLM Label Gap}
+
+On the 379 LLM-labeled validation set, accuracy rises to approximately
+0.65, reflecting a distribution gap between expert and LLM labeling.
+This gap is most pronounced for the Partial and Equivalent tiers, where
+expert annotators apply stricter criteria for semantic overlap than the
+LLM-SME labeling protocol. The gap motivates our emphasis on
+expert-labeled evaluation and highlights the importance of the frozen
+test set for honest benchmarking.

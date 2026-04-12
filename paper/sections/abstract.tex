@@ -3,19 +3,23 @@ Organizations adopting AI systems must comply with a growing number of
 overlapping security frameworks, yet no shared vocabulary exists across
 them. Manual crosswalks are expensive, error-prone, and quickly become
 stale as frameworks evolve. We present an automated approach for mapping
-controls across 12 major AI security frameworks, constructing a
-knowledge graph of 983 control nodes and 6{,}383 edges. Our method
-combines text embeddings (BGE-large, BM25) with structural features
-from a GATv2 graph attention network, feeding a LightGBM stacker that
-classifies control pairs into four tiers: \emph{equivalent},
-\emph{related}, \emph{partial}, and \emph{unrelated}. Mondrian
-conformal prediction provides per-class coverage guarantees, and a
-KL-divergence router flags uncertain predictions for human review.
-On 400 expert-labeled frozen test pairs the system achieves a tier
-accuracy of 0.37 (95\% CI [0.33, 0.42]) and macro F1 of 0.23; on
-1{,}515 LLM-labeled validation pairs it reaches 0.65 accuracy.
-Ablation analysis confirms that GATv2 features are critical, lifting
-accuracy by 10.8 percentage points over the text-only baseline. All
-code, data splits, and model weights are released under Apache-2.0
-with a one-command reproducibility target.
+controls across nine major AI security and governance frameworks,
+constructing a heterogeneous knowledge graph of 983 control nodes
+integrated from four complementary data sources: within-framework
+hierarchies, community-contributed upstream mappings, cross-reference
+tables, and bootstrap-pruned anchor pairs. Our method combines LLM-derived
+similarity features with structural graph features and calibrated
+LLM-as-judge tier scores, feeding a LightGBM stacker that classifies
+control pairs into four tiers: \emph{equivalent}, \emph{related},
+\emph{partial}, and \emph{unrelated}. Mondrian conformal prediction
+provides per-class coverage guarantees, and a KL-divergence router
+flags uncertain predictions for human review. On 400 expert-labeled
+frozen test pairs the system achieves tier accuracy of 0.53 (95\% CI
+[0.485, 0.580]), macro F1 of 0.49, and adjacent accuracy of 0.84.
+Conformal prediction attains 93.8\% empirical coverage at
+$\alpha = 0.10$ with a mean prediction set size of 3.2. Ablation
+analysis confirms that each feature family contributes complementary
+signal, with Opus tier scores providing the strongest individual
+channel. All code, data splits, and model weights are released under
+Apache-2.0 with a one-command reproducibility target.
 \end{abstract}

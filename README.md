@@ -15,11 +15,12 @@ The repository contains the raw framework source content, a typed graph built fr
 7. [Composite signal blend](#composite-signal-blend)
 8. [How we avoided overfitting](#how-we-avoided-overfitting)
 9. [Project 1: the scientific notebook](#project-1-the-scientific-notebook)
-10. [v1 expert crosswalk vs v2 pipeline output](#v1-expert-crosswalk-vs-v2-pipeline-output)
-11. [Repository layout](#repository-layout)
-12. [Getting started](#getting-started)
-13. [Session history](#session-history)
-14. [License and attribution](#license-and-attribution)
+10. [Project 2: the interactive crosswalk explorer](#project-2-the-interactive-crosswalk-explorer)
+11. [v1 expert crosswalk vs v2 pipeline output](#v1-expert-crosswalk-vs-v2-pipeline-output)
+12. [Repository layout](#repository-layout)
+13. [Getting started](#getting-started)
+14. [Session history](#session-history)
+15. [License and attribution](#license-and-attribution)
 
 ## Why this exists
 
@@ -253,7 +254,15 @@ The notebook is organized into seven sections:
 6. **Coverage, gaps, and graph structure.** Coverage completeness heatmap, orphan counts by framework, Node2Vec UMAP projection, and a new subsection (6.4) that diffs the 119-pair expert v1 crosswalk against the 109-pair v2 pipeline output.
 7. **Analytical approaches and next steps.** Course-vocabulary mapping (descriptive, diagnostic, explanatory, confirmatory) and a paragraph on what each future analytical technique would need in order to be credible.
 
-The full executed notebook, plus every data file required to re-execute it from a fresh unzip, is packaged in `notebooks/project1_lambros.zip`.
+The full executed notebook, plus every data file required to re-execute it from a fresh unzip, is packaged in `notebooks/project1_lambros.zip`. A self-contained copy also lives in `project1/`.
+
+## Project 2: the interactive crosswalk explorer
+
+`project2/` is a self-contained, four-page interactive Dash application that lets security architects, auditors, and researchers explore how nine major AI security frameworks relate to each other. It is the second deliverable for COMP 4433 and a reusable tool for the AI security community.
+
+The application visualizes 983 controls across 9 frameworks connected by 5,813 relationship edges. It includes: a framework landscape network graph and heatmap, a per-framework sunburst deep dive, a crosswalk explorer with Sankey diagrams and expandable control cards showing bridge path visualization for transitive mappings, and a coverage analysis page with radar and stacked bar charts.
+
+Setup: `cd project2 && pip install -r requirements.txt && python prepare_data.py && python app.py`. See `project2/README.md` for full details.
 
 ## v1 expert crosswalk vs v2 pipeline output
 
@@ -314,6 +323,18 @@ ai-security-framework-crosswalk/
 │   └── project1_lambros.zip            # final deliverable
 ├── schema/                             # unified graph schema v1.0
 ├── scripts/                            # build + conversion scripts
+├── project1/                           # COMP 4433 Project 1 (notebook)
+│   ├── project1_crosswalk_eda.ipynb
+│   ├── project1_lambros.zip
+│   └── README.md
+├── project2/                           # COMP 4433 Project 2 (Dash app)
+│   ├── app.py                          # multi-page Dash entry point
+│   ├── prepare_data.py                 # pre-compute derived data
+│   ├── data/                           # static JSON + derived aggregates
+│   ├── pages/                          # landscape, deep_dive, explorer, coverage
+│   ├── components/                     # colors, themes, data loader, navbar
+│   ├── assets/                         # custom CSS
+│   └── README.md
 ├── docs/                               # SESSION_CONTEXT + IMPROVEMENT_PLAN
 ├── requirements.txt
 └── README.md

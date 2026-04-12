@@ -1,0 +1,668 @@
+{
+  "aiuc_1": {
+    "cosai_rm": {
+      "total_pct": 21.3,
+      "direct_pct": 0.0,
+      "transitive_pct": 21.3,
+      "direct_count": 0,
+      "transitive_only_count": 13,
+      "total_reached": 13,
+      "total_target": 61
+    },
+    "csa_aicm": {
+      "total_pct": 74.3,
+      "direct_pct": 74.3,
+      "transitive_pct": 0.0,
+      "direct_count": 194,
+      "transitive_only_count": 0,
+      "total_reached": 194,
+      "total_target": 261
+    },
+    "eu_gpai_cop": {
+      "total_pct": 35.7,
+      "direct_pct": 35.7,
+      "transitive_pct": 0.0,
+      "direct_count": 25,
+      "transitive_only_count": 0,
+      "total_reached": 25,
+      "total_target": 70
+    },
+    "mitre_atlas": {
+      "total_pct": 7.8,
+      "direct_pct": 7.8,
+      "transitive_pct": 0.0,
+      "direct_count": 17,
+      "transitive_only_count": 0,
+      "total_reached": 17,
+      "total_target": 218
+    },
+    "nist_rmf": {
+      "total_pct": 72.4,
+      "direct_pct": 72.4,
+      "transitive_pct": 0.0,
+      "direct_count": 55,
+      "transitive_only_count": 0,
+      "total_reached": 55,
+      "total_target": 76
+    },
+    "owasp_agentic": {
+      "total_pct": 100.0,
+      "direct_pct": 100.0,
+      "transitive_pct": 0.0,
+      "direct_count": 10,
+      "transitive_only_count": 0,
+      "total_reached": 10,
+      "total_target": 10
+    },
+    "owasp_ai_exchange": {
+      "total_pct": 68.2,
+      "direct_pct": 68.2,
+      "transitive_pct": 0.0,
+      "direct_count": 60,
+      "transitive_only_count": 0,
+      "total_reached": 60,
+      "total_target": 88
+    },
+    "owasp_llm": {
+      "total_pct": 100.0,
+      "direct_pct": 100.0,
+      "transitive_pct": 0.0,
+      "direct_count": 10,
+      "transitive_only_count": 0,
+      "total_reached": 10,
+      "total_target": 10
+    }
+  },
+  "cosai_rm": {
+    "aiuc_1": {
+      "total_pct": 14.3,
+      "direct_pct": 0.0,
+      "transitive_pct": 14.3,
+      "direct_count": 0,
+      "transitive_only_count": 27,
+      "total_reached": 27,
+      "total_target": 189
+    },
+    "csa_aicm": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 261
+    },
+    "eu_gpai_cop": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 70
+    },
+    "mitre_atlas": {
+      "total_pct": 9.2,
+      "direct_pct": 9.2,
+      "transitive_pct": 0.0,
+      "direct_count": 20,
+      "transitive_only_count": 0,
+      "total_reached": 20,
+      "total_target": 218
+    },
+    "nist_rmf": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 76
+    },
+    "owasp_agentic": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 10
+    },
+    "owasp_ai_exchange": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 88
+    },
+    "owasp_llm": {
+      "total_pct": 90.0,
+      "direct_pct": 90.0,
+      "transitive_pct": 0.0,
+      "direct_count": 9,
+      "transitive_only_count": 0,
+      "total_reached": 9,
+      "total_target": 10
+    }
+  },
+  "csa_aicm": {
+    "aiuc_1": {
+      "total_pct": 97.4,
+      "direct_pct": 97.4,
+      "transitive_pct": 0.0,
+      "direct_count": 184,
+      "transitive_only_count": 0,
+      "total_reached": 184,
+      "total_target": 189
+    },
+    "cosai_rm": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 61
+    },
+    "eu_gpai_cop": {
+      "total_pct": 35.7,
+      "direct_pct": 0.0,
+      "transitive_pct": 35.7,
+      "direct_count": 0,
+      "transitive_only_count": 25,
+      "total_reached": 25,
+      "total_target": 70
+    },
+    "mitre_atlas": {
+      "total_pct": 7.8,
+      "direct_pct": 0.0,
+      "transitive_pct": 7.8,
+      "direct_count": 0,
+      "transitive_only_count": 17,
+      "total_reached": 17,
+      "total_target": 218
+    },
+    "nist_rmf": {
+      "total_pct": 72.4,
+      "direct_pct": 0.0,
+      "transitive_pct": 72.4,
+      "direct_count": 0,
+      "transitive_only_count": 55,
+      "total_reached": 55,
+      "total_target": 76
+    },
+    "owasp_agentic": {
+      "total_pct": 100.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 100.0,
+      "direct_count": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
+      "total_target": 10
+    },
+    "owasp_ai_exchange": {
+      "total_pct": 68.2,
+      "direct_pct": 0.0,
+      "transitive_pct": 68.2,
+      "direct_count": 0,
+      "transitive_only_count": 60,
+      "total_reached": 60,
+      "total_target": 88
+    },
+    "owasp_llm": {
+      "total_pct": 100.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 100.0,
+      "direct_count": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
+      "total_target": 10
+    }
+  },
+  "eu_gpai_cop": {
+    "aiuc_1": {
+      "total_pct": 16.4,
+      "direct_pct": 16.4,
+      "transitive_pct": 0.0,
+      "direct_count": 31,
+      "transitive_only_count": 0,
+      "total_reached": 31,
+      "total_target": 189
+    },
+    "cosai_rm": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 61
+    },
+    "csa_aicm": {
+      "total_pct": 61.7,
+      "direct_pct": 0.0,
+      "transitive_pct": 61.7,
+      "direct_count": 0,
+      "transitive_only_count": 161,
+      "total_reached": 161,
+      "total_target": 261
+    },
+    "mitre_atlas": {
+      "total_pct": 6.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 6.0,
+      "direct_count": 0,
+      "transitive_only_count": 13,
+      "total_reached": 13,
+      "total_target": 218
+    },
+    "nist_rmf": {
+      "total_pct": 69.7,
+      "direct_pct": 0.0,
+      "transitive_pct": 69.7,
+      "direct_count": 0,
+      "transitive_only_count": 53,
+      "total_reached": 53,
+      "total_target": 76
+    },
+    "owasp_agentic": {
+      "total_pct": 100.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 100.0,
+      "direct_count": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
+      "total_target": 10
+    },
+    "owasp_ai_exchange": {
+      "total_pct": 68.2,
+      "direct_pct": 0.0,
+      "transitive_pct": 68.2,
+      "direct_count": 0,
+      "transitive_only_count": 60,
+      "total_reached": 60,
+      "total_target": 88
+    },
+    "owasp_llm": {
+      "total_pct": 90.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 90.0,
+      "direct_count": 0,
+      "transitive_only_count": 9,
+      "total_reached": 9,
+      "total_target": 10
+    }
+  },
+  "mitre_atlas": {
+    "aiuc_1": {
+      "total_pct": 10.6,
+      "direct_pct": 10.6,
+      "transitive_pct": 0.0,
+      "direct_count": 20,
+      "transitive_only_count": 0,
+      "total_reached": 20,
+      "total_target": 189
+    },
+    "cosai_rm": {
+      "total_pct": 19.7,
+      "direct_pct": 19.7,
+      "transitive_pct": 0.0,
+      "direct_count": 12,
+      "transitive_only_count": 0,
+      "total_reached": 12,
+      "total_target": 61
+    },
+    "csa_aicm": {
+      "total_pct": 61.3,
+      "direct_pct": 0.0,
+      "transitive_pct": 61.3,
+      "direct_count": 0,
+      "transitive_only_count": 160,
+      "total_reached": 160,
+      "total_target": 261
+    },
+    "eu_gpai_cop": {
+      "total_pct": 12.9,
+      "direct_pct": 0.0,
+      "transitive_pct": 12.9,
+      "direct_count": 0,
+      "transitive_only_count": 9,
+      "total_reached": 9,
+      "total_target": 70
+    },
+    "nist_rmf": {
+      "total_pct": 32.9,
+      "direct_pct": 0.0,
+      "transitive_pct": 32.9,
+      "direct_count": 0,
+      "transitive_only_count": 25,
+      "total_reached": 25,
+      "total_target": 76
+    },
+    "owasp_agentic": {
+      "total_pct": 100.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 100.0,
+      "direct_count": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
+      "total_target": 10
+    },
+    "owasp_ai_exchange": {
+      "total_pct": 37.5,
+      "direct_pct": 0.0,
+      "transitive_pct": 37.5,
+      "direct_count": 0,
+      "transitive_only_count": 33,
+      "total_reached": 33,
+      "total_target": 88
+    },
+    "owasp_llm": {
+      "total_pct": 100.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 100.0,
+      "direct_count": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
+      "total_target": 10
+    }
+  },
+  "nist_rmf": {
+    "aiuc_1": {
+      "total_pct": 23.3,
+      "direct_pct": 23.3,
+      "transitive_pct": 0.0,
+      "direct_count": 44,
+      "transitive_only_count": 0,
+      "total_reached": 44,
+      "total_target": 189
+    },
+    "cosai_rm": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 61
+    },
+    "csa_aicm": {
+      "total_pct": 64.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 64.0,
+      "direct_count": 0,
+      "transitive_only_count": 167,
+      "total_reached": 167,
+      "total_target": 261
+    },
+    "eu_gpai_cop": {
+      "total_pct": 35.7,
+      "direct_pct": 0.0,
+      "transitive_pct": 35.7,
+      "direct_count": 0,
+      "transitive_only_count": 25,
+      "total_reached": 25,
+      "total_target": 70
+    },
+    "mitre_atlas": {
+      "total_pct": 5.5,
+      "direct_pct": 0.0,
+      "transitive_pct": 5.5,
+      "direct_count": 0,
+      "transitive_only_count": 12,
+      "total_reached": 12,
+      "total_target": 218
+    },
+    "owasp_agentic": {
+      "total_pct": 100.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 100.0,
+      "direct_count": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
+      "total_target": 10
+    },
+    "owasp_ai_exchange": {
+      "total_pct": 68.2,
+      "direct_pct": 0.0,
+      "transitive_pct": 68.2,
+      "direct_count": 0,
+      "transitive_only_count": 60,
+      "total_reached": 60,
+      "total_target": 88
+    },
+    "owasp_llm": {
+      "total_pct": 90.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 90.0,
+      "direct_count": 0,
+      "transitive_only_count": 9,
+      "total_reached": 9,
+      "total_target": 10
+    }
+  },
+  "owasp_agentic": {
+    "aiuc_1": {
+      "total_pct": 22.8,
+      "direct_pct": 22.8,
+      "transitive_pct": 0.0,
+      "direct_count": 43,
+      "transitive_only_count": 0,
+      "total_reached": 43,
+      "total_target": 189
+    },
+    "cosai_rm": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 61
+    },
+    "csa_aicm": {
+      "total_pct": 71.3,
+      "direct_pct": 0.0,
+      "transitive_pct": 71.3,
+      "direct_count": 0,
+      "transitive_only_count": 186,
+      "total_reached": 186,
+      "total_target": 261
+    },
+    "eu_gpai_cop": {
+      "total_pct": 24.3,
+      "direct_pct": 0.0,
+      "transitive_pct": 24.3,
+      "direct_count": 0,
+      "transitive_only_count": 17,
+      "total_reached": 17,
+      "total_target": 70
+    },
+    "mitre_atlas": {
+      "total_pct": 7.8,
+      "direct_pct": 0.0,
+      "transitive_pct": 7.8,
+      "direct_count": 0,
+      "transitive_only_count": 17,
+      "total_reached": 17,
+      "total_target": 218
+    },
+    "nist_rmf": {
+      "total_pct": 59.2,
+      "direct_pct": 0.0,
+      "transitive_pct": 59.2,
+      "direct_count": 0,
+      "transitive_only_count": 45,
+      "total_reached": 45,
+      "total_target": 76
+    },
+    "owasp_ai_exchange": {
+      "total_pct": 68.2,
+      "direct_pct": 0.0,
+      "transitive_pct": 68.2,
+      "direct_count": 0,
+      "transitive_only_count": 60,
+      "total_reached": 60,
+      "total_target": 88
+    },
+    "owasp_llm": {
+      "total_pct": 100.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 100.0,
+      "direct_count": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
+      "total_target": 10
+    }
+  },
+  "owasp_ai_exchange": {
+    "aiuc_1": {
+      "total_pct": 3.2,
+      "direct_pct": 3.2,
+      "transitive_pct": 0.0,
+      "direct_count": 6,
+      "transitive_only_count": 0,
+      "total_reached": 6,
+      "total_target": 189
+    },
+    "cosai_rm": {
+      "total_pct": 0.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 0.0,
+      "direct_count": 0,
+      "transitive_only_count": 0,
+      "total_reached": 0,
+      "total_target": 61
+    },
+    "csa_aicm": {
+      "total_pct": 23.4,
+      "direct_pct": 0.0,
+      "transitive_pct": 23.4,
+      "direct_count": 0,
+      "transitive_only_count": 61,
+      "total_reached": 61,
+      "total_target": 261
+    },
+    "eu_gpai_cop": {
+      "total_pct": 4.3,
+      "direct_pct": 0.0,
+      "transitive_pct": 4.3,
+      "direct_count": 0,
+      "transitive_only_count": 3,
+      "total_reached": 3,
+      "total_target": 70
+    },
+    "mitre_atlas": {
+      "total_pct": 2.8,
+      "direct_pct": 0.0,
+      "transitive_pct": 2.8,
+      "direct_count": 0,
+      "transitive_only_count": 6,
+      "total_reached": 6,
+      "total_target": 218
+    },
+    "nist_rmf": {
+      "total_pct": 10.5,
+      "direct_pct": 0.0,
+      "transitive_pct": 10.5,
+      "direct_count": 0,
+      "transitive_only_count": 8,
+      "total_reached": 8,
+      "total_target": 76
+    },
+    "owasp_agentic": {
+      "total_pct": 60.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 60.0,
+      "direct_count": 0,
+      "transitive_only_count": 6,
+      "total_reached": 6,
+      "total_target": 10
+    },
+    "owasp_llm": {
+      "total_pct": 60.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 60.0,
+      "direct_count": 0,
+      "transitive_only_count": 6,
+      "total_reached": 6,
+      "total_target": 10
+    }
+  },
+  "owasp_llm": {
+    "aiuc_1": {
+      "total_pct": 14.3,
+      "direct_pct": 14.3,
+      "transitive_pct": 0.0,
+      "direct_count": 27,
+      "transitive_only_count": 0,
+      "total_reached": 27,
+      "total_target": 189
+    },
+    "cosai_rm": {
+      "total_pct": 21.3,
+      "direct_pct": 21.3,
+      "transitive_pct": 0.0,
+      "direct_count": 13,
+      "transitive_only_count": 0,
+      "total_reached": 13,
+      "total_target": 61
+    },
+    "csa_aicm": {
+      "total_pct": 55.9,
+      "direct_pct": 0.0,
+      "transitive_pct": 55.9,
+      "direct_count": 0,
+      "transitive_only_count": 146,
+      "total_reached": 146,
+      "total_target": 261
+    },
+    "eu_gpai_cop": {
+      "total_pct": 10.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 10.0,
+      "direct_count": 0,
+      "transitive_only_count": 7,
+      "total_reached": 7,
+      "total_target": 70
+    },
+    "mitre_atlas": {
+      "total_pct": 13.3,
+      "direct_pct": 0.0,
+      "transitive_pct": 13.3,
+      "direct_count": 0,
+      "transitive_only_count": 29,
+      "total_reached": 29,
+      "total_target": 218
+    },
+    "nist_rmf": {
+      "total_pct": 34.2,
+      "direct_pct": 0.0,
+      "transitive_pct": 34.2,
+      "direct_count": 0,
+      "transitive_only_count": 26,
+      "total_reached": 26,
+      "total_target": 76
+    },
+    "owasp_agentic": {
+      "total_pct": 100.0,
+      "direct_pct": 0.0,
+      "transitive_pct": 100.0,
+      "direct_count": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
+      "total_target": 10
+    },
+    "owasp_ai_exchange": {
+      "total_pct": 68.2,
+      "direct_pct": 0.0,
+      "transitive_pct": 68.2,
+      "direct_count": 0,
+      "transitive_only_count": 60,
+      "total_reached": 60,
+      "total_target": 88
+    }
+  }
+}

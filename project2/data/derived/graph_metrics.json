@@ -1,0 +1,6013 @@
+{
+  "framework_pairs": {
+    "aiuc_1->csa_aicm": {
+      "edge_count": 2092,
+      "confidence_counts": {
+        "suggestive": 1769,
+        "authoritative": 257,
+        "unvalidated": 66
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_CATEGORY": 1769,
+        "null": 323
+      }
+    },
+    "aiuc_1->eu_gpai_cop": {
+      "edge_count": 60,
+      "confidence_counts": {
+        "authoritative": 60
+      },
+      "rationale_counts": {
+        "null": 60
+      }
+    },
+    "aiuc_1->nist_rmf": {
+      "edge_count": 152,
+      "confidence_counts": {
+        "authoritative": 152
+      },
+      "rationale_counts": {
+        "null": 152
+      }
+    },
+    "aiuc_1->owasp_ai_exchange": {
+      "edge_count": 196,
+      "confidence_counts": {
+        "suggestive": 196
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_CATEGORY": 196
+      }
+    },
+    "aiuc_1->owasp_agentic": {
+      "edge_count": 119,
+      "confidence_counts": {
+        "expert": 119
+      },
+      "rationale_counts": {
+        "SCOPE": 33,
+        "ISOLATE": 8,
+        "VALID": 16,
+        "PREV": 24,
+        "GATE": 8,
+        "DETECT": 17,
+        "GOVERN": 10,
+        "DISCLOSE": 3
+      }
+    },
+    "aiuc_1->owasp_llm": {
+      "edge_count": 60,
+      "confidence_counts": {
+        "authoritative": 60
+      },
+      "rationale_counts": {
+        "null": 60
+      }
+    },
+    "aiuc_1->mitre_atlas": {
+      "edge_count": 32,
+      "confidence_counts": {
+        "authoritative": 32
+      },
+      "rationale_counts": {
+        "null": 32
+      }
+    },
+    "cosai_rm->mitre_atlas": {
+      "edge_count": 29,
+      "confidence_counts": {
+        "authoritative": 29
+      },
+      "rationale_counts": {
+        "null": 29
+      }
+    },
+    "cosai_rm->owasp_llm": {
+      "edge_count": 18,
+      "confidence_counts": {
+        "authoritative": 18
+      },
+      "rationale_counts": {
+        "null": 18
+      }
+    },
+    "csa_aicm->aiuc_1": {
+      "edge_count": 1769,
+      "confidence_counts": {
+        "suggestive": 1769
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_CATEGORY": 1769
+      }
+    },
+    "owasp_ai_exchange->aiuc_1": {
+      "edge_count": 196,
+      "confidence_counts": {
+        "suggestive": 196
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_CATEGORY": 196
+      }
+    }
+  },
+  "node_degrees": {
+    "aiuc_1:A001": {
+      "out_degree": 70,
+      "in_degree": 57,
+      "cross_out": 67,
+      "cross_in": 56
+    },
+    "aiuc_1:A001.1": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A001.2": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A001.3": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A002": {
+      "out_degree": 28,
+      "in_degree": 25,
+      "cross_out": 27,
+      "cross_in": 24
+    },
+    "aiuc_1:A002.1": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A003": {
+      "out_degree": 41,
+      "in_degree": 25,
+      "cross_out": 38,
+      "cross_in": 24
+    },
+    "aiuc_1:A003.1": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A003.2": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A003.3": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A004": {
+      "out_degree": 45,
+      "in_degree": 25,
+      "cross_out": 41,
+      "cross_in": 24
+    },
+    "aiuc_1:A004.1": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A004.2": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A004.3": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A004.4": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A005": {
+      "out_degree": 66,
+      "in_degree": 57,
+      "cross_out": 63,
+      "cross_in": 56
+    },
+    "aiuc_1:A005.1": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A005.2": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A005.3": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A006": {
+      "out_degree": 40,
+      "in_degree": 25,
+      "cross_out": 37,
+      "cross_in": 24
+    },
+    "aiuc_1:A006.1": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A006.2": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A006.3": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A007": {
+      "out_degree": 36,
+      "in_degree": 25,
+      "cross_out": 33,
+      "cross_in": 24
+    },
+    "aiuc_1:A007.1": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A007.2": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:A007.3": {
+      "out_degree": 24,
+      "in_degree": 25,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:B001": {
+      "out_degree": 80,
+      "in_degree": 53,
+      "cross_out": 78,
+      "cross_in": 52
+    },
+    "aiuc_1:B001.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B001.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B002": {
+      "out_degree": 82,
+      "in_degree": 53,
+      "cross_out": 77,
+      "cross_in": 52
+    },
+    "aiuc_1:B002.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B002.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B002.3": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B002.4": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B002.5": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B003": {
+      "out_degree": 29,
+      "in_degree": 20,
+      "cross_out": 27,
+      "cross_in": 19
+    },
+    "aiuc_1:B003.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B003.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B004": {
+      "out_degree": 40,
+      "in_degree": 20,
+      "cross_out": 36,
+      "cross_in": 19
+    },
+    "aiuc_1:B004.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B004.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B004.3": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B004.4": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B005": {
+      "out_degree": 70,
+      "in_degree": 53,
+      "cross_out": 65,
+      "cross_in": 52
+    },
+    "aiuc_1:B005.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B005.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B005.3": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B005.4": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B005.5": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B006": {
+      "out_degree": 35,
+      "in_degree": 20,
+      "cross_out": 33,
+      "cross_in": 19
+    },
+    "aiuc_1:B006.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B006.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B007": {
+      "out_degree": 52,
+      "in_degree": 21,
+      "cross_out": 50,
+      "cross_in": 20
+    },
+    "aiuc_1:B007.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B007.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B008": {
+      "out_degree": 60,
+      "in_degree": 20,
+      "cross_out": 56,
+      "cross_in": 19
+    },
+    "aiuc_1:B008.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B008.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B008.3": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B008.4": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B009": {
+      "out_degree": 33,
+      "in_degree": 20,
+      "cross_out": 30,
+      "cross_in": 19
+    },
+    "aiuc_1:B009.1": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B009.2": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:B009.3": {
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:C001": {
+      "out_degree": 29,
+      "in_degree": 4,
+      "cross_out": 27,
+      "cross_in": 3
+    },
+    "aiuc_1:C001.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C001.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C002": {
+      "out_degree": 26,
+      "in_degree": 4,
+      "cross_out": 23,
+      "cross_in": 3
+    },
+    "aiuc_1:C002.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C002.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C002.3": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C003": {
+      "out_degree": 19,
+      "in_degree": 4,
+      "cross_out": 15,
+      "cross_in": 3
+    },
+    "aiuc_1:C003.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C003.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C003.3": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C003.4": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C004": {
+      "out_degree": 16,
+      "in_degree": 4,
+      "cross_out": 13,
+      "cross_in": 3
+    },
+    "aiuc_1:C004.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C004.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C004.3": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C005": {
+      "out_degree": 15,
+      "in_degree": 4,
+      "cross_out": 12,
+      "cross_in": 3
+    },
+    "aiuc_1:C005.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C005.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C005.3": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C006": {
+      "out_degree": 48,
+      "in_degree": 37,
+      "cross_out": 45,
+      "cross_in": 36
+    },
+    "aiuc_1:C006.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C006.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C006.3": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C007": {
+      "out_degree": 13,
+      "in_degree": 4,
+      "cross_out": 10,
+      "cross_in": 3
+    },
+    "aiuc_1:C007.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C007.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C007.3": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C008": {
+      "out_degree": 18,
+      "in_degree": 4,
+      "cross_out": 15,
+      "cross_in": 3
+    },
+    "aiuc_1:C008.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C008.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C008.4": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C009": {
+      "out_degree": 31,
+      "in_degree": 20,
+      "cross_out": 29,
+      "cross_in": 19
+    },
+    "aiuc_1:C009.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C009.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C010": {
+      "out_degree": 17,
+      "in_degree": 4,
+      "cross_out": 16,
+      "cross_in": 3
+    },
+    "aiuc_1:C010.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C011": {
+      "out_degree": 13,
+      "in_degree": 4,
+      "cross_out": 12,
+      "cross_in": 3
+    },
+    "aiuc_1:C011.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:C012": {
+      "out_degree": 13,
+      "in_degree": 4,
+      "cross_out": 12,
+      "cross_in": 3
+    },
+    "aiuc_1:C012.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D001": {
+      "out_degree": 14,
+      "in_degree": 4,
+      "cross_out": 11,
+      "cross_in": 3
+    },
+    "aiuc_1:D001.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D001.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D001.3": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D002": {
+      "out_degree": 19,
+      "in_degree": 4,
+      "cross_out": 18,
+      "cross_in": 3
+    },
+    "aiuc_1:D002.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D003": {
+      "out_degree": 30,
+      "in_degree": 4,
+      "cross_out": 25,
+      "cross_in": 3
+    },
+    "aiuc_1:D003.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D003.2": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D003.3": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D003.4": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D003.5": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:D004": {
+      "out_degree": 18,
+      "in_degree": 4,
+      "cross_out": 17,
+      "cross_in": 3
+    },
+    "aiuc_1:D004.1": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:E001": {
+      "out_degree": 65,
+      "in_degree": 45,
+      "cross_out": 61,
+      "cross_in": 44
+    },
+    "aiuc_1:E001.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E001.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E001.3": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E001.4": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E002": {
+      "out_degree": 12,
+      "in_degree": 2,
+      "cross_out": 10,
+      "cross_in": 1
+    },
+    "aiuc_1:E002.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E002.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E003": {
+      "out_degree": 12,
+      "in_degree": 2,
+      "cross_out": 10,
+      "cross_in": 1
+    },
+    "aiuc_1:E003.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E003.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E004": {
+      "out_degree": 19,
+      "in_degree": 2,
+      "cross_out": 17,
+      "cross_in": 1
+    },
+    "aiuc_1:E004.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E004.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E005": {
+      "out_degree": 41,
+      "in_degree": 21,
+      "cross_out": 40,
+      "cross_in": 20
+    },
+    "aiuc_1:E005.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E006": {
+      "out_degree": 15,
+      "in_degree": 2,
+      "cross_out": 14,
+      "cross_in": 1
+    },
+    "aiuc_1:E006.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E007": {
+      "out_degree": 17,
+      "in_degree": 2,
+      "cross_out": 16,
+      "cross_in": 1
+    },
+    "aiuc_1:E007.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E008": {
+      "out_degree": 27,
+      "in_degree": 2,
+      "cross_out": 25,
+      "cross_in": 1
+    },
+    "aiuc_1:E008.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E008.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E009": {
+      "out_degree": 20,
+      "in_degree": 2,
+      "cross_out": 19,
+      "cross_in": 1
+    },
+    "aiuc_1:E009.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E010": {
+      "out_degree": 14,
+      "in_degree": 2,
+      "cross_out": 10,
+      "cross_in": 1
+    },
+    "aiuc_1:E010.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E010.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E010.3": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E010.4": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E011": {
+      "out_degree": 8,
+      "in_degree": 2,
+      "cross_out": 6,
+      "cross_in": 1
+    },
+    "aiuc_1:E011.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E011.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E012": {
+      "out_degree": 20,
+      "in_degree": 2,
+      "cross_out": 19,
+      "cross_in": 1
+    },
+    "aiuc_1:E012.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E013": {
+      "out_degree": 33,
+      "in_degree": 2,
+      "cross_out": 28,
+      "cross_in": 1
+    },
+    "aiuc_1:E013.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E013.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E013.3": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E013.4": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E013.5": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E014": {
+      "out_degree": 34,
+      "in_degree": 18,
+      "cross_out": 33,
+      "cross_in": 17
+    },
+    "aiuc_1:E014.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E015": {
+      "out_degree": 37,
+      "in_degree": 2,
+      "cross_out": 34,
+      "cross_in": 1
+    },
+    "aiuc_1:E015.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E015.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E015.3": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E016": {
+      "out_degree": 30,
+      "in_degree": 18,
+      "cross_out": 25,
+      "cross_in": 17
+    },
+    "aiuc_1:E016.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E016.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E016.3": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E016.4": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E016.5": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E017": {
+      "out_degree": 37,
+      "in_degree": 18,
+      "cross_out": 34,
+      "cross_in": 17
+    },
+    "aiuc_1:E017.1": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E017.2": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:E017.3": {
+      "out_degree": 1,
+      "in_degree": 2,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:F001": {
+      "out_degree": 10,
+      "in_degree": 1,
+      "cross_out": 8,
+      "cross_in": 0
+    },
+    "aiuc_1:F001.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:F001.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:F002": {
+      "out_degree": 8,
+      "in_degree": 1,
+      "cross_out": 6,
+      "cross_in": 0
+    },
+    "aiuc_1:F002.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:F002.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:domain_A": {
+      "out_degree": 31,
+      "in_degree": 24,
+      "cross_out": 24,
+      "cross_in": 24
+    },
+    "aiuc_1:domain_B": {
+      "out_degree": 28,
+      "in_degree": 19,
+      "cross_out": 19,
+      "cross_in": 19
+    },
+    "aiuc_1:domain_C": {
+      "out_degree": 15,
+      "in_degree": 3,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:domain_D": {
+      "out_degree": 7,
+      "in_degree": 3,
+      "cross_out": 3,
+      "cross_in": 3
+    },
+    "aiuc_1:domain_E": {
+      "out_degree": 18,
+      "in_degree": 1,
+      "cross_out": 1,
+      "cross_in": 1
+    },
+    "aiuc_1:domain_F": {
+      "out_degree": 2,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:ADI": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:ASSC": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:COV": {
+      "out_degree": 2,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:DMS": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 3,
+      "cross_in": 0
+    },
+    "cosai_rm:DP": {
+      "out_degree": 12,
+      "in_degree": 0,
+      "cross_out": 7,
+      "cross_in": 0
+    },
+    "cosai_rm:EBM": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:EDH": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 1,
+      "cross_in": 0
+    },
+    "cosai_rm:EDH-I": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 1,
+      "cross_in": 0
+    },
+    "cosai_rm:EDW": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:FLP": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:IIC": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 4,
+      "cross_in": 0
+    },
+    "cosai_rm:IMO": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 2,
+      "cross_in": 0
+    },
+    "cosai_rm:ISD": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 2,
+      "cross_in": 0
+    },
+    "cosai_rm:MDT": {
+      "out_degree": 9,
+      "in_degree": 0,
+      "cross_out": 5,
+      "cross_in": 0
+    },
+    "cosai_rm:MEV": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 3,
+      "cross_in": 0
+    },
+    "cosai_rm:MLD": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:MRE": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 3,
+      "cross_in": 0
+    },
+    "cosai_rm:MST": {
+      "out_degree": 10,
+      "in_degree": 0,
+      "cross_out": 4,
+      "cross_in": 0
+    },
+    "cosai_rm:MXF": {
+      "out_degree": 8,
+      "in_degree": 0,
+      "cross_out": 3,
+      "cross_in": 0
+    },
+    "cosai_rm:ORH": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:PCP": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:PIJ": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 2,
+      "cross_in": 0
+    },
+    "cosai_rm:RA": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 3,
+      "cross_in": 0
+    },
+    "cosai_rm:RVP": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:SDD": {
+      "out_degree": 13,
+      "in_degree": 0,
+      "cross_out": 3,
+      "cross_in": 0
+    },
+    "cosai_rm:UTD": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 1,
+      "cross_in": 0
+    },
+    "cosai_rm:controlAdversarialTrainingAndTesting": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlAgentObservability": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlAgentPluginPermissions": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlAgentPluginUserControl": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlApplicationAccessManagement": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlIncidentResponseManagement": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlInputValidationAndSanitization": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlInternalPoliciesAndEducation": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlIsolatedConfidentialComputing": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlModelAndDataAccessControls": {
+      "out_degree": 0,
+      "in_degree": 9,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlModelAndDataExecutionIntegrity": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlModelAndDataIntegrityManagement": {
+      "out_degree": 0,
+      "in_degree": 12,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlModelAndDataInventoryManagement": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlModelPrivacyEnhancingTechnologies": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlOrchestratorAndRouteIntegrity": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlOutputValidationAndSanitization": {
+      "out_degree": 0,
+      "in_degree": 9,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlProductGovernance": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlRedTeaming": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlRetrievalAndVectorSystemIntegrity": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlRiskGovernance": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlRuntimePrivacyEnhancingTechnologies": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlSecureByDefaultMLTooling": {
+      "out_degree": 0,
+      "in_degree": 10,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlThreatDetection": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlTrainingDataManagement": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlTrainingDataSanitization": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlUserDataManagement": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlUserPoliciesAndEducation": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlUserTransparencyAndControls": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlVulnerabilityManagement": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlsApplication": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlsAssurance": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlsData": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlsGovernance": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlsInfrastructure": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "cosai_rm:controlsModel": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:A-A-01": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:A-A-02": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:A-A-03": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:A-A-04": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:A-A-05": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:A-A-06": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:AIS-01": {
+      "out_degree": 41,
+      "in_degree": 46,
+      "cross_out": 41,
+      "cross_in": 45
+    },
+    "csa_aicm:AIS-02": {
+      "out_degree": 41,
+      "in_degree": 44,
+      "cross_out": 41,
+      "cross_in": 43
+    },
+    "csa_aicm:AIS-03": {
+      "out_degree": 41,
+      "in_degree": 43,
+      "cross_out": 41,
+      "cross_in": 42
+    },
+    "csa_aicm:AIS-04": {
+      "out_degree": 41,
+      "in_degree": 44,
+      "cross_out": 41,
+      "cross_in": 43
+    },
+    "csa_aicm:AIS-05": {
+      "out_degree": 41,
+      "in_degree": 46,
+      "cross_out": 41,
+      "cross_in": 45
+    },
+    "csa_aicm:AIS-06": {
+      "out_degree": 41,
+      "in_degree": 45,
+      "cross_out": 41,
+      "cross_in": 44
+    },
+    "csa_aicm:AIS-07": {
+      "out_degree": 41,
+      "in_degree": 45,
+      "cross_out": 41,
+      "cross_in": 44
+    },
+    "csa_aicm:AIS-08": {
+      "out_degree": 41,
+      "in_degree": 45,
+      "cross_out": 41,
+      "cross_in": 44
+    },
+    "csa_aicm:AIS-09": {
+      "out_degree": 41,
+      "in_degree": 50,
+      "cross_out": 41,
+      "cross_in": 49
+    },
+    "csa_aicm:AIS-10": {
+      "out_degree": 41,
+      "in_degree": 46,
+      "cross_out": 41,
+      "cross_in": 45
+    },
+    "csa_aicm:AIS-11": {
+      "out_degree": 41,
+      "in_degree": 45,
+      "cross_out": 41,
+      "cross_in": 44
+    },
+    "csa_aicm:AIS-12": {
+      "out_degree": 41,
+      "in_degree": 43,
+      "cross_out": 41,
+      "cross_in": 42
+    },
+    "csa_aicm:AIS-13": {
+      "out_degree": 41,
+      "in_degree": 43,
+      "cross_out": 41,
+      "cross_in": 42
+    },
+    "csa_aicm:AIS-14": {
+      "out_degree": 41,
+      "in_degree": 43,
+      "cross_out": 41,
+      "cross_in": 42
+    },
+    "csa_aicm:AIS-15": {
+      "out_degree": 41,
+      "in_degree": 44,
+      "cross_out": 41,
+      "cross_in": 43
+    },
+    "csa_aicm:BCR-01": {
+      "out_degree": 57,
+      "in_degree": 59,
+      "cross_out": 57,
+      "cross_in": 58
+    },
+    "csa_aicm:BCR-02": {
+      "out_degree": 57,
+      "in_degree": 60,
+      "cross_out": 57,
+      "cross_in": 59
+    },
+    "csa_aicm:BCR-03": {
+      "out_degree": 57,
+      "in_degree": 58,
+      "cross_out": 57,
+      "cross_in": 57
+    },
+    "csa_aicm:BCR-04": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:BCR-05": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:BCR-06": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:BCR-07": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:BCR-08": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:BCR-09": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:BCR-10": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:BCR-11": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:CCC-01": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:CCC-02": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:CCC-03": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:CCC-04": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CCC-05": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:CCC-06": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CCC-07": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:CCC-08": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:CCC-09": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-01": {
+      "out_degree": 41,
+      "in_degree": 43,
+      "cross_out": 41,
+      "cross_in": 42
+    },
+    "csa_aicm:CEK-02": {
+      "out_degree": 41,
+      "in_degree": 43,
+      "cross_out": 41,
+      "cross_in": 42
+    },
+    "csa_aicm:CEK-03": {
+      "out_degree": 41,
+      "in_degree": 43,
+      "cross_out": 41,
+      "cross_in": 42
+    },
+    "csa_aicm:CEK-04": {
+      "out_degree": 41,
+      "in_degree": 43,
+      "cross_out": 41,
+      "cross_in": 42
+    },
+    "csa_aicm:CEK-05": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:CEK-06": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:CEK-07": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-08": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:CEK-09": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-10": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-11": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-12": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-13": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-14": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-15": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-16": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-17": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-18": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-19": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-20": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:CEK-21": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-01": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-02": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-03": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-04": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-05": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-06": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-07": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-08": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-09": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-10": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-11": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-12": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-13": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-14": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DCS-15": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:DSP-01": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-02": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-03": {
+      "out_degree": 29,
+      "in_degree": 30,
+      "cross_out": 29,
+      "cross_in": 29
+    },
+    "csa_aicm:DSP-04": {
+      "out_degree": 29,
+      "in_degree": 30,
+      "cross_out": 29,
+      "cross_in": 29
+    },
+    "csa_aicm:DSP-05": {
+      "out_degree": 29,
+      "in_degree": 30,
+      "cross_out": 29,
+      "cross_in": 29
+    },
+    "csa_aicm:DSP-06": {
+      "out_degree": 29,
+      "in_degree": 30,
+      "cross_out": 29,
+      "cross_in": 29
+    },
+    "csa_aicm:DSP-07": {
+      "out_degree": 29,
+      "in_degree": 35,
+      "cross_out": 29,
+      "cross_in": 34
+    },
+    "csa_aicm:DSP-08": {
+      "out_degree": 29,
+      "in_degree": 34,
+      "cross_out": 29,
+      "cross_in": 33
+    },
+    "csa_aicm:DSP-09": {
+      "out_degree": 29,
+      "in_degree": 34,
+      "cross_out": 29,
+      "cross_in": 33
+    },
+    "csa_aicm:DSP-10": {
+      "out_degree": 29,
+      "in_degree": 33,
+      "cross_out": 29,
+      "cross_in": 32
+    },
+    "csa_aicm:DSP-11": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-12": {
+      "out_degree": 29,
+      "in_degree": 33,
+      "cross_out": 29,
+      "cross_in": 32
+    },
+    "csa_aicm:DSP-13": {
+      "out_degree": 29,
+      "in_degree": 33,
+      "cross_out": 29,
+      "cross_in": 32
+    },
+    "csa_aicm:DSP-14": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-15": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-16": {
+      "out_degree": 29,
+      "in_degree": 33,
+      "cross_out": 29,
+      "cross_in": 32
+    },
+    "csa_aicm:DSP-17": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-18": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-19": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-20": {
+      "out_degree": 29,
+      "in_degree": 32,
+      "cross_out": 29,
+      "cross_in": 31
+    },
+    "csa_aicm:DSP-21": {
+      "out_degree": 29,
+      "in_degree": 30,
+      "cross_out": 29,
+      "cross_in": 29
+    },
+    "csa_aicm:DSP-22": {
+      "out_degree": 29,
+      "in_degree": 32,
+      "cross_out": 29,
+      "cross_in": 31
+    },
+    "csa_aicm:DSP-23": {
+      "out_degree": 29,
+      "in_degree": 31,
+      "cross_out": 29,
+      "cross_in": 30
+    },
+    "csa_aicm:DSP-24": {
+      "out_degree": 29,
+      "in_degree": 30,
+      "cross_out": 29,
+      "cross_in": 29
+    },
+    "csa_aicm:GRC-01": {
+      "out_degree": 59,
+      "in_degree": 60,
+      "cross_out": 59,
+      "cross_in": 59
+    },
+    "csa_aicm:GRC-02": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "csa_aicm:GRC-03": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:GRC-04": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:GRC-05": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:GRC-06": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:GRC-07": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:GRC-08": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:GRC-09": {
+      "out_degree": 0,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "csa_aicm:GRC-10": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:GRC-11": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:GRC-12": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:GRC-13": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:GRC-14": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:GRC-15": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:HRS-01": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-02": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-03": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-04": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-05": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-06": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-07": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-08": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-09": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-10": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:HRS-11": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-12": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:HRS-13": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-14": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:HRS-15": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:I-S-01": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:I-S-02": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:I-S-03": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:I-S-04": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:I-S-05": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:I-S-06": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:I-S-07": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:I-S-08": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:I-S-09": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:IAM-01": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-02": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-03": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:IAM-04": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:IAM-05": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-06": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-07": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-08": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:IAM-09": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-10": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-11": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:IAM-12": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:IAM-13": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-14": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:IAM-15": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-16": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-17": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:IAM-18": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:IAM-19": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:IPY-01": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:IPY-02": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:IPY-03": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:IPY-04": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:LOG-01": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:LOG-02": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:LOG-03": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:LOG-04": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:LOG-05": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:LOG-06": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:LOG-07": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:LOG-08": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:LOG-09": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:LOG-10": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:LOG-11": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:LOG-12": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:LOG-13": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:LOG-14": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:LOG-15": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "csa_aicm:MDS-01": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:MDS-02": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:MDS-03": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:MDS-04": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:MDS-05": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:MDS-06": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:MDS-07": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:MDS-08": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:MDS-09": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:MDS-10": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:MDS-11": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "csa_aicm:MDS-12": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:MDS-13": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:SEF-01": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:SEF-02": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:SEF-03": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:SEF-04": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:SEF-05": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:SEF-06": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:SEF-07": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:SEF-08": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:SEF-09": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:STA-01": {
+      "out_degree": 4,
+      "in_degree": 6,
+      "cross_out": 4,
+      "cross_in": 5
+    },
+    "csa_aicm:STA-02": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "csa_aicm:STA-03": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "csa_aicm:STA-04": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "csa_aicm:STA-05": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "csa_aicm:STA-06": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "csa_aicm:STA-07": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "csa_aicm:STA-08": {
+      "out_degree": 4,
+      "in_degree": 6,
+      "cross_out": 4,
+      "cross_in": 5
+    },
+    "csa_aicm:STA-09": {
+      "out_degree": 4,
+      "in_degree": 6,
+      "cross_out": 4,
+      "cross_in": 5
+    },
+    "csa_aicm:STA-10": {
+      "out_degree": 4,
+      "in_degree": 8,
+      "cross_out": 4,
+      "cross_in": 7
+    },
+    "csa_aicm:STA-11": {
+      "out_degree": 4,
+      "in_degree": 6,
+      "cross_out": 4,
+      "cross_in": 5
+    },
+    "csa_aicm:STA-12": {
+      "out_degree": 4,
+      "in_degree": 6,
+      "cross_out": 4,
+      "cross_in": 5
+    },
+    "csa_aicm:STA-13": {
+      "out_degree": 4,
+      "in_degree": 7,
+      "cross_out": 4,
+      "cross_in": 6
+    },
+    "csa_aicm:STA-14": {
+      "out_degree": 4,
+      "in_degree": 6,
+      "cross_out": 4,
+      "cross_in": 5
+    },
+    "csa_aicm:STA-15": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "csa_aicm:STA-16": {
+      "out_degree": 4,
+      "in_degree": 6,
+      "cross_out": 4,
+      "cross_in": 5
+    },
+    "csa_aicm:TVM-01": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "csa_aicm:TVM-02": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "csa_aicm:TVM-03": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:TVM-04": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:TVM-05": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:TVM-06": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "csa_aicm:TVM-07": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:TVM-08": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:TVM-09": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:TVM-10": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:TVM-11": {
+      "out_degree": 0,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "csa_aicm:TVM-12": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:TVM-13": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:UEM-01": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:UEM-02": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:UEM-03": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:UEM-04": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:UEM-05": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:UEM-06": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:UEM-07": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:UEM-08": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "csa_aicm:UEM-09": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:UEM-10": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:UEM-11": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "csa_aicm:UEM-12": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:UEM-13": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:UEM-14": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:domain_A-A": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_AIS": {
+      "out_degree": 15,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_BCR": {
+      "out_degree": 11,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_CCC": {
+      "out_degree": 9,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_CEK": {
+      "out_degree": 21,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_DCS": {
+      "out_degree": 15,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_DSP": {
+      "out_degree": 24,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_GRC": {
+      "out_degree": 15,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_HRS": {
+      "out_degree": 15,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_I-S": {
+      "out_degree": 9,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_IAM": {
+      "out_degree": 19,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_IPY": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_LOG": {
+      "out_degree": 15,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_MDS": {
+      "out_degree": 13,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_SEF": {
+      "out_degree": 9,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_STA": {
+      "out_degree": 16,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_TVM": {
+      "out_degree": 13,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "csa_aicm:domain_UEM": {
+      "out_degree": 14,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Article-10": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-11": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "eu_gpai_cop:Article-12": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "eu_gpai_cop:Article-13": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-14": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-15": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "eu_gpai_cop:Article-16": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "eu_gpai_cop:Article-17": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "eu_gpai_cop:Article-18": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "eu_gpai_cop:Article-19": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "eu_gpai_cop:Article-20": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "eu_gpai_cop:Article-21": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-22": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Article-23": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-24": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-25": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-26": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "eu_gpai_cop:Article-27": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-43": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "eu_gpai_cop:Article-44": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Article-46": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Article-47": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-48": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-49": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-50": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "eu_gpai_cop:Article-72": {
+      "out_degree": 0,
+      "in_degree": 9,
+      "cross_out": 0,
+      "cross_in": 9
+    },
+    "eu_gpai_cop:Article-73": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "eu_gpai_cop:Article-9": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "eu_gpai_cop:Commitment_1": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_10": {
+      "out_degree": 2,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_2": {
+      "out_degree": 2,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_3": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_4": {
+      "out_degree": 2,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_5": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_6": {
+      "out_degree": 2,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_7": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_8": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Commitment_9": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_1.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_1.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_1.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_1.4": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_10.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_10.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_2.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_2.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_3.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_3.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_3.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_3.4": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_3.5": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_4.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_4.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_5.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_6.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_6.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_7.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_7.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_7.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_7.4": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_7.5": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_7.6": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_7.7": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_8.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_8.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_8.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_9.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_9.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_9.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "eu_gpai_cop:Measure_9.4": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0000": {
+      "out_degree": 7,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0001": {
+      "out_degree": 6,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0002": {
+      "out_degree": 11,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0003": {
+      "out_degree": 8,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "mitre_atlas:AML.M0004": {
+      "out_degree": 16,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "mitre_atlas:AML.M0005": {
+      "out_degree": 13,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.M0006": {
+      "out_degree": 11,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0007": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0008": {
+      "out_degree": 8,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0009": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0010": {
+      "out_degree": 8,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0011": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0012": {
+      "out_degree": 4,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0013": {
+      "out_degree": 8,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0014": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0015": {
+      "out_degree": 9,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.M0016": {
+      "out_degree": 3,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0017": {
+      "out_degree": 6,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0018": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0019": {
+      "out_degree": 11,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.M0020": {
+      "out_degree": 8,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "mitre_atlas:AML.M0021": {
+      "out_degree": 7,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.M0022": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0023": {
+      "out_degree": 7,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0024": {
+      "out_degree": 17,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "mitre_atlas:AML.M0025": {
+      "out_degree": 5,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.M0026": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0027": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0028": {
+      "out_degree": 5,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0029": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0030": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0031": {
+      "out_degree": 2,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0032": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0033": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.M0034": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0000": {
+      "out_degree": 3,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0000.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0000.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0000.002": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0002": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0002.000": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0002.001": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0003": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0004": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0005": {
+      "out_degree": 3,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0005.000": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0005.001": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0005.002": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0006": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0007": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0008": {
+      "out_degree": 6,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0008.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0008.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0008.002": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0008.003": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0008.004": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0008.005": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0010": {
+      "out_degree": 6,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0010.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0010.001": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0010.002": {
+      "out_degree": 0,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.T0010.003": {
+      "out_degree": 0,
+      "in_degree": 8,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.T0010.004": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0010.005": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0011": {
+      "out_degree": 4,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0011.000": {
+      "out_degree": 0,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0011.001": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0011.002": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0011.003": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0012": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0013": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0014": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0015": {
+      "out_degree": 0,
+      "in_degree": 10,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0016": {
+      "out_degree": 3,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0016.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0016.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0016.002": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0017": {
+      "out_degree": 1,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0017.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0018": {
+      "out_degree": 3,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0018.000": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0018.001": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0018.002": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0019": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0020": {
+      "out_degree": 0,
+      "in_degree": 9,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0021": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0024": {
+      "out_degree": 3,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0024.000": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0024.001": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0024.002": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.T0025": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0029": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0031": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0034": {
+      "out_degree": 3,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0034.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0034.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0034.002": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0035": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0036": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0037": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0040": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0041": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0042": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0043": {
+      "out_degree": 5,
+      "in_degree": 11,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.T0043.000": {
+      "out_degree": 0,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0043.001": {
+      "out_degree": 0,
+      "in_degree": 8,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0043.002": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0043.003": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0043.004": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0044": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0046": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0047": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0048": {
+      "out_degree": 5,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0048.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0048.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0048.002": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0048.003": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0048.004": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.T0049": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "mitre_atlas:AML.T0050": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0051": {
+      "out_degree": 3,
+      "in_degree": 11,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "mitre_atlas:AML.T0051.000": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0051.001": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0051.002": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0052": {
+      "out_degree": 1,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0052.000": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0053": {
+      "out_degree": 0,
+      "in_degree": 13,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0054": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0055": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0056": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0057": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0058": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0059": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0060": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0061": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0062": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0063": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0064": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0065": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0066": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0067": {
+      "out_degree": 1,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0067.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0068": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0069": {
+      "out_degree": 3,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0069.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0069.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0069.002": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0070": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0071": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0072": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0073": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0074": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0075": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0076": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0077": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0078": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0079": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0080": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0080.000": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0080.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0081": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0082": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0083": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0084": {
+      "out_degree": 4,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0084.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0084.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0084.002": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0084.003": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0085": {
+      "out_degree": 2,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0085.000": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0085.001": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0086": {
+      "out_degree": 0,
+      "in_degree": 10,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "mitre_atlas:AML.T0087": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0088": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0089": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0090": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0091": {
+      "out_degree": 1,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0091.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0092": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0093": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0094": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0095": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0096": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0097": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0098": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0099": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0100": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0101": {
+      "out_degree": 0,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0102": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0103": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0104": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0105": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0106": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0107": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0108": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0109": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0110": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0111": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0112": {
+      "out_degree": 2,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0112.000": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.T0112.001": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0000": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0001": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0002": {
+      "out_degree": 8,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0003": {
+      "out_degree": 13,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0004": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0005": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0006": {
+      "out_degree": 9,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0007": {
+      "out_degree": 15,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0008": {
+      "out_degree": 9,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0009": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0010": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0011": {
+      "out_degree": 9,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0012": {
+      "out_degree": 4,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0013": {
+      "out_degree": 6,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0014": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "mitre_atlas:AML.TA0015": {
+      "out_degree": 2,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:GOVERN": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:GOVERN-1.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:GOVERN-1.2": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:GOVERN-1.3": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:GOVERN-1.4": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:GOVERN-1.5": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "nist_rmf:GOVERN-1.6": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:GOVERN-1.7": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:GOVERN-2.1": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:GOVERN-2.2": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:GOVERN-2.3": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:GOVERN-3.1": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:GOVERN-3.2": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:GOVERN-4.1": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:GOVERN-4.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:GOVERN-4.3": {
+      "out_degree": 0,
+      "in_degree": 10,
+      "cross_out": 0,
+      "cross_in": 10
+    },
+    "nist_rmf:GOVERN-5.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:GOVERN-5.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:GOVERN-6.1": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "nist_rmf:GOVERN-6.2": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MANAGE": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MANAGE-1.1": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:MANAGE-1.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MANAGE-1.3": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "nist_rmf:MANAGE-1.4": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:MANAGE-2.1": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MANAGE-2.2": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "nist_rmf:MANAGE-2.3": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MANAGE-2.4": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MANAGE-3.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MANAGE-3.2": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MANAGE-4.1": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:MANAGE-4.2": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:MANAGE-4.3": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "nist_rmf:MAP": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MAP-1.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MAP-1.2": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MAP-1.3": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MAP-1.4": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MAP-1.5": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MAP-1.6": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "nist_rmf:MAP-2.1": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:MAP-2.2": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "nist_rmf:MAP-2.3": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MAP-3.1": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MAP-3.2": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MAP-3.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MAP-3.4": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "nist_rmf:MAP-3.5": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "nist_rmf:MAP-4.1": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:MAP-4.2": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "nist_rmf:MAP-5.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MAP-5.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MEASURE": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MEASURE-1.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MEASURE-1.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MEASURE-1.3": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "nist_rmf:MEASURE-2.1": {
+      "out_degree": 0,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 7
+    },
+    "nist_rmf:MEASURE-2.10": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "nist_rmf:MEASURE-2.11": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "nist_rmf:MEASURE-2.12": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MEASURE-2.13": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MEASURE-2.2": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MEASURE-2.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MEASURE-2.4": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "nist_rmf:MEASURE-2.5": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "nist_rmf:MEASURE-2.6": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "nist_rmf:MEASURE-2.7": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "nist_rmf:MEASURE-2.8": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "nist_rmf:MEASURE-2.9": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:MEASURE-3.1": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "nist_rmf:MEASURE-3.2": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "nist_rmf:MEASURE-3.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 1
+    },
+    "nist_rmf:MEASURE-4.1": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 5
+    },
+    "nist_rmf:MEASURE-4.2": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "nist_rmf:MEASURE-4.3": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "owasp_agentic:ASI01": {
+      "out_degree": 0,
+      "in_degree": 15,
+      "cross_out": 0,
+      "cross_in": 15
+    },
+    "owasp_agentic:ASI02": {
+      "out_degree": 0,
+      "in_degree": 11,
+      "cross_out": 0,
+      "cross_in": 11
+    },
+    "owasp_agentic:ASI03": {
+      "out_degree": 0,
+      "in_degree": 11,
+      "cross_out": 0,
+      "cross_in": 11
+    },
+    "owasp_agentic:ASI04": {
+      "out_degree": 0,
+      "in_degree": 8,
+      "cross_out": 0,
+      "cross_in": 8
+    },
+    "owasp_agentic:ASI05": {
+      "out_degree": 0,
+      "in_degree": 14,
+      "cross_out": 0,
+      "cross_in": 14
+    },
+    "owasp_agentic:ASI06": {
+      "out_degree": 0,
+      "in_degree": 10,
+      "cross_out": 0,
+      "cross_in": 10
+    },
+    "owasp_agentic:ASI07": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "owasp_agentic:ASI08": {
+      "out_degree": 0,
+      "in_degree": 12,
+      "cross_out": 0,
+      "cross_in": 12
+    },
+    "owasp_agentic:ASI09": {
+      "out_degree": 0,
+      "in_degree": 17,
+      "cross_out": 0,
+      "cross_in": 17
+    },
+    "owasp_agentic:ASI10": {
+      "out_degree": 0,
+      "in_degree": 17,
+      "cross_out": 0,
+      "cross_in": 17
+    },
+    "owasp_ai_exchange:1.1": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:1.2": {
+      "out_degree": 3,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:1.3": {
+      "out_degree": 7,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:2.0": {
+      "out_degree": 4,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.1": {
+      "out_degree": 9,
+      "in_degree": 15,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.1.1": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.1.2": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.1.3": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.1.4": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.1.5": {
+      "out_degree": 4,
+      "in_degree": 5,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.2": {
+      "out_degree": 6,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.2.1": {
+      "out_degree": 4,
+      "in_degree": 11,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.2.2": {
+      "out_degree": 4,
+      "in_degree": 8,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.3": {
+      "out_degree": 6,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.3.1": {
+      "out_degree": 4,
+      "in_degree": 10,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.3.2": {
+      "out_degree": 4,
+      "in_degree": 12,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.4": {
+      "out_degree": 4,
+      "in_degree": 8,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:2.5": {
+      "out_degree": 4,
+      "in_degree": 9,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:3.0": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:3.1": {
+      "out_degree": 5,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:3.1.1": {
+      "out_degree": 2,
+      "in_degree": 14,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:3.1.2": {
+      "out_degree": 2,
+      "in_degree": 9,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:3.1.3": {
+      "out_degree": 2,
+      "in_degree": 9,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:3.2": {
+      "out_degree": 5,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:3.2.1": {
+      "out_degree": 2,
+      "in_degree": 7,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:3.2.2": {
+      "out_degree": 2,
+      "in_degree": 6,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:3.2.3": {
+      "out_degree": 2,
+      "in_degree": 3,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:4.1": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:4.2": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:4.3": {
+      "out_degree": 0,
+      "in_degree": 2,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:4.4": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:4.5": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:4.6": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:4.7": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:ADVERSARIALROBUSTDISTILLATION": {
+      "out_degree": 7,
+      "in_degree": 6,
+      "cross_out": 6,
+      "cross_in": 6
+    },
+    "owasp_ai_exchange:AIPROGRAM": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:AITRANSPARENCY": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:ALLOWEDDATA": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:ANOMALOUSINPUTHANDLING": {
+      "out_degree": 5,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:AUGMENTATIONDATACONFIDENTIALITY": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:AUGMENTATIONDATAINTEGRITY": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:CHECKCOMPLIANCE": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:CONFCOMPUTE": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:CONTINUOUSVALIDATION": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:DATAMINIMIZE": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:DATAQUALITYCONTROL": {
+      "out_degree": 3,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:DEVPROGRAM": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:DEVSECURITY": {
+      "out_degree": 7,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:DISCRETE": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:DOSINPUTVALIDATION": {
+      "out_degree": 5,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:ENCODEMODELOUTPUT": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:EVASIONINPUTHANDLING": {
+      "out_degree": 5,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:EVASIONROBUSTMODEL": {
+      "out_degree": 7,
+      "in_degree": 6,
+      "cross_out": 6,
+      "cross_in": 6
+    },
+    "owasp_ai_exchange:EXPLAINABILITY": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:FEDERATEDLEARNING": {
+      "out_degree": 7,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:INPUTDISTORTION": {
+      "out_degree": 5,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:INPUTSEGREGATION": {
+      "out_degree": 5,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:LEASTMODELPRIVILEGE": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:LIMITRESOURCES": {
+      "out_degree": 5,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:MODELACCESSCONTROL": {
+      "out_degree": 10,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:MODELALIGNMENT": {
+      "out_degree": 3,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:MODELENSEMBLE": {
+      "out_degree": 5,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:MODELINPUTCONFIDENTIALITY": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:MODELOBFUSCATION": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:MODELWATERMARKING": {
+      "out_degree": 6,
+      "in_degree": 6,
+      "cross_out": 6,
+      "cross_in": 6
+    },
+    "owasp_ai_exchange:MONITORUSE": {
+      "out_degree": 10,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:MORETRAINDATA": {
+      "out_degree": 3,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:OBFUSCATETRAININGDATA": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:OBSCURECONFIDENCE": {
+      "out_degree": 5,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:OVERSIGHT": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:POISONROBUSTMODEL": {
+      "out_degree": 3,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:PROMPTINJECTIONIOHANDLING": {
+      "out_degree": 6,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:RATELIMIT": {
+      "out_degree": 10,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:RUNTIMEMODELCONFIDENTIALITY": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:RUNTIMEMODELINTEGRITY": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:RUNTIMEMODELIOINTEGRITY": {
+      "out_degree": 1,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:SECDEVPROGRAM": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:SECEDUCATE": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:SECPROGRAM": {
+      "out_degree": 0,
+      "in_degree": 0,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "owasp_ai_exchange:SEGREGATEDATA": {
+      "out_degree": 7,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:SENSITIVEOUTPUTHANDLING": {
+      "out_degree": 5,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_ai_exchange:SHORTRETAIN": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:SMALLMODEL": {
+      "out_degree": 7,
+      "in_degree": 6,
+      "cross_out": 6,
+      "cross_in": 6
+    },
+    "owasp_ai_exchange:SUPPLYCHAINMANAGE": {
+      "out_degree": 5,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:TRAINADVERSARIAL": {
+      "out_degree": 8,
+      "in_degree": 6,
+      "cross_out": 6,
+      "cross_in": 6
+    },
+    "owasp_ai_exchange:TRAINDATADISTORTION": {
+      "out_degree": 3,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:UNWANTEDBIASTESTING": {
+      "out_degree": 2,
+      "in_degree": 2,
+      "cross_out": 2,
+      "cross_in": 2
+    },
+    "owasp_ai_exchange:UNWANTEDINPUTSERIESHANDLING": {
+      "out_degree": 7,
+      "in_degree": 4,
+      "cross_out": 4,
+      "cross_in": 4
+    },
+    "owasp_llm:LLM01": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "owasp_llm:LLM02": {
+      "out_degree": 0,
+      "in_degree": 10,
+      "cross_out": 0,
+      "cross_in": 10
+    },
+    "owasp_llm:LLM03": {
+      "out_degree": 0,
+      "in_degree": 8,
+      "cross_out": 0,
+      "cross_in": 8
+    },
+    "owasp_llm:LLM04": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "owasp_llm:LLM05": {
+      "out_degree": 0,
+      "in_degree": 14,
+      "cross_out": 0,
+      "cross_in": 14
+    },
+    "owasp_llm:LLM06": {
+      "out_degree": 0,
+      "in_degree": 7,
+      "cross_out": 0,
+      "cross_in": 7
+    },
+    "owasp_llm:LLM07": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 3
+    },
+    "owasp_llm:LLM08": {
+      "out_degree": 0,
+      "in_degree": 10,
+      "cross_out": 0,
+      "cross_in": 10
+    },
+    "owasp_llm:LLM09": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "owasp_llm:LLM10": {
+      "out_degree": 0,
+      "in_degree": 11,
+      "cross_out": 0,
+      "cross_in": 11
+    }
+  }
+}

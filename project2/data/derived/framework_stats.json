@@ -1,0 +1,165 @@
+{
+  "aiuc_1": {
+    "node_count": 189,
+    "edge_count_out": 2894,
+    "edge_count_in": 2148,
+    "entry_type_counts": {
+      "control": 51,
+      "activity": 132,
+      "function": 6
+    },
+    "domain_counts": {
+      "Data & Privacy": 28,
+      "Security": 39,
+      "Safety": 42,
+      "Reliability": 15,
+      "Accountability": 58,
+      "Society": 7
+    },
+    "function_class_counts": {
+      "GOVERN": 15,
+      "SCOPE": 7,
+      "ISOLATE": 3,
+      "VALID": 8,
+      "PREV": 10,
+      "GATE": 2,
+      "DETECT": 4,
+      "DISCLOSE": 2
+    }
+  },
+  "cosai_rm": {
+    "node_count": 61,
+    "edge_count_out": 165,
+    "edge_count_in": 118,
+    "entry_type_counts": {
+      "risk": 26,
+      "control": 29,
+      "function": 6
+    },
+    "domain_counts": {},
+    "function_class_counts": {}
+  },
+  "csa_aicm": {
+    "node_count": 261,
+    "edge_count_out": 2012,
+    "edge_count_in": 2335,
+    "entry_type_counts": {
+      "control": 243,
+      "function": 18
+    },
+    "domain_counts": {
+      "Audit & Assurance - A&A": 6,
+      "Application & Interface Security - AIS": 15,
+      "Business Continuity Management and Operational Resilience - BCR": 11,
+      "Change Control and Configuration Management - CCC": 9,
+      "Cryptography, Encryption & Key Management - CEK": 21,
+      "Datacenter Security - DCS": 15,
+      "Data Security and Privacy Lifecycle Management - DSP": 24,
+      "Governance, Risk and Compliance - GRC": 15,
+      "Human Resources - HRS": 15,
+      "Infrastructure Security - I&S": 9,
+      "Identity & Access Management - IAM": 19,
+      "Interoperability & Portability - IPY": 4,
+      "Logging and Monitoring - LOG": 15,
+      "Model Security - MDS": 13,
+      "Security Incident Management, E-Discovery, & Cloud Forensics - SEF": 9,
+      "Supply Chain Management, Transparency, and Accountability - STA": 16,
+      "Threat & Vulnerability Management - TVM": 13,
+      "Universal Endpoint Management - UEM": 14
+    },
+    "function_class_counts": {}
+  },
+  "eu_gpai_cop": {
+    "node_count": 70,
+    "edge_count_out": 32,
+    "edge_count_in": 92,
+    "entry_type_counts": {
+      "requirement": 28,
+      "commitment": 10,
+      "measure": 32
+    },
+    "domain_counts": {},
+    "function_class_counts": {}
+  },
+  "mitre_atlas": {
+    "node_count": 218,
+    "edge_count_out": 421,
+    "edge_count_in": 482,
+    "entry_type_counts": {
+      "mitigation": 35,
+      "technique": 167,
+      "tactic": 16
+    },
+    "domain_counts": {},
+    "function_class_counts": {}
+  },
+  "nist_rmf": {
+    "node_count": 76,
+    "edge_count_out": 0,
+    "edge_count_in": 152,
+    "entry_type_counts": {
+      "function": 4,
+      "subcategory": 72
+    },
+    "domain_counts": {},
+    "function_class_counts": {}
+  },
+  "owasp_agentic": {
+    "node_count": 10,
+    "edge_count_out": 0,
+    "edge_count_in": 119,
+    "entry_type_counts": {
+      "risk": 10
+    },
+    "domain_counts": {},
+    "function_class_counts": {}
+  },
+  "owasp_ai_exchange": {
+    "node_count": 88,
+    "edge_count_out": 289,
+    "edge_count_in": 289,
+    "entry_type_counts": {
+      "risk": 34,
+      "control": 54
+    },
+    "domain_counts": {
+      "group of controls": 3,
+      "group of input threats": 4,
+      "input threat": 11,
+      "group of development-time threats": 3,
+      "development-time threat": 6,
+      "group of runtime threats": 1,
+      "runtime conventional security threat": 6,
+      "development-time AI engineer control for input threats": 5,
+      "governance control": 6,
+      "governance and runtime control": 1,
+      "development-time and runtime control": 4,
+      "runtime AI engineer control for input threats": 5,
+      "runtime information security control against conventional security threats": 8,
+      "development-time information security control": 4,
+      "development-time and runtime AI engineer control": 3,
+      "development-time AI engineer control - pre-training": 2,
+      "runtime information security control for input threats": 6,
+      "runtime AI engineer control": 1,
+      "development-time AI engineer control": 2,
+      "runtime information security control against input threats": 1,
+      "runtime information security control": 1,
+      "development-time AI engineer control - including specific runtime implementation": 1,
+      "runtime control": 1,
+      "development-time AI engineer control - post-training": 1,
+      "runtime AI engineer controls against input threats": 1,
+      "development-time AI-engineer control - pre-training": 1
+    },
+    "function_class_counts": {}
+  },
+  "owasp_llm": {
+    "node_count": 10,
+    "edge_count_out": 0,
+    "edge_count_in": 78,
+    "entry_type_counts": {
+      "risk": 10
+    },
+    "domain_counts": {},
+    "function_class_counts": {}
+  }
+}

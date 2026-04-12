@@ -1,0 +1,110 @@
+/* AI Security Crosswalk Explorer - Custom styles
+   Professional core with cyber accent highlights.
+   Dark mode default (CYBORG), light mode via DBC FLATLY. */
+
+/* ---- Typography ---- */
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ---- Cyber accent: interactive elements ---- */
+.nav-link.active {
+  border-bottom: 2px solid #00d4ff !important;
+  color: #00d4ff !important;
+}
+
+.nav-link:hover {
+  color: #00d4ff !important;
+}
+
+/* ---- Cards ---- */
+.card {
+  background-color: rgba(22, 27, 34, 0.7);
+  border-color: #21262d;
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: #30363d;
+}
+
+.card-header {
+  background-color: rgba(22, 27, 34, 0.5);
+  border-bottom-color: #21262d;
+}
+
+/* ---- Dropdowns (Dash specific) ---- */
+.Select-control {
+  background-color: #0d1117 !important;
+  border-color: #30363d !important;
+}
+
+.Select-menu-outer {
+  background-color: #161b22 !important;
+  border-color: #30363d !important;
+}
+
+.Select-option.is-focused {
+  background-color: rgba(0, 212, 255, 0.1) !important;
+}
+
+.Select-value-label {
+  color: #c9d1d9 !important;
+}
+
+/* ---- Badge glow on hover ---- */
+.badge:hover {
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+/* ---- Stats cards ---- */
+.text-info {
+  color: #00d4ff !important;
+}
+
+/* ---- Scrollbar (dark mode) ---- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* ---- Loading spinner ---- */
+._dash-loading {
+  color: #00d4ff;
+}
+
+/* ---- Checklist and radio items ---- */
+.form-check-input:checked {
+  background-color: #00d4ff;
+  border-color: #00d4ff;
+}
+
+/* ---- Range slider ---- */
+.rc-slider-track {
+  background-color: #1f6feb !important;
+}
+
+.rc-slider-handle {
+  border-color: #00d4ff !important;
+  background-color: #00d4ff !important;
+  box-shadow: 0 0 6px rgba(0, 212, 255, 0.5) !important;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .card-header {
+    font-size: 0.85rem;
+  }
+}

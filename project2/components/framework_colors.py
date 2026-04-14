@@ -23,7 +23,7 @@ FRAMEWORK_SHORT_NAMES = {
     "aiuc_1": "AIUC-1", "csa_aicm": "CSA AICM", "mitre_atlas": "ATLAS",
     "owasp_ai_exchange": "AI Exchange", "nist_rmf": "NIST RMF",
     "eu_gpai_cop": "EU GPAI", "cosai_rm": "CoSAI",
-    "owasp_llm": "LLM Top 10", "owasp_agentic": "Agentic Top 10",
+    "owasp_llm": "OWASP LLM Top 10", "owasp_agentic": "OWASP Agentic Top 10",
 }
 
 CYBER_ACCENT = "#00d4ff"

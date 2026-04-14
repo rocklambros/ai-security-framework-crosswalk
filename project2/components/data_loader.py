@@ -18,8 +18,18 @@ def _load_json(path):
 
 
 # Load everything at import time
-_nodes = _load_json(os.path.join(_DATA_DIR, "nodes.json"))
-_edges = _load_json(os.path.join(_DATA_DIR, "edges.json"))
+# Prefer enriched nodes (with domain assignments) if available
+_enriched_path = os.path.join(_DERIVED_DIR, "nodes_enriched.json")
+if os.path.exists(_enriched_path):
+    _nodes = _load_json(_enriched_path)
+else:
+    _nodes = _load_json(os.path.join(_DATA_DIR, "nodes.json"))
+# Prefer enriched edges (with upstream sources merged) if available
+_enriched_edges_path = os.path.join(_DERIVED_DIR, "edges_enriched.json")
+if os.path.exists(_enriched_edges_path):
+    _edges = _load_json(_enriched_edges_path)
+else:
+    _edges = _load_json(os.path.join(_DATA_DIR, "edges.json"))
 _nodes_df = pd.DataFrame(_nodes)
 _edges_df = pd.DataFrame(_edges)
 _node_map = {n["node_id"]: n for n in _nodes}

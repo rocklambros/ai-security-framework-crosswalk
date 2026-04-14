@@ -41,8 +41,8 @@
           "pct": 51.0
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 23,
+          "pct": 8.8
         },
         "suggestive": {
           "count": 63,
@@ -82,21 +82,21 @@
       }
     },
     "mitre_atlas": {
-      "total_pct": 7.8,
+      "total_pct": 21.6,
       "direct_pct": 7.8,
-      "transitive_pct": 0.0,
+      "transitive_pct": 13.8,
       "direct_count": 17,
-      "transitive_only_count": 0,
-      "total_reached": 17,
+      "transitive_only_count": 30,
+      "total_reached": 47,
       "total_target": 218,
       "by_confidence": {
         "authoritative": {
-          "count": 17,
-          "pct": 7.8
+          "count": 42,
+          "pct": 19.3
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 13,
+          "pct": 6.0
         },
         "suggestive": {
           "count": 0,
@@ -109,21 +109,21 @@
       }
     },
     "nist_rmf": {
-      "total_pct": 72.4,
+      "total_pct": 76.3,
       "direct_pct": 72.4,
-      "transitive_pct": 0.0,
+      "transitive_pct": 3.9,
       "direct_count": 55,
-      "transitive_only_count": 0,
-      "total_reached": 55,
+      "transitive_only_count": 3,
+      "total_reached": 58,
       "total_target": 76,
       "by_confidence": {
         "authoritative": {
-          "count": 55,
-          "pct": 72.4
+          "count": 58,
+          "pct": 76.3
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 11,
+          "pct": 14.5
         },
         "suggestive": {
           "count": 0,
@@ -145,8 +145,8 @@
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 10,
+          "pct": 100.0
         },
         "expert": {
           "count": 10,
@@ -203,8 +203,8 @@
           "pct": 100.0
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 4,
+          "pct": 40.0
         },
         "suggestive": {
           "count": 0,
@@ -219,17 +219,17 @@
   },
   "cosai_rm": {
     "aiuc_1": {
-      "total_pct": 14.3,
+      "total_pct": 16.9,
       "direct_pct": 0.0,
-      "transitive_pct": 14.3,
+      "transitive_pct": 16.9,
       "direct_count": 0,
-      "transitive_only_count": 27,
-      "total_reached": 27,
+      "transitive_only_count": 32,
+      "total_reached": 32,
       "total_target": 189,
       "by_confidence": {
         "authoritative": {
-          "count": 27,
-          "pct": 14.3
+          "count": 32,
+          "pct": 16.9
         },
         "expert": {
           "count": 0,
@@ -300,21 +300,21 @@
       }
     },
     "mitre_atlas": {
-      "total_pct": 9.2,
+      "total_pct": 18.3,
       "direct_pct": 9.2,
-      "transitive_pct": 0.0,
+      "transitive_pct": 9.2,
       "direct_count": 20,
-      "transitive_only_count": 0,
-      "total_reached": 20,
+      "transitive_only_count": 20,
+      "total_reached": 40,
       "total_target": 218,
       "by_confidence": {
         "authoritative": {
-          "count": 20,
-          "pct": 9.2
+          "count": 33,
+          "pct": 15.1
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 8,
+          "pct": 3.7
         },
         "suggestive": {
           "count": 0,
@@ -327,17 +327,17 @@
       }
     },
     "nist_rmf": {
-      "total_pct": 0.0,
+      "total_pct": 14.5,
       "direct_pct": 0.0,
-      "transitive_pct": 0.0,
+      "transitive_pct": 14.5,
       "direct_count": 0,
-      "transitive_only_count": 0,
-      "total_reached": 0,
+      "transitive_only_count": 11,
+      "total_reached": 11,
       "total_target": 76,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 11,
+          "pct": 14.5
         },
         "expert": {
           "count": 0,
@@ -354,17 +354,17 @@
       }
     },
     "owasp_agentic": {
-      "total_pct": 0.0,
+      "total_pct": 100.0,
       "direct_pct": 0.0,
-      "transitive_pct": 0.0,
+      "transitive_pct": 100.0,
       "direct_count": 0,
-      "transitive_only_count": 0,
-      "total_reached": 0,
+      "transitive_only_count": 10,
+      "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 10,
+          "pct": 100.0
         },
         "expert": {
           "count": 0,
@@ -408,21 +408,21 @@
       }
     },
     "owasp_llm": {
-      "total_pct": 90.0,
+      "total_pct": 100.0,
       "direct_pct": 90.0,
-      "transitive_pct": 0.0,
+      "transitive_pct": 10.0,
       "direct_count": 9,
-      "transitive_only_count": 0,
-      "total_reached": 9,
+      "transitive_only_count": 1,
+      "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 9,
-          "pct": 90.0
+          "count": 10,
+          "pct": 100.0
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 2,
+          "pct": 20.0
         },
         "suggestive": {
           "count": 0,
@@ -437,21 +437,21 @@
   },
   "csa_aicm": {
     "aiuc_1": {
-      "total_pct": 97.4,
+      "total_pct": 97.9,
       "direct_pct": 97.4,
-      "transitive_pct": 0.0,
+      "transitive_pct": 0.5,
       "direct_count": 184,
-      "transitive_only_count": 0,
-      "total_reached": 184,
+      "transitive_only_count": 1,
+      "total_reached": 185,
       "total_target": 189,
       "by_confidence": {
         "authoritative": {
-          "count": 50,
-          "pct": 26.5
+          "count": 55,
+          "pct": 29.1
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 40,
+          "pct": 21.2
         },
         "suggestive": {
           "count": 182,
@@ -518,17 +518,17 @@
       }
     },
     "mitre_atlas": {
-      "total_pct": 7.8,
+      "total_pct": 15.6,
       "direct_pct": 0.0,
-      "transitive_pct": 7.8,
+      "transitive_pct": 15.6,
       "direct_count": 0,
-      "transitive_only_count": 17,
-      "total_reached": 17,
+      "transitive_only_count": 34,
+      "total_reached": 34,
       "total_target": 218,
       "by_confidence": {
         "authoritative": {
-          "count": 17,
-          "pct": 7.8
+          "count": 34,
+          "pct": 15.6
         },
         "expert": {
           "count": 0,
@@ -545,21 +545,21 @@
       }
     },
     "nist_rmf": {
-      "total_pct": 72.4,
+      "total_pct": 76.3,
       "direct_pct": 0.0,
-      "transitive_pct": 72.4,
+      "transitive_pct": 76.3,
       "direct_count": 0,
-      "transitive_only_count": 55,
-      "total_reached": 55,
+      "transitive_only_count": 58,
+      "total_reached": 58,
       "total_target": 76,
       "by_confidence": {
         "authoritative": {
-          "count": 55,
-          "pct": 72.4
+          "count": 58,
+          "pct": 76.3
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 11,
+          "pct": 14.5
         },
         "suggestive": {
           "count": 0,
@@ -573,16 +573,16 @@
     },
     "owasp_agentic": {
       "total_pct": 100.0,
-      "direct_pct": 0.0,
-      "transitive_pct": 100.0,
-      "direct_count": 0,
-      "transitive_only_count": 10,
+      "direct_pct": 80.0,
+      "transitive_pct": 20.0,
+      "direct_count": 8,
+      "transitive_only_count": 2,
       "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 8,
+          "pct": 80.0
         },
         "expert": {
           "count": 10,
@@ -799,8 +799,8 @@
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 2,
+          "pct": 20.0
         },
         "expert": {
           "count": 10,
@@ -844,17 +844,17 @@
       }
     },
     "owasp_llm": {
-      "total_pct": 90.0,
+      "total_pct": 100.0,
       "direct_pct": 0.0,
-      "transitive_pct": 90.0,
+      "transitive_pct": 100.0,
       "direct_count": 0,
-      "transitive_only_count": 9,
-      "total_reached": 9,
+      "transitive_only_count": 10,
+      "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 9,
-          "pct": 90.0
+          "count": 10,
+          "pct": 100.0
         },
         "expert": {
           "count": 0,
@@ -873,21 +873,21 @@
   },
   "mitre_atlas": {
     "aiuc_1": {
-      "total_pct": 10.6,
+      "total_pct": 25.4,
       "direct_pct": 10.6,
-      "transitive_pct": 0.0,
+      "transitive_pct": 14.8,
       "direct_count": 20,
-      "transitive_only_count": 0,
-      "total_reached": 20,
+      "transitive_only_count": 28,
+      "total_reached": 48,
       "total_target": 189,
       "by_confidence": {
         "authoritative": {
-          "count": 20,
-          "pct": 10.6
+          "count": 36,
+          "pct": 19.0
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 43,
+          "pct": 22.8
         },
         "suggestive": {
           "count": 0,
@@ -900,17 +900,17 @@
       }
     },
     "cosai_rm": {
-      "total_pct": 19.7,
+      "total_pct": 26.2,
       "direct_pct": 19.7,
-      "transitive_pct": 0.0,
+      "transitive_pct": 6.6,
       "direct_count": 12,
-      "transitive_only_count": 0,
-      "total_reached": 12,
+      "transitive_only_count": 4,
+      "total_reached": 16,
       "total_target": 61,
       "by_confidence": {
         "authoritative": {
-          "count": 12,
-          "pct": 19.7
+          "count": 16,
+          "pct": 26.2
         },
         "expert": {
           "count": 0,
@@ -927,12 +927,12 @@
       }
     },
     "csa_aicm": {
-      "total_pct": 61.3,
+      "total_pct": 63.2,
       "direct_pct": 0.0,
-      "transitive_pct": 61.3,
+      "transitive_pct": 63.2,
       "direct_count": 0,
-      "transitive_only_count": 160,
-      "total_reached": 160,
+      "transitive_only_count": 165,
+      "total_reached": 165,
       "total_target": 261,
       "by_confidence": {
         "authoritative": {
@@ -940,8 +940,8 @@
           "pct": 33.3
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 23,
+          "pct": 8.8
         },
         "suggestive": {
           "count": 62,
@@ -981,21 +981,21 @@
       }
     },
     "nist_rmf": {
-      "total_pct": 32.9,
+      "total_pct": 47.4,
       "direct_pct": 0.0,
-      "transitive_pct": 32.9,
+      "transitive_pct": 47.4,
       "direct_count": 0,
-      "transitive_only_count": 25,
-      "total_reached": 25,
+      "transitive_only_count": 36,
+      "total_reached": 36,
       "total_target": 76,
       "by_confidence": {
         "authoritative": {
-          "count": 25,
-          "pct": 32.9
+          "count": 33,
+          "pct": 43.4
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 11,
+          "pct": 14.5
         },
         "suggestive": {
           "count": 0,
@@ -1009,16 +1009,16 @@
     },
     "owasp_agentic": {
       "total_pct": 100.0,
-      "direct_pct": 0.0,
-      "transitive_pct": 100.0,
-      "direct_count": 0,
-      "transitive_only_count": 10,
+      "direct_pct": 100.0,
+      "transitive_pct": 0.0,
+      "direct_count": 10,
+      "transitive_only_count": 0,
       "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 10,
+          "pct": 100.0
         },
         "expert": {
           "count": 10,
@@ -1063,10 +1063,10 @@
     },
     "owasp_llm": {
       "total_pct": 100.0,
-      "direct_pct": 0.0,
-      "transitive_pct": 100.0,
-      "direct_count": 0,
-      "transitive_only_count": 10,
+      "direct_pct": 100.0,
+      "transitive_pct": 0.0,
+      "direct_count": 10,
+      "transitive_only_count": 0,
       "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
@@ -1075,8 +1075,8 @@
           "pct": 100.0
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 5,
+          "pct": 50.0
         },
         "suggestive": {
           "count": 0,
@@ -1091,21 +1091,21 @@
   },
   "nist_rmf": {
     "aiuc_1": {
-      "total_pct": 23.3,
+      "total_pct": 29.1,
       "direct_pct": 23.3,
-      "transitive_pct": 0.0,
+      "transitive_pct": 5.8,
       "direct_count": 44,
-      "transitive_only_count": 0,
-      "total_reached": 44,
+      "transitive_only_count": 11,
+      "total_reached": 55,
       "total_target": 189,
       "by_confidence": {
         "authoritative": {
-          "count": 44,
-          "pct": 23.3
+          "count": 54,
+          "pct": 28.6
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 43,
+          "pct": 22.8
         },
         "suggestive": {
           "count": 0,
@@ -1118,17 +1118,17 @@
       }
     },
     "cosai_rm": {
-      "total_pct": 0.0,
+      "total_pct": 21.3,
       "direct_pct": 0.0,
-      "transitive_pct": 0.0,
+      "transitive_pct": 21.3,
       "direct_count": 0,
-      "transitive_only_count": 0,
-      "total_reached": 0,
+      "transitive_only_count": 13,
+      "total_reached": 13,
       "total_target": 61,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 13,
+          "pct": 21.3
         },
         "expert": {
           "count": 0,
@@ -1145,12 +1145,12 @@
       }
     },
     "csa_aicm": {
-      "total_pct": 64.0,
+      "total_pct": 64.4,
       "direct_pct": 0.0,
-      "transitive_pct": 64.0,
+      "transitive_pct": 64.4,
       "direct_count": 0,
-      "transitive_only_count": 167,
-      "total_reached": 167,
+      "transitive_only_count": 168,
+      "total_reached": 168,
       "total_target": 261,
       "by_confidence": {
         "authoritative": {
@@ -1158,8 +1158,8 @@
           "pct": 41.8
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 23,
+          "pct": 8.8
         },
         "suggestive": {
           "count": 63,
@@ -1199,21 +1199,21 @@
       }
     },
     "mitre_atlas": {
-      "total_pct": 5.5,
+      "total_pct": 20.6,
       "direct_pct": 0.0,
-      "transitive_pct": 5.5,
+      "transitive_pct": 20.6,
       "direct_count": 0,
-      "transitive_only_count": 12,
-      "total_reached": 12,
+      "transitive_only_count": 45,
+      "total_reached": 45,
       "total_target": 218,
       "by_confidence": {
         "authoritative": {
-          "count": 12,
-          "pct": 5.5
+          "count": 37,
+          "pct": 17.0
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 13,
+          "pct": 6.0
         },
         "suggestive": {
           "count": 0,
@@ -1227,16 +1227,16 @@
     },
     "owasp_agentic": {
       "total_pct": 100.0,
-      "direct_pct": 0.0,
-      "transitive_pct": 100.0,
-      "direct_count": 0,
-      "transitive_only_count": 10,
+      "direct_pct": 100.0,
+      "transitive_pct": 0.0,
+      "direct_count": 10,
+      "transitive_only_count": 0,
       "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 10,
+          "pct": 100.0
         },
         "expert": {
           "count": 10,
@@ -1280,17 +1280,17 @@
       }
     },
     "owasp_llm": {
-      "total_pct": 90.0,
-      "direct_pct": 0.0,
-      "transitive_pct": 90.0,
-      "direct_count": 0,
-      "transitive_only_count": 9,
-      "total_reached": 9,
+      "total_pct": 100.0,
+      "direct_pct": 100.0,
+      "transitive_pct": 0.0,
+      "direct_count": 10,
+      "transitive_only_count": 0,
+      "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 9,
-          "pct": 90.0
+          "count": 10,
+          "pct": 100.0
         },
         "expert": {
           "count": 0,
@@ -1309,44 +1309,44 @@
   },
   "owasp_agentic": {
     "aiuc_1": {
-      "total_pct": 22.8,
-      "direct_pct": 22.8,
-      "transitive_pct": 0.0,
-      "direct_count": 43,
-      "transitive_only_count": 0,
-      "total_reached": 43,
+      "total_pct": 44.4,
+      "direct_pct": 25.4,
+      "transitive_pct": 19.0,
+      "direct_count": 48,
+      "transitive_only_count": 36,
+      "total_reached": 84,
       "total_target": 189,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 51,
+          "pct": 27.0
         },
         "expert": {
           "count": 43,
           "pct": 22.8
         },
         "suggestive": {
-          "count": 0,
-          "pct": 0.0
+          "count": 36,
+          "pct": 19.0
         },
         "unvalidated": {
-          "count": 0,
-          "pct": 0.0
+          "count": 1,
+          "pct": 0.5
         }
       }
     },
     "cosai_rm": {
-      "total_pct": 0.0,
+      "total_pct": 21.3,
       "direct_pct": 0.0,
-      "transitive_pct": 0.0,
+      "transitive_pct": 21.3,
       "direct_count": 0,
-      "transitive_only_count": 0,
-      "total_reached": 0,
+      "transitive_only_count": 13,
+      "total_reached": 13,
       "total_target": 61,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 13,
+          "pct": 21.3
         },
         "expert": {
           "count": 0,
@@ -1364,10 +1364,10 @@
     },
     "csa_aicm": {
       "total_pct": 71.3,
-      "direct_pct": 0.0,
-      "transitive_pct": 71.3,
-      "direct_count": 0,
-      "transitive_only_count": 186,
+      "direct_pct": 8.8,
+      "transitive_pct": 62.5,
+      "direct_count": 23,
+      "transitive_only_count": 163,
       "total_reached": 186,
       "total_target": 261,
       "by_confidence": {
@@ -1376,16 +1376,16 @@
           "pct": 44.4
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 23,
+          "pct": 8.8
         },
         "suggestive": {
           "count": 63,
           "pct": 24.1
         },
         "unvalidated": {
-          "count": 61,
-          "pct": 23.4
+          "count": 60,
+          "pct": 23.0
         }
       }
     },
@@ -1417,21 +1417,21 @@
       }
     },
     "mitre_atlas": {
-      "total_pct": 7.8,
-      "direct_pct": 0.0,
-      "transitive_pct": 7.8,
-      "direct_count": 0,
-      "transitive_only_count": 17,
-      "total_reached": 17,
+      "total_pct": 21.6,
+      "direct_pct": 9.6,
+      "transitive_pct": 11.9,
+      "direct_count": 21,
+      "transitive_only_count": 26,
+      "total_reached": 47,
       "total_target": 218,
       "by_confidence": {
         "authoritative": {
-          "count": 17,
-          "pct": 7.8
+          "count": 42,
+          "pct": 19.3
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 13,
+          "pct": 6.0
         },
         "suggestive": {
           "count": 0,
@@ -1444,21 +1444,21 @@
       }
     },
     "nist_rmf": {
-      "total_pct": 59.2,
-      "direct_pct": 0.0,
-      "transitive_pct": 59.2,
-      "direct_count": 0,
-      "transitive_only_count": 45,
-      "total_reached": 45,
+      "total_pct": 64.5,
+      "direct_pct": 26.3,
+      "transitive_pct": 38.2,
+      "direct_count": 20,
+      "transitive_only_count": 29,
+      "total_reached": 49,
       "total_target": 76,
       "by_confidence": {
         "authoritative": {
-          "count": 45,
-          "pct": 59.2
+          "count": 49,
+          "pct": 64.5
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 11,
+          "pct": 14.5
         },
         "suggestive": {
           "count": 0,
@@ -1499,10 +1499,10 @@
     },
     "owasp_llm": {
       "total_pct": 100.0,
-      "direct_pct": 0.0,
-      "transitive_pct": 100.0,
-      "direct_count": 0,
-      "transitive_only_count": 10,
+      "direct_pct": 100.0,
+      "transitive_pct": 0.0,
+      "direct_count": 10,
+      "transitive_only_count": 0,
       "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
@@ -1511,8 +1511,8 @@
           "pct": 100.0
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 1,
+          "pct": 10.0
         },
         "suggestive": {
           "count": 0,
@@ -1689,17 +1689,17 @@
       }
     },
     "owasp_agentic": {
-      "total_pct": 60.0,
+      "total_pct": 80.0,
       "direct_pct": 0.0,
-      "transitive_pct": 60.0,
+      "transitive_pct": 80.0,
       "direct_count": 0,
-      "transitive_only_count": 6,
-      "total_reached": 6,
+      "transitive_only_count": 8,
+      "total_reached": 8,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 3,
+          "pct": 30.0
         },
         "expert": {
           "count": 6,
@@ -1716,17 +1716,17 @@
       }
     },
     "owasp_llm": {
-      "total_pct": 60.0,
+      "total_pct": 70.0,
       "direct_pct": 0.0,
-      "transitive_pct": 60.0,
+      "transitive_pct": 70.0,
       "direct_count": 0,
-      "transitive_only_count": 6,
-      "total_reached": 6,
+      "transitive_only_count": 7,
+      "total_reached": 7,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 6,
-          "pct": 60.0
+          "count": 7,
+          "pct": 70.0
         },
         "expert": {
           "count": 0,
@@ -1745,21 +1745,21 @@
   },
   "owasp_llm": {
     "aiuc_1": {
-      "total_pct": 14.3,
-      "direct_pct": 14.3,
-      "transitive_pct": 0.0,
-      "direct_count": 27,
-      "transitive_only_count": 0,
-      "total_reached": 27,
+      "total_pct": 27.5,
+      "direct_pct": 16.9,
+      "transitive_pct": 10.6,
+      "direct_count": 32,
+      "transitive_only_count": 20,
+      "total_reached": 52,
       "total_target": 189,
       "by_confidence": {
         "authoritative": {
-          "count": 27,
-          "pct": 14.3
+          "count": 42,
+          "pct": 22.2
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 43,
+          "pct": 22.8
         },
         "suggestive": {
           "count": 0,
@@ -1772,17 +1772,17 @@
       }
     },
     "cosai_rm": {
-      "total_pct": 21.3,
+      "total_pct": 24.6,
       "direct_pct": 21.3,
-      "transitive_pct": 0.0,
+      "transitive_pct": 3.3,
       "direct_count": 13,
-      "transitive_only_count": 0,
-      "total_reached": 13,
+      "transitive_only_count": 2,
+      "total_reached": 15,
       "total_target": 61,
       "by_confidence": {
         "authoritative": {
-          "count": 13,
-          "pct": 21.3
+          "count": 15,
+          "pct": 24.6
         },
         "expert": {
           "count": 0,
@@ -1799,12 +1799,12 @@
       }
     },
     "csa_aicm": {
-      "total_pct": 55.9,
+      "total_pct": 57.5,
       "direct_pct": 0.0,
-      "transitive_pct": 55.9,
+      "transitive_pct": 57.5,
       "direct_count": 0,
-      "transitive_only_count": 146,
-      "total_reached": 146,
+      "transitive_only_count": 150,
+      "total_reached": 150,
       "total_target": 261,
       "by_confidence": {
         "authoritative": {
@@ -1812,8 +1812,8 @@
           "pct": 30.7
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 23,
+          "pct": 8.8
         },
         "suggestive": {
           "count": 47,
@@ -1853,21 +1853,21 @@
       }
     },
     "mitre_atlas": {
-      "total_pct": 13.3,
-      "direct_pct": 0.0,
-      "transitive_pct": 13.3,
-      "direct_count": 0,
-      "transitive_only_count": 29,
-      "total_reached": 29,
+      "total_pct": 21.6,
+      "direct_pct": 15.1,
+      "transitive_pct": 6.4,
+      "direct_count": 33,
+      "transitive_only_count": 14,
+      "total_reached": 47,
       "total_target": 218,
       "by_confidence": {
         "authoritative": {
-          "count": 29,
-          "pct": 13.3
+          "count": 43,
+          "pct": 19.7
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 15,
+          "pct": 6.9
         },
         "suggestive": {
           "count": 0,
@@ -1880,21 +1880,21 @@
       }
     },
     "nist_rmf": {
-      "total_pct": 34.2,
-      "direct_pct": 0.0,
-      "transitive_pct": 34.2,
-      "direct_count": 0,
-      "transitive_only_count": 26,
-      "total_reached": 26,
+      "total_pct": 46.1,
+      "direct_pct": 14.5,
+      "transitive_pct": 31.6,
+      "direct_count": 11,
+      "transitive_only_count": 24,
+      "total_reached": 35,
       "total_target": 76,
       "by_confidence": {
         "authoritative": {
-          "count": 26,
-          "pct": 34.2
+          "count": 33,
+          "pct": 43.4
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 11,
+          "pct": 14.5
         },
         "suggestive": {
           "count": 0,
@@ -1908,16 +1908,16 @@
     },
     "owasp_agentic": {
       "total_pct": 100.0,
-      "direct_pct": 0.0,
-      "transitive_pct": 100.0,
-      "direct_count": 0,
-      "transitive_only_count": 10,
+      "direct_pct": 100.0,
+      "transitive_pct": 0.0,
+      "direct_count": 10,
+      "transitive_only_count": 0,
       "total_reached": 10,
       "total_target": 10,
       "by_confidence": {
         "authoritative": {
-          "count": 0,
-          "pct": 0.0
+          "count": 10,
+          "pct": 100.0
         },
         "expert": {
           "count": 10,

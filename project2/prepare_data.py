@@ -7,11 +7,13 @@ Produces data/derived/*.json consumed by the Dash app at runtime.
 NetworkX is used here for graph traversal but is NOT imported by the app.
 """
 
+import glob
 import json
 import os
 from collections import Counter, defaultdict
 
 import networkx as nx
+import yaml
 
 
 def load_raw(data_dir: str):
@@ -62,6 +64,77 @@ def compute_framework_stats(nodes, edges):
     return stats
 
 
+def enrich_domains(nodes):
+    """Assign domains to frameworks that lack them, enabling meaningful hierarchy.
+
+    Modifies nodes in-place. Only assigns if domain is empty/missing.
+    """
+    node_by_id = {n["node_id"]: n for n in nodes}
+
+    for n in nodes:
+        if n.get("domain"):
+            continue  # already has a domain
+
+        fw = n["framework"]
+
+        if fw == "nist_rmf":
+            # GOVERN-1.1 -> "Govern", MAP-2.3 -> "Map", etc.
+            lid = n["local_id"]
+            if "-" in lid:
+                prefix = lid.split("-")[0]
+                n["domain"] = prefix.capitalize()
+            else:
+                n["domain"] = lid.capitalize()
+
+        elif fw == "mitre_atlas":
+            # Group by entry type: Tactic, Technique, Mitigation
+            etype = n.get("entry_type", "unknown")
+            n["domain"] = etype.capitalize()
+
+        elif fw == "eu_gpai_cop":
+            # Measures are children of commitments; use shortened commitment label
+            parent_id = n.get("parent_node_id")
+            if parent_id and parent_id in node_by_id:
+                parent = node_by_id[parent_id]
+                # Extract "Commitment N" from names like "Commitment 1: Safety..."
+                pname = parent["name"]
+                if ":" in pname:
+                    pname = pname.split(":")[0].strip()
+                n["domain"] = pname
+            else:
+                # Top-level commitments/requirements: group by entry_type
+                etype = n.get("entry_type", "")
+                n["domain"] = etype.capitalize() if etype else "General"
+
+        elif fw == "cosai_rm":
+            # Controls have parents (category nodes); risks are standalone
+            parent_id = n.get("parent_node_id")
+            etype = n.get("entry_type", "")
+            if parent_id and parent_id in node_by_id:
+                parent = node_by_id[parent_id]
+                # Clean up category names like "controlsGovernance" -> "Governance"
+                pname = parent["name"]
+                if pname.startswith("controls"):
+                    pname = pname[len("controls"):]
+                n["domain"] = pname
+            elif etype == "risk":
+                n["domain"] = "Risk"
+            elif etype == "function":
+                # Category nodes themselves
+                pname = n["name"]
+                if pname.startswith("controls"):
+                    pname = pname[len("controls"):]
+                n["domain"] = pname
+            else:
+                n["domain"] = "General"
+
+        elif fw in ("owasp_agentic", "owasp_llm"):
+            # Flat top-10 lists, single domain
+            n["domain"] = "Top 10 Risks"
+
+    return nodes
+
+
 def compute_hierarchy(nodes):
     """Build sunburst-compatible hierarchy per framework.
 
@@ -90,13 +163,16 @@ def compute_hierarchy(nodes):
             ids.append(domain_id)
             labels.append(domain)
             parents.append(fw)
-            values.append(0)
+            values.append(len(domain_nodes))  # sum of children (each leaf = 1)
 
             for n in sorted(domain_nodes, key=lambda x: x["local_id"]):
                 ids.append(n["node_id"])
                 labels.append(f"{n['local_id']}: {n['name']}")
                 parents.append(domain_id)
                 values.append(1)
+
+        # Root value = total leaf count (sum of all domain values)
+        values[0] = sum(len(dns) for dns in domain_groups.values())
 
         hierarchy[fw] = {
             "ids": ids,
@@ -319,6 +395,164 @@ def compute_coverage_matrix(nodes, transitive_mappings):
     return matrix
 
 
+def merge_upstream_edges(edges, nodes, repo_root: str):
+    """Merge additional edge sources from the broader repo into edges.
+
+    The notebook (project1) combines four data sources for its cross-framework
+    analysis. Project2's edges.json only contains classifier-produced graph
+    edges. This function adds:
+      1. mappings_v1.jsonl  (upstream OWASP-published framework mappings)
+      2. crossrefs_v1.jsonl (OWASP cross-references between frameworks)
+      3. Anchor YAMLs       (expert-validated pair configs, non-expanded only)
+
+    Deduplicates by (source_node_id, target_node_id) to match the notebook.
+    """
+    FRAMEWORKS = {n["framework"] for n in nodes}
+    node_ids = {n["node_id"] for n in nodes}
+    existing_pairs = {(e["source_node_id"], e["target_node_id"]) for e in edges}
+    new_edges = []
+    edge_counter = 0
+
+    def _make_source_node_id(fw, local_id):
+        """Construct source_node_id from framework + local_id."""
+        return f"{fw}:{local_id}"
+
+    # 1. mappings_v1.jsonl
+    mappings_path = os.path.join(repo_root, "data", "upstream", "mappings_v1.jsonl")
+    if os.path.exists(mappings_path):
+        with open(mappings_path) as f:
+            for line in f:
+                rec = json.loads(line)
+                src_fw = rec.get("source_framework", "")
+                tgt_fw = rec.get("target_framework", "")
+                if src_fw not in FRAMEWORKS or tgt_fw not in FRAMEWORKS:
+                    continue
+                if src_fw == tgt_fw:
+                    continue
+                if rec.get("target_id_unresolved", False):
+                    continue
+                src_nid = _make_source_node_id(src_fw, rec["source_id"])
+                tgt_nid = rec.get("target_node_id", "")
+                if not tgt_nid:
+                    continue
+                # Only add if both nodes exist in our node set and pair is new
+                if src_nid not in node_ids or tgt_nid not in node_ids:
+                    continue
+                pair = (src_nid, tgt_nid)
+                if pair in existing_pairs:
+                    continue
+                existing_pairs.add(pair)
+                edge_counter += 1
+                new_edges.append({
+                    "edge_id": f"upstream_mapping_{edge_counter}",
+                    "source_node_id": src_nid,
+                    "target_node_id": tgt_nid,
+                    "source_framework": src_fw,
+                    "target_framework": tgt_fw,
+                    "rationale_code": "CROSS_FRAMEWORK_MAPPING",
+                    "rationale_label": "Upstream published mapping",
+                    "relevance": None,
+                    "confidence": "authoritative",
+                    "provenance": "mappings_v1.jsonl",
+                    "score": None,
+                    "signals": None,
+                    "notes": rec.get("notes"),
+                })
+        print(f"  mappings_v1.jsonl: {edge_counter} new edges added")
+
+    # 2. crossrefs_v1.jsonl
+    xref_count = 0
+    xref_path = os.path.join(repo_root, "data", "upstream", "crossrefs_v1.jsonl")
+    if os.path.exists(xref_path):
+        with open(xref_path) as f:
+            for line in f:
+                rec = json.loads(line)
+                src_fw = rec.get("source_framework", "")
+                tgt_fw = rec.get("target_framework", "")
+                if src_fw not in FRAMEWORKS or tgt_fw not in FRAMEWORKS:
+                    continue
+                if src_fw == tgt_fw:
+                    continue
+                if rec.get("target_id_unresolved", False):
+                    continue
+                src_nid = _make_source_node_id(src_fw, rec["source_id"])
+                tgt_nid = rec.get("target_node_id", "")
+                if not tgt_nid:
+                    continue
+                if src_nid not in node_ids or tgt_nid not in node_ids:
+                    continue
+                pair = (src_nid, tgt_nid)
+                if pair in existing_pairs:
+                    continue
+                existing_pairs.add(pair)
+                edge_counter += 1
+                xref_count += 1
+                new_edges.append({
+                    "edge_id": f"upstream_xref_{edge_counter}",
+                    "source_node_id": src_nid,
+                    "target_node_id": tgt_nid,
+                    "source_framework": src_fw,
+                    "target_framework": tgt_fw,
+                    "rationale_code": "CROSS_FRAMEWORK_XREF",
+                    "rationale_label": "Upstream cross-reference",
+                    "relevance": None,
+                    "confidence": "authoritative",
+                    "provenance": "crossrefs_v1.jsonl",
+                    "score": None,
+                    "signals": None,
+                    "notes": None,
+                })
+        print(f"  crossrefs_v1.jsonl: {xref_count} new edges added")
+
+    # 3. Anchor YAMLs (non-expanded only, to avoid duplicating classifier output)
+    anchor_count = 0
+    pairs_dir = os.path.join(repo_root, "mapping_engine", "config", "pairs")
+    if os.path.isdir(pairs_dir):
+        for yaml_path in sorted(glob.glob(os.path.join(pairs_dir, "*.yaml"))):
+            fname = os.path.basename(yaml_path)
+            if "expanded" in fname or "metadata" in fname:
+                continue
+            with open(yaml_path) as f:
+                cfg = yaml.safe_load(f)
+            src_fw = cfg.get("source_framework", "")
+            tgt_fw = cfg.get("target_framework", "")
+            if src_fw not in FRAMEWORKS or tgt_fw not in FRAMEWORKS:
+                continue
+            for p in cfg.get("anchors", {}).get("pairs", []):
+                src_nid = p.get("source", "")
+                tgt_nid = p.get("target", "")
+                if not src_nid or not tgt_nid:
+                    continue
+                if src_nid not in node_ids or tgt_nid not in node_ids:
+                    continue
+                pair = (src_nid, tgt_nid)
+                if pair in existing_pairs:
+                    continue
+                existing_pairs.add(pair)
+                edge_counter += 1
+                anchor_count += 1
+                new_edges.append({
+                    "edge_id": f"anchor_{edge_counter}",
+                    "source_node_id": src_nid,
+                    "target_node_id": tgt_nid,
+                    "source_framework": src_fw,
+                    "target_framework": tgt_fw,
+                    "rationale_code": "EXPERT_ANCHOR",
+                    "rationale_label": "Expert-validated anchor pair",
+                    "relevance": None,
+                    "confidence": "expert",
+                    "provenance": fname,
+                    "score": None,
+                    "signals": None,
+                    "notes": None,
+                })
+        print(f"  Anchor YAMLs: {anchor_count} new edges added")
+
+    merged = edges + new_edges
+    print(f"  Total: {len(edges)} original + {len(new_edges)} upstream = {len(merged)} edges")
+    return merged
+
+
 def save_json(data, path):
     """Write JSON with consistent formatting."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -329,6 +563,18 @@ def save_json(data, path):
 def prepare_all(data_dir: str, output_dir: str):
     """Run the full preparation pipeline."""
     nodes, edges = load_raw(data_dir)
+
+    # Enrich domains for frameworks that lack them (before computing hierarchy/stats)
+    nodes = enrich_domains(nodes)
+
+    # Merge upstream edge sources (mappings, crossrefs, anchors) to match notebook
+    repo_root = os.path.normpath(os.path.join(data_dir, "..", ".."))
+    print("Merging upstream edge sources...")
+    edges = merge_upstream_edges(edges, nodes, repo_root)
+
+    # Save enriched data so the app can use domain + edge enrichments
+    save_json(nodes, os.path.join(output_dir, "nodes_enriched.json"))
+    save_json(edges, os.path.join(output_dir, "edges_enriched.json"))
 
     stats = compute_framework_stats(nodes, edges)
     save_json(stats, os.path.join(output_dir, "framework_stats.json"))

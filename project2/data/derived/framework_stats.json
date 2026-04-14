@@ -2,7 +2,7 @@
   "aiuc_1": {
     "node_count": 189,
     "edge_count_out": 2894,
-    "edge_count_in": 2148,
+    "edge_count_in": 2223,
     "entry_type_counts": {
       "control": 51,
       "activity": 132,
@@ -36,12 +36,20 @@
       "control": 29,
       "function": 6
     },
-    "domain_counts": {},
+    "domain_counts": {
+      "Risk": 26,
+      "Model Controls": 4,
+      "Application Controls": 6,
+      "Assurance Controls": 5,
+      "Governance Controls": 5,
+      "Infrastructure Controls": 8,
+      "Data Controls": 7
+    },
     "function_class_counts": {}
   },
   "csa_aicm": {
     "node_count": 261,
-    "edge_count_out": 2012,
+    "edge_count_out": 2051,
     "edge_count_in": 2335,
     "entry_type_counts": {
       "control": 243,
@@ -78,40 +86,64 @@
       "commitment": 10,
       "measure": 32
     },
-    "domain_counts": {},
+    "domain_counts": {
+      "Requirement": 28,
+      "Commitment": 10,
+      "Commitment 1": 4,
+      "Commitment 10": 2,
+      "Commitment 2": 2,
+      "Commitment 3": 5,
+      "Commitment 4": 2,
+      "Commitment 5": 1,
+      "Commitment 6": 2,
+      "Commitment 7": 7,
+      "Commitment 8": 3,
+      "Commitment 9": 4
+    },
     "function_class_counts": {}
   },
   "mitre_atlas": {
     "node_count": 218,
-    "edge_count_out": 421,
-    "edge_count_in": 482,
+    "edge_count_out": 441,
+    "edge_count_in": 531,
     "entry_type_counts": {
       "mitigation": 35,
       "technique": 167,
       "tactic": 16
     },
-    "domain_counts": {},
+    "domain_counts": {
+      "Mitigation": 35,
+      "Technique": 167,
+      "Tactic": 16
+    },
     "function_class_counts": {}
   },
   "nist_rmf": {
     "node_count": 76,
-    "edge_count_out": 0,
-    "edge_count_in": 152,
+    "edge_count_out": 20,
+    "edge_count_in": 232,
     "entry_type_counts": {
       "function": 4,
       "subcategory": 72
     },
-    "domain_counts": {},
+    "domain_counts": {
+      "Govern": 20,
+      "Manage": 14,
+      "Map": 19,
+      "Measure": 23
+    },
     "function_class_counts": {}
   },
   "owasp_agentic": {
     "node_count": 10,
-    "edge_count_out": 0,
-    "edge_count_in": 119,
+    "edge_count_out": 137,
+    "edge_count_in": 205,
     "entry_type_counts": {
       "risk": 10
     },
-    "domain_counts": {},
+    "domain_counts": {
+      "Top 10 Risks": 10
+    },
     "function_class_counts": {}
   },
   "owasp_ai_exchange": {
@@ -154,12 +186,14 @@
   },
   "owasp_llm": {
     "node_count": 10,
-    "edge_count_out": 0,
-    "edge_count_in": 78,
+    "edge_count_out": 125,
+    "edge_count_in": 129,
     "entry_type_counts": {
       "risk": 10
     },
-    "domain_counts": {},
+    "domain_counts": {
+      "Top 10 Risks": 10
+    },
     "function_class_counts": {}
   }
 }

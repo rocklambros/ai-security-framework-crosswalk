@@ -108,6 +108,105 @@
       "rationale_counts": {
         "CROSS_FRAMEWORK_CATEGORY": 196
       }
+    },
+    "owasp_agentic->mitre_atlas": {
+      "edge_count": 28,
+      "confidence_counts": {
+        "authoritative": 28
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_MAPPING": 28
+      }
+    },
+    "owasp_agentic->nist_rmf": {
+      "edge_count": 40,
+      "confidence_counts": {
+        "authoritative": 40
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_MAPPING": 40
+      }
+    },
+    "owasp_agentic->aiuc_1": {
+      "edge_count": 38,
+      "confidence_counts": {
+        "authoritative": 38
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_MAPPING": 38
+      }
+    },
+    "owasp_llm->mitre_atlas": {
+      "edge_count": 21,
+      "confidence_counts": {
+        "authoritative": 21
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_MAPPING": 21
+      }
+    },
+    "owasp_llm->nist_rmf": {
+      "edge_count": 40,
+      "confidence_counts": {
+        "authoritative": 40
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_MAPPING": 40
+      }
+    },
+    "owasp_llm->aiuc_1": {
+      "edge_count": 37,
+      "confidence_counts": {
+        "authoritative": 37
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_MAPPING": 37
+      }
+    },
+    "owasp_agentic->owasp_llm": {
+      "edge_count": 31,
+      "confidence_counts": {
+        "authoritative": 31
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_XREF": 31
+      }
+    },
+    "owasp_llm->owasp_agentic": {
+      "edge_count": 27,
+      "confidence_counts": {
+        "authoritative": 27
+      },
+      "rationale_counts": {
+        "CROSS_FRAMEWORK_XREF": 27
+      }
+    },
+    "csa_aicm->owasp_agentic": {
+      "edge_count": 39,
+      "confidence_counts": {
+        "expert": 39
+      },
+      "rationale_counts": {
+        "EXPERT_ANCHOR": 39
+      }
+    },
+    "mitre_atlas->owasp_llm": {
+      "edge_count": 20,
+      "confidence_counts": {
+        "expert": 20
+      },
+      "rationale_counts": {
+        "EXPERT_ANCHOR": 20
+      }
+    },
+    "nist_rmf->owasp_agentic": {
+      "edge_count": 20,
+      "confidence_counts": {
+        "expert": 20
+      },
+      "rationale_counts": {
+        "EXPERT_ANCHOR": 20
+      }
     }
   },
   "node_degrees": {
@@ -275,9 +374,9 @@
     },
     "aiuc_1:B001": {
       "out_degree": 80,
-      "in_degree": 53,
+      "in_degree": 62,
       "cross_out": 78,
-      "cross_in": 52
+      "cross_in": 61
     },
     "aiuc_1:B001.1": {
       "out_degree": 19,
@@ -293,9 +392,9 @@
     },
     "aiuc_1:B002": {
       "out_degree": 82,
-      "in_degree": 53,
+      "in_degree": 59,
       "cross_out": 77,
-      "cross_in": 52
+      "cross_in": 58
     },
     "aiuc_1:B002.1": {
       "out_degree": 19,
@@ -329,9 +428,9 @@
     },
     "aiuc_1:B003": {
       "out_degree": 29,
-      "in_degree": 20,
+      "in_degree": 22,
       "cross_out": 27,
-      "cross_in": 19
+      "cross_in": 21
     },
     "aiuc_1:B003.1": {
       "out_degree": 19,
@@ -347,9 +446,9 @@
     },
     "aiuc_1:B004": {
       "out_degree": 40,
-      "in_degree": 20,
+      "in_degree": 21,
       "cross_out": 36,
-      "cross_in": 19
+      "cross_in": 20
     },
     "aiuc_1:B004.1": {
       "out_degree": 19,
@@ -377,9 +476,9 @@
     },
     "aiuc_1:B005": {
       "out_degree": 70,
-      "in_degree": 53,
+      "in_degree": 59,
       "cross_out": 65,
-      "cross_in": 52
+      "cross_in": 58
     },
     "aiuc_1:B005.1": {
       "out_degree": 19,
@@ -413,9 +512,9 @@
     },
     "aiuc_1:B006": {
       "out_degree": 35,
-      "in_degree": 20,
+      "in_degree": 31,
       "cross_out": 33,
-      "cross_in": 19
+      "cross_in": 30
     },
     "aiuc_1:B006.1": {
       "out_degree": 19,
@@ -431,9 +530,9 @@
     },
     "aiuc_1:B007": {
       "out_degree": 52,
-      "in_degree": 21,
+      "in_degree": 25,
       "cross_out": 50,
-      "cross_in": 20
+      "cross_in": 24
     },
     "aiuc_1:B007.1": {
       "out_degree": 19,
@@ -449,9 +548,9 @@
     },
     "aiuc_1:B008": {
       "out_degree": 60,
-      "in_degree": 20,
+      "in_degree": 24,
       "cross_out": 56,
-      "cross_in": 19
+      "cross_in": 23
     },
     "aiuc_1:B008.1": {
       "out_degree": 19,
@@ -479,9 +578,9 @@
     },
     "aiuc_1:B009": {
       "out_degree": 33,
-      "in_degree": 20,
+      "in_degree": 24,
       "cross_out": 30,
-      "cross_in": 19
+      "cross_in": 23
     },
     "aiuc_1:B009.1": {
       "out_degree": 19,
@@ -1211,9 +1310,9 @@
     },
     "aiuc_1:domain_A": {
       "out_degree": 31,
-      "in_degree": 24,
+      "in_degree": 32,
       "cross_out": 24,
-      "cross_in": 24
+      "cross_in": 32
     },
     "aiuc_1:domain_B": {
       "out_degree": 28,
@@ -1223,27 +1322,27 @@
     },
     "aiuc_1:domain_C": {
       "out_degree": 15,
-      "in_degree": 3,
+      "in_degree": 8,
       "cross_out": 3,
-      "cross_in": 3
+      "cross_in": 8
     },
     "aiuc_1:domain_D": {
       "out_degree": 7,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 3,
-      "cross_in": 3
+      "cross_in": 5
     },
     "aiuc_1:domain_E": {
       "out_degree": 18,
-      "in_degree": 1,
+      "in_degree": 12,
       "cross_out": 1,
-      "cross_in": 1
+      "cross_in": 12
     },
     "aiuc_1:domain_F": {
       "out_degree": 2,
-      "in_degree": 0,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "cosai_rm:ADI": {
       "out_degree": 4,
@@ -1672,9 +1771,9 @@
       "cross_in": 43
     },
     "csa_aicm:AIS-05": {
-      "out_degree": 41,
+      "out_degree": 42,
       "in_degree": 46,
-      "cross_out": 41,
+      "cross_out": 42,
       "cross_in": 45
     },
     "csa_aicm:AIS-06": {
@@ -1696,9 +1795,9 @@
       "cross_in": 44
     },
     "csa_aicm:AIS-09": {
-      "out_degree": 41,
+      "out_degree": 44,
       "in_degree": 50,
-      "cross_out": 41,
+      "cross_out": 44,
       "cross_in": 49
     },
     "csa_aicm:AIS-10": {
@@ -1786,15 +1885,15 @@
       "cross_in": 0
     },
     "csa_aicm:BCR-09": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 3
     },
     "csa_aicm:BCR-10": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 3
     },
     "csa_aicm:BCR-11": {
@@ -2266,21 +2365,21 @@
       "cross_in": 0
     },
     "csa_aicm:GRC-09": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 7,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 6
     },
     "csa_aicm:GRC-10": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 3
     },
     "csa_aicm:GRC-11": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 3,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 2
     },
     "csa_aicm:GRC-12": {
@@ -2302,9 +2401,9 @@
       "cross_in": 2
     },
     "csa_aicm:GRC-15": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 3
     },
     "csa_aicm:HRS-01": {
@@ -2530,9 +2629,9 @@
       "cross_in": 1
     },
     "csa_aicm:IAM-14": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 3,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 2
     },
     "csa_aicm:IAM-15": {
@@ -2548,9 +2647,9 @@
       "cross_in": 1
     },
     "csa_aicm:IAM-17": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 3,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 2
     },
     "csa_aicm:IAM-18": {
@@ -2668,15 +2767,15 @@
       "cross_in": 2
     },
     "csa_aicm:LOG-14": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 3
     },
     "csa_aicm:LOG-15": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 5,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 4
     },
     "csa_aicm:MDS-01": {
@@ -2710,15 +2809,15 @@
       "cross_in": 1
     },
     "csa_aicm:MDS-06": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 3,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 2
     },
     "csa_aicm:MDS-07": {
-      "out_degree": 0,
+      "out_degree": 4,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 4,
       "cross_in": 3
     },
     "csa_aicm:MDS-08": {
@@ -2734,15 +2833,15 @@
       "cross_in": 2
     },
     "csa_aicm:MDS-10": {
-      "out_degree": 0,
+      "out_degree": 4,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 4,
       "cross_in": 3
     },
     "csa_aicm:MDS-11": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 5,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 4
     },
     "csa_aicm:MDS-12": {
@@ -2782,9 +2881,9 @@
       "cross_in": 1
     },
     "csa_aicm:SEF-05": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 3
     },
     "csa_aicm:SEF-06": {
@@ -2794,9 +2893,9 @@
       "cross_in": 0
     },
     "csa_aicm:SEF-07": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 3
     },
     "csa_aicm:SEF-08": {
@@ -2908,9 +3007,9 @@
       "cross_in": 5
     },
     "csa_aicm:TVM-01": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 6,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 5
     },
     "csa_aicm:TVM-02": {
@@ -2932,9 +3031,9 @@
       "cross_in": 1
     },
     "csa_aicm:TVM-05": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 3
     },
     "csa_aicm:TVM-06": {
@@ -2968,15 +3067,15 @@
       "cross_in": 1
     },
     "csa_aicm:TVM-11": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 7,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 6
     },
     "csa_aicm:TVM-12": {
-      "out_degree": 0,
+      "out_degree": 3,
       "in_degree": 3,
-      "cross_out": 0,
+      "cross_out": 3,
       "cross_in": 2
     },
     "csa_aicm:TVM-13": {
@@ -3028,9 +3127,9 @@
       "cross_in": 0
     },
     "csa_aicm:UEM-08": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 3
     },
     "csa_aicm:UEM-09": {
@@ -3598,9 +3697,9 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.M0000": {
-      "out_degree": 7,
+      "out_degree": 8,
       "in_degree": 1,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 1
     },
     "mitre_atlas:AML.M0001": {
@@ -3622,15 +3721,15 @@
       "cross_in": 3
     },
     "mitre_atlas:AML.M0004": {
-      "out_degree": 16,
+      "out_degree": 19,
       "in_degree": 3,
-      "cross_out": 0,
+      "cross_out": 3,
       "cross_in": 3
     },
     "mitre_atlas:AML.M0005": {
-      "out_degree": 13,
+      "out_degree": 15,
       "in_degree": 2,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 2
     },
     "mitre_atlas:AML.M0006": {
@@ -3688,9 +3787,9 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.M0015": {
-      "out_degree": 9,
+      "out_degree": 11,
       "in_degree": 2,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 2
     },
     "mitre_atlas:AML.M0016": {
@@ -3712,9 +3811,9 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.M0019": {
-      "out_degree": 11,
+      "out_degree": 12,
       "in_degree": 2,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 2
     },
     "mitre_atlas:AML.M0020": {
@@ -3724,9 +3823,9 @@
       "cross_in": 5
     },
     "mitre_atlas:AML.M0021": {
-      "out_degree": 7,
+      "out_degree": 9,
       "in_degree": 2,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 2
     },
     "mitre_atlas:AML.M0022": {
@@ -3742,9 +3841,9 @@
       "cross_in": 1
     },
     "mitre_atlas:AML.M0024": {
-      "out_degree": 17,
+      "out_degree": 18,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 4
     },
     "mitre_atlas:AML.M0025": {
@@ -3922,9 +4021,9 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.T0008.002": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 2,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 1
     },
     "mitre_atlas:AML.T0008.003": {
@@ -3947,9 +4046,9 @@
     },
     "mitre_atlas:AML.T0010": {
       "out_degree": 6,
-      "in_degree": 4,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0010.000": {
       "out_degree": 0,
@@ -3964,9 +4063,9 @@
       "cross_in": 1
     },
     "mitre_atlas:AML.T0010.002": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 7,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 2
     },
     "mitre_atlas:AML.T0010.003": {
@@ -4019,9 +4118,9 @@
     },
     "mitre_atlas:AML.T0012": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0013": {
       "out_degree": 0,
@@ -4037,15 +4136,15 @@
     },
     "mitre_atlas:AML.T0015": {
       "out_degree": 0,
-      "in_degree": 10,
+      "in_degree": 13,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 4
     },
     "mitre_atlas:AML.T0016": {
       "out_degree": 3,
-      "in_degree": 1,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0016.000": {
       "out_degree": 0,
@@ -4102,28 +4201,28 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.T0019": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 5,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 1
     },
     "mitre_atlas:AML.T0020": {
-      "out_degree": 0,
-      "in_degree": 9,
-      "cross_out": 0,
-      "cross_in": 1
+      "out_degree": 1,
+      "in_degree": 11,
+      "cross_out": 1,
+      "cross_in": 3
     },
     "mitre_atlas:AML.T0021": {
       "out_degree": 0,
-      "in_degree": 1,
-      "cross_out": 0,
-      "cross_in": 0
-    },
-    "mitre_atlas:AML.T0024": {
-      "out_degree": 3,
-      "in_degree": 5,
+      "in_degree": 2,
       "cross_out": 0,
       "cross_in": 1
+    },
+    "mitre_atlas:AML.T0024": {
+      "out_degree": 4,
+      "in_degree": 7,
+      "cross_out": 1,
+      "cross_in": 3
     },
     "mitre_atlas:AML.T0024.000": {
       "out_degree": 0,
@@ -4145,27 +4244,27 @@
     },
     "mitre_atlas:AML.T0025": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0029": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 7,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 3
     },
     "mitre_atlas:AML.T0031": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 1
     },
     "mitre_atlas:AML.T0034": {
       "out_degree": 3,
-      "in_degree": 4,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 3
     },
     "mitre_atlas:AML.T0034.000": {
       "out_degree": 0,
@@ -4199,21 +4298,21 @@
     },
     "mitre_atlas:AML.T0037": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 3
     },
     "mitre_atlas:AML.T0040": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0041": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 1
     },
     "mitre_atlas:AML.T0042": {
       "out_degree": 0,
@@ -4222,10 +4321,10 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.T0043": {
-      "out_degree": 5,
-      "in_degree": 11,
-      "cross_out": 0,
-      "cross_in": 2
+      "out_degree": 6,
+      "in_degree": 12,
+      "cross_out": 1,
+      "cross_in": 3
     },
     "mitre_atlas:AML.T0043.000": {
       "out_degree": 0,
@@ -4271,15 +4370,15 @@
     },
     "mitre_atlas:AML.T0047": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0048": {
       "out_degree": 5,
-      "in_degree": 1,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0048.000": {
       "out_degree": 0,
@@ -4313,9 +4412,9 @@
     },
     "mitre_atlas:AML.T0049": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 3
     },
     "mitre_atlas:AML.T0050": {
       "out_degree": 0,
@@ -4324,22 +4423,22 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.T0051": {
-      "out_degree": 3,
+      "out_degree": 4,
       "in_degree": 11,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 4
     },
     "mitre_atlas:AML.T0051.000": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 3
     },
     "mitre_atlas:AML.T0051.001": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0051.002": {
       "out_degree": 0,
@@ -4367,9 +4466,9 @@
     },
     "mitre_atlas:AML.T0054": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 9,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 4
     },
     "mitre_atlas:AML.T0055": {
       "out_degree": 0,
@@ -4379,15 +4478,15 @@
     },
     "mitre_atlas:AML.T0056": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0057": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 7,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0058": {
       "out_degree": 0,
@@ -4396,9 +4495,9 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.T0059": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 1
     },
     "mitre_atlas:AML.T0060": {
@@ -4421,9 +4520,9 @@
     },
     "mitre_atlas:AML.T0063": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 7,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0064": {
       "out_degree": 0,
@@ -4457,9 +4556,9 @@
     },
     "mitre_atlas:AML.T0068": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 2
     },
     "mitre_atlas:AML.T0069": {
       "out_degree": 3,
@@ -4943,15 +5042,15 @@
     },
     "nist_rmf:GOVERN-1.6": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 9,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 9
     },
     "nist_rmf:GOVERN-1.7": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 12,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 12
     },
     "nist_rmf:GOVERN-2.1": {
       "out_degree": 0,
@@ -4996,9 +5095,9 @@
       "cross_in": 1
     },
     "nist_rmf:GOVERN-4.3": {
-      "out_degree": 0,
+      "out_degree": 3,
       "in_degree": 10,
-      "cross_out": 0,
+      "cross_out": 3,
       "cross_in": 10
     },
     "nist_rmf:GOVERN-5.1": {
@@ -5063,9 +5162,9 @@
     },
     "nist_rmf:MANAGE-2.2": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 18,
       "cross_out": 0,
-      "cross_in": 5
+      "cross_in": 18
     },
     "nist_rmf:MANAGE-2.3": {
       "out_degree": 0,
@@ -5075,9 +5174,9 @@
     },
     "nist_rmf:MANAGE-2.4": {
       "out_degree": 0,
-      "in_degree": 0,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 5
     },
     "nist_rmf:MANAGE-3.1": {
       "out_degree": 0,
@@ -5087,9 +5186,9 @@
     },
     "nist_rmf:MANAGE-3.2": {
       "out_degree": 0,
-      "in_degree": 0,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 4
     },
     "nist_rmf:MANAGE-4.1": {
       "out_degree": 0,
@@ -5104,9 +5203,9 @@
       "cross_in": 2
     },
     "nist_rmf:MANAGE-4.3": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 4
     },
     "nist_rmf:MAP": {
@@ -5165,9 +5264,9 @@
     },
     "nist_rmf:MAP-2.3": {
       "out_degree": 0,
-      "in_degree": 0,
+      "in_degree": 11,
       "cross_out": 0,
-      "cross_in": 0
+      "cross_in": 11
     },
     "nist_rmf:MAP-3.1": {
       "out_degree": 0,
@@ -5194,16 +5293,16 @@
       "cross_in": 3
     },
     "nist_rmf:MAP-3.5": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 4
     },
     "nist_rmf:MAP-4.1": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 3
     },
     "nist_rmf:MAP-4.2": {
       "out_degree": 0,
@@ -5213,9 +5312,9 @@
     },
     "nist_rmf:MAP-5.1": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 5
     },
     "nist_rmf:MAP-5.2": {
       "out_degree": 0,
@@ -5242,15 +5341,15 @@
       "cross_in": 1
     },
     "nist_rmf:MEASURE-1.3": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 5,
-      "cross_out": 0,
+      "cross_out": 1,
       "cross_in": 5
     },
     "nist_rmf:MEASURE-2.1": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 7,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 7
     },
     "nist_rmf:MEASURE-2.10": {
@@ -5290,33 +5389,33 @@
       "cross_in": 1
     },
     "nist_rmf:MEASURE-2.4": {
-      "out_degree": 0,
+      "out_degree": 3,
       "in_degree": 4,
-      "cross_out": 0,
+      "cross_out": 3,
       "cross_in": 4
     },
     "nist_rmf:MEASURE-2.5": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 19,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 19
     },
     "nist_rmf:MEASURE-2.6": {
-      "out_degree": 0,
-      "in_degree": 5,
-      "cross_out": 0,
-      "cross_in": 5
+      "out_degree": 1,
+      "in_degree": 10,
+      "cross_out": 1,
+      "cross_in": 10
     },
     "nist_rmf:MEASURE-2.7": {
-      "out_degree": 0,
+      "out_degree": 3,
       "in_degree": 5,
-      "cross_out": 0,
+      "cross_out": 3,
       "cross_in": 5
     },
     "nist_rmf:MEASURE-2.8": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 6,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 6
     },
     "nist_rmf:MEASURE-2.9": {
@@ -5339,20 +5438,20 @@
     },
     "nist_rmf:MEASURE-3.3": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 3
     },
     "nist_rmf:MEASURE-4.1": {
-      "out_degree": 0,
-      "in_degree": 5,
-      "cross_out": 0,
-      "cross_in": 5
+      "out_degree": 1,
+      "in_degree": 7,
+      "cross_out": 1,
+      "cross_in": 7
     },
     "nist_rmf:MEASURE-4.2": {
-      "out_degree": 0,
+      "out_degree": 2,
       "in_degree": 6,
-      "cross_out": 0,
+      "cross_out": 2,
       "cross_in": 6
     },
     "nist_rmf:MEASURE-4.3": {
@@ -5362,64 +5461,64 @@
       "cross_in": 4
     },
     "owasp_agentic:ASI01": {
-      "out_degree": 0,
-      "in_degree": 15,
-      "cross_out": 0,
-      "cross_in": 15
+      "out_degree": 13,
+      "in_degree": 26,
+      "cross_out": 13,
+      "cross_in": 26
     },
     "owasp_agentic:ASI02": {
-      "out_degree": 0,
-      "in_degree": 11,
-      "cross_out": 0,
-      "cross_in": 11
+      "out_degree": 14,
+      "in_degree": 21,
+      "cross_out": 14,
+      "cross_in": 21
     },
     "owasp_agentic:ASI03": {
-      "out_degree": 0,
-      "in_degree": 11,
-      "cross_out": 0,
-      "cross_in": 11
+      "out_degree": 13,
+      "in_degree": 15,
+      "cross_out": 13,
+      "cross_in": 15
     },
     "owasp_agentic:ASI04": {
-      "out_degree": 0,
-      "in_degree": 8,
-      "cross_out": 0,
-      "cross_in": 8
-    },
-    "owasp_agentic:ASI05": {
-      "out_degree": 0,
-      "in_degree": 14,
-      "cross_out": 0,
-      "cross_in": 14
-    },
-    "owasp_agentic:ASI06": {
-      "out_degree": 0,
+      "out_degree": 14,
       "in_degree": 10,
-      "cross_out": 0,
+      "cross_out": 14,
       "cross_in": 10
     },
+    "owasp_agentic:ASI05": {
+      "out_degree": 17,
+      "in_degree": 27,
+      "cross_out": 17,
+      "cross_in": 27
+    },
+    "owasp_agentic:ASI06": {
+      "out_degree": 13,
+      "in_degree": 17,
+      "cross_out": 13,
+      "cross_in": 17
+    },
     "owasp_agentic:ASI07": {
-      "out_degree": 0,
-      "in_degree": 4,
-      "cross_out": 0,
-      "cross_in": 4
+      "out_degree": 13,
+      "in_degree": 6,
+      "cross_out": 13,
+      "cross_in": 6
     },
     "owasp_agentic:ASI08": {
-      "out_degree": 0,
-      "in_degree": 12,
-      "cross_out": 0,
-      "cross_in": 12
+      "out_degree": 13,
+      "in_degree": 21,
+      "cross_out": 13,
+      "cross_in": 21
     },
     "owasp_agentic:ASI09": {
-      "out_degree": 0,
-      "in_degree": 17,
-      "cross_out": 0,
-      "cross_in": 17
+      "out_degree": 12,
+      "in_degree": 24,
+      "cross_out": 12,
+      "cross_in": 24
     },
     "owasp_agentic:ASI10": {
-      "out_degree": 0,
-      "in_degree": 17,
-      "cross_out": 0,
-      "cross_in": 17
+      "out_degree": 15,
+      "in_degree": 38,
+      "cross_out": 15,
+      "cross_in": 38
     },
     "owasp_ai_exchange:1.1": {
       "out_degree": 0,
@@ -5950,64 +6049,64 @@
       "cross_in": 4
     },
     "owasp_llm:LLM01": {
-      "out_degree": 0,
-      "in_degree": 6,
-      "cross_out": 0,
-      "cross_in": 6
-    },
-    "owasp_llm:LLM02": {
-      "out_degree": 0,
-      "in_degree": 10,
-      "cross_out": 0,
-      "cross_in": 10
-    },
-    "owasp_llm:LLM03": {
-      "out_degree": 0,
-      "in_degree": 8,
-      "cross_out": 0,
-      "cross_in": 8
-    },
-    "owasp_llm:LLM04": {
-      "out_degree": 0,
-      "in_degree": 3,
-      "cross_out": 0,
-      "cross_in": 3
-    },
-    "owasp_llm:LLM05": {
-      "out_degree": 0,
+      "out_degree": 13,
       "in_degree": 14,
-      "cross_out": 0,
+      "cross_out": 13,
       "cross_in": 14
     },
+    "owasp_llm:LLM02": {
+      "out_degree": 13,
+      "in_degree": 16,
+      "cross_out": 13,
+      "cross_in": 16
+    },
+    "owasp_llm:LLM03": {
+      "out_degree": 14,
+      "in_degree": 12,
+      "cross_out": 14,
+      "cross_in": 12
+    },
+    "owasp_llm:LLM04": {
+      "out_degree": 12,
+      "in_degree": 14,
+      "cross_out": 12,
+      "cross_in": 14
+    },
+    "owasp_llm:LLM05": {
+      "out_degree": 14,
+      "in_degree": 18,
+      "cross_out": 14,
+      "cross_in": 18
+    },
     "owasp_llm:LLM06": {
-      "out_degree": 0,
-      "in_degree": 7,
-      "cross_out": 0,
-      "cross_in": 7
+      "out_degree": 16,
+      "in_degree": 17,
+      "cross_out": 16,
+      "cross_in": 17
     },
     "owasp_llm:LLM07": {
-      "out_degree": 0,
-      "in_degree": 3,
-      "cross_out": 0,
-      "cross_in": 3
+      "out_degree": 11,
+      "in_degree": 5,
+      "cross_out": 11,
+      "cross_in": 5
     },
     "owasp_llm:LLM08": {
-      "out_degree": 0,
-      "in_degree": 10,
-      "cross_out": 0,
-      "cross_in": 10
+      "out_degree": 11,
+      "in_degree": 12,
+      "cross_out": 11,
+      "cross_in": 12
     },
     "owasp_llm:LLM09": {
-      "out_degree": 0,
-      "in_degree": 6,
-      "cross_out": 0,
-      "cross_in": 6
+      "out_degree": 10,
+      "in_degree": 7,
+      "cross_out": 10,
+      "cross_in": 7
     },
     "owasp_llm:LLM10": {
-      "out_degree": 0,
-      "in_degree": 11,
-      "cross_out": 0,
-      "cross_in": 11
+      "out_degree": 11,
+      "in_degree": 14,
+      "cross_out": 11,
+      "cross_in": 14
     }
   }
 }

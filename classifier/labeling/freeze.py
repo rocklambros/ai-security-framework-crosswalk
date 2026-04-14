@@ -58,12 +58,15 @@ def freeze_and_split(
     frozen_tuples_path: Path = FROZEN_TUPLES_PATH,
     val_fraction: float = 0.20,
     seed: int = 42,
+    skip_endpoint_check: bool = False,
 ) -> dict:
-    """Freeze v1 labels into train/val splits, enforcing frozen-tuple exclusion.
+    """Freeze labels into train/val splits, enforcing frozen-tuple exclusion.
 
     Returns dict with counts and file paths.
     Raises FileExistsError if out_dir already has split files (Contract 3).
-    Raises RuntimeError if any label overlaps frozen endpoints.
+    Raises RuntimeError if any label overlaps frozen endpoints
+    (unless skip_endpoint_check=True, for v2 where train/test are
+    pair-disjoint but share endpoints by design).
     """
     labels_path = v1_dir / "labels.jsonl"
     if not labels_path.exists():
@@ -78,18 +81,20 @@ def freeze_and_split(
 
     labels = [json.loads(l) for l in labels_path.read_text().splitlines() if l.strip()]
 
-    # Verify no frozen endpoint overlap
-    frozen_src, frozen_tgt = _load_frozen_endpoints(frozen_tuples_path)
-    for i, row in enumerate(labels):
-        src_ep, tgt_ep = _extract_endpoints(row)
-        if src_ep in frozen_src:
-            raise RuntimeError(
-                f"Frozen source endpoint in label row {i}: {src_ep}"
-            )
-        if tgt_ep in frozen_tgt:
-            raise RuntimeError(
-                f"Frozen target endpoint in label row {i}: {tgt_ep}"
-            )
+    # Verify no frozen endpoint overlap (v1 mode)
+    # v2 labels share endpoints with frozen test but are pair-disjoint
+    if not skip_endpoint_check:
+        frozen_src, frozen_tgt = _load_frozen_endpoints(frozen_tuples_path)
+        for i, row in enumerate(labels):
+            src_ep, tgt_ep = _extract_endpoints(row)
+            if src_ep in frozen_src:
+                raise RuntimeError(
+                    f"Frozen source endpoint in label row {i}: {src_ep}"
+                )
+            if tgt_ep in frozen_tgt:
+                raise RuntimeError(
+                    f"Frozen target endpoint in label row {i}: {tgt_ep}"
+                )
 
     # Stratified split by relation
     relations = [r["relation"] for r in labels]

@@ -159,12 +159,14 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
             # Load human-labeled calibration data
             human_train, human_val, _, _ = split_human_cal()
 
-            # Build sample weights: 1.0 for algorithmic, human_cal_weight for human
+            # Build sample weights: use sample_weight from JSONL if present,
+            # else 1.0 for algorithmic; human_cal_weight for human labels
             human_cal_weight = config.get("human_cal_weight", 10)
             sample_weights = np.array(
-                [1.0] * len(train_data) + [float(human_cal_weight)] * len(human_train)
+                [r.get("sample_weight", 1.0) for r in train_data]
+                + [float(human_cal_weight)] * len(human_train)
             )
-            train_data = train_data + human_train  # 6,728 + ~100 = ~6,828
+            train_data = train_data + human_train
 
             # SECONDARY validation: expert_val
             val_data_expert = []

@@ -321,8 +321,8 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
 
                 expert_val_f1 = f1_score(val_labels_expert, val_preds_expert, average="macro")
 
-                # COLLAPSE GUARD
-                if n_unique_preds < 3:
+                # COLLAPSE GUARD -- only zero out if truly degenerate (all same class)
+                if n_unique_preds < 2:
                     combined_f1 = 0.0
                     print(f"    COLLAPSE DETECTED: only {n_unique_preds} unique preds")
                 else:

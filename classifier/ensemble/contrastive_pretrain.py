@@ -77,7 +77,11 @@ def train_contrastive(
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModel.from_pretrained(model_name).to(device)
+    model = AutoModel.from_pretrained(model_name)
+    # DeBERTa-v3 stores weights in FP16; cast to FP32 so AMP GradScaler works
+    if "deberta" in model_name.lower():
+        model = model.float()
+    model = model.to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr)
     scaler = torch.amp.GradScaler("cuda") if device.type == "cuda" else None
 

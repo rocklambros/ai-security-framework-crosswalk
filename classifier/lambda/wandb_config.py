@@ -8,19 +8,19 @@ CE_SWEEP_CONFIG = {
     "method": "bayes",
     "metric": {"name": "combined_f1", "goal": "maximize"},
     "parameters": {
-        "learning_rate": {"distribution": "log_uniform_values", "min": 5e-7, "max": 5e-5},
+        "learning_rate": {"distribution": "log_uniform_values", "min": 1e-5, "max": 1e-4},
         "batch_size": {"values": [8, 16]},
-        "epochs": {"values": [5, 8, 10, 15]},
-        "warmup_ratio": {"distribution": "uniform", "min": 0.0, "max": 0.2},
+        "epochs": {"values": [8, 10, 15, 20]},
+        "warmup_ratio": {"distribution": "uniform", "min": 0.05, "max": 0.2},
         "weight_decay": {"distribution": "log_uniform_values", "min": 1e-4, "max": 1e-1},
         "dropout": {"distribution": "uniform", "min": 0.1, "max": 0.3},
         "loss_type": {"values": ["kl"]},
         "sigma": {"distribution": "uniform", "min": 0.3, "max": 0.8},
         "human_cal_weight": {"values": [5, 10, 15, 20, 30]},
-        "frozen_epochs": {"values": [1, 2, 3]},
-        "encoder_lr_factor": {"values": [0.1, 0.2, 0.5]},
+        "frozen_epochs": {"values": [2, 3, 5]},
+        "encoder_lr_factor": {"values": [0.05, 0.1, 0.2]},
     },
-    "early_terminate": {"type": "hyperband", "min_iter": 3, "eta": 3},
+    "early_terminate": {"type": "hyperband", "min_iter": 5, "eta": 3},
 }
 
 STACKER_SWEEP_CONFIG = {

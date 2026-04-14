@@ -1,0 +1,17 @@
+{
+  "n_pairs": 179,
+  "stacker_vs_llm": {
+    "tier_accuracy": 0.29608938547486036,
+    "macro_f1": 0.19173696217305958
+  },
+  "stacker_vs_expert": {
+    "tier_accuracy": 0.6312849162011173,
+    "macro_f1": 0.20805734058329214
+  },
+  "llm_vs_expert": {
+    "tier_accuracy": 0.2346368715083799,
+    "macro_f1": 0.18765979327761723
+  },
+  "break_glass": "v2 rebuild: subcontrol cleanup + 564 expert crosswalks + refreeze",
+  "model_run_id": "stacker-675becb7-20260414T180007"
+}

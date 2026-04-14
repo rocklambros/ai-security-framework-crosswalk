@@ -204,12 +204,12 @@ async def _score_split(
     cost_tracker.log()
 
 
-async def _run_bulk() -> None:
+async def _run_bulk(split_filter: list[str] | None = None) -> None:
     from classifier.data.split_human_cal import split_human_cal
     from classifier.llm.cost_tracker import CostTracker
     from classifier.llm.prompts import select_few_shot_examples
 
-    print("\n[bulk] Loading human_cal for few-shot examples …")
+    print("\n[bulk] Loading human_cal for few-shot examples ...")
     train_records, _val, _idx_tr, _idx_val = split_human_cal()
     few_shot_examples = select_few_shot_examples(train_records, n_per_tier=5)
     print(f"[bulk] Selected {len(few_shot_examples)} few-shot examples.")
@@ -217,7 +217,11 @@ async def _run_bulk() -> None:
     cost_tracker = CostTracker()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    for split_name, path in SPLITS.items():
+    splits_to_score = {k: v for k, v in SPLITS.items() if split_filter is None or k in split_filter}
+    if split_filter:
+        print(f"[bulk] Filtering to splits: {list(splits_to_score.keys())}")
+
+    for split_name, path in splits_to_score.items():
         await _score_split(split_name, path, few_shot_examples, cost_tracker)
 
     # Save cost report
@@ -233,7 +237,7 @@ async def _run_bulk() -> None:
 # ---------------------------------------------------------------------------
 
 
-async def _main(phase: str) -> None:
+async def _main(phase: str, split_filter: list[str] | None = None) -> None:
     _load_api_key()
 
     if phase in ("0", "all"):
@@ -251,7 +255,7 @@ async def _main(phase: str) -> None:
 
     if phase in ("bulk", "all"):
         print("\n=== Bulk Scoring ===")
-        await _run_bulk()
+        await _run_bulk(split_filter=split_filter)
 
 
 def main() -> None:
@@ -268,8 +272,14 @@ def main() -> None:
             "all = gate then bulk (default)"
         ),
     )
+    parser.add_argument(
+        "--splits",
+        nargs="*",
+        default=None,
+        help="Only score these splits (e.g. --splits human_cal human_test_frozen). Default: all.",
+    )
     args = parser.parse_args()
-    asyncio.run(_main(args.phase))
+    asyncio.run(_main(args.phase, split_filter=args.splits))
 
 
 if __name__ == "__main__":

@@ -5,7 +5,18 @@
     "pool_size": 895,
     "seed": 42
   },
-  "human_cal.jsonl": "402b6760f4f00b0cfc1323c49dda0e82460a2df5bd8099c8a7632a88ffa289aa",
-  "human_test_frozen.jsonl": "7a6e5bce3693774629bb2ef8895c891d2367d2a6432bcb4d15ac060b4fc15fc2",
-  "sme_pool_full.jsonl": "626a9ce4c72db833578e0c3d46ea083079dd8a63037cbc5fa7f2a9b4c12b747b"
+  "human_cal.jsonl": "c05dc1b261cf512970bd3c5a8afe3ee395ade86df7e6ca2988e1eb92815f70b6",
+  "human_test_frozen.jsonl": "34edeb42d78c22dbf1f5e9bb26e0def3a2b6e8590d727c5f1213b13f6fdb1871",
+  "sme_pool_full.jsonl": "008b883e9c579cf9e9bd68252b50f52267da5af74f0ab133739a9656f5976e09",
+  "splits": {
+    "frozen_tuples_json": {
+      "n_canonical_pair_tuples": 179,
+      "n_frozen_endpoints": 208,
+      "n_pair_tuples": 179,
+      "n_source_tuples": 94,
+      "n_target_tuples": 121,
+      "path": "data/splits/frozen_tuples.json",
+      "sha256": "c93899c061027f5496301b73467ff83267b5cd09edc40af487d637fcad98bdb6"
+    }
+  }
 }

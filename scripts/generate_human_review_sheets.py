@@ -48,7 +48,7 @@ def main():
             "source_description": src_node.get("description", ""),
             "target_name": tgt_node.get("name", e["target_node_id"]),
             "target_description": e["target_description"] or tgt_node.get("description", ""),
-            "expert_tier": "expert",
+            "expert_tier": "None",  # tier assigned by LLM scoring, not pre-labeled
         })
 
     total = 0

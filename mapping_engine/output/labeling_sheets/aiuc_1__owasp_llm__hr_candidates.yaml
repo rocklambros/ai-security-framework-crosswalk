@@ -1,5 +1,5 @@
 candidates:
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -9,7 +9,7 @@ candidates:
     using prior outputs to guide subsequent actions for dynamic task execution.
   target_name: Excessive Agency
   target_node_id: owasp_llm:LLM06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -20,7 +20,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -30,7 +30,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -40,7 +40,7 @@ candidates:
     third-party pre-trained models and data vulnerabilities.
   target_name: Supply Chain
   target_node_id: owasp_llm:LLM03
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -50,7 +50,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -61,7 +61,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent cross-customer data exposure
     when combining customer data from multiple sources.
   source_name: Prevent cross-customer data exposure
@@ -71,7 +71,7 @@ candidates:
     and source code, critical in closed or foundation models.
   target_name: Sensitive Information Disclosure
   target_node_id: owasp_llm:LLM02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent cross-customer data exposure
     when combining customer data from multiple sources.
   source_name: Prevent cross-customer data exposure
@@ -81,7 +81,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent cross-customer data exposure
     when combining customer data from multiple sources.
   source_name: Prevent cross-customer data exposure
@@ -92,7 +92,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -102,7 +102,7 @@ candidates:
     and source code, critical in closed or foundation models.
   target_name: Sensitive Information Disclosure
   target_node_id: owasp_llm:LLM02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -112,7 +112,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -123,7 +123,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards and technical controls to prevent AI outputs
     from violating copyrights, trademarks, or other third-party intellectual property
     rights.
@@ -134,7 +134,7 @@ candidates:
     third-party pre-trained models and data vulnerabilities.
   target_name: Supply Chain
   target_node_id: owasp_llm:LLM03
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards and technical controls to prevent AI outputs
     from violating copyrights, trademarks, or other third-party intellectual property
     rights.
@@ -145,7 +145,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -155,7 +155,7 @@ candidates:
     prompts, while indirect ones manipulate inputs from external sources.
   target_name: Prompt Injection
   target_node_id: owasp_llm:LLM01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -165,7 +165,7 @@ candidates:
     harmful outputs, toxic content, and compromised downstream systems.
   target_name: Data and Model Poisoning
   target_node_id: owasp_llm:LLM04
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -175,7 +175,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -186,7 +186,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -196,7 +196,7 @@ candidates:
     prompts, while indirect ones manipulate inputs from external sources.
   target_name: Prompt Injection
   target_node_id: owasp_llm:LLM01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -207,7 +207,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -217,7 +217,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement controls to prevent over-disclosure of technical information
     about AI systems.
   source_name: Manage public release of technical details
@@ -227,7 +227,7 @@ candidates:
     and source code, critical in closed or foundation models.
   target_name: Sensitive Information Disclosure
   target_node_id: owasp_llm:LLM02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement controls to prevent over-disclosure of technical information
     about AI systems.
   source_name: Manage public release of technical details
@@ -237,7 +237,7 @@ candidates:
     guide model behavior but can unintentionally reveal critical data.
   target_name: System Prompt Leakage
   target_node_id: owasp_llm:LLM07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -247,7 +247,7 @@ candidates:
     and source code, critical in closed or foundation models.
   target_name: Sensitive Information Disclosure
   target_node_id: owasp_llm:LLM02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -257,7 +257,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -268,7 +268,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -278,7 +278,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement real-time input filtering using automated moderation
     tools.
   source_name: Implement real-time input filtering
@@ -288,7 +288,7 @@ candidates:
     prompts, while indirect ones manipulate inputs from external sources.
   target_name: Prompt Injection
   target_node_id: owasp_llm:LLM01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement real-time input filtering using automated moderation
     tools.
   source_name: Implement real-time input filtering
@@ -298,7 +298,7 @@ candidates:
     harmful outputs, toxic content, and compromised downstream systems.
   target_name: Data and Model Poisoning
   target_node_id: owasp_llm:LLM04
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement real-time input filtering using automated moderation
     tools.
   source_name: Implement real-time input filtering
@@ -308,7 +308,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent AI agents from performing actions
     beyond intended scope and authorized privileges.
   source_name: Prevent unauthorized AI agent actions
@@ -319,7 +319,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent AI agents from performing actions
     beyond intended scope and authorized privileges.
   source_name: Prevent unauthorized AI agent actions
@@ -329,7 +329,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -339,7 +339,7 @@ candidates:
     and source code, critical in closed or foundation models.
   target_name: Sensitive Information Disclosure
   target_node_id: owasp_llm:LLM02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -349,7 +349,7 @@ candidates:
     using prior outputs to guide subsequent actions for dynamic task execution.
   target_name: Excessive Agency
   target_node_id: owasp_llm:LLM06
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -359,7 +359,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -369,7 +369,7 @@ candidates:
     guide model behavior but can unintentionally reveal critical data.
   target_name: System Prompt Leakage
   target_node_id: owasp_llm:LLM07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement output limitations and obfuscation techniques to safeguard
     against information leakage.
   source_name: Limit output over-exposure
@@ -379,7 +379,7 @@ candidates:
     and source code, critical in closed or foundation models.
   target_name: Sensitive Information Disclosure
   target_node_id: owasp_llm:LLM02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement output limitations and obfuscation techniques to safeguard
     against information leakage.
   source_name: Limit output over-exposure
@@ -389,7 +389,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement output limitations and obfuscation techniques to safeguard
     against information leakage.
   source_name: Limit output over-exposure
@@ -400,7 +400,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement output limitations and obfuscation techniques to safeguard
     against information leakage.
   source_name: Limit output over-exposure
@@ -410,7 +410,7 @@ candidates:
     it a critical vulnerability for reliant applications.
   target_name: Misinformation
   target_node_id: owasp_llm:LLM09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent harmful outputs including distressed
     outputs, angry responses, high-risk advice, offensive content, bias, and deception.
   source_name: Prevent harmful outputs
@@ -420,7 +420,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent harmful outputs including distressed
     outputs, angry responses, high-risk advice, offensive content, bias, and deception.
   source_name: Prevent harmful outputs
@@ -430,7 +430,7 @@ candidates:
     it a critical vulnerability for reliant applications.
   target_name: Misinformation
   target_node_id: owasp_llm:LLM09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent out-of-scope outputs.
   source_name: Prevent out-of-scope outputs
   source_node_id: aiuc_1:C004
@@ -439,7 +439,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent additional high risk outputs
     as defined in risk taxonomy.
   source_name: Prevent customer-defined high risk outputs
@@ -449,7 +449,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent security vulnerabilities in
     outputs from impacting users.
   source_name: Prevent output vulnerabilities
@@ -459,7 +459,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent hallucinated
     outputs.
   source_name: Prevent hallucinated outputs
@@ -469,7 +469,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent hallucinated
     outputs.
   source_name: Prevent hallucinated outputs
@@ -479,7 +479,7 @@ candidates:
     it a critical vulnerability for reliant applications.
   target_name: Misinformation
   target_node_id: owasp_llm:LLM09
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -489,7 +489,7 @@ candidates:
     it a critical vulnerability for reliant applications.
   target_name: Misinformation
   target_node_id: owasp_llm:LLM09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -500,7 +500,7 @@ candidates:
     using prior outputs to guide subsequent actions for dynamic task execution.
   target_name: Excessive Agency
   target_node_id: owasp_llm:LLM06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -512,7 +512,7 @@ candidates:
     risks.
   target_name: Vector and Embedding Weaknesses
   target_node_id: owasp_llm:LLM08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -523,7 +523,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -533,7 +533,7 @@ candidates:
     using prior outputs to guide subsequent actions for dynamic task execution.
   target_name: Excessive Agency
   target_node_id: owasp_llm:LLM06
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -543,7 +543,7 @@ candidates:
     third-party pre-trained models and data vulnerabilities.
   target_name: Supply Chain
   target_node_id: owasp_llm:LLM03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -553,7 +553,7 @@ candidates:
     third-party pre-trained models and data vulnerabilities.
   target_name: Supply Chain
   target_node_id: owasp_llm:LLM03
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -562,7 +562,7 @@ candidates:
     third-party pre-trained models and data vulnerabilities.
   target_name: Supply Chain
   target_node_id: owasp_llm:LLM03
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -571,7 +571,7 @@ candidates:
     or remote code execution, which differs from Overreliance.
   target_name: Improper Output Handling
   target_node_id: owasp_llm:LLM05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -580,7 +580,7 @@ candidates:
     using prior outputs to guide subsequent actions for dynamic task execution.
   target_name: Excessive Agency
   target_node_id: owasp_llm:LLM06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -589,7 +589,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and implement an AI acceptable use policy defining
     prohibited AI usage for end-users.
   source_name: Establish AI acceptable use policy
@@ -599,7 +599,7 @@ candidates:
     responses or predictions, making it a key function of LLMs.
   target_name: Unbounded Consumption
   target_node_id: owasp_llm:LLM10
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity

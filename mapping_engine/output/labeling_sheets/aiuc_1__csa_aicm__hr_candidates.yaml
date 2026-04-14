@@ -1,5 +1,5 @@
 candidates:
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -11,7 +11,7 @@ candidates:
     practices.
   target_name: Data Protection Impact Assessment
   target_node_id: csa_aicm:DSP-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -22,7 +22,7 @@ candidates:
     personal data, according to any applicable laws and regulations.
   target_name: Personal Data Access, Reversal, Rectification and Deletion
   target_node_id: csa_aicm:DSP-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -33,7 +33,7 @@ candidates:
     laws and regulations and for the purposes declared to the data subject.
   target_name: Limitation of Purpose in Personal Data Processing
   target_node_id: csa_aicm:DSP-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -44,7 +44,7 @@ candidates:
     supply chain, according to any applicable laws and regulations.
   target_name: Personal Data Sub-processing
   target_node_id: csa_aicm:DSP-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -55,7 +55,7 @@ candidates:
     to the data owner prior to initiation of that processing.
   target_name: Disclosure of Data Sub-processors
   target_node_id: csa_aicm:DSP-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -65,7 +65,7 @@ candidates:
     riskbefore replicating or using production data in non-production environments.
   target_name: Limitation of Production Data Use
   target_node_id: csa_aicm:DSP-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -75,7 +75,7 @@ candidates:
     withbusiness requirements, applicable laws and regulations.
   target_name: Data Retention and Deletion
   target_node_id: csa_aicm:DSP-16
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -86,7 +86,7 @@ candidates:
     according to legal and regulatory requirements'
   target_name: Data Provenance and Transparency
   target_node_id: csa_aicm:DSP-20
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -97,7 +97,7 @@ candidates:
     and enforce restrictions to prevent unauthorized changes.
   target_name: Data Integrity Check
   target_node_id: csa_aicm:DSP-23
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI output ownership, usage, opt-out and deletion policies
     to customers and communicate these policies.
   source_name: Establish output data policy
@@ -108,7 +108,7 @@ candidates:
     regulations.
   target_name: Data Privacy by Design and Default
   target_node_id: csa_aicm:DSP-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI output ownership, usage, opt-out and deletion policies
     to customers and communicate these policies.
   source_name: Establish output data policy
@@ -117,7 +117,7 @@ candidates:
     withbusiness requirements, applicable laws and regulations.
   target_name: Data Retention and Deletion
   target_node_id: csa_aicm:DSP-16
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI output ownership, usage, opt-out and deletion policies
     to customers and communicate these policies.
   source_name: Establish output data policy
@@ -145,7 +145,7 @@ candidates:
     ¥ Data privacy'
   target_name: Primary Service and Contractual Agreement
   target_node_id: csa_aicm:STA-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -153,7 +153,7 @@ candidates:
   target_description: Establish security boundaries for agents.
   target_name: Agents Security Boundaries
   target_node_id: csa_aicm:AIS-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -162,7 +162,7 @@ candidates:
     a principle of security by design and industry best practices.
   target_name: Data Protection by Design and Default
   target_node_id: csa_aicm:DSP-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -173,7 +173,7 @@ candidates:
     regulations.
   target_name: Data Privacy by Design and Default
   target_node_id: csa_aicm:DSP-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -182,7 +182,7 @@ candidates:
     by risk and privacy impact analysis and business use cases.
   target_name: Privacy Enhancing Technologies
   target_node_id: csa_aicm:DSP-22
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -192,7 +192,7 @@ candidates:
     to be applied when regulating access to resources.
   target_name: Knowledge Access Control - Need to Know
   target_node_id: csa_aicm:IAM-17
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -202,7 +202,7 @@ candidates:
     and least privilege.
   target_name: Agent Access Restriction
   target_node_id: csa_aicm:IAM-19
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -210,7 +210,7 @@ candidates:
   target_description: Establish and implement baseline requirements for Model documentation.
   target_name: Model Documentation Requirements
   target_node_id: csa_aicm:MDS-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -222,7 +222,7 @@ candidates:
     and procedures atleast annually.
   target_name: Security and Privacy Policy and Procedures
   target_node_id: csa_aicm:DSP-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -231,7 +231,7 @@ candidates:
     from storage media such that data is not recoverable by any forensic means.
   target_name: Secure Disposal
   target_node_id: csa_aicm:DSP-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -240,7 +240,7 @@ candidates:
     a principle of security by design and industry best practices.
   target_name: Data Protection by Design and Default
   target_node_id: csa_aicm:DSP-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -251,7 +251,7 @@ candidates:
     regulations.
   target_name: Data Privacy by Design and Default
   target_node_id: csa_aicm:DSP-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -262,7 +262,7 @@ candidates:
     laws and regulations.
   target_name: Sensitive Data Transfer
   target_node_id: csa_aicm:DSP-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -272,7 +272,7 @@ candidates:
     laws and regulations and for the purposes declared to the data subject.
   target_name: Limitation of Purpose in Personal Data Processing
   target_node_id: csa_aicm:DSP-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -281,7 +281,7 @@ candidates:
     withbusiness requirements, applicable laws and regulations.
   target_name: Data Retention and Deletion
   target_node_id: csa_aicm:DSP-16
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent AI systems
     from leaking company intellectual property or confidential information.
   source_name: Protect IP & trade secrets
@@ -290,7 +290,7 @@ candidates:
     endpoint devices with storage encryption.
   target_name: Storage Encryption
   target_node_id: csa_aicm:UEM-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent cross-customer data exposure
     when combining customer data from multiple sources.
   source_name: Prevent cross-customer data exposure
@@ -299,7 +299,7 @@ candidates:
     by risk and privacy impact analysis and business use cases.
   target_name: Privacy Enhancing Technologies
   target_node_id: csa_aicm:DSP-22
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent cross-customer data exposure
     when combining customer data from multiple sources.
   source_name: Prevent cross-customer data exposure
@@ -309,7 +309,7 @@ candidates:
     restricted.
   target_name: Segmentation and Segregation
   target_node_id: csa_aicm:I-S-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent cross-customer data exposure
     when combining customer data from multiple sources.
   source_name: Prevent cross-customer data exposure
@@ -318,7 +318,7 @@ candidates:
     endpoint devices with storage encryption.
   target_name: Storage Encryption
   target_node_id: csa_aicm:UEM-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -329,7 +329,7 @@ candidates:
     laws and regulations.
   target_name: Sensitive Data Transfer
   target_node_id: csa_aicm:DSP-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -339,7 +339,7 @@ candidates:
     laws and regulations and for the purposes declared to the data subject.
   target_name: Limitation of Purpose in Personal Data Processing
   target_node_id: csa_aicm:DSP-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -349,7 +349,7 @@ candidates:
     supply chain, according to any applicable laws and regulations.
   target_name: Personal Data Sub-processing
   target_node_id: csa_aicm:DSP-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -358,7 +358,7 @@ candidates:
     protect sensitive data throughout its lifecycle.
   target_name: Sensitive Data Protection
   target_node_id: csa_aicm:DSP-17
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -369,7 +369,7 @@ candidates:
     \ function relative to the organization."
   target_name: Personal and Sensitive Data Awareness and Training
   target_node_id: csa_aicm:HRS-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -378,7 +378,7 @@ candidates:
     endpoint devices with storage encryption.
   target_name: Storage Encryption
   target_node_id: csa_aicm:UEM-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards and technical controls to prevent AI outputs
     from violating copyrights, trademarks, or other third-party intellectual property
     rights.
@@ -389,7 +389,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Output Validation
   target_node_id: csa_aicm:AIS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -398,7 +398,7 @@ candidates:
     vulnerabilities, automating remediation when possible.
   target_name: Application Vulnerability Remediation
   target_node_id: csa_aicm:AIS-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -408,7 +408,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Input Validation
   target_node_id: csa_aicm:AIS-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -417,7 +417,7 @@ candidates:
     to assess adversarial threats specific to each AI model.
   target_name: Adversarial Attack Analysis
   target_node_id: csa_aicm:MDS-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -427,7 +427,7 @@ candidates:
     the Threat Analysis and Adversarial Threat Analysis.
   target_name: Robustness against Adversarial Attack / Model Hardening
   target_node_id: csa_aicm:MDS-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -439,7 +439,7 @@ candidates:
     or upon significant changes.
   target_name: Threat and Vulnerability Management Policy and Procedures
   target_node_id: csa_aicm:TVM-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -449,7 +449,7 @@ candidates:
     based on the identified risk.
   target_name: Vulnerability Remediation
   target_node_id: csa_aicm:TVM-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -459,7 +459,7 @@ candidates:
     libraries according to the organization's vulnerability management policy.
   target_name: External Library Vulnerabilities
   target_node_id: csa_aicm:TVM-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -468,7 +468,7 @@ candidates:
     for the periodic performance of penetration testing by independentthird parties.
   target_name: Penetration Testing
   target_node_id: csa_aicm:TVM-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -478,7 +478,7 @@ candidates:
     to vulnerability identification.
   target_name: Vulnerability Remediation Schedule
   target_node_id: csa_aicm:TVM-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -487,7 +487,7 @@ candidates:
     using an industry recognized framework.
   target_name: Vulnerability Prioritization
   target_node_id: csa_aicm:TVM-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -498,7 +498,7 @@ candidates:
     strategy.
   target_name: Threat Analysis and Modelling
   target_node_id: csa_aicm:TVM-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -508,7 +508,7 @@ candidates:
     and protection measures.
   target_name: Threat Response
   target_node_id: csa_aicm:TVM-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -518,7 +518,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Input Validation
   target_node_id: csa_aicm:AIS-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -528,7 +528,7 @@ candidates:
     significant system changes.
   target_name: API Security
   target_node_id: csa_aicm:AIS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -537,7 +537,7 @@ candidates:
     auditing and reporting on the usage of AI models.
   target_name: Input Monitoring
   target_node_id: csa_aicm:LOG-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -547,7 +547,7 @@ candidates:
     the Threat Analysis and Adversarial Threat Analysis.
   target_name: Robustness against Adversarial Attack / Model Hardening
   target_node_id: csa_aicm:MDS-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -559,7 +559,7 @@ candidates:
     or upon significant changes.
   target_name: Threat and Vulnerability Management Policy and Procedures
   target_node_id: csa_aicm:TVM-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -570,7 +570,7 @@ candidates:
     changes.
   target_name: Vulnerability Assessment and Reporting
   target_node_id: csa_aicm:TVM-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -580,7 +580,7 @@ candidates:
     on a weekly, or more frequent basis.
   target_name: Detection Updates
   target_node_id: csa_aicm:TVM-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -589,7 +589,7 @@ candidates:
     prevention technology and services.
   target_name: Anti-Malware Detection and Prevention
   target_node_id: csa_aicm:UEM-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement controls to prevent over-disclosure of technical information
     about AI systems.
   source_name: Manage public release of technical details
@@ -599,7 +599,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Output Validation
   target_node_id: csa_aicm:AIS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement controls to prevent over-disclosure of technical information
     about AI systems.
   source_name: Manage public release of technical details
@@ -609,7 +609,7 @@ candidates:
     prompts).
   target_name: Prompt Differentiation
   target_node_id: csa_aicm:AIS-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -619,7 +619,7 @@ candidates:
     significant system changes.
   target_name: API Security
   target_node_id: csa_aicm:AIS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -628,7 +628,7 @@ candidates:
     for the periodic performance of penetration testing by independentthird parties.
   target_name: Penetration Testing
   target_node_id: csa_aicm:TVM-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -638,7 +638,7 @@ candidates:
     \ the policies and procedures at least \nannually or uponsignificant system changes."
   target_name: Endpoint Devices Policy and Procedures
   target_node_id: csa_aicm:UEM-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -648,7 +648,7 @@ candidates:
     ssystems and/or store, transmit, or process organizational data.
   target_name: Endpoint Management
   target_node_id: csa_aicm:UEM-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -657,7 +657,7 @@ candidates:
     prevention technology and services.
   target_name: Anti-Malware Detection and Prevention
   target_node_id: csa_aicm:UEM-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -666,7 +666,7 @@ candidates:
     firewalls.
   target_name: Software Firewall
   target_node_id: csa_aicm:UEM-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -675,7 +675,7 @@ candidates:
     technologiesand rules in accordance with a risk assessment.
   target_name: Data Loss Prevention
   target_node_id: csa_aicm:UEM-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -685,7 +685,7 @@ candidates:
     access to organizational assets.
   target_name: Third-Party Endpoint Security Posture
   target_node_id: csa_aicm:UEM-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement real-time input filtering using automated moderation
     tools.
   source_name: Implement real-time input filtering
@@ -695,7 +695,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Input Validation
   target_node_id: csa_aicm:AIS-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement real-time input filtering using automated moderation
     tools.
   source_name: Implement real-time input filtering
@@ -705,7 +705,7 @@ candidates:
     prompts).
   target_name: Prompt Differentiation
   target_node_id: csa_aicm:AIS-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement real-time input filtering using automated moderation
     tools.
   source_name: Implement real-time input filtering
@@ -714,7 +714,7 @@ candidates:
     auditing and reporting on the usage of AI models.
   target_name: Input Monitoring
   target_node_id: csa_aicm:LOG-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent AI agents from performing actions
     beyond intended scope and authorized privileges.
   source_name: Prevent unauthorized AI agent actions
@@ -722,7 +722,7 @@ candidates:
   target_description: Establish security boundaries for agents.
   target_name: Agents Security Boundaries
   target_node_id: csa_aicm:AIS-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent AI agents from performing actions
     beyond intended scope and authorized privileges.
   source_name: Prevent unauthorized AI agent actions
@@ -731,7 +731,7 @@ candidates:
     a principle of security by design and industry best practices.
   target_name: Data Protection by Design and Default
   target_node_id: csa_aicm:DSP-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent AI agents from performing actions
     beyond intended scope and authorized privileges.
   source_name: Prevent unauthorized AI agent actions
@@ -741,7 +741,7 @@ candidates:
     and least privilege.
   target_name: Agent Access Restriction
   target_node_id: csa_aicm:IAM-19
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -750,7 +750,7 @@ candidates:
     a principle of security by design and industry best practices.
   target_name: Data Protection by Design and Default
   target_node_id: csa_aicm:DSP-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -761,7 +761,7 @@ candidates:
     regulations.
   target_name: Data Privacy by Design and Default
   target_node_id: csa_aicm:DSP-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -772,7 +772,7 @@ candidates:
     changes.
   target_name: Identity and Access Management Policy and Procedures
   target_node_id: csa_aicm:IAM-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -782,7 +782,7 @@ candidates:
     thepolicies and procedures at least annually.
   target_name: Strong Password Policy and Procedures
   target_node_id: csa_aicm:IAM-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -791,7 +791,7 @@ candidates:
     and monitor their level of access.
   target_name: Identity Inventory
   target_node_id: csa_aicm:IAM-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -800,7 +800,7 @@ candidates:
     information system access.
   target_name: Separation of Duties
   target_node_id: csa_aicm:IAM-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -809,7 +809,7 @@ candidates:
     system access.
   target_name: Least Privilege
   target_node_id: csa_aicm:IAM-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -818,7 +818,7 @@ candidates:
     which authorizes, records, and communicates access changes to data and assets.
   target_name: User Access Provisioning
   target_node_id: csa_aicm:IAM-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -826,7 +826,7 @@ candidates:
   target_description: De-provision or modify identity access in a timely manner.
   target_name: User Access Changes and Revocation
   target_node_id: csa_aicm:IAM-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -836,7 +836,7 @@ candidates:
     and at least annually, or upon significant changes.
   target_name: User Access Review
   target_node_id: csa_aicm:IAM-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -845,7 +845,7 @@ candidates:
     measures for the segregation of privileged access roles.
   target_name: Segregation of Privileged Access Roles
   target_node_id: csa_aicm:IAM-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -855,7 +855,7 @@ candidates:
     to prevent the accumulation of segregated privileged access.
   target_name: Management of Privileged Access Roles
   target_node_id: csa_aicm:IAM-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -865,7 +865,7 @@ candidates:
     associated IDs.
   target_name: Uniquely Identifiable Users
   target_node_id: csa_aicm:IAM-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -877,7 +877,7 @@ candidates:
     security for system identities.
   target_name: Strong Authentication
   target_node_id: csa_aicm:IAM-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -886,7 +886,7 @@ candidates:
     measures for the secure management of passwords and other secrets.
   target_name: Passwords and Secrets Management
   target_node_id: csa_aicm:IAM-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -895,7 +895,7 @@ candidates:
     to verify access to data and system functions is authorized.
   target_name: Authorization Mechanisms
   target_node_id: csa_aicm:IAM-16
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -905,7 +905,7 @@ candidates:
     to be applied when regulating access to resources.
   target_name: Knowledge Access Control - Need to Know
   target_node_id: csa_aicm:IAM-17
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -914,7 +914,7 @@ candidates:
     establish a role for this access and allow changes only by authorized identities.
   target_name: Output Modification and Special Authorization
   target_node_id: csa_aicm:IAM-18
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -923,7 +923,7 @@ candidates:
     to logs.
   target_name: Audit Logs Access and Accountability
   target_node_id: csa_aicm:LOG-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -932,7 +932,7 @@ candidates:
     \ \nand deletion."
   target_name: Log Protection
   target_node_id: csa_aicm:LOG-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and maintain user access controls and admin privileges
     for AI systems in line with policy.
   source_name: Enforce user access privileges to AI systems
@@ -941,7 +941,7 @@ candidates:
     system.
   target_name: Access Control Logs
   target_node_id: csa_aicm:LOG-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -950,7 +950,7 @@ candidates:
     applications.
   target_name: Application Security Baseline Requirements
   target_node_id: csa_aicm:AIS-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -959,7 +959,7 @@ candidates:
     standardized, and compliant application deployment. Automate where possible.
   target_name: Secure Application Deployment
   target_node_id: csa_aicm:AIS-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -968,7 +968,7 @@ candidates:
     \ and services."
   target_name: AI Cache Protection
   target_node_id: csa_aicm:AIS-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -979,7 +979,7 @@ candidates:
     changes.
   target_name: Encryption and Key Management Policy
   target_node_id: csa_aicm:CEK-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -988,7 +988,7 @@ candidates:
     in-use by using cryptographic libraries certified to approved standards.
   target_name: Data Encryption
   target_node_id: csa_aicm:CEK-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -997,7 +997,7 @@ candidates:
     protecting data, based on the data classification and associated risks.
   target_name: Encryption Algorithm
   target_node_id: csa_aicm:CEK-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1006,7 +1006,7 @@ candidates:
     specifying the algorithm strength and the random number generatorused.
   target_name: Key Generation
   target_node_id: csa_aicm:CEK-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1015,7 +1015,7 @@ candidates:
     a unique purpose.
   target_name: Key Purpose
   target_node_id: csa_aicm:CEK-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1025,7 +1025,7 @@ candidates:
     disclosureand legal and regulatory requirements.
   target_name: Key Rotation
   target_node_id: csa_aicm:CEK-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1036,7 +1036,7 @@ candidates:
     which include provisions for legal and regulatory requirements.
   target_name: Key Revocation
   target_node_id: csa_aicm:CEK-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1046,7 +1046,7 @@ candidates:
     which include provisions for legal and regulatory requirements.
   target_name: Key Destruction
   target_node_id: csa_aicm:CEK-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1056,7 +1056,7 @@ candidates:
     for use, which include provisions for legal and regulatoryrequirements.
   target_name: Key Activation
   target_node_id: csa_aicm:CEK-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1066,7 +1066,7 @@ candidates:
     which include provisions for legal and regulatory requirements.
   target_name: Key Suspension
   target_node_id: csa_aicm:CEK-16
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1076,7 +1076,7 @@ candidates:
     for legal and regulatory requirements.
   target_name: Key Deactivation
   target_node_id: csa_aicm:CEK-17
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1086,7 +1086,7 @@ candidates:
     which include provisions for legal and regulatory requirements.
   target_name: Key Archival
   target_node_id: csa_aicm:CEK-18
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1097,7 +1097,7 @@ candidates:
     include provisions for legal and regulatory requirements.
   target_name: Key Compromise
   target_node_id: csa_aicm:CEK-19
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1108,7 +1108,7 @@ candidates:
     is lost, which include provisions for legal and regulatoryrequirements.
   target_name: Key Recovery
   target_node_id: csa_aicm:CEK-20
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1118,7 +1118,7 @@ candidates:
     and changes in status, which include provisions for legal and regulatoryrequirements.
   target_name: Key Inventory Management
   target_node_id: csa_aicm:CEK-21
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1127,7 +1127,7 @@ candidates:
     a principle of security by design and industry best practices.
   target_name: Data Protection by Design and Default
   target_node_id: csa_aicm:DSP-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1136,7 +1136,7 @@ candidates:
     information system access.
   target_name: Separation of Duties
   target_node_id: csa_aicm:IAM-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1148,7 +1148,7 @@ candidates:
     security for system identities.
   target_name: Strong Authentication
   target_node_id: csa_aicm:IAM-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1159,7 +1159,7 @@ candidates:
     and best practices.
   target_name: Training Pipeline Security
   target_node_id: csa_aicm:MDS-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1171,7 +1171,7 @@ candidates:
     scanning.
   target_name: Model Artifact Scanning
   target_node_id: csa_aicm:MDS-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1181,7 +1181,7 @@ candidates:
     annually based on the level of risk, or after any change of hands.
   target_name: Model Integrity Checks
   target_node_id: csa_aicm:MDS-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1191,7 +1191,7 @@ candidates:
     from storage.
   target_name: Model Signing/Ownership Verification
   target_node_id: csa_aicm:MDS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement security measures for AI model deployment environments
     including encryption, access controls and authorization.
   source_name: Protect model deployment environment
@@ -1200,7 +1200,7 @@ candidates:
     endpoint devices with storage encryption.
   target_name: Storage Encryption
   target_node_id: csa_aicm:UEM-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement output limitations and obfuscation techniques to safeguard
     against information leakage.
   source_name: Limit output over-exposure
@@ -1210,7 +1210,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Output Validation
   target_node_id: csa_aicm:AIS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1222,7 +1222,7 @@ candidates:
     past reports and supporting evidence.
   target_name: Audit Management Process
   target_node_id: csa_aicm:A-A-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1233,7 +1233,7 @@ candidates:
     review and report remediation status to relevant stakeholders.
   target_name: Remediation
   target_node_id: csa_aicm:A-A-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1245,7 +1245,7 @@ candidates:
     least annually or upon significant changes.
   target_name: Risk Assessment and Impact Analysis
   target_node_id: csa_aicm:BCR-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1255,7 +1255,7 @@ candidates:
     associated with applying changes to assets owned, controlled or used by the organization.
   target_name: Change Management Technology
   target_node_id: csa_aicm:CCC-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1266,7 +1266,7 @@ candidates:
     and feedback.
   target_name: Encryption Risk Management
   target_node_id: csa_aicm:CEK-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1278,7 +1278,7 @@ candidates:
     practices.
   target_name: Data Protection Impact Assessment
   target_node_id: csa_aicm:DSP-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1289,7 +1289,7 @@ candidates:
     \ for identification, evaluation, ownership, treatment, and \nacceptance of risks."
   target_name: Risk Management Program
   target_node_id: csa_aicm:GRC-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1301,7 +1301,7 @@ candidates:
     AI system's lifecycle.
   target_name: Model Failure
   target_node_id: csa_aicm:MDS-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -1312,7 +1312,7 @@ candidates:
     mitigate any determined vulnerabilities.
   target_name: Open Model Risk Assessment
   target_node_id: csa_aicm:MDS-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -1323,7 +1323,7 @@ candidates:
     by the organization.
   target_name: Secure Application Development Lifecycle
   target_node_id: csa_aicm:AIS-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -1334,7 +1334,7 @@ candidates:
     \ goals. \nAutomate when applicable and possible."
   target_name: Application Security Testing
   target_node_id: csa_aicm:AIS-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -1343,7 +1343,7 @@ candidates:
     standardized, and compliant application deployment. Automate where possible.
   target_name: Secure Application Deployment
   target_node_id: csa_aicm:AIS-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -1352,7 +1352,7 @@ candidates:
     vulnerabilities, automating remediation when possible.
   target_name: Application Vulnerability Remediation
   target_node_id: csa_aicm:AIS-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -1361,7 +1361,7 @@ candidates:
     control, code review & static code analysis, aligning with the SDLC process.
   target_name: Source Code Management
   target_node_id: csa_aicm:AIS-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -1370,7 +1370,7 @@ candidates:
     approval and testing process incorporating baselines, testing, and release standards.
   target_name: Quality Testing
   target_node_id: csa_aicm:CCC-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -1380,7 +1380,7 @@ candidates:
     libraries according to the organization's vulnerability management policy.
   target_name: External Library Vulnerabilities
   target_node_id: csa_aicm:TVM-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent harmful outputs including distressed
     outputs, angry responses, high-risk advice, offensive content, bias, and deception.
   source_name: Prevent harmful outputs
@@ -1390,7 +1390,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Output Validation
   target_node_id: csa_aicm:AIS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent harmful outputs including distressed
     outputs, angry responses, high-risk advice, offensive content, bias, and deception.
   source_name: Prevent harmful outputs
@@ -1400,7 +1400,7 @@ candidates:
     by continuous risk assessments, reviews and human oversight.
   target_name: Acceptable Use of the AI Service
   target_node_id: csa_aicm:GRC-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent harmful outputs including distressed
     outputs, angry responses, high-risk advice, offensive content, bias, and deception.
   source_name: Prevent harmful outputs
@@ -1409,7 +1409,7 @@ candidates:
     for bias and fairness to ensure compliance with ethical standards.
   target_name: Bias and Fairness Assessment
   target_node_id: csa_aicm:GRC-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent harmful outputs including distressed
     outputs, angry responses, high-risk advice, offensive content, bias, and deception.
   source_name: Prevent harmful outputs
@@ -1418,7 +1418,7 @@ candidates:
     enable auditing and reporting on usage of AI models.
   target_name: Output Monitoring
   target_node_id: csa_aicm:LOG-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent harmful outputs including distressed
     outputs, angry responses, high-risk advice, offensive content, bias, and deception.
   source_name: Prevent harmful outputs
@@ -1428,7 +1428,7 @@ candidates:
     \ changes in regulatory requirements \nand risk scenarios."
   target_name: Guardrails
   target_node_id: csa_aicm:TVM-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent out-of-scope outputs.
   source_name: Prevent out-of-scope outputs
   source_node_id: aiuc_1:C004
@@ -1437,7 +1437,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Output Validation
   target_node_id: csa_aicm:AIS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent out-of-scope outputs.
   source_name: Prevent out-of-scope outputs
   source_node_id: aiuc_1:C004
@@ -1446,7 +1446,7 @@ candidates:
     by continuous risk assessments, reviews and human oversight.
   target_name: Acceptable Use of the AI Service
   target_node_id: csa_aicm:GRC-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent out-of-scope outputs.
   source_name: Prevent out-of-scope outputs
   source_node_id: aiuc_1:C004
@@ -1454,7 +1454,7 @@ candidates:
     enable auditing and reporting on usage of AI models.
   target_name: Output Monitoring
   target_node_id: csa_aicm:LOG-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent out-of-scope outputs.
   source_name: Prevent out-of-scope outputs
   source_node_id: aiuc_1:C004
@@ -1463,7 +1463,7 @@ candidates:
     \ changes in regulatory requirements \nand risk scenarios."
   target_name: Guardrails
   target_node_id: csa_aicm:TVM-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent additional high risk outputs
     as defined in risk taxonomy.
   source_name: Prevent customer-defined high risk outputs
@@ -1473,7 +1473,7 @@ candidates:
     by continuous risk assessments, reviews and human oversight.
   target_name: Acceptable Use of the AI Service
   target_node_id: csa_aicm:GRC-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent additional high risk outputs
     as defined in risk taxonomy.
   source_name: Prevent customer-defined high risk outputs
@@ -1482,7 +1482,7 @@ candidates:
     enable auditing and reporting on usage of AI models.
   target_name: Output Monitoring
   target_node_id: csa_aicm:LOG-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent additional high risk outputs
     as defined in risk taxonomy.
   source_name: Prevent customer-defined high risk outputs
@@ -1510,7 +1510,7 @@ candidates:
     ¥ Data privacy'
   target_name: Primary Service and Contractual Agreement
   target_node_id: csa_aicm:STA-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent additional high risk outputs
     as defined in risk taxonomy.
   source_name: Prevent customer-defined high risk outputs
@@ -1520,7 +1520,7 @@ candidates:
     \ changes in regulatory requirements \nand risk scenarios."
   target_name: Guardrails
   target_node_id: csa_aicm:TVM-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent security vulnerabilities in
     outputs from impacting users.
   source_name: Prevent output vulnerabilities
@@ -1529,7 +1529,7 @@ candidates:
     vulnerabilities, automating remediation when possible.
   target_name: Application Vulnerability Remediation
   target_node_id: csa_aicm:AIS-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent security vulnerabilities in
     outputs from impacting users.
   source_name: Prevent output vulnerabilities
@@ -1539,7 +1539,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Output Validation
   target_node_id: csa_aicm:AIS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent security vulnerabilities in
     outputs from impacting users.
   source_name: Prevent output vulnerabilities
@@ -1550,7 +1550,7 @@ candidates:
     changes.
   target_name: Vulnerability Assessment and Reporting
   target_node_id: csa_aicm:TVM-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement an alerting system that flags high-risk outputs for
     human review.
   source_name: Flag high risk outputs
@@ -1560,7 +1560,7 @@ candidates:
     with regulatory requirements and organizational risk management.
   target_name: Human Supervision
   target_node_id: csa_aicm:GRC-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -1569,7 +1569,7 @@ candidates:
     \ for identification, evaluation, ownership, treatment, and \nacceptance of risks."
   target_name: Risk Management Program
   target_node_id: csa_aicm:GRC-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -1579,7 +1579,7 @@ candidates:
     AI system's lifecycle.
   target_name: Model Failure
   target_node_id: csa_aicm:MDS-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -1588,7 +1588,7 @@ candidates:
     mitigate any determined vulnerabilities.
   target_name: Open Model Risk Assessment
   target_node_id: csa_aicm:MDS-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -1597,7 +1597,7 @@ candidates:
     based on the identified risk.
   target_name: Vulnerability Remediation
   target_node_id: csa_aicm:TVM-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -1606,7 +1606,7 @@ candidates:
     to vulnerability identification.
   target_name: Vulnerability Remediation Schedule
   target_node_id: csa_aicm:TVM-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement mechanisms to enable real-time user feedback collection
     and intervention mechanisms.
   source_name: Enable real-time feedback and intervention
@@ -1616,7 +1616,7 @@ candidates:
     with regulatory requirements and organizational risk management.
   target_name: Human Supervision
   target_node_id: csa_aicm:GRC-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -1625,7 +1625,7 @@ candidates:
     to relevant standards at least annually.
   target_name: Independent Assessments
   target_node_id: csa_aicm:A-A-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -1634,7 +1634,7 @@ candidates:
     for bias and fairness to ensure compliance with ethical standards.
   target_name: Bias and Fairness Assessment
   target_node_id: csa_aicm:GRC-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -1643,7 +1643,7 @@ candidates:
     for the periodic performance of penetration testing by independentthird parties.
   target_name: Penetration Testing
   target_node_id: csa_aicm:TVM-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -1652,7 +1652,7 @@ candidates:
     to relevant standards at least annually.
   target_name: Independent Assessments
   target_node_id: csa_aicm:A-A-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -1661,7 +1661,7 @@ candidates:
     for the periodic performance of penetration testing by independentthird parties.
   target_name: Penetration Testing
   target_node_id: csa_aicm:TVM-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent hallucinated
     outputs.
   source_name: Prevent hallucinated outputs
@@ -1671,7 +1671,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Output Validation
   target_node_id: csa_aicm:AIS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent hallucinated
     outputs.
   source_name: Prevent hallucinated outputs
@@ -1681,7 +1681,7 @@ candidates:
     sudden shifts or unexpected changes in predictions that could degrade model performance.
   target_name: Model Continuous Monitoring
   target_node_id: csa_aicm:MDS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent hallucinated
     outputs.
   source_name: Prevent hallucinated outputs
@@ -1692,7 +1692,7 @@ candidates:
     AI system's lifecycle.
   target_name: Model Failure
   target_node_id: csa_aicm:MDS-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -1703,7 +1703,7 @@ candidates:
     \ goals. \nAutomate when applicable and possible."
   target_name: Application Security Testing
   target_node_id: csa_aicm:AIS-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -1713,7 +1713,7 @@ candidates:
     policies and applicable laws and regulations.
   target_name: Output Validation
   target_node_id: csa_aicm:AIS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -1722,7 +1722,7 @@ candidates:
     to assess adversarial threats specific to each AI model.
   target_name: Adversarial Attack Analysis
   target_node_id: csa_aicm:MDS-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -1732,7 +1732,7 @@ candidates:
     the Threat Analysis and Adversarial Threat Analysis.
   target_name: Robustness against Adversarial Attack / Model Hardening
   target_node_id: csa_aicm:MDS-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -1742,7 +1742,7 @@ candidates:
     standardized, and compliant application deployment. Automate where possible.
   target_name: Secure Application Deployment
   target_node_id: csa_aicm:AIS-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -1753,7 +1753,7 @@ candidates:
     significant system changes.
   target_name: API Security
   target_node_id: csa_aicm:AIS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -1762,7 +1762,7 @@ candidates:
   target_description: Establish security boundaries for agents.
   target_name: Agents Security Boundaries
   target_node_id: csa_aicm:AIS-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -1773,7 +1773,7 @@ candidates:
     \ systems or data and limit the \npossibility of lateral movement."
   target_name: AI Sandboxing
   target_node_id: csa_aicm:AIS-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -1784,7 +1784,7 @@ candidates:
     sudden shifts or unexpected changes in predictions that could degrade model performance.
   target_name: Model Continuous Monitoring
   target_node_id: csa_aicm:MDS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -1796,7 +1796,7 @@ candidates:
     AI system's lifecycle.
   target_name: Model Failure
   target_node_id: csa_aicm:MDS-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -1807,7 +1807,7 @@ candidates:
     \ changes in regulatory requirements \nand risk scenarios."
   target_name: Guardrails
   target_node_id: csa_aicm:TVM-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -1819,7 +1819,7 @@ candidates:
     strategy.
   target_name: Threat Analysis and Modelling
   target_node_id: csa_aicm:TVM-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -1830,7 +1830,7 @@ candidates:
     \ goals. \nAutomate when applicable and possible."
   target_name: Application Security Testing
   target_node_id: csa_aicm:AIS-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1841,7 +1841,7 @@ candidates:
     Updatethe plan at least annually or upon significant changes.
   target_name: Disaster Response Plan
   target_node_id: csa_aicm:BCR-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1851,7 +1851,7 @@ candidates:
     including, if possible, participation of local emergency authorities.
   target_name: Response Plan Exercise
   target_node_id: csa_aicm:BCR-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1863,7 +1863,7 @@ candidates:
     or upon significant changes.
   target_name: Security Incident Management Policy and Procedures
   target_node_id: csa_aicm:SEF-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1875,7 +1875,7 @@ candidates:
     changes.
   target_name: Service Management Policy and Procedures
   target_node_id: csa_aicm:SEF-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1888,7 +1888,7 @@ candidates:
     be impacted.'
   target_name: Incident Response Plans
   target_node_id: csa_aicm:SEF-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1898,7 +1898,7 @@ candidates:
     incident response plans at planned intervals or upon significant changes.
   target_name: Incident Response Testing
   target_node_id: csa_aicm:SEF-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1908,7 +1908,7 @@ candidates:
     \ \nmetrics."
   target_name: Incident Response Metrics
   target_node_id: csa_aicm:SEF-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1920,7 +1920,7 @@ candidates:
     laws and regulations.
   target_name: Security Breach Notification
   target_node_id: csa_aicm:SEF-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1931,7 +1931,7 @@ candidates:
     and update the points of contact at least annually.
   target_name: Points of Contact Maintenance
   target_node_id: csa_aicm:SEF-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1942,7 +1942,7 @@ candidates:
     applicable.
   target_name: Incident Response
   target_node_id: csa_aicm:SEF-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for harmful AI outputs that cause significant
     customer harm.
   source_name: AI failure plan for harmful outputs
@@ -1952,7 +1952,7 @@ candidates:
     Updatethe plan at least annually or upon significant changes.
   target_name: Disaster Response Plan
   target_node_id: csa_aicm:BCR-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for harmful AI outputs that cause significant
     customer harm.
   source_name: AI failure plan for harmful outputs
@@ -1961,7 +1961,7 @@ candidates:
     including, if possible, participation of local emergency authorities.
   target_name: Response Plan Exercise
   target_node_id: csa_aicm:BCR-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for harmful AI outputs that cause significant
     customer harm.
   source_name: AI failure plan for harmful outputs
@@ -1971,7 +1971,7 @@ candidates:
     applicable.
   target_name: Incident Response
   target_node_id: csa_aicm:SEF-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for hallucinated AI outputs that cause
     substantial customer financial loss.
   source_name: AI failure plan for hallucinations
@@ -1981,7 +1981,7 @@ candidates:
     Updatethe plan at least annually or upon significant changes.
   target_name: Disaster Response Plan
   target_node_id: csa_aicm:BCR-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for hallucinated AI outputs that cause
     substantial customer financial loss.
   source_name: AI failure plan for hallucinations
@@ -1990,7 +1990,7 @@ candidates:
     including, if possible, participation of local emergency authorities.
   target_name: Response Plan Exercise
   target_node_id: csa_aicm:BCR-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for hallucinated AI outputs that cause
     substantial customer financial loss.
   source_name: AI failure plan for hallucinations
@@ -2000,7 +2000,7 @@ candidates:
     applicable.
   target_name: Incident Response
   target_node_id: csa_aicm:SEF-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -2010,7 +2010,7 @@ candidates:
     policies and procedures at least annually or after significant system changes.
   target_name: Application and Interface Security Policy
   target_node_id: csa_aicm:AIS-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -2021,7 +2021,7 @@ candidates:
     by the organization.
   target_name: Secure Application Development Lifecycle
   target_node_id: csa_aicm:AIS-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -2032,7 +2032,7 @@ candidates:
     the policies and procedures at least annually, or upon significant changes.
   target_name: Change Management Policy and Procedures
   target_node_id: csa_aicm:CCC-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -2041,7 +2041,7 @@ candidates:
     associated with applying changes to assets owned, controlled or used by the organization.
   target_name: Change Management Technology
   target_node_id: csa_aicm:CCC-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -2051,7 +2051,7 @@ candidates:
     agreements.
   target_name: Change Agreements
   target_node_id: csa_aicm:CCC-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -2060,7 +2060,7 @@ candidates:
     and responsibilities.
   target_name: CEK Roles and Responsibilities
   target_node_id: csa_aicm:CEK-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -2069,7 +2069,7 @@ candidates:
     implementing,operating, assessing, and improving governance programs.
   target_name: Governance Responsibility Model
   target_node_id: csa_aicm:GRC-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -2079,7 +2079,7 @@ candidates:
     from storage.
   target_name: Model Signing/Ownership Verification
   target_node_id: csa_aicm:MDS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2090,7 +2090,7 @@ candidates:
     \ goals. \nAutomate when applicable and possible."
   target_name: Application Security Testing
   target_node_id: csa_aicm:AIS-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2103,7 +2103,7 @@ candidates:
     significant changes.
   target_name: Off-Site Equipment Disposal Policy
   target_node_id: csa_aicm:DCS-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2115,7 +2115,7 @@ candidates:
     update the policies and procedures at least annually, or upon significant changes.
   target_name: Off-Site Transfer Authorization Policy
   target_node_id: csa_aicm:DCS-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2126,7 +2126,7 @@ candidates:
     least annually, or upon significant changes.
   target_name: Secure Area Policy and Procedures
   target_node_id: csa_aicm:DCS-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2137,7 +2137,7 @@ candidates:
     changes.
   target_name: Secure Media Transportation Policy
   target_node_id: csa_aicm:DCS-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2147,7 +2147,7 @@ candidates:
     assetsÕ classification at least annually or upon significant changes.
   target_name: Assets Classification
   target_node_id: csa_aicm:DCS-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2157,7 +2157,7 @@ candidates:
     update the catalogue at least annually or upon significant changes.
   target_name: Assets Cataloguing and Tracking
   target_node_id: csa_aicm:DCS-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2166,7 +2166,7 @@ candidates:
     personnel, data, and information systems.
   target_name: Controlled Physical Access Points
   target_node_id: csa_aicm:DCS-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2174,7 +2174,7 @@ candidates:
   target_description: Use equipment identification as a method for connection authentication.
   target_name: Equipment Identification
   target_node_id: csa_aicm:DCS-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2185,7 +2185,7 @@ candidates:
     appropriate by the organization.
   target_name: Secure Area Authorization
   target_node_id: csa_aicm:DCS-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2195,7 +2195,7 @@ candidates:
     ingress and egress attempts.
   target_name: Surveillance System
   target_node_id: csa_aicm:DCS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2204,7 +2204,7 @@ candidates:
     including but not limited to unauthorized ingress and egress attempts.
   target_name: Adverse Event Response Training
   target_node_id: csa_aicm:DCS-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2215,7 +2215,7 @@ candidates:
     and rooms.
   target_name: Cabling Security
   target_node_id: csa_aicm:DCS-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2225,7 +2225,7 @@ candidates:
     humidity conditions within accepted industry standards.
   target_name: Environmental Systems
   target_node_id: csa_aicm:DCS-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2234,7 +2234,7 @@ candidates:
     at planned intervals.
   target_name: Secure Utilities
   target_node_id: csa_aicm:DCS-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -2243,7 +2243,7 @@ candidates:
     to high probability for environmental risk events.
   target_name: Equipment Location
   target_node_id: csa_aicm:DCS-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2253,7 +2253,7 @@ candidates:
     and update the policies and procedures at least annually or upon significant changes.
   target_name: Supply Chain Risk Management Policies and Procedures
   target_node_id: csa_aicm:STA-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2261,7 +2261,7 @@ candidates:
   target_description: Develop and maintain an inventory of all supply chain relationships.
   target_name: Supply Chain Inventory
   target_node_id: csa_aicm:STA-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2270,7 +2270,7 @@ candidates:
     relationships.
   target_name: Supply Chain Risk Management
   target_node_id: csa_aicm:STA-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2298,7 +2298,7 @@ candidates:
     ¥ Data privacy'
   target_name: Primary Service and Contractual Agreement
   target_node_id: csa_aicm:STA-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2307,7 +2307,7 @@ candidates:
     changes.
   target_name: Supply Chain Agreement Review
   target_node_id: csa_aicm:STA-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2317,7 +2317,7 @@ candidates:
     service level agreement activities at least annually.
   target_name: Supply Chain Compliance Assessment
   target_node_id: csa_aicm:STA-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2327,7 +2327,7 @@ candidates:
     control, privacy, audit, personnel policy and service level requirements and standards.
   target_name: Supply Chain Service Agreement Compliance
   target_node_id: csa_aicm:STA-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2336,7 +2336,7 @@ candidates:
     IT governance policies and procedures.
   target_name: Third Party Risk Management
   target_node_id: csa_aicm:STA-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -2345,7 +2345,7 @@ candidates:
     periodically for all organizations within the supply chain.
   target_name: Supply Chain Data Security Assessment
   target_node_id: csa_aicm:STA-15
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -2354,7 +2354,7 @@ candidates:
     policies and procedures at least annually or after significant system changes.
   target_name: Application and Interface Security Policy
   target_node_id: csa_aicm:AIS-01
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -2364,7 +2364,7 @@ candidates:
     the policies and procedures at least annually, or upon significant changes.
   target_name: Change Management Policy and Procedures
   target_node_id: csa_aicm:CCC-01
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -2372,7 +2372,7 @@ candidates:
     associated with applying changes to assets owned, controlled or used by the organization.
   target_name: Change Management Technology
   target_node_id: csa_aicm:CCC-03
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -2380,7 +2380,7 @@ candidates:
     update, and management of assets, owned, controlled or used by the organization.
   target_name: Change Authorization
   target_node_id: csa_aicm:CCC-04
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -2389,7 +2389,7 @@ candidates:
     agreements.
   target_name: Change Agreements
   target_node_id: csa_aicm:CCC-05
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -2398,7 +2398,7 @@ candidates:
     at least annually or upon significant changes.
   target_name: Change Management Baseline
   target_node_id: csa_aicm:CCC-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2408,7 +2408,7 @@ candidates:
     update the policies and procedures at least annually or upon significant changes.
   target_name: Audit and Assurance Policy and Procedures
   target_node_id: csa_aicm:A-A-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2417,7 +2417,7 @@ candidates:
     to relevant standards at least annually.
   target_name: Independent Assessments
   target_node_id: csa_aicm:A-A-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2427,7 +2427,7 @@ candidates:
     policies.
   target_name: Risk Based Planning Assessment
   target_node_id: csa_aicm:A-A-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2438,7 +2438,7 @@ candidates:
     past reports and supporting evidence.
   target_name: Audit Management Process
   target_node_id: csa_aicm:A-A-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2448,7 +2448,7 @@ candidates:
     review and report remediation status to relevant stakeholders.
   target_name: Remediation
   target_node_id: csa_aicm:A-A-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2458,7 +2458,7 @@ candidates:
     policies and procedures at least annually or after significant system changes.
   target_name: Application and Interface Security Policy
   target_node_id: csa_aicm:AIS-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2467,7 +2467,7 @@ candidates:
     applications.
   target_name: Application Security Baseline Requirements
   target_node_id: csa_aicm:AIS-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2478,7 +2478,7 @@ candidates:
     when significant changes occur that could impact risk exposure.
   target_name: Business Continuity Management Policy
   target_node_id: csa_aicm:BCR-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2487,7 +2487,7 @@ candidates:
     to a previous known good state in case of errors or security concerns.
   target_name: Change Restoration
   target_node_id: csa_aicm:CCC-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2498,7 +2498,7 @@ candidates:
     event(s).
   target_name: Encryption and Key Management Audit
   target_node_id: csa_aicm:CEK-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2509,7 +2509,7 @@ candidates:
     practices.
   target_name: Data Protection Impact Assessment
   target_node_id: csa_aicm:DSP-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2518,7 +2518,7 @@ candidates:
     least annually or when a substantial change occurs within the organization.
   target_name: Organizational Policy Reviews
   target_node_id: csa_aicm:GRC-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2527,7 +2527,7 @@ candidates:
     and monitor their level of access.
   target_name: Identity Inventory
   target_node_id: csa_aicm:IAM-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2537,7 +2537,7 @@ candidates:
     and at least annually, or upon significant changes.
   target_name: User Access Review
   target_node_id: csa_aicm:IAM-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -2547,7 +2547,7 @@ candidates:
     or whenever there is a change in the threat environment.
   target_name: Logging Scope
   target_node_id: csa_aicm:LOG-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -2556,7 +2556,7 @@ candidates:
     significant system changes.
   target_name: API Security
   target_node_id: csa_aicm:AIS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -2565,7 +2565,7 @@ candidates:
     appropriate and timely actions on detected anomalies.
   target_name: Audit Logs Monitoring and Response
   target_node_id: csa_aicm:LOG-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -2574,7 +2574,7 @@ candidates:
     libraries according to the organization's vulnerability management policy.
   target_name: External Library Vulnerabilities
   target_node_id: csa_aicm:TVM-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -2583,7 +2583,7 @@ candidates:
     access to organizational assets.
   target_name: Third-Party Endpoint Security Posture
   target_node_id: csa_aicm:UEM-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and implement an AI acceptable use policy defining
     prohibited AI usage for end-users.
   source_name: Establish AI acceptable use policy
@@ -2593,7 +2593,7 @@ candidates:
     by continuous risk assessments, reviews and human oversight.
   target_name: Acceptable Use of the AI Service
   target_node_id: csa_aicm:GRC-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI data processing locations covering geographic locations
     of processing and inference endpoints.
   source_name: Record processing locations
@@ -2603,7 +2603,7 @@ candidates:
     supply chain, according to any applicable laws and regulations.
   target_name: Personal Data Sub-processing
   target_node_id: csa_aicm:DSP-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI data processing locations covering geographic locations
     of processing and inference endpoints.
   source_name: Record processing locations
@@ -2613,7 +2613,7 @@ candidates:
     in which data is processed or backed up.
   target_name: Data Location
   target_node_id: csa_aicm:DSP-19
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI data processing locations covering geographic locations
     of processing and inference endpoints.
   source_name: Record processing locations
@@ -2622,7 +2622,7 @@ candidates:
     \ \ncompany data."
   target_name: Endpoint Inventory
   target_node_id: csa_aicm:UEM-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -2631,7 +2631,7 @@ candidates:
     legal/contractual, and statutory requirements applicable to the audit.
   target_name: Requirements Compliance
   target_node_id: csa_aicm:A-A-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -2642,7 +2642,7 @@ candidates:
     laws and regulations.
   target_name: Sensitive Data Transfer
   target_node_id: csa_aicm:DSP-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -2652,7 +2652,7 @@ candidates:
     Law Enforcement Authorities according to applicable laws and regulations.
   target_name: Disclosure Notification
   target_node_id: csa_aicm:DSP-18
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -2662,7 +2662,7 @@ candidates:
     at least annually or when a substantial change occurs within the organization.
   target_name: Information System Regulatory Mapping
   target_node_id: csa_aicm:GRC-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -2672,7 +2672,7 @@ candidates:
     the protection of data and operational details.
   target_name: Non-Disclosure Agreements
   target_node_id: csa_aicm:HRS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2683,7 +2683,7 @@ candidates:
     past reports and supporting evidence.
   target_name: Audit Management Process
   target_node_id: csa_aicm:A-A-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2693,7 +2693,7 @@ candidates:
     policies and procedures at least annually or after significant system changes.
   target_name: Application and Interface Security Policy
   target_node_id: csa_aicm:AIS-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2702,7 +2702,7 @@ candidates:
     with business objectives, security requirements, and compliance obligations.
   target_name: Application Security Metrics
   target_node_id: csa_aicm:AIS-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2713,7 +2713,7 @@ candidates:
     least annually or upon significant changes.
   target_name: Risk Assessment and Impact Analysis
   target_node_id: csa_aicm:BCR-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2722,7 +2722,7 @@ candidates:
     approval and testing process incorporating baselines, testing, and release standards.
   target_name: Quality Testing
   target_node_id: csa_aicm:CCC-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2733,7 +2733,7 @@ candidates:
     practices.
   target_name: Data Protection Impact Assessment
   target_node_id: csa_aicm:DSP-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2743,7 +2743,7 @@ candidates:
     \ for identification, evaluation, ownership, treatment, and \nacceptance of risks."
   target_name: Risk Management Program
   target_node_id: csa_aicm:GRC-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2754,7 +2754,7 @@ candidates:
     its lifecycle.
   target_name: AI Impact Assessment
   target_node_id: csa_aicm:GRC-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2764,7 +2764,7 @@ candidates:
     the business.
   target_name: Capacity and Resource Planning
   target_node_id: csa_aicm:I-S-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2776,7 +2776,7 @@ candidates:
     scanning.
   target_name: Model Artifact Scanning
   target_node_id: csa_aicm:MDS-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2787,7 +2787,7 @@ candidates:
     or upon significant changes.
   target_name: Security Incident Management Policy and Procedures
   target_node_id: csa_aicm:SEF-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2799,7 +2799,7 @@ candidates:
     or upon significant changes.
   target_name: Threat and Vulnerability Management Policy and Procedures
   target_node_id: csa_aicm:TVM-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -2810,7 +2810,7 @@ candidates:
     changes.
   target_name: Vulnerability Assessment and Reporting
   target_node_id: csa_aicm:TVM-02
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -2819,7 +2819,7 @@ candidates:
     review and report remediation status to relevant stakeholders.
   target_name: Remediation
   target_node_id: csa_aicm:A-A-06
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -2827,7 +2827,7 @@ candidates:
     \ of the AI Services, including possible limitations \nand exceptions."
   target_name: Explainability Evaluation
   target_node_id: csa_aicm:GRC-14
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -2836,7 +2836,7 @@ candidates:
     processes, procedures, and controls.
   target_name: Encryption Monitoring and Reporting
   target_node_id: csa_aicm:LOG-10
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -2845,7 +2845,7 @@ candidates:
     and provide immediate notification to the accountable party.
   target_name: Failures and Anomalies Reporting
   target_node_id: csa_aicm:LOG-13
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -2853,7 +2853,7 @@ candidates:
     \ \nmetrics."
   target_name: Incident Response Metrics
   target_node_id: csa_aicm:SEF-05
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -2863,7 +2863,7 @@ candidates:
     laws and regulations.
   target_name: Security Breach Notification
   target_node_id: csa_aicm:SEF-07
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -2871,7 +2871,7 @@ candidates:
     and remediation activities that includes stakeholder notification.
   target_name: Vulnerability Management Reporting
   target_node_id: csa_aicm:TVM-09
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -2879,7 +2879,7 @@ candidates:
     remediation at defined intervals.
   target_name: Vulnerability Management Metrics
   target_node_id: csa_aicm:TVM-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2890,7 +2890,7 @@ candidates:
     \ changes."
   target_name: Logging and Monitoring Policy and Procedures
   target_node_id: csa_aicm:LOG-01
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2901,7 +2901,7 @@ candidates:
     responsible stakeholders based on such events and corresponding metrics.
   target_name: Security Monitoring and Alerting
   target_node_id: csa_aicm:LOG-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2910,7 +2910,7 @@ candidates:
     to logs.
   target_name: Audit Logs Access and Accountability
   target_node_id: csa_aicm:LOG-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2920,7 +2920,7 @@ candidates:
     appropriate and timely actions on detected anomalies.
   target_name: Audit Logs Monitoring and Response
   target_node_id: csa_aicm:LOG-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2929,7 +2929,7 @@ candidates:
     systems.
   target_name: Clock Synchronization
   target_node_id: csa_aicm:LOG-06
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2939,7 +2939,7 @@ candidates:
     or whenever there is a change in the threat environment.
   target_name: Logging Scope
   target_node_id: csa_aicm:LOG-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2947,7 +2947,7 @@ candidates:
   target_description: Generate audit records containing relevant security information.
   target_name: Log Records
   target_node_id: csa_aicm:LOG-08
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2956,7 +2956,7 @@ candidates:
     \ \nand deletion."
   target_name: Log Protection
   target_node_id: csa_aicm:LOG-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2966,7 +2966,7 @@ candidates:
     processes, procedures, and controls.
   target_name: Encryption Monitoring and Reporting
   target_node_id: csa_aicm:LOG-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2975,7 +2975,7 @@ candidates:
     and reporting on usage of cryptographic keys.
   target_name: Transaction / Activity Logging
   target_node_id: csa_aicm:LOG-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2984,7 +2984,7 @@ candidates:
     system.
   target_name: Access Control Logs
   target_node_id: csa_aicm:LOG-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -2994,7 +2994,7 @@ candidates:
     and provide immediate notification to the accountable party.
   target_name: Failures and Anomalies Reporting
   target_node_id: csa_aicm:LOG-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -3003,7 +3003,7 @@ candidates:
     auditing and reporting on the usage of AI models.
   target_name: Input Monitoring
   target_node_id: csa_aicm:LOG-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -3012,7 +3012,7 @@ candidates:
     enable auditing and reporting on usage of AI models.
   target_name: Output Monitoring
   target_node_id: csa_aicm:LOG-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -3022,7 +3022,7 @@ candidates:
     sudden shifts or unexpected changes in predictions that could degrade model performance.
   target_name: Model Continuous Monitoring
   target_node_id: csa_aicm:MDS-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -3031,7 +3031,7 @@ candidates:
     \ \nmetrics."
   target_name: Incident Response Metrics
   target_node_id: csa_aicm:SEF-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -3042,7 +3042,7 @@ candidates:
     laws and regulations.
   target_name: Security Breach Notification
   target_node_id: csa_aicm:SEF-07
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement clear disclosure mechanisms to inform users when they
     are interacting with AI systems.
   source_name: Implement AI disclosure mechanisms
@@ -3052,7 +3052,7 @@ candidates:
     with regulatory requirements and organizational risk management.
   target_name: Human Supervision
   target_node_id: csa_aicm:GRC-15
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -3062,7 +3062,7 @@ candidates:
     according to legal and regulatory requirements'
   target_name: Data Provenance and Transparency
   target_node_id: csa_aicm:DSP-20
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -3071,7 +3071,7 @@ candidates:
     \ needed for the AI Services."
   target_name: Explainability Requirement
   target_node_id: csa_aicm:GRC-13
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -3080,7 +3080,7 @@ candidates:
     \ of the AI Services, including possible limitations \nand exceptions."
   target_name: Explainability Evaluation
   target_node_id: csa_aicm:GRC-14
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -3090,7 +3090,7 @@ candidates:
     review and update the model documentation.
   target_name: Model Documentation
   target_node_id: csa_aicm:MDS-03
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -3098,7 +3098,7 @@ candidates:
   target_description: Establish and implement baseline requirements for Model documentation.
   target_name: Model Documentation Requirements
   target_node_id: csa_aicm:MDS-04
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -3108,7 +3108,7 @@ candidates:
     model.
   target_name: Model Documentation Validation
   target_node_id: csa_aicm:MDS-05
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -3118,7 +3118,7 @@ candidates:
     at least annually or upon significant changes.
   target_name: Service Bill of Material (BOM)
   target_node_id: csa_aicm:STA-16
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled misuse
     for cyber attacks and exploitation.
   source_name: Prevent AI cyber misuse
@@ -3128,7 +3128,7 @@ candidates:
     \ for identification, evaluation, ownership, treatment, and \nacceptance of risks."
   target_name: Risk Management Program
   target_node_id: csa_aicm:GRC-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled misuse
     for cyber attacks and exploitation.
   source_name: Prevent AI cyber misuse
@@ -3138,7 +3138,7 @@ candidates:
     by continuous risk assessments, reviews and human oversight.
   target_name: Acceptable Use of the AI Service
   target_node_id: csa_aicm:GRC-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled misuse
     for cyber attacks and exploitation.
   source_name: Prevent AI cyber misuse
@@ -3149,7 +3149,7 @@ candidates:
     its lifecycle.
   target_name: AI Impact Assessment
   target_node_id: csa_aicm:GRC-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled misuse
     for cyber attacks and exploitation.
   source_name: Prevent AI cyber misuse
@@ -3158,7 +3158,7 @@ candidates:
     alignment with ethical standards and organizational values.
   target_name: Ethics Committee
   target_node_id: csa_aicm:GRC-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled misuse
     for cyber attacks and exploitation.
   source_name: Prevent AI cyber misuse
@@ -3168,7 +3168,7 @@ candidates:
     \ changes in regulatory requirements \nand risk scenarios."
   target_name: Guardrails
   target_node_id: csa_aicm:TVM-11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled catastrophic
     system misuse (chemical / bio / radio / nuclear).
   source_name: Prevent catastrophic misuse
@@ -3178,7 +3178,7 @@ candidates:
     \ for identification, evaluation, ownership, treatment, and \nacceptance of risks."
   target_name: Risk Management Program
   target_node_id: csa_aicm:GRC-02
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled catastrophic
     system misuse (chemical / bio / radio / nuclear).
   source_name: Prevent catastrophic misuse
@@ -3188,7 +3188,7 @@ candidates:
     by continuous risk assessments, reviews and human oversight.
   target_name: Acceptable Use of the AI Service
   target_node_id: csa_aicm:GRC-09
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled catastrophic
     system misuse (chemical / bio / radio / nuclear).
   source_name: Prevent catastrophic misuse
@@ -3199,7 +3199,7 @@ candidates:
     its lifecycle.
   target_name: AI Impact Assessment
   target_node_id: csa_aicm:GRC-10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled catastrophic
     system misuse (chemical / bio / radio / nuclear).
   source_name: Prevent catastrophic misuse
@@ -3208,7 +3208,7 @@ candidates:
     alignment with ethical standards and organizational values.
   target_name: Ethics Committee
   target_node_id: csa_aicm:GRC-12
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled catastrophic
     system misuse (chemical / bio / radio / nuclear).
   source_name: Prevent catastrophic misuse

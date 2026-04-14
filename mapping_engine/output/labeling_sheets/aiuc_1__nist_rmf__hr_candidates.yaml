@@ -1,5 +1,5 @@
 candidates:
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and communicate AI input data policies covering how
     customer data is used for model training, inference processing, data retention
     periods, and customer data rights.
@@ -9,7 +9,7 @@ candidates:
     Ð is examined and documented.
   target_name: Privacy risk of the AI system examined and documented.
   target_node_id: nist_rmf:MEASURE-2.10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to limit AI agent data access to task-relevant
     information based on user roles and context.
   source_name: Limit AI agent data collection
@@ -19,7 +19,7 @@ candidates:
   target_name: Specific task and implementation methods that the AI system will support
     are defined.
   target_node_id: nist_rmf:MAP-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent cross-customer data exposure
     when combining customer data from multiple sources.
   source_name: Prevent cross-customer data exposure
@@ -28,7 +28,7 @@ candidates:
     Ð is examined and documented.
   target_name: Privacy risk of the AI system examined and documented.
   target_node_id: nist_rmf:MEASURE-2.10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish safeguards to prevent personal data leakage through
     AI outputs and logs.
   source_name: Prevent PII leakage
@@ -37,7 +37,7 @@ candidates:
     Ð is examined and documented.
   target_name: Privacy risk of the AI system examined and documented.
   target_node_id: nist_rmf:MEASURE-2.10
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards and technical controls to prevent AI outputs
     from violating copyrights, trademarks, or other third-party intellectual property
     rights.
@@ -49,7 +49,7 @@ candidates:
   target_name: Policies and procedures address AI risks associated with third-party
     entities, including intellectual property infringem
   target_node_id: nist_rmf:GOVERN-6.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards and technical controls to prevent AI outputs
     from violating copyrights, trademarks, or other third-party intellectual property
     rights.
@@ -62,7 +62,7 @@ candidates:
   target_name: Approaches for mapping AI technology and legal risks of components
     in place, followed, and documented, including third-p
   target_node_id: nist_rmf:MAP-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -72,7 +72,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -81,7 +81,7 @@ candidates:
     test, evaluation, validation, and verification (TEVV) are documented.
   target_name: Test sets, metrics, and tool details used during TEVV documented.
   target_node_id: nist_rmf:MEASURE-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -95,7 +95,7 @@ candidates:
   target_name: 'AI system regularly evaluated for safety risks; demonstrated to be
     safe with residual risk not exceeding tolerance; can '
   target_node_id: nist_rmf:MEASURE-2.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement adversarial testing program to validate system resilience
     against adversarial inputs and prompt injection attempts.
   source_name: Third-party testing of adversarial robustness
@@ -104,7 +104,7 @@ candidates:
     function Ð are evaluated and documented.
   target_name: AI system security and resilience evaluated and documented.
   target_node_id: nist_rmf:MEASURE-2.7
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -115,7 +115,7 @@ candidates:
   target_name: Ongoing monitoring and periodic review of risk management process and
     outcomes; roles and responsibilities defined.
   target_node_id: nist_rmf:GOVERN-1.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -125,7 +125,7 @@ candidates:
   target_name: Functionality and behavior of AI system and components monitored when
     in production.
   target_node_id: nist_rmf:MEASURE-2.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -134,7 +134,7 @@ candidates:
     function Ð are evaluated and documented.
   target_name: AI system security and resilience evaluated and documented.
   target_node_id: nist_rmf:MEASURE-2.7
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring capabilities to detect and respond to adversarial
     inputs and prompt injection attempts.
   source_name: Detect adversarial input
@@ -145,7 +145,7 @@ candidates:
   target_name: 'Approaches, personnel, and documentation in place to regularly identify
     and track existing, unanticipated, and emergent '
   target_node_id: nist_rmf:MEASURE-3.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent probing or scraping of external
     AI endpoints.
   source_name: Prevent AI endpoint scraping
@@ -154,7 +154,7 @@ candidates:
     function Ð are evaluated and documented.
   target_name: AI system security and resilience evaluated and documented.
   target_node_id: nist_rmf:MEASURE-2.7
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement real-time input filtering using automated moderation
     tools.
   source_name: Implement real-time input filtering
@@ -163,7 +163,7 @@ candidates:
     function Ð are evaluated and documented.
   target_name: AI system security and resilience evaluated and documented.
   target_node_id: nist_rmf:MEASURE-2.7
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent AI agents from performing actions
     beyond intended scope and authorized privileges.
   source_name: Prevent unauthorized AI agent actions
@@ -173,7 +173,7 @@ candidates:
   target_name: Specific task and implementation methods that the AI system will support
     are defined.
   target_node_id: nist_rmf:MAP-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement output limitations and obfuscation techniques to safeguard
     against information leakage.
   source_name: Limit output over-exposure
@@ -182,7 +182,7 @@ candidates:
     Ð is examined and documented.
   target_name: Privacy risk of the AI system examined and documented.
   target_node_id: nist_rmf:MEASURE-2.10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -193,7 +193,7 @@ candidates:
   target_name: Processes and procedures in place to determine needed level of risk
     management activities based on organizational risk t
   target_node_id: nist_rmf:GOVERN-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -205,7 +205,7 @@ candidates:
   target_name: Risk management process and outcomes established through transparent
     policies, procedures, and controls based on organiz
   target_node_id: nist_rmf:GOVERN-1.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -217,7 +217,7 @@ candidates:
   target_name: Teams document risks and potential impacts of AI technology; communicate
     impacts broadly.
   target_node_id: nist_rmf:GOVERN-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -229,7 +229,7 @@ candidates:
   target_name: Policies and procedures address AI risks associated with third-party
     entities, including intellectual property infringem
   target_node_id: nist_rmf:GOVERN-6.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -240,7 +240,7 @@ candidates:
   target_name: Treatment of documented AI risks prioritized based on impact, likelihood,
     or available resources or methods.
   target_node_id: nist_rmf:MANAGE-1.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -252,7 +252,7 @@ candidates:
   target_name: Responses to high-priority risks developed, planned, and documented
     (mitigate, transfer, avoid, or accept).
   target_node_id: nist_rmf:MANAGE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -262,7 +262,7 @@ candidates:
     risks) to both downstream acquirers of AI systems and end users are documented.
   target_name: Negative residual risks to downstream acquirers and end users documented.
   target_node_id: nist_rmf:MANAGE-1.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -271,7 +271,7 @@ candidates:
   target_description: Organizational risk tolerances are determined and documented.
   target_name: Organizational risk tolerances determined and documented.
   target_node_id: nist_rmf:MAP-1.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -284,7 +284,7 @@ candidates:
   target_name: Likelihood and magnitude of each identified impact examined and documented
     based on expected use, similar contexts, publ
   target_node_id: nist_rmf:MAP-5.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -297,7 +297,7 @@ candidates:
   target_name: Approaches and metrics for measurement of enumerated AI risks selected,
     starting with most significant risks. Risks that
   target_node_id: nist_rmf:MEASURE-1.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -307,7 +307,7 @@ candidates:
     Ð is examined and documented.
   target_name: Privacy risk of the AI system examined and documented.
   target_node_id: nist_rmf:MEASURE-2.10
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -317,7 +317,7 @@ candidates:
     and results are documented.
   target_name: Fairness and bias evaluated; results documented.
   target_node_id: nist_rmf:MEASURE-2.11
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a risk taxonomy that categorizes risks within harmful,
     out-of-scope, and hallucinated outputs, tool calls, and other risks based on application-specific
     usage.
@@ -329,7 +329,7 @@ candidates:
   target_name: 'Approaches, personnel, and documentation in place to regularly identify
     and track existing, unanticipated, and emergent '
   target_node_id: nist_rmf:MEASURE-3.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -339,7 +339,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -350,7 +350,7 @@ candidates:
   target_name: 'Determination made whether AI system achieves intended purpose and
     stated objectives; whether development or deployment '
   target_node_id: nist_rmf:MANAGE-1.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -360,7 +360,7 @@ candidates:
   target_name: Internal risk controls for AI system components, including third-party
     technologies, identified and documented.
   target_node_id: nist_rmf:MAP-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -369,7 +369,7 @@ candidates:
     test, evaluation, validation, and verification (TEVV) are documented.
   target_name: Test sets, metrics, and tool details used during TEVV documented.
   target_node_id: nist_rmf:MEASURE-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -380,7 +380,7 @@ candidates:
   target_name: AI system performance or assurance criteria measured qualitatively
     or quantitatively and demonstrated for deployment-sim
   target_node_id: nist_rmf:MEASURE-2.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -391,7 +391,7 @@ candidates:
   target_name: AI system demonstrated to be valid and reliable; limitations of generalizability
     documented.
   target_node_id: nist_rmf:MEASURE-2.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Conduct internal testing of AI systems prior to deployment across
     risk categories.
   source_name: Conduct pre-deployment testing
@@ -402,7 +402,7 @@ candidates:
   target_name: Measurable performance improvements or declines identified and documented
     based on relevant actor consultations and fiel
   target_node_id: nist_rmf:MEASURE-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent harmful outputs including distressed
     outputs, angry responses, high-risk advice, offensive content, bias, and deception.
   source_name: Prevent harmful outputs
@@ -411,7 +411,7 @@ candidates:
     and results are documented.
   target_name: Fairness and bias evaluated; results documented.
   target_node_id: nist_rmf:MEASURE-2.11
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent out-of-scope outputs.
   source_name: Prevent out-of-scope outputs
   source_node_id: aiuc_1:C004
@@ -422,7 +422,7 @@ candidates:
   target_name: Information about AI system's knowledge limits and how output may be
     utilized and overseen by humans documented.
   target_node_id: nist_rmf:MAP-2.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent out-of-scope outputs.
   source_name: Prevent out-of-scope outputs
   source_node_id: aiuc_1:C004
@@ -432,7 +432,7 @@ candidates:
   target_name: Processes for operator and practitioner proficiency with AI system
     performance defined, assessed, and documented.
   target_node_id: nist_rmf:MAP-3.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards to prevent additional high risk outputs
     as defined in risk taxonomy.
   source_name: Prevent customer-defined high risk outputs
@@ -441,7 +441,7 @@ candidates:
     risks) to both downstream acquirers of AI systems and end users are documented.
   target_name: Negative residual risks to downstream acquirers and end users documented.
   target_node_id: nist_rmf:MANAGE-1.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement an alerting system that flags high-risk outputs for
     human review.
   source_name: Flag high risk outputs
@@ -451,7 +451,7 @@ candidates:
   target_name: Policies and procedures define and differentiate roles for human-AI
     configurations and system oversight.
   target_node_id: nist_rmf:GOVERN-3.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement an alerting system that flags high-risk outputs for
     human review.
   source_name: Flag high risk outputs
@@ -461,7 +461,7 @@ candidates:
   target_name: Processes for human oversight defined, assessed, and documented in
     accordance with organizational policies.
   target_node_id: nist_rmf:MAP-3.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -471,7 +471,7 @@ candidates:
   target_name: Ongoing monitoring and periodic review of risk management process and
     outcomes; roles and responsibilities defined.
   target_node_id: nist_rmf:GOVERN-1.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -480,7 +480,7 @@ candidates:
   target_name: AI risks and benefits from third-party resources regularly monitored;
     risk controls applied and documented.
   target_node_id: nist_rmf:MANAGE-3.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -491,7 +491,7 @@ candidates:
   target_name: Post-deployment monitoring plans implemented, including mechanisms
     for capturing end-user input, appeal and override, de
   target_node_id: nist_rmf:MANAGE-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -500,7 +500,7 @@ candidates:
   target_name: Functionality and behavior of AI system and components monitored when
     in production.
   target_node_id: nist_rmf:MEASURE-2.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement monitoring of AI systems across risk categories.
   source_name: Monitor AI risk categories
   source_node_id: aiuc_1:C008
@@ -510,7 +510,7 @@ candidates:
   target_name: Measurable performance improvements or declines identified and documented
     based on relevant actor consultations and fiel
   target_node_id: nist_rmf:MEASURE-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement mechanisms to enable real-time user feedback collection
     and intervention mechanisms.
   source_name: Enable real-time feedback and intervention
@@ -520,7 +520,7 @@ candidates:
   target_name: Policies and procedures define and differentiate roles for human-AI
     configurations and system oversight.
   target_node_id: nist_rmf:GOVERN-3.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement mechanisms to enable real-time user feedback collection
     and intervention mechanisms.
   source_name: Enable real-time feedback and intervention
@@ -530,7 +530,7 @@ candidates:
   target_name: Processes for human oversight defined, assessed, and documented in
     accordance with organizational policies.
   target_node_id: nist_rmf:MAP-3.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement mechanisms to enable real-time user feedback collection
     and intervention mechanisms.
   source_name: Enable real-time feedback and intervention
@@ -541,7 +541,7 @@ candidates:
   target_name: Feedback processes for end users and impacted communities to report
     problems and appeal outcomes established and integra
   target_node_id: nist_rmf:MEASURE-3.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -551,7 +551,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -560,7 +560,7 @@ candidates:
     deployed AI systems.
   target_name: Mechanisms in place and applied to sustain value of deployed AI systems.
   target_node_id: nist_rmf:MANAGE-2.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -573,7 +573,7 @@ candidates:
   target_name: Internal experts not serving as front-line developers and/or independent
     assessors involved in regular assessments. Doma
   target_node_id: nist_rmf:MEASURE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -582,7 +582,7 @@ candidates:
     test, evaluation, validation, and verification (TEVV) are documented.
   target_name: Test sets, metrics, and tool details used during TEVV documented.
   target_node_id: nist_rmf:MEASURE-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -596,7 +596,7 @@ candidates:
   target_name: 'AI system regularly evaluated for safety risks; demonstrated to be
     safe with residual risk not exceeding tolerance; can '
   target_node_id: nist_rmf:MEASURE-2.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -605,7 +605,7 @@ candidates:
     and results are documented.
   target_name: Fairness and bias evaluated; results documented.
   target_node_id: nist_rmf:MEASURE-2.11
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -616,7 +616,7 @@ candidates:
   target_name: Measurement approaches for identifying AI risks connected to deployment
     context(s) and informed through consultation wit
   target_node_id: nist_rmf:MEASURE-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     harmful outputs at least every 3 months.
   source_name: Third-party testing for harmful outputs
@@ -628,7 +628,7 @@ candidates:
   target_name: Measurement results regarding AI system trustworthiness validated through
     input from domain experts and relevant AI acto
   target_node_id: nist_rmf:MEASURE-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     out-of-scope outputs at least every 3 months.
   source_name: Third-party testing for out-of-scope outputs
@@ -638,7 +638,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     out-of-scope outputs at least every 3 months.
   source_name: Third-party testing for out-of-scope outputs
@@ -647,7 +647,7 @@ candidates:
     deployed AI systems.
   target_name: Mechanisms in place and applied to sustain value of deployed AI systems.
   target_node_id: nist_rmf:MANAGE-2.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     out-of-scope outputs at least every 3 months.
   source_name: Third-party testing for out-of-scope outputs
@@ -659,7 +659,7 @@ candidates:
   target_name: Information about AI system's knowledge limits and how output may be
     utilized and overseen by humans documented.
   target_node_id: nist_rmf:MAP-2.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     out-of-scope outputs at least every 3 months.
   source_name: Third-party testing for out-of-scope outputs
@@ -672,7 +672,7 @@ candidates:
   target_name: Internal experts not serving as front-line developers and/or independent
     assessors involved in regular assessments. Doma
   target_node_id: nist_rmf:MEASURE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     out-of-scope outputs at least every 3 months.
   source_name: Third-party testing for out-of-scope outputs
@@ -681,7 +681,7 @@ candidates:
     test, evaluation, validation, and verification (TEVV) are documented.
   target_name: Test sets, metrics, and tool details used during TEVV documented.
   target_node_id: nist_rmf:MEASURE-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     out-of-scope outputs at least every 3 months.
   source_name: Third-party testing for out-of-scope outputs
@@ -695,7 +695,7 @@ candidates:
   target_name: 'AI system regularly evaluated for safety risks; demonstrated to be
     safe with residual risk not exceeding tolerance; can '
   target_node_id: nist_rmf:MEASURE-2.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     out-of-scope outputs at least every 3 months.
   source_name: Third-party testing for out-of-scope outputs
@@ -706,7 +706,7 @@ candidates:
   target_name: Measurement approaches for identifying AI risks connected to deployment
     context(s) and informed through consultation wit
   target_node_id: nist_rmf:MEASURE-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third parties to evaluate system robustness to
     out-of-scope outputs at least every 3 months.
   source_name: Third-party testing for out-of-scope outputs
@@ -718,7 +718,7 @@ candidates:
   target_name: Measurement results regarding AI system trustworthiness validated through
     input from domain experts and relevant AI acto
   target_node_id: nist_rmf:MEASURE-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -728,7 +728,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -737,7 +737,7 @@ candidates:
     deployed AI systems.
   target_name: Mechanisms in place and applied to sustain value of deployed AI systems.
   target_node_id: nist_rmf:MANAGE-2.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -750,7 +750,7 @@ candidates:
   target_name: Internal experts not serving as front-line developers and/or independent
     assessors involved in regular assessments. Doma
   target_node_id: nist_rmf:MEASURE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -759,7 +759,7 @@ candidates:
     test, evaluation, validation, and verification (TEVV) are documented.
   target_name: Test sets, metrics, and tool details used during TEVV documented.
   target_node_id: nist_rmf:MEASURE-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -773,7 +773,7 @@ candidates:
   target_name: 'AI system regularly evaluated for safety risks; demonstrated to be
     safe with residual risk not exceeding tolerance; can '
   target_node_id: nist_rmf:MEASURE-2.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -784,7 +784,7 @@ candidates:
   target_name: Measurement approaches for identifying AI risks connected to deployment
     context(s) and informed through consultation wit
   target_node_id: nist_rmf:MEASURE-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate system robustness to
     additional high-risk outputs as defined in risk taxonomy.
   source_name: Third-party testing for customer-defined risk
@@ -796,7 +796,7 @@ candidates:
   target_name: Measurement results regarding AI system trustworthiness validated through
     input from domain experts and relevant AI acto
   target_node_id: nist_rmf:MEASURE-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent hallucinated
     outputs.
   source_name: Prevent hallucinated outputs
@@ -807,7 +807,7 @@ candidates:
   target_name: AI system demonstrated to be valid and reliable; limitations of generalizability
     documented.
   target_node_id: nist_rmf:MEASURE-2.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -817,7 +817,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -826,7 +826,7 @@ candidates:
     deployed AI systems.
   target_name: Mechanisms in place and applied to sustain value of deployed AI systems.
   target_node_id: nist_rmf:MANAGE-2.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -839,7 +839,7 @@ candidates:
   target_name: Internal experts not serving as front-line developers and/or independent
     assessors involved in regular assessments. Doma
   target_node_id: nist_rmf:MEASURE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -848,7 +848,7 @@ candidates:
     test, evaluation, validation, and verification (TEVV) are documented.
   target_name: Test sets, metrics, and tool details used during TEVV documented.
   target_node_id: nist_rmf:MEASURE-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -859,7 +859,7 @@ candidates:
   target_name: AI system demonstrated to be valid and reliable; limitations of generalizability
     documented.
   target_node_id: nist_rmf:MEASURE-2.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -870,7 +870,7 @@ candidates:
   target_name: Measurement approaches for identifying AI risks connected to deployment
     context(s) and informed through consultation wit
   target_node_id: nist_rmf:MEASURE-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate hallucinated outputs
     at least every 3 months.
   source_name: Third-party testing for hallucinations
@@ -882,7 +882,7 @@ candidates:
   target_name: Measurement results regarding AI system trustworthiness validated through
     input from domain experts and relevant AI acto
   target_node_id: nist_rmf:MEASURE-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement safeguards or technical controls to prevent tool calls
     in AI systems from executing unauthorized actions, accessing restricted information,
     or making decisions beyond their intended scope.
@@ -894,7 +894,7 @@ candidates:
   target_name: Policies and procedures address AI risks associated with third-party
     entities, including intellectual property infringem
   target_node_id: nist_rmf:GOVERN-6.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -904,7 +904,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -915,7 +915,7 @@ candidates:
   target_name: Policies and procedures address AI risks associated with third-party
     entities, including intellectual property infringem
   target_node_id: nist_rmf:GOVERN-6.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -924,7 +924,7 @@ candidates:
     deployed AI systems.
   target_name: Mechanisms in place and applied to sustain value of deployed AI systems.
   target_node_id: nist_rmf:MANAGE-2.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -937,7 +937,7 @@ candidates:
   target_name: Internal experts not serving as front-line developers and/or independent
     assessors involved in regular assessments. Doma
   target_node_id: nist_rmf:MEASURE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -946,7 +946,7 @@ candidates:
     test, evaluation, validation, and verification (TEVV) are documented.
   target_name: Test sets, metrics, and tool details used during TEVV documented.
   target_node_id: nist_rmf:MEASURE-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -960,7 +960,7 @@ candidates:
   target_name: 'AI system regularly evaluated for safety risks; demonstrated to be
     safe with residual risk not exceeding tolerance; can '
   target_node_id: nist_rmf:MEASURE-2.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -971,7 +971,7 @@ candidates:
   target_name: Measurement approaches for identifying AI risks connected to deployment
     context(s) and informed through consultation wit
   target_node_id: nist_rmf:MEASURE-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Appoint expert third-parties to evaluate tool calls in AI systems
     at least every 3 months.
   source_name: Third-party testing of tool calls
@@ -983,7 +983,7 @@ candidates:
   target_name: Measurement results regarding AI system trustworthiness validated through
     input from domain experts and relevant AI acto
   target_node_id: nist_rmf:MEASURE-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -994,7 +994,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1006,7 +1006,7 @@ candidates:
   target_name: Responses to high-priority risks developed, planned, and documented
     (mitigate, transfer, avoid, or accept).
   target_node_id: nist_rmf:MANAGE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document an AI failure plan addressing privacy and security
     breaches by assigning accountable owners and establishing notification and remediation
     procedures.
@@ -1018,7 +1018,7 @@ candidates:
   target_name: Incidents and errors communicated to relevant AI actors including affected
     communities; processes for tracking, respondi
   target_node_id: nist_rmf:MANAGE-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for harmful AI outputs that cause significant
     customer harm.
   source_name: AI failure plan for harmful outputs
@@ -1028,7 +1028,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for harmful AI outputs that cause significant
     customer harm.
   source_name: AI failure plan for harmful outputs
@@ -1039,7 +1039,7 @@ candidates:
   target_name: Responses to high-priority risks developed, planned, and documented
     (mitigate, transfer, avoid, or accept).
   target_node_id: nist_rmf:MANAGE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for harmful AI outputs that cause significant
     customer harm.
   source_name: AI failure plan for harmful outputs
@@ -1050,7 +1050,7 @@ candidates:
   target_name: Incidents and errors communicated to relevant AI actors including affected
     communities; processes for tracking, respondi
   target_node_id: nist_rmf:MANAGE-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for hallucinated AI outputs that cause
     substantial customer financial loss.
   source_name: AI failure plan for hallucinations
@@ -1060,7 +1060,7 @@ candidates:
   target_name: Organizational practices enable AI testing, incident identification,
     and information sharing.
   target_node_id: nist_rmf:GOVERN-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for hallucinated AI outputs that cause
     substantial customer financial loss.
   source_name: AI failure plan for hallucinations
@@ -1071,7 +1071,7 @@ candidates:
   target_name: Responses to high-priority risks developed, planned, and documented
     (mitigate, transfer, avoid, or accept).
   target_node_id: nist_rmf:MANAGE-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI failure plan for hallucinated AI outputs that cause
     substantial customer financial loss.
   source_name: AI failure plan for hallucinations
@@ -1082,7 +1082,7 @@ candidates:
   target_name: Incidents and errors communicated to relevant AI actors including affected
     communities; processes for tracking, respondi
   target_node_id: nist_rmf:MANAGE-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -1093,7 +1093,7 @@ candidates:
   target_name: 'Roles, responsibilities, and lines of communication related to mapping,
     measuring, and managing AI risks documented and '
   target_node_id: nist_rmf:GOVERN-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -1103,7 +1103,7 @@ candidates:
   target_name: Executive leadership takes responsibility for decisions about risks
     associated with AI system development and deployment
   target_node_id: nist_rmf:GOVERN-2.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -1113,7 +1113,7 @@ candidates:
   target_name: Processes for human oversight defined, assessed, and documented in
     accordance with organizational policies.
   target_node_id: nist_rmf:MAP-3.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Document which AI system changes require formal review or approval,
     assign a lead accountable for each, and document their approval.
   source_name: Assign accountability
@@ -1123,7 +1123,7 @@ candidates:
   target_name: Risks associated with transparency and accountability examined and
     documented.
   target_node_id: nist_rmf:MEASURE-2.8
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish criteria for selecting cloud provider and circumstances
     for on-premises processing.
   source_name: Assess cloud vs on-prem processing
@@ -1133,7 +1133,7 @@ candidates:
   target_name: Internal risk controls for AI system components, including third-party
     technologies, identified and documented.
   target_node_id: nist_rmf:MAP-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish AI vendor due diligence processes for foundation and
     upstream model providers.
   source_name: Conduct vendor due diligence
@@ -1143,7 +1143,7 @@ candidates:
   target_name: Internal risk controls for AI system components, including third-party
     technologies, identified and documented.
   target_node_id: nist_rmf:MAP-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -1153,7 +1153,7 @@ candidates:
   target_name: 'Roles, responsibilities, and lines of communication related to mapping,
     measuring, and managing AI risks documented and '
   target_node_id: nist_rmf:GOVERN-2.1
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -1162,7 +1162,7 @@ candidates:
   target_name: Executive leadership takes responsibility for decisions about risks
     associated with AI system development and deployment
   target_node_id: nist_rmf:GOVERN-2.3
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -1172,7 +1172,7 @@ candidates:
   target_name: 'Determination made whether AI system achieves intended purpose and
     stated objectives; whether development or deployment '
   target_node_id: nist_rmf:MANAGE-1.1
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -1181,7 +1181,7 @@ candidates:
   target_name: Processes for human oversight defined, assessed, and documented in
     accordance with organizational policies.
   target_node_id: nist_rmf:MAP-3.5
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -1190,7 +1190,7 @@ candidates:
   target_name: Risks associated with transparency and accountability examined and
     documented.
   target_node_id: nist_rmf:MEASURE-2.8
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged with E004 at Q1 2026 update.
   source_name: Document system change approvals
   source_node_id: aiuc_1:E007
@@ -1200,7 +1200,7 @@ candidates:
   target_name: Measurable performance improvements or declines identified and documented
     based on relevant actor consultations and fiel
   target_node_id: nist_rmf:MEASURE-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -1211,7 +1211,7 @@ candidates:
   target_name: Processes and procedures for decommissioning and phasing out AI systems
     safely without increasing risks.
   target_node_id: nist_rmf:GOVERN-1.7
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -1223,7 +1223,7 @@ candidates:
   target_name: Policies and practices in place to collect, consider, prioritize, and
     integrate external feedback regarding potential in
   target_node_id: nist_rmf:GOVERN-5.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -1234,7 +1234,7 @@ candidates:
   target_name: Mechanisms established to regularly incorporate adjudicated feedback
     from relevant AI actors into system design and impl
   target_node_id: nist_rmf:GOVERN-5.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -1245,7 +1245,7 @@ candidates:
   target_name: Measurable activities for continual improvements integrated into AI
     system updates; regular engagement with interested p
   target_node_id: nist_rmf:MANAGE-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -1256,7 +1256,7 @@ candidates:
   target_name: Appropriateness of AI metrics and effectiveness of existing controls
     regularly assessed and updated, including error rep
   target_node_id: nist_rmf:MEASURE-1.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish regular internal reviews of key processes and document
     review records and approvals.
   source_name: Review internal processes
@@ -1266,7 +1266,7 @@ candidates:
   target_name: Effectiveness of employed TEVV metrics and processes evaluated and
     documented.
   target_node_id: nist_rmf:MEASURE-2.13
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -1276,7 +1276,7 @@ candidates:
   target_name: Ongoing monitoring and periodic review of risk management process and
     outcomes; roles and responsibilities defined.
   target_node_id: nist_rmf:GOVERN-1.5
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement systems to monitor third-party access to AI systems.
   source_name: Monitor third-party access
   source_node_id: aiuc_1:E009
@@ -1287,7 +1287,7 @@ candidates:
   target_name: Post-deployment monitoring plans implemented, including mechanisms
     for capturing end-user input, appeal and override, de
   target_node_id: nist_rmf:MANAGE-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and implement an AI acceptable use policy defining
     prohibited AI usage for end-users.
   source_name: Establish AI acceptable use policy
@@ -1297,7 +1297,7 @@ candidates:
   target_name: Trustworthy AI characteristics integrated into organizational policies,
     processes, and procedures.
   target_node_id: nist_rmf:GOVERN-1.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and implement an AI acceptable use policy defining
     prohibited AI usage for end-users.
   source_name: Establish AI acceptable use policy
@@ -1308,7 +1308,7 @@ candidates:
   target_name: System requirements elicited from and understood by relevant AI actors;
     design decisions consider socio-technical implic
   target_node_id: nist_rmf:MAP-1.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and implement an AI acceptable use policy defining
     prohibited AI usage for end-users.
   source_name: Establish AI acceptable use policy
@@ -1318,7 +1318,7 @@ candidates:
   target_name: Targeted application scope specified and documented based on system
     capability and established context.
   target_node_id: nist_rmf:MAP-3.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and implement an AI acceptable use policy defining
     prohibited AI usage for end-users.
   source_name: Establish AI acceptable use policy
@@ -1329,7 +1329,7 @@ candidates:
   target_name: Processes for operator and practitioner proficiency with AI system
     performance defined, assessed, and documented.
   target_node_id: nist_rmf:MAP-3.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish and implement an AI acceptable use policy defining
     prohibited AI usage for end-users.
   source_name: Establish AI acceptable use policy
@@ -1339,7 +1339,7 @@ candidates:
   target_name: Functionality and behavior of AI system and components monitored when
     in production.
   target_node_id: nist_rmf:MEASURE-2.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Document AI data processing locations covering geographic locations
     of processing and inference endpoints.
   source_name: Record processing locations
@@ -1349,7 +1349,7 @@ candidates:
   target_name: Mechanisms in place to inventory AI systems, resourced according to
     organizational risk priorities.
   target_node_id: nist_rmf:GOVERN-1.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -1359,7 +1359,7 @@ candidates:
   target_name: Legal and regulatory requirements involving AI are understood, managed,
     and documented.
   target_node_id: nist_rmf:GOVERN-1.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -1370,7 +1370,7 @@ candidates:
   target_name: Processes and procedures for decommissioning and phasing out AI systems
     safely without increasing risks.
   target_node_id: nist_rmf:GOVERN-1.7
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -1385,7 +1385,7 @@ candidates:
   target_name: Intended purpose, beneficial uses, context-specific laws, norms, expectations,
     and deployment settings understood and do
   target_node_id: nist_rmf:MAP-1.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Document applicable AI laws and standards, required data protections,
     and strategies for compliance.
   source_name: Document regulatory compliance
@@ -1397,7 +1397,7 @@ candidates:
   target_name: Approaches for mapping AI technology and legal risks of components
     in place, followed, and documented, including third-p
   target_node_id: nist_rmf:MAP-4.1
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -1407,7 +1407,7 @@ candidates:
   target_name: Processes and procedures in place to determine needed level of risk
     management activities based on organizational risk t
   target_node_id: nist_rmf:GOVERN-1.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a quality management system for AI systems proportionate
     to the size of the organization.
   source_name: Implement quality management system
@@ -1418,7 +1418,7 @@ candidates:
   target_name: Risk management process and outcomes established through transparent
     policies, procedures, and controls based on organiz
   target_node_id: nist_rmf:GOVERN-1.4
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -1428,7 +1428,7 @@ candidates:
   target_name: Measurable activities for continual improvements integrated into AI
     system updates; regular engagement with interested p
   target_node_id: nist_rmf:MANAGE-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -1438,7 +1438,7 @@ candidates:
   target_name: Incidents and errors communicated to relevant AI actors including affected
     communities; processes for tracking, respondi
   target_node_id: nist_rmf:MANAGE-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -1448,7 +1448,7 @@ candidates:
   target_name: System requirements elicited from and understood by relevant AI actors;
     design decisions consider socio-technical implic
   target_node_id: nist_rmf:MAP-1.6
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -1458,7 +1458,7 @@ candidates:
   target_name: Practices and personnel supporting regular engagement with relevant
     AI actors and integrating feedback about positive, n
   target_node_id: nist_rmf:MAP-5.2
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -1467,7 +1467,7 @@ candidates:
   target_name: Risks associated with transparency and accountability examined and
     documented.
   target_node_id: nist_rmf:MEASURE-2.8
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -1477,7 +1477,7 @@ candidates:
   target_name: AI model explained, validated, and documented; output interpreted within
     context to inform responsible use and governanc
   target_node_id: nist_rmf:MEASURE-2.9
-- expert_tier: expert
+- expert_tier: None
   source_description: RETIRED - Merged into E017 at Q1 2026 update.
   source_name: Share transparency reports
   source_node_id: aiuc_1:E014
@@ -1488,7 +1488,7 @@ candidates:
   target_name: Measurement results regarding AI system trustworthiness validated through
     input from domain experts and relevant AI acto
   target_node_id: nist_rmf:MEASURE-4.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -1498,7 +1498,7 @@ candidates:
   target_name: Functionality and behavior of AI system and components monitored when
     in production.
   target_node_id: nist_rmf:MEASURE-2.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Maintain logs of AI system processes, actions, and model outputs
     to support incident investigation, auditing, and explanation.
   source_name: Log model activity
@@ -1508,7 +1508,7 @@ candidates:
   target_name: Risks associated with transparency and accountability examined and
     documented.
   target_node_id: nist_rmf:MEASURE-2.8
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement clear disclosure mechanisms to inform users when they
     are interacting with AI systems.
   source_name: Implement AI disclosure mechanisms
@@ -1520,7 +1520,7 @@ candidates:
   target_name: Information about AI system's knowledge limits and how output may be
     utilized and overseen by humans documented.
   target_node_id: nist_rmf:MAP-2.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement clear disclosure mechanisms to inform users when they
     are interacting with AI systems.
   source_name: Implement AI disclosure mechanisms
@@ -1531,7 +1531,7 @@ candidates:
   target_name: Processes for operator and practitioner proficiency with AI system
     performance defined, assessed, and documented.
   target_node_id: nist_rmf:MAP-3.4
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement clear disclosure mechanisms to inform users when they
     are interacting with AI systems.
   source_name: Implement AI disclosure mechanisms
@@ -1541,7 +1541,7 @@ candidates:
   target_name: Risks associated with transparency and accountability examined and
     documented.
   target_node_id: nist_rmf:MEASURE-2.8
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -1551,7 +1551,7 @@ candidates:
   target_name: Trustworthy AI characteristics integrated into organizational policies,
     processes, and procedures.
   target_node_id: nist_rmf:GOVERN-1.2
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -1561,7 +1561,7 @@ candidates:
   target_name: Mechanisms in place to inventory AI systems, resourced according to
     organizational risk priorities.
   target_node_id: nist_rmf:GOVERN-1.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -1572,7 +1572,7 @@ candidates:
   target_name: System requirements elicited from and understood by relevant AI actors;
     design decisions consider socio-technical implic
   target_node_id: nist_rmf:MAP-1.6
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -1582,7 +1582,7 @@ candidates:
   target_name: Risks associated with transparency and accountability examined and
     documented.
   target_node_id: nist_rmf:MEASURE-2.8
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -1593,7 +1593,7 @@ candidates:
   target_name: AI model explained, validated, and documented; output interpreted within
     context to inform responsible use and governanc
   target_node_id: nist_rmf:MEASURE-2.9
-- expert_tier: expert
+- expert_tier: None
   source_description: Establish a system transparency policy and maintain a repository
     of model cards, datasheets, and interpretability reports.
   source_name: Document system transparency policy
@@ -1604,7 +1604,7 @@ candidates:
   target_name: Measurable performance improvements or declines identified and documented
     based on relevant actor consultations and fiel
   target_node_id: nist_rmf:MEASURE-4.3
-- expert_tier: expert
+- expert_tier: None
   source_description: Implement or document guardrails to prevent AI-enabled misuse
     for cyber attacks and exploitation.
   source_name: Prevent AI cyber misuse

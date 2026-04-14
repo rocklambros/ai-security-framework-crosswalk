@@ -107,9 +107,13 @@ async def score_pairs_bulk(
 
     async def _wrapped(pair: dict[str, Any]) -> ScoredPair:
         nonlocal completed
-        result = await _score_one(
-            semaphore, client, system_prompt, pair, model, n_votes, cost_tracker
-        )
+        try:
+            result = await _score_one(
+                semaphore, client, system_prompt, pair, model, n_votes, cost_tracker
+            )
+        except Exception as exc:
+            print(f"  WARN: scoring failed for pair, assigning tier 0: {exc}")
+            result = ScoredPair(pair=pair, final_tier=0, final_score=0.0, confidence=0.0)
         completed += 1
         if completed % 10 == 0 or completed == total:
             print(f"  progress: {completed}/{total}")

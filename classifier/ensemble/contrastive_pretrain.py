@@ -49,7 +49,7 @@ def train_contrastive(
     model_name: str,
     train_path: str,
     output_dir: str,
-    wandb_project: str = "crosswalk-v2",
+    wandb_project: str = "crosswalk-v7",
     wandb_group: str = "contrastive-pretrain",
     epochs: int = 5,
     batch_size: int = 64,

@@ -36,6 +36,14 @@ def _load_sheet(path: Path) -> list[dict]:
     return rows
 
 
+def _is_aiuc1_subcontrol(node_id: str) -> bool:
+    """True if node_id is an AIUC-1 subcontrol (e.g. aiuc_1:A001.1)."""
+    if not node_id.startswith("aiuc_1:"):
+        return False
+    local_id = node_id.split(":", 1)[1]
+    return "." in local_id
+
+
 def load_sme_pool() -> pd.DataFrame:
     sheets = sorted(LABELING_SHEETS_DIR.glob("*_candidates.yaml"))
     if not sheets:
@@ -46,6 +54,11 @@ def load_sme_pool() -> pd.DataFrame:
     df = pd.DataFrame(rows)
     # Deduplicate on pair_key (HR sheets may overlap with original sheets)
     df = df.drop_duplicates(subset="pair_key", keep="last")
+    # Filter out pairs involving AIUC-1 subcontrols (noise, no cross-fw edges)
+    before = len(df)
+    mask = df["source_node_id"].apply(_is_aiuc1_subcontrol) | df["target_node_id"].apply(_is_aiuc1_subcontrol)
+    df = df[~mask].reset_index(drop=True)
+    n_filtered = before - len(df)
     df = df[list(COLUMNS)]
-    print(f"SME pool: {len(df)} rows from {len(sheets)} sheets")
+    print(f"SME pool: {len(df)} rows from {len(sheets)} sheets ({n_filtered} subcontrol pairs filtered)")
     return df

@@ -1,41 +1,11 @@
 {
   "_meta": {
-    "cal_size": 150,
-    "frozen_size": 400,
-    "pool_size": 550,
+    "cal_size": 716,
+    "frozen_size": 179,
+    "pool_size": 895,
     "seed": 42
   },
-  "human_cal.jsonl": "f8f7ae71e6356f8cc9d4c92971120c67d26aded08fc04ad275677ac7975ce124",
-  "human_test_frozen.jsonl": "2e0ee6698c612c71e2b4e7079c52eee6e599fc38d92fdf8da6713349d83db4f0",
-  "plan1b_v1": {
-    "data/candidates/pool_v1.jsonl": "16a4120b23335b2fc6d84ea599fee09765ec4011c80f0c720c63a468f072ade5",
-    "data/candidates/retrieval_floor_report.json": "b55175840aada9359ae870a6a500024824bf283a0f7e82b0c12c3335f262f210",
-    "data/processed/nodes.json": "5c0570a51a2c22f7922335af61c8b326933796cadfffc61ccbe9778ca32243a6"
-  },
-  "pre_registered": {
-    "path": "classifier/sacred/pre_registered.json",
-    "sha256": "d8e2fa831bac6cdb363b6b295b3a4b49620eaee2b446c04cb224295bbf617a7a"
-  },
-  "sme_pool_full.jsonl": "9213607e92a726a90ddb9e79b6fa540d791f2000df6ae902cad71fdf104b9feb",
-  "splits": {
-    "frozen_tuples_json": {
-      "n_canonical_pair_tuples": 400,
-      "n_frozen_endpoints": 369,
-      "n_pair_tuples": 400,
-      "n_source_tuples": 237,
-      "n_target_tuples": 163,
-      "path": "data/splits/frozen_tuples.json",
-      "sha256": "0de7aefc70f59a5277f4e7ac3992581dc2906314bdffcbb9fd73ac147458c054"
-    }
-  },
-  "upstream_v1": {
-    "THIRD_PARTY_NOTICES.md": "91511a743780bdff46e94b7d8a76f815cc7635f5b9bbf834a52bad85e080eec1",
-    "data/frameworks/owasp-dsgai/MANIFEST.json": "519ea7ec7c7c507c009f4a1bb8d4af7282b9533b84269f8d6513bfbd92a7f1fa",
-    "data/frameworks/owasp-dsgai/OWASP-GenAI-Data-Security-Risks-and-Mitigations-2026-v1.0.txt": "32664b8202cb8dece6d65bb78f7be5f997eb51235e0164e327dbf6eb2013fdcf",
-    "data/processed/frameworks/owasp_dsgai.json": "50c5ab040bf577f7939a33a50ed3a4c2e4093c8a46f08b321a430096c0ad1499",
-    "data/upstream/crossrefs_v1.jsonl": "937fa01ab6ec51f28f4db0d74ed8ea042dc0d932d869f72fa8174aa0e4429210",
-    "data/upstream/mappings_v1.jsonl": "497e4d52dd8f2ca50565e0e65270b93b147a25748071288f288fe4105b259452",
-    "data/upstream/partition.json": "b7085e78dcd3be7b02be36b2d0fad9ebce53b55e99b84931fa2ae58b8ad33f16",
-    "third_party/genai-crosswalk/MANIFEST.json": "c5eb33c3a887b3e3621b635dfb488c644063eb909a72fe4ef0f80643c07e4169"
-  }
+  "human_cal.jsonl": "402b6760f4f00b0cfc1323c49dda0e82460a2df5bd8099c8a7632a88ffa289aa",
+  "human_test_frozen.jsonl": "7a6e5bce3693774629bb2ef8895c891d2367d2a6432bcb4d15ac060b4fc15fc2",
+  "sme_pool_full.jsonl": "626a9ce4c72db833578e0c3d46ea083079dd8a63037cbc5fa7f2a9b4c12b747b"
 }

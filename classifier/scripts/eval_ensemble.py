@@ -60,7 +60,7 @@ def main():
     # Build val features
     print("Building val feature matrix...")
     df_val = build_feature_matrix(
-        labels_path="data/labels/llm_sme/v1_frozen/llm_val.jsonl",
+        labels_path="data/labels/llm_sme/v2_frozen/llm_val.jsonl",
     )
     X_val = df_val[FEATURE_COLS].values.astype(np.float64)
     y_val = df_val["label"].values.astype(np.int32)

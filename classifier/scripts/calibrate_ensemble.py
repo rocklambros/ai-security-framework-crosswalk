@@ -46,7 +46,7 @@ def main():
 
     print("Building val feature matrix...")
     df_val = build_feature_matrix(
-        labels_path="data/labels/llm_sme/v1_frozen/llm_val.jsonl",
+        labels_path="data/labels/llm_sme/v2_frozen/llm_val.jsonl",
     )
     print(f"  Val: {len(df_val)} rows")
 

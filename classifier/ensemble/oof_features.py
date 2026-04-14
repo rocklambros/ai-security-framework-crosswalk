@@ -122,7 +122,7 @@ def _compute_bridge_scores(pairs: list[dict], G) -> np.ndarray:
 
 
 def build_feature_matrix(
-    labels_path: str = "data/labels/llm_sme/v1_frozen/llm_train.jsonl",
+    labels_path: str = "data/labels/llm_sme/v2_frozen/llm_train.jsonl",
     feature_cache_path: str = str(FEATURE_CACHE),
     nodes_path: str = "data/processed/nodes.json",
     edges_path: str = "data/processed/edges.json",
@@ -133,7 +133,8 @@ def build_feature_matrix(
     Returns DataFrame with columns:
       pair_key, score_bge_cosine, score_bm25, score_bridge, label, weight
     """
-    assert "v1_frozen" in str(labels_path), "Contract 5: must use v1_frozen"
+    assert "v1_frozen" in str(labels_path) or "v2_frozen" in str(labels_path), \
+        "Contract 5: must use v1_frozen or v2_frozen labels"
 
     # Load labels
     labels = [json.loads(l) for l in Path(labels_path).read_text().splitlines() if l.strip()]

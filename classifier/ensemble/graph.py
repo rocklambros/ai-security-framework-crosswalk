@@ -18,14 +18,15 @@ import networkx as nx
 def build_densified_graph(
     nodes_path: str = "data/processed/nodes.json",
     edges_path: str = "data/processed/edges.json",
-    frozen_labels_path: str = "data/labels/llm_sme/v1_frozen/llm_train.jsonl",
+    frozen_labels_path: str = "data/labels/llm_sme/v2_frozen/llm_train.jsonl",
     min_confidence: float = 0.75,
 ) -> nx.DiGraph:
     """Build densified graph from processed graph + high-confidence frozen labels.
 
     Contract 5: frozen_labels_path must contain 'v1_frozen'.
     """
-    assert "v1_frozen" in str(frozen_labels_path), "Contract 5: training must use v1_frozen labels"
+    assert "v1_frozen" in str(frozen_labels_path) or "v2_frozen" in str(frozen_labels_path), \
+        "Contract 5: must use v1_frozen or v2_frozen labels"
 
     g = nx.DiGraph()
 

@@ -1,4 +1,4 @@
-"""Train the LightGBM stacker on v1_frozen features.
+"""Train the LightGBM stacker on v2_frozen features.
 
 1. Builds feature matrix from Plan 3 cache + bridge scores
 2. Tunes hyperparams via Optuna (20 trials)
@@ -6,7 +6,7 @@
 4. Saves model + config + registry row
 
 Contract 1: verify_hashes() + verify_label_hashes() at entry.
-Contract 5: Only reads v1_frozen labels.
+Contract 5: Only reads v2_frozen labels.
 Contract 6: Appends to runs/registry.jsonl.
 """
 from __future__ import annotations
@@ -30,13 +30,13 @@ def main():
 
     print("Building train feature matrix...")
     df_train = build_feature_matrix(
-        labels_path="data/labels/llm_sme/v1_frozen/llm_train.jsonl",
+        labels_path="data/labels/llm_sme/v2_frozen/llm_train.jsonl",
     )
     print(f"  Train: {len(df_train)} rows, features: {FEATURE_COLS}")
 
     print("Building val feature matrix...")
     df_val = build_feature_matrix(
-        labels_path="data/labels/llm_sme/v1_frozen/llm_val.jsonl",
+        labels_path="data/labels/llm_sme/v2_frozen/llm_val.jsonl",
     )
     print(f"  Val: {len(df_val)} rows")
 

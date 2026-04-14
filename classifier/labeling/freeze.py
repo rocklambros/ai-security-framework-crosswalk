@@ -23,6 +23,8 @@ from sklearn.model_selection import train_test_split
 
 V1_DIR = Path("data/labels/llm_sme/v1")
 V1_FROZEN_DIR = Path("data/labels/llm_sme/v1_frozen")
+V2_DIR = Path("data/labels/llm_sme/v2")
+V2_FROZEN_DIR = Path("data/labels/llm_sme/v2_frozen")
 FROZEN_TUPLES_PATH = Path("data/splits/frozen_tuples.json")
 
 
@@ -122,7 +124,7 @@ def freeze_and_split(
 
 
 def verify_label_hashes(
-    frozen_dir: Path = V1_FROZEN_DIR,
+    frozen_dir: Path = V2_FROZEN_DIR,
 ) -> None:
     """Verify SHA-256 integrity of frozen label splits.
 

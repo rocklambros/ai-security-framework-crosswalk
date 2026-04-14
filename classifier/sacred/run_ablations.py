@@ -45,8 +45,8 @@ def _get_feature_cols(disable: tuple[str, ...]) -> list[str]:
 
 
 def run_ablations(
-    val_path: str = "data/labels/llm_sme/v1_frozen/llm_val.jsonl",
-    train_path: str = "data/labels/llm_sme/v1_frozen/llm_train.jsonl",
+    val_path: str = "data/labels/llm_sme/v2_frozen/llm_val.jsonl",
+    train_path: str = "data/labels/llm_sme/v2_frozen/llm_train.jsonl",
     out_path: str = "results/ablations.json",
     n_trials: int = 10,
     verify: bool = True,

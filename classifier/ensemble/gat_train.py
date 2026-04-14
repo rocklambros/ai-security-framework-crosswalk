@@ -4,7 +4,7 @@ Converts the NetworkX densified graph to a PyG Data object, trains a GATv2
 encoder with negative-sampling link prediction, and saves the learned
 node embeddings.
 
-Contract 5: Only reads v1_frozen labels (via build_densified_graph).
+Contract 5: Only reads frozen labels (v1_frozen or v2_frozen) via build_densified_graph.
 """
 from __future__ import annotations
 

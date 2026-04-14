@@ -2,12 +2,14 @@
 import json
 from pathlib import Path
 
+import pytest
+
 
 def test_soft_labels_expand_upstream_rows():
     """Each upstream positive should produce 3 rows (one per soft prior)."""
     real_train = Path("data/splits/expert_train.jsonl")
     if not real_train.exists():
-        return  # skip if no data
+        pytest.skip("expert_train.jsonl not found")
 
     rows = [json.loads(l) for l in real_train.read_text().splitlines() if l.strip()]
     upstream_rows = [r for r in rows if r.get("data_source") == "expert_upstream"]
@@ -34,7 +36,7 @@ def test_soft_labels_tier_distribution():
     """Soft labels should produce RELATED, EQUIVALENT, and PARTIAL for upstream."""
     real_train = Path("data/splits/expert_train.jsonl")
     if not real_train.exists():
-        return
+        pytest.skip("expert_train.jsonl not found")
 
     rows = [json.loads(l) for l in real_train.read_text().splitlines() if l.strip()]
     upstream_rows = [r for r in rows if r.get("data_source") == "expert_upstream"]

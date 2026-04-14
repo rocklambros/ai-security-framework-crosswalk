@@ -11,7 +11,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
 
-from classifier.data.tier_mapper import TierLabel, expand_soft_labels, map_upstream_tier
+from classifier.data.tier_mapper import TierLabel, expand_soft_labels
 from classifier.data.negative_miner import mine_hard_negatives
 from classifier.ensemble.leakage_firewall import (
     check_no_leakage,

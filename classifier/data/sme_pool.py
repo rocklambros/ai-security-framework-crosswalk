@@ -1,11 +1,9 @@
-"""Unify the 11 SME labeling sheets (550 rows) into a single DataFrame."""
+"""Unify SME labeling sheets into a single DataFrame."""
 from __future__ import annotations
 from pathlib import Path
 import yaml
 import pandas as pd
 from classifier.config import LABELING_SHEETS_DIR
-
-EXPECTED_TOTAL = 550  # 11 sheets × 50 rows
 
 COLUMNS: tuple[str, ...] = (
     "pair_key",
@@ -21,7 +19,8 @@ COLUMNS: tuple[str, ...] = (
 
 def _load_sheet(path: Path) -> list[dict]:
     data = yaml.safe_load(path.read_text())
-    pair_name = path.name.replace("__candidates.yaml", "")
+    # Strip suffixes: both __candidates.yaml and __hr_candidates.yaml
+    pair_name = path.name.replace("__hr_candidates.yaml", "").replace("__candidates.yaml", "")
     rows = []
     for c in data["candidates"]:
         rows.append({
@@ -38,17 +37,15 @@ def _load_sheet(path: Path) -> list[dict]:
 
 
 def load_sme_pool() -> pd.DataFrame:
-    sheets = sorted(LABELING_SHEETS_DIR.glob("*__candidates.yaml"))
+    sheets = sorted(LABELING_SHEETS_DIR.glob("*_candidates.yaml"))
     if not sheets:
         raise FileNotFoundError(f"No labeling sheets in {LABELING_SHEETS_DIR}")
     rows: list[dict] = []
     for p in sheets:
         rows.extend(_load_sheet(p))
     df = pd.DataFrame(rows)
-    if len(df) != EXPECTED_TOTAL:
-        raise ValueError(
-            f"SME pool size {len(df)} != expected {EXPECTED_TOTAL}. "
-            f"Per-sheet counts: {df.groupby('pair_name').size().to_dict()}"
-        )
+    # Deduplicate on pair_key (HR sheets may overlap with original sheets)
+    df = df.drop_duplicates(subset="pair_key", keep="last")
     df = df[list(COLUMNS)]
+    print(f"SME pool: {len(df)} rows from {len(sheets)} sheets")
     return df

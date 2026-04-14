@@ -117,6 +117,7 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
         def train_fn(model_name=name, model_path=init_from, out=str(output_dir)):
             """WANDB agent function — one trial with human-label domain adaptation."""
             import torch
+            import torch.nn as nn
             import numpy as np
             from torch.utils.data import WeightedRandomSampler
             from sklearn.metrics import f1_score, accuracy_score
@@ -222,7 +223,17 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                 if epoch == frozen_epochs:
                     for param in model.encoder.parameters():
                         param.requires_grad = True
-                    print(f"    Encoder unfrozen at epoch {epoch}")
+                    # Reinitialize classifier head to escape frozen-phase collapse
+                    nn.init.xavier_uniform_(model.classifier.weight)
+                    nn.init.zeros_(model.classifier.bias)
+                    # Rebuild optimizer with encoder params now trainable
+                    head_params = [p for n, p in model.named_parameters() if "classifier" in n]
+                    encoder_params = [p for n, p in model.named_parameters() if "classifier" not in n]
+                    optimizer = torch.optim.AdamW([
+                        {"params": head_params, "lr": lr},
+                        {"params": encoder_params, "lr": lr * encoder_lr_factor},
+                    ], weight_decay=wd)
+                    print(f"    Encoder unfrozen at epoch {epoch}, head reinitialized")
 
                 model.train()
 

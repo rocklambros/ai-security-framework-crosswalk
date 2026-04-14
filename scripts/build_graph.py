@@ -552,6 +552,72 @@ def parse_aiuc1_markdown_crosswalks(nodes, edges, warnings):
 
 
 # ---------------------------------------------------------------------------
+# Task 3b: Ingest human-reviewed AIUC-1 crosswalk (expert edges)
+# ---------------------------------------------------------------------------
+
+def parse_aiuc1_human_crosswalk(nodes, edges, warnings):
+    """Ingest expert-reviewed mappings from AIUC-1-Crosswalks-for-Rock.txt.
+
+    These are human-validated, top-level-only (A001, not A001.1) mappings
+    to CSA AICM, NIST RMF, OWASP LLM, and MITRE ATLAS. Confidence = expert.
+    """
+    from scripts.parse_human_crosswalk import parse_human_crosswalk
+
+    raw_edges = parse_human_crosswalk()
+    if not raw_edges:
+        warnings.append("Human crosswalk TSV returned no edges")
+        return
+
+    n_added = 0
+    for e in raw_edges:
+        add_edge(edges, make_edge(
+            source_node_id=e["source_node_id"],
+            target_node_id=e["target_node_id"],
+            rationale_code="CROSS_FRAMEWORK_MAPPING",
+            rationale_label=e.get("requirement_text", ""),
+            confidence="expert",
+            provenance="AIUC-1-Crosswalks-for-Rock.txt",
+        ))
+        n_added += 1
+
+    log.info("Task 3b: Human crosswalk ingested. %d expert edges added.", n_added)
+
+
+def filter_subcontrol_cross_fw_edges(nodes, edges, warnings):
+    """Remove cross-framework edges where source OR target is an AIUC-1 subcontrol.
+
+    Subcontrols are identified by entry_type == 'activity' in the aiuc_1 framework.
+    PARENT edges are preserved (they define valid hierarchy).
+    """
+    subcontrol_ids = {
+        nid for nid, n in nodes.items()
+        if n.get("framework") == "aiuc_1" and n.get("entry_type") == "activity"
+    }
+    if not subcontrol_ids:
+        log.info("No AIUC-1 subcontrols found; skipping filter.")
+        return
+
+    to_remove = []
+    for key, edge in edges.items():
+        if edge.get("rationale_code") == "PARENT":
+            continue  # keep hierarchy
+        src = edge["source_node_id"]
+        tgt = edge["target_node_id"]
+        src_fw = src.split(":")[0] if ":" in src else ""
+        tgt_fw = tgt.split(":")[0] if ":" in tgt else ""
+        # Only filter cross-framework edges involving subcontrols
+        if src_fw != tgt_fw and (src in subcontrol_ids or tgt in subcontrol_ids):
+            to_remove.append(key)
+
+    for key in to_remove:
+        del edges[key]
+
+    log.info("Filtered %d subcontrol cross-framework edges (%d subcontrol nodes retained).",
+             len(to_remove), len(subcontrol_ids))
+    warnings.append(f"Removed {len(to_remove)} subcontrol cross-fw edges")
+
+
+# ---------------------------------------------------------------------------
 # Task 4: Parse MITRE ATLAS JSON
 # ---------------------------------------------------------------------------
 
@@ -1830,6 +1896,9 @@ def main():
     # Task 3: Markdown crosswalks
     parse_aiuc1_markdown_crosswalks(nodes, edges, warnings)
 
+    # Task 3b: Human-reviewed crosswalk (expert edges)
+    parse_aiuc1_human_crosswalk(nodes, edges, warnings)
+
     # Task 4: MITRE ATLAS
     parse_mitre_atlas(nodes, edges, warnings)
 
@@ -1850,6 +1919,9 @@ def main():
 
     # Plan 4: upstream crossref prior edges
     inject_upstream_crossref_edges(nodes, edges, warnings)
+
+    # Post-processing: remove subcontrol cross-fw noise
+    filter_subcontrol_cross_fw_edges(nodes, edges, warnings)
 
     # Task 8: Write output (includes dedup and validation)
     write_output(nodes, edges, warnings)

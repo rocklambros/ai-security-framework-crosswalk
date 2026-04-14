@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-04-09T12:00:11.921100+00:00",
+  "generated_at": "2026-04-14T17:00:36.717957+00:00",
   "node_count": 983,
-  "edge_count": 5813,
+  "edge_count": 4001,
   "frameworks": {
     "aiuc_1": {
       "nodes": 189,
-      "outbound_edges": 2894,
-      "inbound_edges": 2148
+      "outbound_edges": 2270,
+      "inbound_edges": 960
     },
     "owasp_agentic": {
       "nodes": 10,
@@ -16,22 +16,22 @@
     "owasp_llm": {
       "nodes": 10,
       "outbound_edges": 0,
-      "inbound_edges": 78
+      "inbound_edges": 138
     },
     "mitre_atlas": {
       "nodes": 218,
       "outbound_edges": 421,
-      "inbound_edges": 482
+      "inbound_edges": 514
     },
     "nist_rmf": {
       "nodes": 76,
       "outbound_edges": 0,
-      "inbound_edges": 152
+      "inbound_edges": 304
     },
     "csa_aicm": {
       "nodes": 261,
-      "outbound_edges": 2012,
-      "inbound_edges": 2335
+      "outbound_edges": 824,
+      "inbound_edges": 1467
     },
     "eu_gpai_cop": {
       "nodes": 70,
@@ -51,9 +51,9 @@
   },
   "edge_confidence_distribution": {
     "authoritative": 1698,
-    "expert": 119,
+    "expert": 683,
     "unvalidated": 66,
-    "suggestive": 3930
+    "suggestive": 1554
   },
   "rationale_distribution": {
     "PARENT": 679,
@@ -66,18 +66,19 @@
     "DETECT": 17,
     "GOVERN": 10,
     "DISCLOSE": 3,
-    "CROSS_FRAMEWORK_CATEGORY": 3930
+    "CROSS_FRAMEWORK_MAPPING": 564,
+    "CROSS_FRAMEWORK_CATEGORY": 1554
   },
   "cross_framework_pairs": {
-    "aiuc_1 → csa_aicm": 2092,
-    "csa_aicm → aiuc_1": 1769,
+    "aiuc_1 → csa_aicm": 1224,
+    "csa_aicm → aiuc_1": 581,
+    "aiuc_1 → nist_rmf": 304,
     "aiuc_1 → owasp_ai_exchange": 196,
     "owasp_ai_exchange → aiuc_1": 196,
-    "aiuc_1 → nist_rmf": 152,
+    "aiuc_1 → owasp_llm": 120,
     "aiuc_1 → owasp_agentic": 119,
+    "aiuc_1 → mitre_atlas": 64,
     "aiuc_1 → eu_gpai_cop": 60,
-    "aiuc_1 → owasp_llm": 60,
-    "aiuc_1 → mitre_atlas": 32,
     "cosai_rm → mitre_atlas": 29,
     "cosai_rm → owasp_llm": 18
   },
@@ -259,6 +260,7 @@
     "[upstream_prior_edges] line 350: target node owasp_dsgai:DSGAI10 not present in graph",
     "[upstream_prior_edges] line 351: target node owasp_dsgai:DSGAI17 not present in graph",
     "[upstream_prior_edges] line 363: target node owasp_dsgai:DSGAI17 not present in graph",
-    "inject_upstream_crossref_edges: added 0 upstream_crossref edges (230 firewalled, 133 skipped)"
+    "inject_upstream_crossref_edges: added 0 upstream_crossref edges (230 firewalled, 133 skipped)",
+    "Removed 2376 subcontrol cross-fw edges"
   ]
 }

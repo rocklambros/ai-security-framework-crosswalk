@@ -3,74 +3,56 @@
     [
       "aiuc_1",
       "A001",
-      "nist_rmf",
-      "MEASURE-3.3"
-    ],
-    [
-      "aiuc_1",
-      "A001.2",
-      "mitre_atlas",
-      "AML.M0005"
-    ],
-    [
-      "aiuc_1",
-      "A001.3",
-      "owasp_llm",
-      "LLM10"
+      "csa_aicm",
+      "DSP-14"
     ],
     [
       "aiuc_1",
       "A002",
-      "eu_gpai_cop",
-      "Article-20"
+      "csa_aicm",
+      "STA-10"
     ],
     [
       "aiuc_1",
-      "A002.1",
-      "mitre_atlas",
-      "AML.T0003"
+      "A003",
+      "csa_aicm",
+      "AIS-11"
     ],
     [
       "aiuc_1",
-      "A003.1",
-      "eu_gpai_cop",
-      "Measure_4.1"
-    ],
-    [
-      "aiuc_1",
-      "A003.2",
+      "A003",
       "nist_rmf",
-      "GOVERN-4.1"
+      "MAP-2.1"
+    ],
+    [
+      "aiuc_1",
+      "A003",
+      "owasp_llm",
+      "LLM06"
+    ],
+    [
+      "aiuc_1",
+      "A003",
+      "owasp_llm",
+      "LLM08"
     ],
     [
       "aiuc_1",
       "A004",
-      "nist_rmf",
-      "MAP-3.3"
-    ],
-    [
-      "aiuc_1",
-      "A004.3",
       "csa_aicm",
-      "I-S-02"
+      "DSP-16"
     ],
     [
       "aiuc_1",
-      "A004.4",
-      "csa_aicm",
-      "GRC-10"
+      "A004",
+      "owasp_llm",
+      "LLM05"
     ],
     [
       "aiuc_1",
-      "A004.4",
-      "csa_aicm",
-      "UEM-01"
-    ],
-    [
-      "aiuc_1",
-      "A005",
-      "mitre_atlas",
-      "AML.M0031"
+      "A004",
+      "owasp_llm",
+      "LLM08"
     ],
     [
       "aiuc_1",
@@ -80,87 +62,57 @@
     ],
     [
       "aiuc_1",
-      "A005.2",
+      "A006",
       "csa_aicm",
-      "DSP-20"
-    ],
-    [
-      "aiuc_1",
-      "A005.2",
-      "csa_aicm",
-      "LOG-08"
-    ],
-    [
-      "aiuc_1",
-      "A005.2",
-      "nist_rmf",
-      "MEASURE-4.1"
-    ],
-    [
-      "aiuc_1",
-      "A005.2",
-      "nist_rmf",
-      "MEASURE-4.2"
-    ],
-    [
-      "aiuc_1",
-      "A005.2",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "aiuc_1",
-      "A005.3",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "A005.3",
-      "owasp_llm",
-      "LLM02"
+      "HRS-12"
     ],
     [
       "aiuc_1",
       "A006",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "aiuc_1",
-      "A006.1",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "aiuc_1",
-      "A006.1",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "aiuc_1",
-      "A006.2",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "aiuc_1",
-      "A006.3",
-      "eu_gpai_cop",
-      "Article-72"
+      "mitre_atlas",
+      "AML.M0020"
     ],
     [
       "aiuc_1",
       "A007",
-      "owasp_agentic",
-      "ASI02"
+      "nist_rmf",
+      "MAP-4.1"
     ],
     [
       "aiuc_1",
       "B001",
       "csa_aicm",
-      "DCS-04"
+      "MDS-06"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "MDS-07"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "TVM-01"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "TVM-05"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "TVM-06"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "TVM-07"
     ],
     [
       "aiuc_1",
@@ -170,147 +122,15 @@
     ],
     [
       "aiuc_1",
-      "B001",
-      "nist_rmf",
-      "MEASURE-2.11"
-    ],
-    [
-      "aiuc_1",
-      "B001",
-      "nist_rmf",
-      "MEASURE-4.2"
-    ],
-    [
-      "aiuc_1",
-      "B001.1",
+      "B002",
       "csa_aicm",
-      "DCS-14"
-    ],
-    [
-      "aiuc_1",
-      "B001.1",
-      "nist_rmf",
-      "GOVERN-4.2"
-    ],
-    [
-      "aiuc_1",
-      "B001.1",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "csa_aicm",
-      "LOG-08"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "csa_aicm",
-      "MDS-11"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "eu_gpai_cop",
-      "Measure_3.2"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "mitre_atlas",
-      "AML.T0013"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "mitre_atlas",
-      "AML.T0020"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "mitre_atlas",
-      "AML.T0042"
+      "AIS-08"
     ],
     [
       "aiuc_1",
       "B002",
-      "eu_gpai_cop",
-      "Article-43"
-    ],
-    [
-      "aiuc_1",
-      "B002.1",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "aiuc_1",
-      "B002.1",
-      "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "aiuc_1",
-      "B002.2",
-      "eu_gpai_cop",
-      "Article-14"
-    ],
-    [
-      "aiuc_1",
-      "B002.2",
       "mitre_atlas",
-      "AML.T0102"
-    ],
-    [
-      "aiuc_1",
-      "B002.3",
-      "csa_aicm",
-      "A-A-05"
-    ],
-    [
-      "aiuc_1",
-      "B002.3",
-      "csa_aicm",
-      "LOG-01"
-    ],
-    [
-      "aiuc_1",
-      "B002.4",
-      "eu_gpai_cop",
-      "Measure_2.1"
-    ],
-    [
-      "aiuc_1",
-      "B002.4",
-      "mitre_atlas",
-      "AML.T0075"
-    ],
-    [
-      "aiuc_1",
-      "B002.4",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "B002.5",
-      "mitre_atlas",
-      "AML.M0017"
-    ],
-    [
-      "aiuc_1",
-      "B002.5",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "aiuc_1",
-      "B002.5",
-      "owasp_llm",
-      "LLM10"
+      "AML.M0024"
     ],
     [
       "aiuc_1",
@@ -320,13 +140,7 @@
     ],
     [
       "aiuc_1",
-      "B003.1",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "B003.2",
+      "B003",
       "owasp_llm",
       "LLM07"
     ],
@@ -334,103 +148,109 @@
       "aiuc_1",
       "B004",
       "csa_aicm",
-      "LOG-11"
+      "UEM-05"
     ],
     [
       "aiuc_1",
       "B004",
-      "nist_rmf",
-      "GOVERN-4.2"
+      "mitre_atlas",
+      "AML.M0004"
     ],
     [
       "aiuc_1",
-      "B004.2",
-      "eu_gpai_cop",
-      "Article-46"
+      "B005",
+      "mitre_atlas",
+      "AML.M0015"
     ],
     [
       "aiuc_1",
-      "B004.3",
-      "csa_aicm",
-      "DSP-22"
-    ],
-    [
-      "aiuc_1",
-      "B004.3",
-      "eu_gpai_cop",
-      "Article-16"
-    ],
-    [
-      "aiuc_1",
-      "B004.3",
-      "nist_rmf",
-      "MEASURE-1.1"
+      "B005",
+      "mitre_atlas",
+      "AML.M0021"
     ],
     [
       "aiuc_1",
       "B005",
       "owasp_llm",
-      "LLM04"
+      "LLM01"
     ],
     [
       "aiuc_1",
-      "B005.1",
-      "eu_gpai_cop",
-      "Measure_5.1"
-    ],
-    [
-      "aiuc_1",
-      "B005.1",
-      "nist_rmf",
-      "MAP-4.1"
-    ],
-    [
-      "aiuc_1",
-      "B005.1",
+      "B005",
       "owasp_llm",
-      "LLM08"
+      "LLM10"
     ],
     [
       "aiuc_1",
       "B006",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "aiuc_1",
-      "B006.1",
-      "mitre_atlas",
-      "AML.M0023"
-    ],
-    [
-      "aiuc_1",
-      "B006.1",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "aiuc_1",
-      "B006.2",
       "csa_aicm",
-      "I-S-02"
+      "DSP-07"
     ],
     [
       "aiuc_1",
-      "B006.2",
+      "B006",
+      "nist_rmf",
+      "MAP-2.1"
+    ],
+    [
+      "aiuc_1",
+      "B007",
       "csa_aicm",
-      "LOG-08"
+      "IAM-04"
     ],
     [
       "aiuc_1",
-      "B006.2",
-      "eu_gpai_cop",
-      "Article-50"
+      "B007",
+      "csa_aicm",
+      "IAM-05"
+    ],
+    [
+      "aiuc_1",
+      "B007",
+      "csa_aicm",
+      "IAM-08"
+    ],
+    [
+      "aiuc_1",
+      "B007",
+      "csa_aicm",
+      "IAM-18"
+    ],
+    [
+      "aiuc_1",
+      "B007",
+      "csa_aicm",
+      "LOG-12"
     ],
     [
       "aiuc_1",
       "B007",
       "owasp_llm",
-      "LLM03"
+      "LLM06"
+    ],
+    [
+      "aiuc_1",
+      "B008",
+      "csa_aicm",
+      "AIS-14"
+    ],
+    [
+      "aiuc_1",
+      "B008",
+      "csa_aicm",
+      "CEK-01"
+    ],
+    [
+      "aiuc_1",
+      "B008",
+      "csa_aicm",
+      "DSP-07"
+    ],
+    [
+      "aiuc_1",
+      "B008",
+      "mitre_atlas",
+      "AML.M0005"
     ],
     [
       "aiuc_1",
@@ -440,189 +260,75 @@
     ],
     [
       "aiuc_1",
-      "B008.1",
-      "csa_aicm",
-      "LOG-09"
-    ],
-    [
-      "aiuc_1",
-      "B008.1",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "aiuc_1",
-      "B008.2",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "B008.3",
-      "nist_rmf",
-      "MEASURE-2.6"
-    ],
-    [
-      "aiuc_1",
-      "B008.3",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "aiuc_1",
-      "B008.4",
-      "csa_aicm",
-      "CEK-17"
-    ],
-    [
-      "aiuc_1",
-      "B008.4",
-      "mitre_atlas",
-      "AML.T0050"
-    ],
-    [
-      "aiuc_1",
       "B009",
       "eu_gpai_cop",
       "Measure_7.3"
     ],
     [
       "aiuc_1",
-      "B009.1",
+      "B009",
       "owasp_agentic",
-      "ASI01"
+      "ASI02"
     ],
     [
       "aiuc_1",
-      "B009.1",
+      "B009",
+      "owasp_llm",
+      "LLM05"
+    ],
+    [
+      "aiuc_1",
+      "C001",
+      "csa_aicm",
+      "A-A-05"
+    ],
+    [
+      "aiuc_1",
+      "C001",
+      "csa_aicm",
+      "CEK-07"
+    ],
+    [
+      "aiuc_1",
+      "C001",
+      "nist_rmf",
+      "MEASURE-3.1"
+    ],
+    [
+      "aiuc_1",
+      "C001",
       "owasp_llm",
       "LLM10"
     ],
     [
       "aiuc_1",
-      "B009.2",
-      "eu_gpai_cop",
-      "Commitment_7"
-    ],
-    [
-      "aiuc_1",
-      "B009.2",
-      "eu_gpai_cop",
-      "Measure_7.7"
-    ],
-    [
-      "aiuc_1",
-      "B009.2",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "aiuc_1",
-      "B009.2",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "aiuc_1",
-      "B009.3",
-      "csa_aicm",
-      "I-S-03"
+      "C002",
+      "nist_rmf",
+      "MEASURE-2.1"
     ],
     [
       "aiuc_1",
       "C002",
-      "owasp_llm",
-      "LLM02"
+      "nist_rmf",
+      "MEASURE-4.3"
     ],
     [
       "aiuc_1",
-      "C002.2",
+      "C003",
       "csa_aicm",
-      "UEM-01"
+      "LOG-15"
     ],
     [
       "aiuc_1",
-      "C002.2",
-      "eu_gpai_cop",
-      "Commitment_3"
-    ],
-    [
-      "aiuc_1",
-      "C003",
-      "eu_gpai_cop",
-      "Measure_1.2"
-    ],
-    [
-      "aiuc_1",
-      "C003",
-      "mitre_atlas",
-      "AML.T0071"
-    ],
-    [
-      "aiuc_1",
-      "C003",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "aiuc_1",
-      "C003.1",
-      "eu_gpai_cop",
-      "Article-50"
-    ],
-    [
-      "aiuc_1",
-      "C003.2",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "aiuc_1",
-      "C003.3",
-      "mitre_atlas",
-      "AML.T0002"
-    ],
-    [
-      "aiuc_1",
-      "C003.3",
-      "mitre_atlas",
-      "AML.T0068"
+      "C004",
+      "csa_aicm",
+      "AIS-09"
     ],
     [
       "aiuc_1",
       "C004",
       "nist_rmf",
-      "MAP-1.3"
-    ],
-    [
-      "aiuc_1",
-      "C004",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "aiuc_1",
-      "C004.2",
-      "csa_aicm",
-      "LOG-12"
-    ],
-    [
-      "aiuc_1",
-      "C004.3",
-      "mitre_atlas",
-      "AML.M0028"
-    ],
-    [
-      "aiuc_1",
-      "C005",
-      "eu_gpai_cop",
-      "Measure_1.2"
-    ],
-    [
-      "aiuc_1",
-      "C005",
-      "nist_rmf",
-      "MANAGE-3.2"
+      "MAP-3.4"
     ],
     [
       "aiuc_1",
@@ -632,231 +338,51 @@
     ],
     [
       "aiuc_1",
-      "C005.1",
-      "mitre_atlas",
-      "AML.M0034"
-    ],
-    [
-      "aiuc_1",
-      "C005.1",
-      "nist_rmf",
-      "MAP-1.3"
-    ],
-    [
-      "aiuc_1",
-      "C005.2",
-      "nist_rmf",
-      "GOVERN-6.2"
-    ],
-    [
-      "aiuc_1",
-      "C005.2",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "C005.2",
-      "owasp_llm",
-      "LLM09"
+      "C006",
+      "csa_aicm",
+      "AIS-09"
     ],
     [
       "aiuc_1",
       "C006",
-      "eu_gpai_cop",
-      "Measure_9.2"
-    ],
-    [
-      "aiuc_1",
-      "C006",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "aiuc_1",
-      "C006.3",
-      "nist_rmf",
-      "MEASURE-2.12"
-    ],
-    [
-      "aiuc_1",
-      "C006.3",
-      "owasp_agentic",
-      "ASI04"
+      "csa_aicm",
+      "TVM-02"
     ],
     [
       "aiuc_1",
       "C007",
-      "csa_aicm",
-      "BCR-10"
-    ],
-    [
-      "aiuc_1",
-      "C007.1",
-      "eu_gpai_cop",
-      "Article-18"
-    ],
-    [
-      "aiuc_1",
-      "C007.2",
       "mitre_atlas",
-      "AML.T0076"
-    ],
-    [
-      "aiuc_1",
-      "C007.2",
-      "mitre_atlas",
-      "AML.T0104"
-    ],
-    [
-      "aiuc_1",
-      "C007.2",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "aiuc_1",
-      "C007.3",
-      "csa_aicm",
-      "GRC-04"
+      "AML.M0020"
     ],
     [
       "aiuc_1",
       "C008",
-      "owasp_agentic",
-      "ASI05"
+      "csa_aicm",
+      "TVM-03"
     ],
     [
       "aiuc_1",
       "C008",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "aiuc_1",
-      "C008.1",
-      "csa_aicm",
-      "BCR-01"
-    ],
-    [
-      "aiuc_1",
-      "C008.1",
-      "mitre_atlas",
-      "AML.T0000.002"
-    ],
-    [
-      "aiuc_1",
-      "C008.1",
-      "mitre_atlas",
-      "AML.T0043.002"
-    ],
-    [
-      "aiuc_1",
-      "C008.1",
-      "owasp_agentic",
-      "ASI07"
-    ],
-    [
-      "aiuc_1",
-      "C009",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "aiuc_1",
-      "C009.2",
       "nist_rmf",
-      "GOVERN-1.1"
+      "GOVERN-1.5"
     ],
     [
       "aiuc_1",
-      "C009.2",
+      "C008",
       "nist_rmf",
-      "MEASURE-3.3"
+      "MANAGE-3.1"
     ],
     [
       "aiuc_1",
       "C010",
-      "eu_gpai_cop",
-      "Measure_8.3"
-    ],
-    [
-      "aiuc_1",
-      "C010",
-      "mitre_atlas",
-      "AML.T0008.001"
-    ],
-    [
-      "aiuc_1",
-      "C010",
-      "mitre_atlas",
-      "AML.T0076"
-    ],
-    [
-      "aiuc_1",
-      "C010",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
       "csa_aicm",
-      "BCR-06"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
-      "csa_aicm",
-      "CEK-21"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
-      "eu_gpai_cop",
-      "Article-27"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
-      "nist_rmf",
-      "MEASURE-1.3"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
-      "owasp_agentic",
-      "ASI06"
+      "A-A-02"
     ],
     [
       "aiuc_1",
       "C011",
-      "nist_rmf",
-      "MEASURE-1.1"
-    ],
-    [
-      "aiuc_1",
-      "C011.1",
-      "mitre_atlas",
-      "AML.T0005.001"
-    ],
-    [
-      "aiuc_1",
-      "C011.1",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "aiuc_1",
-      "C012",
-      "csa_aicm",
-      "CCC-07"
-    ],
-    [
-      "aiuc_1",
-      "C012",
-      "mitre_atlas",
-      "AML.T0000.001"
+      "eu_gpai_cop",
+      "Article-72"
     ],
     [
       "aiuc_1",
@@ -867,68 +393,68 @@
     [
       "aiuc_1",
       "C012",
-      "owasp_agentic",
-      "ASI01"
+      "nist_rmf",
+      "MEASURE-2.1"
     ],
     [
       "aiuc_1",
       "C012",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "aiuc_1",
-      "D001.1",
       "nist_rmf",
-      "GOVERN-1.3"
+      "MEASURE-2.6"
     ],
     [
       "aiuc_1",
-      "D002.1",
+      "C012",
+      "nist_rmf",
+      "MEASURE-4.2"
+    ],
+    [
+      "aiuc_1",
+      "D001",
+      "csa_aicm",
+      "AIS-09"
+    ],
+    [
+      "aiuc_1",
+      "D001",
       "owasp_llm",
-      "LLM07"
+      "LLM05"
     ],
     [
       "aiuc_1",
-      "D003.2",
-      "eu_gpai_cop",
-      "Commitment_7"
-    ],
-    [
-      "aiuc_1",
-      "D003.3",
-      "mitre_atlas",
-      "AML.M0032"
-    ],
-    [
-      "aiuc_1",
-      "D003.3",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "aiuc_1",
-      "D003.4",
-      "eu_gpai_cop",
-      "Commitment_9"
-    ],
-    [
-      "aiuc_1",
-      "D003.4",
+      "D002",
       "nist_rmf",
-      "MEASURE-3.3"
+      "MEASURE-1.3"
+    ],
+    [
+      "aiuc_1",
+      "D002",
+      "nist_rmf",
+      "MEASURE-4.1"
+    ],
+    [
+      "aiuc_1",
+      "D003",
+      "csa_aicm",
+      "TVM-11"
+    ],
+    [
+      "aiuc_1",
+      "D003",
+      "csa_aicm",
+      "TVM-12"
     ],
     [
       "aiuc_1",
       "D004",
       "csa_aicm",
-      "HRS-03"
+      "AIS-05"
     ],
     [
       "aiuc_1",
       "D004",
-      "eu_gpai_cop",
-      "Measure_2.1"
+      "nist_rmf",
+      "MEASURE-2.1"
     ],
     [
       "aiuc_1",
@@ -938,303 +464,297 @@
     ],
     [
       "aiuc_1",
-      "D004.1",
+      "E001",
       "csa_aicm",
-      "LOG-13"
+      "BCR-09"
     ],
     [
       "aiuc_1",
-      "D004.1",
+      "E001",
       "csa_aicm",
-      "UEM-14"
+      "BCR-10"
     ],
     [
       "aiuc_1",
-      "D004.1",
-      "eu_gpai_cop",
-      "Commitment_3"
+      "E002",
+      "csa_aicm",
+      "BCR-10"
     ],
     [
       "aiuc_1",
-      "E001.2",
+      "E002",
       "nist_rmf",
-      "MANAGE-4.1"
+      "MANAGE-1.3"
     ],
     [
       "aiuc_1",
-      "E001.3",
-      "nist_rmf",
-      "MAP-1.1"
-    ],
-    [
-      "aiuc_1",
-      "E001.3",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "aiuc_1",
-      "E003.1",
+      "E003",
       "csa_aicm",
-      "UEM-13"
+      "SEF-09"
+    ],
+    [
+      "aiuc_1",
+      "E003",
+      "nist_rmf",
+      "MANAGE-1.3"
+    ],
+    [
+      "aiuc_1",
+      "E003",
+      "nist_rmf",
+      "MANAGE-4.3"
     ],
     [
       "aiuc_1",
       "E004",
-      "owasp_agentic",
-      "ASI01"
+      "csa_aicm",
+      "AIS-04"
     ],
     [
       "aiuc_1",
-      "E004.1",
-      "mitre_atlas",
-      "AML.T0017"
+      "E004",
+      "csa_aicm",
+      "GRC-06"
     ],
     [
       "aiuc_1",
-      "E004.1",
-      "mitre_atlas",
-      "AML.T0046"
-    ],
-    [
-      "aiuc_1",
-      "E004.1",
+      "E004",
       "nist_rmf",
-      "GOVERN-5.1"
+      "GOVERN-2.3"
     ],
     [
       "aiuc_1",
-      "E004.1",
-      "owasp_llm",
-      "LLM09"
+      "E004",
+      "nist_rmf",
+      "MEASURE-2.8"
     ],
     [
       "aiuc_1",
-      "E004.2",
+      "E005",
+      "csa_aicm",
+      "AIS-05"
+    ],
+    [
+      "aiuc_1",
+      "E005",
+      "csa_aicm",
+      "DCS-03"
+    ],
+    [
+      "aiuc_1",
+      "E005",
       "mitre_atlas",
-      "AML.T0073"
+      "AML.M0017"
     ],
     [
       "aiuc_1",
-      "E005.1",
+      "E006",
+      "csa_aicm",
+      "DSP-13"
+    ],
+    [
+      "aiuc_1",
+      "E006",
+      "csa_aicm",
+      "STA-12"
+    ],
+    [
+      "aiuc_1",
+      "E006",
+      "csa_aicm",
+      "STA-13"
+    ],
+    [
+      "aiuc_1",
+      "E006",
       "nist_rmf",
       "MAP-4.2"
     ],
     [
       "aiuc_1",
-      "E005.1",
-      "owasp_agentic",
-      "ASI02"
+      "E007",
+      "csa_aicm",
+      "CCC-03"
     ],
     [
       "aiuc_1",
-      "E006.1",
+      "E007",
       "csa_aicm",
-      "UEM-02"
+      "CCC-05"
     ],
     [
       "aiuc_1",
       "E007",
       "nist_rmf",
-      "GOVERN-1.4"
+      "GOVERN-2.3"
     ],
     [
       "aiuc_1",
-      "E008.1",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "aiuc_1",
-      "E008.2",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "aiuc_1",
-      "E009.1",
-      "eu_gpai_cop",
-      "Measure_1.1"
-    ],
-    [
-      "aiuc_1",
-      "E009.1",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "aiuc_1",
-      "E010",
-      "eu_gpai_cop",
-      "Article-44"
-    ],
-    [
-      "aiuc_1",
-      "E010",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "aiuc_1",
-      "E010.1",
-      "eu_gpai_cop",
-      "Measure_10.2"
-    ],
-    [
-      "aiuc_1",
-      "E010.1",
+      "E007",
       "nist_rmf",
-      "MAP-3.5"
+      "MANAGE-1.1"
     ],
     [
       "aiuc_1",
-      "E010.1",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "aiuc_1",
-      "E010.2",
-      "mitre_atlas",
-      "AML.M0015"
-    ],
-    [
-      "aiuc_1",
-      "E010.2",
-      "mitre_atlas",
-      "AML.T0008.005"
-    ],
-    [
-      "aiuc_1",
-      "E010.3",
+      "E007",
       "nist_rmf",
-      "MEASURE-4.1"
+      "MEASURE-2.8"
     ],
     [
       "aiuc_1",
-      "E010.3",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "aiuc_1",
-      "E010.4",
+      "E008",
       "csa_aicm",
-      "AIS-08"
+      "AIS-02"
     ],
     [
       "aiuc_1",
-      "E010.4",
+      "E008",
+      "csa_aicm",
+      "BCR-01"
+    ],
+    [
+      "aiuc_1",
+      "E008",
+      "csa_aicm",
+      "IAM-03"
+    ],
+    [
+      "aiuc_1",
+      "E008",
+      "csa_aicm",
+      "LOG-07"
+    ],
+    [
+      "aiuc_1",
+      "E009",
+      "csa_aicm",
+      "UEM-14"
+    ],
+    [
+      "aiuc_1",
+      "E009",
+      "nist_rmf",
+      "GOVERN-1.5"
+    ],
+    [
+      "aiuc_1",
+      "E009",
       "owasp_llm",
-      "LLM02"
+      "LLM05"
+    ],
+    [
+      "aiuc_1",
+      "E010",
+      "csa_aicm",
+      "GRC-09"
+    ],
+    [
+      "aiuc_1",
+      "E010",
+      "nist_rmf",
+      "MAP-1.6"
     ],
     [
       "aiuc_1",
       "E011",
       "nist_rmf",
-      "MANAGE-4.3"
-    ],
-    [
-      "aiuc_1",
-      "E012",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "aiuc_1",
-      "E012.1",
-      "eu_gpai_cop",
-      "Article-20"
-    ],
-    [
-      "aiuc_1",
-      "E012.1",
-      "nist_rmf",
-      "MAP-3.5"
-    ],
-    [
-      "aiuc_1",
-      "E013.2",
-      "csa_aicm",
-      "TVM-09"
-    ],
-    [
-      "aiuc_1",
-      "E013.3",
-      "csa_aicm",
-      "STA-01"
-    ],
-    [
-      "aiuc_1",
-      "E014",
-      "nist_rmf",
       "GOVERN-1.6"
     ],
     [
       "aiuc_1",
+      "E012",
+      "csa_aicm",
+      "DSP-10"
+    ],
+    [
+      "aiuc_1",
+      "E012",
+      "csa_aicm",
+      "DSP-18"
+    ],
+    [
+      "aiuc_1",
+      "E012",
+      "nist_rmf",
+      "GOVERN-1.1"
+    ],
+    [
+      "aiuc_1",
+      "E012",
+      "nist_rmf",
+      "MAP-1.1"
+    ],
+    [
+      "aiuc_1",
+      "E013",
+      "csa_aicm",
+      "A-A-05"
+    ],
+    [
+      "aiuc_1",
+      "E013",
+      "csa_aicm",
+      "BCR-02"
+    ],
+    [
+      "aiuc_1",
+      "E014",
+      "csa_aicm",
+      "A-A-06"
+    ],
+    [
+      "aiuc_1",
+      "E014",
+      "csa_aicm",
+      "TVM-10"
+    ],
+    [
+      "aiuc_1",
       "E014",
       "nist_rmf",
       "MANAGE-4.3"
     ],
     [
       "aiuc_1",
+      "E014",
+      "nist_rmf",
+      "MAP-5.2"
+    ],
+    [
+      "aiuc_1",
       "E015",
-      "eu_gpai_cop",
-      "Measure_1.2"
-    ],
-    [
-      "aiuc_1",
-      "E015.1",
       "csa_aicm",
-      "CEK-07"
+      "LOG-08"
     ],
     [
       "aiuc_1",
-      "E015.1",
-      "owasp_agentic",
-      "ASI10"
+      "E015",
+      "csa_aicm",
+      "MDS-10"
     ],
     [
       "aiuc_1",
-      "E015.2",
-      "owasp_agentic",
-      "ASI02"
+      "E015",
+      "nist_rmf",
+      "MEASURE-2.4"
     ],
     [
       "aiuc_1",
-      "E015.3",
-      "owasp_agentic",
-      "ASI04"
+      "E017",
+      "csa_aicm",
+      "MDS-04"
     ],
     [
       "aiuc_1",
-      "E016",
-      "owasp_llm",
-      "LLM06"
+      "F001",
+      "csa_aicm",
+      "GRC-09"
     ],
     [
       "aiuc_1",
-      "E017.1",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "aiuc_1",
-      "E017.3",
-      "eu_gpai_cop",
-      "Measure_10.2"
-    ],
-    [
-      "aiuc_1",
-      "E017.3",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "aiuc_1",
-      "E017.3",
-      "owasp_llm",
-      "LLM02"
+      "F001",
+      "csa_aicm",
+      "TVM-11"
     ],
     [
       "aiuc_1",
@@ -1244,87 +764,15 @@
     ],
     [
       "aiuc_1",
-      "F001.2",
-      "eu_gpai_cop",
-      "Article-50"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "mitre_atlas",
-      "AML.M0033"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "mitre_atlas",
-      "AML.T0008.004"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "mitre_atlas",
-      "AML.T0093"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "nist_rmf",
-      "MANAGE-3.2"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "aiuc_1",
       "F002",
-      "eu_gpai_cop",
-      "Measure_2.1"
-    ],
-    [
-      "aiuc_1",
-      "F002",
-      "mitre_atlas",
-      "AML.M0013"
-    ],
-    [
-      "aiuc_1",
-      "F002",
-      "mitre_atlas",
-      "AML.T0054"
-    ],
-    [
-      "aiuc_1",
-      "F002.2",
       "csa_aicm",
-      "LOG-13"
+      "GRC-12"
     ],
     [
       "aiuc_1",
-      "F002.2",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "cosai_rm",
-      "ASSC",
-      "mitre_atlas",
-      "AML.T0034.002"
-    ],
-    [
-      "cosai_rm",
-      "ASSC",
-      "mitre_atlas",
-      "AML.T0112"
-    ],
-    [
-      "cosai_rm",
-      "ASSC",
-      "owasp_llm",
-      "LLM04"
+      "F002",
+      "csa_aicm",
+      "TVM-11"
     ],
     [
       "cosai_rm",
@@ -1336,43 +784,7 @@
       "cosai_rm",
       "DP",
       "mitre_atlas",
-      "AML.M0011"
-    ],
-    [
-      "cosai_rm",
-      "EBM",
-      "mitre_atlas",
-      "AML.T0018"
-    ],
-    [
-      "cosai_rm",
-      "EBM",
-      "mitre_atlas",
-      "AML.T0088"
-    ],
-    [
-      "cosai_rm",
-      "EDH",
-      "mitre_atlas",
-      "AML.M0005"
-    ],
-    [
-      "cosai_rm",
-      "EDH",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "cosai_rm",
-      "ISD",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
-      "MLD",
-      "mitre_atlas",
-      "AML.T0018.002"
+      "AML.T0071"
     ],
     [
       "cosai_rm",
@@ -1382,48 +794,6 @@
     ],
     [
       "cosai_rm",
-      "PCP",
-      "mitre_atlas",
-      "AML.T0034.000"
-    ],
-    [
-      "cosai_rm",
-      "PCP",
-      "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "cosai_rm",
-      "PCP",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
-      "PCP",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
-      "RVP",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
-      "UTD",
-      "mitre_atlas",
-      "AML.T0066"
-    ],
-    [
-      "cosai_rm",
-      "UTD",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "cosai_rm",
       "UTD",
       "owasp_llm",
       "LLM09"
@@ -1432,19 +802,7 @@
       "cosai_rm",
       "controlAdversarialTrainingAndTesting",
       "mitre_atlas",
-      "AML.TA0007"
-    ],
-    [
-      "cosai_rm",
-      "controlAdversarialTrainingAndTesting",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentObservability",
-      "mitre_atlas",
-      "AML.T0000.002"
+      "AML.T0076"
     ],
     [
       "cosai_rm",
@@ -1455,74 +813,38 @@
     [
       "cosai_rm",
       "controlAgentObservability",
-      "mitre_atlas",
-      "AML.T0015"
+      "owasp_llm",
+      "LLM08"
     ],
     [
       "cosai_rm",
-      "controlAgentObservability",
+      "controlAgentPluginPermissions",
       "owasp_llm",
       "LLM06"
     ],
     [
       "cosai_rm",
-      "controlAgentObservability",
+      "controlAgentPluginPermissions",
       "owasp_llm",
       "LLM08"
     ],
     [
       "cosai_rm",
-      "controlAgentPluginPermissions",
-      "mitre_atlas",
-      "AML.T0105"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentPluginPermissions",
+      "controlApplicationAccessManagement",
       "owasp_llm",
-      "LLM03"
+      "LLM02"
     ],
     [
       "cosai_rm",
-      "controlAgentPluginPermissions",
+      "controlApplicationAccessManagement",
       "owasp_llm",
       "LLM04"
     ],
     [
       "cosai_rm",
-      "controlAgentPluginPermissions",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentPluginUserControl",
+      "controlModelAndDataAccessControls",
       "mitre_atlas",
-      "AML.T0112.000"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentPluginUserControl",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentPluginUserControl",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "cosai_rm",
-      "controlInputValidationAndSanitization",
-      "mitre_atlas",
-      "AML.M0010"
-    ],
-    [
-      "cosai_rm",
-      "controlInputValidationAndSanitization",
-      "mitre_atlas",
-      "AML.T0071"
+      "AML.T0003"
     ],
     [
       "cosai_rm",
@@ -1550,97 +872,7 @@
     ],
     [
       "cosai_rm",
-      "controlModelAndDataIntegrityManagement",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "cosai_rm",
-      "controlModelPrivacyEnhancingTechnologies",
-      "mitre_atlas",
-      "AML.M0027"
-    ],
-    [
-      "cosai_rm",
-      "controlModelPrivacyEnhancingTechnologies",
-      "mitre_atlas",
-      "AML.T0024.001"
-    ],
-    [
-      "cosai_rm",
-      "controlModelPrivacyEnhancingTechnologies",
-      "mitre_atlas",
-      "AML.T0066"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "mitre_atlas",
-      "AML.T0011.003"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "mitre_atlas",
-      "AML.T0043.001"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "mitre_atlas",
-      "AML.T0088"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "cosai_rm",
-      "controlOutputValidationAndSanitization",
-      "mitre_atlas",
-      "AML.T0068"
-    ],
-    [
-      "cosai_rm",
-      "controlOutputValidationAndSanitization",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
       "controlRedTeaming",
-      "mitre_atlas",
-      "AML.T0013"
-    ],
-    [
-      "cosai_rm",
-      "controlRedTeaming",
-      "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "cosai_rm",
-      "controlRedTeaming",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
       "mitre_atlas",
       "AML.T0013"
     ],
@@ -1652,103 +884,13 @@
     ],
     [
       "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance",
-      "mitre_atlas",
-      "AML.M0008"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance",
-      "mitre_atlas",
-      "AML.T0103"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
-      "controlRuntimePrivacyEnhancingTechnologies",
-      "mitre_atlas",
-      "AML.T0091"
-    ],
-    [
-      "cosai_rm",
       "controlThreatDetection",
       "mitre_atlas",
       "AML.M0020"
     ],
     [
       "cosai_rm",
-      "controlThreatDetection",
-      "mitre_atlas",
-      "AML.T0063"
-    ],
-    [
-      "cosai_rm",
-      "controlThreatDetection",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
       "controlTrainingDataSanitization",
-      "mitre_atlas",
-      "AML.T0047"
-    ],
-    [
-      "cosai_rm",
-      "controlTrainingDataSanitization",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "cosai_rm",
-      "controlUserDataManagement",
-      "mitre_atlas",
-      "AML.T0102"
-    ],
-    [
-      "cosai_rm",
-      "controlUserDataManagement",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "cosai_rm",
-      "controlUserTransparencyAndControls",
       "owasp_llm",
       "LLM07"
     ],
@@ -1760,57 +902,15 @@
     ],
     [
       "csa_aicm",
-      "AIS-12",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "csa_aicm",
-      "BCR-02",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "csa_aicm",
-      "BCR-08",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "csa_aicm",
       "CEK-13",
       "owasp_agentic",
       "ASI05"
     ],
     [
       "csa_aicm",
-      "CEK-20",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "csa_aicm",
-      "DCS-05",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "csa_aicm",
       "DCS-09",
       "owasp_agentic",
       "ASI01"
-    ],
-    [
-      "csa_aicm",
-      "DCS-09",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "csa_aicm",
-      "DCS-11",
-      "owasp_agentic",
-      "ASI03"
     ],
     [
       "csa_aicm",
@@ -1820,93 +920,15 @@
     ],
     [
       "csa_aicm",
-      "DSP-13",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "csa_aicm",
-      "DSP-17",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "csa_aicm",
-      "GRC-01",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "csa_aicm",
-      "GRC-01",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "csa_aicm",
       "GRC-06",
       "owasp_agentic",
       "ASI02"
     ],
     [
       "csa_aicm",
-      "GRC-10",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "csa_aicm",
-      "GRC-11",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "csa_aicm",
-      "HRS-04",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "csa_aicm",
-      "I-S-03",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "csa_aicm",
       "I-S-06",
       "owasp_agentic",
       "ASI04"
-    ],
-    [
-      "csa_aicm",
-      "IAM-02",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "csa_aicm",
-      "IAM-05",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "csa_aicm",
-      "LOG-06",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "csa_aicm",
-      "LOG-08",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "csa_aicm",
-      "LOG-13",
-      "owasp_agentic",
-      "ASI02"
     ],
     [
       "csa_aicm",
@@ -1922,33 +944,9 @@
     ],
     [
       "csa_aicm",
-      "MDS-12",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "csa_aicm",
       "STA-08",
       "owasp_agentic",
       "ASI03"
-    ],
-    [
-      "csa_aicm",
-      "STA-09",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "csa_aicm",
-      "TVM-07",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "csa_aicm",
-      "TVM-07",
-      "owasp_agentic",
-      "ASI04"
     ],
     [
       "csa_aicm",
@@ -1957,52 +955,16 @@
       "ASI07"
     ],
     [
-      "csa_aicm",
-      "UEM-02",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "csa_aicm",
-      "UEM-05",
-      "owasp_agentic",
-      "ASI09"
+      "mitre_atlas",
+      "AML.M0005",
+      "owasp_llm",
+      "LLM06"
     ],
     [
       "mitre_atlas",
       "AML.M0023",
       "owasp_llm",
       "LLM01"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0026",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.000",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0010",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0011",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0011",
-      "owasp_llm",
-      "LLM07"
     ],
     [
       "mitre_atlas",
@@ -2018,69 +980,15 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0016.001",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0018.002",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0019",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0020",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0025",
       "owasp_llm",
       "LLM06"
     ],
     [
       "mitre_atlas",
-      "AML.T0043",
+      "AML.T0034.001",
       "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.002",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.003",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0048.000",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0050",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0051",
-      "owasp_llm",
-      "LLM06"
+      "LLM08"
     ],
     [
       "mitre_atlas",
@@ -2092,89 +1000,11 @@
       "mitre_atlas",
       "AML.T0059",
       "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0059",
-      "owasp_llm",
       "LLM08"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0064",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0064",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0065",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0066",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0069",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0073",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0079",
-      "owasp_llm",
-      "LLM01"
     ],
     [
       "mitre_atlas",
       "AML.T0080",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0081",
-      "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0084.002",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0099",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0101",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0103",
       "owasp_llm",
       "LLM02"
     ],
@@ -2186,61 +1016,7 @@
     ],
     [
       "nist_rmf",
-      "GOVERN-1.1",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "nist_rmf",
       "GOVERN-1.2",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.3",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.5",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.7",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-4.1",
-      "owasp_agentic",
-      "ASI07"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-5.2",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-3.1",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-3.2",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-3.2",
       "owasp_agentic",
       "ASI08"
     ],
@@ -2248,12 +1024,6 @@
       "nist_rmf",
       "MANAGE-4.1",
       "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "nist_rmf",
-      "MAP-1.1",
-      "owasp_agentic",
       "ASI09"
     ],
     [
@@ -2264,81 +1034,21 @@
     ],
     [
       "nist_rmf",
-      "MAP-1.3",
+      "MAP-2.2",
       "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "nist_rmf",
-      "MAP-2.1",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.3",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.3",
-      "owasp_agentic",
-      "ASI07"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.4",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.1",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.1",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.2",
-      "owasp_agentic",
-      "ASI04"
+      "ASI10"
     ],
     [
       "nist_rmf",
       "MAP-4.2",
       "owasp_agentic",
       "ASI07"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.2",
-      "owasp_agentic",
-      "ASI09"
     ],
     [
       "nist_rmf",
       "MEASURE-1.1",
       "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.11",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.12",
-      "owasp_agentic",
-      "ASI02"
+      "ASI07"
     ],
     [
       "nist_rmf",
@@ -2348,57 +1058,21 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-2.3",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.5",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "nist_rmf",
       "MEASURE-2.5",
       "owasp_agentic",
       "ASI07"
     ],
     [
       "nist_rmf",
-      "MEASURE-2.6",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "nist_rmf",
       "MEASURE-3.2",
       "owasp_agentic",
-      "ASI07"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-3.2",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-3.2",
-      "owasp_agentic",
-      "ASI09"
+      "ASI06"
     ],
     [
       "nist_rmf",
       "MEASURE-4.1",
       "owasp_agentic",
       "ASI02"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-4.1",
-      "owasp_agentic",
-      "ASI07"
     ]
   ],
   "derived_from": "data/splits/human_test_frozen.jsonl",
@@ -2409,27 +1083,11 @@
     ],
     [
       "aiuc_1",
-      "A001.2"
-    ],
-    [
-      "aiuc_1",
-      "A001.3"
-    ],
-    [
-      "aiuc_1",
       "A002"
     ],
     [
       "aiuc_1",
-      "A002.1"
-    ],
-    [
-      "aiuc_1",
-      "A003.1"
-    ],
-    [
-      "aiuc_1",
-      "A003.2"
+      "A003"
     ],
     [
       "aiuc_1",
@@ -2437,39 +1095,11 @@
     ],
     [
       "aiuc_1",
-      "A004.3"
-    ],
-    [
-      "aiuc_1",
-      "A004.4"
-    ],
-    [
-      "aiuc_1",
       "A005"
     ],
     [
       "aiuc_1",
-      "A005.2"
-    ],
-    [
-      "aiuc_1",
-      "A005.3"
-    ],
-    [
-      "aiuc_1",
       "A006"
-    ],
-    [
-      "aiuc_1",
-      "A006.1"
-    ],
-    [
-      "aiuc_1",
-      "A006.2"
-    ],
-    [
-      "aiuc_1",
-      "A006.3"
     ],
     [
       "aiuc_1",
@@ -2481,35 +1111,7 @@
     ],
     [
       "aiuc_1",
-      "B001.1"
-    ],
-    [
-      "aiuc_1",
-      "B001.2"
-    ],
-    [
-      "aiuc_1",
       "B002"
-    ],
-    [
-      "aiuc_1",
-      "B002.1"
-    ],
-    [
-      "aiuc_1",
-      "B002.2"
-    ],
-    [
-      "aiuc_1",
-      "B002.3"
-    ],
-    [
-      "aiuc_1",
-      "B002.4"
-    ],
-    [
-      "aiuc_1",
-      "B002.5"
     ],
     [
       "aiuc_1",
@@ -2517,23 +1119,7 @@
     ],
     [
       "aiuc_1",
-      "B003.1"
-    ],
-    [
-      "aiuc_1",
-      "B003.2"
-    ],
-    [
-      "aiuc_1",
       "B004"
-    ],
-    [
-      "aiuc_1",
-      "B004.2"
-    ],
-    [
-      "aiuc_1",
-      "B004.3"
     ],
     [
       "aiuc_1",
@@ -2541,19 +1127,7 @@
     ],
     [
       "aiuc_1",
-      "B005.1"
-    ],
-    [
-      "aiuc_1",
       "B006"
-    ],
-    [
-      "aiuc_1",
-      "B006.1"
-    ],
-    [
-      "aiuc_1",
-      "B006.2"
     ],
     [
       "aiuc_1",
@@ -2565,35 +1139,11 @@
     ],
     [
       "aiuc_1",
-      "B008.1"
-    ],
-    [
-      "aiuc_1",
-      "B008.2"
-    ],
-    [
-      "aiuc_1",
-      "B008.3"
-    ],
-    [
-      "aiuc_1",
-      "B008.4"
-    ],
-    [
-      "aiuc_1",
       "B009"
     ],
     [
       "aiuc_1",
-      "B009.1"
-    ],
-    [
-      "aiuc_1",
-      "B009.2"
-    ],
-    [
-      "aiuc_1",
-      "B009.3"
+      "C001"
     ],
     [
       "aiuc_1",
@@ -2601,23 +1151,7 @@
     ],
     [
       "aiuc_1",
-      "C002.2"
-    ],
-    [
-      "aiuc_1",
       "C003"
-    ],
-    [
-      "aiuc_1",
-      "C003.1"
-    ],
-    [
-      "aiuc_1",
-      "C003.2"
-    ],
-    [
-      "aiuc_1",
-      "C003.3"
     ],
     [
       "aiuc_1",
@@ -2625,23 +1159,7 @@
     ],
     [
       "aiuc_1",
-      "C004.2"
-    ],
-    [
-      "aiuc_1",
-      "C004.3"
-    ],
-    [
-      "aiuc_1",
       "C005"
-    ],
-    [
-      "aiuc_1",
-      "C005.1"
-    ],
-    [
-      "aiuc_1",
-      "C005.2"
     ],
     [
       "aiuc_1",
@@ -2649,23 +1167,7 @@
     ],
     [
       "aiuc_1",
-      "C006.3"
-    ],
-    [
-      "aiuc_1",
       "C007"
-    ],
-    [
-      "aiuc_1",
-      "C007.1"
-    ],
-    [
-      "aiuc_1",
-      "C007.2"
-    ],
-    [
-      "aiuc_1",
-      "C007.3"
     ],
     [
       "aiuc_1",
@@ -2673,23 +1175,7 @@
     ],
     [
       "aiuc_1",
-      "C008.1"
-    ],
-    [
-      "aiuc_1",
-      "C009"
-    ],
-    [
-      "aiuc_1",
-      "C009.2"
-    ],
-    [
-      "aiuc_1",
       "C010"
-    ],
-    [
-      "aiuc_1",
-      "C010.1"
     ],
     [
       "aiuc_1",
@@ -2697,31 +1183,19 @@
     ],
     [
       "aiuc_1",
-      "C011.1"
-    ],
-    [
-      "aiuc_1",
       "C012"
     ],
     [
       "aiuc_1",
-      "D001.1"
+      "D001"
     ],
     [
       "aiuc_1",
-      "D002.1"
+      "D002"
     ],
     [
       "aiuc_1",
-      "D003.2"
-    ],
-    [
-      "aiuc_1",
-      "D003.3"
-    ],
-    [
-      "aiuc_1",
-      "D003.4"
+      "D003"
     ],
     [
       "aiuc_1",
@@ -2729,19 +1203,15 @@
     ],
     [
       "aiuc_1",
-      "D004.1"
+      "E001"
     ],
     [
       "aiuc_1",
-      "E001.2"
+      "E002"
     ],
     [
       "aiuc_1",
-      "E001.3"
-    ],
-    [
-      "aiuc_1",
-      "E003.1"
+      "E003"
     ],
     [
       "aiuc_1",
@@ -2749,19 +1219,11 @@
     ],
     [
       "aiuc_1",
-      "E004.1"
+      "E005"
     ],
     [
       "aiuc_1",
-      "E004.2"
-    ],
-    [
-      "aiuc_1",
-      "E005.1"
-    ],
-    [
-      "aiuc_1",
-      "E006.1"
+      "E006"
     ],
     [
       "aiuc_1",
@@ -2769,35 +1231,15 @@
     ],
     [
       "aiuc_1",
-      "E008.1"
+      "E008"
     ],
     [
       "aiuc_1",
-      "E008.2"
-    ],
-    [
-      "aiuc_1",
-      "E009.1"
+      "E009"
     ],
     [
       "aiuc_1",
       "E010"
-    ],
-    [
-      "aiuc_1",
-      "E010.1"
-    ],
-    [
-      "aiuc_1",
-      "E010.2"
-    ],
-    [
-      "aiuc_1",
-      "E010.3"
-    ],
-    [
-      "aiuc_1",
-      "E010.4"
     ],
     [
       "aiuc_1",
@@ -2809,15 +1251,7 @@
     ],
     [
       "aiuc_1",
-      "E012.1"
-    ],
-    [
-      "aiuc_1",
-      "E013.2"
-    ],
-    [
-      "aiuc_1",
-      "E013.3"
+      "E013"
     ],
     [
       "aiuc_1",
@@ -2829,27 +1263,7 @@
     ],
     [
       "aiuc_1",
-      "E015.1"
-    ],
-    [
-      "aiuc_1",
-      "E015.2"
-    ],
-    [
-      "aiuc_1",
-      "E015.3"
-    ],
-    [
-      "aiuc_1",
-      "E016"
-    ],
-    [
-      "aiuc_1",
-      "E017.1"
-    ],
-    [
-      "aiuc_1",
-      "E017.3"
+      "E017"
     ],
     [
       "aiuc_1",
@@ -2857,19 +1271,7 @@
     ],
     [
       "aiuc_1",
-      "F001.2"
-    ],
-    [
-      "aiuc_1",
       "F002"
-    ],
-    [
-      "aiuc_1",
-      "F002.2"
-    ],
-    [
-      "cosai_rm",
-      "ASSC"
     ],
     [
       "cosai_rm",
@@ -2881,31 +1283,7 @@
     ],
     [
       "cosai_rm",
-      "EBM"
-    ],
-    [
-      "cosai_rm",
-      "EDH"
-    ],
-    [
-      "cosai_rm",
-      "ISD"
-    ],
-    [
-      "cosai_rm",
-      "MLD"
-    ],
-    [
-      "cosai_rm",
       "ORH"
-    ],
-    [
-      "cosai_rm",
-      "PCP"
-    ],
-    [
-      "cosai_rm",
-      "RVP"
     ],
     [
       "cosai_rm",
@@ -2925,11 +1303,11 @@
     ],
     [
       "cosai_rm",
-      "controlAgentPluginUserControl"
+      "controlApplicationAccessManagement"
     ],
     [
       "cosai_rm",
-      "controlInputValidationAndSanitization"
+      "controlModelAndDataAccessControls"
     ],
     [
       "cosai_rm",
@@ -2941,18 +1319,6 @@
     ],
     [
       "cosai_rm",
-      "controlModelPrivacyEnhancingTechnologies"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity"
-    ],
-    [
-      "cosai_rm",
-      "controlOutputValidationAndSanitization"
-    ],
-    [
-      "cosai_rm",
       "controlRedTeaming"
     ],
     [
@@ -2961,27 +1327,11 @@
     ],
     [
       "cosai_rm",
-      "controlRiskGovernance"
-    ],
-    [
-      "cosai_rm",
-      "controlRuntimePrivacyEnhancingTechnologies"
-    ],
-    [
-      "cosai_rm",
       "controlThreatDetection"
     ],
     [
       "cosai_rm",
       "controlTrainingDataSanitization"
-    ],
-    [
-      "cosai_rm",
-      "controlUserDataManagement"
-    ],
-    [
-      "cosai_rm",
-      "controlUserTransparencyAndControls"
     ],
     [
       "csa_aicm",
@@ -2993,11 +1343,35 @@
     ],
     [
       "csa_aicm",
+      "A-A-06"
+    ],
+    [
+      "csa_aicm",
+      "AIS-02"
+    ],
+    [
+      "csa_aicm",
+      "AIS-04"
+    ],
+    [
+      "csa_aicm",
+      "AIS-05"
+    ],
+    [
+      "csa_aicm",
       "AIS-08"
     ],
     [
       "csa_aicm",
-      "AIS-12"
+      "AIS-09"
+    ],
+    [
+      "csa_aicm",
+      "AIS-11"
+    ],
+    [
+      "csa_aicm",
+      "AIS-14"
     ],
     [
       "csa_aicm",
@@ -3009,11 +1383,7 @@
     ],
     [
       "csa_aicm",
-      "BCR-06"
-    ],
-    [
-      "csa_aicm",
-      "BCR-08"
+      "BCR-09"
     ],
     [
       "csa_aicm",
@@ -3021,7 +1391,15 @@
     ],
     [
       "csa_aicm",
-      "CCC-07"
+      "CCC-03"
+    ],
+    [
+      "csa_aicm",
+      "CCC-05"
+    ],
+    [
+      "csa_aicm",
+      "CEK-01"
     ],
     [
       "csa_aicm",
@@ -3033,23 +1411,7 @@
     ],
     [
       "csa_aicm",
-      "CEK-17"
-    ],
-    [
-      "csa_aicm",
-      "CEK-20"
-    ],
-    [
-      "csa_aicm",
-      "CEK-21"
-    ],
-    [
-      "csa_aicm",
-      "DCS-04"
-    ],
-    [
-      "csa_aicm",
-      "DCS-05"
+      "DCS-03"
     ],
     [
       "csa_aicm",
@@ -3057,15 +1419,15 @@
     ],
     [
       "csa_aicm",
-      "DCS-11"
-    ],
-    [
-      "csa_aicm",
-      "DCS-14"
-    ],
-    [
-      "csa_aicm",
       "DSP-03"
+    ],
+    [
+      "csa_aicm",
+      "DSP-07"
+    ],
+    [
+      "csa_aicm",
+      "DSP-10"
     ],
     [
       "csa_aicm",
@@ -3073,23 +1435,15 @@
     ],
     [
       "csa_aicm",
-      "DSP-17"
+      "DSP-14"
     ],
     [
       "csa_aicm",
-      "DSP-20"
+      "DSP-16"
     ],
     [
       "csa_aicm",
-      "DSP-22"
-    ],
-    [
-      "csa_aicm",
-      "GRC-01"
-    ],
-    [
-      "csa_aicm",
-      "GRC-04"
+      "DSP-18"
     ],
     [
       "csa_aicm",
@@ -3097,27 +1451,15 @@
     ],
     [
       "csa_aicm",
-      "GRC-10"
+      "GRC-09"
     ],
     [
       "csa_aicm",
-      "GRC-11"
+      "GRC-12"
     ],
     [
       "csa_aicm",
-      "HRS-03"
-    ],
-    [
-      "csa_aicm",
-      "HRS-04"
-    ],
-    [
-      "csa_aicm",
-      "I-S-02"
-    ],
-    [
-      "csa_aicm",
-      "I-S-03"
+      "HRS-12"
     ],
     [
       "csa_aicm",
@@ -3125,7 +1467,11 @@
     ],
     [
       "csa_aicm",
-      "IAM-02"
+      "IAM-03"
+    ],
+    [
+      "csa_aicm",
+      "IAM-04"
     ],
     [
       "csa_aicm",
@@ -3133,11 +1479,15 @@
     ],
     [
       "csa_aicm",
-      "LOG-01"
+      "IAM-08"
     ],
     [
       "csa_aicm",
-      "LOG-06"
+      "IAM-18"
+    ],
+    [
+      "csa_aicm",
+      "LOG-07"
     ],
     [
       "csa_aicm",
@@ -3145,19 +1495,15 @@
     ],
     [
       "csa_aicm",
-      "LOG-09"
-    ],
-    [
-      "csa_aicm",
-      "LOG-11"
-    ],
-    [
-      "csa_aicm",
       "LOG-12"
     ],
     [
       "csa_aicm",
-      "LOG-13"
+      "LOG-15"
+    ],
+    [
+      "csa_aicm",
+      "MDS-04"
     ],
     [
       "csa_aicm",
@@ -3165,19 +1511,19 @@
     ],
     [
       "csa_aicm",
+      "MDS-06"
+    ],
+    [
+      "csa_aicm",
       "MDS-07"
     ],
     [
       "csa_aicm",
-      "MDS-11"
+      "MDS-10"
     ],
     [
       "csa_aicm",
-      "MDS-12"
-    ],
-    [
-      "csa_aicm",
-      "STA-01"
+      "SEF-09"
     ],
     [
       "csa_aicm",
@@ -3185,7 +1531,35 @@
     ],
     [
       "csa_aicm",
-      "STA-09"
+      "STA-10"
+    ],
+    [
+      "csa_aicm",
+      "STA-12"
+    ],
+    [
+      "csa_aicm",
+      "STA-13"
+    ],
+    [
+      "csa_aicm",
+      "TVM-01"
+    ],
+    [
+      "csa_aicm",
+      "TVM-02"
+    ],
+    [
+      "csa_aicm",
+      "TVM-03"
+    ],
+    [
+      "csa_aicm",
+      "TVM-05"
+    ],
+    [
+      "csa_aicm",
+      "TVM-06"
     ],
     [
       "csa_aicm",
@@ -3193,19 +1567,15 @@
     ],
     [
       "csa_aicm",
-      "TVM-09"
-    ],
-    [
-      "csa_aicm",
       "TVM-10"
     ],
     [
       "csa_aicm",
-      "UEM-01"
+      "TVM-11"
     ],
     [
       "csa_aicm",
-      "UEM-02"
+      "TVM-12"
     ],
     [
       "csa_aicm",
@@ -3213,23 +1583,7 @@
     ],
     [
       "csa_aicm",
-      "UEM-13"
-    ],
-    [
-      "csa_aicm",
       "UEM-14"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-14"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-16"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-18"
     ],
     [
       "eu_gpai_cop",
@@ -3237,107 +1591,19 @@
     ],
     [
       "eu_gpai_cop",
-      "Article-20"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-27"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-43"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-44"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-46"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-50"
-    ],
-    [
-      "eu_gpai_cop",
       "Article-72"
-    ],
-    [
-      "eu_gpai_cop",
-      "Commitment_3"
-    ],
-    [
-      "eu_gpai_cop",
-      "Commitment_7"
-    ],
-    [
-      "eu_gpai_cop",
-      "Commitment_9"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_1.1"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_1.2"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_10.2"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_2.1"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_3.2"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_4.1"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_5.1"
     ],
     [
       "eu_gpai_cop",
       "Measure_7.3"
     ],
     [
-      "eu_gpai_cop",
-      "Measure_7.7"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_8.3"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_9.2"
+      "mitre_atlas",
+      "AML.M0004"
     ],
     [
       "mitre_atlas",
       "AML.M0005"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0008"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0010"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0011"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0013"
     ],
     [
       "mitre_atlas",
@@ -3353,47 +1619,15 @@
     ],
     [
       "mitre_atlas",
+      "AML.M0021"
+    ],
+    [
+      "mitre_atlas",
       "AML.M0023"
     ],
     [
       "mitre_atlas",
-      "AML.M0026"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0027"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0028"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0031"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0032"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0033"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0034"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0000.001"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0000.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0002"
+      "AML.M0024"
     ],
     [
       "mitre_atlas",
@@ -3401,35 +1635,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0005.001"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0008.000"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.001"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.004"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.005"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0010"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0011"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0011.003"
     ],
     [
       "mitre_atlas",
@@ -3445,35 +1651,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0016.001"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0016.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0017"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0018"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0018.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0019"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0020"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0024.001"
     ],
     [
       "mitre_atlas",
@@ -3481,7 +1659,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0034.000"
+      "AML.T0034.001"
     ],
     [
       "mitre_atlas",
@@ -3489,51 +1667,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0042"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.001"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.003"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0046"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0047"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0048.000"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0050"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0051"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0052.000"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0054"
     ],
     [
       "mitre_atlas",
@@ -3541,39 +1675,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0063"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0064"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0065"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0066"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0068"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0069"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0071"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0073"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0075"
     ],
     [
       "mitre_atlas",
@@ -3581,51 +1683,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0079"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0080"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0081"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0084.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0088"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0091"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0093"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0099"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0101"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0102"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0103"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0104"
     ],
     [
       "mitre_atlas",
@@ -3634,18 +1692,6 @@
     [
       "mitre_atlas",
       "AML.T0108"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0112"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0112.000"
-    ],
-    [
-      "mitre_atlas",
-      "AML.TA0007"
     ],
     [
       "mitre_atlas",
@@ -3665,14 +1711,6 @@
     ],
     [
       "nist_rmf",
-      "GOVERN-1.3"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.4"
-    ],
-    [
-      "nist_rmf",
       "GOVERN-1.5"
     ],
     [
@@ -3681,27 +1719,15 @@
     ],
     [
       "nist_rmf",
-      "GOVERN-1.7"
+      "GOVERN-2.3"
     ],
     [
       "nist_rmf",
-      "GOVERN-4.1"
+      "MANAGE-1.1"
     ],
     [
       "nist_rmf",
-      "GOVERN-4.2"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-5.1"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-5.2"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-6.2"
+      "MANAGE-1.3"
     ],
     [
       "nist_rmf",
@@ -3729,19 +1755,19 @@
     ],
     [
       "nist_rmf",
+      "MAP-1.6"
+    ],
+    [
+      "nist_rmf",
       "MAP-2.1"
     ],
     [
       "nist_rmf",
-      "MAP-3.3"
+      "MAP-2.2"
     ],
     [
       "nist_rmf",
       "MAP-3.4"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.5"
     ],
     [
       "nist_rmf",
@@ -3753,6 +1779,10 @@
     ],
     [
       "nist_rmf",
+      "MAP-5.2"
+    ],
+    [
+      "nist_rmf",
       "MEASURE-1.1"
     ],
     [
@@ -3761,11 +1791,7 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-2.11"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.12"
+      "MEASURE-2.1"
     ],
     [
       "nist_rmf",
@@ -3773,7 +1799,7 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-2.3"
+      "MEASURE-2.4"
     ],
     [
       "nist_rmf",
@@ -3785,11 +1811,15 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-3.2"
+      "MEASURE-2.8"
     ],
     [
       "nist_rmf",
-      "MEASURE-3.3"
+      "MEASURE-3.1"
+    ],
+    [
+      "nist_rmf",
+      "MEASURE-3.2"
     ],
     [
       "nist_rmf",
@@ -3798,6 +1828,10 @@
     [
       "nist_rmf",
       "MEASURE-4.2"
+    ],
+    [
+      "nist_rmf",
+      "MEASURE-4.3"
     ],
     [
       "owasp_agentic",
@@ -3846,10 +1880,6 @@
     [
       "owasp_llm",
       "LLM02"
-    ],
-    [
-      "owasp_llm",
-      "LLM03"
     ],
     [
       "owasp_llm",
@@ -3880,84 +1910,66 @@
       "LLM10"
     ]
   ],
-  "n_canonical_pair_tuples": 400,
-  "n_frozen_endpoints": 369,
-  "n_pair_tuples": 400,
-  "n_rows": 400,
-  "n_source_tuples": 237,
-  "n_target_tuples": 163,
+  "n_canonical_pair_tuples": 179,
+  "n_frozen_endpoints": 208,
+  "n_pair_tuples": 179,
+  "n_rows": 179,
+  "n_source_tuples": 94,
+  "n_target_tuples": 121,
   "pair_tuples": [
     [
       "aiuc_1",
       "A001",
-      "nist_rmf",
-      "MEASURE-3.3"
-    ],
-    [
-      "aiuc_1",
-      "A001.2",
-      "mitre_atlas",
-      "AML.M0005"
-    ],
-    [
-      "aiuc_1",
-      "A001.3",
-      "owasp_llm",
-      "LLM10"
+      "csa_aicm",
+      "DSP-14"
     ],
     [
       "aiuc_1",
       "A002",
-      "eu_gpai_cop",
-      "Article-20"
+      "csa_aicm",
+      "STA-10"
     ],
     [
       "aiuc_1",
-      "A002.1",
-      "mitre_atlas",
-      "AML.T0003"
+      "A003",
+      "csa_aicm",
+      "AIS-11"
     ],
     [
       "aiuc_1",
-      "A003.1",
-      "eu_gpai_cop",
-      "Measure_4.1"
-    ],
-    [
-      "aiuc_1",
-      "A003.2",
+      "A003",
       "nist_rmf",
-      "GOVERN-4.1"
+      "MAP-2.1"
+    ],
+    [
+      "aiuc_1",
+      "A003",
+      "owasp_llm",
+      "LLM06"
+    ],
+    [
+      "aiuc_1",
+      "A003",
+      "owasp_llm",
+      "LLM08"
     ],
     [
       "aiuc_1",
       "A004",
-      "nist_rmf",
-      "MAP-3.3"
-    ],
-    [
-      "aiuc_1",
-      "A004.3",
       "csa_aicm",
-      "I-S-02"
+      "DSP-16"
     ],
     [
       "aiuc_1",
-      "A004.4",
-      "csa_aicm",
-      "GRC-10"
+      "A004",
+      "owasp_llm",
+      "LLM05"
     ],
     [
       "aiuc_1",
-      "A004.4",
-      "csa_aicm",
-      "UEM-01"
-    ],
-    [
-      "aiuc_1",
-      "A005",
-      "mitre_atlas",
-      "AML.M0031"
+      "A004",
+      "owasp_llm",
+      "LLM08"
     ],
     [
       "aiuc_1",
@@ -3967,87 +1979,57 @@
     ],
     [
       "aiuc_1",
-      "A005.2",
+      "A006",
       "csa_aicm",
-      "DSP-20"
-    ],
-    [
-      "aiuc_1",
-      "A005.2",
-      "csa_aicm",
-      "LOG-08"
-    ],
-    [
-      "aiuc_1",
-      "A005.2",
-      "nist_rmf",
-      "MEASURE-4.1"
-    ],
-    [
-      "aiuc_1",
-      "A005.2",
-      "nist_rmf",
-      "MEASURE-4.2"
-    ],
-    [
-      "aiuc_1",
-      "A005.2",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "aiuc_1",
-      "A005.3",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "A005.3",
-      "owasp_llm",
-      "LLM02"
+      "HRS-12"
     ],
     [
       "aiuc_1",
       "A006",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "aiuc_1",
-      "A006.1",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "aiuc_1",
-      "A006.1",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "aiuc_1",
-      "A006.2",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "aiuc_1",
-      "A006.3",
-      "eu_gpai_cop",
-      "Article-72"
+      "mitre_atlas",
+      "AML.M0020"
     ],
     [
       "aiuc_1",
       "A007",
-      "owasp_agentic",
-      "ASI02"
+      "nist_rmf",
+      "MAP-4.1"
     ],
     [
       "aiuc_1",
       "B001",
       "csa_aicm",
-      "DCS-04"
+      "MDS-06"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "MDS-07"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "TVM-01"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "TVM-05"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "TVM-06"
+    ],
+    [
+      "aiuc_1",
+      "B001",
+      "csa_aicm",
+      "TVM-07"
     ],
     [
       "aiuc_1",
@@ -4057,147 +2039,15 @@
     ],
     [
       "aiuc_1",
-      "B001",
-      "nist_rmf",
-      "MEASURE-2.11"
-    ],
-    [
-      "aiuc_1",
-      "B001",
-      "nist_rmf",
-      "MEASURE-4.2"
-    ],
-    [
-      "aiuc_1",
-      "B001.1",
+      "B002",
       "csa_aicm",
-      "DCS-14"
-    ],
-    [
-      "aiuc_1",
-      "B001.1",
-      "nist_rmf",
-      "GOVERN-4.2"
-    ],
-    [
-      "aiuc_1",
-      "B001.1",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "csa_aicm",
-      "LOG-08"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "csa_aicm",
-      "MDS-11"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "eu_gpai_cop",
-      "Measure_3.2"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "mitre_atlas",
-      "AML.T0013"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "mitre_atlas",
-      "AML.T0020"
-    ],
-    [
-      "aiuc_1",
-      "B001.2",
-      "mitre_atlas",
-      "AML.T0042"
+      "AIS-08"
     ],
     [
       "aiuc_1",
       "B002",
-      "eu_gpai_cop",
-      "Article-43"
-    ],
-    [
-      "aiuc_1",
-      "B002.1",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "aiuc_1",
-      "B002.1",
-      "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "aiuc_1",
-      "B002.2",
-      "eu_gpai_cop",
-      "Article-14"
-    ],
-    [
-      "aiuc_1",
-      "B002.2",
       "mitre_atlas",
-      "AML.T0102"
-    ],
-    [
-      "aiuc_1",
-      "B002.3",
-      "csa_aicm",
-      "A-A-05"
-    ],
-    [
-      "aiuc_1",
-      "B002.3",
-      "csa_aicm",
-      "LOG-01"
-    ],
-    [
-      "aiuc_1",
-      "B002.4",
-      "eu_gpai_cop",
-      "Measure_2.1"
-    ],
-    [
-      "aiuc_1",
-      "B002.4",
-      "mitre_atlas",
-      "AML.T0075"
-    ],
-    [
-      "aiuc_1",
-      "B002.4",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "B002.5",
-      "mitre_atlas",
-      "AML.M0017"
-    ],
-    [
-      "aiuc_1",
-      "B002.5",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "aiuc_1",
-      "B002.5",
-      "owasp_llm",
-      "LLM10"
+      "AML.M0024"
     ],
     [
       "aiuc_1",
@@ -4207,13 +2057,7 @@
     ],
     [
       "aiuc_1",
-      "B003.1",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "B003.2",
+      "B003",
       "owasp_llm",
       "LLM07"
     ],
@@ -4221,103 +2065,109 @@
       "aiuc_1",
       "B004",
       "csa_aicm",
-      "LOG-11"
+      "UEM-05"
     ],
     [
       "aiuc_1",
       "B004",
-      "nist_rmf",
-      "GOVERN-4.2"
+      "mitre_atlas",
+      "AML.M0004"
     ],
     [
       "aiuc_1",
-      "B004.2",
-      "eu_gpai_cop",
-      "Article-46"
+      "B005",
+      "mitre_atlas",
+      "AML.M0015"
     ],
     [
       "aiuc_1",
-      "B004.3",
-      "csa_aicm",
-      "DSP-22"
-    ],
-    [
-      "aiuc_1",
-      "B004.3",
-      "eu_gpai_cop",
-      "Article-16"
-    ],
-    [
-      "aiuc_1",
-      "B004.3",
-      "nist_rmf",
-      "MEASURE-1.1"
+      "B005",
+      "mitre_atlas",
+      "AML.M0021"
     ],
     [
       "aiuc_1",
       "B005",
       "owasp_llm",
-      "LLM04"
+      "LLM01"
     ],
     [
       "aiuc_1",
-      "B005.1",
-      "eu_gpai_cop",
-      "Measure_5.1"
-    ],
-    [
-      "aiuc_1",
-      "B005.1",
-      "nist_rmf",
-      "MAP-4.1"
-    ],
-    [
-      "aiuc_1",
-      "B005.1",
+      "B005",
       "owasp_llm",
-      "LLM08"
+      "LLM10"
     ],
     [
       "aiuc_1",
       "B006",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "aiuc_1",
-      "B006.1",
-      "mitre_atlas",
-      "AML.M0023"
-    ],
-    [
-      "aiuc_1",
-      "B006.1",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "aiuc_1",
-      "B006.2",
       "csa_aicm",
-      "I-S-02"
+      "DSP-07"
     ],
     [
       "aiuc_1",
-      "B006.2",
+      "B006",
+      "nist_rmf",
+      "MAP-2.1"
+    ],
+    [
+      "aiuc_1",
+      "B007",
       "csa_aicm",
-      "LOG-08"
+      "IAM-04"
     ],
     [
       "aiuc_1",
-      "B006.2",
-      "eu_gpai_cop",
-      "Article-50"
+      "B007",
+      "csa_aicm",
+      "IAM-05"
+    ],
+    [
+      "aiuc_1",
+      "B007",
+      "csa_aicm",
+      "IAM-08"
+    ],
+    [
+      "aiuc_1",
+      "B007",
+      "csa_aicm",
+      "IAM-18"
+    ],
+    [
+      "aiuc_1",
+      "B007",
+      "csa_aicm",
+      "LOG-12"
     ],
     [
       "aiuc_1",
       "B007",
       "owasp_llm",
-      "LLM03"
+      "LLM06"
+    ],
+    [
+      "aiuc_1",
+      "B008",
+      "csa_aicm",
+      "AIS-14"
+    ],
+    [
+      "aiuc_1",
+      "B008",
+      "csa_aicm",
+      "CEK-01"
+    ],
+    [
+      "aiuc_1",
+      "B008",
+      "csa_aicm",
+      "DSP-07"
+    ],
+    [
+      "aiuc_1",
+      "B008",
+      "mitre_atlas",
+      "AML.M0005"
     ],
     [
       "aiuc_1",
@@ -4327,189 +2177,75 @@
     ],
     [
       "aiuc_1",
-      "B008.1",
-      "csa_aicm",
-      "LOG-09"
-    ],
-    [
-      "aiuc_1",
-      "B008.1",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "aiuc_1",
-      "B008.2",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "B008.3",
-      "nist_rmf",
-      "MEASURE-2.6"
-    ],
-    [
-      "aiuc_1",
-      "B008.3",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "aiuc_1",
-      "B008.4",
-      "csa_aicm",
-      "CEK-17"
-    ],
-    [
-      "aiuc_1",
-      "B008.4",
-      "mitre_atlas",
-      "AML.T0050"
-    ],
-    [
-      "aiuc_1",
       "B009",
       "eu_gpai_cop",
       "Measure_7.3"
     ],
     [
       "aiuc_1",
-      "B009.1",
+      "B009",
       "owasp_agentic",
-      "ASI01"
+      "ASI02"
     ],
     [
       "aiuc_1",
-      "B009.1",
+      "B009",
+      "owasp_llm",
+      "LLM05"
+    ],
+    [
+      "aiuc_1",
+      "C001",
+      "csa_aicm",
+      "A-A-05"
+    ],
+    [
+      "aiuc_1",
+      "C001",
+      "csa_aicm",
+      "CEK-07"
+    ],
+    [
+      "aiuc_1",
+      "C001",
+      "nist_rmf",
+      "MEASURE-3.1"
+    ],
+    [
+      "aiuc_1",
+      "C001",
       "owasp_llm",
       "LLM10"
     ],
     [
       "aiuc_1",
-      "B009.2",
-      "eu_gpai_cop",
-      "Commitment_7"
-    ],
-    [
-      "aiuc_1",
-      "B009.2",
-      "eu_gpai_cop",
-      "Measure_7.7"
-    ],
-    [
-      "aiuc_1",
-      "B009.2",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "aiuc_1",
-      "B009.2",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "aiuc_1",
-      "B009.3",
-      "csa_aicm",
-      "I-S-03"
+      "C002",
+      "nist_rmf",
+      "MEASURE-2.1"
     ],
     [
       "aiuc_1",
       "C002",
-      "owasp_llm",
-      "LLM02"
+      "nist_rmf",
+      "MEASURE-4.3"
     ],
     [
       "aiuc_1",
-      "C002.2",
+      "C003",
       "csa_aicm",
-      "UEM-01"
+      "LOG-15"
     ],
     [
       "aiuc_1",
-      "C002.2",
-      "eu_gpai_cop",
-      "Commitment_3"
-    ],
-    [
-      "aiuc_1",
-      "C003",
-      "eu_gpai_cop",
-      "Measure_1.2"
-    ],
-    [
-      "aiuc_1",
-      "C003",
-      "mitre_atlas",
-      "AML.T0071"
-    ],
-    [
-      "aiuc_1",
-      "C003",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "aiuc_1",
-      "C003.1",
-      "eu_gpai_cop",
-      "Article-50"
-    ],
-    [
-      "aiuc_1",
-      "C003.2",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "aiuc_1",
-      "C003.3",
-      "mitre_atlas",
-      "AML.T0002"
-    ],
-    [
-      "aiuc_1",
-      "C003.3",
-      "mitre_atlas",
-      "AML.T0068"
+      "C004",
+      "csa_aicm",
+      "AIS-09"
     ],
     [
       "aiuc_1",
       "C004",
       "nist_rmf",
-      "MAP-1.3"
-    ],
-    [
-      "aiuc_1",
-      "C004",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "aiuc_1",
-      "C004.2",
-      "csa_aicm",
-      "LOG-12"
-    ],
-    [
-      "aiuc_1",
-      "C004.3",
-      "mitre_atlas",
-      "AML.M0028"
-    ],
-    [
-      "aiuc_1",
-      "C005",
-      "eu_gpai_cop",
-      "Measure_1.2"
-    ],
-    [
-      "aiuc_1",
-      "C005",
-      "nist_rmf",
-      "MANAGE-3.2"
+      "MAP-3.4"
     ],
     [
       "aiuc_1",
@@ -4519,231 +2255,51 @@
     ],
     [
       "aiuc_1",
-      "C005.1",
-      "mitre_atlas",
-      "AML.M0034"
-    ],
-    [
-      "aiuc_1",
-      "C005.1",
-      "nist_rmf",
-      "MAP-1.3"
-    ],
-    [
-      "aiuc_1",
-      "C005.2",
-      "nist_rmf",
-      "GOVERN-6.2"
-    ],
-    [
-      "aiuc_1",
-      "C005.2",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "aiuc_1",
-      "C005.2",
-      "owasp_llm",
-      "LLM09"
+      "C006",
+      "csa_aicm",
+      "AIS-09"
     ],
     [
       "aiuc_1",
       "C006",
-      "eu_gpai_cop",
-      "Measure_9.2"
-    ],
-    [
-      "aiuc_1",
-      "C006",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "aiuc_1",
-      "C006.3",
-      "nist_rmf",
-      "MEASURE-2.12"
-    ],
-    [
-      "aiuc_1",
-      "C006.3",
-      "owasp_agentic",
-      "ASI04"
+      "csa_aicm",
+      "TVM-02"
     ],
     [
       "aiuc_1",
       "C007",
-      "csa_aicm",
-      "BCR-10"
-    ],
-    [
-      "aiuc_1",
-      "C007.1",
-      "eu_gpai_cop",
-      "Article-18"
-    ],
-    [
-      "aiuc_1",
-      "C007.2",
       "mitre_atlas",
-      "AML.T0076"
-    ],
-    [
-      "aiuc_1",
-      "C007.2",
-      "mitre_atlas",
-      "AML.T0104"
-    ],
-    [
-      "aiuc_1",
-      "C007.2",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "aiuc_1",
-      "C007.3",
-      "csa_aicm",
-      "GRC-04"
+      "AML.M0020"
     ],
     [
       "aiuc_1",
       "C008",
-      "owasp_agentic",
-      "ASI05"
+      "csa_aicm",
+      "TVM-03"
     ],
     [
       "aiuc_1",
       "C008",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "aiuc_1",
-      "C008.1",
-      "csa_aicm",
-      "BCR-01"
-    ],
-    [
-      "aiuc_1",
-      "C008.1",
-      "mitre_atlas",
-      "AML.T0000.002"
-    ],
-    [
-      "aiuc_1",
-      "C008.1",
-      "mitre_atlas",
-      "AML.T0043.002"
-    ],
-    [
-      "aiuc_1",
-      "C008.1",
-      "owasp_agentic",
-      "ASI07"
-    ],
-    [
-      "aiuc_1",
-      "C009",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "aiuc_1",
-      "C009.2",
       "nist_rmf",
-      "GOVERN-1.1"
+      "GOVERN-1.5"
     ],
     [
       "aiuc_1",
-      "C009.2",
+      "C008",
       "nist_rmf",
-      "MEASURE-3.3"
+      "MANAGE-3.1"
     ],
     [
       "aiuc_1",
       "C010",
-      "eu_gpai_cop",
-      "Measure_8.3"
-    ],
-    [
-      "aiuc_1",
-      "C010",
-      "mitre_atlas",
-      "AML.T0008.001"
-    ],
-    [
-      "aiuc_1",
-      "C010",
-      "mitre_atlas",
-      "AML.T0076"
-    ],
-    [
-      "aiuc_1",
-      "C010",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
       "csa_aicm",
-      "BCR-06"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
-      "csa_aicm",
-      "CEK-21"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
-      "eu_gpai_cop",
-      "Article-27"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
-      "nist_rmf",
-      "MEASURE-1.3"
-    ],
-    [
-      "aiuc_1",
-      "C010.1",
-      "owasp_agentic",
-      "ASI06"
+      "A-A-02"
     ],
     [
       "aiuc_1",
       "C011",
-      "nist_rmf",
-      "MEASURE-1.1"
-    ],
-    [
-      "aiuc_1",
-      "C011.1",
-      "mitre_atlas",
-      "AML.T0005.001"
-    ],
-    [
-      "aiuc_1",
-      "C011.1",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "aiuc_1",
-      "C012",
-      "csa_aicm",
-      "CCC-07"
-    ],
-    [
-      "aiuc_1",
-      "C012",
-      "mitre_atlas",
-      "AML.T0000.001"
+      "eu_gpai_cop",
+      "Article-72"
     ],
     [
       "aiuc_1",
@@ -4754,68 +2310,68 @@
     [
       "aiuc_1",
       "C012",
-      "owasp_agentic",
-      "ASI01"
+      "nist_rmf",
+      "MEASURE-2.1"
     ],
     [
       "aiuc_1",
       "C012",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "aiuc_1",
-      "D001.1",
       "nist_rmf",
-      "GOVERN-1.3"
+      "MEASURE-2.6"
     ],
     [
       "aiuc_1",
-      "D002.1",
+      "C012",
+      "nist_rmf",
+      "MEASURE-4.2"
+    ],
+    [
+      "aiuc_1",
+      "D001",
+      "csa_aicm",
+      "AIS-09"
+    ],
+    [
+      "aiuc_1",
+      "D001",
       "owasp_llm",
-      "LLM07"
+      "LLM05"
     ],
     [
       "aiuc_1",
-      "D003.2",
-      "eu_gpai_cop",
-      "Commitment_7"
-    ],
-    [
-      "aiuc_1",
-      "D003.3",
-      "mitre_atlas",
-      "AML.M0032"
-    ],
-    [
-      "aiuc_1",
-      "D003.3",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "aiuc_1",
-      "D003.4",
-      "eu_gpai_cop",
-      "Commitment_9"
-    ],
-    [
-      "aiuc_1",
-      "D003.4",
+      "D002",
       "nist_rmf",
-      "MEASURE-3.3"
+      "MEASURE-1.3"
+    ],
+    [
+      "aiuc_1",
+      "D002",
+      "nist_rmf",
+      "MEASURE-4.1"
+    ],
+    [
+      "aiuc_1",
+      "D003",
+      "csa_aicm",
+      "TVM-11"
+    ],
+    [
+      "aiuc_1",
+      "D003",
+      "csa_aicm",
+      "TVM-12"
     ],
     [
       "aiuc_1",
       "D004",
       "csa_aicm",
-      "HRS-03"
+      "AIS-05"
     ],
     [
       "aiuc_1",
       "D004",
-      "eu_gpai_cop",
-      "Measure_2.1"
+      "nist_rmf",
+      "MEASURE-2.1"
     ],
     [
       "aiuc_1",
@@ -4825,303 +2381,297 @@
     ],
     [
       "aiuc_1",
-      "D004.1",
+      "E001",
       "csa_aicm",
-      "LOG-13"
+      "BCR-09"
     ],
     [
       "aiuc_1",
-      "D004.1",
+      "E001",
       "csa_aicm",
-      "UEM-14"
+      "BCR-10"
     ],
     [
       "aiuc_1",
-      "D004.1",
-      "eu_gpai_cop",
-      "Commitment_3"
+      "E002",
+      "csa_aicm",
+      "BCR-10"
     ],
     [
       "aiuc_1",
-      "E001.2",
+      "E002",
       "nist_rmf",
-      "MANAGE-4.1"
+      "MANAGE-1.3"
     ],
     [
       "aiuc_1",
-      "E001.3",
-      "nist_rmf",
-      "MAP-1.1"
-    ],
-    [
-      "aiuc_1",
-      "E001.3",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "aiuc_1",
-      "E003.1",
+      "E003",
       "csa_aicm",
-      "UEM-13"
+      "SEF-09"
+    ],
+    [
+      "aiuc_1",
+      "E003",
+      "nist_rmf",
+      "MANAGE-1.3"
+    ],
+    [
+      "aiuc_1",
+      "E003",
+      "nist_rmf",
+      "MANAGE-4.3"
     ],
     [
       "aiuc_1",
       "E004",
-      "owasp_agentic",
-      "ASI01"
+      "csa_aicm",
+      "AIS-04"
     ],
     [
       "aiuc_1",
-      "E004.1",
-      "mitre_atlas",
-      "AML.T0017"
+      "E004",
+      "csa_aicm",
+      "GRC-06"
     ],
     [
       "aiuc_1",
-      "E004.1",
-      "mitre_atlas",
-      "AML.T0046"
-    ],
-    [
-      "aiuc_1",
-      "E004.1",
+      "E004",
       "nist_rmf",
-      "GOVERN-5.1"
+      "GOVERN-2.3"
     ],
     [
       "aiuc_1",
-      "E004.1",
-      "owasp_llm",
-      "LLM09"
+      "E004",
+      "nist_rmf",
+      "MEASURE-2.8"
     ],
     [
       "aiuc_1",
-      "E004.2",
+      "E005",
+      "csa_aicm",
+      "AIS-05"
+    ],
+    [
+      "aiuc_1",
+      "E005",
+      "csa_aicm",
+      "DCS-03"
+    ],
+    [
+      "aiuc_1",
+      "E005",
       "mitre_atlas",
-      "AML.T0073"
+      "AML.M0017"
     ],
     [
       "aiuc_1",
-      "E005.1",
+      "E006",
+      "csa_aicm",
+      "DSP-13"
+    ],
+    [
+      "aiuc_1",
+      "E006",
+      "csa_aicm",
+      "STA-12"
+    ],
+    [
+      "aiuc_1",
+      "E006",
+      "csa_aicm",
+      "STA-13"
+    ],
+    [
+      "aiuc_1",
+      "E006",
       "nist_rmf",
       "MAP-4.2"
     ],
     [
       "aiuc_1",
-      "E005.1",
-      "owasp_agentic",
-      "ASI02"
+      "E007",
+      "csa_aicm",
+      "CCC-03"
     ],
     [
       "aiuc_1",
-      "E006.1",
+      "E007",
       "csa_aicm",
-      "UEM-02"
+      "CCC-05"
     ],
     [
       "aiuc_1",
       "E007",
       "nist_rmf",
-      "GOVERN-1.4"
+      "GOVERN-2.3"
     ],
     [
       "aiuc_1",
-      "E008.1",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "aiuc_1",
-      "E008.2",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "aiuc_1",
-      "E009.1",
-      "eu_gpai_cop",
-      "Measure_1.1"
-    ],
-    [
-      "aiuc_1",
-      "E009.1",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "aiuc_1",
-      "E010",
-      "eu_gpai_cop",
-      "Article-44"
-    ],
-    [
-      "aiuc_1",
-      "E010",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "aiuc_1",
-      "E010.1",
-      "eu_gpai_cop",
-      "Measure_10.2"
-    ],
-    [
-      "aiuc_1",
-      "E010.1",
+      "E007",
       "nist_rmf",
-      "MAP-3.5"
+      "MANAGE-1.1"
     ],
     [
       "aiuc_1",
-      "E010.1",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "aiuc_1",
-      "E010.2",
-      "mitre_atlas",
-      "AML.M0015"
-    ],
-    [
-      "aiuc_1",
-      "E010.2",
-      "mitre_atlas",
-      "AML.T0008.005"
-    ],
-    [
-      "aiuc_1",
-      "E010.3",
+      "E007",
       "nist_rmf",
-      "MEASURE-4.1"
+      "MEASURE-2.8"
     ],
     [
       "aiuc_1",
-      "E010.3",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "aiuc_1",
-      "E010.4",
+      "E008",
       "csa_aicm",
-      "AIS-08"
+      "AIS-02"
     ],
     [
       "aiuc_1",
-      "E010.4",
+      "E008",
+      "csa_aicm",
+      "BCR-01"
+    ],
+    [
+      "aiuc_1",
+      "E008",
+      "csa_aicm",
+      "IAM-03"
+    ],
+    [
+      "aiuc_1",
+      "E008",
+      "csa_aicm",
+      "LOG-07"
+    ],
+    [
+      "aiuc_1",
+      "E009",
+      "csa_aicm",
+      "UEM-14"
+    ],
+    [
+      "aiuc_1",
+      "E009",
+      "nist_rmf",
+      "GOVERN-1.5"
+    ],
+    [
+      "aiuc_1",
+      "E009",
       "owasp_llm",
-      "LLM02"
+      "LLM05"
+    ],
+    [
+      "aiuc_1",
+      "E010",
+      "csa_aicm",
+      "GRC-09"
+    ],
+    [
+      "aiuc_1",
+      "E010",
+      "nist_rmf",
+      "MAP-1.6"
     ],
     [
       "aiuc_1",
       "E011",
       "nist_rmf",
-      "MANAGE-4.3"
-    ],
-    [
-      "aiuc_1",
-      "E012",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "aiuc_1",
-      "E012.1",
-      "eu_gpai_cop",
-      "Article-20"
-    ],
-    [
-      "aiuc_1",
-      "E012.1",
-      "nist_rmf",
-      "MAP-3.5"
-    ],
-    [
-      "aiuc_1",
-      "E013.2",
-      "csa_aicm",
-      "TVM-09"
-    ],
-    [
-      "aiuc_1",
-      "E013.3",
-      "csa_aicm",
-      "STA-01"
-    ],
-    [
-      "aiuc_1",
-      "E014",
-      "nist_rmf",
       "GOVERN-1.6"
     ],
     [
       "aiuc_1",
+      "E012",
+      "csa_aicm",
+      "DSP-10"
+    ],
+    [
+      "aiuc_1",
+      "E012",
+      "csa_aicm",
+      "DSP-18"
+    ],
+    [
+      "aiuc_1",
+      "E012",
+      "nist_rmf",
+      "GOVERN-1.1"
+    ],
+    [
+      "aiuc_1",
+      "E012",
+      "nist_rmf",
+      "MAP-1.1"
+    ],
+    [
+      "aiuc_1",
+      "E013",
+      "csa_aicm",
+      "A-A-05"
+    ],
+    [
+      "aiuc_1",
+      "E013",
+      "csa_aicm",
+      "BCR-02"
+    ],
+    [
+      "aiuc_1",
+      "E014",
+      "csa_aicm",
+      "A-A-06"
+    ],
+    [
+      "aiuc_1",
+      "E014",
+      "csa_aicm",
+      "TVM-10"
+    ],
+    [
+      "aiuc_1",
       "E014",
       "nist_rmf",
       "MANAGE-4.3"
     ],
     [
       "aiuc_1",
+      "E014",
+      "nist_rmf",
+      "MAP-5.2"
+    ],
+    [
+      "aiuc_1",
       "E015",
-      "eu_gpai_cop",
-      "Measure_1.2"
-    ],
-    [
-      "aiuc_1",
-      "E015.1",
       "csa_aicm",
-      "CEK-07"
+      "LOG-08"
     ],
     [
       "aiuc_1",
-      "E015.1",
-      "owasp_agentic",
-      "ASI10"
+      "E015",
+      "csa_aicm",
+      "MDS-10"
     ],
     [
       "aiuc_1",
-      "E015.2",
-      "owasp_agentic",
-      "ASI02"
+      "E015",
+      "nist_rmf",
+      "MEASURE-2.4"
     ],
     [
       "aiuc_1",
-      "E015.3",
-      "owasp_agentic",
-      "ASI04"
+      "E017",
+      "csa_aicm",
+      "MDS-04"
     ],
     [
       "aiuc_1",
-      "E016",
-      "owasp_llm",
-      "LLM06"
+      "F001",
+      "csa_aicm",
+      "GRC-09"
     ],
     [
       "aiuc_1",
-      "E017.1",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "aiuc_1",
-      "E017.3",
-      "eu_gpai_cop",
-      "Measure_10.2"
-    ],
-    [
-      "aiuc_1",
-      "E017.3",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "aiuc_1",
-      "E017.3",
-      "owasp_llm",
-      "LLM02"
+      "F001",
+      "csa_aicm",
+      "TVM-11"
     ],
     [
       "aiuc_1",
@@ -5131,87 +2681,15 @@
     ],
     [
       "aiuc_1",
-      "F001.2",
-      "eu_gpai_cop",
-      "Article-50"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "mitre_atlas",
-      "AML.M0033"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "mitre_atlas",
-      "AML.T0008.004"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "mitre_atlas",
-      "AML.T0093"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "nist_rmf",
-      "MANAGE-3.2"
-    ],
-    [
-      "aiuc_1",
-      "F001.2",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "aiuc_1",
       "F002",
-      "eu_gpai_cop",
-      "Measure_2.1"
-    ],
-    [
-      "aiuc_1",
-      "F002",
-      "mitre_atlas",
-      "AML.M0013"
-    ],
-    [
-      "aiuc_1",
-      "F002",
-      "mitre_atlas",
-      "AML.T0054"
-    ],
-    [
-      "aiuc_1",
-      "F002.2",
       "csa_aicm",
-      "LOG-13"
+      "GRC-12"
     ],
     [
       "aiuc_1",
-      "F002.2",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "cosai_rm",
-      "ASSC",
-      "mitre_atlas",
-      "AML.T0034.002"
-    ],
-    [
-      "cosai_rm",
-      "ASSC",
-      "mitre_atlas",
-      "AML.T0112"
-    ],
-    [
-      "cosai_rm",
-      "ASSC",
-      "owasp_llm",
-      "LLM04"
+      "F002",
+      "csa_aicm",
+      "TVM-11"
     ],
     [
       "cosai_rm",
@@ -5223,43 +2701,7 @@
       "cosai_rm",
       "DP",
       "mitre_atlas",
-      "AML.M0011"
-    ],
-    [
-      "cosai_rm",
-      "EBM",
-      "mitre_atlas",
-      "AML.T0018"
-    ],
-    [
-      "cosai_rm",
-      "EBM",
-      "mitre_atlas",
-      "AML.T0088"
-    ],
-    [
-      "cosai_rm",
-      "EDH",
-      "mitre_atlas",
-      "AML.M0005"
-    ],
-    [
-      "cosai_rm",
-      "EDH",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "cosai_rm",
-      "ISD",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
-      "MLD",
-      "mitre_atlas",
-      "AML.T0018.002"
+      "AML.T0071"
     ],
     [
       "cosai_rm",
@@ -5269,48 +2711,6 @@
     ],
     [
       "cosai_rm",
-      "PCP",
-      "mitre_atlas",
-      "AML.T0034.000"
-    ],
-    [
-      "cosai_rm",
-      "PCP",
-      "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "cosai_rm",
-      "PCP",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
-      "PCP",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
-      "RVP",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
-      "UTD",
-      "mitre_atlas",
-      "AML.T0066"
-    ],
-    [
-      "cosai_rm",
-      "UTD",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "cosai_rm",
       "UTD",
       "owasp_llm",
       "LLM09"
@@ -5319,19 +2719,7 @@
       "cosai_rm",
       "controlAdversarialTrainingAndTesting",
       "mitre_atlas",
-      "AML.TA0007"
-    ],
-    [
-      "cosai_rm",
-      "controlAdversarialTrainingAndTesting",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentObservability",
-      "mitre_atlas",
-      "AML.T0000.002"
+      "AML.T0076"
     ],
     [
       "cosai_rm",
@@ -5342,74 +2730,38 @@
     [
       "cosai_rm",
       "controlAgentObservability",
-      "mitre_atlas",
-      "AML.T0015"
+      "owasp_llm",
+      "LLM08"
     ],
     [
       "cosai_rm",
-      "controlAgentObservability",
+      "controlAgentPluginPermissions",
       "owasp_llm",
       "LLM06"
     ],
     [
       "cosai_rm",
-      "controlAgentObservability",
+      "controlAgentPluginPermissions",
       "owasp_llm",
       "LLM08"
     ],
     [
       "cosai_rm",
-      "controlAgentPluginPermissions",
-      "mitre_atlas",
-      "AML.T0105"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentPluginPermissions",
+      "controlApplicationAccessManagement",
       "owasp_llm",
-      "LLM03"
+      "LLM02"
     ],
     [
       "cosai_rm",
-      "controlAgentPluginPermissions",
+      "controlApplicationAccessManagement",
       "owasp_llm",
       "LLM04"
     ],
     [
       "cosai_rm",
-      "controlAgentPluginPermissions",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentPluginUserControl",
+      "controlModelAndDataAccessControls",
       "mitre_atlas",
-      "AML.T0112.000"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentPluginUserControl",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "cosai_rm",
-      "controlAgentPluginUserControl",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "cosai_rm",
-      "controlInputValidationAndSanitization",
-      "mitre_atlas",
-      "AML.M0010"
-    ],
-    [
-      "cosai_rm",
-      "controlInputValidationAndSanitization",
-      "mitre_atlas",
-      "AML.T0071"
+      "AML.T0003"
     ],
     [
       "cosai_rm",
@@ -5437,97 +2789,7 @@
     ],
     [
       "cosai_rm",
-      "controlModelAndDataIntegrityManagement",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "cosai_rm",
-      "controlModelPrivacyEnhancingTechnologies",
-      "mitre_atlas",
-      "AML.M0027"
-    ],
-    [
-      "cosai_rm",
-      "controlModelPrivacyEnhancingTechnologies",
-      "mitre_atlas",
-      "AML.T0024.001"
-    ],
-    [
-      "cosai_rm",
-      "controlModelPrivacyEnhancingTechnologies",
-      "mitre_atlas",
-      "AML.T0066"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "mitre_atlas",
-      "AML.T0011.003"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "mitre_atlas",
-      "AML.T0043.001"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "mitre_atlas",
-      "AML.T0088"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "cosai_rm",
-      "controlOutputValidationAndSanitization",
-      "mitre_atlas",
-      "AML.T0068"
-    ],
-    [
-      "cosai_rm",
-      "controlOutputValidationAndSanitization",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "cosai_rm",
       "controlRedTeaming",
-      "mitre_atlas",
-      "AML.T0013"
-    ],
-    [
-      "cosai_rm",
-      "controlRedTeaming",
-      "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "cosai_rm",
-      "controlRedTeaming",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
       "mitre_atlas",
       "AML.T0013"
     ],
@@ -5539,103 +2801,13 @@
     ],
     [
       "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
-      "controlRetrievalAndVectorSystemIntegrity",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance",
-      "mitre_atlas",
-      "AML.M0008"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance",
-      "mitre_atlas",
-      "AML.T0103"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
-      "controlRuntimePrivacyEnhancingTechnologies",
-      "mitre_atlas",
-      "AML.T0091"
-    ],
-    [
-      "cosai_rm",
       "controlThreatDetection",
       "mitre_atlas",
       "AML.M0020"
     ],
     [
       "cosai_rm",
-      "controlThreatDetection",
-      "mitre_atlas",
-      "AML.T0063"
-    ],
-    [
-      "cosai_rm",
-      "controlThreatDetection",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "cosai_rm",
       "controlTrainingDataSanitization",
-      "mitre_atlas",
-      "AML.T0047"
-    ],
-    [
-      "cosai_rm",
-      "controlTrainingDataSanitization",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "cosai_rm",
-      "controlUserDataManagement",
-      "mitre_atlas",
-      "AML.T0102"
-    ],
-    [
-      "cosai_rm",
-      "controlUserDataManagement",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "cosai_rm",
-      "controlUserTransparencyAndControls",
       "owasp_llm",
       "LLM07"
     ],
@@ -5647,57 +2819,15 @@
     ],
     [
       "csa_aicm",
-      "AIS-12",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "csa_aicm",
-      "BCR-02",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "csa_aicm",
-      "BCR-08",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "csa_aicm",
       "CEK-13",
       "owasp_agentic",
       "ASI05"
     ],
     [
       "csa_aicm",
-      "CEK-20",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "csa_aicm",
-      "DCS-05",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "csa_aicm",
       "DCS-09",
       "owasp_agentic",
       "ASI01"
-    ],
-    [
-      "csa_aicm",
-      "DCS-09",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "csa_aicm",
-      "DCS-11",
-      "owasp_agentic",
-      "ASI03"
     ],
     [
       "csa_aicm",
@@ -5707,93 +2837,15 @@
     ],
     [
       "csa_aicm",
-      "DSP-13",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "csa_aicm",
-      "DSP-17",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "csa_aicm",
-      "GRC-01",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "csa_aicm",
-      "GRC-01",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "csa_aicm",
       "GRC-06",
       "owasp_agentic",
       "ASI02"
     ],
     [
       "csa_aicm",
-      "GRC-10",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "csa_aicm",
-      "GRC-11",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "csa_aicm",
-      "HRS-04",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "csa_aicm",
-      "I-S-03",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "csa_aicm",
       "I-S-06",
       "owasp_agentic",
       "ASI04"
-    ],
-    [
-      "csa_aicm",
-      "IAM-02",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "csa_aicm",
-      "IAM-05",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "csa_aicm",
-      "LOG-06",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "csa_aicm",
-      "LOG-08",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "csa_aicm",
-      "LOG-13",
-      "owasp_agentic",
-      "ASI02"
     ],
     [
       "csa_aicm",
@@ -5809,33 +2861,9 @@
     ],
     [
       "csa_aicm",
-      "MDS-12",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "csa_aicm",
       "STA-08",
       "owasp_agentic",
       "ASI03"
-    ],
-    [
-      "csa_aicm",
-      "STA-09",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "csa_aicm",
-      "TVM-07",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "csa_aicm",
-      "TVM-07",
-      "owasp_agentic",
-      "ASI04"
     ],
     [
       "csa_aicm",
@@ -5844,52 +2872,16 @@
       "ASI07"
     ],
     [
-      "csa_aicm",
-      "UEM-02",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "csa_aicm",
-      "UEM-05",
-      "owasp_agentic",
-      "ASI09"
+      "mitre_atlas",
+      "AML.M0005",
+      "owasp_llm",
+      "LLM06"
     ],
     [
       "mitre_atlas",
       "AML.M0023",
       "owasp_llm",
       "LLM01"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0026",
-      "owasp_llm",
-      "LLM03"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.000",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0010",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0011",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0011",
-      "owasp_llm",
-      "LLM07"
     ],
     [
       "mitre_atlas",
@@ -5905,69 +2897,15 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0016.001",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0018.002",
-      "owasp_llm",
-      "LLM10"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0019",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0020",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0025",
       "owasp_llm",
       "LLM06"
     ],
     [
       "mitre_atlas",
-      "AML.T0043",
+      "AML.T0034.001",
       "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.002",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.003",
-      "owasp_llm",
-      "LLM07"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0048.000",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0050",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0051",
-      "owasp_llm",
-      "LLM06"
+      "LLM08"
     ],
     [
       "mitre_atlas",
@@ -5979,89 +2917,11 @@
       "mitre_atlas",
       "AML.T0059",
       "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0059",
-      "owasp_llm",
       "LLM08"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0064",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0064",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0065",
-      "owasp_llm",
-      "LLM05"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0066",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0069",
-      "owasp_llm",
-      "LLM08"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0073",
-      "owasp_llm",
-      "LLM06"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0079",
-      "owasp_llm",
-      "LLM01"
     ],
     [
       "mitre_atlas",
       "AML.T0080",
-      "owasp_llm",
-      "LLM02"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0081",
-      "owasp_llm",
-      "LLM01"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0084.002",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0099",
-      "owasp_llm",
-      "LLM09"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0101",
-      "owasp_llm",
-      "LLM04"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0103",
       "owasp_llm",
       "LLM02"
     ],
@@ -6073,61 +2933,7 @@
     ],
     [
       "nist_rmf",
-      "GOVERN-1.1",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "nist_rmf",
       "GOVERN-1.2",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.3",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.5",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.7",
-      "owasp_agentic",
-      "ASI10"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-4.1",
-      "owasp_agentic",
-      "ASI07"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-5.2",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-3.1",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-3.2",
-      "owasp_agentic",
-      "ASI06"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-3.2",
       "owasp_agentic",
       "ASI08"
     ],
@@ -6135,12 +2941,6 @@
       "nist_rmf",
       "MANAGE-4.1",
       "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "nist_rmf",
-      "MAP-1.1",
-      "owasp_agentic",
       "ASI09"
     ],
     [
@@ -6151,81 +2951,21 @@
     ],
     [
       "nist_rmf",
-      "MAP-1.3",
+      "MAP-2.2",
       "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "nist_rmf",
-      "MAP-2.1",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.3",
-      "owasp_agentic",
-      "ASI02"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.3",
-      "owasp_agentic",
-      "ASI07"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.4",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.1",
-      "owasp_agentic",
-      "ASI01"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.1",
-      "owasp_agentic",
-      "ASI09"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.2",
-      "owasp_agentic",
-      "ASI04"
+      "ASI10"
     ],
     [
       "nist_rmf",
       "MAP-4.2",
       "owasp_agentic",
       "ASI07"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.2",
-      "owasp_agentic",
-      "ASI09"
     ],
     [
       "nist_rmf",
       "MEASURE-1.1",
       "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.11",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.12",
-      "owasp_agentic",
-      "ASI02"
+      "ASI07"
     ],
     [
       "nist_rmf",
@@ -6235,57 +2975,21 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-2.3",
-      "owasp_agentic",
-      "ASI05"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.5",
-      "owasp_agentic",
-      "ASI04"
-    ],
-    [
-      "nist_rmf",
       "MEASURE-2.5",
       "owasp_agentic",
       "ASI07"
     ],
     [
       "nist_rmf",
-      "MEASURE-2.6",
-      "owasp_agentic",
-      "ASI03"
-    ],
-    [
-      "nist_rmf",
       "MEASURE-3.2",
       "owasp_agentic",
-      "ASI07"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-3.2",
-      "owasp_agentic",
-      "ASI08"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-3.2",
-      "owasp_agentic",
-      "ASI09"
+      "ASI06"
     ],
     [
       "nist_rmf",
       "MEASURE-4.1",
       "owasp_agentic",
       "ASI02"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-4.1",
-      "owasp_agentic",
-      "ASI07"
     ]
   ],
   "schema_version": 2,
@@ -6296,27 +3000,11 @@
     ],
     [
       "aiuc_1",
-      "A001.2"
-    ],
-    [
-      "aiuc_1",
-      "A001.3"
-    ],
-    [
-      "aiuc_1",
       "A002"
     ],
     [
       "aiuc_1",
-      "A002.1"
-    ],
-    [
-      "aiuc_1",
-      "A003.1"
-    ],
-    [
-      "aiuc_1",
-      "A003.2"
+      "A003"
     ],
     [
       "aiuc_1",
@@ -6324,39 +3012,11 @@
     ],
     [
       "aiuc_1",
-      "A004.3"
-    ],
-    [
-      "aiuc_1",
-      "A004.4"
-    ],
-    [
-      "aiuc_1",
       "A005"
     ],
     [
       "aiuc_1",
-      "A005.2"
-    ],
-    [
-      "aiuc_1",
-      "A005.3"
-    ],
-    [
-      "aiuc_1",
       "A006"
-    ],
-    [
-      "aiuc_1",
-      "A006.1"
-    ],
-    [
-      "aiuc_1",
-      "A006.2"
-    ],
-    [
-      "aiuc_1",
-      "A006.3"
     ],
     [
       "aiuc_1",
@@ -6368,35 +3028,7 @@
     ],
     [
       "aiuc_1",
-      "B001.1"
-    ],
-    [
-      "aiuc_1",
-      "B001.2"
-    ],
-    [
-      "aiuc_1",
       "B002"
-    ],
-    [
-      "aiuc_1",
-      "B002.1"
-    ],
-    [
-      "aiuc_1",
-      "B002.2"
-    ],
-    [
-      "aiuc_1",
-      "B002.3"
-    ],
-    [
-      "aiuc_1",
-      "B002.4"
-    ],
-    [
-      "aiuc_1",
-      "B002.5"
     ],
     [
       "aiuc_1",
@@ -6404,23 +3036,7 @@
     ],
     [
       "aiuc_1",
-      "B003.1"
-    ],
-    [
-      "aiuc_1",
-      "B003.2"
-    ],
-    [
-      "aiuc_1",
       "B004"
-    ],
-    [
-      "aiuc_1",
-      "B004.2"
-    ],
-    [
-      "aiuc_1",
-      "B004.3"
     ],
     [
       "aiuc_1",
@@ -6428,19 +3044,7 @@
     ],
     [
       "aiuc_1",
-      "B005.1"
-    ],
-    [
-      "aiuc_1",
       "B006"
-    ],
-    [
-      "aiuc_1",
-      "B006.1"
-    ],
-    [
-      "aiuc_1",
-      "B006.2"
     ],
     [
       "aiuc_1",
@@ -6452,35 +3056,11 @@
     ],
     [
       "aiuc_1",
-      "B008.1"
-    ],
-    [
-      "aiuc_1",
-      "B008.2"
-    ],
-    [
-      "aiuc_1",
-      "B008.3"
-    ],
-    [
-      "aiuc_1",
-      "B008.4"
-    ],
-    [
-      "aiuc_1",
       "B009"
     ],
     [
       "aiuc_1",
-      "B009.1"
-    ],
-    [
-      "aiuc_1",
-      "B009.2"
-    ],
-    [
-      "aiuc_1",
-      "B009.3"
+      "C001"
     ],
     [
       "aiuc_1",
@@ -6488,23 +3068,7 @@
     ],
     [
       "aiuc_1",
-      "C002.2"
-    ],
-    [
-      "aiuc_1",
       "C003"
-    ],
-    [
-      "aiuc_1",
-      "C003.1"
-    ],
-    [
-      "aiuc_1",
-      "C003.2"
-    ],
-    [
-      "aiuc_1",
-      "C003.3"
     ],
     [
       "aiuc_1",
@@ -6512,23 +3076,7 @@
     ],
     [
       "aiuc_1",
-      "C004.2"
-    ],
-    [
-      "aiuc_1",
-      "C004.3"
-    ],
-    [
-      "aiuc_1",
       "C005"
-    ],
-    [
-      "aiuc_1",
-      "C005.1"
-    ],
-    [
-      "aiuc_1",
-      "C005.2"
     ],
     [
       "aiuc_1",
@@ -6536,23 +3084,7 @@
     ],
     [
       "aiuc_1",
-      "C006.3"
-    ],
-    [
-      "aiuc_1",
       "C007"
-    ],
-    [
-      "aiuc_1",
-      "C007.1"
-    ],
-    [
-      "aiuc_1",
-      "C007.2"
-    ],
-    [
-      "aiuc_1",
-      "C007.3"
     ],
     [
       "aiuc_1",
@@ -6560,23 +3092,7 @@
     ],
     [
       "aiuc_1",
-      "C008.1"
-    ],
-    [
-      "aiuc_1",
-      "C009"
-    ],
-    [
-      "aiuc_1",
-      "C009.2"
-    ],
-    [
-      "aiuc_1",
       "C010"
-    ],
-    [
-      "aiuc_1",
-      "C010.1"
     ],
     [
       "aiuc_1",
@@ -6584,31 +3100,19 @@
     ],
     [
       "aiuc_1",
-      "C011.1"
-    ],
-    [
-      "aiuc_1",
       "C012"
     ],
     [
       "aiuc_1",
-      "D001.1"
+      "D001"
     ],
     [
       "aiuc_1",
-      "D002.1"
+      "D002"
     ],
     [
       "aiuc_1",
-      "D003.2"
-    ],
-    [
-      "aiuc_1",
-      "D003.3"
-    ],
-    [
-      "aiuc_1",
-      "D003.4"
+      "D003"
     ],
     [
       "aiuc_1",
@@ -6616,19 +3120,15 @@
     ],
     [
       "aiuc_1",
-      "D004.1"
+      "E001"
     ],
     [
       "aiuc_1",
-      "E001.2"
+      "E002"
     ],
     [
       "aiuc_1",
-      "E001.3"
-    ],
-    [
-      "aiuc_1",
-      "E003.1"
+      "E003"
     ],
     [
       "aiuc_1",
@@ -6636,19 +3136,11 @@
     ],
     [
       "aiuc_1",
-      "E004.1"
+      "E005"
     ],
     [
       "aiuc_1",
-      "E004.2"
-    ],
-    [
-      "aiuc_1",
-      "E005.1"
-    ],
-    [
-      "aiuc_1",
-      "E006.1"
+      "E006"
     ],
     [
       "aiuc_1",
@@ -6656,35 +3148,15 @@
     ],
     [
       "aiuc_1",
-      "E008.1"
+      "E008"
     ],
     [
       "aiuc_1",
-      "E008.2"
-    ],
-    [
-      "aiuc_1",
-      "E009.1"
+      "E009"
     ],
     [
       "aiuc_1",
       "E010"
-    ],
-    [
-      "aiuc_1",
-      "E010.1"
-    ],
-    [
-      "aiuc_1",
-      "E010.2"
-    ],
-    [
-      "aiuc_1",
-      "E010.3"
-    ],
-    [
-      "aiuc_1",
-      "E010.4"
     ],
     [
       "aiuc_1",
@@ -6696,15 +3168,7 @@
     ],
     [
       "aiuc_1",
-      "E012.1"
-    ],
-    [
-      "aiuc_1",
-      "E013.2"
-    ],
-    [
-      "aiuc_1",
-      "E013.3"
+      "E013"
     ],
     [
       "aiuc_1",
@@ -6716,27 +3180,7 @@
     ],
     [
       "aiuc_1",
-      "E015.1"
-    ],
-    [
-      "aiuc_1",
-      "E015.2"
-    ],
-    [
-      "aiuc_1",
-      "E015.3"
-    ],
-    [
-      "aiuc_1",
-      "E016"
-    ],
-    [
-      "aiuc_1",
-      "E017.1"
-    ],
-    [
-      "aiuc_1",
-      "E017.3"
+      "E017"
     ],
     [
       "aiuc_1",
@@ -6744,19 +3188,7 @@
     ],
     [
       "aiuc_1",
-      "F001.2"
-    ],
-    [
-      "aiuc_1",
       "F002"
-    ],
-    [
-      "aiuc_1",
-      "F002.2"
-    ],
-    [
-      "cosai_rm",
-      "ASSC"
     ],
     [
       "cosai_rm",
@@ -6768,31 +3200,7 @@
     ],
     [
       "cosai_rm",
-      "EBM"
-    ],
-    [
-      "cosai_rm",
-      "EDH"
-    ],
-    [
-      "cosai_rm",
-      "ISD"
-    ],
-    [
-      "cosai_rm",
-      "MLD"
-    ],
-    [
-      "cosai_rm",
       "ORH"
-    ],
-    [
-      "cosai_rm",
-      "PCP"
-    ],
-    [
-      "cosai_rm",
-      "RVP"
     ],
     [
       "cosai_rm",
@@ -6812,11 +3220,11 @@
     ],
     [
       "cosai_rm",
-      "controlAgentPluginUserControl"
+      "controlApplicationAccessManagement"
     ],
     [
       "cosai_rm",
-      "controlInputValidationAndSanitization"
+      "controlModelAndDataAccessControls"
     ],
     [
       "cosai_rm",
@@ -6828,31 +3236,11 @@
     ],
     [
       "cosai_rm",
-      "controlModelPrivacyEnhancingTechnologies"
-    ],
-    [
-      "cosai_rm",
-      "controlOrchestratorAndRouteIntegrity"
-    ],
-    [
-      "cosai_rm",
-      "controlOutputValidationAndSanitization"
-    ],
-    [
-      "cosai_rm",
       "controlRedTeaming"
     ],
     [
       "cosai_rm",
       "controlRetrievalAndVectorSystemIntegrity"
-    ],
-    [
-      "cosai_rm",
-      "controlRiskGovernance"
-    ],
-    [
-      "cosai_rm",
-      "controlRuntimePrivacyEnhancingTechnologies"
     ],
     [
       "cosai_rm",
@@ -6863,28 +3251,8 @@
       "controlTrainingDataSanitization"
     ],
     [
-      "cosai_rm",
-      "controlUserDataManagement"
-    ],
-    [
-      "cosai_rm",
-      "controlUserTransparencyAndControls"
-    ],
-    [
       "csa_aicm",
       "A-A-02"
-    ],
-    [
-      "csa_aicm",
-      "AIS-12"
-    ],
-    [
-      "csa_aicm",
-      "BCR-02"
-    ],
-    [
-      "csa_aicm",
-      "BCR-08"
     ],
     [
       "csa_aicm",
@@ -6892,19 +3260,7 @@
     ],
     [
       "csa_aicm",
-      "CEK-20"
-    ],
-    [
-      "csa_aicm",
-      "DCS-05"
-    ],
-    [
-      "csa_aicm",
       "DCS-09"
-    ],
-    [
-      "csa_aicm",
-      "DCS-11"
     ],
     [
       "csa_aicm",
@@ -6912,59 +3268,11 @@
     ],
     [
       "csa_aicm",
-      "DSP-13"
-    ],
-    [
-      "csa_aicm",
-      "DSP-17"
-    ],
-    [
-      "csa_aicm",
-      "GRC-01"
-    ],
-    [
-      "csa_aicm",
       "GRC-06"
     ],
     [
       "csa_aicm",
-      "GRC-10"
-    ],
-    [
-      "csa_aicm",
-      "GRC-11"
-    ],
-    [
-      "csa_aicm",
-      "HRS-04"
-    ],
-    [
-      "csa_aicm",
-      "I-S-03"
-    ],
-    [
-      "csa_aicm",
       "I-S-06"
-    ],
-    [
-      "csa_aicm",
-      "IAM-02"
-    ],
-    [
-      "csa_aicm",
-      "IAM-05"
-    ],
-    [
-      "csa_aicm",
-      "LOG-06"
-    ],
-    [
-      "csa_aicm",
-      "LOG-08"
-    ],
-    [
-      "csa_aicm",
-      "LOG-13"
     ],
     [
       "csa_aicm",
@@ -6976,51 +3284,19 @@
     ],
     [
       "csa_aicm",
-      "MDS-12"
-    ],
-    [
-      "csa_aicm",
       "STA-08"
-    ],
-    [
-      "csa_aicm",
-      "STA-09"
-    ],
-    [
-      "csa_aicm",
-      "TVM-07"
     ],
     [
       "csa_aicm",
       "TVM-10"
     ],
     [
-      "csa_aicm",
-      "UEM-02"
-    ],
-    [
-      "csa_aicm",
-      "UEM-05"
+      "mitre_atlas",
+      "AML.M0005"
     ],
     [
       "mitre_atlas",
       "AML.M0023"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0026"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.000"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0010"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0011"
     ],
     [
       "mitre_atlas",
@@ -7032,47 +3308,11 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0016.001"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0018.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0019"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0020"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0025"
     ],
     [
       "mitre_atlas",
-      "AML.T0043"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.003"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0048.000"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0050"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0051"
+      "AML.T0034.001"
     ],
     [
       "mitre_atlas",
@@ -7084,51 +3324,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0064"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0065"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0066"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0069"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0073"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0079"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0080"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0081"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0084.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0099"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0101"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0103"
     ],
     [
       "mitre_atlas",
@@ -7136,39 +3332,7 @@
     ],
     [
       "nist_rmf",
-      "GOVERN-1.1"
-    ],
-    [
-      "nist_rmf",
       "GOVERN-1.2"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.3"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.5"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.7"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-4.1"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-5.2"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-3.1"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-3.2"
     ],
     [
       "nist_rmf",
@@ -7176,27 +3340,11 @@
     ],
     [
       "nist_rmf",
-      "MAP-1.1"
-    ],
-    [
-      "nist_rmf",
       "MAP-1.3"
     ],
     [
       "nist_rmf",
-      "MAP-2.1"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.3"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.4"
-    ],
-    [
-      "nist_rmf",
-      "MAP-4.1"
+      "MAP-2.2"
     ],
     [
       "nist_rmf",
@@ -7208,27 +3356,11 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-2.11"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.12"
-    ],
-    [
-      "nist_rmf",
       "MEASURE-2.13"
     ],
     [
       "nist_rmf",
-      "MEASURE-2.3"
-    ],
-    [
-      "nist_rmf",
       "MEASURE-2.5"
-    ],
-    [
-      "nist_rmf",
-      "MEASURE-2.6"
     ],
     [
       "nist_rmf",
@@ -7242,7 +3374,27 @@
   "target_tuples": [
     [
       "csa_aicm",
+      "A-A-02"
+    ],
+    [
+      "csa_aicm",
       "A-A-05"
+    ],
+    [
+      "csa_aicm",
+      "A-A-06"
+    ],
+    [
+      "csa_aicm",
+      "AIS-02"
+    ],
+    [
+      "csa_aicm",
+      "AIS-04"
+    ],
+    [
+      "csa_aicm",
+      "AIS-05"
     ],
     [
       "csa_aicm",
@@ -7250,11 +3402,27 @@
     ],
     [
       "csa_aicm",
+      "AIS-09"
+    ],
+    [
+      "csa_aicm",
+      "AIS-11"
+    ],
+    [
+      "csa_aicm",
+      "AIS-14"
+    ],
+    [
+      "csa_aicm",
       "BCR-01"
     ],
     [
       "csa_aicm",
-      "BCR-06"
+      "BCR-02"
+    ],
+    [
+      "csa_aicm",
+      "BCR-09"
     ],
     [
       "csa_aicm",
@@ -7262,7 +3430,15 @@
     ],
     [
       "csa_aicm",
-      "CCC-07"
+      "CCC-03"
+    ],
+    [
+      "csa_aicm",
+      "CCC-05"
+    ],
+    [
+      "csa_aicm",
+      "CEK-01"
     ],
     [
       "csa_aicm",
@@ -7270,51 +3446,71 @@
     ],
     [
       "csa_aicm",
-      "CEK-17"
+      "DCS-03"
     ],
     [
       "csa_aicm",
-      "CEK-21"
+      "DSP-07"
     ],
     [
       "csa_aicm",
-      "DCS-04"
+      "DSP-10"
     ],
     [
       "csa_aicm",
-      "DCS-14"
+      "DSP-13"
     ],
     [
       "csa_aicm",
-      "DSP-20"
+      "DSP-14"
     ],
     [
       "csa_aicm",
-      "DSP-22"
+      "DSP-16"
     ],
     [
       "csa_aicm",
-      "GRC-04"
+      "DSP-18"
     ],
     [
       "csa_aicm",
-      "GRC-10"
+      "GRC-06"
     ],
     [
       "csa_aicm",
-      "HRS-03"
+      "GRC-09"
     ],
     [
       "csa_aicm",
-      "I-S-02"
+      "GRC-12"
     ],
     [
       "csa_aicm",
-      "I-S-03"
+      "HRS-12"
     ],
     [
       "csa_aicm",
-      "LOG-01"
+      "IAM-03"
+    ],
+    [
+      "csa_aicm",
+      "IAM-04"
+    ],
+    [
+      "csa_aicm",
+      "IAM-05"
+    ],
+    [
+      "csa_aicm",
+      "IAM-08"
+    ],
+    [
+      "csa_aicm",
+      "IAM-18"
+    ],
+    [
+      "csa_aicm",
+      "LOG-07"
     ],
     [
       "csa_aicm",
@@ -7322,43 +3518,83 @@
     ],
     [
       "csa_aicm",
-      "LOG-09"
-    ],
-    [
-      "csa_aicm",
-      "LOG-11"
-    ],
-    [
-      "csa_aicm",
       "LOG-12"
     ],
     [
       "csa_aicm",
-      "LOG-13"
+      "LOG-15"
     ],
     [
       "csa_aicm",
-      "MDS-11"
+      "MDS-04"
     ],
     [
       "csa_aicm",
-      "STA-01"
+      "MDS-06"
     ],
     [
       "csa_aicm",
-      "TVM-09"
+      "MDS-07"
     ],
     [
       "csa_aicm",
-      "UEM-01"
+      "MDS-10"
     ],
     [
       "csa_aicm",
-      "UEM-02"
+      "SEF-09"
     ],
     [
       "csa_aicm",
-      "UEM-13"
+      "STA-10"
+    ],
+    [
+      "csa_aicm",
+      "STA-12"
+    ],
+    [
+      "csa_aicm",
+      "STA-13"
+    ],
+    [
+      "csa_aicm",
+      "TVM-01"
+    ],
+    [
+      "csa_aicm",
+      "TVM-02"
+    ],
+    [
+      "csa_aicm",
+      "TVM-03"
+    ],
+    [
+      "csa_aicm",
+      "TVM-05"
+    ],
+    [
+      "csa_aicm",
+      "TVM-06"
+    ],
+    [
+      "csa_aicm",
+      "TVM-07"
+    ],
+    [
+      "csa_aicm",
+      "TVM-10"
+    ],
+    [
+      "csa_aicm",
+      "TVM-11"
+    ],
+    [
+      "csa_aicm",
+      "TVM-12"
+    ],
+    [
+      "csa_aicm",
+      "UEM-05"
     ],
     [
       "csa_aicm",
@@ -7366,43 +3602,7 @@
     ],
     [
       "eu_gpai_cop",
-      "Article-14"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-16"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-18"
-    ],
-    [
-      "eu_gpai_cop",
       "Article-19"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-20"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-27"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-43"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-44"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-46"
-    ],
-    [
-      "eu_gpai_cop",
-      "Article-50"
     ],
     [
       "eu_gpai_cop",
@@ -7410,79 +3610,15 @@
     ],
     [
       "eu_gpai_cop",
-      "Commitment_3"
-    ],
-    [
-      "eu_gpai_cop",
-      "Commitment_7"
-    ],
-    [
-      "eu_gpai_cop",
-      "Commitment_9"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_1.1"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_1.2"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_10.2"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_2.1"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_3.2"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_4.1"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_5.1"
-    ],
-    [
-      "eu_gpai_cop",
       "Measure_7.3"
     ],
     [
-      "eu_gpai_cop",
-      "Measure_7.7"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_8.3"
-    ],
-    [
-      "eu_gpai_cop",
-      "Measure_9.2"
+      "mitre_atlas",
+      "AML.M0004"
     ],
     [
       "mitre_atlas",
       "AML.M0005"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0008"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0010"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0011"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0013"
     ],
     [
       "mitre_atlas",
@@ -7498,43 +3634,11 @@
     ],
     [
       "mitre_atlas",
-      "AML.M0023"
+      "AML.M0021"
     ],
     [
       "mitre_atlas",
-      "AML.M0027"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0028"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0031"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0032"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0033"
-    ],
-    [
-      "mitre_atlas",
-      "AML.M0034"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0000.001"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0000.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0002"
+      "AML.M0024"
     ],
     [
       "mitre_atlas",
@@ -7542,27 +3646,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0005.001"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0008.000"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.001"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.004"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0008.005"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0011.003"
     ],
     [
       "mitre_atlas",
@@ -7570,35 +3654,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0015"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0016.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0017"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0018"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0018.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0020"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0024.001"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0034.000"
     ],
     [
       "mitre_atlas",
@@ -7606,55 +3662,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0042"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.001"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0043.002"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0046"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0047"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0050"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0054"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0063"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0066"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0068"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0071"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0073"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0075"
     ],
     [
       "mitre_atlas",
@@ -7662,43 +3670,7 @@
     ],
     [
       "mitre_atlas",
-      "AML.T0088"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0091"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0093"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0102"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0103"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0104"
-    ],
-    [
-      "mitre_atlas",
       "AML.T0105"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0112"
-    ],
-    [
-      "mitre_atlas",
-      "AML.T0112.000"
-    ],
-    [
-      "mitre_atlas",
-      "AML.TA0007"
     ],
     [
       "mitre_atlas",
@@ -7714,11 +3686,7 @@
     ],
     [
       "nist_rmf",
-      "GOVERN-1.3"
-    ],
-    [
-      "nist_rmf",
-      "GOVERN-1.4"
+      "GOVERN-1.5"
     ],
     [
       "nist_rmf",
@@ -7726,27 +3694,23 @@
     ],
     [
       "nist_rmf",
-      "GOVERN-4.1"
+      "GOVERN-2.3"
     ],
     [
       "nist_rmf",
-      "GOVERN-4.2"
+      "MANAGE-1.1"
     ],
     [
       "nist_rmf",
-      "GOVERN-5.1"
+      "MANAGE-1.3"
     ],
     [
       "nist_rmf",
-      "GOVERN-6.2"
+      "MANAGE-3.1"
     ],
     [
       "nist_rmf",
       "MANAGE-3.2"
-    ],
-    [
-      "nist_rmf",
-      "MANAGE-4.1"
     ],
     [
       "nist_rmf",
@@ -7758,19 +3722,15 @@
     ],
     [
       "nist_rmf",
-      "MAP-1.3"
+      "MAP-1.6"
     ],
     [
       "nist_rmf",
-      "MAP-3.3"
+      "MAP-2.1"
     ],
     [
       "nist_rmf",
       "MAP-3.4"
-    ],
-    [
-      "nist_rmf",
-      "MAP-3.5"
     ],
     [
       "nist_rmf",
@@ -7782,7 +3742,7 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-1.1"
+      "MAP-5.2"
     ],
     [
       "nist_rmf",
@@ -7790,11 +3750,11 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-2.11"
+      "MEASURE-2.1"
     ],
     [
       "nist_rmf",
-      "MEASURE-2.12"
+      "MEASURE-2.4"
     ],
     [
       "nist_rmf",
@@ -7802,7 +3762,11 @@
     ],
     [
       "nist_rmf",
-      "MEASURE-3.3"
+      "MEASURE-2.8"
+    ],
+    [
+      "nist_rmf",
+      "MEASURE-3.1"
     ],
     [
       "nist_rmf",
@@ -7811,6 +3775,10 @@
     [
       "nist_rmf",
       "MEASURE-4.2"
+    ],
+    [
+      "nist_rmf",
+      "MEASURE-4.3"
     ],
     [
       "owasp_agentic",
@@ -7859,10 +3827,6 @@
     [
       "owasp_llm",
       "LLM02"
-    ],
-    [
-      "owasp_llm",
-      "LLM03"
     ],
     [
       "owasp_llm",

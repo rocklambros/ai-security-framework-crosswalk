@@ -11,7 +11,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
 
-from classifier.data.tier_mapper import TierLabel, map_upstream_tier
+from classifier.data.tier_mapper import TierLabel, expand_soft_labels, map_upstream_tier
 from classifier.data.negative_miner import mine_hard_negatives
 from classifier.ensemble.leakage_firewall import (
     check_no_leakage,
@@ -119,11 +119,6 @@ def build_expert_training_set(
         if pair_key in frozen_keys or pair_key in cal_keys:
             continue
 
-        tier_label = map_upstream_tier(
-            tier=row.get("tier", "Foundational"),
-            scope=row.get("scope", "Both"),
-        )
-
         # Look up source text from control_texts dict (nodes.json + DSGAI titles).
         # Fall back to source_id if no description found.
         source_text = control_texts.get(source_node_id, src_id)
@@ -132,19 +127,24 @@ def build_expert_training_set(
         target_text = row.get("target_control_name", "")
         notes = row.get("notes", "")
         if notes and target_text:
-            target_text = f"{target_text} — {notes}"
+            target_text = f"{target_text} -- {notes}"
         elif notes:
             target_text = notes
 
-        positive_pairs.append({
+        # Soft label expansion: each upstream positive becomes 3 rows
+        base_row = {
             "pair_key": pair_key,
             "source_node_id": source_node_id,
             "target_node_id": tgt_node_id,
             "source_text": source_text,
             "target_text": target_text,
-            "tier_label": int(tier_label),
             "data_source": "expert_upstream",
-        })
+            "tier": row.get("tier", "Foundational"),
+        }
+        expanded = expand_soft_labels(base_row)
+        for exp_row in expanded:
+            positive_pairs.append(exp_row)
+
         positive_pair_set.add((source_node_id, tgt_node_id))
 
     # Build text dicts for negative mining
@@ -174,6 +174,11 @@ def build_expert_training_set(
         fw_src = src_id.split(":")[0] if ":" in src_id else "unknown"
         fw_tgt = tgt_id.split(":")[0] if ":" in tgt_id else "unknown"
         pair_key = f"{fw_src}__{fw_tgt}::{src_id}__{tgt_id}"
+        # Skip negatives whose pair_key coincides with a frozen or cal pair.
+        # The negative miner operates at node level and cannot avoid this; we
+        # filter here to guarantee the firewall passes in both "node" and "pair" modes.
+        if pair_key in frozen_keys or pair_key in cal_keys:
+            continue
         negative_pairs.append({
             "pair_key": pair_key,
             "source_node_id": src_id,
@@ -181,6 +186,7 @@ def build_expert_training_set(
             "source_text": source_texts.get(src_id, ""),
             "target_text": target_texts.get(tgt_id, ""),
             "tier_label": int(TierLabel.UNRELATED),
+            "sample_weight": 0.4,
             "data_source": "hard_negative",
         })
 

@@ -1,15 +1,17 @@
 {
   "framework_pairs": {
     "aiuc_1->csa_aicm": {
-      "edge_count": 2092,
+      "edge_count": 1224,
       "confidence_counts": {
-        "suggestive": 1769,
+        "suggestive": 581,
         "authoritative": 257,
+        "expert": 320,
         "unvalidated": 66
       },
       "rationale_counts": {
-        "CROSS_FRAMEWORK_CATEGORY": 1769,
-        "null": 323
+        "CROSS_FRAMEWORK_CATEGORY": 581,
+        "null": 323,
+        "CROSS_FRAMEWORK_MAPPING": 320
       }
     },
     "aiuc_1->eu_gpai_cop": {
@@ -22,12 +24,14 @@
       }
     },
     "aiuc_1->nist_rmf": {
-      "edge_count": 152,
+      "edge_count": 304,
       "confidence_counts": {
-        "authoritative": 152
+        "authoritative": 152,
+        "expert": 152
       },
       "rationale_counts": {
-        "null": 152
+        "null": 152,
+        "CROSS_FRAMEWORK_MAPPING": 152
       }
     },
     "aiuc_1->owasp_ai_exchange": {
@@ -56,21 +60,25 @@
       }
     },
     "aiuc_1->owasp_llm": {
-      "edge_count": 60,
+      "edge_count": 120,
       "confidence_counts": {
-        "authoritative": 60
+        "authoritative": 60,
+        "expert": 60
       },
       "rationale_counts": {
-        "null": 60
+        "null": 60,
+        "CROSS_FRAMEWORK_MAPPING": 60
       }
     },
     "aiuc_1->mitre_atlas": {
-      "edge_count": 32,
+      "edge_count": 64,
       "confidence_counts": {
-        "authoritative": 32
+        "authoritative": 32,
+        "expert": 32
       },
       "rationale_counts": {
-        "null": 32
+        "null": 32,
+        "CROSS_FRAMEWORK_MAPPING": 32
       }
     },
     "cosai_rm->mitre_atlas": {
@@ -92,12 +100,12 @@
       }
     },
     "csa_aicm->aiuc_1": {
-      "edge_count": 1769,
+      "edge_count": 581,
       "confidence_counts": {
-        "suggestive": 1769
+        "suggestive": 581
       },
       "rationale_counts": {
-        "CROSS_FRAMEWORK_CATEGORY": 1769
+        "CROSS_FRAMEWORK_CATEGORY": 581
       }
     },
     "owasp_ai_exchange->aiuc_1": {
@@ -211,1071 +219,1071 @@
   },
   "node_degrees": {
     "aiuc_1:A001": {
-      "out_degree": 70,
+      "out_degree": 80,
       "in_degree": 57,
-      "cross_out": 67,
+      "cross_out": 77,
       "cross_in": 56
     },
     "aiuc_1:A001.1": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A001.2": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A001.3": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A002": {
-      "out_degree": 28,
+      "out_degree": 31,
       "in_degree": 25,
-      "cross_out": 27,
+      "cross_out": 30,
       "cross_in": 24
     },
     "aiuc_1:A002.1": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A003": {
-      "out_degree": 41,
+      "out_degree": 52,
       "in_degree": 25,
-      "cross_out": 38,
+      "cross_out": 49,
       "cross_in": 24
     },
     "aiuc_1:A003.1": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A003.2": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A003.3": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A004": {
-      "out_degree": 45,
+      "out_degree": 57,
       "in_degree": 25,
-      "cross_out": 41,
+      "cross_out": 53,
       "cross_in": 24
     },
     "aiuc_1:A004.1": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A004.2": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A004.3": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A004.4": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A005": {
-      "out_degree": 66,
+      "out_degree": 73,
       "in_degree": 57,
-      "cross_out": 63,
+      "cross_out": 70,
       "cross_in": 56
     },
     "aiuc_1:A005.1": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A005.2": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A005.3": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A006": {
-      "out_degree": 40,
+      "out_degree": 51,
       "in_degree": 25,
-      "cross_out": 37,
+      "cross_out": 48,
       "cross_in": 24
     },
     "aiuc_1:A006.1": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A006.2": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A006.3": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A007": {
-      "out_degree": 36,
+      "out_degree": 42,
       "in_degree": 25,
-      "cross_out": 33,
+      "cross_out": 39,
       "cross_in": 24
     },
     "aiuc_1:A007.1": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A007.2": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:A007.3": {
-      "out_degree": 24,
-      "in_degree": 25,
-      "cross_out": 24,
-      "cross_in": 24
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B001": {
-      "out_degree": 80,
+      "out_degree": 102,
       "in_degree": 62,
-      "cross_out": 78,
+      "cross_out": 100,
       "cross_in": 61
     },
     "aiuc_1:B001.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B001.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B002": {
-      "out_degree": 82,
+      "out_degree": 101,
       "in_degree": 59,
-      "cross_out": 77,
+      "cross_out": 96,
       "cross_in": 58
     },
     "aiuc_1:B002.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B002.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B002.3": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B002.4": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B002.5": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B003": {
-      "out_degree": 29,
+      "out_degree": 35,
       "in_degree": 22,
-      "cross_out": 27,
+      "cross_out": 33,
       "cross_in": 21
     },
     "aiuc_1:B003.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B003.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B004": {
-      "out_degree": 40,
+      "out_degree": 55,
       "in_degree": 21,
-      "cross_out": 36,
+      "cross_out": 51,
       "cross_in": 20
     },
     "aiuc_1:B004.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B004.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B004.3": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B004.4": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B005": {
-      "out_degree": 70,
+      "out_degree": 79,
       "in_degree": 59,
-      "cross_out": 65,
+      "cross_out": 74,
       "cross_in": 58
     },
     "aiuc_1:B005.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B005.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B005.3": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B005.4": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B005.5": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B006": {
-      "out_degree": 35,
+      "out_degree": 41,
       "in_degree": 31,
-      "cross_out": 33,
+      "cross_out": 39,
       "cross_in": 30
     },
     "aiuc_1:B006.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B006.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B007": {
-      "out_degree": 52,
+      "out_degree": 78,
       "in_degree": 25,
-      "cross_out": 50,
+      "cross_out": 76,
       "cross_in": 24
     },
     "aiuc_1:B007.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B007.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B008": {
-      "out_degree": 60,
+      "out_degree": 90,
       "in_degree": 24,
-      "cross_out": 56,
+      "cross_out": 86,
       "cross_in": 23
     },
     "aiuc_1:B008.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B008.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B008.3": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B008.4": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B009": {
-      "out_degree": 33,
+      "out_degree": 40,
       "in_degree": 24,
-      "cross_out": 30,
+      "cross_out": 37,
       "cross_in": 23
     },
     "aiuc_1:B009.1": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B009.2": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:B009.3": {
-      "out_degree": 19,
-      "in_degree": 20,
-      "cross_out": 19,
-      "cross_in": 19
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C001": {
-      "out_degree": 29,
+      "out_degree": 51,
       "in_degree": 4,
-      "cross_out": 27,
+      "cross_out": 49,
       "cross_in": 3
     },
     "aiuc_1:C001.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C001.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C002": {
-      "out_degree": 26,
+      "out_degree": 41,
+      "in_degree": 4,
+      "cross_out": 38,
+      "cross_in": 3
+    },
+    "aiuc_1:C002.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C002.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C002.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C003": {
+      "out_degree": 27,
       "in_degree": 4,
       "cross_out": 23,
       "cross_in": 3
     },
-    "aiuc_1:C002.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C002.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C002.3": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C003": {
-      "out_degree": 19,
-      "in_degree": 4,
-      "cross_out": 15,
-      "cross_in": 3
-    },
     "aiuc_1:C003.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C003.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C003.3": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C003.4": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C004": {
-      "out_degree": 16,
+      "out_degree": 23,
       "in_degree": 4,
-      "cross_out": 13,
+      "cross_out": 20,
       "cross_in": 3
     },
     "aiuc_1:C004.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C004.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C004.3": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:C005": {
-      "out_degree": 15,
-      "in_degree": 4,
-      "cross_out": 12,
-      "cross_in": 3
-    },
-    "aiuc_1:C005.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C005.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C005.3": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C006": {
-      "out_degree": 48,
-      "in_degree": 37,
-      "cross_out": 45,
-      "cross_in": 36
-    },
-    "aiuc_1:C006.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C006.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C006.3": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C007": {
-      "out_degree": 13,
-      "in_degree": 4,
-      "cross_out": 10,
-      "cross_in": 3
-    },
-    "aiuc_1:C007.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C007.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C007.3": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C008": {
-      "out_degree": 18,
-      "in_degree": 4,
-      "cross_out": 15,
-      "cross_in": 3
-    },
-    "aiuc_1:C008.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C008.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C008.4": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C009": {
-      "out_degree": 31,
-      "in_degree": 20,
-      "cross_out": 29,
-      "cross_in": 19
-    },
-    "aiuc_1:C009.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C009.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C010": {
-      "out_degree": 17,
-      "in_degree": 4,
-      "cross_out": 16,
-      "cross_in": 3
-    },
-    "aiuc_1:C010.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C011": {
-      "out_degree": 13,
-      "in_degree": 4,
-      "cross_out": 12,
-      "cross_in": 3
-    },
-    "aiuc_1:C011.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:C012": {
-      "out_degree": 13,
-      "in_degree": 4,
-      "cross_out": 12,
-      "cross_in": 3
-    },
-    "aiuc_1:C012.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:D001": {
-      "out_degree": 14,
-      "in_degree": 4,
-      "cross_out": 11,
-      "cross_in": 3
-    },
-    "aiuc_1:D001.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:D001.2": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:D001.3": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:D002": {
-      "out_degree": 19,
+      "out_degree": 21,
       "in_degree": 4,
       "cross_out": 18,
       "cross_in": 3
     },
-    "aiuc_1:D002.1": {
-      "out_degree": 3,
+    "aiuc_1:C005.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C005.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C005.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C006": {
+      "out_degree": 53,
+      "in_degree": 37,
+      "cross_out": 50,
+      "cross_in": 36
+    },
+    "aiuc_1:C006.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C006.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C006.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C007": {
+      "out_degree": 17,
       "in_degree": 4,
-      "cross_out": 3,
+      "cross_out": 14,
       "cross_in": 3
     },
-    "aiuc_1:D003": {
-      "out_degree": 30,
+    "aiuc_1:C007.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C007.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C007.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C008": {
+      "out_degree": 28,
       "in_degree": 4,
       "cross_out": 25,
       "cross_in": 3
     },
-    "aiuc_1:D003.1": {
-      "out_degree": 3,
+    "aiuc_1:C008.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C008.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C008.4": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C009": {
+      "out_degree": 35,
+      "in_degree": 20,
+      "cross_out": 33,
+      "cross_in": 19
+    },
+    "aiuc_1:C009.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C009.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C010": {
+      "out_degree": 28,
       "in_degree": 4,
-      "cross_out": 3,
+      "cross_out": 27,
       "cross_in": 3
     },
-    "aiuc_1:D003.2": {
-      "out_degree": 3,
+    "aiuc_1:C010.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C011": {
+      "out_degree": 21,
       "in_degree": 4,
-      "cross_out": 3,
+      "cross_out": 20,
       "cross_in": 3
     },
-    "aiuc_1:D003.3": {
-      "out_degree": 3,
+    "aiuc_1:C011.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:C012": {
+      "out_degree": 22,
       "in_degree": 4,
-      "cross_out": 3,
+      "cross_out": 21,
       "cross_in": 3
     },
-    "aiuc_1:D003.4": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+    "aiuc_1:C012.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
-    "aiuc_1:D003.5": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
-    },
-    "aiuc_1:D004": {
-      "out_degree": 18,
+    "aiuc_1:D001": {
+      "out_degree": 20,
       "in_degree": 4,
       "cross_out": 17,
+      "cross_in": 3
+    },
+    "aiuc_1:D001.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D001.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D001.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D002": {
+      "out_degree": 31,
+      "in_degree": 4,
+      "cross_out": 30,
+      "cross_in": 3
+    },
+    "aiuc_1:D002.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D003": {
+      "out_degree": 44,
+      "in_degree": 4,
+      "cross_out": 39,
+      "cross_in": 3
+    },
+    "aiuc_1:D003.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D003.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D003.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D003.4": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D003.5": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:D004": {
+      "out_degree": 28,
+      "in_degree": 4,
+      "cross_out": 27,
       "cross_in": 3
     },
     "aiuc_1:D004.1": {
-      "out_degree": 3,
-      "in_degree": 4,
-      "cross_out": 3,
-      "cross_in": 3
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E001": {
-      "out_degree": 65,
+      "out_degree": 78,
       "in_degree": 45,
-      "cross_out": 61,
+      "cross_out": 74,
       "cross_in": 44
     },
     "aiuc_1:E001.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E001.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E001.3": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E001.4": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E002": {
-      "out_degree": 12,
-      "in_degree": 2,
-      "cross_out": 10,
-      "cross_in": 1
-    },
-    "aiuc_1:E002.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E002.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E003": {
-      "out_degree": 12,
-      "in_degree": 2,
-      "cross_out": 10,
-      "cross_in": 1
-    },
-    "aiuc_1:E003.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E003.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E004": {
-      "out_degree": 19,
-      "in_degree": 2,
-      "cross_out": 17,
-      "cross_in": 1
-    },
-    "aiuc_1:E004.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E004.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E005": {
-      "out_degree": 41,
-      "in_degree": 21,
-      "cross_out": 40,
-      "cross_in": 20
-    },
-    "aiuc_1:E005.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E006": {
-      "out_degree": 15,
-      "in_degree": 2,
-      "cross_out": 14,
-      "cross_in": 1
-    },
-    "aiuc_1:E006.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E007": {
-      "out_degree": 17,
+      "out_degree": 18,
       "in_degree": 2,
       "cross_out": 16,
       "cross_in": 1
     },
-    "aiuc_1:E007.1": {
-      "out_degree": 1,
+    "aiuc_1:E002.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E002.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E003": {
+      "out_degree": 18,
       "in_degree": 2,
-      "cross_out": 1,
+      "cross_out": 16,
       "cross_in": 1
     },
-    "aiuc_1:E008": {
-      "out_degree": 27,
+    "aiuc_1:E003.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E003.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E004": {
+      "out_degree": 32,
+      "in_degree": 2,
+      "cross_out": 30,
+      "cross_in": 1
+    },
+    "aiuc_1:E004.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E004.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E005": {
+      "out_degree": 60,
+      "in_degree": 21,
+      "cross_out": 59,
+      "cross_in": 20
+    },
+    "aiuc_1:E005.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E006": {
+      "out_degree": 26,
       "in_degree": 2,
       "cross_out": 25,
       "cross_in": 1
     },
-    "aiuc_1:E008.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+    "aiuc_1:E006.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
-    "aiuc_1:E008.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E009": {
-      "out_degree": 20,
-      "in_degree": 2,
-      "cross_out": 19,
-      "cross_in": 1
-    },
-    "aiuc_1:E009.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E010": {
-      "out_degree": 14,
-      "in_degree": 2,
-      "cross_out": 10,
-      "cross_in": 1
-    },
-    "aiuc_1:E010.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E010.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E010.3": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E010.4": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E011": {
-      "out_degree": 8,
-      "in_degree": 2,
-      "cross_out": 6,
-      "cross_in": 1
-    },
-    "aiuc_1:E011.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E011.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E012": {
-      "out_degree": 20,
-      "in_degree": 2,
-      "cross_out": 19,
-      "cross_in": 1
-    },
-    "aiuc_1:E012.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
-    },
-    "aiuc_1:E013": {
-      "out_degree": 33,
+    "aiuc_1:E007": {
+      "out_degree": 29,
       "in_degree": 2,
       "cross_out": 28,
       "cross_in": 1
     },
-    "aiuc_1:E013.1": {
-      "out_degree": 1,
+    "aiuc_1:E007.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E008": {
+      "out_degree": 48,
       "in_degree": 2,
-      "cross_out": 1,
+      "cross_out": 46,
       "cross_in": 1
+    },
+    "aiuc_1:E008.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E008.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E009": {
+      "out_degree": 31,
+      "in_degree": 2,
+      "cross_out": 30,
+      "cross_in": 1
+    },
+    "aiuc_1:E009.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E010": {
+      "out_degree": 21,
+      "in_degree": 2,
+      "cross_out": 17,
+      "cross_in": 1
+    },
+    "aiuc_1:E010.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E010.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E010.3": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E010.4": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E011": {
+      "out_degree": 12,
+      "in_degree": 2,
+      "cross_out": 10,
+      "cross_in": 1
+    },
+    "aiuc_1:E011.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E011.2": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E012": {
+      "out_degree": 29,
+      "in_degree": 2,
+      "cross_out": 28,
+      "cross_in": 1
+    },
+    "aiuc_1:E012.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
+    },
+    "aiuc_1:E013": {
+      "out_degree": 48,
+      "in_degree": 2,
+      "cross_out": 43,
+      "cross_in": 1
+    },
+    "aiuc_1:E013.1": {
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E013.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E013.3": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E013.4": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E013.5": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E014": {
-      "out_degree": 34,
+      "out_degree": 49,
       "in_degree": 18,
-      "cross_out": 33,
+      "cross_out": 48,
       "cross_in": 17
     },
     "aiuc_1:E014.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E015": {
-      "out_degree": 37,
+      "out_degree": 58,
       "in_degree": 2,
-      "cross_out": 34,
+      "cross_out": 55,
       "cross_in": 1
     },
     "aiuc_1:E015.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E015.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E015.3": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E016": {
-      "out_degree": 30,
+      "out_degree": 34,
       "in_degree": 18,
-      "cross_out": 25,
+      "cross_out": 29,
       "cross_in": 17
     },
     "aiuc_1:E016.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E016.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E016.3": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E016.4": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E016.5": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E017": {
-      "out_degree": 37,
+      "out_degree": 52,
       "in_degree": 18,
-      "cross_out": 34,
+      "cross_out": 49,
       "cross_in": 17
     },
     "aiuc_1:E017.1": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E017.2": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:E017.3": {
-      "out_degree": 1,
-      "in_degree": 2,
-      "cross_out": 1,
-      "cross_in": 1
+      "out_degree": 0,
+      "in_degree": 1,
+      "cross_out": 0,
+      "cross_in": 0
     },
     "aiuc_1:F001": {
-      "out_degree": 10,
+      "out_degree": 16,
       "in_degree": 1,
-      "cross_out": 8,
+      "cross_out": 14,
       "cross_in": 0
     },
     "aiuc_1:F001.1": {
@@ -1291,9 +1299,9 @@
       "cross_in": 0
     },
     "aiuc_1:F002": {
-      "out_degree": 8,
+      "out_degree": 13,
       "in_degree": 1,
-      "cross_out": 6,
+      "cross_out": 11,
       "cross_in": 0
     },
     "aiuc_1:F002.1": {
@@ -1712,147 +1720,147 @@
     },
     "csa_aicm:A-A-01": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:A-A-02": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:A-A-03": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:A-A-04": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:A-A-05": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:A-A-06": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:AIS-01": {
-      "out_degree": 41,
-      "in_degree": 46,
-      "cross_out": 41,
-      "cross_in": 45
+      "out_degree": 12,
+      "in_degree": 21,
+      "cross_out": 12,
+      "cross_in": 20
     },
     "csa_aicm:AIS-02": {
-      "out_degree": 41,
-      "in_degree": 44,
-      "cross_out": 41,
-      "cross_in": 43
+      "out_degree": 12,
+      "in_degree": 17,
+      "cross_out": 12,
+      "cross_in": 16
     },
     "csa_aicm:AIS-03": {
-      "out_degree": 41,
-      "in_degree": 43,
-      "cross_out": 41,
-      "cross_in": 42
+      "out_degree": 12,
+      "in_degree": 15,
+      "cross_out": 12,
+      "cross_in": 14
     },
     "csa_aicm:AIS-04": {
-      "out_degree": 41,
-      "in_degree": 44,
-      "cross_out": 41,
-      "cross_in": 43
+      "out_degree": 12,
+      "in_degree": 17,
+      "cross_out": 12,
+      "cross_in": 16
     },
     "csa_aicm:AIS-05": {
-      "out_degree": 42,
-      "in_degree": 46,
-      "cross_out": 42,
-      "cross_in": 45
+      "out_degree": 13,
+      "in_degree": 21,
+      "cross_out": 13,
+      "cross_in": 20
     },
     "csa_aicm:AIS-06": {
-      "out_degree": 41,
-      "in_degree": 45,
-      "cross_out": 41,
-      "cross_in": 44
+      "out_degree": 12,
+      "in_degree": 19,
+      "cross_out": 12,
+      "cross_in": 18
     },
     "csa_aicm:AIS-07": {
-      "out_degree": 41,
-      "in_degree": 45,
-      "cross_out": 41,
-      "cross_in": 44
+      "out_degree": 12,
+      "in_degree": 19,
+      "cross_out": 12,
+      "cross_in": 18
     },
     "csa_aicm:AIS-08": {
-      "out_degree": 41,
-      "in_degree": 45,
-      "cross_out": 41,
-      "cross_in": 44
+      "out_degree": 12,
+      "in_degree": 19,
+      "cross_out": 12,
+      "cross_in": 18
     },
     "csa_aicm:AIS-09": {
-      "out_degree": 44,
-      "in_degree": 50,
-      "cross_out": 44,
-      "cross_in": 49
+      "out_degree": 15,
+      "in_degree": 29,
+      "cross_out": 15,
+      "cross_in": 28
     },
     "csa_aicm:AIS-10": {
-      "out_degree": 41,
-      "in_degree": 46,
-      "cross_out": 41,
-      "cross_in": 45
+      "out_degree": 12,
+      "in_degree": 21,
+      "cross_out": 12,
+      "cross_in": 20
     },
     "csa_aicm:AIS-11": {
-      "out_degree": 41,
-      "in_degree": 45,
-      "cross_out": 41,
-      "cross_in": 44
+      "out_degree": 12,
+      "in_degree": 19,
+      "cross_out": 12,
+      "cross_in": 18
     },
     "csa_aicm:AIS-12": {
-      "out_degree": 41,
-      "in_degree": 43,
-      "cross_out": 41,
-      "cross_in": 42
+      "out_degree": 12,
+      "in_degree": 15,
+      "cross_out": 12,
+      "cross_in": 14
     },
     "csa_aicm:AIS-13": {
-      "out_degree": 41,
-      "in_degree": 43,
-      "cross_out": 41,
-      "cross_in": 42
+      "out_degree": 12,
+      "in_degree": 15,
+      "cross_out": 12,
+      "cross_in": 14
     },
     "csa_aicm:AIS-14": {
-      "out_degree": 41,
-      "in_degree": 43,
-      "cross_out": 41,
-      "cross_in": 42
+      "out_degree": 12,
+      "in_degree": 15,
+      "cross_out": 12,
+      "cross_in": 14
     },
     "csa_aicm:AIS-15": {
-      "out_degree": 41,
-      "in_degree": 44,
-      "cross_out": 41,
-      "cross_in": 43
+      "out_degree": 12,
+      "in_degree": 17,
+      "cross_out": 12,
+      "cross_in": 16
     },
     "csa_aicm:BCR-01": {
-      "out_degree": 57,
-      "in_degree": 59,
-      "cross_out": 57,
-      "cross_in": 58
+      "out_degree": 18,
+      "in_degree": 21,
+      "cross_out": 18,
+      "cross_in": 20
     },
     "csa_aicm:BCR-02": {
-      "out_degree": 57,
-      "in_degree": 60,
-      "cross_out": 57,
-      "cross_in": 59
+      "out_degree": 18,
+      "in_degree": 23,
+      "cross_out": 18,
+      "cross_in": 22
     },
     "csa_aicm:BCR-03": {
-      "out_degree": 57,
-      "in_degree": 58,
-      "cross_out": 57,
-      "cross_in": 57
+      "out_degree": 18,
+      "in_degree": 19,
+      "cross_out": 18,
+      "cross_in": 18
     },
     "csa_aicm:BCR-04": {
       "out_degree": 0,
@@ -1886,15 +1894,15 @@
     },
     "csa_aicm:BCR-09": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 1,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:BCR-10": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 1,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:BCR-11": {
       "out_degree": 0,
@@ -1904,39 +1912,39 @@
     },
     "csa_aicm:CCC-01": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:CCC-02": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:CCC-03": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:CCC-04": {
-      "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 1
-    },
-    "csa_aicm:CCC-05": {
       "out_degree": 0,
       "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
     },
+    "csa_aicm:CCC-05": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
     "csa_aicm:CCC-06": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CCC-07": {
       "out_degree": 0,
@@ -1952,33 +1960,33 @@
     },
     "csa_aicm:CCC-09": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-01": {
-      "out_degree": 41,
-      "in_degree": 43,
-      "cross_out": 41,
-      "cross_in": 42
+      "out_degree": 12,
+      "in_degree": 15,
+      "cross_out": 12,
+      "cross_in": 14
     },
     "csa_aicm:CEK-02": {
-      "out_degree": 41,
-      "in_degree": 43,
-      "cross_out": 41,
-      "cross_in": 42
+      "out_degree": 12,
+      "in_degree": 15,
+      "cross_out": 12,
+      "cross_in": 14
     },
     "csa_aicm:CEK-03": {
-      "out_degree": 41,
-      "in_degree": 43,
-      "cross_out": 41,
-      "cross_in": 42
+      "out_degree": 12,
+      "in_degree": 15,
+      "cross_out": 12,
+      "cross_in": 14
     },
     "csa_aicm:CEK-04": {
-      "out_degree": 41,
-      "in_degree": 43,
-      "cross_out": 41,
-      "cross_in": 42
+      "out_degree": 12,
+      "in_degree": 15,
+      "cross_out": 12,
+      "cross_in": 14
     },
     "csa_aicm:CEK-05": {
       "out_degree": 0,
@@ -1994,9 +2002,9 @@
     },
     "csa_aicm:CEK-07": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-08": {
       "out_degree": 0,
@@ -2006,333 +2014,333 @@
     },
     "csa_aicm:CEK-09": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-10": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-11": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-12": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-13": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-14": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-15": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-16": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-17": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-18": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-19": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-20": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:CEK-21": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-01": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-02": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-03": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-04": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-05": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-06": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-07": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-08": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-09": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-10": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-11": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-12": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-13": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-14": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DCS-15": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:DSP-01": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-02": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-03": {
-      "out_degree": 29,
-      "in_degree": 30,
-      "cross_out": 29,
-      "cross_in": 29
+      "out_degree": 9,
+      "in_degree": 10,
+      "cross_out": 9,
+      "cross_in": 9
     },
     "csa_aicm:DSP-04": {
-      "out_degree": 29,
-      "in_degree": 30,
-      "cross_out": 29,
-      "cross_in": 29
+      "out_degree": 9,
+      "in_degree": 10,
+      "cross_out": 9,
+      "cross_in": 9
     },
     "csa_aicm:DSP-05": {
-      "out_degree": 29,
-      "in_degree": 30,
-      "cross_out": 29,
-      "cross_in": 29
+      "out_degree": 9,
+      "in_degree": 10,
+      "cross_out": 9,
+      "cross_in": 9
     },
     "csa_aicm:DSP-06": {
-      "out_degree": 29,
-      "in_degree": 30,
-      "cross_out": 29,
-      "cross_in": 29
+      "out_degree": 9,
+      "in_degree": 10,
+      "cross_out": 9,
+      "cross_in": 9
     },
     "csa_aicm:DSP-07": {
-      "out_degree": 29,
-      "in_degree": 35,
-      "cross_out": 29,
-      "cross_in": 34
+      "out_degree": 9,
+      "in_degree": 20,
+      "cross_out": 9,
+      "cross_in": 19
     },
     "csa_aicm:DSP-08": {
-      "out_degree": 29,
-      "in_degree": 34,
-      "cross_out": 29,
-      "cross_in": 33
+      "out_degree": 9,
+      "in_degree": 18,
+      "cross_out": 9,
+      "cross_in": 17
     },
     "csa_aicm:DSP-09": {
-      "out_degree": 29,
-      "in_degree": 34,
-      "cross_out": 29,
-      "cross_in": 33
+      "out_degree": 9,
+      "in_degree": 18,
+      "cross_out": 9,
+      "cross_in": 17
     },
     "csa_aicm:DSP-10": {
-      "out_degree": 29,
-      "in_degree": 33,
-      "cross_out": 29,
-      "cross_in": 32
+      "out_degree": 9,
+      "in_degree": 16,
+      "cross_out": 9,
+      "cross_in": 15
     },
     "csa_aicm:DSP-11": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-12": {
-      "out_degree": 29,
-      "in_degree": 33,
-      "cross_out": 29,
-      "cross_in": 32
+      "out_degree": 9,
+      "in_degree": 16,
+      "cross_out": 9,
+      "cross_in": 15
     },
     "csa_aicm:DSP-13": {
-      "out_degree": 29,
-      "in_degree": 33,
-      "cross_out": 29,
-      "cross_in": 32
+      "out_degree": 9,
+      "in_degree": 16,
+      "cross_out": 9,
+      "cross_in": 15
     },
     "csa_aicm:DSP-14": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-15": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-16": {
-      "out_degree": 29,
-      "in_degree": 33,
-      "cross_out": 29,
-      "cross_in": 32
+      "out_degree": 9,
+      "in_degree": 16,
+      "cross_out": 9,
+      "cross_in": 15
     },
     "csa_aicm:DSP-17": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-18": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-19": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-20": {
-      "out_degree": 29,
-      "in_degree": 32,
-      "cross_out": 29,
-      "cross_in": 31
+      "out_degree": 9,
+      "in_degree": 14,
+      "cross_out": 9,
+      "cross_in": 13
     },
     "csa_aicm:DSP-21": {
-      "out_degree": 29,
-      "in_degree": 30,
-      "cross_out": 29,
-      "cross_in": 29
+      "out_degree": 9,
+      "in_degree": 10,
+      "cross_out": 9,
+      "cross_in": 9
     },
     "csa_aicm:DSP-22": {
-      "out_degree": 29,
-      "in_degree": 32,
-      "cross_out": 29,
-      "cross_in": 31
+      "out_degree": 9,
+      "in_degree": 14,
+      "cross_out": 9,
+      "cross_in": 13
     },
     "csa_aicm:DSP-23": {
-      "out_degree": 29,
-      "in_degree": 31,
-      "cross_out": 29,
-      "cross_in": 30
+      "out_degree": 9,
+      "in_degree": 12,
+      "cross_out": 9,
+      "cross_in": 11
     },
     "csa_aicm:DSP-24": {
-      "out_degree": 29,
-      "in_degree": 30,
-      "cross_out": 29,
-      "cross_in": 29
+      "out_degree": 9,
+      "in_degree": 10,
+      "cross_out": 9,
+      "cross_in": 9
     },
     "csa_aicm:GRC-01": {
-      "out_degree": 59,
-      "in_degree": 60,
-      "cross_out": 59,
-      "cross_in": 59
+      "out_degree": 19,
+      "in_degree": 20,
+      "cross_out": 19,
+      "cross_in": 19
     },
     "csa_aicm:GRC-02": {
       "out_degree": 0,
-      "in_degree": 6,
+      "in_degree": 11,
       "cross_out": 0,
-      "cross_in": 5
+      "cross_in": 10
     },
     "csa_aicm:GRC-03": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:GRC-04": {
       "out_degree": 0,
@@ -2348,15 +2356,15 @@
     },
     "csa_aicm:GRC-06": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:GRC-07": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:GRC-08": {
       "out_degree": 0,
@@ -2366,45 +2374,45 @@
     },
     "csa_aicm:GRC-09": {
       "out_degree": 2,
-      "in_degree": 7,
+      "in_degree": 13,
       "cross_out": 2,
-      "cross_in": 6
+      "cross_in": 12
     },
     "csa_aicm:GRC-10": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 1,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:GRC-11": {
       "out_degree": 1,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 1,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:GRC-12": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:GRC-13": {
       "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 1
-    },
-    "csa_aicm:GRC-14": {
-      "out_degree": 0,
       "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
     },
+    "csa_aicm:GRC-14": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
     "csa_aicm:GRC-15": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 1,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:HRS-01": {
       "out_degree": 0,
@@ -2462,9 +2470,9 @@
     },
     "csa_aicm:HRS-10": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:HRS-11": {
       "out_degree": 0,
@@ -2474,9 +2482,9 @@
     },
     "csa_aicm:HRS-12": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:HRS-13": {
       "out_degree": 0,
@@ -2504,9 +2512,9 @@
     },
     "csa_aicm:I-S-02": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:I-S-03": {
       "out_degree": 0,
@@ -2528,9 +2536,9 @@
     },
     "csa_aicm:I-S-06": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:I-S-07": {
       "out_degree": 0,
@@ -2552,63 +2560,63 @@
     },
     "csa_aicm:IAM-01": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:IAM-02": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:IAM-03": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:IAM-04": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:IAM-05": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:IAM-06": {
-      "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 1
-    },
-    "csa_aicm:IAM-07": {
-      "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 1
-    },
-    "csa_aicm:IAM-08": {
       "out_degree": 0,
       "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
     },
+    "csa_aicm:IAM-07": {
+      "out_degree": 0,
+      "in_degree": 3,
+      "cross_out": 0,
+      "cross_in": 2
+    },
+    "csa_aicm:IAM-08": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
     "csa_aicm:IAM-09": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:IAM-10": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:IAM-11": {
       "out_degree": 0,
@@ -2624,45 +2632,45 @@
     },
     "csa_aicm:IAM-13": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:IAM-14": {
       "out_degree": 2,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 2,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:IAM-15": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:IAM-16": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:IAM-17": {
       "out_degree": 1,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 1,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:IAM-18": {
       "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 1
-    },
-    "csa_aicm:IAM-19": {
-      "out_degree": 0,
       "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
+    },
+    "csa_aicm:IAM-19": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
     },
     "csa_aicm:IPY-01": {
       "out_degree": 0,
@@ -2690,9 +2698,9 @@
     },
     "csa_aicm:LOG-01": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:LOG-02": {
       "out_degree": 0,
@@ -2702,153 +2710,153 @@
     },
     "csa_aicm:LOG-03": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:LOG-04": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:LOG-05": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:LOG-06": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:LOG-07": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:LOG-08": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:LOG-09": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:LOG-10": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:LOG-11": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:LOG-12": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:LOG-13": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:LOG-14": {
       "out_degree": 2,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 2,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:LOG-15": {
       "out_degree": 1,
-      "in_degree": 5,
+      "in_degree": 9,
       "cross_out": 1,
-      "cross_in": 4
+      "cross_in": 8
     },
     "csa_aicm:MDS-01": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:MDS-02": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:MDS-03": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:MDS-04": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:MDS-05": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:MDS-06": {
       "out_degree": 1,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 1,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:MDS-07": {
       "out_degree": 4,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 4,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:MDS-08": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:MDS-09": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:MDS-10": {
       "out_degree": 4,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 4,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:MDS-11": {
       "out_degree": 2,
-      "in_degree": 5,
+      "in_degree": 9,
       "cross_out": 2,
-      "cross_in": 4
+      "cross_in": 8
     },
     "csa_aicm:MDS-12": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:MDS-13": {
       "out_degree": 0,
@@ -2858,33 +2866,33 @@
     },
     "csa_aicm:SEF-01": {
       "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "csa_aicm:SEF-02": {
+      "out_degree": 0,
       "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
     },
-    "csa_aicm:SEF-02": {
-      "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 1
-    },
     "csa_aicm:SEF-03": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:SEF-04": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:SEF-05": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 1,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:SEF-06": {
       "out_degree": 0,
@@ -2894,27 +2902,27 @@
     },
     "csa_aicm:SEF-07": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 1,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:SEF-08": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:SEF-09": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:STA-01": {
       "out_degree": 4,
-      "in_degree": 6,
+      "in_degree": 7,
       "cross_out": 4,
-      "cross_in": 5
+      "cross_in": 6
     },
     "csa_aicm:STA-02": {
       "out_degree": 4,
@@ -2954,141 +2962,141 @@
     },
     "csa_aicm:STA-08": {
       "out_degree": 4,
-      "in_degree": 6,
+      "in_degree": 7,
       "cross_out": 4,
-      "cross_in": 5
+      "cross_in": 6
     },
     "csa_aicm:STA-09": {
       "out_degree": 4,
-      "in_degree": 6,
+      "in_degree": 7,
       "cross_out": 4,
-      "cross_in": 5
+      "cross_in": 6
     },
     "csa_aicm:STA-10": {
+      "out_degree": 4,
+      "in_degree": 11,
+      "cross_out": 4,
+      "cross_in": 10
+    },
+    "csa_aicm:STA-11": {
+      "out_degree": 4,
+      "in_degree": 7,
+      "cross_out": 4,
+      "cross_in": 6
+    },
+    "csa_aicm:STA-12": {
+      "out_degree": 4,
+      "in_degree": 7,
+      "cross_out": 4,
+      "cross_in": 6
+    },
+    "csa_aicm:STA-13": {
       "out_degree": 4,
       "in_degree": 8,
       "cross_out": 4,
       "cross_in": 7
     },
-    "csa_aicm:STA-11": {
-      "out_degree": 4,
-      "in_degree": 6,
-      "cross_out": 4,
-      "cross_in": 5
-    },
-    "csa_aicm:STA-12": {
-      "out_degree": 4,
-      "in_degree": 6,
-      "cross_out": 4,
-      "cross_in": 5
-    },
-    "csa_aicm:STA-13": {
+    "csa_aicm:STA-14": {
       "out_degree": 4,
       "in_degree": 7,
       "cross_out": 4,
       "cross_in": 6
-    },
-    "csa_aicm:STA-14": {
-      "out_degree": 4,
-      "in_degree": 6,
-      "cross_out": 4,
-      "cross_in": 5
     },
     "csa_aicm:STA-15": {
       "out_degree": 4,
-      "in_degree": 5,
+      "in_degree": 6,
       "cross_out": 4,
-      "cross_in": 4
+      "cross_in": 5
     },
     "csa_aicm:STA-16": {
       "out_degree": 4,
-      "in_degree": 6,
+      "in_degree": 7,
       "cross_out": 4,
-      "cross_in": 5
+      "cross_in": 6
     },
     "csa_aicm:TVM-01": {
       "out_degree": 1,
-      "in_degree": 6,
+      "in_degree": 9,
       "cross_out": 1,
-      "cross_in": 5
+      "cross_in": 8
     },
     "csa_aicm:TVM-02": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 8,
       "cross_out": 0,
-      "cross_in": 4
+      "cross_in": 7
     },
     "csa_aicm:TVM-03": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 5
     },
     "csa_aicm:TVM-04": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:TVM-05": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 7,
       "cross_out": 1,
-      "cross_in": 3
+      "cross_in": 6
     },
     "csa_aicm:TVM-06": {
+      "out_degree": 0,
+      "in_degree": 9,
+      "cross_out": 0,
+      "cross_in": 8
+    },
+    "csa_aicm:TVM-07": {
       "out_degree": 0,
       "in_degree": 5,
       "cross_out": 0,
       "cross_in": 4
     },
-    "csa_aicm:TVM-07": {
+    "csa_aicm:TVM-08": {
       "out_degree": 0,
       "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
-    },
-    "csa_aicm:TVM-08": {
-      "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 1
     },
     "csa_aicm:TVM-09": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:TVM-10": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:TVM-11": {
       "out_degree": 2,
-      "in_degree": 7,
+      "in_degree": 13,
       "cross_out": 2,
-      "cross_in": 6
+      "cross_in": 12
     },
     "csa_aicm:TVM-12": {
       "out_degree": 3,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 3,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:TVM-13": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:UEM-01": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:UEM-02": {
       "out_degree": 0,
@@ -3104,15 +3112,15 @@
     },
     "csa_aicm:UEM-04": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:UEM-05": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:UEM-06": {
       "out_degree": 0,
@@ -3128,27 +3136,27 @@
     },
     "csa_aicm:UEM-08": {
       "out_degree": 2,
-      "in_degree": 4,
+      "in_degree": 8,
       "cross_out": 2,
-      "cross_in": 3
+      "cross_in": 7
     },
     "csa_aicm:UEM-09": {
+      "out_degree": 0,
+      "in_degree": 5,
+      "cross_out": 0,
+      "cross_in": 4
+    },
+    "csa_aicm:UEM-10": {
       "out_degree": 0,
       "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
     },
-    "csa_aicm:UEM-10": {
-      "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 1
-    },
     "csa_aicm:UEM-11": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "csa_aicm:UEM-12": {
       "out_degree": 0,
@@ -3164,9 +3172,9 @@
     },
     "csa_aicm:UEM-14": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 5,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "csa_aicm:domain_A-A": {
       "out_degree": 6,
@@ -3698,39 +3706,39 @@
     },
     "mitre_atlas:AML.M0000": {
       "out_degree": 8,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 1,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0001": {
       "out_degree": 6,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0002": {
       "out_degree": 11,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0003": {
       "out_degree": 8,
-      "in_degree": 3,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "mitre_atlas:AML.M0004": {
       "out_degree": 19,
-      "in_degree": 3,
+      "in_degree": 6,
       "cross_out": 3,
-      "cross_in": 3
+      "cross_in": 6
     },
     "mitre_atlas:AML.M0005": {
       "out_degree": 15,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 2,
-      "cross_in": 2
+      "cross_in": 4
     },
     "mitre_atlas:AML.M0006": {
       "out_degree": 11,
@@ -3770,15 +3778,15 @@
     },
     "mitre_atlas:AML.M0012": {
       "out_degree": 4,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0013": {
       "out_degree": 8,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0014": {
       "out_degree": 6,
@@ -3788,21 +3796,21 @@
     },
     "mitre_atlas:AML.M0015": {
       "out_degree": 11,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 2,
-      "cross_in": 2
+      "cross_in": 4
     },
     "mitre_atlas:AML.M0016": {
       "out_degree": 3,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0017": {
       "out_degree": 6,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0018": {
       "out_degree": 5,
@@ -3812,21 +3820,21 @@
     },
     "mitre_atlas:AML.M0019": {
       "out_degree": 12,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 1,
-      "cross_in": 2
+      "cross_in": 4
     },
     "mitre_atlas:AML.M0020": {
       "out_degree": 8,
-      "in_degree": 5,
+      "in_degree": 10,
       "cross_out": 0,
-      "cross_in": 5
+      "cross_in": 10
     },
     "mitre_atlas:AML.M0021": {
       "out_degree": 9,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 2,
-      "cross_in": 2
+      "cross_in": 4
     },
     "mitre_atlas:AML.M0022": {
       "out_degree": 7,
@@ -3836,21 +3844,21 @@
     },
     "mitre_atlas:AML.M0023": {
       "out_degree": 7,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0024": {
       "out_degree": 18,
-      "in_degree": 4,
+      "in_degree": 8,
       "cross_out": 1,
-      "cross_in": 4
+      "cross_in": 8
     },
     "mitre_atlas:AML.M0025": {
       "out_degree": 5,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "mitre_atlas:AML.M0026": {
       "out_degree": 7,
@@ -5012,51 +5020,51 @@
     },
     "nist_rmf:GOVERN-1.1": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:GOVERN-1.2": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:GOVERN-1.3": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:GOVERN-1.4": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:GOVERN-1.5": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "nist_rmf:GOVERN-1.6": {
       "out_degree": 0,
-      "in_degree": 9,
+      "in_degree": 11,
       "cross_out": 0,
-      "cross_in": 9
+      "cross_in": 11
     },
     "nist_rmf:GOVERN-1.7": {
       "out_degree": 0,
-      "in_degree": 12,
+      "in_degree": 14,
       "cross_out": 0,
-      "cross_in": 12
+      "cross_in": 14
     },
     "nist_rmf:GOVERN-2.1": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:GOVERN-2.2": {
       "out_degree": 0,
@@ -5066,9 +5074,9 @@
     },
     "nist_rmf:GOVERN-2.3": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:GOVERN-3.1": {
       "out_degree": 0,
@@ -5078,9 +5086,9 @@
     },
     "nist_rmf:GOVERN-3.2": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:GOVERN-4.1": {
       "out_degree": 0,
@@ -5090,33 +5098,33 @@
     },
     "nist_rmf:GOVERN-4.2": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:GOVERN-4.3": {
       "out_degree": 3,
-      "in_degree": 10,
+      "in_degree": 20,
       "cross_out": 3,
-      "cross_in": 10
+      "cross_in": 20
     },
     "nist_rmf:GOVERN-5.1": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:GOVERN-5.2": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:GOVERN-6.1": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 8,
       "cross_out": 0,
-      "cross_in": 4
+      "cross_in": 8
     },
     "nist_rmf:GOVERN-6.2": {
       "out_degree": 0,
@@ -5132,27 +5140,27 @@
     },
     "nist_rmf:MANAGE-1.1": {
       "out_degree": 0,
-      "in_degree": 2,
-      "cross_out": 0,
-      "cross_in": 2
-    },
-    "nist_rmf:MANAGE-1.2": {
-      "out_degree": 0,
-      "in_degree": 1,
-      "cross_out": 0,
-      "cross_in": 1
-    },
-    "nist_rmf:MANAGE-1.3": {
-      "out_degree": 0,
       "in_degree": 4,
       "cross_out": 0,
       "cross_in": 4
     },
-    "nist_rmf:MANAGE-1.4": {
+    "nist_rmf:MANAGE-1.2": {
       "out_degree": 0,
       "in_degree": 2,
       "cross_out": 0,
       "cross_in": 2
+    },
+    "nist_rmf:MANAGE-1.3": {
+      "out_degree": 0,
+      "in_degree": 8,
+      "cross_out": 0,
+      "cross_in": 8
+    },
+    "nist_rmf:MANAGE-1.4": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
     },
     "nist_rmf:MANAGE-2.1": {
       "out_degree": 0,
@@ -5162,9 +5170,9 @@
     },
     "nist_rmf:MANAGE-2.2": {
       "out_degree": 0,
-      "in_degree": 18,
+      "in_degree": 23,
       "cross_out": 0,
-      "cross_in": 18
+      "cross_in": 23
     },
     "nist_rmf:MANAGE-2.3": {
       "out_degree": 0,
@@ -5180,9 +5188,9 @@
     },
     "nist_rmf:MANAGE-3.1": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:MANAGE-3.2": {
       "out_degree": 0,
@@ -5192,21 +5200,21 @@
     },
     "nist_rmf:MANAGE-4.1": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:MANAGE-4.2": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:MANAGE-4.3": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 8,
       "cross_out": 1,
-      "cross_in": 4
+      "cross_in": 8
     },
     "nist_rmf:MAP": {
       "out_degree": 0,
@@ -5216,9 +5224,9 @@
     },
     "nist_rmf:MAP-1.1": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:MAP-1.2": {
       "out_degree": 0,
@@ -5240,27 +5248,27 @@
     },
     "nist_rmf:MAP-1.5": {
       "out_degree": 0,
-      "in_degree": 1,
-      "cross_out": 0,
-      "cross_in": 1
-    },
-    "nist_rmf:MAP-1.6": {
-      "out_degree": 0,
-      "in_degree": 3,
-      "cross_out": 0,
-      "cross_in": 3
-    },
-    "nist_rmf:MAP-2.1": {
-      "out_degree": 0,
       "in_degree": 2,
       "cross_out": 0,
       "cross_in": 2
     },
+    "nist_rmf:MAP-1.6": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "nist_rmf:MAP-2.1": {
+      "out_degree": 0,
+      "in_degree": 4,
+      "cross_out": 0,
+      "cross_in": 4
+    },
     "nist_rmf:MAP-2.2": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "nist_rmf:MAP-2.3": {
       "out_degree": 0,
@@ -5282,45 +5290,45 @@
     },
     "nist_rmf:MAP-3.3": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:MAP-3.4": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "nist_rmf:MAP-3.5": {
       "out_degree": 1,
-      "in_degree": 4,
+      "in_degree": 8,
       "cross_out": 1,
-      "cross_in": 4
+      "cross_in": 8
     },
     "nist_rmf:MAP-4.1": {
-      "out_degree": 0,
-      "in_degree": 3,
-      "cross_out": 0,
-      "cross_in": 3
-    },
-    "nist_rmf:MAP-4.2": {
-      "out_degree": 0,
-      "in_degree": 3,
-      "cross_out": 0,
-      "cross_in": 3
-    },
-    "nist_rmf:MAP-5.1": {
       "out_degree": 0,
       "in_degree": 5,
       "cross_out": 0,
       "cross_in": 5
     },
+    "nist_rmf:MAP-4.2": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 6
+    },
+    "nist_rmf:MAP-5.1": {
+      "out_degree": 0,
+      "in_degree": 6,
+      "cross_out": 0,
+      "cross_in": 6
+    },
     "nist_rmf:MAP-5.2": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:MEASURE": {
       "out_degree": 0,
@@ -5330,39 +5338,39 @@
     },
     "nist_rmf:MEASURE-1.1": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:MEASURE-1.2": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:MEASURE-1.3": {
       "out_degree": 1,
-      "in_degree": 5,
+      "in_degree": 10,
       "cross_out": 1,
-      "cross_in": 5
+      "cross_in": 10
     },
     "nist_rmf:MEASURE-2.1": {
       "out_degree": 2,
-      "in_degree": 7,
+      "in_degree": 14,
       "cross_out": 2,
-      "cross_in": 7
+      "cross_in": 14
     },
     "nist_rmf:MEASURE-2.10": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 10,
       "cross_out": 0,
-      "cross_in": 5
+      "cross_in": 10
     },
     "nist_rmf:MEASURE-2.11": {
       "out_degree": 0,
-      "in_degree": 3,
+      "in_degree": 6,
       "cross_out": 0,
-      "cross_in": 3
+      "cross_in": 6
     },
     "nist_rmf:MEASURE-2.12": {
       "out_degree": 0,
@@ -5372,9 +5380,9 @@
     },
     "nist_rmf:MEASURE-2.13": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:MEASURE-2.2": {
       "out_degree": 0,
@@ -5384,51 +5392,51 @@
     },
     "nist_rmf:MEASURE-2.3": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
-      "cross_in": 1
+      "cross_in": 2
     },
     "nist_rmf:MEASURE-2.4": {
       "out_degree": 3,
-      "in_degree": 4,
+      "in_degree": 8,
       "cross_out": 3,
-      "cross_in": 4
+      "cross_in": 8
     },
     "nist_rmf:MEASURE-2.5": {
       "out_degree": 0,
-      "in_degree": 19,
+      "in_degree": 22,
       "cross_out": 0,
-      "cross_in": 19
+      "cross_in": 22
     },
     "nist_rmf:MEASURE-2.6": {
       "out_degree": 1,
-      "in_degree": 10,
+      "in_degree": 15,
       "cross_out": 1,
-      "cross_in": 10
+      "cross_in": 15
     },
     "nist_rmf:MEASURE-2.7": {
       "out_degree": 3,
-      "in_degree": 5,
+      "in_degree": 10,
       "cross_out": 3,
-      "cross_in": 5
+      "cross_in": 10
     },
     "nist_rmf:MEASURE-2.8": {
       "out_degree": 2,
-      "in_degree": 6,
+      "in_degree": 12,
       "cross_out": 2,
-      "cross_in": 6
+      "cross_in": 12
     },
     "nist_rmf:MEASURE-2.9": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:MEASURE-3.1": {
       "out_degree": 0,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
-      "cross_in": 2
+      "cross_in": 4
     },
     "nist_rmf:MEASURE-3.2": {
       "out_degree": 0,
@@ -5438,27 +5446,27 @@
     },
     "nist_rmf:MEASURE-3.3": {
       "out_degree": 0,
-      "in_degree": 3,
-      "cross_out": 0,
-      "cross_in": 3
-    },
-    "nist_rmf:MEASURE-4.1": {
-      "out_degree": 1,
-      "in_degree": 7,
-      "cross_out": 1,
-      "cross_in": 7
-    },
-    "nist_rmf:MEASURE-4.2": {
-      "out_degree": 2,
-      "in_degree": 6,
-      "cross_out": 2,
-      "cross_in": 6
-    },
-    "nist_rmf:MEASURE-4.3": {
-      "out_degree": 0,
       "in_degree": 4,
       "cross_out": 0,
       "cross_in": 4
+    },
+    "nist_rmf:MEASURE-4.1": {
+      "out_degree": 1,
+      "in_degree": 12,
+      "cross_out": 1,
+      "cross_in": 12
+    },
+    "nist_rmf:MEASURE-4.2": {
+      "out_degree": 2,
+      "in_degree": 12,
+      "cross_out": 2,
+      "cross_in": 12
+    },
+    "nist_rmf:MEASURE-4.3": {
+      "out_degree": 0,
+      "in_degree": 8,
+      "cross_out": 0,
+      "cross_in": 8
     },
     "owasp_agentic:ASI01": {
       "out_degree": 13,
@@ -6050,63 +6058,63 @@
     },
     "owasp_llm:LLM01": {
       "out_degree": 13,
-      "in_degree": 14,
+      "in_degree": 17,
       "cross_out": 13,
-      "cross_in": 14
+      "cross_in": 17
     },
     "owasp_llm:LLM02": {
       "out_degree": 13,
-      "in_degree": 16,
+      "in_degree": 22,
       "cross_out": 13,
-      "cross_in": 16
+      "cross_in": 22
     },
     "owasp_llm:LLM03": {
       "out_degree": 14,
-      "in_degree": 12,
+      "in_degree": 17,
       "cross_out": 14,
-      "cross_in": 12
+      "cross_in": 17
     },
     "owasp_llm:LLM04": {
       "out_degree": 12,
-      "in_degree": 14,
+      "in_degree": 16,
       "cross_out": 12,
-      "cross_in": 14
+      "cross_in": 16
     },
     "owasp_llm:LLM05": {
       "out_degree": 14,
-      "in_degree": 18,
+      "in_degree": 31,
       "cross_out": 14,
-      "cross_in": 18
+      "cross_in": 31
     },
     "owasp_llm:LLM06": {
       "out_degree": 16,
-      "in_degree": 17,
+      "in_degree": 22,
       "cross_out": 16,
-      "cross_in": 17
+      "cross_in": 22
     },
     "owasp_llm:LLM07": {
       "out_degree": 11,
-      "in_degree": 5,
+      "in_degree": 7,
       "cross_out": 11,
-      "cross_in": 5
+      "cross_in": 7
     },
     "owasp_llm:LLM08": {
       "out_degree": 11,
-      "in_degree": 12,
+      "in_degree": 22,
       "cross_out": 11,
-      "cross_in": 12
+      "cross_in": 22
     },
     "owasp_llm:LLM09": {
       "out_degree": 10,
-      "in_degree": 7,
+      "in_degree": 11,
       "cross_out": 10,
-      "cross_in": 7
+      "cross_in": 11
     },
     "owasp_llm:LLM10": {
       "out_degree": 11,
-      "in_degree": 14,
+      "in_degree": 24,
       "cross_out": 11,
-      "cross_in": 14
+      "cross_in": 24
     }
   }
 }

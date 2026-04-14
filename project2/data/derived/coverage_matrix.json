@@ -41,8 +41,8 @@
           "pct": 51.0
         },
         "expert": {
-          "count": 23,
-          "pct": 8.8
+          "count": 180,
+          "pct": 69.0
         },
         "suggestive": {
           "count": 63,
@@ -95,8 +95,8 @@
           "pct": 19.3
         },
         "expert": {
-          "count": 13,
-          "pct": 6.0
+          "count": 23,
+          "pct": 10.6
         },
         "suggestive": {
           "count": 0,
@@ -122,8 +122,8 @@
           "pct": 76.3
         },
         "expert": {
-          "count": 11,
-          "pct": 14.5
+          "count": 55,
+          "pct": 72.4
         },
         "suggestive": {
           "count": 0,
@@ -203,8 +203,8 @@
           "pct": 100.0
         },
         "expert": {
-          "count": 4,
-          "pct": 40.0
+          "count": 10,
+          "pct": 100.0
         },
         "suggestive": {
           "count": 0,
@@ -437,12 +437,12 @@
   },
   "csa_aicm": {
     "aiuc_1": {
-      "total_pct": 97.9,
-      "direct_pct": 97.4,
+      "total_pct": 30.2,
+      "direct_pct": 29.6,
       "transitive_pct": 0.5,
-      "direct_count": 184,
+      "direct_count": 56,
       "transitive_only_count": 1,
-      "total_reached": 185,
+      "total_reached": 57,
       "total_target": 189,
       "by_confidence": {
         "authoritative": {
@@ -450,12 +450,12 @@
           "pct": 29.1
         },
         "expert": {
-          "count": 40,
-          "pct": 21.2
+          "count": 51,
+          "pct": 27.0
         },
         "suggestive": {
-          "count": 182,
-          "pct": 96.3
+          "count": 54,
+          "pct": 28.6
         },
         "unvalidated": {
           "count": 12,
@@ -722,8 +722,8 @@
           "pct": 41.4
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 1,
+          "pct": 0.4
         },
         "suggestive": {
           "count": 63,
@@ -1104,8 +1104,8 @@
           "pct": 28.6
         },
         "expert": {
-          "count": 43,
-          "pct": 22.8
+          "count": 50,
+          "pct": 26.5
         },
         "suggestive": {
           "count": 0,
@@ -1158,8 +1158,8 @@
           "pct": 41.8
         },
         "expert": {
-          "count": 23,
-          "pct": 8.8
+          "count": 24,
+          "pct": 9.2
         },
         "suggestive": {
           "count": 63,
@@ -1309,12 +1309,12 @@
   },
   "owasp_agentic": {
     "aiuc_1": {
-      "total_pct": 44.4,
+      "total_pct": 29.1,
       "direct_pct": 25.4,
-      "transitive_pct": 19.0,
+      "transitive_pct": 3.7,
       "direct_count": 48,
-      "transitive_only_count": 36,
-      "total_reached": 84,
+      "transitive_only_count": 7,
+      "total_reached": 55,
       "total_target": 189,
       "by_confidence": {
         "authoritative": {
@@ -1326,8 +1326,8 @@
           "pct": 22.8
         },
         "suggestive": {
-          "count": 36,
-          "pct": 19.0
+          "count": 7,
+          "pct": 3.7
         },
         "unvalidated": {
           "count": 1,
@@ -1376,8 +1376,8 @@
           "pct": 44.4
         },
         "expert": {
-          "count": 23,
-          "pct": 8.8
+          "count": 24,
+          "pct": 9.2
         },
         "suggestive": {
           "count": 63,
@@ -1581,12 +1581,12 @@
       }
     },
     "csa_aicm": {
-      "total_pct": 23.4,
+      "total_pct": 23.8,
       "direct_pct": 0.0,
-      "transitive_pct": 23.4,
+      "transitive_pct": 23.8,
       "direct_count": 0,
-      "transitive_only_count": 61,
-      "total_reached": 61,
+      "transitive_only_count": 62,
+      "total_reached": 62,
       "total_target": 261,
       "by_confidence": {
         "authoritative": {
@@ -1594,8 +1594,8 @@
           "pct": 11.5
         },
         "expert": {
-          "count": 0,
-          "pct": 0.0
+          "count": 1,
+          "pct": 0.4
         },
         "suggestive": {
           "count": 45,
@@ -1799,12 +1799,12 @@
       }
     },
     "csa_aicm": {
-      "total_pct": 57.5,
+      "total_pct": 57.9,
       "direct_pct": 0.0,
-      "transitive_pct": 57.5,
+      "transitive_pct": 57.9,
       "direct_count": 0,
-      "transitive_only_count": 150,
-      "total_reached": 150,
+      "transitive_only_count": 151,
+      "total_reached": 151,
       "total_target": 261,
       "by_confidence": {
         "authoritative": {
@@ -1812,8 +1812,8 @@
           "pct": 30.7
         },
         "expert": {
-          "count": 23,
-          "pct": 8.8
+          "count": 24,
+          "pct": 9.2
         },
         "suggestive": {
           "count": 47,

@@ -1,8 +1,8 @@
 {
   "aiuc_1": {
     "node_count": 189,
-    "edge_count_out": 2894,
-    "edge_count_in": 2223,
+    "edge_count_out": 2270,
+    "edge_count_in": 1035,
     "entry_type_counts": {
       "control": 51,
       "activity": 132,
@@ -49,8 +49,8 @@
   },
   "csa_aicm": {
     "node_count": 261,
-    "edge_count_out": 2051,
-    "edge_count_in": 2335,
+    "edge_count_out": 863,
+    "edge_count_in": 1467,
     "entry_type_counts": {
       "control": 243,
       "function": 18
@@ -105,7 +105,7 @@
   "mitre_atlas": {
     "node_count": 218,
     "edge_count_out": 441,
-    "edge_count_in": 531,
+    "edge_count_in": 563,
     "entry_type_counts": {
       "mitigation": 35,
       "technique": 167,
@@ -121,7 +121,7 @@
   "nist_rmf": {
     "node_count": 76,
     "edge_count_out": 20,
-    "edge_count_in": 232,
+    "edge_count_in": 384,
     "entry_type_counts": {
       "function": 4,
       "subcategory": 72
@@ -187,7 +187,7 @@
   "owasp_llm": {
     "node_count": 10,
     "edge_count_out": 125,
-    "edge_count_in": 129,
+    "edge_count_in": 189,
     "entry_type_counts": {
       "risk": 10
     },

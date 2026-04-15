@@ -398,13 +398,14 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                 })
 
                 # Best model selection on combined_f1
-                # Don't count frozen-encoder epochs toward patience (collapse is expected)
+                # Don't count collapsed or frozen epochs toward patience
                 if combined_f1 > best_f1:
                     best_f1 = combined_f1
                     patience_counter = 0
                     model.save(Path(out) / "best")
                     wandb.log({"best_epoch": epoch, "best_combined_f1": best_f1})
-                elif epoch >= frozen_epochs:
+                elif combined_f1 > 0 and epoch >= frozen_epochs:
+                    # Only count patience when model makes non-collapsed predictions
                     patience_counter += 1
                     if patience_counter >= 3:
                         print(f"    Early stopping at epoch {epoch}")

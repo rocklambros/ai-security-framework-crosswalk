@@ -15,7 +15,7 @@ CE_SWEEP_CONFIG = {
         "weight_decay": {"distribution": "log_uniform_values", "min": 1e-4, "max": 1e-1},
         "dropout": {"distribution": "uniform", "min": 0.1, "max": 0.3},
         "loss_type": {"values": ["kl"]},
-        "sigma": {"distribution": "uniform", "min": 0.3, "max": 0.8},
+        "sigma": {"distribution": "uniform", "min": 0.3, "max": 0.55},
         "human_cal_weight": {"values": [2, 5, 10]},
         "frozen_epochs": {"values": [0, 2, 3]},
         "encoder_lr_factor": {"values": [0.05, 0.1, 0.2]},

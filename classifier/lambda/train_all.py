@@ -588,16 +588,22 @@ def phase5_gat_retrain() -> dict[str, Any]:
     output_dir = Path("runs/gat_v2")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    result = train_gat(
-        output_dir=str(output_dir),
-        embedding_dim=64,
+    embeddings, node_ids = train_gat(
+        hidden_dim=64,
         epochs=200,
         lr=0.005,
     )
     elapsed = time.time() - t0
 
+    # Save GAT embeddings
+    import numpy as np
+    out_path = Path("data/features/gat_embeddings.npz")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    np.savez(str(out_path), embeddings=embeddings, node_ids=node_ids)
     print(f"  [phase5] GAT retrain done in {elapsed:.1f}s")
-    return {"phase": 5, "status": "trained", "elapsed": elapsed, **result}
+    print(f"  [phase5] embeddings shape: {embeddings.shape}, nodes: {len(node_ids)}")
+    return {"phase": 5, "status": "trained", "elapsed": elapsed,
+            "emb_shape": list(embeddings.shape), "n_nodes": len(node_ids)}
 
 
 # ---------------------------------------------------------------------------

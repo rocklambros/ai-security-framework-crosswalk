@@ -1,0 +1,349 @@
+{
+  "methods": {
+    "A_gat_only": {
+      "label": "GAT-only LogReg",
+      "tier_accuracy": 0.6480446927374302,
+      "macro_f1": 0.3886474984801344,
+      "binary_accuracy": 0.7932960893854749,
+      "binary_f1": 0.7671319573854647,
+      "adjacent_accuracy": 0.8324022346368715,
+      "per_class_f1": {
+        "unrelated": 0.8451882845188284,
+        "partial": 0.41025641025641024,
+        "related": 0.2222222222222222,
+        "equivalent": 0.07692307692307693
+      },
+      "confusion_matrix": {
+        "unrelated": {
+          "unrelated": 101,
+          "partial": 9,
+          "related": 12,
+          "equivalent": 8
+        },
+        "partial": {
+          "unrelated": 1,
+          "partial": 8,
+          "related": 6,
+          "equivalent": 3
+        },
+        "related": {
+          "unrelated": 7,
+          "partial": 4,
+          "related": 6,
+          "equivalent": 7
+        },
+        "equivalent": {
+          "unrelated": 0,
+          "partial": 0,
+          "related": 6,
+          "equivalent": 1
+        }
+      },
+      "class_counts": {
+        "unrelated": 130,
+        "partial": 18,
+        "related": 24,
+        "equivalent": 7
+      }
+    },
+    "B_full_pipeline": {
+      "label": "Full pipeline",
+      "tier_accuracy": 0.7094972067039106,
+      "macro_f1": 0.43047356683720317,
+      "binary_accuracy": 0.8659217877094972,
+      "binary_f1": 0.8469649472784269,
+      "adjacent_accuracy": 0.9162011173184358,
+      "per_class_f1": {
+        "unrelated": 0.9008264462809917,
+        "partial": 0.4444444444444444,
+        "related": 0.2857142857142857,
+        "equivalent": 0.09090909090909091
+      },
+      "confusion_matrix": {
+        "unrelated": {
+          "unrelated": 109,
+          "partial": 10,
+          "related": 7,
+          "equivalent": 4
+        },
+        "partial": {
+          "unrelated": 1,
+          "partial": 10,
+          "related": 6,
+          "equivalent": 1
+        },
+        "related": {
+          "unrelated": 2,
+          "partial": 6,
+          "related": 7,
+          "equivalent": 9
+        },
+        "equivalent": {
+          "unrelated": 0,
+          "partial": 1,
+          "related": 5,
+          "equivalent": 1
+        }
+      },
+      "class_counts": {
+        "unrelated": 130,
+        "partial": 18,
+        "related": 24,
+        "equivalent": 7
+      }
+    },
+    "C_ce_only": {
+      "label": "CE-only LogReg",
+      "tier_accuracy": 0.24022346368715083,
+      "macro_f1": 0.18333470215967693,
+      "binary_accuracy": 0.39106145251396646,
+      "binary_f1": 0.3861569922919616,
+      "adjacent_accuracy": 0.7821229050279329,
+      "per_class_f1": {
+        "unrelated": 0.3312883435582822,
+        "partial": 0.19672131147540983,
+        "related": 0.06896551724137931,
+        "equivalent": 0.13636363636363635
+      },
+      "confusion_matrix": {
+        "unrelated": {
+          "unrelated": 27,
+          "partial": 77,
+          "related": 4,
+          "equivalent": 22
+        },
+        "partial": {
+          "unrelated": 1,
+          "partial": 12,
+          "related": 0,
+          "equivalent": 5
+        },
+        "related": {
+          "unrelated": 4,
+          "partial": 12,
+          "related": 1,
+          "equivalent": 7
+        },
+        "equivalent": {
+          "unrelated": 1,
+          "partial": 3,
+          "related": 0,
+          "equivalent": 3
+        }
+      },
+      "class_counts": {
+        "unrelated": 130,
+        "partial": 18,
+        "related": 24,
+        "equivalent": 7
+      }
+    },
+    "D_v7b_raw_ce": {
+      "label": "v7b raw CE",
+      "tier_accuracy": 0.6089385474860335,
+      "macro_f1": 0.25422885572139303,
+      "binary_accuracy": 0.6759776536312849,
+      "binary_f1": 0.5695688225538972,
+      "adjacent_accuracy": 0.7821229050279329,
+      "per_class_f1": {
+        "unrelated": 0.7835820895522388,
+        "partial": 0.06666666666666667,
+        "related": 0.0,
+        "equivalent": 0.16666666666666666
+      },
+      "confusion_matrix": {
+        "unrelated": {
+          "unrelated": 105,
+          "partial": 10,
+          "related": 0,
+          "equivalent": 15
+        },
+        "partial": {
+          "unrelated": 13,
+          "partial": 1,
+          "related": 0,
+          "equivalent": 4
+        },
+        "related": {
+          "unrelated": 16,
+          "partial": 1,
+          "related": 0,
+          "equivalent": 7
+        },
+        "equivalent": {
+          "unrelated": 4,
+          "partial": 0,
+          "related": 0,
+          "equivalent": 3
+        }
+      },
+      "class_counts": {
+        "unrelated": 130,
+        "partial": 18,
+        "related": 24,
+        "equivalent": 7
+      }
+    }
+  },
+  "features": [
+    "gat_cosine",
+    "gat_l2",
+    "gat_dot",
+    "gat_diff_00",
+    "gat_diff_01",
+    "gat_diff_02",
+    "gat_diff_03",
+    "gat_diff_04",
+    "gat_diff_05",
+    "gat_diff_06",
+    "gat_diff_07",
+    "gat_diff_08",
+    "gat_diff_09",
+    "gat_diff_10",
+    "gat_diff_11",
+    "gat_diff_12",
+    "gat_diff_13",
+    "gat_diff_14",
+    "gat_diff_15",
+    "gat_diff_16",
+    "gat_diff_17",
+    "gat_diff_18",
+    "gat_diff_19",
+    "gat_diff_20",
+    "gat_diff_21",
+    "gat_diff_22",
+    "gat_diff_23",
+    "gat_diff_24",
+    "gat_diff_25",
+    "gat_diff_26",
+    "gat_diff_27",
+    "gat_diff_28",
+    "gat_diff_29",
+    "gat_diff_30",
+    "gat_diff_31",
+    "bge_cosine",
+    "bm25",
+    "bridge",
+    "ce_prob_0",
+    "ce_prob_1",
+    "ce_prob_2",
+    "ce_prob_3"
+  ],
+  "n_features": 42,
+  "conformal": {
+    "alpha": 0.1,
+    "q_hat": 0.9425261672523321,
+    "n_cal": 239,
+    "avg_set_size": 2.2793296089385473,
+    "median_set_size": 2.0,
+    "test_coverage": 0.8770949720670391
+  },
+  "bootstrap_ci_95": {
+    "accuracy": {
+      "lower": 0.6424581005586593,
+      "point": 0.7101005586592177,
+      "upper": 0.776536312849162
+    },
+    "macro_f1": {
+      "lower": 0.3504582905942882,
+      "point": 0.42776857596322515,
+      "upper": 0.509068536675202
+    }
+  },
+  "feature_importance": {
+    "gat_diff_19": 0.8931953567280958,
+    "ce_prob_2": 0.8003457974105153,
+    "gat_diff_31": 0.7927691187979526,
+    "bridge": 0.7843205407321634,
+    "gat_diff_08": 0.7544699182816998,
+    "gat_diff_14": 0.7402659734944061,
+    "gat_diff_06": 0.7325840751508047,
+    "gat_diff_21": 0.7058709061282963,
+    "gat_cosine": 0.657257204401782,
+    "gat_diff_16": 0.5790095092386129,
+    "gat_diff_12": 0.5499729088004326,
+    "gat_diff_01": 0.5250592383569116,
+    "gat_l2": 0.5214669331010322,
+    "gat_diff_18": 0.48995328525200554,
+    "gat_diff_03": 0.48956835353485495,
+    "gat_diff_02": 0.48386312108256946,
+    "ce_prob_1": 0.48116517118159907,
+    "ce_prob_3": 0.4759914194397366,
+    "gat_diff_17": 0.4628988088913055,
+    "gat_diff_22": 0.3967949190530198,
+    "gat_diff_24": 0.38939717424898573,
+    "gat_diff_20": 0.38590131715284315,
+    "gat_diff_09": 0.38014123702665786,
+    "gat_diff_00": 0.3792159608766953,
+    "gat_diff_27": 0.36936142456802246,
+    "gat_diff_05": 0.3379423483332748,
+    "gat_diff_15": 0.3339809589077907,
+    "gat_diff_07": 0.3320214154265014,
+    "gat_diff_04": 0.3182547785314117,
+    "gat_diff_10": 0.3089833036608123,
+    "gat_diff_25": 0.2727142390990009,
+    "gat_diff_13": 0.24976237122066175,
+    "gat_dot": 0.232734728886673,
+    "gat_diff_30": 0.22282652375479345,
+    "gat_diff_29": 0.20328868144464007,
+    "gat_diff_28": 0.15746342175122402,
+    "ce_prob_0": 0.14862873907678778,
+    "gat_diff_23": 0.1467678196541377,
+    "gat_diff_11": 0.14304219441947777,
+    "gat_diff_26": 0.11074081588609502,
+    "bge_cosine": 0.0,
+    "bm25": 0.0
+  },
+  "elapsed_seconds": 20.939748525619507,
+  "best_C": 1.0,
+  "cv_macro_f1": 0.5281596858777938,
+  "cal_val_metrics": {
+    "label": "cal_val",
+    "tier_accuracy": 0.7196652719665272,
+    "macro_f1": 0.5186757121976779,
+    "binary_accuracy": 0.8158995815899581,
+    "binary_f1": 0.7945772776996406,
+    "adjacent_accuracy": 0.8661087866108786,
+    "per_class_f1": {
+      "unrelated": 0.8607594936708861,
+      "partial": 0.4,
+      "related": 0.5176470588235295,
+      "equivalent": 0.2962962962962963
+    },
+    "confusion_matrix": {
+      "unrelated": {
+        "unrelated": 136,
+        "partial": 14,
+        "related": 16,
+        "equivalent": 7
+      },
+      "partial": {
+        "unrelated": 1,
+        "partial": 10,
+        "related": 5,
+        "equivalent": 3
+      },
+      "related": {
+        "unrelated": 5,
+        "partial": 7,
+        "related": 22,
+        "equivalent": 3
+      },
+      "equivalent": {
+        "unrelated": 1,
+        "partial": 0,
+        "related": 5,
+        "equivalent": 4
+      }
+    },
+    "class_counts": {
+      "unrelated": 173,
+      "partial": 19,
+      "related": 37,
+      "equivalent": 10
+    }
+  },
+  "sacred_run": true,
+  "timestamp": "2026-04-15T17:01:57-0600",
+  "has_ce_features": true
+}

@@ -864,7 +864,8 @@ def phase9_sacred_run() -> dict[str, Any]:
 
     # Load CE features
     ce_data = dict(np.load("data/processed/ce_features_v2.npz"))
-    models = ["deberta", "roberta", "deberta_base"]
+    models = [k.replace("_logits", "") for k in ce_data if k.endswith("_logits")]
+    print(f"  [phase9] available models: {models}")
 
     # Compute split offsets
     n_train = sum(1 for _ in open("data/splits/expert_train.jsonl"))

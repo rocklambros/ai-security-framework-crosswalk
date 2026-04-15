@@ -69,6 +69,7 @@ class LGBMStacker:
             "num_class": N_CLASSES,
             "metric": "multi_logloss",
             "verbosity": -1,
+            "num_threads": 4,
             "seed": 42,
             **self.params,
         }

@@ -152,19 +152,39 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
             model = model.to(device)
 
             # Load algorithmic training data
-            train_data = []
+            raw_data = []
             with open("data/splits/expert_train.jsonl") as f:
                 for line in f:
-                    train_data.append(json.loads(line))
+                    raw_data.append(json.loads(line))
+
+            # Deduplicate: soft-label expansion creates 3 rows per pair with
+            # contradictory labels. For CE training, sample ONE label per unique
+            # pair proportional to sample_weight (preserves prior distribution).
+            import random as _rng
+            _rng.seed(42)
+            pair_groups: dict[tuple, list] = {}
+            for r in raw_data:
+                key = (r["source_text"], r["target_text"])
+                pair_groups.setdefault(key, []).append(r)
+            train_data = []
+            for key, rows in pair_groups.items():
+                if len(rows) == 1:
+                    chosen = dict(rows[0])
+                else:
+                    w = [r.get("sample_weight", 1.0) for r in rows]
+                    chosen = dict(_rng.choices(rows, weights=w, k=1)[0])
+                chosen["sample_weight"] = 1.0
+                train_data.append(chosen)
+            print(f"  CE dedup: {len(raw_data)} -> {len(train_data)} unique pairs")
 
             # Load human-labeled calibration data
             human_train, human_val, _, _ = split_human_cal()
 
-            # Build sample weights: use sample_weight from JSONL if present,
-            # else 1.0 for algorithmic; human_cal_weight for human labels
+            # Build sample weights: uniform 1.0 for deduped algorithmic data,
+            # human_cal_weight for human labels
             human_cal_weight = config.get("human_cal_weight", 10)
             sample_weights = np.array(
-                [r.get("sample_weight", 1.0) for r in train_data]
+                [1.0] * len(train_data)
                 + [float(human_cal_weight)] * len(human_train)
             )
             train_data = train_data + human_train
@@ -321,8 +341,8 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
 
                 expert_val_f1 = f1_score(val_labels_expert, val_preds_expert, average="macro")
 
-                # COLLAPSE GUARD -- only zero out if truly degenerate (all same class)
-                if n_unique_preds < 2:
+                # COLLAPSE GUARD
+                if n_unique_preds < 3:
                     combined_f1 = 0.0
                     print(f"    COLLAPSE DETECTED: only {n_unique_preds} unique preds")
                 else:

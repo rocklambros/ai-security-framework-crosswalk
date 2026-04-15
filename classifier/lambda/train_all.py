@@ -165,10 +165,9 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                     raw_data.append(json.loads(line))
 
             # Deduplicate: soft-label expansion creates 3 rows per pair with
-            # contradictory labels. For CE training, sample ONE label per unique
-            # pair proportional to sample_weight (preserves prior distribution).
-            import random as _rng
-            _rng.seed(42)
+            # different tier_labels and sample_weights encoding the soft prior.
+            # Instead of randomly picking one row (which destroys the distribution),
+            # compute the weighted-average soft target across all rows for each pair.
             pair_groups: dict[tuple, list] = {}
             for r in raw_data:
                 key = (r["source_text"], r["target_text"])
@@ -177,12 +176,25 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
             for key, rows in pair_groups.items():
                 if len(rows) == 1:
                     chosen = dict(rows[0])
+                    # Single row = hard label, no soft_target needed
                 else:
-                    w = [r.get("sample_weight", 1.0) for r in rows]
-                    chosen = dict(_rng.choices(rows, weights=w, k=1)[0])
+                    # Build weighted-average soft target distribution
+                    soft_target = [0.0] * 4
+                    total_w = 0.0
+                    for r in rows:
+                        w = r.get("sample_weight", 1.0)
+                        soft_target[r["tier_label"]] += w
+                        total_w += w
+                    if total_w > 0:
+                        soft_target = [s / total_w for s in soft_target]
+                    chosen = dict(rows[0])
+                    chosen["soft_target"] = soft_target
+                    # Use argmax as nominal class for sampling/display
+                    chosen["tier_label"] = max(range(4), key=lambda i: soft_target[i])
                 chosen["sample_weight"] = 1.0
                 train_data.append(chosen)
-            print(f"  CE dedup: {len(raw_data)} -> {len(train_data)} unique pairs")
+            n_soft = sum(1 for r in train_data if "soft_target" in r)
+            print(f"  CE dedup: {len(raw_data)} -> {len(train_data)} unique pairs ({n_soft} with soft targets)")
 
             # Load human-labeled calibration data
             human_train, human_val, _, _ = split_human_cal()
@@ -210,7 +222,7 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
             epochs = config.get("epochs", 5)
             warmup_ratio = config.get("warmup_ratio", 0.1)
             wd = config.get("weight_decay", 0.01)
-            frozen_epochs = config.get("frozen_epochs", 2)
+            frozen_epochs = 0  # v7b data: frozen=2 always collapses
             encoder_lr_factor = config.get("encoder_lr_factor", 0.1)
 
             # Clamp batch size for GPU memory safety
@@ -278,35 +290,73 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                 n_batches = 0
                 max_grad_norm = 0.0
 
+                nan_skips = 0
                 for i in range(0, len(epoch_data), bs):
                     batch = epoch_data[i:i+bs]
                     texts_a = [r["source_text"] for r in batch]
                     texts_b = [r["target_text"] for r in batch]
                     labels = torch.tensor([r["tier_label"] for r in batch], device=device)
 
+                    # Build per-sample soft targets where available
+                    batch_soft = None
+                    if any("soft_target" in r for r in batch):
+                        from classifier.ensemble.kl_ordinal_loss import ordinal_soft_targets
+                        batch_soft = []
+                        for r in batch:
+                            if "soft_target" in r:
+                                batch_soft.append(r["soft_target"])
+                            else:
+                                # Hard label: generate Gaussian soft target
+                                st = ordinal_soft_targets(
+                                    torch.tensor([r["tier_label"]]), n_classes=4, sigma=sigma
+                                )
+                                batch_soft.append(st.squeeze(0).tolist())
+                        batch_soft = torch.tensor(batch_soft, device=device, dtype=torch.float32)
+
                     encoding = model.tokenize_batch(texts_a, texts_b)
                     encoding = {k: v.to(device) for k, v in encoding.items()}
 
                     with torch.amp.autocast("cuda", enabled=use_amp):
                         logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
-                        loss = kl_ordinal_loss(logits, labels, n_classes=4, sigma=sigma)
+                        loss = kl_ordinal_loss(logits, labels, n_classes=4, sigma=sigma,
+                                               soft_targets=batch_soft)
+
+                    # NaN safety: skip batch if loss is NaN/Inf
+                    if not torch.isfinite(loss):
+                        nan_skips += 1
+                        print(f"    WARNING: NaN/Inf loss at batch {i//bs}, skipping")
+                        optimizer.zero_grad()
+                        continue
 
                     optimizer.zero_grad()
                     if scaler:
                         scaler.scale(loss).backward()
                         scaler.unscale_(optimizer)
+                        # NaN gradient guard
                         grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0).item()
+                        if not (grad_norm < float("inf")):
+                            print(f"    WARNING: NaN/Inf gradients at batch {i//bs}, skipping step")
+                            scaler.update()
+                            nan_skips += 1
+                            continue
                         scaler.step(optimizer)
                         scaler.update()
                     else:
                         loss.backward()
                         grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0).item()
+                        if not (grad_norm < float("inf")):
+                            print(f"    WARNING: NaN/Inf gradients at batch {i//bs}, skipping step")
+                            nan_skips += 1
+                            continue
                         optimizer.step()
                     scheduler.step()
 
                     epoch_loss += loss.item()
                     max_grad_norm = max(max_grad_norm, grad_norm)
                     n_batches += 1
+
+                if nan_skips > 0:
+                    print(f"    Epoch {epoch}: {nan_skips} batches skipped due to NaN/Inf")
 
                 avg_loss = epoch_loss / max(n_batches, 1)
 
@@ -395,16 +445,16 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                     "learning_rate": optimizer.param_groups[0]["lr"],
                     "loss_type": "kl",
                     "sigma": sigma,
+                    "nan_skips": nan_skips,
                 })
 
                 # Best model selection on combined_f1
-                # Don't count collapsed or frozen epochs toward patience
                 if combined_f1 > best_f1:
                     best_f1 = combined_f1
                     patience_counter = 0
                     model.save(Path(out) / "best")
                     wandb.log({"best_epoch": epoch, "best_combined_f1": best_f1})
-                elif combined_f1 > 0 and epoch >= frozen_epochs:
+                elif combined_f1 > 0:
                     # Only count patience when model makes non-collapsed predictions
                     patience_counter += 1
                     if patience_counter >= 3:

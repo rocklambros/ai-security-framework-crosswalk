@@ -44,18 +44,26 @@ def kl_ordinal_loss(
     labels: torch.Tensor,
     n_classes: int = 4,
     sigma: float = 0.75,
+    soft_targets: torch.Tensor | None = None,
 ) -> torch.Tensor:
     """KL-divergence between predicted log-probs and ordinal soft targets.
 
     Args:
         logits: (batch_size, n_classes) raw model logits
-        labels: (batch_size,) integer labels in [0, n_classes)
+        labels: (batch_size,) integer labels in [0, n_classes).
+                Ignored when soft_targets is provided.
         n_classes: number of ordinal classes
-        sigma: Gaussian width for soft targets
+        sigma: Gaussian width for soft targets (only used with hard labels)
+        soft_targets: (batch_size, n_classes) pre-computed target distributions.
+                      When provided, used directly instead of generating from labels.
 
     Returns:
         Scalar loss (mean over batch)
     """
-    targets = ordinal_soft_targets(labels, n_classes=n_classes, sigma=sigma)
+    if soft_targets is not None:
+        targets = soft_targets
+    else:
+        targets = ordinal_soft_targets(labels, n_classes=n_classes, sigma=sigma)
+    targets = targets.clamp(min=1e-8)
     log_probs = F.log_softmax(logits, dim=1)
     return F.kl_div(log_probs, targets, reduction="batchmean")

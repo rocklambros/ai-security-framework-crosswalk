@@ -17,7 +17,7 @@ CE_SWEEP_CONFIG = {
         "loss_type": {"values": ["kl"]},
         "sigma": {"distribution": "uniform", "min": 0.3, "max": 0.8},
         "human_cal_weight": {"values": [2, 5, 10]},
-        "frozen_epochs": {"values": [2, 3, 5]},
+        "frozen_epochs": {"values": [0, 2, 3]},
         "encoder_lr_factor": {"values": [0.05, 0.1, 0.2]},
     },
     "early_terminate": {"type": "hyperband", "min_iter": 5, "eta": 3},

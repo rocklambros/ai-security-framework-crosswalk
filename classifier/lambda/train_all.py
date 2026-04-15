@@ -106,9 +106,16 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
         output_dir = Path(f"runs/ce_v2/{name}")
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        # Check if a pretrained SimCSE checkpoint exists
+        # Check if a COMPLETE pretrained SimCSE checkpoint exists
+        # (config.json alone is not enough -- need actual model weights)
         simcse_dir = Path(f"runs/ce_v2/contrastive/{name}")
-        init_from = str(simcse_dir) if (simcse_dir / "config.json").exists() else model_id
+        has_weights = (
+            (simcse_dir / "model.safetensors").exists()
+            or (simcse_dir / "pytorch_model.bin").exists()
+        )
+        init_from = str(simcse_dir) if has_weights else model_id
+        if not has_weights and (simcse_dir / "config.json").exists():
+            print(f"  [phase3] WARNING: {name} contrastive checkpoint incomplete, falling back to pretrained {model_id}")
 
         print(f"  [phase3] creating WANDB sweep for {name}")
         sweep_cfg = {**CE_SWEEP_CONFIG, "name": f"ce-sweep-{name}"}
@@ -216,9 +223,10 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
             # Combine class weight with human_cal source weight
             combined_weight = per_sample_class_weight * sample_weights
 
-            # Start with encoder frozen
-            for param in model.encoder.parameters():
-                param.requires_grad = False
+            # Freeze encoder for warm-up epochs (skip if frozen_epochs=0)
+            if frozen_epochs > 0:
+                for param in model.encoder.parameters():
+                    param.requires_grad = False
 
             # Separate parameter groups with discriminative learning rates
             head_params = [p for n, p in model.named_parameters() if "classifier" in n]
@@ -238,14 +246,14 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
             best_f1 = 0.0
             patience_counter = 0
 
+            if frozen_epochs == 0:
+                print(f"    No frozen epochs -- full model trainable from start")
+
             for epoch in range(epochs):
-                # Unfreeze encoder after frozen_epochs
-                if epoch == frozen_epochs:
+                # Unfreeze encoder after frozen_epochs (keep head intact)
+                if epoch == frozen_epochs and frozen_epochs > 0:
                     for param in model.encoder.parameters():
                         param.requires_grad = True
-                    # Reinitialize classifier head to escape frozen-phase collapse
-                    nn.init.xavier_uniform_(model.classifier.weight)
-                    nn.init.zeros_(model.classifier.bias)
                     # Rebuild optimizer with encoder params now trainable
                     head_params = [p for n, p in model.named_parameters() if "classifier" in n]
                     encoder_params = [p for n, p in model.named_parameters() if "classifier" not in n]
@@ -253,7 +261,7 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                         {"params": head_params, "lr": lr},
                         {"params": encoder_params, "lr": lr * encoder_lr_factor},
                     ], weight_decay=wd)
-                    print(f"    Encoder unfrozen at epoch {epoch}, head reinitialized")
+                    print(f"    Encoder unfrozen at epoch {epoch} (head preserved)")
 
                 model.train()
 
@@ -360,6 +368,10 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                 # Per-class F1
                 per_class_f1 = f1_score(val_labels_human, val_preds_human, average=None, labels=[0, 1, 2, 3])
 
+                # Prediction distribution for debugging collapse
+                from collections import Counter
+                pred_dist = Counter(val_preds_human)
+
                 wandb.log({
                     "epoch": epoch,
                     "train_loss": avg_loss,
@@ -372,6 +384,10 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                     "expert_val_macro_f1": expert_val_f1,
                     "combined_f1": combined_f1,
                     "n_unique_preds": n_unique_preds,
+                    "pred_class_0_pct": pred_dist.get(0, 0) / max(len(val_preds_human), 1),
+                    "pred_class_1_pct": pred_dist.get(1, 0) / max(len(val_preds_human), 1),
+                    "pred_class_2_pct": pred_dist.get(2, 0) / max(len(val_preds_human), 1),
+                    "pred_class_3_pct": pred_dist.get(3, 0) / max(len(val_preds_human), 1),
                     "f1_class_0": per_class_f1[0] if len(per_class_f1) > 0 else 0.0,
                     "f1_class_1": per_class_f1[1] if len(per_class_f1) > 1 else 0.0,
                     "f1_class_2": per_class_f1[2] if len(per_class_f1) > 2 else 0.0,
@@ -394,10 +410,12 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                         print(f"    Early stopping at epoch {epoch}")
                         break
 
-            # Clean up GPU memory
+            # Clean up GPU memory thoroughly between trials
             del model, optimizer
             if scaler:
                 del scaler
+            import gc
+            gc.collect()
             torch.cuda.empty_cache()
             run.finish()
 

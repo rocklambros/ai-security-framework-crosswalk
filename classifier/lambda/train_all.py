@@ -268,6 +268,7 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
 
                 epoch_loss = 0.0
                 n_batches = 0
+                max_grad_norm = 0.0
 
                 for i in range(0, len(epoch_data), bs):
                     batch = epoch_data[i:i+bs]
@@ -286,16 +287,17 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                     if scaler:
                         scaler.scale(loss).backward()
                         scaler.unscale_(optimizer)
-                        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                        grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0).item()
                         scaler.step(optimizer)
                         scaler.update()
                     else:
                         loss.backward()
-                        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                        grad_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0).item()
                         optimizer.step()
                     scheduler.step()
 
                     epoch_loss += loss.item()
+                    max_grad_norm = max(max_grad_norm, grad_norm)
                     n_batches += 1
 
                 avg_loss = epoch_loss / max(n_batches, 1)
@@ -304,19 +306,26 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                 model.eval()
                 val_preds_human = []
                 val_labels_human = []
+                val_kl_loss_sum = 0.0
+                val_kl_batches = 0
                 with torch.no_grad():
                     for i in range(0, len(val_data), bs):
                         batch = val_data[i:i+bs]
                         texts_a = [r["source_text"] for r in batch]
                         texts_b = [r["target_text"] for r in batch]
                         labels_batch = [r["tier_label"] for r in batch]
+                        labels_t = torch.tensor(labels_batch, device=device)
                         encoding = model.tokenize_batch(texts_a, texts_b)
                         encoding = {k: v.to(device) for k, v in encoding.items()}
                         with torch.amp.autocast("cuda", enabled=use_amp):
                             logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+                            val_loss_batch = kl_ordinal_loss(logits, labels_t, n_classes=4, sigma=sigma)
                         preds = logits.argmax(dim=1).cpu().tolist()
                         val_preds_human.extend(preds)
                         val_labels_human.extend(labels_batch)
+                        val_kl_loss_sum += val_loss_batch.item()
+                        val_kl_batches += 1
+                val_kl_loss = val_kl_loss_sum / max(val_kl_batches, 1)
 
                 human_val_f1 = f1_score(val_labels_human, val_preds_human, average="macro")
                 human_val_acc = accuracy_score(val_labels_human, val_preds_human)
@@ -354,6 +363,10 @@ def phase3_finetune_sweeps(sweep_count: int = 30, model_filter: str | None = Non
                 wandb.log({
                     "epoch": epoch,
                     "train_loss": avg_loss,
+                    "val_kl_loss": val_kl_loss,
+                    "train_val_loss_gap": avg_loss - val_kl_loss,
+                    "max_grad_norm": max_grad_norm,
+                    "grad_clipped": max_grad_norm > 1.0,
                     "human_val_macro_f1": human_val_f1,
                     "human_val_tier_accuracy": human_val_acc,
                     "expert_val_macro_f1": expert_val_f1,

@@ -1,7 +1,7 @@
 """WANDB project and sweep configurations for crosswalk-v7."""
 from __future__ import annotations
 
-WANDB_PROJECT = "crosswalk-v7"
+WANDB_PROJECT = "crosswalk-v7b"
 WANDB_ENTITY = None
 
 CE_SWEEP_CONFIG = {

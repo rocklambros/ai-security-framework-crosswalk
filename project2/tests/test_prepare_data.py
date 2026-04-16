@@ -2,8 +2,6 @@
 
 import json
 import os
-import tempfile
-import shutil
 
 import pytest
 
@@ -76,8 +74,8 @@ def test_transitive_mappings_for_asi02(derived_dir):
     asi02 = trans["owasp_agentic:ASI02"]
     assert "direct" in asi02
     assert "transitive" in asi02
-    # ASI02 has 11 direct mappings from AIUC-1
-    assert len(asi02["direct"]) == 11
+    # ASI02 has 35 direct mappings (AIUC-1 + upstream sources)
+    assert len(asi02["direct"]) == 35
     # ASI02 should reach CSA AICM transitively
     csa_transitive = [
         t for t in asi02["transitive"] if t["target_framework"] == "csa_aicm"

@@ -305,7 +305,7 @@ def compute_transitive_mappings(nodes, edges):
 
 def compute_graph_metrics(nodes, edges):
     """Per-framework-pair edge stats and per-node degree metrics."""
-    node_map = {n["node_id"]: n for n in nodes}
+    {n["node_id"]: n for n in nodes}
 
     # Framework pairs
     pair_data = defaultdict(lambda: {"edge_count": 0, "confidence_counts": Counter(), "rationale_counts": Counter()})

@@ -14,8 +14,6 @@ from components.data_loader import (
     get_nodes_for_framework,
 )
 from components.framework_colors import (
-    CONFIDENCE_COLORS,
-    CONFIDENCE_LABELS,
     FRAMEWORK_KEYS,
     RATIONALE_LABELS,
     get_color,

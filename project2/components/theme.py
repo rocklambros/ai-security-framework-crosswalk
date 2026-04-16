@@ -1,7 +1,7 @@
 """Theme toggle logic -- swaps DBC stylesheet between CYBORG (dark) and FLATLY (light)."""
 
 import dash_bootstrap_components as dbc
-from dash import Input, Output, callback, html
+from dash import Input, Output, callback
 
 DARK_THEME_URL = dbc.themes.CYBORG
 LIGHT_THEME_URL = dbc.themes.FLATLY

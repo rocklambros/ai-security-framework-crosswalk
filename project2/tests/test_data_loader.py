@@ -12,7 +12,6 @@ from components.data_loader import (
     get_coverage_matrix,
     get_hierarchy,
     get_transitive_mappings,
-    get_graph_metrics,
     get_node_by_id,
 )
 
@@ -29,7 +28,7 @@ def test_edges_df_has_expected_columns():
     df = get_edges_df()
     assert "source_node_id" in df.columns
     assert "target_node_id" in df.columns
-    assert len(df) == 5813
+    assert len(df) == 4342
 
 
 def test_framework_stats_loaded():

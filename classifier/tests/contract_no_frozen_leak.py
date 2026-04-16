@@ -179,7 +179,6 @@ def _plan3_feature_cache() -> Iterator[tuple[str, str, str, str]]:
     universe for any classifier consuming it. If a frozen-test pair is in
     the cache, features for it exist at training time.
     """
-    import csv
     # Parquet path — use pandas if available, else skip (CI will hit it).
     path = Path("data/baselines/feature_cache_v1.parquet")
     if not path.exists():

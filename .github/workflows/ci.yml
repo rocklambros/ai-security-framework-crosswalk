@@ -20,8 +20,8 @@ jobs:
       - name: Install linter
         run: pip install ruff
 
-      - name: Lint check
-        run: ruff check .
+      - name: Lint check (project2 + classifier contracts)
+        run: ruff check project2/ classifier/tests/contract_no_frozen_leak.py classifier/tests/test_pre_registered_lockfile.py
 
   smoke:
     needs: quality

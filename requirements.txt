@@ -11,11 +11,11 @@ plotly==6.5.1
 dash==3.3.0
 
 # Network analysis
-networkx>=3.2
+networkx==3.6.1
 
 # Data processing
 scipy==1.16.3
 scikit-learn==1.8.0
 
 # Notebook
-jupyter>=1.0
+jupyter==1.0.0

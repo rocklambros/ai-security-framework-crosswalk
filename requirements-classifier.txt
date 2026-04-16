@@ -1,4 +1,4 @@
-# Plan 1 — infra & splits only
+# Plan 1 -- infra & splits only
 python-dotenv==1.0.1
 pyyaml==6.0.2
 pandas==2.2.3
@@ -10,10 +10,10 @@ pytest==8.3.3
 tenacity==9.0.0
 
 # Plan 2 additions
-anthropic>=0.49.0
+anthropic==0.92.0
 jinja2==3.1.6
 pydantic==2.9.2
 
 # Plan 3 additions
 rank_bm25==0.2.2
-pyarrow>=21.0.0
+pyarrow==23.0.1

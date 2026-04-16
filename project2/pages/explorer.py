@@ -128,7 +128,7 @@ def _build_sankey(mappings, source_node, theme="dark"):
     trans_idx = 2
     fw_start_idx = 3
 
-    links_src, links_tgt, links_val, links_color = [], [], [], []
+    links_src, links_tgt, links_val, links_color, links_customdata = [], [], [], [], []
 
     # Count direct per framework
     direct_by_fw = {}
@@ -148,6 +148,7 @@ def _build_sankey(mappings, source_node, theme="dark"):
         links_tgt.append(direct_idx)
         links_val.append(total_direct)
         links_color.append("rgba(0,212,255,0.2)")
+        links_customdata.append(None)
 
     # Source -> Transitive
     total_trans = sum(trans_by_fw.values())
@@ -156,6 +157,7 @@ def _build_sankey(mappings, source_node, theme="dark"):
         links_tgt.append(trans_idx)
         links_val.append(total_trans)
         links_color.append("rgba(143,209,143,0.2)")
+        links_customdata.append(None)
 
     # Direct -> target frameworks
     for fw, count in direct_by_fw.items():
@@ -164,6 +166,7 @@ def _build_sankey(mappings, source_node, theme="dark"):
             links_tgt.append(fw_start_idx + target_fws.index(fw))
             links_val.append(count)
             links_color.append("rgba(0,212,255,0.15)")
+            links_customdata.append(fw)
 
     # Transitive -> target frameworks
     for fw, count in trans_by_fw.items():
@@ -172,8 +175,10 @@ def _build_sankey(mappings, source_node, theme="dark"):
             links_tgt.append(fw_start_idx + target_fws.index(fw))
             links_val.append(count)
             links_color.append("rgba(143,209,143,0.15)")
+            links_customdata.append(fw)
 
     fig = go.Figure(go.Sankey(
+        arrangement="fixed",
         node=dict(
             pad=15,
             thickness=20,
@@ -186,6 +191,7 @@ def _build_sankey(mappings, source_node, theme="dark"):
             target=links_tgt,
             value=links_val,
             color=links_color,
+            customdata=links_customdata,
         ),
     ))
     fig.update_layout(
@@ -669,6 +675,9 @@ layout = dbc.Container([
     # Sankey click filter store
     dcc.Store(id="explorer-sankey-fw-filter", data=None),
 
+    # Raw Sankey click events (from assets/sankey_click.js, includes counter for repeated clicks)
+    dcc.Store(id="explorer-sankey-click-store", data=None),
+
     # Pending control from URL params (set by handle_url_params, consumed by apply_pending_control)
     dcc.Store(id="explorer-pending-control", data=None),
 
@@ -687,9 +696,10 @@ layout = dbc.Container([
         dcc.Dropdown(
             id="explorer-fw-filter",
             options=[],
-            value=None,
+            value=[],
+            multi=True,
             clearable=True,
-            placeholder="All frameworks (no filter)",
+            placeholder="All frameworks (click Sankey flows to filter)",
         ),
     ], md=6), className="mb-3 mt-2"),
 
@@ -792,12 +802,12 @@ def apply_pending_control(options, pending_control):
 def update_explorer(node_id, mapping_filter, search_text, theme):
     if not node_id:
         empty = go.Figure()
-        return empty, empty, html.Div(), html.Div(), html.Div(), html.Div(), None, [], None
+        return empty, empty, html.Div(), html.Div(), html.Div(), html.Div(), None, [], []
 
     node = get_node_by_id(node_id)
     if not node:
         empty = go.Figure()
-        return empty, empty, html.Div(), html.Div(), html.Div(), html.Div(), None, [], None
+        return empty, empty, html.Div(), html.Div(), html.Div(), html.Div(), None, [], []
 
     mappings = get_mappings_for_node(node_id)
 
@@ -868,35 +878,115 @@ def update_explorer(node_id, mapping_filter, search_text, theme):
         for fw in sorted(target_fw_set, key=lambda fw: get_display_name(fw))
     ]
 
-    return sankey, neighborhood, status, source_card, mapping_cards, mitigation, None, fw_filter_options, None
+    return sankey, neighborhood, status, source_card, mapping_cards, mitigation, None, fw_filter_options, []
 
 
 @callback(
     Output("explorer-fw-filter", "value", allow_duplicate=True),
-    Input("explorer-sankey", "clickData"),
+    Input("explorer-sankey-click-store", "data"),
+    State("explorer-fw-filter", "value"),
     State("explorer-control", "value"),
     prevent_initial_call=True,
 )
-def sankey_click_filter_neighborhood(click_data, node_id):
-    """When user clicks a target framework in the Sankey, set the filter dropdown."""
-    if not click_data or not node_id:
+def sankey_click_toggle_filter(click_event, current_selection, node_id):
+    """Toggle a framework in/out of the filter when the user clicks a Sankey flow or node.
+
+    Uses explorer-sankey-click-store (written by assets/sankey_click.js) instead
+    of clickData so that repeated clicks on the same element still fire.
+    """
+    if not click_event or not node_id:
         return dash.no_update
 
-    points = click_data.get("points", [])
-    if not points:
-        return dash.no_update
+    current_selection = current_selection or []
 
-    point = points[0]
-    clicked_label = point.get("label", "")
-    if not clicked_label or clicked_label in ("Direct", "Transitive"):
-        return dash.no_update
+    # Extract framework key from the click event
+    clicked_fw = None
 
-    short_to_fw = {get_short_name(fw): fw for fw in FRAMEWORK_KEYS}
-    clicked_fw = short_to_fw.get(clicked_label)
+    # Link click: customdata or targetCustomdata hold the fw key
+    for key in ("customdata", "targetCustomdata"):
+        val = click_event.get(key)
+        if val and val in FRAMEWORK_KEYS:
+            clicked_fw = val
+            break
+
+    # Node click: label matches a framework short name
+    if not clicked_fw:
+        label = click_event.get("label", "")
+        if label and label not in ("Direct", "Transitive"):
+            short_to_fw = {get_short_name(fw): fw for fw in FRAMEWORK_KEYS}
+            clicked_fw = short_to_fw.get(label)
+
     if not clicked_fw:
         return dash.no_update
 
-    return clicked_fw
+    # Toggle: remove if already selected, add if not
+    if clicked_fw in current_selection:
+        return [fw for fw in current_selection if fw != clicked_fw]
+    else:
+        return current_selection + [clicked_fw]
+
+
+@callback(
+    Output("explorer-sankey", "figure", allow_duplicate=True),
+    Input("explorer-fw-filter", "value"),
+    State("explorer-sankey", "figure"),
+    prevent_initial_call=True,
+)
+def highlight_sankey_links(selected_fws, current_figure):
+    """Highlight selected framework flows in the Sankey and dim the rest."""
+    if not current_figure or "data" not in current_figure:
+        return dash.no_update
+
+    selected_fws = selected_fws or []
+    trace = current_figure["data"][0] if current_figure["data"] else None
+    if not trace or "link" not in trace:
+        return dash.no_update
+
+    link = trace["link"]
+    node = trace["node"]
+    link_customdata = link.get("customdata", [])
+    link_sources = link.get("source", [])
+    node_customdata = node.get("customdata", [])
+    node_colors = node.get("color", [])
+
+    # Determine original link type from source index (1=Direct cyan, 2=Transitive green)
+    new_link_colors = []
+    for i, fw in enumerate(link_customdata):
+        src = link_sources[i] if i < len(link_sources) else 0
+        is_cyan = (src != 2)  # Source->Direct or Direct->fw
+        base = (0, 212, 255) if is_cyan else (143, 209, 143)
+
+        if not selected_fws:
+            # No selection: default opacity
+            alpha = 0.2 if fw is None else 0.15
+        elif fw is None:
+            # Intermediate link (Source->Direct or Source->Transitive): medium
+            alpha = 0.12
+        elif fw in selected_fws:
+            # Selected: bright
+            alpha = 0.55
+        else:
+            # Unselected: very dim
+            alpha = 0.03
+
+        new_link_colors.append(f"rgba({base[0]},{base[1]},{base[2]},{alpha})")
+
+    # Update node colors: restore originals when no selection, dim unselected, brighten selected
+    new_node_colors = list(node_colors)
+    for i, cd in enumerate(node_customdata):
+        if i < 3:
+            continue  # Source, Direct, Transitive nodes: always keep original
+        if cd and cd in FRAMEWORK_KEYS:
+            if not selected_fws or cd in selected_fws:
+                new_node_colors[i] = get_color(cd)
+            else:
+                new_node_colors[i] = "rgba(60,60,60,0.3)"
+
+    patched = current_figure.copy()
+    patched["data"] = [dict(trace)]
+    patched["data"][0]["link"] = dict(link, color=new_link_colors)
+    patched["data"][0]["node"] = dict(node, color=new_node_colors)
+    return patched
 
 
 @callback(
@@ -910,14 +1000,16 @@ def sankey_click_filter_neighborhood(click_data, node_id):
     State("theme-store", "data"),
     prevent_initial_call=True,
 )
-def filter_by_framework(target_fw, node_id, mapping_filter, search_text, theme):
-    """Filter neighborhood graph and mapping cards to a specific target framework."""
+def filter_by_framework(target_fws, node_id, mapping_filter, search_text, theme):
+    """Filter neighborhood graph and mapping cards to selected target frameworks."""
     if not node_id:
         return dash.no_update, dash.no_update, dash.no_update
 
     node = get_node_by_id(node_id)
     if not node:
         return dash.no_update, dash.no_update, dash.no_update
+
+    target_fws = target_fws or []
 
     mappings = get_mappings_for_node(node_id)
     filtered = dict(mappings)
@@ -931,7 +1023,7 @@ def filter_by_framework(target_fw, node_id, mapping_filter, search_text, theme):
         filtered["transitive"] = [t for t in filtered["transitive"] if search_lower in t.get("target_name", "").lower() or search_lower in (get_node_by_id(t["target_node_id"]) or {}).get("description", "").lower()]
 
     # If no filter selected, show all
-    if not target_fw:
+    if not target_fws:
         n_direct = len(filtered["direct"])
         n_trans = len(filtered["transitive"])
         total = n_direct + n_trans
@@ -947,25 +1039,34 @@ def filter_by_framework(target_fw, node_id, mapping_filter, search_text, theme):
         mapping_cards = _build_mapping_cards(filtered, node)
         return neighborhood, status, mapping_cards
 
-    # Filter to specific framework
+    # Filter to selected frameworks
+    fw_set = set(target_fws)
     fw_filtered = {
-        "direct": [d for d in filtered["direct"] if d["target_framework"] == target_fw],
-        "transitive": [t for t in filtered["transitive"] if t["target_framework"] == target_fw],
+        "direct": [d for d in filtered["direct"] if d["target_framework"] in fw_set],
+        "transitive": [t for t in filtered["transitive"] if t["target_framework"] in fw_set],
     }
 
     n_direct = len(fw_filtered["direct"])
     n_trans = len(fw_filtered["transitive"])
     total = n_direct + n_trans
 
+    # Build status badges for each selected framework
+    badges = []
+    for fw in target_fws:
+        badges.append(html.Span(
+            get_short_name(fw), className="badge me-1",
+            style={"backgroundColor": get_color(fw), "color": "#fff", "fontSize": "0.7rem"},
+        ))
+
     status = html.Div([
-        html.Span(f"Filtered: {get_short_name(target_fw)}", className="badge me-2",
-                  style={"backgroundColor": get_color(target_fw), "color": "#fff", "fontSize": "0.75rem"}),
+        *badges,
+        html.Span(" ", className="me-1"),
         html.Strong(f"{n_direct}", style={"color": "#00d4ff"}),
         html.Span(" direct", className="text-muted"),
         html.Span(" + ", className="text-muted") if n_trans else "",
         html.Strong(f"{n_trans}", style={"color": "#8fd18f"}) if n_trans else "",
         html.Span(" transitive", className="text-muted") if n_trans else "",
-        html.Span(f" = {total} to {get_short_name(target_fw)}", className="text-muted"),
+        html.Span(f" = {total} total", className="text-muted"),
     ], style={"fontSize": "0.85rem", "padding": "8px 12px",
               "backgroundColor": "rgba(22,27,34,0.5)", "borderRadius": "6px",
               "border": "1px solid #21262d"})

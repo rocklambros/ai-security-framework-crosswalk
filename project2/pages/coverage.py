@@ -88,7 +88,14 @@ def _framework_options():
 
 
 def _build_radar(source_fw, coverage_data, theme="dark"):
-    """Build radar chart showing coverage across all target frameworks."""
+    """Build radar chart showing coverage across all target frameworks.
+
+    Encoding: angle (Cleveland & McGill 1984, rank 3). Retained as a
+    complementary gestalt/shape view alongside the coverage bar chart (rank 1),
+    which provides precise per-framework comparison. Two traces (total/direct)
+    use line encoding with distinct line styles (solid vs. dotted) for
+    categorical distinction (Graze & Schwabish 2024).
+    """
     if source_fw not in coverage_data:
         fig = go.Figure()
         fig.update_layout(template=get_template(theme))
@@ -157,7 +164,16 @@ def _build_radar(source_fw, coverage_data, theme="dark"):
 
 
 def _build_coverage_bar(source_fw, coverage_data, theme="dark"):
-    """Build stacked bar chart: coverage breakdown by direct/transitive/gap."""
+    """Build stacked bar chart: coverage breakdown by direct/transitive/gap.
+
+    Encoding: stacked bar with position along common scale for the bottom
+    (direct) segment; upper segments use length without baseline (Cleveland &
+    McGill 1984, rank 3). Stacked form justified because the total (100%) is
+    the primary message (Cleveland acknowledges this trade-off). Percentage
+    annotations at bar ends compensate for off-baseline segments. Label colors
+    use ordinal luminance within a single blue hue family (Borner et al. 2019;
+    Graze & Schwabish 2024: colorblind-safe).
+    """
     if source_fw not in coverage_data:
         fig = go.Figure()
         fig.update_layout(template=get_template(theme))
@@ -192,9 +208,11 @@ def _build_coverage_bar(source_fw, coverage_data, theme="dark"):
         hovertemplate="<b>%{y}</b><br>Gap: %{x:.1f}%<br><i>Click for details</i><extra></extra>",
     ))
 
-    # Add percentage labels
+    # Add percentage labels. Ordinal luminance: bright blue = good coverage,
+    # dark blue = poor coverage (Borner et al. 2019: ordinal -> luminance).
+    # Single-hue family is inherently colorblind-safe (Graze & Schwabish 2024).
     for i, pct in enumerate(total_pcts):
-        color = "#00d4ff" if pct >= 60 else "#d9bf55" if pct >= 30 else "#ff6b6b"
+        color = "#58a6ff" if pct >= 60 else "#3a6da0" if pct >= 30 else "#1e3a5c"
         fig.add_annotation(
             x=min(pct + 2, 100), y=fw_labels[i],
             text=f"{pct:.0f}%",

@@ -1,10 +1,24 @@
-"""Single source of truth for the 9-framework color palette and display names."""
+"""Single source of truth for the 9-framework color palette and display names.
+
+Palette design rationale (Graze & Schwabish 2024):
+- Categorical palette: 9 distinct hues for nominal framework identity.
+- Exceeds the <=6 recommendation because 9 frameworks require 9 colors.
+  Colors selected for maximum hue and luminance separation across the
+  color wheel. Tested against deuteranopia/protanopia simulation.
+- Used consistently across all pages and chart types in the app.
+- See project2/VISUALIZATION_DESIGN.md for the full style guide.
+"""
 
 FRAMEWORK_KEYS = [
     "aiuc_1", "csa_aicm", "mitre_atlas", "owasp_ai_exchange",
     "nist_rmf", "eu_gpai_cop", "cosai_rm", "owasp_llm", "owasp_agentic",
 ]
 
+# Categorical 9-color palette: maximized hue/luminance separation.
+# Borner et al. (2019): categorical data encoded with distinct hues.
+# Graze & Schwabish (2024): named, explicit palette; <=6 preferred but
+# 9 required here. Each color chosen to remain distinguishable under
+# the most common forms of color vision deficiency.
 FRAMEWORK_COLORS = {
     "aiuc_1": "#1f6feb", "csa_aicm": "#8fd18f", "mitre_atlas": "#e8845a",
     "owasp_ai_exchange": "#4ecdc4", "nist_rmf": "#cf85c4", "eu_gpai_cop": "#d9bf55",

@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 from dash import Input, Output, State, callback, dcc, html
 
 from components.badge_tooltips import badge_with_tooltip
-from components.data_loader import get_edges_df, get_framework_stats, get_graph_metrics, get_nodes_df
+from components.data_loader import get_edges_df, get_framework_stats, get_graph_metrics, get_nodes_df, get_pairwise_reachability
 from components.framework_colors import (
     FRAMEWORK_KEYS,
     get_color,
@@ -47,12 +47,17 @@ LEARN_MORE_CONTENT = [
         "edge for details.",
     ], style={"fontSize": "0.85rem", "lineHeight": "1.7", "color": "#9eaab8"}),
     html.H6("Reading the Heatmap", className="mt-2 mb-1", style={"color": "#00d4ff"}),
-    html.P(
-        "The 9x9 matrix shows bidirectional mapping counts: for each pair, edges in both directions "
-        "are combined into a single symmetric count. This matches the methodology used in the research "
-        "notebook (Figure 4.1). Brighter cells indicate denser mapping. Hover for exact counts.",
-        style={"fontSize": "0.85rem", "lineHeight": "1.7", "color": "#9eaab8"},
-    ),
+    html.P([
+        "The 9x9 matrix shows bidirectional mapping counts. Use the ",
+        html.Strong("Mapping Scope", style={"color": "#c9d1d9"}),
+        " toggle to switch views: ",
+        html.Strong("Direct edges", style={"color": "#c9d1d9"}),
+        " counts only explicit mapped relationships (matching the research notebook Figure 4.1). ",
+        html.Strong("All reachability", style={"color": "#c9d1d9"}),
+        " counts unique node pairs reachable via direct or transitive (2-hop) paths through "
+        "bridge frameworks. Some framework pairs (e.g., ATLAS and CSA AICM) have zero direct "
+        "edges but hundreds of transitive connections via AIUC-1 or other bridges.",
+    ], style={"fontSize": "0.85rem", "lineHeight": "1.7", "color": "#9eaab8"}),
     html.H6("Using the Filters", className="mt-2 mb-1", style={"color": "#00d4ff"}),
     html.P([
         html.Strong("Confidence: ", style={"color": "#c9d1d9"}),
@@ -71,6 +76,11 @@ def _build_network_figure(edges_df, stats, theme="dark", selected_fw=None):
     """Build the framework supernode network graph.
 
     When selected_fw is set, highlight that framework's connections and dim others.
+
+    Encoding: categorical framework colors for nominal identity (Borner et al.
+    2019). Node size encodes framework breadth via area (Cleveland & McGill 1984,
+    rank 4), acceptable for navigational networks where the primary task is
+    exploration, not precise comparison. Edge width encodes mapping density.
     """
     import math
 
@@ -278,48 +288,110 @@ def _build_network_figure(edges_df, stats, theme="dark", selected_fw=None):
     return fig
 
 
-def _build_heatmap_figure(edges_df, theme="dark"):
+def _build_heatmap_figure(edges_df, theme="dark", scope="direct"):
     """Build the 9x9 pairwise mapping density heatmap (direction-agnostic).
 
-    Combines A->B and B->A into a single symmetric count per pair,
-    matching Figure 4.1 from the project 1 notebook.
+    Both modes count unique unordered node pairs so values are directly
+    comparable when toggling scope.
+
+    scope="direct": unique node pairs connected by at least one direct edge.
+    scope="reachable": unique node pairs reachable via direct OR transitive
+    (2-hop) paths from pre-computed reachability data.
+
+    Encoding: sequential single-hue luminance ramp for ratio data (Borland &
+    Taylor 2007; Borner et al. 2019). Cell-value annotations provide direct
+    labeling to supplement color saturation (Cleveland rank 6) with precise
+    numeric readout. Dark theme uses a blue luminance ramp; light theme uses
+    a complementary blue ramp.
     """
     fw_list = FRAMEWORK_KEYS
     short_names = [get_short_name(fw) for fw in fw_list]
-
-    # Count cross-framework edges (direction-agnostic: combine both directions)
-    matrix = [[0] * len(fw_list) for _ in range(len(fw_list))]
     fw_idx = {fw: i for i, fw in enumerate(fw_list)}
 
-    for _, row in edges_df.iterrows():
-        src_fw = row["source_framework"]
-        tgt_fw = row["target_framework"]
-        if src_fw in fw_idx and tgt_fw in fw_idx and src_fw != tgt_fw:
-            i, j = fw_idx[src_fw], fw_idx[tgt_fw]
-            matrix[i][j] += 1
-            matrix[j][i] += 1
+    matrix = [[0] * len(fw_list) for _ in range(len(fw_list))]
 
-    # Zero diagonal
-    for i in range(len(fw_list)):
-        matrix[i][i] = 0
+    if scope == "reachable":
+        # Use pre-computed pairwise reachability (direct + transitive)
+        reachability = get_pairwise_reachability()
+        for fw_a in fw_list:
+            if fw_a not in reachability:
+                continue
+            for fw_b in fw_list:
+                if fw_b == fw_a or fw_b not in reachability[fw_a]:
+                    continue
+                i, j = fw_idx[fw_a], fw_idx[fw_b]
+                matrix[i][j] = reachability[fw_a][fw_b]["total"]
+        title_text = "Pairwise Reachability (direct + transitive)"
+    else:
+        # Count unique unordered node pairs with direct cross-framework edges.
+        # This deduplicates bidirectional edges (A->B and B->A for the same
+        # node pair count as 1) so values are comparable with reachable mode.
+        from collections import defaultdict
+        pair_sets = defaultdict(set)
+        for _, row in edges_df.iterrows():
+            src_fw = row["source_framework"]
+            tgt_fw = row["target_framework"]
+            if src_fw in fw_idx and tgt_fw in fw_idx and src_fw != tgt_fw:
+                fw_pair = tuple(sorted([src_fw, tgt_fw]))
+                node_pair = tuple(sorted([row["source_node_id"], row["target_node_id"]]))
+                pair_sets[fw_pair].add(node_pair)
+        for (fw_a, fw_b), pairs in pair_sets.items():
+            i, j = fw_idx[fw_a], fw_idx[fw_b]
+            matrix[i][j] = len(pairs)
+            matrix[j][i] = len(pairs)
+        title_text = "Pairwise Mapping Density (unique node pairs, direct edges)"
 
-    # Colorscale with visible low-end on dark backgrounds
+    # Sequential single-hue blue luminance ramp (Borland & Taylor 2007).
+    # Monotonically increasing luminance so density magnitude is perceptually
+    # ordered. Avoids the multi-hue rainbow problem.
     if theme == "dark":
-        colorscale = [[0, "#161b22"], [0.15, "#1a3a5c"], [0.4, "#1f6feb"], [0.7, "#39d353"], [1, "#00d4ff"]]
+        colorscale = [
+            [0, "#0d1117"],      # Near-black (zero density recedes)
+            [0.25, "#0d2847"],   # Very dark blue
+            [0.5, "#1a4f7a"],    # Medium blue
+            [0.75, "#2878ad"],   # Bright blue
+            [1, "#3aa5de"],      # Light blue (highest density)
+        ]
     else:
         colorscale = [[0, "#f6f8fa"], [0.3, "#a8d8f0"], [0.6, "#1f6feb"], [1, "#0550ae"]]
 
-    fig = go.Figure(data=go.Heatmap(
-        z=matrix,
-        x=short_names,
-        y=short_names,
-        colorscale=colorscale,
-        hovertemplate=(
-            "<b>%{y}</b> - <b>%{x}</b><br>"
-            "Mappings: %{z}<br>"
-            "<extra></extra>"
-        ),
-    ))
+    # Build hover text with breakdown when showing reachability
+    if scope == "reachable":
+        reachability = get_pairwise_reachability()
+        hover_text = [[None] * len(fw_list) for _ in range(len(fw_list))]
+        for i, fw_a in enumerate(fw_list):
+            for j, fw_b in enumerate(fw_list):
+                if fw_a == fw_b:
+                    hover_text[i][j] = ""
+                    continue
+                r = reachability.get(fw_a, {}).get(fw_b, {})
+                d = r.get("direct", 0)
+                t = r.get("transitive", 0)
+                hover_text[i][j] = (
+                    f"<b>{short_names[i]}</b> - <b>{short_names[j]}</b><br>"
+                    f"Total: {d + t} node pairs<br>"
+                    f"Direct: {d} / Transitive: {t}"
+                )
+        fig = go.Figure(data=go.Heatmap(
+            z=matrix,
+            x=short_names,
+            y=short_names,
+            colorscale=colorscale,
+            hovertext=hover_text,
+            hovertemplate="%{hovertext}<extra></extra>",
+        ))
+    else:
+        fig = go.Figure(data=go.Heatmap(
+            z=matrix,
+            x=short_names,
+            y=short_names,
+            colorscale=colorscale,
+            hovertemplate=(
+                "<b>%{y}</b> - <b>%{x}</b><br>"
+                "Unique node pairs: %{z}<br>"
+                "<extra></extra>"
+            ),
+        ))
 
     # Add text annotations showing counts in each cell
     for i in range(len(fw_list)):
@@ -336,7 +408,7 @@ def _build_heatmap_figure(edges_df, theme="dark"):
     fig.update_layout(
         template=get_template(theme),
         height=550,
-        title=dict(text="Pairwise Mapping Density (bidirectional)", font=dict(size=14)),
+        title=dict(text=title_text, font=dict(size=14)),
         xaxis=dict(side="bottom", tickangle=45),
         yaxis=dict(autorange="reversed"),
     )
@@ -449,11 +521,38 @@ layout = dbc.Container([
         },
     )))),
 
-    # Heatmap (full width)
-    dbc.Row(dbc.Col(dcc.Loading(dcc.Graph(
-        id="landscape-heatmap",
-        config={"displayModeBar": False},
-    ))), className="mt-2"),
+    # Heatmap scope toggle + chart
+    dbc.Row(dbc.Col([
+        dbc.Label([
+            "Mapping Scope ",
+            html.I(className="bi bi-info-circle", id="heatmap-scope-tooltip-target",
+                   style={"cursor": "pointer", "color": "#00d4ff"}),
+        ], html_for="landscape-heatmap-scope",
+                  className="text-muted mt-3", style={"fontSize": "0.8rem"}),
+        dbc.Tooltip(
+            "Direct edges: counts only explicit mapped relationships between framework pairs. "
+            "All reachability: counts unique node pairs reachable via direct or transitive "
+            "(2-hop) paths through bridge frameworks.",
+            target="heatmap-scope-tooltip-target",
+            placement="right",
+        ),
+        dbc.RadioItems(
+            id="landscape-heatmap-scope",
+            options=[
+                {"label": "Direct edges", "value": "direct"},
+                {"label": "All reachability (direct + transitive)", "value": "reachable"},
+            ],
+            value="direct",
+            inline=True,
+            className="mb-2",
+            inputStyle={"marginRight": "4px"},
+            labelStyle={"marginRight": "16px", "fontSize": "0.85rem"},
+        ),
+        dcc.Loading(dcc.Graph(
+            id="landscape-heatmap",
+            config={"displayModeBar": False},
+        )),
+    ])),
 
     # Heatmap cell detail panel (shown on click)
     dbc.Row(dbc.Col(
@@ -479,8 +578,9 @@ layout = dbc.Container([
     Input("landscape-edge-type", "value"),
     Input("landscape-selected-fw", "data"),
     Input("theme-store", "data"),
+    Input("landscape-heatmap-scope", "value"),
 )
-def update_landscape(confidence, edge_type, selected_fw, theme):
+def update_landscape(confidence, edge_type, selected_fw, theme, heatmap_scope):
     edges_df = get_edges_df()
     stats = get_framework_stats()
 
@@ -502,7 +602,7 @@ def update_landscape(confidence, edge_type, selected_fw, theme):
     cross = edges_df[edges_df["source_framework"] != edges_df["target_framework"]]
 
     network_fig = _build_network_figure(edges_df, stats, theme, selected_fw=selected_fw)
-    heatmap_fig = _build_heatmap_figure(edges_df, theme)
+    heatmap_fig = _build_heatmap_figure(edges_df, theme, scope=heatmap_scope or "direct")
 
     # Stats bar
     nodes_df = get_nodes_df()

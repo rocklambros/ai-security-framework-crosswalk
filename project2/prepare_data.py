@@ -138,8 +138,11 @@ def enrich_domains(nodes):
 def compute_hierarchy(nodes):
     """Build sunburst-compatible hierarchy per framework.
 
-    Levels: framework root -> domain -> individual nodes.
-    Uses domain as the grouping level. Nodes without a domain go under '(ungrouped)'.
+    Levels: framework root -> domain -> top-level children only.
+    For frameworks with parent_node_id hierarchy (e.g. AIUC-1), only nodes
+    whose parent is the domain function node are included -- activities nested
+    under controls are excluded so the domain view shows top-level controls.
+    Nodes without a domain go under '(ungrouped)'.
     """
     fw_nodes = defaultdict(list)
     for n in nodes:
@@ -152,6 +155,11 @@ def compute_hierarchy(nodes):
         parents = [""]
         values = [0]  # root value will be sum
 
+        # Build lookup of domain function node IDs (entry_type="function")
+        domain_fn_ids = {
+            n["node_id"] for n in ns if n.get("entry_type") == "function"
+        }
+
         # Group by domain
         domain_groups = defaultdict(list)
         for n in ns:
@@ -160,19 +168,36 @@ def compute_hierarchy(nodes):
 
         for domain, domain_nodes in sorted(domain_groups.items()):
             domain_id = f"{fw}::{domain}"
+
+            # Filter to top-level children only:
+            # - Exclude domain function nodes (they ARE the domain, not children)
+            # - Exclude nodes whose parent is a non-function node in the SAME
+            #   domain (e.g. AIUC-1 activities nested under controls)
+            # - Include everything else (direct children of domain function
+            #   nodes, parentless nodes, nodes whose parent is in another domain)
+            domain_node_ids = {n["node_id"] for n in domain_nodes}
+            top_level = []
+            for n in domain_nodes:
+                if n.get("entry_type") == "function":
+                    continue  # skip domain grouping nodes
+                pid = n.get("parent_node_id")
+                if pid and pid in domain_node_ids and pid not in domain_fn_ids:
+                    continue  # nested under another node in this domain
+                top_level.append(n)
+
             ids.append(domain_id)
             labels.append(domain)
             parents.append(fw)
-            values.append(len(domain_nodes))  # sum of children (each leaf = 1)
+            values.append(len(top_level))
 
-            for n in sorted(domain_nodes, key=lambda x: x["local_id"]):
+            for n in sorted(top_level, key=lambda x: x["local_id"]):
                 ids.append(n["node_id"])
                 labels.append(f"{n['local_id']}: {n['name']}")
                 parents.append(domain_id)
                 values.append(1)
 
-        # Root value = total leaf count (sum of all domain values)
-        values[0] = sum(len(dns) for dns in domain_groups.values())
+        # Root value = total top-level leaf count
+        values[0] = sum(v for v in values[1:] if v == 1)
 
         hierarchy[fw] = {
             "ids": ids,
@@ -560,6 +585,57 @@ def save_json(data, path):
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
+def compute_pairwise_reachability(transitive_mappings, frameworks):
+    """Build a pairwise matrix of unique (source_node, target_node) pairs
+    reachable through direct and transitive mappings.
+
+    Returns {fw_a: {fw_b: {"direct": N, "transitive": N, "total": N}}}.
+    Counts are direction-agnostic (A->B and B->A combined).
+    """
+    fw_set = set(frameworks)
+    # Accumulate unique node pairs per framework pair
+    direct_pairs = defaultdict(set)
+    transitive_pairs = defaultdict(set)
+
+    for src_nid, mappings in transitive_mappings.items():
+        src_fw = src_nid.split(":")[0]
+        if src_fw not in fw_set:
+            continue
+
+        for d in mappings.get("direct", []):
+            tgt_fw = d["target_framework"]
+            if tgt_fw == src_fw or tgt_fw not in fw_set:
+                continue
+            pair_key = tuple(sorted([src_fw, tgt_fw]))
+            node_pair = tuple(sorted([src_nid, d["target_node_id"]]))
+            direct_pairs[pair_key].add(node_pair)
+
+        for t in mappings.get("transitive", []):
+            tgt_fw = t["target_framework"]
+            if tgt_fw == src_fw or tgt_fw not in fw_set:
+                continue
+            pair_key = tuple(sorted([src_fw, tgt_fw]))
+            node_pair = tuple(sorted([src_nid, t["target_node_id"]]))
+            transitive_pairs[pair_key].add(node_pair)
+
+    result = {}
+    for fw_a in sorted(fw_set):
+        result[fw_a] = {}
+        for fw_b in sorted(fw_set):
+            if fw_a == fw_b:
+                continue
+            pair_key = tuple(sorted([fw_a, fw_b]))
+            d_count = len(direct_pairs.get(pair_key, set()))
+            t_only = len(transitive_pairs.get(pair_key, set()) - direct_pairs.get(pair_key, set()))
+            result[fw_a][fw_b] = {
+                "direct": d_count,
+                "transitive": t_only,
+                "total": d_count + t_only,
+            }
+
+    return result
+
+
 def prepare_all(data_dir: str, output_dir: str):
     """Run the full preparation pipeline."""
     nodes, edges = load_raw(data_dir)
@@ -591,12 +667,17 @@ def prepare_all(data_dir: str, output_dir: str):
     coverage = compute_coverage_matrix(nodes, transitive)
     save_json(coverage, os.path.join(output_dir, "coverage_matrix.json"))
 
+    fw_list = sorted({n["framework"] for n in nodes})
+    reachability = compute_pairwise_reachability(transitive, fw_list)
+    save_json(reachability, os.path.join(output_dir, "pairwise_reachability.json"))
+
     print(f"Derived data written to {output_dir}/")
     print(f"  framework_stats.json  ({len(stats)} frameworks)")
     print(f"  hierarchy.json        ({len(hierarchy)} frameworks)")
     print(f"  transitive_mappings.json ({len(transitive)} nodes with mappings)")
     print(f"  graph_metrics.json    ({len(metrics['framework_pairs'])} pairs)")
     print(f"  coverage_matrix.json  ({len(coverage)} source frameworks)")
+    print(f"  pairwise_reachability.json ({len(reachability)} frameworks)")
 
 
 if __name__ == "__main__":

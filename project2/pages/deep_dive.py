@@ -118,7 +118,13 @@ def _get_domain_data(framework, entry_types):
 
 
 def _build_level0(framework, entry_types, theme="dark"):
-    """Level 0: Framework overview with domain nodes around center."""
+    """Level 0: Framework overview with domain nodes around center.
+
+    Encoding: categorical framework color for nominal identity (Borner et al.
+    2019). Node size encodes domain breadth via area (Cleveland rank 4),
+    acceptable for navigational drill-down where the task is selection, not
+    precise comparison. Count labels inside nodes provide direct readout.
+    """
     domains = _get_domain_data(framework, entry_types)
     fw_color = get_color(framework)
     domain_list = sorted(domains.keys())
@@ -206,7 +212,13 @@ def _build_level0(framework, entry_types, theme="dark"):
 
 
 def _build_level1(framework, domain_name, entry_types, theme="dark"):
-    """Level 1: Domain zoom -- domain at center, controls radiating out."""
+    """Level 1: Domain zoom -- domain at center, controls radiating out.
+
+    Encoding: same radial network as Level 0. Uniform node size (12px) because
+    all children are peers at this level; position encodes identity only.
+    Categorical framework color maintained for consistency (Graze & Schwabish
+    2024). Hover text provides full control name and click affordance.
+    """
     domains = _get_domain_data(framework, entry_types)
     fw_color = get_color(framework)
 
@@ -306,7 +318,14 @@ def _build_level1(framework, domain_name, entry_types, theme="dark"):
 
 
 def _build_level2(framework, node_id, theme="dark", expanded_fw=None):
-    """Level 2: Control zoom -- control at center, cross-framework mappings radiating out."""
+    """Level 2: Control zoom -- control at center, cross-framework mappings radiating out.
+
+    Encoding: categorical framework colors (Borner et al. 2019) for target
+    framework identity. Node size encodes mapping count via area (Cleveland
+    rank 4); count labels inside nodes provide direct readout. Shape encodes
+    mapping type: circles = direct, diamonds = transitive (Borner: shape for
+    categorical distinction). Edge width proportional to total mappings.
+    """
     from collections import defaultdict
 
     from components.data_loader import get_mappings_for_node
@@ -515,7 +534,13 @@ def _build_level2(framework, node_id, theme="dark", expanded_fw=None):
 
 
 def _build_mapping_bar(framework, theme="dark"):
-    """Build bidirectional mapping bar chart showing both outbound and inbound."""
+    """Build bidirectional mapping bar chart showing both outbound and inbound.
+
+    Encoding: position along a common scale (Cleveland & McGill 1984, rank 1).
+    Diverging layout (negative left, positive right) uses two-category color
+    (blue outbound, green inbound) with sufficient hue and luminance separation
+    for colorblind accessibility (Graze & Schwabish 2024).
+    """
     edges_df = get_edges_df()
     cross = edges_df[edges_df["source_framework"] != edges_df["target_framework"]]
 

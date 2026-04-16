@@ -1,0 +1,380 @@
+{
+  "aiuc_1": {
+    "cosai_rm": {
+      "direct": 0,
+      "transitive": 131,
+      "total": 131
+    },
+    "csa_aicm": {
+      "direct": 860,
+      "transitive": 407,
+      "total": 1267
+    },
+    "eu_gpai_cop": {
+      "direct": 60,
+      "transitive": 0,
+      "total": 60
+    },
+    "mitre_atlas": {
+      "direct": 32,
+      "transitive": 481,
+      "total": 513
+    },
+    "nist_rmf": {
+      "direct": 152,
+      "transitive": 539,
+      "total": 691
+    },
+    "owasp_agentic": {
+      "direct": 137,
+      "transitive": 224,
+      "total": 361
+    },
+    "owasp_ai_exchange": {
+      "direct": 196,
+      "transitive": 0,
+      "total": 196
+    },
+    "owasp_llm": {
+      "direct": 87,
+      "transitive": 249,
+      "total": 336
+    }
+  },
+  "cosai_rm": {
+    "aiuc_1": {
+      "direct": 0,
+      "transitive": 131,
+      "total": 131
+    },
+    "csa_aicm": {
+      "direct": 0,
+      "transitive": 0,
+      "total": 0
+    },
+    "eu_gpai_cop": {
+      "direct": 0,
+      "transitive": 0,
+      "total": 0
+    },
+    "mitre_atlas": {
+      "direct": 29,
+      "transitive": 65,
+      "total": 94
+    },
+    "nist_rmf": {
+      "direct": 0,
+      "transitive": 62,
+      "total": 62
+    },
+    "owasp_agentic": {
+      "direct": 0,
+      "transitive": 70,
+      "total": 70
+    },
+    "owasp_ai_exchange": {
+      "direct": 0,
+      "transitive": 0,
+      "total": 0
+    },
+    "owasp_llm": {
+      "direct": 18,
+      "transitive": 6,
+      "total": 24
+    }
+  },
+  "csa_aicm": {
+    "aiuc_1": {
+      "direct": 860,
+      "transitive": 407,
+      "total": 1267
+    },
+    "cosai_rm": {
+      "direct": 0,
+      "transitive": 0,
+      "total": 0
+    },
+    "eu_gpai_cop": {
+      "direct": 0,
+      "transitive": 658,
+      "total": 658
+    },
+    "mitre_atlas": {
+      "direct": 0,
+      "transitive": 629,
+      "total": 629
+    },
+    "nist_rmf": {
+      "direct": 0,
+      "transitive": 1621,
+      "total": 1621
+    },
+    "owasp_agentic": {
+      "direct": 39,
+      "transitive": 1038,
+      "total": 1077
+    },
+    "owasp_ai_exchange": {
+      "direct": 0,
+      "transitive": 2020,
+      "total": 2020
+    },
+    "owasp_llm": {
+      "direct": 0,
+      "transitive": 744,
+      "total": 744
+    }
+  },
+  "eu_gpai_cop": {
+    "aiuc_1": {
+      "direct": 60,
+      "transitive": 0,
+      "total": 60
+    },
+    "cosai_rm": {
+      "direct": 0,
+      "transitive": 0,
+      "total": 0
+    },
+    "csa_aicm": {
+      "direct": 0,
+      "transitive": 658,
+      "total": 658
+    },
+    "mitre_atlas": {
+      "direct": 0,
+      "transitive": 22,
+      "total": 22
+    },
+    "nist_rmf": {
+      "direct": 0,
+      "transitive": 154,
+      "total": 154
+    },
+    "owasp_agentic": {
+      "direct": 0,
+      "transitive": 66,
+      "total": 66
+    },
+    "owasp_ai_exchange": {
+      "direct": 0,
+      "transitive": 98,
+      "total": 98
+    },
+    "owasp_llm": {
+      "direct": 0,
+      "transitive": 22,
+      "total": 22
+    }
+  },
+  "mitre_atlas": {
+    "aiuc_1": {
+      "direct": 32,
+      "transitive": 481,
+      "total": 513
+    },
+    "cosai_rm": {
+      "direct": 29,
+      "transitive": 65,
+      "total": 94
+    },
+    "csa_aicm": {
+      "direct": 0,
+      "transitive": 629,
+      "total": 629
+    },
+    "eu_gpai_cop": {
+      "direct": 0,
+      "transitive": 22,
+      "total": 22
+    },
+    "nist_rmf": {
+      "direct": 0,
+      "transitive": 283,
+      "total": 283
+    },
+    "owasp_agentic": {
+      "direct": 28,
+      "transitive": 167,
+      "total": 195
+    },
+    "owasp_ai_exchange": {
+      "direct": 0,
+      "transitive": 198,
+      "total": 198
+    },
+    "owasp_llm": {
+      "direct": 39,
+      "transitive": 122,
+      "total": 161
+    }
+  },
+  "nist_rmf": {
+    "aiuc_1": {
+      "direct": 152,
+      "transitive": 539,
+      "total": 691
+    },
+    "cosai_rm": {
+      "direct": 0,
+      "transitive": 62,
+      "total": 62
+    },
+    "csa_aicm": {
+      "direct": 0,
+      "transitive": 1621,
+      "total": 1621
+    },
+    "eu_gpai_cop": {
+      "direct": 0,
+      "transitive": 154,
+      "total": 154
+    },
+    "mitre_atlas": {
+      "direct": 0,
+      "transitive": 283,
+      "total": 283
+    },
+    "owasp_agentic": {
+      "direct": 60,
+      "transitive": 191,
+      "total": 251
+    },
+    "owasp_ai_exchange": {
+      "direct": 0,
+      "transitive": 263,
+      "total": 263
+    },
+    "owasp_llm": {
+      "direct": 40,
+      "transitive": 142,
+      "total": 182
+    }
+  },
+  "owasp_agentic": {
+    "aiuc_1": {
+      "direct": 137,
+      "transitive": 224,
+      "total": 361
+    },
+    "cosai_rm": {
+      "direct": 0,
+      "transitive": 70,
+      "total": 70
+    },
+    "csa_aicm": {
+      "direct": 39,
+      "transitive": 1038,
+      "total": 1077
+    },
+    "eu_gpai_cop": {
+      "direct": 0,
+      "transitive": 66,
+      "total": 66
+    },
+    "mitre_atlas": {
+      "direct": 28,
+      "transitive": 167,
+      "total": 195
+    },
+    "nist_rmf": {
+      "direct": 60,
+      "transitive": 191,
+      "total": 251
+    },
+    "owasp_ai_exchange": {
+      "direct": 0,
+      "transitive": 291,
+      "total": 291
+    },
+    "owasp_llm": {
+      "direct": 35,
+      "transitive": 64,
+      "total": 99
+    }
+  },
+  "owasp_ai_exchange": {
+    "aiuc_1": {
+      "direct": 196,
+      "transitive": 0,
+      "total": 196
+    },
+    "cosai_rm": {
+      "direct": 0,
+      "transitive": 0,
+      "total": 0
+    },
+    "csa_aicm": {
+      "direct": 0,
+      "transitive": 2020,
+      "total": 2020
+    },
+    "eu_gpai_cop": {
+      "direct": 0,
+      "transitive": 98,
+      "total": 98
+    },
+    "mitre_atlas": {
+      "direct": 0,
+      "transitive": 198,
+      "total": 198
+    },
+    "nist_rmf": {
+      "direct": 0,
+      "transitive": 263,
+      "total": 263
+    },
+    "owasp_agentic": {
+      "direct": 0,
+      "transitive": 291,
+      "total": 291
+    },
+    "owasp_llm": {
+      "direct": 0,
+      "transitive": 284,
+      "total": 284
+    }
+  },
+  "owasp_llm": {
+    "aiuc_1": {
+      "direct": 87,
+      "transitive": 249,
+      "total": 336
+    },
+    "cosai_rm": {
+      "direct": 18,
+      "transitive": 6,
+      "total": 24
+    },
+    "csa_aicm": {
+      "direct": 0,
+      "transitive": 744,
+      "total": 744
+    },
+    "eu_gpai_cop": {
+      "direct": 0,
+      "transitive": 22,
+      "total": 22
+    },
+    "mitre_atlas": {
+      "direct": 39,
+      "transitive": 122,
+      "total": 161
+    },
+    "nist_rmf": {
+      "direct": 40,
+      "transitive": 142,
+      "total": 182
+    },
+    "owasp_agentic": {
+      "direct": 35,
+      "transitive": 64,
+      "total": 99
+    },
+    "owasp_ai_exchange": {
+      "direct": 0,
+      "transitive": 284,
+      "total": 284
+    }
+  }
+}

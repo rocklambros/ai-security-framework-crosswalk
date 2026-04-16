@@ -39,6 +39,7 @@ _coverage_matrix = _load_json(os.path.join(_DERIVED_DIR, "coverage_matrix.json")
 _hierarchy = _load_json(os.path.join(_DERIVED_DIR, "hierarchy.json"))
 _transitive_mappings = _load_json(os.path.join(_DERIVED_DIR, "transitive_mappings.json"))
 _graph_metrics = _load_json(os.path.join(_DERIVED_DIR, "graph_metrics.json"))
+_pairwise_reachability = _load_json(os.path.join(_DERIVED_DIR, "pairwise_reachability.json"))
 
 
 def get_nodes_df() -> pd.DataFrame:
@@ -75,6 +76,10 @@ def get_transitive_mappings() -> dict:
 
 def get_graph_metrics() -> dict:
     return _graph_metrics
+
+
+def get_pairwise_reachability() -> dict:
+    return _pairwise_reachability
 
 
 def get_mappings_for_node(node_id: str) -> dict:

@@ -78,7 +78,14 @@ def _framework_options():
 
 
 def _build_sankey(mappings, source_node, theme="dark"):
-    """Build Sankey: source -> [confidence level] -> target frameworks."""
+    """Build Sankey: source -> [confidence level] -> target frameworks.
+
+    Encoding: flow width encodes mapping count (conventional Sankey).
+    Two-category color (cyan = direct, green = transitive) distinguishes
+    mapping types. Per-framework target colors use the global categorical
+    palette (Graze & Schwabish 2024). Sankey is the standard chart type
+    for showing flow between discrete categories.
+    """
     direct = mappings.get("direct", [])
     transitive = mappings.get("transitive", [])
 
@@ -193,6 +200,12 @@ def _build_neighborhood(mappings, source_node, theme="dark"):
     """Build local neighborhood graph: source at center, neighbors radiating outward.
 
     Shows both direct (inner ring, solid edges) and transitive (outer ring, dashed edges).
+
+    Encoding: categorical framework colors for nominal identity (Borner et al.
+    2019). Shape encodes mapping type: circles = direct, diamonds = transitive
+    (Borner: shape for categorical distinction). Dual-ring layout separates
+    direct (inner, solid edges) from transitive (outer, dashed edges) using
+    both position and line style as redundant channels.
     """
     direct = mappings.get("direct", [])
     transitive = mappings.get("transitive", [])

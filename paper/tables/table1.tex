@@ -1,27 +1,36 @@
 \begin{table}[t]
 \centering
-\caption{Results on \texttt{human\_test\_frozen} ($n=400$). Per-class
-rows show F1 / accuracy with support counts in parentheses.}
+\caption{v7c results on \texttt{human\_test\_frozen} ($n=179$).
+Method~B is the full two-stage pipeline (GAT+CE+baseline features
+with L2-regularized logistic regression).
+Per-class rows show F1 / accuracy.}
 \label{tab:main_results}
 \begin{tabular}{lr}
 \toprule
 Metric & Value \\
 \midrule
-Tier accuracy & 0.5325 \\
-Macro F1 & 0.4888 \\
-Adjacent accuracy & 0.8425 \\
-Binary accuracy & 0.7125 \\
-95\% CI (accuracy) & [0.485, 0.580] \\
-95\% CI (F1) & [0.433, 0.538] \\
+\multicolumn{2}{l}{\textbf{Method B (Full pipeline)}} \\
+Tier accuracy & 0.810 \\
+Macro F1 & 0.512 \\
+Adjacent accuracy & 0.944 \\
+Binary accuracy & 0.911 \\
+95\% CI (accuracy) & [0.749, 0.866] \\
+95\% CI (F1) & [0.437, 0.580] \\
 \midrule
-Equivalent (58) & 0.454 / 0.379 \\
-Related (186) & 0.613 / 0.640 \\
-Partial (78) & 0.364 / 0.308 \\
-Unrelated (78) & 0.525 / 0.615 \\
+\multicolumn{2}{l}{\textbf{Per-class F1 (Method B)}} \\
+Unrelated & 0.938 \\
+Partial & 0.556 \\
+Related & 0.556 \\
+Equivalent & 0.000 \\
 \midrule
-Conformal coverage ($\alpha{=}0.10$) & 0.9375 \\
-Mean prediction set size & 3.20 \\
-Calibration set size & 150 \\
+\multicolumn{2}{l}{\textbf{Ablation methods}} \\
+Method A (GAT-only) & 0.659 / 0.367 \\
+Method C (CE-only) & 0.804 / 0.499 \\
+Method D (Raw CE avg) & 0.788 / 0.488 \\
+\midrule
+\multicolumn{2}{l}{\textbf{Conformal prediction}} \\
+Coverage ($\alpha{=}0.10$) & 0.916 \\
+Mean prediction set size & 1.56 \\
 \bottomrule
 \end{tabular}
 \end{table}

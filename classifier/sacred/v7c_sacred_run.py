@@ -183,14 +183,17 @@ def load_ce_logits(
     indices: np.ndarray | None = None,
     n_pairs: int | None = None,
 ) -> np.ndarray | None:
-    """Load CE logit probabilities for a split (or subset via indices).
+    """Load CE logits from all available models, concatenated per model.
+
+    For 1 model: returns (n_pairs, 4) softmax probabilities.
+    For 3 models: returns (n_pairs, 12) concatenated softmax probabilities.
 
     Args:
         split_name: One of 'expert_train', 'expert_val', 'human_cal', 'human_test'
         indices: If provided, select these indices within the split
         n_pairs: Expected number of pairs (for validation)
 
-    Returns (n_pairs, 4) probability matrix or None.
+    Returns (n_pairs, 4*n_models) probability matrix or None.
     """
     result = _load_ce_data()
     if result is None:
@@ -200,24 +203,30 @@ def load_ce_logits(
     ce_data, models, offsets = result
     start, end = offsets[split_name]
 
-    # Average logits across all available models
-    logits = np.zeros((end - start, 4))
+    # Concatenate per-model softmax probabilities
+    proba_parts = []
     for m in models:
-        logits += ce_data[f"{m}_logits"][start:end]
-    logits /= len(models)
+        logits_m = ce_data[f"{m}_logits"][start:end]
+        if indices is not None:
+            logits_m = logits_m[indices]
+        exp_l = np.exp(logits_m - logits_m.max(axis=1, keepdims=True))
+        proba_m = exp_l / exp_l.sum(axis=1, keepdims=True)
+        proba_parts.append(proba_m)
 
-    # Select subset if indices provided
-    if indices is not None:
-        logits = logits[indices]
-
-    # Softmax
-    exp_logits = np.exp(logits - logits.max(axis=1, keepdims=True))
-    proba = exp_logits / exp_logits.sum(axis=1, keepdims=True)
+    proba = np.hstack(proba_parts)
 
     if n_pairs is not None:
         assert proba.shape[0] == n_pairs, f"CE shape mismatch: {proba.shape[0]} vs {n_pairs}"
 
     return proba
+
+
+def get_ce_model_names() -> list[str]:
+    """Return the list of CE model names from the loaded NPZ."""
+    result = _load_ce_data()
+    if result is None:
+        return []
+    return result[1]
 
 
 def build_features(
@@ -251,12 +260,14 @@ def build_features(
     feature_blocks.append(bridge_feats)
     feature_names.append("bridge")
 
-    # CE logits/proba (4 dims per model)
+    # CE logits/proba (4 dims per model, concatenated)
     if include_ce:
         ce_proba = load_ce_logits(split_name, indices=ce_indices, n_pairs=len(pairs))
         if ce_proba is not None:
             feature_blocks.append(ce_proba)
-            feature_names.extend([f"ce_prob_{i}" for i in range(ce_proba.shape[1])])
+            ce_models = get_ce_model_names()
+            for m in ce_models:
+                feature_names.extend([f"{m}_prob_{i}" for i in range(4)])
 
     X = np.hstack(feature_blocks)
     print(f"  [v7c] Feature matrix: {X.shape} ({len(feature_names)} features)")
@@ -457,7 +468,8 @@ def main():
 
     # Method C: CE-only (if available)
     if has_ce:
-        ce_start = len(feat_names) - 4  # Last 4 features are CE probs
+        n_ce_features = len(get_ce_model_names()) * 4
+        ce_start = len(feat_names) - n_ce_features
         X_test_ce_only = X_test_scaled[:, ce_start:]
         lr_ce = LogisticRegression(
             C=best_c, max_iter=2000, class_weight="balanced",
@@ -472,15 +484,21 @@ def main():
               f"macro_f1={results['methods']['C_ce_only']['macro_f1']:.4f}, "
               f"binary_acc={results['methods']['C_ce_only']['binary_accuracy']:.4f}")
 
-    # Method D (comparison): v7b raw CE logits (no LogReg, no GAT)
+    # Method D (comparison): raw CE argmax (averaged across models, no LogReg, no GAT)
     if has_ce:
         ce_proba_test = load_ce_logits("human_test", n_pairs=len(test_data))
         if ce_proba_test is not None:
-            y_pred_d = ce_proba_test.argmax(axis=1)
-            results["methods"]["D_v7b_raw_ce"] = evaluate(y_test, y_pred_d, ce_proba_test, "v7b raw CE")
-            print(f"  Method D (v7b raw CE):  acc={results['methods']['D_v7b_raw_ce']['tier_accuracy']:.4f}, "
-                  f"macro_f1={results['methods']['D_v7b_raw_ce']['macro_f1']:.4f}, "
-                  f"binary_acc={results['methods']['D_v7b_raw_ce']['binary_accuracy']:.4f}")
+            # Average per-model probabilities for argmax comparison
+            n_models = ce_proba_test.shape[1] // 4
+            avg_proba = np.zeros((ce_proba_test.shape[0], 4))
+            for m_idx in range(n_models):
+                avg_proba += ce_proba_test[:, m_idx*4:(m_idx+1)*4]
+            avg_proba /= n_models
+            y_pred_d = avg_proba.argmax(axis=1)
+            results["methods"]["D_raw_ce_avg"] = evaluate(y_test, y_pred_d, avg_proba, "Raw CE avg")
+            print(f"  Method D (raw CE avg):  acc={results['methods']['D_raw_ce_avg']['tier_accuracy']:.4f}, "
+                  f"macro_f1={results['methods']['D_raw_ce_avg']['macro_f1']:.4f}, "
+                  f"binary_acc={results['methods']['D_raw_ce_avg']['binary_accuracy']:.4f}")
 
     # -----------------------------------------------------------------------
     # Conformal prediction (Method B)

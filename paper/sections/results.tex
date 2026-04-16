@@ -3,15 +3,18 @@
 
 \subsection{Main Results}
 
-Table~\ref{tab:main_results} summarizes performance on the 400
-expert-labeled frozen test set. The full 22-feature model achieves:
+Table~\ref{tab:main_results} summarizes performance on the 179
+expert-labeled frozen test set. The full v7c pipeline (Method~B)
+combines GAT embeddings, three cross-encoder probability features, and
+baseline similarity scores in an L2-regularized logistic regression
+stacker, achieving:
 
 \begin{itemize}
-    \item \textbf{Tier accuracy:} 0.5325 (95\% CI [0.485, 0.580])
-    \item \textbf{Macro F1:} 0.4888 (95\% CI [0.433, 0.538])
-    \item \textbf{Adjacent accuracy:} 0.8425 --- 84\% of predictions
+    \item \textbf{Tier accuracy:} 0.810 (95\% CI [0.749, 0.866])
+    \item \textbf{Macro F1:} 0.512 (95\% CI [0.437, 0.580])
+    \item \textbf{Adjacent accuracy:} 0.944, meaning 94\% of predictions
           fall within one tier of the ground-truth label
-    \item \textbf{Binary accuracy:} 0.7125
+    \item \textbf{Binary accuracy:} 0.911
 \end{itemize}
 
 \input{tables/table1}
@@ -19,7 +22,7 @@ expert-labeled frozen test set. The full 22-feature model achieves:
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_confusion_matrix}
-\caption{GBM model performance on the frozen test set ($n=400$).
+\caption{v7c ensemble performance on the frozen test set ($n=179$).
 (A)~Confusion matrix showing predicted vs.\ true tier labels.
 (B)~Per-class accuracy and F1 scores with support counts.}
 \label{fig:confusion_matrix}
@@ -27,73 +30,114 @@ expert-labeled frozen test set. The full 22-feature model achieves:
 
 \subsection{Per-Class Analysis}
 
-Performance varies substantially across tiers. The Related class, which
-dominates the test distribution (186/400), achieves the highest F1
-(0.613) and accuracy (0.640). The Unrelated class (78/400) benefits from
-clear semantic separation, reaching F1 of 0.525 and accuracy of 0.615.
+Performance varies substantially across tiers. The Unrelated class
+achieves the highest F1 (0.938), benefiting from clear semantic
+separation amplified by the cross-encoder probability features. The
+Partial and Related classes both reach F1 of 0.556, reflecting the
+inherent difficulty of distinguishing these neighboring tiers.
 
-The Equivalent class (58/400) achieves F1 of 0.454 and accuracy of
-0.379. While below the overall average, this represents meaningful
-discrimination for the most demanding tier, where the model must
-distinguish full semantic equivalence from strong relatedness. The
-Partial class (78/400) remains the most challenging at F1 of 0.364 and
-accuracy of 0.308, consistent with the inherent subjectivity of
-partial-overlap judgments noted in prior crosswalk studies.
+The Equivalent class achieves F1 of 0.000, indicating that the model
+fails to identify any Equivalent pairs on the frozen test set. This
+reflects the extreme rarity of true equivalences in the test
+distribution and the difficulty of distinguishing full semantic
+equivalence from strong relatedness. The stacker learns to avoid
+predicting the minority Equivalent class when the cost of a
+false positive outweighs the benefit.
 
-The confusion matrix reveals that the primary error mode is
-over-prediction of the Related tier: 28/58 Equivalent pairs are
-predicted as Related, and 35/78 Partial pairs are predicted as Related.
-This ``gravitational pull'' toward the majority class persists despite
-inverse-frequency weighting, suggesting that the boundary between
-Related and its neighboring tiers is genuinely ambiguous in the feature
-space.
+The dominant error mode has shifted relative to v6. Where the earlier
+GBM model suffered from majority-class gravitational pull toward
+Related, the v7c ensemble instead achieves strong separation of
+Unrelated pairs (F1 0.938) while compressing the middle tiers. This
+trade-off is favorable for the primary use case of crosswalk
+construction, where confidently identifying unrelated pairs allows
+efficient pruning of the candidate space.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_baseline_comparison}
-\caption{Comparison of linear baseline vs.\ gradient boosting.
-(A)~Logistic regression confusion matrix. (B)~v6 GBM (production)
-confusion matrix. The GBM substantially improves discrimination for
-the Unrelated and Equivalent tiers.}
+\caption{Ablation comparison across four method variants.
+(A)~Method~A (GAT-only) confusion matrix.
+(B)~Method~B (full pipeline) confusion matrix.
+The cross-encoder features provide the largest accuracy gain,
+while the GAT embeddings contribute structural signal that
+complements the text-based features.}
 \label{fig:baseline_comparison}
 \end{figure}
+
+\subsection{Ablation Analysis}
+
+We evaluate four method variants to isolate the contribution of each
+component family (Table~\ref{tab:main_results}):
+
+\begin{itemize}
+    \item \textbf{Method A} (GAT-only, 35 features): accuracy 0.659,
+          macro F1 0.367. Graph structure alone provides a useful baseline
+          but cannot capture fine-grained semantic distinctions.
+    \item \textbf{Method B} (Full pipeline, 50 features): accuracy 0.810,
+          macro F1 0.512. The complete feature set yields the best
+          performance across all metrics.
+    \item \textbf{Method C} (CE-only, 12 CE + 3 baseline features):
+          accuracy 0.804, macro F1 0.499. Cross-encoder features alone
+          nearly match the full pipeline, confirming that the CE
+          probability distributions carry the strongest signal.
+    \item \textbf{Method D} (Raw CE average, no stacker): accuracy 0.788,
+          macro F1 0.488. Averaging the three cross-encoder predictions
+          without a learned stacker performs surprisingly well, indicating
+          that the ensemble of diverse architectures provides robust
+          probability estimates.
+\end{itemize}
+
+The ablation reveals a clear hierarchy: cross-encoder features dominate
+(Methods C and D both exceed 78\% accuracy), GAT features alone are
+insufficient (Method A at 65.9\%), and the learned stacker provides a
+modest but consistent improvement over raw averaging (Method B vs.\
+Method D: +2.2 percentage points in accuracy, +0.024 in macro F1).
+Feature importance analysis confirms this pattern. RoBERTa-large
+features occupy the top four positions by coefficient magnitude,
+followed by DeBERTa-v3-base features. The original DeBERTa-v3-large
+features show lower importance (${\sim}0.02$), suggesting diminishing
+returns from model scale within the same architecture family. The bridge
+centrality score ranks 9th, indicating that the graph structure provides
+complementary signal even in the presence of powerful text encoders.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_accuracy_vs_baselines}
 \caption{Tier accuracy, adjacent accuracy, and binary accuracy for the
-v6 GBM compared against random and majority-class baselines. The GBM
-exceeds all baselines across every metric.}
+v7c ensemble (Method~B) compared against ablation variants and baselines.
+The full pipeline exceeds all ablation variants across every metric.}
 \label{fig:accuracy_vs_baselines}
 \end{figure}
 
 \subsection{Conformal Coverage}
 
-The Mondrian conformal predictor achieves empirical coverage of 93.8\%
-at $\alpha = 0.10$, closely meeting the nominal 90\% target. The mean
-prediction set size is 3.20 out of four possible classes, indicating
-that the conformal wrapper is conservative: for most instances, it
-retains three of the four tiers in the prediction set to maintain
-coverage. This conservatism is expected given the ordinal structure of
-the tier scheme and the moderate discriminative power of the underlying
-classifier. Figure~\ref{fig:conformal_sets} shows the distribution of
+The conformal predictor achieves empirical coverage of 91.6\%
+at $\alpha = 0.10$, meeting the nominal 90\% target. The mean
+prediction set size is 1.56 out of four possible classes, a substantial
+improvement over the v6 Mondrian conformal predictor (set size 3.20).
+This reduction reflects the stronger discriminative power of the
+cross-encoder ensemble: the underlying classifier produces sharper
+probability estimates, allowing the conformal wrapper to achieve
+coverage with much smaller prediction sets.
+Figure~\ref{fig:conformal_sets} shows the distribution of
 prediction set sizes stratified by true tier.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_conformal_sets}
 \caption{Conformal prediction set size distributions by true tier.
-Most instances receive prediction sets of size 3--4, reflecting the
-conservative calibration needed to achieve 93.8\% coverage.}
+Most instances receive prediction sets of size 1 or 2, reflecting the
+improved calibration of the v7c ensemble that achieves 91.6\% coverage
+with a mean set size of only 1.56.}
 \label{fig:conformal_sets}
 \end{figure}
 
 \subsection{Expert--LLM Label Gap}
 
-On the 379 LLM-labeled validation set, accuracy rises to approximately
-0.65, reflecting a distribution gap between expert and LLM labeling.
-This gap is most pronounced for the Partial and Equivalent tiers, where
-expert annotators apply stricter criteria for semantic overlap than the
-LLM-SME labeling protocol. The gap motivates our emphasis on
-expert-labeled evaluation and highlights the importance of the frozen
-test set for honest benchmarking.
+On the LLM-labeled validation set, accuracy rises above the frozen
+test baseline, reflecting a distribution gap between expert and LLM
+labeling. This gap is most pronounced for the Partial and Equivalent
+tiers, where expert annotators apply stricter criteria for semantic
+overlap than the LLM-SME labeling protocol. The gap motivates our
+emphasis on expert-labeled evaluation and highlights the importance of
+the frozen test set for honest benchmarking.

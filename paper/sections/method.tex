@@ -1,70 +1,93 @@
 \section{Method}
 \label{sec:method}
 
-Our pipeline comprises four stages: feature extraction, stacking
-classification, conformal calibration, and uncertainty routing.
+Our pipeline comprises two stages: feature extraction and stacking
+classification, followed by conformal calibration and uncertainty
+routing.
 
 \subsection{Feature Extraction}
 
 For each candidate control pair $(u, v)$, we extract a
-22-dimensional feature vector organized into three families:
+50-dimensional feature vector organized into three families:
 
-\paragraph{LLM similarity features (7 dimensions).}
-We compute dense semantic similarity using BGE-large (1024-d)
-embeddings, yielding cosine similarity between control texts. Additional
-lexical features include BM25 scores computed over control titles and
-descriptions after tokenization and stopword removal, Jaccard
-coefficient over token sets, and character n-gram overlap measures.
-Structural similarity scores derived from shared graph neighborhood
-statistics complete this family.
-
-\paragraph{Structural graph features (13 dimensions).}
-We construct a heterogeneous control graph with 983 nodes and edges
-integrated from the four sources described in
-Section~\ref{sec:dataset}. From this graph we extract pairwise
-features including shortest-path distance, common-neighbor count,
-Jaccard index of neighbor sets, Adamic-Adar index, bridge centrality
-scores, degree-product features, and framework-pair indicators. These
-features capture topological proximity: controls connected through
-multiple paths receive high structural similarity scores regardless of
-surface-level text overlap. Figure~\ref{fig:node2vec_umap} visualizes
-the graph structure via a UMAP projection of Node2Vec embeddings,
-revealing framework-level clustering with cross-framework bridges.
+\paragraph{GAT embeddings (35 dimensions).}
+We construct a heterogeneous control graph with nodes from the four
+framework sources described in Section~\ref{sec:dataset}. A Graph
+Attention Network (GAT) with 32-dimensional node embeddings is trained
+on the graph structure, producing learned representations that capture
+both local neighborhood topology and multi-hop structural relationships.
+For each candidate pair, we extract pairwise features from the GAT
+embeddings including element-wise products, absolute differences, and
+concatenated summary statistics, yielding 35 structural features.
+Figure~\ref{fig:node2vec_umap} visualizes the graph structure via a
+UMAP projection of node embeddings, revealing framework-level clustering
+with cross-framework bridges.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\linewidth]{fig_node2vec_umap}
-\caption{Node2Vec embeddings projected to 2D via UMAP, colored by
+\caption{Node embeddings projected to 2D via UMAP, colored by
 framework. Clusters correspond to individual frameworks, with
 cross-framework bridge edges creating inter-cluster connections that
 the structural features capture.}
 \label{fig:node2vec_umap}
 \end{figure}
 
-\paragraph{Opus tier scores (2 dimensions).}
-A Claude Opus evaluator independently assigns each candidate pair a
-tier judgment (0--3) and a confidence score. These two features provide
-a calibrated LLM-as-judge signal that complements the embedding-based
-similarity features with holistic semantic reasoning.
+\paragraph{Cross-encoder probability features (12 dimensions).}
+Three pre-trained cross-encoder models are fine-tuned on the
+human-calibrated training pairs to predict the four-class tier
+distribution:
+\begin{enumerate}
+    \item DeBERTa-v3-large (304M parameters),
+    \item RoBERTa-large (355M parameters),
+    \item DeBERTa-v3-base (86M parameters).
+\end{enumerate}
+Each model produces a 4-class softmax probability vector for every
+candidate pair, yielding $3 \times 4 = 12$ probability features. The
+architectural diversity (two DeBERTa variants plus RoBERTa) ensures
+that the ensemble captures complementary aspects of semantic similarity.
+Feature importance analysis shows that RoBERTa features dominate
+(occupying the top four positions by coefficient magnitude), followed by
+DeBERTa-v3-base, while the original DeBERTa-v3-large features show
+lower importance (${\sim}0.02$), suggesting diminishing returns from
+model scale within the same architecture family.
 
-\subsection{LightGBM Stacker}
+\paragraph{Baseline similarity features (3 dimensions).}
+Three classical similarity scores complete the feature set:
+BGE-large cosine similarity between control text embeddings,
+BM25 scores computed over control titles and descriptions, and
+a bridge centrality score derived from the graph structure. The bridge
+score captures topological proximity independent of text content and
+ranks 9th in feature importance, confirming that graph structure
+provides complementary signal even in the presence of powerful text
+encoders.
 
-The 22-dimensional feature vector is fed to a
-LightGBM~\citep{ke2017lightgbm} multiclass classifier that predicts
-one of four tiers: \emph{unrelated}~(0), \emph{partial}~(1),
-\emph{related}~(2), and \emph{equivalent}~(3). The model uses
-\texttt{n\_estimators}${}=500$, learning rate~$0.05$, and
-\texttt{min\_samples\_leaf}${}=5$. Inverse-frequency class weights
-address the severe class imbalance in the training data.
+\subsection{L2-Regularized Logistic Regression Stacker}
 
-\subsection{Mondrian Conformal Prediction}
+The 50-dimensional feature vector is fed to an L2-regularized
+logistic regression classifier that predicts one of four tiers:
+\emph{unrelated}~(0), \emph{partial}~(1), \emph{related}~(2), and
+\emph{equivalent}~(3). The regularization strength is set to
+$C = 0.01$, chosen via 5-fold cross-validation on the 477
+human-calibrated training pairs (CV macro F1: 0.861). The strong
+regularization prevents overfitting to the cross-encoder probability
+features, which would otherwise allow the stacker to memorize
+training-set artifacts. Compared to the v6 LightGBM stacker, the
+logistic regression model is simpler, more interpretable, and less
+prone to overfitting on the modest training set size.
 
-We wrap the LightGBM classifier with a Mondrian conformal predictor
-calibrated on a held-out set of $n_{\text{cal}} = 150$ pairs. For each
+\subsection{Conformal Prediction}
+
+We wrap the logistic regression classifier with a conformal predictor
+that applies marginal coverage with label-shift correction. For each
 test instance, the conformal predictor outputs a prediction set
 guaranteed to contain the true label with probability
-$\geq 1-\alpha$ within each class stratum, providing distribution-free
-coverage guarantees~\citep{vovk2005conformal, romano2020malice}.
+$\geq 1-\alpha$, providing distribution-free coverage
+guarantees~\citep{vovk2005conformal, romano2020malice}. At
+$\alpha = 0.10$, the predictor achieves 91.6\% empirical coverage with
+a mean prediction set size of 1.56, a substantial improvement over the
+v6 Mondrian conformal predictor (set size 3.20), reflecting the
+sharper probability estimates produced by the cross-encoder ensemble.
 
 \subsection{KL-Divergence Router}
 

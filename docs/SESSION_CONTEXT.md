@@ -4,7 +4,7 @@ Last updated: April 7, 2026
 
 ## Session 11 Status Snapshot (current)
 
-**Project 1: COMPLETE.** Notebook executed cleanly, zipped, pushed. Deliverable lives at `notebooks/project1_lambros.zip` (15 files, ~5.49 MB). Sections cover framework landscape, signal analysis, learned-vs-hand-tuned weights with three-curve ROC, coverage/gaps, v1-vs-v2 expert diff, and analytical next steps. Meets all COMP 4433 requirements (gridspec multipanel, 3+ plot types, on-plot annotations, narrative throughout).
+**Project 1: COMPLETE.** Notebook executed cleanly, zipped, pushed. Deliverable lives at `project1/project1_lambros.zip`. Sections cover framework landscape, signal analysis, learned-vs-hand-tuned weights with three-curve ROC, coverage/gaps, v1-vs-v2 expert diff, and analytical next steps. Meets all COMP 4433 requirements (gridspec multipanel, 3+ plot types, on-plot annotations, narrative throughout).
 
 **Project 2: NOT STARTED.** Design direction below.
 
@@ -98,8 +98,9 @@ The main project repo. Contains:
 - `data/processed/` -- Build output (nodes.json, edges.json, graph_stats.json)
 - `mapping_engine/` -- Pair-agnostic mapping pipeline (see IMPROVEMENT_PLAN.md)
 - `scripts/` -- Build and conversion scripts
-- `notebooks/` -- EDA notebook (Project 1)
-- `app/` -- Dash app (Project 2)
+- `project1/` -- EDA notebook (Project 1)
+- `project2/` -- Interactive crosswalk explorer (Project 2)
+- `app/` -- Dash app (earlier prototype)
 - `docs/` -- SESSION_CONTEXT.md, IMPROVEMENT_PLAN.md
 
 ### rocklambros/AIUC_2_OWASP_Agentic_Top_10 (private)

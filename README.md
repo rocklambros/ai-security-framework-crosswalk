@@ -1,26 +1,23 @@
 # AI Security Framework Crosswalk
 
-A unified graph and mapping engine that connects nine major AI security standards to each other, so that a security architect, auditor, or researcher can walk from any control in one framework to the related controls, risks, and mitigations in every other framework without manually re-reading thousands of pages of documentation.
+A unified graph, classifier, and interactive explorer that connects nine major AI security standards to each other, so that a security architect, auditor, or researcher can walk from any control in one framework to the related controls, risks, and mitigations in every other framework without manually re-reading thousands of pages of documentation.
 
-The repository contains the raw framework source content, a typed graph built from it, a multi-signal mapping engine that proposes cross-framework relationships, a set of evaluation and calibration scripts that keep the engine honest, and a scientific notebook that explains the whole thing with figures. It is the midterm deliverable for COMP 4433 Data Visualization at the University of Denver (Spring 2026), and a reusable artifact for the AI security standards community.
+The repository contains the raw framework source content, a typed graph built from it, a v7c ensemble classifier that predicts relationship tiers between any two nodes, a scientific notebook that explains the whole thing with 24 figures, and an interactive Dash application for real-time exploration. It is the deliverable for COMP 4433 Data Visualization at the University of Denver (Spring 2026), and a reusable artifact for the AI security standards community.
 
 ## Table of contents
 
 1. [Why this exists](#why-this-exists)
 2. [What is actually in the box](#what-is-actually-in-the-box)
 3. [The nine frameworks and the shape of the graph](#the-nine-frameworks-and-the-shape-of-the-graph)
-4. [How the mapping engine scores a pair](#how-the-mapping-engine-scores-a-pair)
-5. [System architecture](#system-architecture)
-6. [Pipeline flow](#pipeline-flow)
-7. [Composite signal blend](#composite-signal-blend)
-8. [How we avoided overfitting](#how-we-avoided-overfitting)
-9. [Project 1: the scientific notebook](#project-1-the-scientific-notebook)
-10. [Project 2: the interactive crosswalk explorer](#project-2-the-interactive-crosswalk-explorer)
-11. [v1 expert crosswalk vs v2 pipeline output](#v1-expert-crosswalk-vs-v2-pipeline-output)
-12. [Repository layout](#repository-layout)
-13. [Getting started](#getting-started)
-14. [Session history](#session-history)
-15. [License and attribution](#license-and-attribution)
+4. [The v7c classifier](#the-v7c-classifier)
+5. [How the legacy mapping engine scores a pair](#how-the-legacy-mapping-engine-scores-a-pair)
+6. [System architecture](#system-architecture)
+7. [Project 1: the scientific notebook](#project-1-the-scientific-notebook)
+8. [Project 2: the interactive crosswalk explorer](#project-2-the-interactive-crosswalk-explorer)
+9. [Repository layout](#repository-layout)
+10. [Getting started](#getting-started)
+11. [Session history](#session-history)
+12. [License and attribution](#license-and-attribution)
 
 ## Why this exists
 
@@ -30,36 +27,37 @@ If you are a security architect trying to write a policy that satisfies NIST, ma
 
 ## What is actually in the box
 
-Three things, stacked on top of each other:
+Five things, stacked on top of each other:
 
-**A typed graph.** Every entry in every framework becomes a node with a stable identifier, a framework tag, an entry type (control, risk, technique, requirement, subcategory), a natural-language description, and a function class (PREVENT, DETECT, ISOLATE, RESPOND, GOVERN, and so on). Every explicit reference inside the framework source documents becomes an edge between two nodes. The graph is stored as `nodes.json` and `edges.json` in `data/processed/` and loaded into NetworkX on demand.
+**A typed graph.** Every entry in every framework becomes a node with a stable identifier, a framework tag, an entry type (control, risk, technique, requirement, subcategory), a natural-language description, and a domain class. Every explicit reference inside the framework source documents becomes an edge between two nodes. The graph is stored as `nodes.json` and `edges.json` in `data/processed/` and loaded into NetworkX or pandas on demand. The current graph contains **983 nodes and 4,001 edges**, augmented to **4,342 edges** when upstream-sourced mappings are merged.
 
-**A mapping engine.** Given a pair of frameworks, the engine walks both node sets and scores every candidate (source, target) pair using four content signals and a multiplicative function-match boost. The four signals are a graph bridge based on two-hop weighted Jaccard over shared neighbors, a semantic similarity over sentence embeddings, a TF-IDF keyword match with synonym expansion, and a function-class alignment signal. The scores are combined into a single composite value between zero and one, and that composite is mapped to a tier (Direct, Related, Tangential, or None) using calibrated thresholds.
+**A v7c ensemble classifier.** A two-stage ML pipeline that predicts relationship tiers (Unrelated, Partial, Related, Equivalent) for any pair of nodes from different frameworks. Stage 1 extracts 50 features per pair from a Graph Attention Network, three cross-encoder transformer models, and three baseline signals. Stage 2 is a regularized logistic regression with conformal prediction wrapping. The classifier achieves **81.0% exact-tier accuracy** and **94.4% adjacent accuracy** on a 179-pair expert-labeled holdout test set. Full details in the [classifier section](#the-v7c-classifier) below.
 
-**A scientific notebook.** `notebooks/project1_crosswalk_eda.ipynb` walks through the dataset with matplotlib and seaborn and narrates what it sees. It is written for a reader who has not seen the code and does not want to read any of it. Every figure has a paragraph of explanation before it and a paragraph of interpretation after it. The full packaged submission lives at `notebooks/project1_lambros.zip`.
+**A legacy mapping engine.** The predecessor to the v7c classifier. Given a pair of frameworks, the engine walks both node sets and scores every candidate (source, target) pair using four content signals (graph bridge, semantic similarity, keyword match, function-class alignment) and a multiplicative function-match boost. The scores are combined into a single composite and mapped to a tier using calibrated thresholds. Still used for initial candidate generation.
+
+**A scientific notebook.** `project1/COMP_4433_RockLambros_project1_crosswalk_eda.ipynb` walks through the dataset with 24 figures across 114 cells, narrating the graph structure, feature distributions, classifier evaluation, conformal prediction, and transitive reachability analysis. It is written for a reader who has not seen the code and does not want to read any of it. Every figure has a paragraph of explanation before it, a paragraph of interpretation after it, and a "Plain English" callout summarizing the takeaway.
+
+**An interactive Dash application.** `project2/` is a four-page web app for real-time exploration of the crosswalk. A framework landscape page shows the ecosystem-level network and a pairwise heatmap with a toggle between direct edges and transitive reachability. A deep dive page lets you drill from framework to domain to individual control. A crosswalk explorer shows Sankey diagrams, neighborhood graphs, and expandable control cards with bridge path visualization. A coverage page shows radar and stacked bar charts quantifying compliance gaps.
 
 ## The nine frameworks and the shape of the graph
 
-The current graph contains **983 nodes and 5,813 edges** spread across nine frameworks. The distribution is lopsided, and the lopsidedness is informative.
+The current graph contains **983 nodes and 4,001 base edges** (4,342 with upstream enrichments) spread across nine frameworks. The distribution is lopsided, and the lopsidedness is informative.
 
-| Framework | Version | Nodes | Outbound edges | Inbound edges | Role in the graph |
-|---|---|---:|---:|---:|---|
-| AIUC-1 | 1.0 | 189 | 2,894 | 2,148 | Comprehensive control catalogue, densest source |
-| CSA AICM | Current | 261 | 2,012 | 2,335 | Second-largest control catalogue, bidirectional hub |
-| MITRE ATLAS | Current | 218 | 421 | 482 | Adversarial ML tactics and techniques |
-| OWASP AI Exchange | Current | 88 | 289 | 289 | Curated risk and mitigation encyclopedia |
-| NIST AI RMF | 1.0 | 76 | 0 | 152 | Outcome-oriented, target-only |
-| EU GPAI Code of Practice | 2025 | 70 | 32 | 92 | Policy commitments from EU GPAI working groups |
-| CoSAI Risk Map | Current | 61 | 165 | 118 | Coalition for Secure AI risk taxonomy |
-| MITRE-adjacent OWASP LLM Top 10 | 2025 | 10 | 0 | 78 | Target-only, 10 headline risks |
-| OWASP Agentic Top 10 | 2026 | 10 | 0 | 119 | Target-only, 10 headline risks |
+| Framework | Version | Nodes | Role in the graph |
+|---|---|---:|---|
+| CSA AICM | Current | 261 | Largest control catalogue, dense bidirectional hub |
+| MITRE ATLAS | Current | 218 | Adversarial ML tactics and techniques |
+| AIUC-1 | 1.0 | 189 | Comprehensive control catalogue, densest edge source |
+| OWASP AI Exchange | Current | 88 | Curated risk and mitigation encyclopedia |
+| NIST AI RMF | 1.0 | 76 | Outcome-oriented risk management framework |
+| EU GPAI Code of Practice | 2025 | 70 | Policy commitments from EU GPAI working groups |
+| CoSAI Risk Map | Current | 61 | Coalition for Secure AI risk taxonomy |
+| OWASP LLM Top 10 | 2025 | 10 | 10 headline risks for LLM applications |
+| OWASP Agentic Top 10 | 2026 | 10 | 10 headline risks for agentic AI systems |
 
-Three frameworks (NIST AI RMF, OWASP LLM Top 10, OWASP Agentic Top 10) act as **targets only** in the current pipeline. They describe risks and outcomes rather than reusable controls, so the natural direction of traversal is from a control catalogue into them. AIUC-1 and CSA AICM are the two dominant sources. Forty nodes are currently orphans (zero in-degree and zero out-degree), and most of those concentrate in NIST AI RMF and OWASP AI Exchange, which is a diagnostic flag for the next round of active-learning review rather than a bug.
+AIUC-1 acts as the primary **hub**: most cross-framework edges pass through it because active labeling sessions concentrated there first (highest expected coverage per hour of SME review). This hub-and-spoke topology means many framework pairs that share zero direct edges are still reachable via two-hop transitive paths through AIUC-1. For example, MITRE ATLAS and CSA AICM have zero direct edges but 629 unique node pairs reachable transitively. Only three framework pairs are completely disconnected in both modes: CoSAI to CSA AICM, CoSAI to OWASP AI Exchange, and CoSAI to EU GPAI.
 
 ```mermaid
-%% How the nine frameworks feed the crosswalk graph.
-%% Solid arrows mean the framework acts as a mapping source.
-%% Dashed arrows mean the framework is mapped into but not out of.
 flowchart LR
     subgraph Sources["Control catalogues (sources)"]
         AIUC["AIUC-1<br/>189 nodes"]
@@ -74,7 +72,7 @@ flowchart LR
         LLM["OWASP LLM Top 10<br/>10 nodes"]
         AGENT["OWASP Agentic Top 10<br/>10 nodes"]
     end
-    GRAPH((("Unified graph<br/>983 nodes<br/>5,813 edges")))
+    GRAPH((("Unified graph<br/>983 nodes<br/>4,342 edges")))
     AIUC --> GRAPH
     CSA --> GRAPH
     ATLAS --> GRAPH
@@ -86,56 +84,63 @@ flowchart LR
     GRAPH -.-> AGENT
 ```
 
-## How the mapping engine scores a pair
+## The v7c classifier
 
-When the engine is asked whether a specific (source, target) pair should be a mapping, it does not ask a single big neural network to make a call. It computes four lightweight signals, each of which captures a different kind of evidence, and then blends them into a composite. The reason for the multi-signal design is that each signal fails in a different way, so blending them averages out the individual failure modes.
+The current production classifier is v7c, a two-stage ensemble trained on 477 expert-labeled calibration pairs and evaluated on a 179-pair frozen holdout test set.
 
-**Signal 1: reference bridge.** This is a structural signal. Two nodes are more likely to be related if they share neighbors in the graph. The engine implements a two-hop weighted Jaccard over the outgoing neighborhood of the source and the incoming neighborhood of the target, weighted by edge confidence. If AIUC-1 control `B005` already links to OWASP AI Exchange risk `AIX.42`, and that exchange risk already links to OWASP ASI risk `ASI01`, then `B005 -> ASI01` gets a bridge score that reflects that indirect path. The bridge is the signal that generalizes across frameworks without any framework-specific code.
+### Stage 1: Feature extraction (50 features per pair)
 
-**Signal 2: semantic similarity.** This is a content signal. The engine runs both descriptions through a sentence-transformer model, computes cosine similarity between the resulting vectors, and Z-normalizes the score per pair so that a 0.8 cosine on one framework pair is comparable to a 0.8 cosine on another pair. Semantic is the signal that picks up paraphrases and synonyms that keyword match misses.
+| Feature family | Count | Source |
+|---|---:|---|
+| GAT embedding | 35 | Graph Attention Network: cosine, L2, dot product, and 32 per-dimension differences |
+| Cross-encoder soft probabilities | 12 | DeBERTa-v3-large (4), RoBERTa-large (4), DeBERTa-v3-base (4) |
+| Baseline | 3 | BGE cosine similarity, BM25 lexical overlap, graph bridge score |
 
-**Signal 3: keyword match.** This is a surface-level lexical signal. The engine builds a TF-IDF representation of both descriptions, expands tokens through a shared synonym dictionary (for example, "auth" and "authentication" and "authz" all collapse to a single token), and scores the overlap. Keyword is the signal that catches exact terminology matches even when the semantic model is uncertain.
+The GAT is trained on the graph structure via contrastive pre-training. The three cross-encoder models are fine-tuned on the training split and produce per-class soft probability vectors. The baseline features are computed without any learned parameters.
 
-**Signal 4: function-class match.** This is a taxonomy signal. Every control and every risk is annotated with a function class drawn from a small ontology (PREVENT, DETECT, ISOLATE, RESPOND, GOVERN, SCOPE, VALIDATE, GATE, DISCLOSE). A PREVENT control mapped to a PREVENT risk gets a boost. Complementary pairs (PREVENT and DETECT, SCOPE and ISOLATE) get a smaller boost. This signal exists because two nodes can share a lot of vocabulary and still be unrelated if one of them is a governance policy and the other is an incident response playbook.
+### Stage 2: Stacker with conformal prediction
 
-The four signals are combined in a two-stage composite. The first three (bridge, semantic, keyword) are blended linearly into a **content score** using hand-tuned weights (bridge 0.467, semantic 0.333, keyword 0.200). The content score is then multiplied by `(1 + 0.5 * function_match)` to produce the final composite. That multiplicative structure matters. It means the function-match signal can promote a merely decent content match into a strong one, but it cannot invent a relationship out of nothing. A pair with near-zero content similarity stays near zero regardless of function alignment.
+A regularized logistic regression (C=0.01) takes the 50 features and predicts one of four ordinal tiers: Unrelated, Partial, Related, or Equivalent. The stacker is wrapped in a conformal prediction layer that produces calibrated prediction sets with guaranteed coverage.
 
-```mermaid
-flowchart TB
-    subgraph Inputs["Node descriptions and graph context"]
-        SRC["Source node<br/>(control)"]
-        TGT["Target node<br/>(risk)"]
-        G[("Unified graph<br/>NetworkX")]
-    end
-    subgraph Signals["Four independent signals"]
-        BRIDGE["Bridge<br/>2-hop weighted Jaccard"]
-        SEM["Semantic<br/>sentence-transformers +<br/>Z-norm per pair"]
-        KW["Keyword<br/>TF-IDF + synonyms"]
-        FM["Function match<br/>taxonomy alignment"]
-    end
-    CONTENT["Content score<br/>0.467 · bridge + 0.333 · sem + 0.200 · kw"]
-    COMPOSITE["Composite<br/>content · (1 + 0.5 · function_match)"]
-    TIER{{"Tier assignment<br/>Direct  ≥ 0.45<br/>Related  ≥ 0.20<br/>Tangential  ≥ 0.10<br/>None  otherwise"}}
-    SRC --> BRIDGE
-    TGT --> BRIDGE
-    G --> BRIDGE
-    SRC --> SEM
-    TGT --> SEM
-    SRC --> KW
-    TGT --> KW
-    SRC --> FM
-    TGT --> FM
-    BRIDGE --> CONTENT
-    SEM --> CONTENT
-    KW --> CONTENT
-    CONTENT --> COMPOSITE
-    FM --> COMPOSITE
-    COMPOSITE --> TIER
-```
+### Results on the frozen 179-pair holdout
+
+| Metric | Value |
+|---|---|
+| Exact-tier accuracy | 81.0% |
+| Adjacent accuracy (within 1 tier) | 94.4% |
+| Macro F1 | 0.43 |
+| Conformal coverage (90% target) | 91.6% |
+| Mean prediction set size | 1.29 |
+
+### Pipeline evolution
+
+The classifier evolved through seven major versions (v1 through v7c), each with explicit decision gates. Rejected enhancements are documented with receipts:
+
+- **v1-v5**: Legacy mapping engine with hand-tuned signal weights
+- **v6**: LLM-as-judge (Claude Sonnet + Opus) for initial labeling; 550 SME labels
+- **v7a**: GAT embeddings added; cross-encoder fine-tuning
+- **v7b**: Hyperparameter sweep; deduplication and NaN fixes
+- **v7c**: Two-stage architecture (GAT + CE features into logistic stacker); conformal prediction; human-calibrated thresholds
+
+Rejected approaches include Node2Vec (structural signal already captured by bridge), LambdaMART (failed overfit gate), cross-encoder reranking at candidate stage (failed non-inferiority), and a three-feature-only stacker (majority-class collapse).
+
+## How the legacy mapping engine scores a pair
+
+The v1-v5 mapping engine (still used for candidate generation) computes four lightweight signals, each capturing a different kind of evidence, and blends them into a composite.
+
+**Signal 1: Reference bridge.** A structural signal. Two nodes are more likely to be related if they share neighbors in the graph. The engine implements a two-hop weighted Jaccard over the outgoing neighborhood of the source and the incoming neighborhood of the target, weighted by edge confidence.
+
+**Signal 2: Semantic similarity.** A content signal. Both descriptions are run through a sentence-transformer model, cosine similarity is computed, and the score is Z-normalized per pair so that values are comparable across framework pairs.
+
+**Signal 3: Keyword match.** A surface-level lexical signal. TF-IDF representations with synonym expansion (e.g., "auth" and "authentication" collapse to a single token).
+
+**Signal 4: Function-class match.** A taxonomy signal. Controls and risks are annotated with function classes (PREVENT, DETECT, ISOLATE, RESPOND, GOVERN, etc.). Matching or complementary function classes get a multiplicative boost.
+
+The four signals are combined: content = 0.467 * bridge + 0.333 * semantic + 0.200 * keyword, then composite = content * (1 + 0.5 * function_match). Tier thresholds: Direct >= 0.45, Related >= 0.20, Tangential >= 0.10.
 
 ## System architecture
 
-The codebase separates concerns along three layers: **ingestion**, which pulls every framework from its original markdown, YAML, or JSON source and normalizes it into the graph schema; **mapping**, which runs the four signals and the composite blend for a given pair of frameworks; and **evaluation**, which keeps the mapping layer honest through anchor validation, weight stability tests, active-learning labeling rounds, and per-pair frozen parity tests pinned into the test suite.
+The codebase separates concerns along four layers: **ingestion** (framework source documents to graph), **classification** (50-feature ensemble predicting tier), **visualization** (notebook + Dash app), and **evaluation** (anchor validation, frozen parity tests, conformal calibration).
 
 ```mermaid
 flowchart LR
@@ -146,187 +151,96 @@ flowchart LR
         BUILD["build_graph.py<br/>parse + normalize"]
     end
     subgraph Store["data/processed/"]
-        NODES["nodes.json"]
-        EDGES["edges.json"]
-        TRAIN["training_data.csv"]
-        VAL["nist_validation_data.csv"]
+        NODES["nodes.json<br/>983 nodes"]
+        EDGES["edges.json<br/>4,001 edges"]
     end
-    subgraph Engine["mapping_engine/"]
-        ENG["engine/<br/>bridge, semantic,<br/>keyword, function_match"]
-        COMP["composer.py<br/>composite + tier"]
-        CAL["calibration/<br/>anchor_validation,<br/>weight_stability,<br/>weight_learner,<br/>active_learning"]
-        SCRIPT["scripts/run_pair.py<br/>scripts/run_all.py"]
+    subgraph Classifier["classifier/"]
+        GAT["GAT embeddings<br/>35 features"]
+        CE["Cross-encoders<br/>12 features"]
+        BL["Baselines<br/>3 features"]
+        STACK["LogReg stacker<br/>+ conformal"]
     end
-    subgraph Out["mapping_engine/output/"]
-        RES["results/*.json<br/>results/*.xlsx"]
-        SHEETS["labeling_sheets/<br/>550 SME labels"]
-    end
-    subgraph Deliver["notebooks/"]
-        NB["project1_crosswalk_eda.ipynb"]
-        ZIP["project1_lambros.zip"]
+    subgraph Viz["Visualization"]
+        NB["Project 1<br/>114-cell notebook<br/>24 figures"]
+        DASH["Project 2<br/>4-page Dash app"]
     end
     MD --> BUILD --> NODES & EDGES
-    NODES --> ENG
-    EDGES --> ENG
-    ENG --> COMP --> SCRIPT
-    CAL -.validates.-> COMP
-    SCRIPT --> RES
-    SCRIPT --> SHEETS
-    NODES --> NB
-    EDGES --> NB
-    TRAIN --> NB
-    VAL --> NB
-    RES --> NB
-    NB --> ZIP
+    NODES --> GAT & CE & BL
+    EDGES --> GAT & CE & BL
+    GAT --> STACK
+    CE --> STACK
+    BL --> STACK
+    NODES --> NB & DASH
+    EDGES --> NB & DASH
+    STACK -.-> NB
 ```
-
-## Pipeline flow
-
-The sequence below is what happens when a user asks the system to map a new framework pair. Every stage writes intermediate artifacts to disk so that downstream stages can be rerun in isolation and so that the notebook can load them later without re-running any ML.
-
-```mermaid
-sequenceDiagram
-    autonumber
-    participant User
-    participant RunPair as run_pair.py
-    participant Graph as NetworkX graph
-    participant Signals as Signal modules
-    participant Composer
-    participant Calib as Calibration gates
-    participant Out as output/results/
-
-    User->>RunPair: run_pair aiuc_1 owasp_agentic
-    RunPair->>Graph: load nodes.json + edges.json
-    RunPair->>Signals: compute bridge / semantic / keyword / function_match
-    Signals-->>RunPair: per-pair signal vectors
-    RunPair->>Composer: blend with pair config weights
-    Composer-->>RunPair: composite + tier per (source, target)
-    RunPair->>Calib: anchor holdout + weight stability check
-    Calib-->>RunPair: pass / fail
-    RunPair->>Out: write results/{pair}.json + .xlsx
-    RunPair->>Out: write labeling_sheets/{pair}__candidates.yaml
-    RunPair-->>User: per-pair density, anchor accuracy, needs_review count
-```
-
-## Composite signal blend
-
-The production composite uses hand-tuned weights because every attempt to replace them with a learned model was rejected for principled reasons. Logistic regression and LightGBM were both trained on the 119 AIUC-1 expert pairs plus sampled negatives and evaluated on a held-out NIST validation set. The learned models recovered a few additional true positives at the cost of a larger number of false positives, which is the wrong tradeoff for a tool whose primary user is an auditor triaging alerts rather than a researcher building an exhaustive map. The coefficients from both learned models, plus an ordinal regression baseline, are archived and used in the notebook's Section 5 to show how four different weighting strategies read the same five signal features, framed as descriptive feature exploration rather than a horse race between classifiers.
-
-```mermaid
-%% Composite blend, tier thresholds, and the calibrated gates that sit around them.
-flowchart TB
-    B(("bridge<br/>0.467")) --> W
-    S(("semantic<br/>0.333")) --> W
-    K(("keyword<br/>0.200")) --> W
-    W["content = 0.467·bridge + 0.333·sem + 0.200·kw"]
-    F(("function_match<br/>0, 0.5, 1")) --> M
-    W --> M["composite = content · (1 + 0.5 · function_match)"]
-    M --> T1{"composite ≥ 0.45?"}
-    T1 -- yes --> D[["Direct"]]
-    T1 -- no --> T2{"composite ≥ 0.20?"}
-    T2 -- yes --> R[["Related"]]
-    T2 -- no --> T3{"composite ≥ 0.10?"}
-    T3 -- yes --> TG[["Tangential"]]
-    T3 -- no --> N[["None"]]
-```
-
-## How we avoided overfitting
-
-The mapping problem has a nasty property that the team discovered the hard way: the active learner that proposes candidates for human review preferentially picks the cases where the composite is least confident, which means the resulting labels are **uncertainty sampled** rather than uniformly sampled. If you train on uncertainty-sampled labels and evaluate on uncertainty-sampled labels, every improvement looks smaller than it really is, and every adopted change is a coin flip. The calibration layer exists to push back on that.
-
-Each pipeline run through `run_pair.py` reports three hard gates before its output is considered production quality. First, an **anchor holdout**: a small set of expert-validated pairs is held out of the signal computation, and all held-out pairs must land in their expected tier or the run fails. Second, a **weight stability check**: each weight is perturbed by fifteen percent in both directions and the run fails if more than twenty percent of mappings change tier. Third, a **density gate**: the total number of produced mappings must fall within a factor of two to three of the density measured on previously validated pairs, to catch runaway false-positive blowups.
-
-On top of those, the test suite contains a **frozen parity test** (`mapping_engine/tests/test_s9_s8_parity.py`) that pins the tier accuracy of three specific pairs against the 550-label SME set from sessions seven through nine. Any future scoring change has to be non-inferior to those frozen targets or the test fails. This is how we make sure that a clever improvement on one pair does not quietly break another.
-
-Several enhancements were explored and then rejected under these rules. Cross-encoder reranking (both `ms-marco-MiniLM-L-6-v2` and `BAAI/bge-reranker-v2-m3`) failed non-inferiority on the SME pool and is not enabled. LambdaMART (XGBoost `rank:pairwise`) failed the session 9 phase E overfit gate with a delta below the 0.02 required improvement. Node2Vec embeddings are committed to the codebase as an opt-in signal at production weight zero because the structural information was already captured by the bridge signal. Contrastive fine-tuning of the embedding model was evaluated and the base model was retained. Documenting what you decided not to ship is often more useful than documenting what you did, and the `data/processed/*_benchmark.json` files preserve the receipts.
 
 ## Project 1: the scientific notebook
 
-`notebooks/project1_crosswalk_eda.ipynb` is a 45-cell narrative tour of the dataset written for a technical audience that has not seen any of the underlying code. It is the COMP 4433 midterm deliverable and it satisfies every course requirement (a gridspec multipanel figure with differentially sized axes, at least three different plot types, on-plot annotations, narrative text before and after every figure, discussion of analytical approaches). Every figure in the notebook loads pre-computed results from `data/processed/` and renders them with matplotlib and seaborn only. The notebook does no ML and no GPU work at render time, which keeps it reproducible on any machine and makes it fast to grade.
+`project1/COMP_4433_RockLambros_project1_crosswalk_eda.ipynb` is a **114-cell, 24-figure** narrative tour of the dataset written for a technical audience that has not seen any of the underlying code. It is the COMP 4433 midterm deliverable and satisfies every course requirement (gridspec multipanel figures with differentially sized axes, at least three different plot types, on-plot annotations, narrative text before and after every figure, discussion of analytical approaches). Every figure loads pre-computed results and renders with matplotlib and seaborn only. The notebook does no ML and no GPU work at render time.
 
-The notebook is organized into seven sections:
+The notebook is organized into ten sections:
 
-1. **Title and abstract.** States the dataset, the questions, the audience, and the deliverable scope.
-2. **Setup and data loading.** Imports the scientific Python stack, resolves the data directory from any working directory (repo root, `notebooks/`, or an unzipped submission folder), and loads every artifact up front so missing files fail fast.
-3. **The dataset: framework landscape.** Visualizes the lopsided framework distribution, cross-framework edge density, and entry-type composition. The headline figure here is a gridspec with a wide heatmap next to two narrow bar panels.
-4. **Signal analysis.** Compares the distributions of each signal across mapped and unmapped pairs, shows the bridge v1 vs v2 scatter, and visualizes the signal correlation matrix so the reader can see which signals are independent and which overlap.
-5. **Feature relevance across weighting strategies.** A four-bar grouped comparison of how hand-tuned, logistic, LightGBM, and ordinal regression weight each signal. Framed as descriptive feature exploration, not model selection. Includes marginal distributions of every signal (Figure 4.0) and a composite-by-target-risk boxplot (Figure 4.5) so the reader sees the univariate shape and the categorical shift alongside the signal correlations.
-6. **Coverage, gaps, and graph structure.** Coverage completeness heatmap, orphan counts by framework, Node2Vec UMAP projection, and a new subsection (6.4) that diffs the 119-pair expert v1 crosswalk against the 109-pair v2 pipeline output.
-7. **Analytical approaches and next steps.** Course-vocabulary mapping (descriptive, diagnostic, explanatory, confirmatory) and a paragraph on what each future analytical technique would need in order to be credible.
+1. **Title and abstract.** States the dataset, the classifier results, and the deliverable scope.
+2. **Setup and data loading.** Imports the scientific Python stack, resolves the data directory, and loads artifacts up front.
+3. **Schema and data profile.** Table profile, lineage cards, and node/edge distributions.
+4. **The dataset: framework landscape.** Cross-framework edge density heatmap (Figure 4.1), transitive reachability heatmap (Figure 4.1b), and entry-type composition (Figure 4.2). The transitive analysis shows that 18 of 36 framework pairs gain connectivity via bridge paths, with only 3 remaining completely disconnected.
+5. **v7c feature analysis.** Violin plots, scatter plots, and feature importance for the 50-feature ensemble.
+6. **Feature ablation.** Leave-one-out ablation and learning curves.
+7. **Coverage, gaps, and graph structure.** Coverage completeness heatmaps (direct and transitive), orphan analysis, and Node2Vec projection.
+8. **Model evaluation.** Confusion matrices, per-class accuracy, and calibration diagrams.
+9. **Conformal prediction.** Prediction set size distributions and cumulative probability fits.
+10. **Appendix A.** Lineage cards, edge density diagnostics, and technique presence matrix.
 
-The full executed notebook, plus every data file required to re-execute it from a fresh unzip, is packaged in `notebooks/project1_lambros.zip`. A self-contained copy also lives in `project1/`.
+Every chart follows Cleveland & McGill (1984), Borner et al. (2019), Borland & Taylor (2007), and Graze & Schwabish (2024). See `project1/README.md` for the complete figure inventory.
 
 ## Project 2: the interactive crosswalk explorer
 
-`project2/` is a self-contained, four-page interactive Dash application that lets security architects, auditors, and researchers explore how nine major AI security frameworks relate to each other. It is the second deliverable for COMP 4433 and a reusable tool for the AI security community.
+`project2/` is a self-contained, four-page interactive Dash application that lets security architects, auditors, and researchers explore how nine AI security frameworks relate to each other. It is the second COMP 4433 deliverable and a reusable tool for the AI security community.
 
-The application visualizes 983 controls across 9 frameworks connected by 5,813 relationship edges. It includes: a framework landscape network graph and heatmap, a per-framework sunburst deep dive, a crosswalk explorer with Sankey diagrams and expandable control cards showing bridge path visualization for transitive mappings, and a coverage analysis page with radar and stacked bar charts.
+**Page 1: Framework Landscape.** Interactive network graph (node size = breadth, edge width = density) and a 9x9 heatmap with a Mapping Scope toggle. The toggle switches between direct edges (unique node pairs with explicit relationships) and all reachability (unique node pairs reachable via direct or 2-hop transitive paths). Filters for confidence level and relationship type update both visualizations in real time.
 
-Setup: `cd project2 && pip install -r requirements.txt && python prepare_data.py && python app.py`. See `project2/README.md` for full details.
+**Page 2: Framework Deep Dive.** Three-level drill-down: framework overview (Level 0, domain nodes sized by child count), domain detail (Level 1, top-level controls), and control detail (Level 2, cross-framework mapping network with bidirectional bar chart).
 
-## v1 expert crosswalk vs v2 pipeline output
+**Page 3: Crosswalk Explorer.** Sankey diagram showing flow from source control through mapping tiers to target frameworks. Neighborhood graph with inner (direct) and outer (transitive) rings. Expandable control cards with confidence badges, rationale codes, and bridge path visualization.
 
-The only framework pair in this study that has a hand-crafted expert crosswalk is AIUC-1 to OWASP Agentic Top 10. The upstream `AIUC_2_OWASP_Agentic_Top_10` repository ships 119 expert-authored (control, risk) pairs with Primary and Secondary tiers. The session 11 diff compared those 119 against the 109 pairs produced by the current v2 pipeline.
+**Page 4: Coverage Analysis.** Radar chart (total vs. direct-only coverage) and stacked bar chart (direct + transitive + gap = 100%). Percentage annotations use ordinal blue luminance to encode coverage quality.
 
-```mermaid
-pie showData
-    title AIUC-1 to OWASP ASI: v1 (119) vs v2 (109) pair-level diff
-    "Preserved in both (57)" : 57
-    "Lost from v1 (62)" : 62
-    "New in v2 (52)" : 52
-```
-
-Fifty seven of the 119 expert pairs survive in v2, which is a 47.9 percent overlap rate. Sixty two are lost, and fifty two are new. None of the preserved pairs flipped tier. The lost set is the natural queue for the next active-learning round. The full written analysis lives at [`data/processed/V1_VS_V2_COMPARISON_REPORT.md`](data/processed/V1_VS_V2_COMPARISON_REPORT.md). This is a descriptive comparison of two snapshots of the same mapping problem, not a judgment on which one is correct.
-
-Two things about the diff are worth emphasizing for a reader. First, the fact that the pipeline surfaces fifty two new pairs the human expert did not flag is evidence that the expert set was not exhaustive. Hand-crafted crosswalks are laborious, and experts miss things under time pressure. Second, the fact that sixty two expert pairs fell below the production threshold is not evidence that the pipeline is wrong; it is evidence that the composite is conservative on cases where the semantic and keyword signals are both weak even when a human can see the relationship. That is exactly the kind of gap active learning is designed to close.
+Setup: `cd project2 && pip install -r requirements.txt && python prepare_data.py && python app.py`. See `project2/README.md` for full details including the data pipeline, visualization design rationale, and architecture diagram.
 
 ## Repository layout
 
 ```
 ai-security-framework-crosswalk/
 ├── data/
-│   ├── frameworks/                     # raw source files per framework
-│   │   ├── aiuc-1/                     # AIUC-1 JSON + markdown
-│   │   ├── csa-aicm/                   # CSA AICM JSON
-│   │   ├── mitre-atlas/                # ATLAS YAML + JSON
-│   │   ├── nist-ai-rmf/                # NIST AI RMF markdown
-│   │   ├── owasp-llm-top10/            # OWASP LLM 2025
-│   │   ├── owasp-agentic-top10/        # OWASP Agentic 2026
-│   │   ├── owasp-ai-exchange/          # OWASP AI Exchange
-│   │   ├── eu-gpai-code-of-practice/   # EU GPAI CoP
-│   │   └── cosai/                      # CoSAI Risk Map
-│   └── processed/                      # build output (loaded by notebook)
-│       ├── nodes.json                  # 983 nodes
-│       ├── edges.json                  # 5,813 edges
-│       ├── graph_stats.json            # summary counts per framework
-│       ├── training_data.csv           # labeled pairs for weight learning
-│       ├── nist_validation_data.csv    # held-out validation set
-│       ├── learned_weights.json        # logistic + ordinal coefficients
-│       ├── weight_comparison.json      # hand-tuned vs learned
-│       ├── bridge_comparison.csv       # v1 vs v2 bridge scores
-│       ├── v1_vs_v2_comparison.json    # session 11 diff artifact
-│       ├── V1_VS_V2_COMPARISON_REPORT.md
-│       └── *_benchmark.json            # rejected-improvement receipts
-├── mapping_engine/
+│   ├── frameworks/                     # raw source files per framework (9 frameworks)
+│   ├── processed/                      # build output: nodes.json, edges.json, etc.
+│   ├── labels/                         # expert annotation data
+│   ├── splits/                         # train/val/test splits
+│   ├── features/                       # extracted feature vectors
+│   └── upstream/                       # upstream-sourced mappings and cross-references
+├── classifier/                         # v7c ensemble classifier
+│   ├── ensemble/                       # GAT, cross-encoders, stacker, conformal
+│   ├── data/                           # data loading, splits, candidates, tier mapping
+│   ├── labeling/                       # expert annotation framework
+│   ├── baselines/                      # BGE cosine, BM25, bridge
+│   ├── calibration/                    # calibration pair loading
+│   ├── sacred/                         # experiment tracking (Sacred + W&B)
+│   ├── lambda/                         # GPU distributed training (Lambda/RunPod)
+│   ├── llm/                            # LLM-as-judge integration
+│   └── tests/                          # 50+ test modules
+├── mapping_engine/                     # legacy 4-signal mapping engine
 │   ├── config/                         # per-pair YAML + defaults
 │   ├── engine/                         # signal modules + composer
 │   ├── calibration/                    # anchor, stability, learner, active learning
-│   ├── scripts/                        # run_pair, run_all, v1_vs_v2_diff
-│   ├── output/
-│   │   ├── results/                    # per-pair JSON and XLSX mappings
-│   │   └── labeling_sheets/            # 550 SME labels, frozen
-│   └── tests/                          # 89 unit + integration tests
-├── notebooks/
-│   ├── build_project1_notebook.py      # idempotent builder
-│   ├── project1_crosswalk_eda.ipynb    # executed notebook
-│   ├── project1_submission/            # self-contained submission folder
-│   └── project1_lambros.zip            # final deliverable
-├── schema/                             # unified graph schema v1.0
-├── scripts/                            # build + conversion scripts
+│   ├── scripts/                        # run_pair, run_all
+│   ├── output/                         # per-pair JSON/XLSX mappings + 550 SME labels
+│   └── tests/                          # unit + integration tests
 ├── project1/                           # COMP 4433 Project 1 (notebook)
-│   ├── project1_crosswalk_eda.ipynb
-│   ├── project1_lambros.zip
-│   └── README.md
+│   ├── COMP_4433_RockLambros_project1_crosswalk_eda.ipynb  # 114 cells, 24 figures
+│   ├── data/                           # self-contained data for submission
+│   ├── runs/v7c_sacred/                # v7c evaluation results
+│   └── project1_lambros.zip            # final deliverable
 ├── project2/                           # COMP 4433 Project 2 (Dash app)
 │   ├── app.py                          # multi-page Dash entry point
 │   ├── prepare_data.py                 # pre-compute derived data
@@ -334,9 +248,15 @@ ai-security-framework-crosswalk/
 │   ├── pages/                          # landscape, deep_dive, explorer, coverage
 │   ├── components/                     # colors, themes, data loader, navbar
 │   ├── assets/                         # custom CSS
+│   ├── VISUALIZATION_DESIGN.md         # per-figure design rationale
 │   └── README.md
-├── docs/                               # SESSION_CONTEXT + IMPROVEMENT_PLAN
-├── requirements.txt
+├── paper/                              # research paper (LaTeX)
+├── schema/                             # unified graph schema v1.0
+├── docs/                               # session context, improvement plan, diagnostics
+├── runs/                               # experiment run artifacts (sacred, stacker, CE)
+├── requirements.txt                    # core Python dependencies
+├── requirements-classifier.txt         # classifier-specific dependencies
+├── requirements-app.txt                # Dash app dependencies
 └── README.md
 ```
 
@@ -348,21 +268,25 @@ git clone https://github.com/rocklambros/ai-security-framework-crosswalk.git
 cd ai-security-framework-crosswalk
 pip install -r requirements.txt
 
-# 2. Open the Project 1 notebook
-jupyter lab notebooks/project1_crosswalk_eda.ipynb
+# 2. Open the Project 1 notebook (no GPU needed)
+jupyter lab project1/COMP_4433_RockLambros_project1_crosswalk_eda.ipynb
 
-# 3. Or run the mapping engine end to end for one pair
-python -m mapping_engine.scripts.run_pair aiuc_1 owasp_agentic
+# 3. Or run the Project 2 Dash app
+cd project2
+pip install -r requirements.txt
+python prepare_data.py
+python app.py
+# Open http://localhost:8050
 
 # 4. Or run the full test suite
 pytest mapping_engine/ -q
 ```
 
-The notebook runs with matplotlib, seaborn, pandas, numpy, and NetworkX only and does not require a GPU. The mapping engine runs on CPU by default and will use CUDA if it is available. Framework source content retains its original licensing; the derived graph and the analysis code are MIT.
+The notebook runs with matplotlib, seaborn, pandas, numpy, and scikit-learn only and does not require a GPU. The Dash app runs on CPU with Plotly. The classifier training pipeline requires GPU (H100 80GB preferred) and is orchestrated via Lambda Labs or RunPod.
 
 ## Session history
 
-The project was built incrementally across eleven sessions, each with explicit decision gates. Every rejected enhancement has a receipt in `data/processed/` or `docs/`.
+The project was built incrementally across multiple sessions, each with explicit decision gates. Every rejected enhancement has a receipt in `data/processed/` or `docs/`.
 
 ```mermaid
 timeline
@@ -372,14 +296,22 @@ timeline
     Session 4-5  : Four-signal engine, anchor validation
     Session 6    : Node2Vec evaluated (opt-in, weight 0.0)
     Session 7    : 400-label active learning round 1
+                 : Target enrichment, cross-framework category links
     Session 8    : 150-label round 2, three new pairs
+                 : Anchors-vs-distractors gate shipped
     Session 9    : Cross-encoder reranker evaluated (rejected)
                  : LambdaMART evaluated (rejected, overfit gate)
     Session 10   : Project 1 notebook built and packaged
-    Session 11   : v1 vs v2 expert diff, docs refresh, README
+    Session 11   : v1 vs v2 expert diff, docs refresh
+    v7 rebuild   : Soft labels, clean graph, GAT + CE pipeline
+                 : 2-stage LogReg stacker, conformal prediction
+                 : v7c achieves 81.0% accuracy on frozen holdout
+    Project 2    : Dash app built (4 pages, 10 Plotly figures)
+                 : Dataviz audit against 4 readings
+                 : Transitive reachability heatmap toggle
 ```
 
-Detailed per-session notes live in [`docs/SESSION_CONTEXT.md`](docs/SESSION_CONTEXT.md) and phase-level status lives in [`docs/IMPROVEMENT_PLAN.md`](docs/IMPROVEMENT_PLAN.md).
+Detailed per-session notes live in [`docs/SESSION_CONTEXT.md`](docs/SESSION_CONTEXT.md).
 
 ## Reproducibility
 
@@ -389,8 +321,8 @@ To verify frozen splits and reproduce the main evaluation metrics:
 make reproduce
 ```
 
-This verifies SHA-256 hashes of the frozen test split, re-evaluates the trained model on the LLM-labeled validation split, and reports all metrics. See `paper/README.md` for paper build instructions.
+This verifies SHA-256 hashes of the frozen test split, re-evaluates the trained model on the holdout split, and reports all metrics. See `paper/README.md` for paper build instructions.
 
 ## License and attribution
 
-Analysis code, the mapping engine, the notebook, and the derived graph are released under the **Apache-2.0 License**. Framework source content in `data/frameworks/` retains the original license of each source framework, which is one of CC-BY-SA 4.0 (OWASP, OWASP AI Exchange), Apache 2.0 (MITRE ATLAS), public domain (NIST), a proprietary CSA license (CSA AICM, distributed content derived from their public JSON only), and public terms from AIUC-1 and CoSAI. If you reuse the graph or the mapping engine, please preserve attribution to the original framework authors and to this repository.
+Analysis code, the classifier, the notebook, the Dash app, and the derived graph are released under the **Apache-2.0 License**. Framework source content in `data/frameworks/` retains the original license of each source framework, which is one of CC-BY-SA 4.0 (OWASP, OWASP AI Exchange), Apache 2.0 (MITRE ATLAS), public domain (NIST), a proprietary CSA license (CSA AICM, derived from their public JSON only), and public terms from AIUC-1 and CoSAI. If you reuse the graph or the classifier, please preserve attribution to the original framework authors and to this repository.

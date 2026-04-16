@@ -8,6 +8,10 @@
   "human_cal.jsonl": "c05dc1b261cf512970bd3c5a8afe3ee395ade86df7e6ca2988e1eb92815f70b6",
   "human_test_frozen.jsonl": "34edeb42d78c22dbf1f5e9bb26e0def3a2b6e8590d727c5f1213b13f6fdb1871",
   "sme_pool_full.jsonl": "008b883e9c579cf9e9bd68252b50f52267da5af74f0ab133739a9656f5976e09",
+  "pre_registered": {
+    "path": "classifier/sacred/pre_registered.json",
+    "sha256": "d8e2fa831bac6cdb363b6b295b3a4b49620eaee2b446c04cb224295bbf617a7a"
+  },
   "splits": {
     "frozen_tuples_json": {
       "n_canonical_pair_tuples": 179,

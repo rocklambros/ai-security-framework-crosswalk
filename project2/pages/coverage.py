@@ -8,7 +8,6 @@ from dash import Input, Output, State, callback, dcc, html
 from components.data_loader import get_coverage_matrix, get_framework_stats
 from components.framework_colors import (
     FRAMEWORK_KEYS,
-    get_color,
     get_display_name,
     get_short_name,
 )
@@ -347,8 +346,8 @@ def _build_drilldown_panel(source_fw, target_fw, coverage_data):
     row = coverage_data[source_fw][target_fw]
     total_pct = row.get("total_pct", 0)
     direct_pct = row.get("direct_pct", 0)
-    trans_pct = row.get("transitive_pct", 0)
-    gap_pct = max(0, 100 - total_pct)
+    row.get("transitive_pct", 0)
+    max(0, 100 - total_pct)
 
     direct_count = row.get("direct_count", 0)
     trans_count = row.get("transitive_only_count", 0)

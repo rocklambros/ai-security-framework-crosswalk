@@ -6,13 +6,12 @@ import plotly.graph_objects as go
 from dash import Input, Output, State, callback, dcc, html
 
 from components.badge_tooltips import badge_with_tooltip
-from components.data_loader import get_edges_df, get_framework_stats, get_graph_metrics, get_nodes_df, get_pairwise_reachability
+from components.data_loader import get_edges_df, get_framework_stats, get_nodes_df, get_pairwise_reachability
 from components.framework_colors import (
     FRAMEWORK_KEYS,
     get_color,
     get_display_name,
     get_short_name,
-    CONFIDENCE_LABELS,
 )
 from components.plot_theme import get_template
 

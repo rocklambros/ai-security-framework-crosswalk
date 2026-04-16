@@ -264,7 +264,7 @@ def _build_level1(framework, domain_name, entry_types, theme="dark"):
         c_x.append(cx)
         c_y.append(cy)
         # Extract short ID from label
-        short_id = child["label"].split(":")[0] if ":" in child["label"] else child["id"]
+        child["label"].split(":")[0] if ":" in child["label"] else child["id"]
         c_hover.append(f"<b>{child['label']}</b><br><i>Click for cross-framework mappings</i>")
         c_customdata.append({"type": "control", "id": child["id"]})
         c_colors.append(fw_color)

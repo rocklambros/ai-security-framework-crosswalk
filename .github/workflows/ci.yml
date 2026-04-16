@@ -4,19 +4,59 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
+    types: [opened, synchronize, reopened]
 
 jobs:
-  test:
+  quality:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install linter
+        run: pip install ruff
+
+      - name: Lint check (project2 + classifier contracts)
+        run: ruff check project2/ classifier/tests/contract_no_frozen_leak.py classifier/tests/test_pre_registered_lockfile.py
+
+  smoke:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r project2/requirements.txt
+          pip install pytest pytest-timeout
+
+      - name: Run project2 smoke tests
+        run: pytest project2/tests/ -x -q --timeout=30
+
+  test:
+    needs: smoke
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -24,11 +64,32 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-classifier.txt
 
-      - name: Verify frozen split hashes (Contract 1)
+      - name: Verify frozen split hashes
         run: python -m classifier.data.splits verify-hashes
 
-      - name: Run tests
-        run: pytest -x
+      - name: Run firewall contract tests
+        run: |
+          pytest classifier/tests/contract_no_frozen_leak.py -x -q
+          pytest classifier/tests/test_pre_registered_lockfile.py -x -q
 
-      - name: Lint
-        run: ruff check .
+      - name: Run project2 tests
+        run: pytest project2/tests/ -x -q
+
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r project2/requirements.txt
+          pip install pip-audit
+
+      - name: Audit dependencies
+        run: pip-audit --desc

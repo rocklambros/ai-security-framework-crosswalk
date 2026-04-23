@@ -578,6 +578,56 @@ def merge_upstream_edges(edges, nodes, repo_root: str):
     return merged
 
 
+def merge_opencre_edges(edges, nodes, repo_root):
+    """Merge OpenCRE expert edges into the edge list."""
+    opencre_path = os.path.join(repo_root, "project2", "data", "opencre_edges.json")
+    if not os.path.exists(opencre_path):
+        print(f"  No OpenCRE edges found at {opencre_path}")
+        return edges
+
+    with open(opencre_path) as f:
+        opencre_edges = json.load(f)
+
+    node_ids = {n["node_id"] for n in nodes}
+    existing_pairs = {
+        (e["source_node_id"], e["target_node_id"])
+        for e in edges
+    }
+    existing_pairs |= {
+        (e["target_node_id"], e["source_node_id"])
+        for e in edges
+    }
+
+    added = 0
+    for oe in opencre_edges:
+        src = oe["source_node_id"]
+        tgt = oe["target_node_id"]
+        pair = (src, tgt)
+        reverse = (tgt, src)
+
+        if pair in existing_pairs or reverse in existing_pairs:
+            continue
+
+        if src not in node_ids or tgt not in node_ids:
+            continue
+
+        edges.append({
+            "source_node_id": src,
+            "target_node_id": tgt,
+            "source_framework": oe["source_framework"],
+            "target_framework": oe["target_framework"],
+            "confidence": oe.get("confidence", "expert"),
+            "rationale": oe.get("rationale", "OPENCRE_EXPERT"),
+            "provenance": "opencre_expert",
+            "notes": oe.get("notes", ""),
+        })
+        existing_pairs.add(pair)
+        added += 1
+
+    print(f"  OpenCRE expert edges: {added} added (of {len(opencre_edges)} available)")
+    return edges
+
+
 def save_json(data, path):
     """Write JSON with consistent formatting."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -647,6 +697,10 @@ def prepare_all(data_dir: str, output_dir: str):
     repo_root = os.path.normpath(os.path.join(data_dir, "..", ".."))
     print("Merging upstream edge sources...")
     edges = merge_upstream_edges(edges, nodes, repo_root)
+
+    # Merge OpenCRE expert edges
+    print("Merging OpenCRE expert edges...")
+    edges = merge_opencre_edges(edges, nodes, repo_root)
 
     # Save enriched data so the app can use domain + edge enrichments
     save_json(nodes, os.path.join(output_dir, "nodes_enriched.json"))

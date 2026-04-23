@@ -101,3 +101,24 @@ def write_partition_and_report(
         "upstream benchmark (spec §6) and MUST NOT enter training batches."
     )
     report_path.write_text(json.dumps(summary, indent=2))
+
+
+def check_cre_bridge_contamination(
+    opencre_pairs: list[dict],
+    frozen_node_ids: set[str],
+) -> list[str]:
+    """Rule 3: CRE-bridged contamination.
+
+    If any node in an OpenCRE pair appears in the frozen test set,
+    that pair is contaminated because the CRE creates an indirect bridge.
+    Returns list of contaminated provenance_sha values.
+    """
+    contaminated = []
+    for pair in opencre_pairs:
+        src = pair["source_node_id"]
+        tgt = pair["target_node_id"]
+        if src in frozen_node_ids or tgt in frozen_node_ids:
+            sha = pair.get("provenance_sha", "")
+            if sha:
+                contaminated.append(sha)
+    return contaminated

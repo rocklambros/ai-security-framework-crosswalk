@@ -82,7 +82,7 @@ def find_fastest_available(min_vram_gb: int = 80) -> str:
 def create_pod(
     gpu_type_id: str,
     name: str = "crosswalk-v7",
-    image: str = "runpod/pytorch:2.1.0-py3.10-cuda11.8.0-devel-ubuntu22.04",
+    image: str = "runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04",
     gpu_count: int = 1,
     volume_gb: int = 100,
     container_disk_gb: int = 50,

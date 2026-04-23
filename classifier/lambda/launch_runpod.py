@@ -62,6 +62,9 @@ def bootstrap(ip: str, port: int) -> None:
     print("\n=== Syncing repo to pod ===")
     _rsync_to(ip, port, "./", "/root/crosswalk/")
 
+    print("\n=== Environment check ===")
+    _ssh(ip, port, "python --version && nvidia-smi --query-gpu=name,memory.total --format=csv,noheader && python -c 'import torch; print(f\"torch={torch.__version__} cuda={torch.cuda.is_available()}\")'", check=False)
+
     print("\n=== Installing dependencies ===")
     _ssh(ip, port, "cd /root/crosswalk && pip install --quiet -r classifier/lambda/requirements-lambda.txt")
 

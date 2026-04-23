@@ -90,3 +90,29 @@ def map_expert_tier(expert_tier: str) -> TierLabel:
     if expert_tier not in mapping:
         raise ValueError(f"Unknown expert_tier: '{expert_tier}'")
     return mapping[expert_tier]
+
+
+def map_opencre_tier(
+    *,
+    gap_penalty: int,
+    bridge_pair: bool = False,
+) -> dict[TierLabel, float]:
+    if gap_penalty <= 0:
+        base = {TierLabel.EQUIVALENT: 0.35, TierLabel.RELATED: 0.45,
+                TierLabel.PARTIAL: 0.15, TierLabel.UNRELATED: 0.05}
+    elif gap_penalty <= 2:
+        base = {TierLabel.EQUIVALENT: 0.15, TierLabel.RELATED: 0.45,
+                TierLabel.PARTIAL: 0.30, TierLabel.UNRELATED: 0.10}
+    else:
+        base = {TierLabel.EQUIVALENT: 0.05, TierLabel.RELATED: 0.30,
+                TierLabel.PARTIAL: 0.45, TierLabel.UNRELATED: 0.20}
+
+    if bridge_pair:
+        bridge_shift = 0.10
+        base[TierLabel.EQUIVALENT] = max(0.02, base[TierLabel.EQUIVALENT] - bridge_shift)
+        base[TierLabel.RELATED] += bridge_shift * 0.5
+        base[TierLabel.PARTIAL] += bridge_shift * 0.5
+        total = sum(base.values())
+        base = {k: v / total for k, v in base.items()}
+
+    return base

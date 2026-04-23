@@ -376,3 +376,28 @@ class TestGapPenalties:
 
     def test_related_two_penalty(self):
         assert GAP_PENALTIES["Related"] == 2
+
+
+from classifier.data.tier_mapper import map_opencre_tier, TierLabel
+
+
+def test_map_opencre_tier_low_penalty():
+    """Gap penalty 0 (both LinkedTo) -> skewed toward EQUIVALENT/RELATED."""
+    dist = map_opencre_tier(gap_penalty=0, bridge_pair=False)
+    assert abs(sum(dist.values()) - 1.0) < 1e-6
+    assert dist[TierLabel.EQUIVALENT] > dist[TierLabel.PARTIAL]
+    assert dist[TierLabel.RELATED] > dist[TierLabel.UNRELATED]
+
+
+def test_map_opencre_tier_high_penalty():
+    """Gap penalty 4 (both Contains/Related) -> skewed toward PARTIAL."""
+    dist = map_opencre_tier(gap_penalty=4, bridge_pair=False)
+    assert abs(sum(dist.values()) - 1.0) < 1e-6
+    assert dist[TierLabel.PARTIAL] > dist[TierLabel.EQUIVALENT]
+
+
+def test_map_opencre_tier_bridge_pair():
+    """Bridge pairs (AI<->traditional) get wider distributions."""
+    bridge = map_opencre_tier(gap_penalty=0, bridge_pair=True)
+    non_bridge = map_opencre_tier(gap_penalty=0, bridge_pair=False)
+    assert bridge[TierLabel.EQUIVALENT] < non_bridge[TierLabel.EQUIVALENT]

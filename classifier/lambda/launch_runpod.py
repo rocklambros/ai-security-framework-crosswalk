@@ -53,8 +53,10 @@ def bootstrap(ip: str, port: int) -> None:
         "HF_TOKEN": _get_credential("huggingface/token"),
     }
 
+    print("\n=== Installing rsync on pod ===")
+    _ssh(ip, port, "apt-get update -qq && apt-get install -y -qq rsync > /dev/null 2>&1")
+
     print("\n=== Syncing repo to pod ===")
-    # Rsync the full repo (faster than git clone, includes uncommitted changes)
     _rsync_to(ip, port, "./", "/root/crosswalk/")
 
     print("\n=== Installing dependencies ===")

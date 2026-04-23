@@ -42,6 +42,10 @@ FEATURE_COLS_V2 = (
     + BASELINE_V2_COLS  # 2
 )  # Total: 83
 
+# V3 features: V2 + OpenCRE gap penalty
+GAP_PENALTY_COL = ["gap_penalty"]
+FEATURE_COLS_V3 = FEATURE_COLS_V2 + GAP_PENALTY_COL  # Total: 84
+
 LABEL_COL = "label"
 N_CLASSES = 4
 REGISTRY_PATH = Path("runs/registry.jsonl")
@@ -55,7 +59,8 @@ class LGBMStacker:
         self.model: lgb.Booster | None = None
         self.run_id: str = ""
         self.version = version
-        self.feature_cols = FEATURE_COLS if version == "v1" else FEATURE_COLS_V2
+        _feature_map = {"v1": FEATURE_COLS, "v2": FEATURE_COLS_V2, "v3": FEATURE_COLS_V3}
+        self.feature_cols = _feature_map.get(version, FEATURE_COLS_V2)
 
     def fit(
         self,

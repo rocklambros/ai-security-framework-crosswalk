@@ -358,9 +358,20 @@ def _fetch_all_cres(session: requests.Session, use_cache: bool = True) -> list[d
     while True:
         url = f"{API_BASE}/all_cres"
         params: dict[str, Any] = {"page": page, "per_page": PAGE_SIZE}
-        resp = session.get(url, params=params, timeout=30)
-        resp.raise_for_status()
-        data = resp.json()
+        for attempt in range(3):
+            try:
+                resp = session.get(url, params=params, timeout=30)
+                resp.raise_for_status()
+                data = resp.json()
+                break
+            except (requests.RequestException, ValueError) as exc:
+                if attempt < 2:
+                    wait = 2 ** attempt
+                    logger.warning("  page %d attempt %d failed (%s), retrying in %ds…",
+                                   page, attempt + 1, exc, wait)
+                    time.sleep(wait)
+                else:
+                    raise
 
         items: list[dict] = []
         total_pages: int | None = None

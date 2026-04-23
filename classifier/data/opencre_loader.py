@@ -353,28 +353,32 @@ def _fetch_all_cres(session: requests.Session, use_cache: bool = True) -> list[d
     logger.info("Fetching all CREs from %s …", API_BASE)
     cres: list[dict[str, Any]] = []
 
-    # Paginate through /rest/v1/all endpoint
-    page = 0
+    # Paginate through /rest/v1/all_cres (1-indexed pages)
+    page = 1
     while True:
-        url = f"{API_BASE}/all"
+        url = f"{API_BASE}/all_cres"
         params: dict[str, Any] = {"page": page, "per_page": PAGE_SIZE}
         resp = session.get(url, params=params, timeout=30)
         resp.raise_for_status()
         data = resp.json()
 
-        # The API may return a dict with 'data' key or a list directly
         items: list[dict] = []
+        total_pages: int | None = None
         if isinstance(data, list):
             items = data
         elif isinstance(data, dict):
             items = data.get("data", data.get("cres", []))
+            total_pages = data.get("total_pages")
 
         if not items:
             break
 
         cres.extend(items)
-        logger.info("  page %d: %d CREs (total so far: %d)", page, len(items), len(cres))
+        logger.info("  page %d/%s: %d CREs (total so far: %d)",
+                     page, total_pages or "?", len(items), len(cres))
 
+        if total_pages and page >= total_pages:
+            break
         if len(items) < PAGE_SIZE:
             break
 

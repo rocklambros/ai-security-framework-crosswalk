@@ -1,0 +1,111 @@
+{
+  "distribution": {
+    "UNRELATED": 130,
+    "PARTIAL": 18,
+    "RELATED": 24,
+    "EQUIVALENT": 7
+  },
+  "confusion_matrix": [
+    [
+      120,
+      5,
+      5,
+      0
+    ],
+    [
+      2,
+      10,
+      5,
+      1
+    ],
+    [
+      2,
+      3,
+      15,
+      4
+    ],
+    [
+      2,
+      0,
+      5,
+      0
+    ]
+  ],
+  "per_class_f1": {
+    "UNRELATED": 0.9375,
+    "PARTIAL": 0.5555555555555556,
+    "RELATED": 0.5555555555555556,
+    "EQUIVALENT": 0.0
+  },
+  "per_class_precision": {
+    "UNRELATED": 0.9523809523809523,
+    "PARTIAL": 0.5555555555555556,
+    "RELATED": 0.5,
+    "EQUIVALENT": 0.0
+  },
+  "per_class_recall": {
+    "UNRELATED": 0.9230769230769231,
+    "PARTIAL": 0.5555555555555556,
+    "RELATED": 0.625,
+    "EQUIVALENT": 0.0
+  },
+  "macro_f1": 0.5121527777777778,
+  "exact_accuracy": 0.8100558659217877,
+  "bottleneck_class": "EQUIVALENT",
+  "bottleneck_f1": 0.0,
+  "top_error_modes": [
+    {
+      "true": "PARTIAL",
+      "pred": "RELATED",
+      "count": 5
+    },
+    {
+      "true": "UNRELATED",
+      "pred": "RELATED",
+      "count": 5
+    },
+    {
+      "true": "EQUIVALENT",
+      "pred": "RELATED",
+      "count": 5
+    },
+    {
+      "true": "UNRELATED",
+      "pred": "PARTIAL",
+      "count": 5
+    },
+    {
+      "true": "RELATED",
+      "pred": "EQUIVALENT",
+      "count": 4
+    },
+    {
+      "true": "RELATED",
+      "pred": "PARTIAL",
+      "count": 3
+    },
+    {
+      "true": "RELATED",
+      "pred": "UNRELATED",
+      "count": 2
+    },
+    {
+      "true": "PARTIAL",
+      "pred": "UNRELATED",
+      "count": 2
+    },
+    {
+      "true": "EQUIVALENT",
+      "pred": "UNRELATED",
+      "count": 2
+    },
+    {
+      "true": "PARTIAL",
+      "pred": "EQUIVALENT",
+      "count": 1
+    }
+  ],
+  "recommendation": "Macro F1 of 0.512 is moderate; room for improvement. Bottleneck class is EQUIVALENT (F1=0.000, n=7 in test set). Most common error: true=PARTIAL predicted as RELATED (5 times). EQUIVALENT recall is low \u2014 consider adding more EQUIVALENT training examples or using a lower decision threshold for the EQUIVALENT class. For v8: prioritize data augmentation and feature improvements targeting the EQUIVALENT class to raise macro F1 above 0.65.",
+  "source": "recomputed from runs/v7c_sacred/logreg_model.pkl",
+  "n_test": 179
+}

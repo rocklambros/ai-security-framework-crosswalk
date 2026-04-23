@@ -78,29 +78,17 @@ def full_pipeline(sweep_count: int = 50, local_only: bool = False) -> None:
             wandb_key = _launch_v7._get_credential("wandb/api-key")
             env = {"WANDB_API_KEY": wandb_key}
 
-            # Phase 2: Contrastive pre-training
-            log("Phase 2: Contrastive pre-training (GPU)")
-            _launch_v7._ssh(ip, port,
-                "cd /root/crosswalk && python -m classifier.lambda.train_all_v8 --phase 2",
-                env=env)
-
-            # Phase 3: Cross-encoder sweeps
-            log(f"Phase 3: Cross-encoder sweeps ({sweep_count} trials/model)")
-            _launch_v7._ssh(ip, port,
-                f"cd /root/crosswalk && python -m classifier.lambda.train_all_v8 --phase 3 --sweep-count {sweep_count}",
-                env=env)
-
-            # Phase 4: Extract embeddings
-            log("Phase 4: Extract CLS embeddings (GPU)")
-            _launch_v7._ssh(ip, port,
-                "cd /root/crosswalk && python -m classifier.lambda.train_all_v8 --phase 4",
-                env=env)
-
-            # Phase 5: GATv2 retrain
-            log("Phase 5: GATv2 retrain (GPU)")
-            _launch_v7._ssh(ip, port,
-                "cd /root/crosswalk && python -m classifier.lambda.train_all_v8 --phase 5",
-                env=env)
+            for phase_num, phase_name in [
+                (2, "Contrastive pre-training"),
+                (3, f"Cross-encoder sweeps ({sweep_count} trials/model)"),
+                (4, "Extract CLS embeddings"),
+                (5, "GATv2 retrain"),
+            ]:
+                log(f"Phase {phase_num}: {phase_name} (GPU)")
+                phase_cmd = f"cd /root/crosswalk && python -m classifier.lambda.train_all_v8 --phase {phase_num}"
+                if phase_num == 3:
+                    phase_cmd += f" --sweep-count {sweep_count}"
+                _launch_v7._ssh(ip, port, phase_cmd, env=env)
 
             # Rsync artifacts home
             log("Rsyncing GPU artifacts home...")

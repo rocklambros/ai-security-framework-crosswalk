@@ -19,14 +19,17 @@ def _get_credential(name: str) -> str:
     return result.stdout.strip()
 
 
-def _ssh(ip: str, port: int, cmd: str, env: dict | None = None) -> subprocess.CompletedProcess:
+def _ssh(ip: str, port: int, cmd: str, env: dict | None = None, check: bool = True) -> subprocess.CompletedProcess:
     """Run a command on a remote RunPod instance via SSH."""
     env_prefix = ""
     if env:
         env_prefix = " ".join(f'{k}="{v}"' for k, v in env.items()) + " "
     full_cmd = f"ssh {SSH_OPTS} -p {port} root@{ip} '{env_prefix}{cmd}'"
     print(f"  [ssh] {cmd[:80]}...")
-    return subprocess.run(full_cmd, shell=True, capture_output=False)
+    result = subprocess.run(full_cmd, shell=True, capture_output=False)
+    if check and result.returncode != 0:
+        raise RuntimeError(f"SSH command failed (exit {result.returncode}): {cmd[:120]}")
+    return result
 
 
 def _scp_to(ip: str, port: int, local_path: str, remote_path: str) -> None:
@@ -54,7 +57,7 @@ def bootstrap(ip: str, port: int) -> None:
     }
 
     print("\n=== Installing rsync on pod ===")
-    _ssh(ip, port, "apt-get update -qq && apt-get install -y -qq rsync > /dev/null 2>&1")
+    _ssh(ip, port, "apt-get update -qq && apt-get install -y -qq rsync > /dev/null 2>&1", check=False)
 
     print("\n=== Syncing repo to pod ===")
     _rsync_to(ip, port, "./", "/root/crosswalk/")

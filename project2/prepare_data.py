@@ -579,14 +579,46 @@ def merge_upstream_edges(edges, nodes, repo_root: str):
 
 
 def merge_opencre_edges(edges, nodes, repo_root):
-    """Merge OpenCRE expert edges into the edge list."""
-    opencre_path = os.path.join(repo_root, "project2", "data", "opencre_edges.json")
-    if not os.path.exists(opencre_path):
-        print(f"  No OpenCRE edges found at {opencre_path}")
-        return edges
+    """Merge OpenCRE hierarchy-derived edges into the edge list.
 
-    with open(opencre_path) as f:
-        opencre_edges = json.load(f)
+    Reads from data/opencre/opencre_pairs.jsonl (v8b hierarchy pairs) which
+    contains gap_penalty values indicating hierarchy distance:
+        gap=0  -> EQUIVALENT (confidence tier 3)
+        gap=1  -> RELATED    (confidence tier 2)
+        gap>=2 -> PARTIAL    (confidence tier 1)
+
+    Falls back to the legacy project2/data/opencre_edges.json if the
+    JSONL file is not found.
+    """
+    # Gap-penalty to confidence/rationale mapping
+    GAP_TIER_MAP = {
+        0: {"confidence": "expert", "rationale_code": "OPENCRE_EQUIVALENT",
+            "rationale_label": "Same CRE node (equivalent)", "tier": 3},
+        1: {"confidence": "expert", "rationale_code": "OPENCRE_RELATED",
+            "rationale_label": "Adjacent CRE nodes (related)", "tier": 2},
+    }
+    GAP_DEFAULT = {"confidence": "suggestive", "rationale_code": "OPENCRE_PARTIAL",
+                   "rationale_label": "Distant CRE nodes (partial)", "tier": 1}
+
+    # Prefer the v8b JSONL hierarchy pairs
+    pairs_path = os.path.join(repo_root, "data", "opencre", "opencre_pairs.jsonl")
+    legacy_path = os.path.join(repo_root, "project2", "data", "opencre_edges.json")
+
+    if os.path.exists(pairs_path):
+        opencre_records = []
+        with open(pairs_path) as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    opencre_records.append(json.loads(line))
+        print(f"  Reading OpenCRE hierarchy pairs from {pairs_path}")
+    elif os.path.exists(legacy_path):
+        with open(legacy_path) as f:
+            opencre_records = json.load(f)
+        print(f"  Using legacy OpenCRE edges from {legacy_path}")
+    else:
+        print(f"  No OpenCRE edges found at {pairs_path} or {legacy_path}")
+        return edges
 
     node_ids = {n["node_id"] for n in nodes}
     existing_pairs = {
@@ -599,7 +631,8 @@ def merge_opencre_edges(edges, nodes, repo_root):
     }
 
     added = 0
-    for oe in opencre_edges:
+    by_gap = {0: 0, 1: 0, 2: 0}
+    for oe in opencre_records:
         src = oe["source_node_id"]
         tgt = oe["target_node_id"]
         pair = (src, tgt)
@@ -611,20 +644,31 @@ def merge_opencre_edges(edges, nodes, repo_root):
         if src not in node_ids or tgt not in node_ids:
             continue
 
+        gap = oe.get("gap_penalty", 0)
+        tier_info = GAP_TIER_MAP.get(gap, GAP_DEFAULT)
+
         edges.append({
             "source_node_id": src,
             "target_node_id": tgt,
             "source_framework": oe["source_framework"],
             "target_framework": oe["target_framework"],
-            "confidence": oe.get("confidence", "expert"),
-            "rationale": oe.get("rationale", "OPENCRE_EXPERT"),
-            "provenance": "opencre_expert",
-            "notes": oe.get("notes", ""),
+            "confidence": tier_info["confidence"],
+            "rationale_code": tier_info["rationale_code"],
+            "rationale_label": tier_info["rationale_label"],
+            "provenance": "opencre_hierarchy",
+            "gap_penalty": gap,
+            "cre_id": oe.get("cre_id", ""),
+            "cre_name": oe.get("cre_name", ""),
+            "notes": f"OpenCRE hierarchy (gap={gap}, tier={tier_info['tier']})",
         })
         existing_pairs.add(pair)
         added += 1
+        by_gap[min(gap, 2)] = by_gap.get(min(gap, 2), 0) + 1
 
-    print(f"  OpenCRE expert edges: {added} added (of {len(opencre_edges)} available)")
+    print(f"  OpenCRE hierarchy edges: {added} added (of {len(opencre_records)} available)")
+    print(f"    gap=0 EQUIVALENT: {by_gap.get(0, 0)}, "
+          f"gap=1 RELATED: {by_gap.get(1, 0)}, "
+          f"gap>=2 PARTIAL: {by_gap.get(2, 0)}")
     return edges
 
 

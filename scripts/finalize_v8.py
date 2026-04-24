@@ -1,6 +1,6 @@
 """Post-training finalization: inject v8 notebook cells, update paper, commit.
 
-Run AFTER v8 sacred evaluation produces runs/v8_sacred/results.json.
+Run AFTER v8 sacred evaluation produces runs/v8b_sacred/results.json.
 
 Usage:
     python scripts/finalize_v8.py
@@ -19,9 +19,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 os.chdir(ROOT)
 
-V8_RESULTS = ROOT / "runs" / "v8_sacred" / "results.json"
-V8_ASSEMBLY = ROOT / "runs" / "v8_diagnosis" / "v8_data_assembly.json"
-V7C_DIAGNOSIS = ROOT / "runs" / "v8_diagnosis" / "v7c_diagnosis.json"
+V8_RESULTS = ROOT / "runs" / "v8b_sacred" / "results.json"
+V8_ASSEMBLY = ROOT / "runs" / "v8b_diagnosis" / "v8b_data_assembly.json"
+V7C_DIAGNOSIS = ROOT / "runs" / "v8b_diagnosis" / "v7c_diagnosis.json"
 NOTEBOOK = ROOT / "project1" / "COMP_4433_RockLambros_project1_crosswalk_eda.ipynb"
 FIGURES_DIR = ROOT / "project1" / "figures"
 PAPER_FIGURES = ROOT / "paper" / "figures"
@@ -83,9 +83,9 @@ requirements, providing expert-validated gold labels for classifier retraining.
     cells.append(_code_cell("""import json
 from pathlib import Path
 
-v7c_diag = json.loads(Path("runs/v8_diagnosis/v7c_diagnosis.json").read_text()) if Path("runs/v8_diagnosis/v7c_diagnosis.json").exists() else {}
-v8_results = json.loads(Path("runs/v8_sacred/results.json").read_text()) if Path("runs/v8_sacred/results.json").exists() else {}
-v8_assembly = json.loads(Path("runs/v8_diagnosis/v8_data_assembly.json").read_text()) if Path("runs/v8_diagnosis/v8_data_assembly.json").exists() else {}
+v7c_diag = json.loads(Path("runs/v8b_diagnosis/v7c_diagnosis.json").read_text()) if Path("runs/v8b_diagnosis/v7c_diagnosis.json").exists() else {}
+v8_results = json.loads(Path("runs/v8b_sacred/results.json").read_text()) if Path("runs/v8b_sacred/results.json").exists() else {}
+v8_assembly = json.loads(Path("runs/v8b_diagnosis/v8b_data_assembly.json").read_text()) if Path("runs/v8b_diagnosis/v8b_data_assembly.json").exists() else {}
 
 print("v8 Training Data Assembly:")
 print(f"  OpenCRE pairs total: {v8_assembly.get('opencre_total', 'N/A')}")
@@ -188,7 +188,7 @@ if opencre_pairs_path.exists():
     axes[0].set_ylabel("Gap Analysis Penalty")
 
 # Right: Disagreement rate
-v8_diag = json.loads(Path("runs/v8_diagnosis/v8_data_assembly.json").read_text()) if Path("runs/v8_diagnosis/v8_data_assembly.json").exists() else {}
+v8_diag = json.loads(Path("runs/v8b_diagnosis/v8b_data_assembly.json").read_text()) if Path("runs/v8b_diagnosis/v8b_data_assembly.json").exists() else {}
 if v8_diag:
     disagree_rate = v8_diag.get("disagreements", 0) / max(v8_diag.get("clean", 1), 1)
     axes[1].text(0.5, 0.5, f"Disagreement Rate\\n{disagree_rate*100:.1f}%",
@@ -288,8 +288,8 @@ except ImportError:
 
 tier_names = ["UNRELATED", "PARTIAL", "RELATED", "EQUIVALENT"]
 
-v7c_diag = json.loads(Path("runs/v8_diagnosis/v7c_diagnosis.json").read_text()) if Path("runs/v8_diagnosis/v7c_diagnosis.json").exists() else {}
-v8_results = json.loads(Path("runs/v8_sacred/results.json").read_text()) if Path("runs/v8_sacred/results.json").exists() else {}
+v7c_diag = json.loads(Path("runs/v8b_diagnosis/v7c_diagnosis.json").read_text()) if Path("runs/v8b_diagnosis/v7c_diagnosis.json").exists() else {}
+v8_results = json.loads(Path("runs/v8b_sacred/results.json").read_text()) if Path("runs/v8b_sacred/results.json").exists() else {}
 
 # Figure 1: Confusion matrix comparison
 fig = plt.figure(figsize=(16, 6))
@@ -357,7 +357,7 @@ if opencre_path.exists():
     except Exception as e:
         axes[0].text(0.5, 0.5, f"Error: {e}", transform=axes[0].transAxes, ha="center")
 
-v8_asm = json.loads(Path("runs/v8_diagnosis/v8_data_assembly.json").read_text()) if Path("runs/v8_diagnosis/v8_data_assembly.json").exists() else {}
+v8_asm = json.loads(Path("runs/v8b_diagnosis/v8b_data_assembly.json").read_text()) if Path("runs/v8b_diagnosis/v8b_data_assembly.json").exists() else {}
 if v8_asm:
     rate = v8_asm.get("disagreements", 0) / max(v8_asm.get("clean", 1), 1)
     axes[1].text(0.5, 0.5, f"Disagreement Rate\\n{rate*100:.1f}%", transform=axes[1].transAxes, ha="center", va="center", fontsize=24, fontweight="bold")

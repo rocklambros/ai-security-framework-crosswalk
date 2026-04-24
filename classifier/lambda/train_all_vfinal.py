@@ -245,8 +245,6 @@ def phase4_stacker_sweep():
 
     print("Phase 4: Stacker sweep (5-fold CV, 10 Optuna trials)")
 
-    TIER_MAP = {"Direct": 3, "Related": 2, "Tangential": 1, "None": 0}
-
     # ------------------------------------------------------------------
     # 1. Load feature npz files
     # ------------------------------------------------------------------
@@ -291,7 +289,7 @@ def phase4_stacker_sweep():
         with jsonl_path.open() as fh:
             for line in fh:
                 row = json.loads(line)
-                labels.append(TIER_MAP[row["tier_label"]])
+                labels.append(int(row["tier_label"]))
                 bm25_vals.append(float(row.get("score_bm25", 0.0)))
                 bridge_vals.append(float(row.get("score_bridge", 0.0)))
         return (

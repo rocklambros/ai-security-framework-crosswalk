@@ -730,6 +730,36 @@ def compute_pairwise_reachability(transitive_mappings, frameworks):
     return result
 
 
+def merge_vfinal_scores(edges, repo_root):
+    """Add v_final classifier tier and confidence to edges."""
+    pred_path = os.path.join(repo_root, "runs", "vfinal", "edge_predictions.json")
+    if not os.path.exists(pred_path):
+        print(f"  No v_final predictions found at {pred_path}, marking edges as pending")
+        for e in edges:
+            e["classifier_tier"] = -1
+            e["classifier_confidence"] = 0.0
+        return edges
+
+    # Load predictions keyed by pair_key or (source_node_id, target_node_id)
+    with open(pred_path) as f:
+        predictions = json.load(f)
+
+    matched = 0
+    for e in edges:
+        key = e.get("pair_key", f"{e.get('source_node_id', '')}_{e.get('target_node_id', '')}")
+        if key in predictions:
+            pred = predictions[key]
+            e["classifier_tier"] = pred["tier"]
+            e["classifier_confidence"] = pred["confidence"]
+            matched += 1
+        else:
+            e["classifier_tier"] = -1
+            e["classifier_confidence"] = 0.0
+
+    print(f"  Merged v_final scores: {matched}/{len(edges)} edges matched")
+    return edges
+
+
 def prepare_all(data_dir: str, output_dir: str):
     """Run the full preparation pipeline."""
     nodes, edges = load_raw(data_dir)
@@ -745,6 +775,10 @@ def prepare_all(data_dir: str, output_dir: str):
     # Merge OpenCRE expert edges
     print("Merging OpenCRE expert edges...")
     edges = merge_opencre_edges(edges, nodes, repo_root)
+
+    # Merge v_final classifier scores
+    print("Merging v_final classifier scores...")
+    edges = merge_vfinal_scores(edges, repo_root)
 
     # Save enriched data so the app can use domain + edge enrichments
     save_json(nodes, os.path.join(output_dir, "nodes_enriched.json"))

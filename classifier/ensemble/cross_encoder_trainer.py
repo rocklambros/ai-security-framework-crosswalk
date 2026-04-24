@@ -1,7 +1,8 @@
 """Cross-encoder training function for W&B sweep integration.
 
 Extracted from the v7 inline training loop in train_all.py Phase 3.
-Supports both v7 (expert_train.jsonl) and v8 (v8_train.jsonl) data.
+Supports both v7 (expert_train.jsonl) and v8/v9 (v8b_train.jsonl) data.
+v9 additions: CollapseGuard, LLRD optimizer, mid-epoch validation.
 """
 from __future__ import annotations
 
@@ -17,6 +18,118 @@ from sklearn.metrics import accuracy_score, f1_score
 from torch.utils.data import WeightedRandomSampler
 
 import wandb
+
+
+_COLLAPSE_MIN_CLASS_PCT = 0.02
+_COLLAPSE_MIN_CF1 = 0.10
+_COLLAPSE_PATIENCE = 2
+_COLLAPSE_MAX_RECOVERIES = 3
+_MID_EPOCH_VAL_INTERVAL = 200
+
+
+def _build_llrd_optimizer(
+    model: nn.Module,
+    head_lr: float,
+    decay_factor: float = 0.85,
+    weight_decay: float = 0.01,
+) -> torch.optim.AdamW:
+    """Layer-wise learning rate decay for transformer encoders."""
+    no_decay = {"bias", "LayerNorm.weight", "layernorm.weight"}
+    param_groups = []
+
+    head_params_d = []
+    head_params_nd = []
+    encoder_layer_params: dict[int, tuple[list, list]] = {}
+    embed_params_d = []
+    embed_params_nd = []
+
+    encoder = getattr(model, "encoder", model)
+    n_layers = getattr(getattr(encoder, "config", None), "num_hidden_layers", 12)
+
+    for name, param in model.named_parameters():
+        if not param.requires_grad:
+            continue
+        is_nodecay = any(nd in name for nd in no_decay)
+        if "classifier" in name or "head" in name:
+            (head_params_nd if is_nodecay else head_params_d).append(param)
+        elif "embedding" in name.lower():
+            (embed_params_nd if is_nodecay else embed_params_d).append(param)
+        else:
+            layer_idx = None
+            for li in range(n_layers):
+                if f"layer.{li}." in name or f"layers.{li}." in name:
+                    layer_idx = li
+                    break
+            if layer_idx is not None:
+                if layer_idx not in encoder_layer_params:
+                    encoder_layer_params[layer_idx] = ([], [])
+                d_list, nd_list = encoder_layer_params[layer_idx]
+                (nd_list if is_nodecay else d_list).append(param)
+            else:
+                (embed_params_nd if is_nodecay else embed_params_d).append(param)
+
+    if head_params_d:
+        param_groups.append({"params": head_params_d, "lr": head_lr, "weight_decay": weight_decay})
+    if head_params_nd:
+        param_groups.append({"params": head_params_nd, "lr": head_lr, "weight_decay": 0.0})
+
+    for layer_idx in sorted(encoder_layer_params.keys(), reverse=True):
+        layer_lr = head_lr * (decay_factor ** (n_layers - layer_idx))
+        d_list, nd_list = encoder_layer_params[layer_idx]
+        if d_list:
+            param_groups.append({"params": d_list, "lr": layer_lr, "weight_decay": weight_decay})
+        if nd_list:
+            param_groups.append({"params": nd_list, "lr": layer_lr, "weight_decay": 0.0})
+
+    embed_lr = head_lr * (decay_factor ** n_layers)
+    if embed_params_d:
+        param_groups.append({"params": embed_params_d, "lr": embed_lr, "weight_decay": weight_decay})
+    if embed_params_nd:
+        param_groups.append({"params": embed_params_nd, "lr": embed_lr, "weight_decay": 0.0})
+
+    total_params = sum(p.numel() for g in param_groups for p in g["params"])
+    print(f"    LLRD optimizer: {len(param_groups)} groups, {n_layers} layers, "
+          f"decay={decay_factor}, head_lr={head_lr:.2e}, embed_lr={embed_lr:.2e}, "
+          f"{total_params:,} params")
+    return torch.optim.AdamW(param_groups, weight_decay=weight_decay)
+
+
+def _quick_val_predictions(
+    model: nn.Module,
+    val_subset: list[dict],
+    device: torch.device,
+    bs: int,
+    use_amp: bool,
+    amp_dtype: torch.dtype,
+) -> Counter:
+    """Fast validation pass returning prediction distribution."""
+    model.eval()
+    preds = []
+    with torch.no_grad():
+        for i in range(0, len(val_subset), bs):
+            batch = val_subset[i : i + bs]
+            texts_a = [r["source_text"] for r in batch]
+            texts_b = [r["target_text"] for r in batch]
+            encoding = model.tokenize_batch(texts_a, texts_b)
+            encoding = {k: v.to(device) for k, v in encoding.items()}
+            with torch.amp.autocast("cuda", enabled=use_amp, dtype=amp_dtype):
+                logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+            preds.extend(logits.argmax(dim=1).cpu().tolist())
+    model.train()
+    return Counter(preds)
+
+
+def _is_collapsed(pred_dist: Counter, n_classes: int = 4) -> bool:
+    """True if any class has <2% of predictions or <3 unique classes predicted."""
+    total = sum(pred_dist.values())
+    if total == 0:
+        return True
+    if len(pred_dist) < 3:
+        return True
+    for cls in range(n_classes):
+        if pred_dist.get(cls, 0) / total < _COLLAPSE_MIN_CLASS_PCT:
+            return True
+    return False
 
 
 def train_cross_encoder(
@@ -35,6 +148,8 @@ def train_cross_encoder(
     sigma: float = 0.40,
     human_cal_weight: int = 5,
     encoder_lr_factor: float = 0.1,
+    use_llrd: bool = False,
+    llrd_decay: float = 0.85,
     **_extra,
 ) -> Dict[str, Any]:
     """Train a cross-encoder classifier, logging metrics to the active W&B run.
@@ -125,12 +240,16 @@ def train_cross_encoder(
     per_sample_class_weight = np.array([class_weights_arr[r["tier_label"]] for r in train_data])
     combined_weight = per_sample_class_weight * sample_weights
 
-    head_params = [p for n, p in model.named_parameters() if "classifier" in n]
-    encoder_params = [p for n, p in model.named_parameters() if "classifier" not in n]
-    optimizer = torch.optim.AdamW([
-        {"params": head_params, "lr": learning_rate},
-        {"params": encoder_params, "lr": learning_rate * encoder_lr_factor},
-    ], weight_decay=weight_decay)
+    if use_llrd:
+        optimizer = _build_llrd_optimizer(model, head_lr=learning_rate,
+                                         decay_factor=llrd_decay, weight_decay=weight_decay)
+    else:
+        head_params = [p for n, p in model.named_parameters() if "classifier" in n]
+        encoder_params = [p for n, p in model.named_parameters() if "classifier" not in n]
+        optimizer = torch.optim.AdamW([
+            {"params": head_params, "lr": learning_rate},
+            {"params": encoder_params, "lr": learning_rate * encoder_lr_factor},
+        ], weight_decay=weight_decay)
 
     n_steps = (len(train_data) // bs) * epochs
     warmup_steps = int(n_steps * warmup_ratio)
@@ -139,8 +258,13 @@ def train_cross_encoder(
     )
 
     best_f1 = 0.0
+    best_checkpoint_path = Path(output_dir) / "best"
     patience_counter = 0
+    collapse_consecutive = 0
+    collapse_recoveries = 0
     final_metrics: Dict[str, Any] = {}
+
+    val_quick_subset = val_data_expert[:min(200, len(val_data_expert))]
 
     for epoch in range(epochs):
         model.train()
@@ -158,6 +282,7 @@ def train_cross_encoder(
         nan_skips = 0
         correct = 0
         total = 0
+        step_in_epoch = 0
 
         for i in range(0, len(epoch_data), bs):
             batch = epoch_data[i : i + bs]
@@ -217,10 +342,33 @@ def train_cross_encoder(
             epoch_loss += loss.item()
             max_grad_norm = max(max_grad_norm, grad_norm)
             n_batches += 1
+            step_in_epoch += 1
+
+            # --- Mid-epoch collapse check ---
+            if step_in_epoch % _MID_EPOCH_VAL_INTERVAL == 0 and step_in_epoch > 0:
+                quick_dist = _quick_val_predictions(
+                    model, val_quick_subset, device, bs, use_amp, amp_dtype,
+                )
+                if _is_collapsed(quick_dist):
+                    print(f"    MID-EPOCH COLLAPSE at epoch {epoch} step {step_in_epoch}: {dict(quick_dist)}")
+                    wandb.log({"mid_epoch_collapse": 1, "collapse_step": step_in_epoch})
+                    if best_checkpoint_path.exists() and collapse_recoveries < _COLLAPSE_MAX_RECOVERIES:
+                        collapse_recoveries += 1
+                        print(f"    RECOVERY #{collapse_recoveries}: reloading best checkpoint, halving LR")
+                        model = type(model).load(best_checkpoint_path).to(device)
+                        for pg in optimizer.param_groups:
+                            pg["lr"] *= 0.5
+                        wandb.log({"collapse_recovery": collapse_recoveries})
+                    elif collapse_recoveries >= _COLLAPSE_MAX_RECOVERIES:
+                        print(f"    KILL: {_COLLAPSE_MAX_RECOVERIES} recoveries exhausted")
+                        wandb.alert(title="Collapse Kill",
+                                    text=f"Run killed after {collapse_recoveries} recovery attempts")
+                        break
 
         avg_loss = epoch_loss / max(n_batches, 1)
         train_acc = correct / max(total, 1)
 
+        # --- Full epoch validation ---
         model.eval()
         val_preds_human, val_labels_human = [], []
         val_kl_loss_sum, val_kl_batches = 0.0, 0
@@ -262,14 +410,19 @@ def train_cross_encoder(
 
         expert_val_f1 = f1_score(val_labels_expert, val_preds_expert, average="macro")
 
-        if n_unique_preds < 3:
+        # --- Collapse detection (stricter than v8b) ---
+        pred_dist = Counter(val_preds_human)
+        epoch_collapsed = _is_collapsed(pred_dist)
+
+        if epoch_collapsed:
             combined_f1 = 0.0
-            print(f"    COLLAPSE DETECTED: only {n_unique_preds} unique preds")
+            collapse_consecutive += 1
+            print(f"    COLLAPSE at epoch {epoch}: {dict(pred_dist)} (consecutive={collapse_consecutive})")
         else:
-            combined_f1 = 0.7 * human_val_f1 + 0.3 * expert_val_f1
+            combined_f1 = 0.5 * human_val_f1 + 0.5 * expert_val_f1
+            collapse_consecutive = 0
 
         per_class_f1 = f1_score(val_labels_human, val_preds_human, average=None, labels=[0, 1, 2, 3])
-        pred_dist = Counter(val_preds_human)
 
         wandb.log({
             "epoch": epoch,
@@ -292,12 +445,32 @@ def train_cross_encoder(
             "f1_class_2": per_class_f1[2] if len(per_class_f1) > 2 else 0.0,
             "f1_class_3": per_class_f1[3] if len(per_class_f1) > 3 else 0.0,
             "nan_skips": nan_skips,
+            "collapse_recoveries": collapse_recoveries,
         })
+
+        # --- Epoch-level collapse recovery ---
+        if collapse_consecutive >= _COLLAPSE_PATIENCE:
+            if collapse_recoveries >= _COLLAPSE_MAX_RECOVERIES:
+                print(f"    KILL: {collapse_consecutive} consecutive collapsed epochs, "
+                      f"{collapse_recoveries} recoveries exhausted")
+                wandb.alert(title="Collapse Kill",
+                            text=f"Run killed: {collapse_consecutive} collapsed epochs, "
+                                 f"{collapse_recoveries} recoveries failed")
+                break
+            collapse_recoveries += 1
+            collapse_consecutive = 0
+            print(f"    EPOCH RECOVERY #{collapse_recoveries}: reloading best, halving LR")
+            if best_checkpoint_path.exists():
+                model = type(model).load(best_checkpoint_path).to(device)
+            for pg in optimizer.param_groups:
+                pg["lr"] *= 0.5
+            wandb.log({"collapse_recovery": collapse_recoveries})
+            continue
 
         if combined_f1 > best_f1:
             best_f1 = combined_f1
             patience_counter = 0
-            model.save(Path(output_dir) / "best")
+            model.save(best_checkpoint_path)
             wandb.log({"best_epoch": epoch, "best_combined_f1": best_f1})
         elif combined_f1 > 0:
             patience_counter += 1
@@ -312,6 +485,7 @@ def train_cross_encoder(
             "expert_val_f1": expert_val_f1,
             "combined_f1": combined_f1,
             "best_combined_f1": best_f1,
+            "collapse_recoveries": collapse_recoveries,
         }
 
     import gc

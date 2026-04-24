@@ -22,9 +22,9 @@ from classifier.data.tier_mapper import TierLabel, map_expert_tier
 from classifier.features.gap_penalty import compute_gap_penalties
 
 TEST_PATH = Path("data/splits/human_test_frozen.jsonl")
-V8_MODEL_DIR = Path("runs/v8/stacker/final")
+V8_MODEL_DIR = Path("runs/v8b/stacker/final")
 V7C_RESULTS = Path("runs/v7c_sacred/results.json")
-OUTPUT_DIR = Path("runs/v8_sacred")
+OUTPUT_DIR = Path("runs/v8b_sacred")
 PRE_REG = Path("classifier/sacred/pre_registered.json")
 
 TIER_NAMES = ["UNRELATED", "PARTIAL", "RELATED", "EQUIVALENT"]
@@ -65,8 +65,8 @@ def run_v8_sacred() -> dict:
         model = stacker
         scaler = None
 
-    ce_features = np.load("data/processed/ce_features_v8_deberta.npz")["test_features"]
-    gat_features = np.load("data/features/gat_embeddings_v8.npz")["test_pair_features"]
+    ce_features = np.load("data/processed/ce_features_v8b_deberta.npz")["test_features"]
+    gat_features = np.load("data/features/gat_embeddings_v8b.npz")["test_pair_features"]
     import pandas as pd
     baseline_df = pd.read_parquet("data/features/baseline_features.parquet")
     gap_penalties = compute_gap_penalties(test_data)
@@ -130,7 +130,7 @@ def run_v8_sacred() -> dict:
         print(f"{name:>12} " + " ".join(f"{cm[i, j]:>10}" for j in range(4)))
 
     results = {
-        "version": "v8",
+        "version": "v8b",
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
         "seed": seed,
         "test_size": len(test_data),

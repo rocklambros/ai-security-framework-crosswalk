@@ -15,7 +15,7 @@ def calibrate_conformal(
     model_dir: str,
     cal_path: str,
     alpha: float = 0.10,
-    output_dir: str = "runs/v8/conformal",
+    output_dir: str = "runs/v8b/conformal",
 ) -> Dict[str, Any]:
     """Run marginal conformal calibration on the stacker model.
 
@@ -32,7 +32,7 @@ def calibrate_conformal(
 
     pipe_path = model_path.parent / "feature_pipeline"
     if not pipe_path.exists():
-        pipe_path = Path("runs/v8/stacker/feature_pipeline")
+        pipe_path = Path("runs/v8b/stacker/feature_pipeline")
     pipe = FeaturePipeline.load(pipe_path)
 
     ce_data = {}

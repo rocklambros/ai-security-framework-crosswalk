@@ -69,6 +69,25 @@ V8_CE_SWEEP_CONFIG = {
     "early_terminate": {"type": "hyperband", "min_iter": 5, "eta": 3},
 }
 
+V8_CE_SWEEP_CONFIG_DEBERTA_LARGE = {
+    "method": "bayes",
+    "metric": {"name": "combined_f1", "goal": "maximize"},
+    "parameters": {
+        "learning_rate": {"distribution": "log_uniform_values", "min": 2e-5, "max": 5e-5},
+        "batch_size": {"values": [8]},
+        "epochs": {"values": [15, 20]},
+        "warmup_ratio": {"distribution": "uniform", "min": 0.05, "max": 0.15},
+        "weight_decay": {"distribution": "log_uniform_values", "min": 1e-4, "max": 1e-1},
+        "dropout": {"distribution": "uniform", "min": 0.1, "max": 0.3},
+        "loss_type": {"values": ["kl"]},
+        "sigma": {"distribution": "uniform", "min": 0.30, "max": 0.50},
+        "human_cal_weight": {"values": [2, 5, 10]},
+        "encoder_lr_factor": {"values": [0.15, 0.2, 0.3]},
+        "opencre_weight": {"values": [0.2, 0.3, 0.5]},
+    },
+    "early_terminate": {"type": "hyperband", "min_iter": 3, "eta": 3},
+}
+
 V8_STACKER_SWEEP_CONFIG = {
     "method": "bayes",
     "metric": {"name": "oof_macro_f1", "goal": "maximize"},

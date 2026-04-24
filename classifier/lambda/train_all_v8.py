@@ -120,8 +120,12 @@ def phase3_cross_encoder_sweeps(sweep_count: int = 50, model_index: int | None =
         model_id = model_cfg["model_id"]
         print(f"\n  [phase3] Sweeping {name}...")
 
+        sweep_cfg = _wc.V8_CE_SWEEP_CONFIG
+        if name == "deberta":
+            sweep_cfg = _wc.V8_CE_SWEEP_CONFIG_DEBERTA_LARGE
+
         sweep_id = wandb.sweep(
-            _wc.V8_CE_SWEEP_CONFIG,
+            sweep_cfg,
             project=_wc.WANDB_PROJECT_V8,
             entity=_wc.WANDB_ENTITY,
         )

@@ -61,7 +61,8 @@ def train_cross_encoder(
             print(f"    WARNING: contrastive checkpoint incomplete, using pretrained {model_name}")
 
     is_deberta = "deberta" in init_from.lower()
-    use_amp = device.type == "cuda" and not is_deberta
+    use_amp = device.type == "cuda"
+    amp_dtype = torch.bfloat16 if is_deberta else torch.float16
 
     model = CrossEncoderClassifier(
         model_name=init_from,
@@ -70,11 +71,9 @@ def train_cross_encoder(
         dropout=dropout,
         head_type="kl",
     )
-    if is_deberta:
-        model = model.float()
     model = model.to(device)
 
-    scaler = torch.amp.GradScaler("cuda") if use_amp else None
+    scaler = torch.amp.GradScaler("cuda") if (use_amp and not is_deberta) else None
 
     raw_data = []
     with open(train_path) as f:
@@ -182,7 +181,7 @@ def train_cross_encoder(
             encoding = model.tokenize_batch(texts_a, texts_b)
             encoding = {k: v.to(device) for k, v in encoding.items()}
 
-            with torch.amp.autocast("cuda", enabled=use_amp):
+            with torch.amp.autocast("cuda", enabled=use_amp, dtype=amp_dtype):
                 logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
                 loss = kl_ordinal_loss(logits, labels, n_classes=4, sigma=sigma,
                                        soft_targets=batch_soft)
@@ -234,7 +233,7 @@ def train_cross_encoder(
                 labels_t = torch.tensor(labels_batch, device=device)
                 encoding = model.tokenize_batch(texts_a, texts_b)
                 encoding = {k: v.to(device) for k, v in encoding.items()}
-                with torch.amp.autocast("cuda", enabled=use_amp):
+                with torch.amp.autocast("cuda", enabled=use_amp, dtype=amp_dtype):
                     logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
                     val_loss_batch = kl_ordinal_loss(logits, labels_t, n_classes=4, sigma=sigma)
                 val_preds_human.extend(logits.argmax(dim=1).cpu().tolist())
@@ -256,7 +255,7 @@ def train_cross_encoder(
                 labels_batch = [r["tier_label"] for r in batch]
                 encoding = model.tokenize_batch(texts_a, texts_b)
                 encoding = {k: v.to(device) for k, v in encoding.items()}
-                with torch.amp.autocast("cuda", enabled=use_amp):
+                with torch.amp.autocast("cuda", enabled=use_amp, dtype=amp_dtype):
                     logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
                 val_preds_expert.extend(logits.argmax(dim=1).cpu().tolist())
                 val_labels_expert.extend(labels_batch)

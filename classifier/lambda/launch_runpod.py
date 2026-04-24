@@ -71,6 +71,9 @@ def bootstrap(ip: str, port: int) -> None:
     print("\n=== Environment check ===")
     _ssh(ip, port, "python --version && nvidia-smi --query-gpu=name,memory.total --format=csv,noheader && python -c 'import torch; print(f\"torch={torch.__version__} cuda={torch.cuda.is_available()}\")'", check=False)
 
+    print("\n=== Upgrading torch for CUDA 12.4 ===")
+    _ssh(ip, port, "pip install --quiet 'torch>=2.6.0' 'torchvision>=0.21.0' --index-url https://download.pytorch.org/whl/cu124")
+
     print("\n=== Installing dependencies ===")
     _ssh(ip, port, "cd /root/crosswalk && pip install --quiet -r classifier/lambda/requirements-lambda.txt")
 

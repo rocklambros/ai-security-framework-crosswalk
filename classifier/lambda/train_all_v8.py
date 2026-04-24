@@ -82,6 +82,7 @@ def phase2_contrastive() -> dict[str, Any]:
             model_name=model_id,
             train_path="data/splits/v8_train.jsonl",
             output_dir=str(out_dir),
+            wandb_project=_wc.WANDB_PROJECT_V8,
             epochs=5,
             batch_size=32,
         )

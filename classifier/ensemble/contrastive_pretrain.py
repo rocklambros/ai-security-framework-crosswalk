@@ -76,7 +76,8 @@ def train_contrastive(
     pairs = build_contrastive_pairs(data)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    use_fast = "deberta" not in model_name.lower()
+    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=use_fast)
     model = AutoModel.from_pretrained(model_name)
     # DeBERTa-v3 stores weights in FP16; cast to FP32 so AMP GradScaler works
     if "deberta" in model_name.lower():

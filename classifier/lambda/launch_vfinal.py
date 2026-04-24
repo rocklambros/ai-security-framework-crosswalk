@@ -54,6 +54,13 @@ def _provision_pods(n_pods: int) -> list[dict]:
 def _bootstrap_pod(pod: dict, pod_index: int) -> None:
     log(f"Bootstrapping pod {pod_index} ({MODEL_NAMES[pod_index]})...")
     _launch.bootstrap(pod["ip"], pod["port"])
+    if MODEL_NAMES[pod_index] == "bge":
+        log(f"Pre-downloading BGE-large for bi-encoder pod...")
+        _launch._ssh(pod["ip"], pod["port"],
+                      'python -c "from transformers import AutoModel, AutoTokenizer; '
+                      "AutoModel.from_pretrained('BAAI/bge-large-en-v1.5'); "
+                      "AutoTokenizer.from_pretrained('BAAI/bge-large-en-v1.5'); "
+                      "print('BGE-large downloaded')\"", check=False)
     log(f"Pod {pod_index} bootstrapped")
 
 

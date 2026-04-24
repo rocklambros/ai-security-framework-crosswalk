@@ -11,7 +11,8 @@ import time
 _provision = importlib.import_module("classifier.lambda.provision_runpod")
 
 SSH_KEY = os.path.expanduser("~/.ssh/id_ed25519")
-SSH_OPTS = f"-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR -i {SSH_KEY}"
+SSH_OPTS = (f"-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR "
+            f"-o ServerAliveInterval=60 -o ServerAliveCountMax=10 -i {SSH_KEY}")
 
 
 def _get_credential(name: str) -> str:

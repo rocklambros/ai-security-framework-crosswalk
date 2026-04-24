@@ -77,15 +77,14 @@ def bootstrap(ip: str, port: int) -> None:
     _ssh(ip, port, f"wandb login {creds['WANDB_API_KEY']}")
     _ssh(ip, port, f"huggingface-cli login --token {creds['HF_TOKEN']} --add-to-git-credential")
 
-    print("\n=== Pre-downloading transformer models ===")
+    print("\n=== Pre-downloading transformer models (non-fatal) ===")
     _ssh(ip, port, """cd /root/crosswalk && python -c "
-from transformers import AutoTokenizer, AutoModel
+from transformers import AutoModel
 for m in ['microsoft/deberta-v3-large', 'roberta-large', 'microsoft/deberta-v3-base']:
     print(f'  Downloading {m}...')
-    AutoTokenizer.from_pretrained(m)
     AutoModel.from_pretrained(m)
 print('All models downloaded.')
-" """)
+" """, check=False)
 
 
 def run_remote_phase(ip: str, port: int, phase: int, sweep_count: int = 50) -> None:

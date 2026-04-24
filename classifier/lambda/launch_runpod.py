@@ -20,13 +20,18 @@ def _get_credential(name: str) -> str:
 
 
 def _ssh(ip: str, port: int, cmd: str, env: dict | None = None, check: bool = True) -> subprocess.CompletedProcess:
-    """Run a command on a remote RunPod instance via SSH."""
-    env_prefix = ""
+    """Run a command on a remote RunPod instance via SSH.
+
+    Pipes the command via stdin (bash -s) to avoid shell quoting issues
+    with single/double quotes, f-strings, etc. in multi-line scripts.
+    """
+    env_lines = ""
     if env:
-        env_prefix = " ".join(f'{k}="{v}"' for k, v in env.items()) + " "
-    full_cmd = f"ssh {SSH_OPTS} -p {port} root@{ip} '{env_prefix}{cmd}'"
+        env_lines = "\n".join(f'export {k}="{v}"' for k, v in env.items()) + "\n"
+    script = env_lines + cmd
+    ssh_cmd = f"ssh {SSH_OPTS} -p {port} root@{ip} bash -s"
     print(f"  [ssh] {cmd[:80]}...")
-    result = subprocess.run(full_cmd, shell=True, capture_output=False)
+    result = subprocess.run(ssh_cmd, shell=True, input=script, text=True)
     if check and result.returncode != 0:
         raise RuntimeError(f"SSH command failed (exit {result.returncode}): {cmd[:120]}")
     return result

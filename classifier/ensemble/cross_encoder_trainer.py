@@ -132,6 +132,35 @@ def _is_collapsed(pred_dist: Counter, n_classes: int = 4) -> bool:
     return False
 
 
+class _OverfittingGuard:
+    """Detects train/val loss divergence and triggers LR reduction or early stop."""
+
+    def __init__(self, patience: int = 2, lr_factor: float = 0.5, max_lr_reductions: int = 2):
+        self.patience = patience
+        self.lr_factor = lr_factor
+        self.max_lr_reductions = max_lr_reductions
+        self._prev_val_loss: float | None = None
+        self._consecutive_increases = 0
+        self._lr_reductions = 0
+
+    def step(self, train_loss: float, val_loss: float) -> str:
+        if self._prev_val_loss is not None and val_loss > self._prev_val_loss:
+            self._consecutive_increases += 1
+        else:
+            self._consecutive_increases = 0
+        self._prev_val_loss = val_loss
+
+        if self._consecutive_increases >= self.patience:
+            self._consecutive_increases = 0
+            if self._lr_reductions >= self.max_lr_reductions:
+                return "stop"
+            return "reduce_lr"
+        return "ok"
+
+    def acknowledge_lr_reduction(self) -> None:
+        self._lr_reductions += 1
+
+
 def train_cross_encoder(
     model_name: str,
     train_path: str,
@@ -265,6 +294,7 @@ def train_cross_encoder(
     final_metrics: Dict[str, Any] = {}
 
     val_quick_subset = val_data_expert[:min(200, len(val_data_expert))]
+    overfit_guard = _OverfittingGuard(patience=2, lr_factor=0.5, max_lr_reductions=2)
 
     for epoch in range(epochs):
         model.train()
@@ -447,6 +477,18 @@ def train_cross_encoder(
             "nan_skips": nan_skips,
             "collapse_recoveries": collapse_recoveries,
         })
+
+        overfit_action = overfit_guard.step(train_loss=avg_loss, val_loss=val_kl_loss)
+        if overfit_action == "reduce_lr":
+            print(f"    OVERFITTING at epoch {epoch}: reducing LR by 50%")
+            for pg in optimizer.param_groups:
+                pg["lr"] *= 0.5
+            overfit_guard.acknowledge_lr_reduction()
+            wandb.log({"overfit_lr_reduction": overfit_guard._lr_reductions})
+        elif overfit_action == "stop":
+            print(f"    OVERFITTING STOP at epoch {epoch}: val_loss diverged after {overfit_guard.max_lr_reductions} LR reductions")
+            wandb.alert(title="Overfitting Stop", text=f"Stopped at epoch {epoch}")
+            break
 
         # --- Epoch-level collapse recovery ---
         if collapse_consecutive >= _COLLAPSE_PATIENCE:

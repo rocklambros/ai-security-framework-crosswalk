@@ -104,6 +104,48 @@ V8_STACKER_SWEEP_CONFIG = {
     },
 }
 
+# ---------------------------------------------------------------------------
+# v9 — clean retraining with CollapseGuard, LLRD, no SimCSE
+# ---------------------------------------------------------------------------
+
+WANDB_PROJECT_V9 = "crosswalk-v9"
+
+V9_CE_SWEEP_CONFIG = {
+    "method": "bayes",
+    "metric": {"name": "combined_f1", "goal": "maximize"},
+    "parameters": {
+        "learning_rate": {"distribution": "log_uniform_values", "min": 1e-5, "max": 5e-5},
+        "batch_size": {"values": [8]},
+        "epochs": {"values": [15, 20, 25]},
+        "warmup_ratio": {"distribution": "uniform", "min": 0.05, "max": 0.2},
+        "weight_decay": {"distribution": "log_uniform_values", "min": 1e-4, "max": 1e-1},
+        "dropout": {"distribution": "uniform", "min": 0.1, "max": 0.3},
+        "loss_type": {"values": ["kl"]},
+        "sigma": {"distribution": "uniform", "min": 0.05, "max": 0.50},
+        "human_cal_weight": {"values": [2, 5, 10]},
+        "use_llrd": {"values": [True, False]},
+        "llrd_decay": {"distribution": "uniform", "min": 0.80, "max": 0.95},
+        "encoder_lr_factor": {"values": [0.05, 0.1, 0.2]},
+    },
+    "early_terminate": {"type": "hyperband", "min_iter": 5, "eta": 3},
+}
+
+V9_STACKER_SWEEP_CONFIG = {
+    "method": "bayes",
+    "metric": {"name": "oof_macro_f1", "goal": "maximize"},
+    "parameters": {
+        "n_estimators": {"values": [100, 200, 300, 500]},
+        "max_depth": {"values": [3, 5, 7]},
+        "learning_rate": {"distribution": "log_uniform_values", "min": 0.01, "max": 0.3},
+        "min_child_samples": {"values": [15, 20, 30, 50]},
+        "num_leaves": {"values": [8, 16, 24, 31]},
+        "reg_alpha": {"distribution": "log_uniform_values", "min": 1e-4, "max": 10},
+        "reg_lambda": {"distribution": "log_uniform_values", "min": 1e-4, "max": 10},
+        "subsample": {"distribution": "uniform", "min": 0.6, "max": 1.0},
+        "colsample_bytree": {"distribution": "uniform", "min": 0.5, "max": 1.0},
+    },
+}
+
 V8_MONITORING = {
     "collapse_guard": {
         "metric": "val_macro_f1",

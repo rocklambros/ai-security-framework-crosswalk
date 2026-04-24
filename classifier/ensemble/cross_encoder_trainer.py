@@ -101,6 +101,7 @@ def _quick_val_predictions(
     bs: int,
     use_amp: bool,
     amp_dtype: torch.dtype,
+    is_bi_encoder: bool = False,
 ) -> Counter:
     """Fast validation pass returning prediction distribution."""
     model.eval()
@@ -113,7 +114,13 @@ def _quick_val_predictions(
             encoding = model.tokenize_batch(texts_a, texts_b)
             encoding = {k: v.to(device) for k, v in encoding.items()}
             with torch.amp.autocast("cuda", enabled=use_amp, dtype=amp_dtype):
-                logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+                if is_bi_encoder:
+                    logits, _ = model.forward(
+                        encoding["input_ids_a"], encoding["attention_mask_a"],
+                        encoding["input_ids_b"], encoding["attention_mask_b"],
+                    )
+                else:
+                    logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
             preds.extend(logits.argmax(dim=1).cpu().tolist())
     model.train()
     return Counter(preds)
@@ -205,16 +212,29 @@ def train_cross_encoder(
             print(f"    WARNING: contrastive checkpoint incomplete, using pretrained {model_name}")
 
     is_deberta = "deberta" in init_from.lower()
+    is_bi_encoder = "bge" in model_name.lower() or "e5" in model_name.lower()
     use_amp = device.type == "cuda"
     amp_dtype = torch.bfloat16 if is_deberta else torch.float16
 
-    model = CrossEncoderClassifier(
-        model_name=init_from,
-        n_classes=4,
-        max_length=256,
-        dropout=dropout,
-        head_type="kl",
-    )
+    head_type = "corn" if loss_type == "corn" else "kl"
+
+    if is_bi_encoder:
+        from classifier.ensemble.bi_encoder import BiEncoderClassifier
+        model = BiEncoderClassifier(
+            model_name=init_from,
+            n_classes=4,
+            max_length=256,
+            dropout=dropout,
+            head_type=head_type,
+        )
+    else:
+        model = CrossEncoderClassifier(
+            model_name=init_from,
+            n_classes=4,
+            max_length=256,
+            dropout=dropout,
+            head_type=head_type,
+        )
     model = model.to(device)
 
     scaler = torch.amp.GradScaler("cuda") if (use_amp and not is_deberta) else None
@@ -337,9 +357,23 @@ def train_cross_encoder(
             encoding = {k: v.to(device) for k, v in encoding.items()}
 
             with torch.amp.autocast("cuda", enabled=use_amp, dtype=amp_dtype):
-                logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
-                loss = kl_ordinal_loss(logits, labels, n_classes=4, sigma=sigma,
-                                       soft_targets=batch_soft)
+                if is_bi_encoder:
+                    logits, _ = model.forward(
+                        encoding["input_ids_a"], encoding["attention_mask_a"],
+                        encoding["input_ids_b"], encoding["attention_mask_b"],
+                    )
+                else:
+                    logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+
+                if loss_type == "focal":
+                    from classifier.ensemble.focal_loss import focal_loss as compute_focal_loss
+                    loss = compute_focal_loss(logits, labels, n_classes=4, gamma=2.0)
+                elif loss_type == "corn":
+                    from classifier.ensemble.corn_loss import corn_loss as compute_corn_loss
+                    loss = compute_corn_loss(logits, labels, n_classes=4)
+                else:
+                    loss = kl_ordinal_loss(logits, labels, n_classes=4, sigma=sigma,
+                                           soft_targets=batch_soft)
 
             if not torch.isfinite(loss):
                 nan_skips += 1
@@ -366,7 +400,11 @@ def train_cross_encoder(
                 optimizer.step()
             scheduler.step()
 
-            preds = logits.detach().argmax(dim=1)
+            if loss_type == "corn":
+                from classifier.ensemble.corn_loss import corn_label_from_logits
+                preds = corn_label_from_logits(logits.detach(), n_classes=4)
+            else:
+                preds = logits.detach().argmax(dim=1)
             correct += (preds == labels).sum().item()
             total += labels.size(0)
             epoch_loss += loss.item()
@@ -378,6 +416,7 @@ def train_cross_encoder(
             if step_in_epoch % _MID_EPOCH_VAL_INTERVAL == 0 and step_in_epoch > 0:
                 quick_dist = _quick_val_predictions(
                     model, val_quick_subset, device, bs, use_amp, amp_dtype,
+                    is_bi_encoder=is_bi_encoder,
                 )
                 if _is_collapsed(quick_dist):
                     print(f"    MID-EPOCH COLLAPSE at epoch {epoch} step {step_in_epoch}: {dict(quick_dist)}")
@@ -412,9 +451,19 @@ def train_cross_encoder(
                 encoding = model.tokenize_batch(texts_a, texts_b)
                 encoding = {k: v.to(device) for k, v in encoding.items()}
                 with torch.amp.autocast("cuda", enabled=use_amp, dtype=amp_dtype):
-                    logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+                    if is_bi_encoder:
+                        logits, _ = model.forward(
+                            encoding["input_ids_a"], encoding["attention_mask_a"],
+                            encoding["input_ids_b"], encoding["attention_mask_b"],
+                        )
+                    else:
+                        logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
                     val_loss_batch = kl_ordinal_loss(logits, labels_t, n_classes=4, sigma=sigma)
-                val_preds_human.extend(logits.argmax(dim=1).cpu().tolist())
+                if loss_type == "corn":
+                    from classifier.ensemble.corn_loss import corn_label_from_logits
+                    val_preds_human.extend(corn_label_from_logits(logits, n_classes=4).cpu().tolist())
+                else:
+                    val_preds_human.extend(logits.argmax(dim=1).cpu().tolist())
                 val_labels_human.extend(labels_batch)
                 val_kl_loss_sum += val_loss_batch.item()
                 val_kl_batches += 1
@@ -434,8 +483,18 @@ def train_cross_encoder(
                 encoding = model.tokenize_batch(texts_a, texts_b)
                 encoding = {k: v.to(device) for k, v in encoding.items()}
                 with torch.amp.autocast("cuda", enabled=use_amp, dtype=amp_dtype):
-                    logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
-                val_preds_expert.extend(logits.argmax(dim=1).cpu().tolist())
+                    if is_bi_encoder:
+                        logits, _ = model.forward(
+                            encoding["input_ids_a"], encoding["attention_mask_a"],
+                            encoding["input_ids_b"], encoding["attention_mask_b"],
+                        )
+                    else:
+                        logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
+                if loss_type == "corn":
+                    from classifier.ensemble.corn_loss import corn_label_from_logits
+                    val_preds_expert.extend(corn_label_from_logits(logits, n_classes=4).cpu().tolist())
+                else:
+                    val_preds_expert.extend(logits.argmax(dim=1).cpu().tolist())
                 val_labels_expert.extend(labels_batch)
 
         expert_val_f1 = f1_score(val_labels_expert, val_preds_expert, average="macro")

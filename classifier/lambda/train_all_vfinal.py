@@ -432,14 +432,261 @@ def phase4_stacker_sweep():
 
 def phase5_conformal():
     """Conformal calibration on human_cal."""
+    import numpy as np
+    from classifier.data.tier_mapper import map_expert_tier
+    from classifier.ensemble.conformal import MondrianConformal
+    from classifier.ensemble.stacker import LGBMStacker, VFINAL_CE_MODEL_NAMES
+
     print("Phase 5: Conformal calibration")
-    raise NotImplementedError("Wire up in Task 12")
+
+    stacker_path = Path("runs/vfinal/stacker/stacker_final.txt")
+    stacker = LGBMStacker.load(stacker_path)
+
+    feat_dir = Path("data/features")
+    npz: dict[str, dict[str, np.ndarray]] = {}
+    for model in VFINAL_CE_MODEL_NAMES:
+        path = feat_dir / f"vfinal_{model}_cal.npz"
+        data = np.load(str(path))
+        npz[model] = {"logits": data["logits"], "cls_emb": data["cls_emb"]}
+
+    def _cosine_sim(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+        norm_a = np.linalg.norm(a, axis=1, keepdims=True)
+        norm_b = np.linalg.norm(b, axis=1, keepdims=True)
+        norm_a = np.where(norm_a == 0, 1, norm_a)
+        norm_b = np.where(norm_b == 0, 1, norm_b)
+        return (a * b).sum(axis=1) / (norm_a.squeeze() * norm_b.squeeze())
+
+    _cls_pairs = [("roberta", "deberta_base"), ("roberta", "bge"), ("deberta_base", "bge")]
+
+    cal_path = Path("data/splits/human_cal.jsonl")
+    cal_rows = [json.loads(line) for line in cal_path.open()]
+    y_cal = np.array([int(map_expert_tier(r["expert_tier"])) for r in cal_rows])
+
+    bm25 = np.array([float(r.get("score_bm25", 0.0)) for r in cal_rows], dtype=np.float32)
+    bridge = np.array([float(r.get("score_bridge", 0.0)) for r in cal_rows], dtype=np.float32)
+
+    cols = []
+    for model in VFINAL_CE_MODEL_NAMES:
+        cols.append(npz[model]["logits"])
+    for m_a, m_b in _cls_pairs:
+        sim = _cosine_sim(npz[m_a]["cls_emb"], npz[m_b]["cls_emb"]).reshape(-1, 1)
+        cols.append(sim)
+    cols.append(bm25.reshape(-1, 1))
+    cols.append(bridge.reshape(-1, 1))
+    X_cal = np.hstack(cols)
+    print(f"  Cal features: {X_cal.shape}, labels: {len(y_cal)}")
+
+    proba = stacker.predict_proba(X_cal)
+    print(f"  Stacker probas: {proba.shape}")
+
+    conformal = MondrianConformal(alpha=0.10)
+    conformal.calibrate(proba, y_cal)
+
+    print(f"  Per-tier q_hat: {conformal.q_hat}")
+    print(f"  Per-tier coverage: {conformal.coverage}")
+
+    out_dir = Path("runs/vfinal/conformal")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    conformal.save(out_dir / "conformal.json")
+    print(f"  Saved → {out_dir / 'conformal.json'}")
+
+    conformal.check_coverage(tolerance=0.03)
+    print("  Coverage check: PASSED")
+
+    return {"q_hat": conformal.q_hat, "coverage": conformal.coverage}
 
 
 def phase6_sacred_eval():
-    """Sacred evaluation on frozen test."""
-    print("Phase 6: Sacred evaluation")
-    raise NotImplementedError("Wire up in Task 13")
+    """Sacred evaluation on frozen test set (179 pairs).
+
+    Reports exact accuracy, macro F1, adjacent accuracy, per-class F1
+    with 95% bootstrap CIs (1000 resamples). Compares zero-shot baseline,
+    best single CE model, and full stacker.
+    """
+    import time as _time
+    import numpy as np
+    from collections import Counter
+    from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix
+    from classifier.data.tier_mapper import map_expert_tier
+    from classifier.ensemble.stacker import LGBMStacker, VFINAL_CE_MODEL_NAMES
+    from classifier.sacred.stats import bootstrap_ci
+
+    print("Phase 6: Sacred evaluation on frozen test")
+    t0 = _time.time()
+
+    TIER_NAMES = ["UNRELATED", "PARTIAL", "RELATED", "EQUIVALENT"]
+    OUTPUT_DIR = Path("runs/vfinal/sacred")
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    test_path = Path("data/splits/human_test_frozen.jsonl")
+    test_rows = [json.loads(line) for line in test_path.open()]
+    y_true = np.array([int(map_expert_tier(r["expert_tier"])) for r in test_rows])
+    print(f"  Frozen test: {len(test_rows)} pairs")
+    print(f"  Distribution: {dict(Counter(int(y) for y in y_true))}")
+
+    # --- Load stacker and assemble test features ---
+    stacker = LGBMStacker.load(Path("runs/vfinal/stacker/stacker_final.txt"))
+
+    feat_dir = Path("data/features")
+    npz: dict[str, dict[str, np.ndarray]] = {}
+    for model in VFINAL_CE_MODEL_NAMES:
+        path = feat_dir / f"vfinal_{model}_test.npz"
+        data = np.load(str(path))
+        npz[model] = {"logits": data["logits"], "cls_emb": data["cls_emb"]}
+
+    def _cosine_sim(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+        norm_a = np.linalg.norm(a, axis=1, keepdims=True)
+        norm_b = np.linalg.norm(b, axis=1, keepdims=True)
+        norm_a = np.where(norm_a == 0, 1, norm_a)
+        norm_b = np.where(norm_b == 0, 1, norm_b)
+        return (a * b).sum(axis=1) / (norm_a.squeeze() * norm_b.squeeze())
+
+    _cls_pairs = [("roberta", "deberta_base"), ("roberta", "bge"), ("deberta_base", "bge")]
+
+    bm25 = np.array([float(r.get("score_bm25", 0.0)) for r in test_rows], dtype=np.float32)
+    bridge = np.array([float(r.get("score_bridge", 0.0)) for r in test_rows], dtype=np.float32)
+
+    cols = []
+    for model in VFINAL_CE_MODEL_NAMES:
+        cols.append(npz[model]["logits"])
+    for m_a, m_b in _cls_pairs:
+        sim = _cosine_sim(npz[m_a]["cls_emb"], npz[m_b]["cls_emb"]).reshape(-1, 1)
+        cols.append(sim)
+    cols.append(bm25.reshape(-1, 1))
+    cols.append(bridge.reshape(-1, 1))
+    X_test = np.hstack(cols)
+
+    # --- Stacker predictions ---
+    y_pred = stacker.predict(X_test)
+    y_proba = stacker.predict_proba(X_test)
+
+    exact_acc = float(accuracy_score(y_true, y_pred))
+    macro_f1 = float(f1_score(y_true, y_pred, average="macro", zero_division=0))
+    adjacent_acc = float(np.mean(np.abs(y_true - y_pred) <= 1))
+    per_class = classification_report(y_true, y_pred, target_names=TIER_NAMES, output_dict=True, zero_division=0)
+    cm = confusion_matrix(y_true, y_pred, labels=[0, 1, 2, 3])
+
+    # --- Bootstrap CIs ---
+    def _macro_f1(yt, yp):
+        return float(f1_score(yt, yp, average="macro", zero_division=0))
+
+    def _acc(yt, yp):
+        return float(accuracy_score(yt, yp))
+
+    acc_point, acc_lo, acc_hi = bootstrap_ci(y_true, y_pred, _acc, n_resamples=1000)
+    f1_point, f1_lo, f1_hi = bootstrap_ci(y_true, y_pred, _macro_f1, n_resamples=1000)
+
+    per_class_ci = {}
+    for tier_idx, name in enumerate(TIER_NAMES):
+        def _tier_f1(yt, yp, t=tier_idx):
+            return float(f1_score(yt == t, yp == t, zero_division=0))
+        pt, lo, hi = bootstrap_ci(y_true, y_pred, _tier_f1, n_resamples=1000)
+        per_class_ci[name] = {"f1": pt, "ci_lo": lo, "ci_hi": hi}
+
+    # --- Best single-model CE comparison ---
+    best_ce_name, best_ce_f1 = "", 0.0
+    ce_results = {}
+    for model in VFINAL_CE_MODEL_NAMES:
+        ce_preds = np.argmax(npz[model]["logits"], axis=1)
+        ce_f1 = float(f1_score(y_true, ce_preds, average="macro", zero_division=0))
+        ce_acc = float(accuracy_score(y_true, ce_preds))
+        ce_results[model] = {"macro_f1": ce_f1, "exact_acc": ce_acc}
+        if ce_f1 > best_ce_f1:
+            best_ce_f1 = ce_f1
+            best_ce_name = model
+
+    # --- Zero-shot baseline comparison ---
+    baseline_path = Path("runs/vfinal/zero_shot_baseline.json")
+    baseline = json.loads(baseline_path.read_text()) if baseline_path.exists() else {}
+
+    # --- v7c comparison ---
+    v7c_path = Path("runs/v7c_sacred/results.json")
+    v7c = {}
+    if v7c_path.exists():
+        v7c_data = json.loads(v7c_path.read_text())
+        methods = v7c_data.get("methods", {})
+        b_method = methods.get("B_full_pipeline", {})
+        if b_method:
+            v7c = {
+                "exact_acc": b_method.get("accuracy"),
+                "macro_f1": b_method.get("macro_f1"),
+                "adjacent_acc": b_method.get("adjacent_accuracy"),
+            }
+
+    # --- Print results ---
+    print(f"\n{'='*60}")
+    print(f"v_final SACRED EVALUATION RESULTS")
+    print(f"{'='*60}")
+    print(f"\nExact accuracy:    {exact_acc:.4f} [{acc_lo:.4f}, {acc_hi:.4f}]")
+    print(f"Adjacent accuracy: {adjacent_acc:.4f}")
+    print(f"Macro F1:          {macro_f1:.4f} [{f1_lo:.4f}, {f1_hi:.4f}]")
+    if v7c:
+        print(f"  (v7c: acc={v7c.get('exact_acc', '?')}, f1={v7c.get('macro_f1', '?')})")
+    if baseline:
+        print(f"  (zero-shot BGE: acc={baseline.get('zero_shot_bge_accuracy', '?'):.4f}, "
+              f"f1={baseline.get('zero_shot_bge_macro_f1', '?'):.4f})")
+
+    print(f"\nPer-class F1 (95% bootstrap CI):")
+    for name in TIER_NAMES:
+        ci = per_class_ci[name]
+        print(f"  {name:12s}: {ci['f1']:.4f} [{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}]")
+
+    print(f"\nSingle-model CE performance:")
+    for model, res in ce_results.items():
+        marker = " ← best" if model == best_ce_name else ""
+        print(f"  {model:15s}: acc={res['exact_acc']:.4f}, f1={res['macro_f1']:.4f}{marker}")
+
+    print(f"\nConfusion matrix (rows=true, cols=pred):")
+    print(f"{'':>12} " + " ".join(f"{n:>10}" for n in TIER_NAMES))
+    for i, name in enumerate(TIER_NAMES):
+        print(f"{name:>12} " + " ".join(f"{cm[i, j]:>10}" for j in range(4)))
+
+    # --- Save results ---
+    results = {
+        "version": "vfinal",
+        "timestamp": _time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "test_size": len(test_rows),
+        "exact_acc": exact_acc,
+        "exact_acc_ci": [acc_lo, acc_hi],
+        "adjacent_acc": adjacent_acc,
+        "macro_f1": macro_f1,
+        "macro_f1_ci": [f1_lo, f1_hi],
+        "per_class": {
+            name: {
+                "f1": per_class[name]["f1-score"],
+                "precision": per_class[name]["precision"],
+                "recall": per_class[name]["recall"],
+                "support": per_class[name]["support"],
+                "ci_lo": per_class_ci[name]["ci_lo"],
+                "ci_hi": per_class_ci[name]["ci_hi"],
+            }
+            for name in TIER_NAMES
+        },
+        "confusion_matrix": cm.tolist(),
+        "single_model_ce": ce_results,
+        "best_ce": {"name": best_ce_name, "macro_f1": best_ce_f1},
+        "zero_shot_baseline": baseline,
+        "v7c_comparison": v7c,
+        "improvement_over_v7c": {
+            "exact_acc_delta": exact_acc - v7c.get("exact_acc", exact_acc),
+            "macro_f1_delta": macro_f1 - v7c.get("macro_f1", macro_f1),
+        } if v7c else {},
+    }
+
+    (OUTPUT_DIR / "results.json").write_text(json.dumps(results, indent=2))
+
+    predictions = {
+        "y_true": y_true.tolist(),
+        "y_pred": y_pred.tolist(),
+        "y_proba": y_proba.tolist(),
+        "test_size": len(test_rows),
+    }
+    (OUTPUT_DIR / "test_predictions.json").write_text(json.dumps(predictions, indent=2))
+
+    elapsed = _time.time() - t0
+    print(f"\nSacred evaluation complete in {elapsed:.1f}s")
+    print(f"Results saved to {OUTPUT_DIR}")
+    return results
 
 
 def main():

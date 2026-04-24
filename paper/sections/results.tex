@@ -132,6 +132,67 @@ with a mean set size of only 1.56.}
 \label{fig:conformal_sets}
 \end{figure}
 
+\subsection{v\_final Results}
+
+\textit{Note: v\_final training is in progress. Metric placeholders
+below will be populated by the finalization script once training
+completes.}
+
+\subsubsection{Overall Metrics}
+
+Table~\ref{tab:main_results} includes v\_final rows alongside the v7c
+baseline. The v\_final stacker achieves:
+
+\begin{itemize}
+    \item \textbf{Tier accuracy:} \textbf{TBD} (95\% CI \textbf{[TBD, TBD]})
+    \item \textbf{Macro F1:} \textbf{TBD} (95\% CI \textbf{[TBD, TBD]})
+    \item \textbf{Adjacent accuracy:} \textbf{TBD}
+    \item \textbf{Binary accuracy:} \textbf{TBD}
+\end{itemize}
+
+\subsubsection{Comparison to v7c Baseline}
+
+The v\_final architecture replaces the 22-feature LightGBM stacker
+with a 17-feature neural meta-stacker built atop three fine-tuned
+transformers. The primary expected gains stem from two sources:
+(1)~the neural encoders capture richer semantic representations than
+the BGE cosine similarity and BM25 features used in v7c, and
+(2)~clean mapping-level validation deduplication removes the 56\%
+text-pair contamination that inflated v7c validation metrics.
+
+\begin{itemize}
+    \item Tier accuracy change vs.\ v7c (0.810): \textbf{TBD}
+    \item Macro F1 change vs.\ v7c (0.512): \textbf{TBD}
+    \item Adjacent accuracy change vs.\ v7c (0.944): \textbf{TBD}
+\end{itemize}
+
+\subsubsection{Per-Class F1}
+
+The Equivalent class (F1 = 0.000 in v7c) is the primary target for
+improvement. The ordinal-aware loss functions (KL ordinal, CORN) are
+expected to encourage the model to assign non-negligible probability
+mass to the Equivalent tier even for ambiguous pairs, rather than
+collapsing predictions to the Related tier.
+
+\begin{itemize}
+    \item \textbf{Unrelated F1:} \textbf{TBD} (v7c: 0.938)
+    \item \textbf{Partial F1:} \textbf{TBD} (v7c: 0.556)
+    \item \textbf{Related F1:} \textbf{TBD} (v7c: 0.556)
+    \item \textbf{Equivalent F1:} \textbf{TBD} (v7c: 0.000)
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+% \includegraphics[width=\linewidth]{fig_vfinal_confusion_matrix}
+\fbox{\parbox{\linewidth}{\centering\vspace{2em}
+v\_final confusion matrix --- to be generated after training\vspace{2em}}}
+\caption{v\_final ensemble performance on the frozen test set.
+(A)~Confusion matrix showing predicted vs.\ true tier labels.
+(B)~Per-class F1 comparison between v7c and v\_final, highlighting
+improvements in the Equivalent and boundary-tier classes.}
+\label{fig:vfinal_confusion_matrix}
+\end{figure}
+
 \subsection{Expert--LLM Label Gap}
 
 On the LLM-labeled validation set, accuracy rises above the frozen

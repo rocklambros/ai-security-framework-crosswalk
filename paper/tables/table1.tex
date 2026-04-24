@@ -1,36 +1,42 @@
 \begin{table}[t]
 \centering
-\caption{v7c results on \texttt{human\_test\_frozen} ($n=179$).
-Method~B is the full two-stage pipeline (GAT+CE+baseline features
+\caption{Classifier performance on \texttt{human\_test\_frozen} ($n=179$).
+v7c Method~B is the full two-stage pipeline (GAT+CE+baseline features
 with L2-regularized logistic regression).
-Per-class rows show F1 / accuracy.}
+v\_final rows show placeholder values (\textbf{TBD}) to be filled
+by the finalization script after training completes.
+Per-class rows show F1 scores.}
 \label{tab:main_results}
-\begin{tabular}{lr}
+\begin{tabular}{lrr}
 \toprule
-Metric & Value \\
+Metric & v7c (Method B) & v\_final \\
 \midrule
-\multicolumn{2}{l}{\textbf{Method B (Full pipeline)}} \\
-Tier accuracy & 0.810 \\
-Macro F1 & 0.512 \\
-Adjacent accuracy & 0.944 \\
-Binary accuracy & 0.911 \\
-95\% CI (accuracy) & [0.749, 0.866] \\
-95\% CI (F1) & [0.437, 0.580] \\
+\multicolumn{3}{l}{\textbf{Overall metrics}} \\
+Tier accuracy & 0.810 & \textbf{TBD} \\
+Macro F1 & 0.512 & \textbf{TBD} \\
+Adjacent accuracy & 0.944 & \textbf{TBD} \\
+Binary accuracy & 0.911 & \textbf{TBD} \\
+95\% CI (accuracy) & [0.749, 0.866] & \textbf{[TBD, TBD]} \\
+95\% CI (F1) & [0.437, 0.580] & \textbf{[TBD, TBD]} \\
 \midrule
-\multicolumn{2}{l}{\textbf{Per-class F1 (Method B)}} \\
-Unrelated & 0.938 \\
-Partial & 0.556 \\
-Related & 0.556 \\
-Equivalent & 0.000 \\
+\multicolumn{3}{l}{\textbf{Per-class F1}} \\
+Unrelated & 0.938 & \textbf{TBD} \\
+Partial & 0.556 & \textbf{TBD} \\
+Related & 0.556 & \textbf{TBD} \\
+Equivalent & 0.000 & \textbf{TBD} \\
 \midrule
-\multicolumn{2}{l}{\textbf{Ablation methods}} \\
-Method A (GAT-only) & 0.659 / 0.367 \\
-Method C (CE-only) & 0.804 / 0.499 \\
-Method D (Raw CE avg) & 0.788 / 0.488 \\
+\multicolumn{3}{l}{\textbf{v7c ablation methods (acc / macro F1)}} \\
+Method A (GAT-only) & 0.659 / 0.367 & --- \\
+Method C (CE-only) & 0.804 / 0.499 & --- \\
+Method D (Raw CE avg) & 0.788 / 0.488 & --- \\
 \midrule
-\multicolumn{2}{l}{\textbf{Conformal prediction}} \\
-Coverage ($\alpha{=}0.10$) & 0.916 \\
-Mean prediction set size & 1.56 \\
+\multicolumn{3}{l}{\textbf{v\_final single-encoder best (acc / macro F1)}} \\
+Best cross-encoder (CE) & --- & \textbf{TBD / TBD} \\
+Bi-encoder (BGE-large-v1.5) & --- & \textbf{TBD / TBD} \\
+\midrule
+\multicolumn{3}{l}{\textbf{Conformal prediction}} \\
+Coverage ($\alpha{=}0.10$) & 0.916 & \textbf{TBD} \\
+Mean prediction set size & 1.56 & \textbf{TBD} \\
 \bottomrule
 \end{tabular}
 \end{table}

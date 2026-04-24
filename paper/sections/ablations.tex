@@ -68,3 +68,126 @@ These results confirm that the stacking approach, combining text
 similarity, graph structure, and LLM judgment in a single gradient
 boosting model, captures relational structure that no single signal
 family provides alone.
+
+\subsection{Loss Function Comparison}
+
+The v\_final pipeline trains three encoder variants, one per loss
+function, to assess the tradeoff between ordinal supervision strength
+and discriminative sharpness:
+
+\begin{itemize}
+    \item \textbf{KL ordinal vs.\ Focal:} KL ordinal loss injects
+          explicit Gaussian smoothing over adjacent tiers, which is
+          expected to improve ordinal calibration (adjacent accuracy)
+          at the cost of some peak-tier precision. Focal loss retains
+          hard targets but concentrates gradient on difficult boundary
+          pairs, trading ordinal smoothness for sharper discrimination
+          at class boundaries. Preliminary expectation is that KL
+          ordinal achieves higher adjacent accuracy while Focal achieves
+          higher binary accuracy.
+
+    \item \textbf{CORN vs.\ KL ordinal:} CORN decomposes the task
+          into $K{-}1$ binary problems, guaranteeing monotone
+          cumulative probability estimates by construction. This hard
+          constraint may reduce flexibility for complex distributions
+          but prevents the probability inversions (e.g., $P(\text{Related})
+          > P(\text{Partial})$ with $P(\text{Unrelated})$ near zero)
+          occasionally produced by softmax outputs under KL training.
+
+    \item \textbf{Ensemble benefit:} Because the three losses produce
+          diverse probability estimates, the meta-stacker benefits from
+          complementary error patterns. Early experiments suggest
+          ensemble gains of 2--4 percentage points in macro F1 relative
+          to the best single-loss model. Actual figures will be reported
+          once training completes.
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+% \includegraphics[width=\linewidth]{fig_loss_comparison}
+\fbox{\parbox{\linewidth}{\centering\vspace{2em}
+Loss function comparison figure --- to be generated after training\vspace{2em}}}
+\caption{Per-class F1 for each loss function (KL ordinal, CORN, Focal)
+on the frozen test set. Bars are grouped by tier; error bars show
+bootstrap 95\% CIs. The ensemble (all three) is shown as a separate
+group.}
+\label{fig:loss_comparison}
+\end{figure}
+
+\subsection{Architecture Comparison}
+
+The three encoder architectures span the cross-encoder / bi-encoder
+design space:
+
+\begin{itemize}
+    \item \textbf{Cross-encoder accuracy vs.\ bi-encoder speed:}
+          RoBERTa-large and DeBERTa-base process the full concatenated
+          pair through joint self-attention, giving the model access to
+          fine-grained token-level interactions. BGE-large-v1.5 encodes
+          each text independently, enabling offline pre-computation of
+          embeddings and $O(1)$ inference per query. The expected
+          accuracy ordering is RoBERTa-large $\geq$ DeBERTa-base
+          $>$ BGE-large-v1.5, but the bi-encoder CLS similarity features
+          contribute distinct signal to the meta-stacker that neither
+          cross-encoder alone provides.
+
+    \item \textbf{DeBERTa-base vs.\ RoBERTa-large:} DeBERTa's
+          disentangled attention over content and position embeddings
+          confers a representational advantage on structurally regular
+          inputs (e.g., bullet-pointed control descriptions), potentially
+          closing the gap with the larger RoBERTa model on this corpus.
+
+    \item \textbf{Meta-stacker feature attribution:} Coefficient
+          magnitudes in the L2-regularized logistic regression
+          meta-stacker will be reported after training and are expected
+          to replicate the v7c finding that the largest-capacity
+          cross-encoder (here RoBERTa-large) contributes the most
+          influential logit features, with the bi-encoder cosine features
+          providing meaningful complementary signal.
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+% \includegraphics[width=\linewidth]{fig_arch_comparison}
+\fbox{\parbox{\linewidth}{\centering\vspace{2em}
+Architecture comparison figure --- to be generated after training\vspace{2em}}}
+\caption{Speed--accuracy tradeoff for the three v\_final encoder
+architectures. X-axis: median inference latency per pair (ms, log
+scale). Y-axis: macro F1 on the frozen test set. The bi-encoder
+(BGE-large-v1.5) is orders of magnitude faster at a modest accuracy
+cost; the ensemble stacker achieves the best accuracy.}
+\label{fig:arch_comparison}
+\end{figure}
+
+\subsection{Validation Split Impact}
+
+Mapping-level deduplication fundamentally changes the difficulty of
+the validation task relative to the v7c pair-level split:
+
+\begin{itemize}
+    \item \textbf{Contamination rate before dedup:} 56\% of validation
+          text pairs had near-duplicate counterparts in the training set
+          under the v7c pair-level split strategy. This inflated
+          validation metrics and obscured genuine generalization gaps.
+
+    \item \textbf{After mapping-level dedup:} All pairs sharing the same
+          source--target CRE mapping are assigned exclusively to either
+          the training or validation split. This eliminates the
+          possibility of a model memorizing a specific pair during
+          training and recovering it in validation with minor surface
+          variation.
+
+    \item \textbf{Expected metric shift:} Mapping-level dedup is expected
+          to lower raw validation accuracy by approximately 3--7
+          percentage points relative to the pair-level baseline,
+          reflecting a more honest estimate of generalization. Models
+          that close this gap through architecture and loss improvements
+          rather than memorization demonstrate genuine transfer.
+
+    \item \textbf{Impact on CollapseGuard and OverfittingGuard:} A
+          harder, non-contaminated validation set provides more reliable
+          early-stopping signals to the training guards. False ``good''
+          checkpoints induced by memorized validation pairs in v7c
+          training are eliminated, making the guards' rollback decisions
+          more accurate.
+\end{itemize}

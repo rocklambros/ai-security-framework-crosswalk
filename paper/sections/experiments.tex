@@ -83,3 +83,108 @@ Additionally, we report per-class precision, recall, and F1, as well
 as Mondrian conformal coverage and mean prediction set size at
 $\alpha = 0.10$. All confidence intervals are computed via
 10,000-iteration bootstrap resampling.
+
+\subsection{v\_final Architecture}
+
+The v\_final classifier supersedes the v7c LightGBM stacker with a
+fully neural pipeline built around three pre-trained transformer
+encoders and a learned 17-feature meta-stacker.
+
+\subsubsection{Encoder Architectures}
+
+Three complementary encoders provide the base representations:
+\begin{itemize}
+    \item \textbf{RoBERTa-large (cross-encoder):} A 355M-parameter
+          cross-encoder that concatenates the two input texts and
+          produces joint attention across the full pair. Fine-tuned
+          end-to-end on the ordinal tier labels.
+    \item \textbf{DeBERTa-base (cross-encoder):} A 140M-parameter
+          cross-encoder using disentangled attention over content and
+          position embeddings. Provides strong semantic discrimination
+          at a lower computational cost than RoBERTa-large.
+    \item \textbf{BGE-large-v1.5 (bi-encoder):} A 335M-parameter
+          bi-encoder that encodes each text independently. Enables
+          efficient inference via pre-computed embeddings and provides
+          cross-model CLS cosine similarity features to the meta-stacker.
+\end{itemize}
+
+\subsubsection{Loss Functions}
+
+Each encoder is trained with one of three ordinal-aware loss functions:
+\begin{itemize}
+    \item \textbf{KL ordinal (Gaussian soft targets):} Converts integer
+          tier labels into Gaussian distributions centered at the true
+          tier, with $\sigma$ tuned per sweep trial. KL divergence
+          between the model's softmax output and the soft target
+          distribution injects ordinal structure without requiring
+          explicit rank constraints.
+    \item \textbf{CORN (conditional ordinal regression):} Decomposes the
+          four-class problem into $K{-}1 = 3$ conditional binary tasks,
+          each predicting whether the true tier exceeds a given threshold.
+          Probabilities are recovered via the chain rule, preserving
+          monotonicity.
+    \item \textbf{Focal loss ($\gamma{=}2.0$):} Down-weights well-classified
+          easy examples by the factor $(1-p_t)^\gamma$, directing capacity
+          toward the hard boundary cases between adjacent tiers.
+\end{itemize}
+
+\subsubsection{17-Feature Meta-Stacker}
+
+The meta-stacker is an L2-regularized logistic regression trained on
+a 17-dimensional feature vector assembled from the three encoders:
+\begin{itemize}
+    \item \textbf{Logit features (12d):} Softmax output probabilities for
+          all four tier classes from each of the three encoders
+          ($3 \times 4 = 12$).
+    \item \textbf{Cross-model CLS cosine similarities (3d):} Pairwise
+          cosine similarity between the CLS-token representations of the
+          three encoder pairs, capturing inter-model agreement.
+    \item \textbf{Baseline features (2d):} BM25 lexical similarity score
+          and bridge centrality from the knowledge graph, preserving the
+          strongest non-neural signals from the v7c pipeline.
+\end{itemize}
+
+\subsubsection{Clean Validation Split}
+
+A key methodological improvement over v7c is mapping-level deduplication
+of the validation split. Analysis of v7c training data revealed that
+56\% of text pairs in the validation set had near-duplicate counterparts
+in the training set when deduplication was applied only at the raw-pair
+level. The v\_final pipeline applies deduplication at the
+\emph{mapping level}: all pairs sharing the same source--target CRE
+mapping are assigned to the same split, preventing any form of
+text-pair contamination from inflating validation metrics.
+
+\subsubsection{Training Guards}
+
+To prevent training instability on a small labeled dataset, two
+custom callbacks are applied during fine-tuning:
+\begin{itemize}
+    \item \textbf{CollapseGuard:} Performs mid-epoch validation to
+          detect per-class prediction collapse (any class predicted for
+          fewer than 2\% of samples). On detection, the guard rolls back
+          to the previous checkpoint and halves the learning rate.
+    \item \textbf{OverfittingGuard:} Monitors the validation loss trend
+          over a sliding window. If validation loss increases for two
+          consecutive evaluation steps, the guard reduces the learning
+          rate before the model begins to memorize the training set.
+\end{itemize}
+
+\subsubsection{Layer-wise Learning Rate Decay (LLRD)}
+
+To preserve pre-trained representations in the lower transformer layers
+while allowing the upper layers to adapt freely, we apply layer-wise
+learning rate decay. For a model with $N$ transformer layers, layer $l$
+uses learning rate $\eta_l = \eta_{\mathrm{base}} \times
+\lambda^{(N-l)}$, where $\lambda \in (0,1)$ is the decay factor tuned
+per sweep trial. This ensures that bottom layers receive learning rates
+up to $\lambda^N$ times smaller than the task head.
+
+\subsubsection{Hyperparameter Search}
+
+Hyperparameters for each encoder are selected via a Weights \& Biases
+Bayesian sweep of 25 trials per model. Each trial uses Hyperband early
+termination to discard under-performing configurations after the first
+few epochs. Swept parameters include: learning rate, LLRD decay factor,
+loss-specific parameters ($\sigma$ for KL ordinal, $\gamma$ for Focal),
+batch size, and warmup ratio.

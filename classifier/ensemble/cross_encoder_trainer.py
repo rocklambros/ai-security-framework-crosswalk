@@ -102,6 +102,7 @@ def _quick_val_predictions(
     use_amp: bool,
     amp_dtype: torch.dtype,
     is_bi_encoder: bool = False,
+    loss_type: str = "kl",
 ) -> Counter:
     """Fast validation pass returning prediction distribution."""
     model.eval()
@@ -121,7 +122,11 @@ def _quick_val_predictions(
                     )
                 else:
                     logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
-            preds.extend(logits.argmax(dim=1).cpu().tolist())
+            if loss_type == "corn":
+                from classifier.ensemble.corn_loss import corn_label_from_logits
+                preds.extend(corn_label_from_logits(logits, n_classes=4).cpu().tolist())
+            else:
+                preds.extend(logits.argmax(dim=1).cpu().tolist())
     model.train()
     return Counter(preds)
 
@@ -196,6 +201,9 @@ def train_cross_encoder(
     from classifier.ensemble.kl_ordinal_loss import kl_ordinal_loss, ordinal_soft_targets
     from classifier.data.split_human_cal import split_human_cal
 
+    if wandb.run is None:
+        wandb.init(mode="disabled")
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     bs = min(batch_size, 32)
 
@@ -214,7 +222,7 @@ def train_cross_encoder(
     is_deberta = "deberta" in init_from.lower()
     is_bi_encoder = "bge" in model_name.lower() or "e5" in model_name.lower()
     use_amp = device.type == "cuda"
-    amp_dtype = torch.bfloat16 if is_deberta else torch.float16
+    amp_dtype = torch.bfloat16 if (is_deberta or is_bi_encoder) else torch.float16
 
     head_type = "corn" if loss_type == "corn" else "kl"
 
@@ -237,7 +245,8 @@ def train_cross_encoder(
         )
     model = model.to(device)
 
-    scaler = torch.amp.GradScaler("cuda") if (use_amp and not is_deberta) else None
+    skip_scaler = is_deberta or is_bi_encoder
+    scaler = torch.amp.GradScaler("cuda") if (use_amp and not skip_scaler) else None
 
     raw_data = []
     with open(train_path) as f:
@@ -416,7 +425,7 @@ def train_cross_encoder(
             if step_in_epoch % _MID_EPOCH_VAL_INTERVAL == 0 and step_in_epoch > 0:
                 quick_dist = _quick_val_predictions(
                     model, val_quick_subset, device, bs, use_amp, amp_dtype,
-                    is_bi_encoder=is_bi_encoder,
+                    is_bi_encoder=is_bi_encoder, loss_type=loss_type,
                 )
                 if _is_collapsed(quick_dist):
                     print(f"    MID-EPOCH COLLAPSE at epoch {epoch} step {step_in_epoch}: {dict(quick_dist)}")
@@ -458,7 +467,14 @@ def train_cross_encoder(
                         )
                     else:
                         logits, _ = model.forward(encoding["input_ids"], encoding["attention_mask"])
-                    val_loss_batch = kl_ordinal_loss(logits, labels_t, n_classes=4, sigma=sigma)
+                    if loss_type == "focal":
+                        from classifier.ensemble.focal_loss import focal_loss as compute_focal_loss
+                        val_loss_batch = compute_focal_loss(logits, labels_t, n_classes=4, gamma=2.0)
+                    elif loss_type == "corn":
+                        from classifier.ensemble.corn_loss import corn_loss as compute_corn_loss
+                        val_loss_batch = compute_corn_loss(logits, labels_t, n_classes=4)
+                    else:
+                        val_loss_batch = kl_ordinal_loss(logits, labels_t, n_classes=4, sigma=sigma)
                 if loss_type == "corn":
                     from classifier.ensemble.corn_loss import corn_label_from_logits
                     val_preds_human.extend(corn_label_from_logits(logits, n_classes=4).cpu().tolist())

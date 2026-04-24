@@ -190,12 +190,31 @@ def build_expert_training_set(
             "data_source": "hard_negative",
         })
 
-    all_pairs = positive_pairs + negative_pairs
-    random.shuffle(all_pairs)
+    # --- Mapping-level split (prevents text-pair contamination) ---
+    mapping_groups: Dict[Tuple[str, str], List[Dict]] = {}
+    for p in positive_pairs:
+        key = (p["source_node_id"], p["target_node_id"])
+        mapping_groups.setdefault(key, []).append(p)
 
-    n_val = max(1, int(len(all_pairs) * val_fraction))
-    val_set = all_pairs[:n_val]
-    train_set = all_pairs[n_val:]
+    mapping_keys = list(mapping_groups.keys())
+    random.shuffle(mapping_keys)
+    n_val_mappings = max(1, int(len(mapping_keys) * val_fraction))
+
+    val_mapping_keys = set(mapping_keys[:n_val_mappings])
+
+    val_positives = []
+    train_positives = []
+    for mk, rows in mapping_groups.items():
+        if mk in val_mapping_keys:
+            val_positives.extend(rows)
+        else:
+            train_positives.extend(rows)
+
+    # Negatives go entirely to train (they're synthetic)
+    train_set = train_positives + negative_pairs
+    val_set = val_positives
+    random.shuffle(train_set)
+    random.shuffle(val_set)
 
     # Run leakage firewall
     train_keys = {p["pair_key"] for p in train_set}

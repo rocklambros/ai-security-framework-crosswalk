@@ -97,22 +97,28 @@ def map_opencre_tier(
     gap_penalty: int,
     bridge_pair: bool = False,
 ) -> dict[TierLabel, float]:
+    """Map CRE hierarchy depth to tier soft targets.
+
+    gap=0 (same CRE): EQUIVALENT. gap=1 (parent-child): RELATED.
+    gap>=2 (grandparent+): PARTIAL. Any CRE link: never UNRELATED.
+    """
     if gap_penalty <= 0:
-        base = {TierLabel.EQUIVALENT: 0.35, TierLabel.RELATED: 0.45,
-                TierLabel.PARTIAL: 0.15, TierLabel.UNRELATED: 0.05}
-    elif gap_penalty <= 2:
-        base = {TierLabel.EQUIVALENT: 0.15, TierLabel.RELATED: 0.45,
-                TierLabel.PARTIAL: 0.30, TierLabel.UNRELATED: 0.10}
+        base = {TierLabel.EQUIVALENT: 0.60, TierLabel.RELATED: 0.30,
+                TierLabel.PARTIAL: 0.10, TierLabel.UNRELATED: 0.00}
+    elif gap_penalty <= 1:
+        base = {TierLabel.EQUIVALENT: 0.10, TierLabel.RELATED: 0.60,
+                TierLabel.PARTIAL: 0.30, TierLabel.UNRELATED: 0.00}
     else:
         base = {TierLabel.EQUIVALENT: 0.05, TierLabel.RELATED: 0.30,
-                TierLabel.PARTIAL: 0.45, TierLabel.UNRELATED: 0.20}
+                TierLabel.PARTIAL: 0.65, TierLabel.UNRELATED: 0.00}
 
     if bridge_pair:
         bridge_shift = 0.10
-        base[TierLabel.EQUIVALENT] = max(0.02, base[TierLabel.EQUIVALENT] - bridge_shift)
+        base[TierLabel.EQUIVALENT] = max(0.0, base[TierLabel.EQUIVALENT] - bridge_shift)
         base[TierLabel.RELATED] += bridge_shift * 0.5
         base[TierLabel.PARTIAL] += bridge_shift * 0.5
         total = sum(base.values())
-        base = {k: v / total for k, v in base.items()}
+        if total > 0:
+            base = {k: v / total for k, v in base.items()}
 
     return base

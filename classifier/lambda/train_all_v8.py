@@ -1,7 +1,7 @@
-"""v8 training orchestrator — 10-phase pipeline with OpenCRE integration.
+"""v8b training orchestrator — 10-phase pipeline with OpenCRE hierarchy labels.
 
-Phase 0: OpenCRE data extraction + v7c diagnosis (CPU)
-Phase 1: v8 training data assembly (CPU, uses v7c for inference)
+Phase 0: OpenCRE data extraction with CRE hierarchy pairs (CPU)
+Phase 1: v8b training data assembly from hierarchy gap penalties (CPU)
 Phase 2: Contrastive pre-training (GPU)
 Phase 3: Cross-encoder fine-tuning sweeps (GPU + W&B)
 Phase 4: Extract CLS embeddings (GPU)
@@ -46,9 +46,9 @@ def phase0_opencre_extraction() -> dict[str, Any]:
 
 
 def phase1_assemble_v8_data() -> dict[str, Any]:
-    """Assemble v8 training data via disagreement mining."""
+    """Assemble v8b training data from CRE hierarchy gap penalties."""
     print("\n" + "=" * 60)
-    print("PHASE 1: v8 training data assembly (disagreement mining)")
+    print("PHASE 1: v8b training data assembly (CRE hierarchy)")
     print("=" * 60)
 
     t0 = time.time()
@@ -59,8 +59,8 @@ def phase1_assemble_v8_data() -> dict[str, Any]:
     return {"phase": 1, "elapsed": elapsed, **report}
 
 
-def phase2_contrastive() -> dict[str, Any]:
-    """Contrastive pre-training on v8 data."""
+def phase2_contrastive(model_index: int | None = None) -> dict[str, Any]:
+    """Contrastive pre-training on v8b data."""
     print("\n" + "=" * 60)
     print("PHASE 2: Contrastive pre-training (SimCSE)")
     print("=" * 60)
@@ -68,19 +68,23 @@ def phase2_contrastive() -> dict[str, Any]:
     import importlib
     from classifier.ensemble.contrastive_pretrain import train_contrastive
     _wc = importlib.import_module("classifier.lambda.wandb_config")
-    CROSS_ENCODER_MODELS = _wc.CROSS_ENCODER_MODELS
+
+    models = _wc.CROSS_ENCODER_MODELS
+    if model_index is not None:
+        models = [models[model_index]]
+        print(f"  [phase2] single-model mode: index={model_index}")
 
     t0 = time.time()
     results = []
-    for model_cfg in CROSS_ENCODER_MODELS:
+    for model_cfg in models:
         name = model_cfg["name"]
         model_id = model_cfg["model_id"]
         print(f"  [phase2] {name} ({model_id})")
-        out_dir = Path(f"runs/v8/contrastive/{name}")
+        out_dir = Path(f"runs/v8b/contrastive/{name}")
         out_dir.mkdir(parents=True, exist_ok=True)
         train_contrastive(
             model_name=model_id,
-            train_path="data/splits/v8_train.jsonl",
+            train_path="data/splits/v8b_train.jsonl",
             output_dir=str(out_dir),
             wandb_project=_wc.WANDB_PROJECT_V8,
             epochs=5,
@@ -93,8 +97,8 @@ def phase2_contrastive() -> dict[str, Any]:
     return {"phase": 2, "elapsed": elapsed, "models": results}
 
 
-def phase3_cross_encoder_sweeps(sweep_count: int = 50) -> dict[str, Any]:
-    """Cross-encoder fine-tuning sweeps with v8 augmented data."""
+def phase3_cross_encoder_sweeps(sweep_count: int = 50, model_index: int | None = None) -> dict[str, Any]:
+    """Cross-encoder fine-tuning sweeps with v8b hierarchy data."""
     print("\n" + "=" * 60)
     print(f"PHASE 3: Cross-encoder sweeps ({sweep_count} trials/model)")
     print("=" * 60)
@@ -106,7 +110,12 @@ def phase3_cross_encoder_sweeps(sweep_count: int = 50) -> dict[str, Any]:
     t0 = time.time()
     results = []
 
-    for model_cfg in _wc.CROSS_ENCODER_MODELS:
+    models = _wc.CROSS_ENCODER_MODELS
+    if model_index is not None:
+        models = [models[model_index]]
+        print(f"  [phase3] single-model mode: index={model_index}")
+
+    for model_cfg in models:
         name = model_cfg["name"]
         model_id = model_cfg["model_id"]
         print(f"\n  [phase3] Sweeping {name}...")
@@ -124,10 +133,10 @@ def phase3_cross_encoder_sweeps(sweep_count: int = 50) -> dict[str, Any]:
             from classifier.ensemble.cross_encoder_trainer import train_cross_encoder
             metrics = train_cross_encoder(
                 model_name=model_id,
-                train_path="data/splits/v8_train.jsonl",
+                train_path="data/splits/v8b_train.jsonl",
                 val_path="data/splits/expert_val.jsonl",
-                output_dir=f"runs/v8/ce/{name}/{run.id}",
-                contrastive_init=f"runs/v8/contrastive/{name}",
+                output_dir=f"runs/v8b/ce/{name}/{run.id}",
+                contrastive_init=f"runs/v8b/contrastive/{name}",
                 **{k: v for k, v in config.items() if k != "opencre_weight"},
             )
 
@@ -180,7 +189,7 @@ def phase4_extract_embeddings() -> dict[str, Any]:
 
     for model_cfg in _wc.CROSS_ENCODER_MODELS:
         name = model_cfg["name"]
-        best_dir = Path(f"runs/v8/ce/{name}/best")
+        best_dir = Path(f"runs/v8b/ce/{name}/best")
         if not best_dir.exists():
             import wandb
             api = wandb.Api()
@@ -188,13 +197,13 @@ def phase4_extract_embeddings() -> dict[str, Any]:
                            filters={"config.model_name": name})
             best_run = max(runs, key=lambda r: r.summary.get("combined_f1", 0), default=None)
             if best_run:
-                best_dir = Path(f"runs/v8/ce/{name}/{best_run.id}")
+                best_dir = Path(f"runs/v8b/ce/{name}/{best_run.id}")
 
         if best_dir.exists():
             print(f"  [phase4] Extracting {name} from {best_dir}")
             extract_cls_features(
                 model_dir=str(best_dir),
-                output_path=f"data/processed/ce_features_v8_{name}.npz",
+                output_path=f"data/processed/ce_features_v8b_{name}.npz",
             )
 
     elapsed = time.time() - t0
@@ -211,8 +220,8 @@ def phase5_gat_retrain() -> dict[str, Any]:
     t0 = time.time()
     from classifier.features.gat_trainer import train_gat
     metrics = train_gat(
-        output_dir="runs/v8/gat",
-        embeddings_output="data/features/gat_embeddings_v8.npz",
+        output_dir="runs/v8b/gat",
+        embeddings_output="data/features/gat_embeddings_v8b.npz",
     )
     elapsed = time.time() - t0
     print(f"  [phase5] done in {elapsed:.1f}s")
@@ -237,11 +246,11 @@ def phase6_stacker_sweep() -> dict[str, Any]:
     import numpy as np
     from classifier.scripts.build_v8_training import load_jsonl
 
-    train_data = load_jsonl(Path("data/splits/v8_train.jsonl"))
+    train_data = load_jsonl(Path("data/splits/v8b_train.jsonl"))
     gap_penalties = compute_gap_penalties(train_data)
 
-    ce_features = np.load("data/processed/ce_features_v8_deberta.npz")["features"]
-    gat_features = np.load("data/features/gat_embeddings_v8.npz")["pair_features"]
+    ce_features = np.load("data/processed/ce_features_v8b_deberta.npz")["features"]
+    gat_features = np.load("data/features/gat_embeddings_v8b.npz")["pair_features"]
     import pandas as pd
     baseline_df = pd.read_parquet("data/features/baseline_features.parquet")
 
@@ -262,7 +271,7 @@ def phase6_stacker_sweep() -> dict[str, Any]:
     wandb.log({"best_params": best_params})
     wandb.finish()
 
-    params_path = Path("runs/v8/stacker/best_params.json")
+    params_path = Path("runs/v8b/stacker/best_params.json")
     params_path.parent.mkdir(parents=True, exist_ok=True)
     params_path.write_text(json.dumps(best_params, indent=2))
 
@@ -278,7 +287,7 @@ def phase7_final_stacker() -> dict[str, Any]:
     print("=" * 60)
 
     t0 = time.time()
-    params_path = Path("runs/v8/stacker/best_params.json")
+    params_path = Path("runs/v8b/stacker/best_params.json")
     params = json.loads(params_path.read_text()) if params_path.exists() else {}
 
     import numpy as np
@@ -286,18 +295,18 @@ def phase7_final_stacker() -> dict[str, Any]:
 
     stacker = LGBMStacker(params=params, version="v3")
 
-    X_train = np.load("runs/v8/stacker/X_train.npy")
-    y_train = np.load("runs/v8/stacker/y_train.npy")
-    w_train = np.load("runs/v8/stacker/w_train.npy")
+    X_train = np.load("runs/v8b/stacker/X_train.npy")
+    y_train = np.load("runs/v8b/stacker/y_train.npy")
+    w_train = np.load("runs/v8b/stacker/w_train.npy")
 
     stacker.fit(X_train, y_train, sample_weight=w_train)
 
-    out_dir = Path("runs/v8/stacker/final")
+    out_dir = Path("runs/v8b/stacker/final")
     out_dir.mkdir(parents=True, exist_ok=True)
     stacker.save(out_dir / "model.txt")
 
-    X_val = np.load("runs/v8/stacker/X_val.npy")
-    y_val = np.load("runs/v8/stacker/y_val.npy")
+    X_val = np.load("runs/v8b/stacker/X_val.npy")
+    y_val = np.load("runs/v8b/stacker/y_val.npy")
     y_pred_val = stacker.predict(X_val)
 
     from sklearn.metrics import accuracy_score, f1_score
@@ -325,10 +334,10 @@ def phase8_conformal() -> dict[str, Any]:
     alpha = pre_reg["conformal"]["alpha"]
 
     result = calibrate_conformal(
-        model_dir="runs/v8/stacker/final",
+        model_dir="runs/v8b/stacker/final",
         cal_path="data/splits/human_cal.jsonl",
         alpha=alpha,
-        output_dir="runs/v8/conformal",
+        output_dir="runs/v8b/conformal",
     )
 
     elapsed = time.time() - t0
@@ -367,9 +376,10 @@ PHASE_MAP = {
 
 
 def main():
-    parser = argparse.ArgumentParser(description="v8 training orchestrator")
+    parser = argparse.ArgumentParser(description="v8b training orchestrator")
     parser.add_argument("--phase", type=int, help="Run specific phase (0-9)")
     parser.add_argument("--sweep-count", type=int, default=50, help="CE sweep trials per model")
+    parser.add_argument("--model-index", type=int, help="Train only this model index (0-2) for phases 2/3")
     parser.add_argument("--all", action="store_true", help="Run all phases")
     args = parser.parse_args()
 
@@ -378,8 +388,10 @@ def main():
         if fn is None:
             print(f"Unknown phase {args.phase}. Valid: {list(PHASE_MAP.keys())}")
             sys.exit(1)
-        if args.phase == 3:
-            result = fn(sweep_count=args.sweep_count)
+        if args.phase == 2:
+            result = fn(model_index=args.model_index)
+        elif args.phase == 3:
+            result = fn(sweep_count=args.sweep_count, model_index=args.model_index)
         else:
             result = fn()
         print(json.dumps(result, indent=2, default=str))
@@ -387,15 +399,17 @@ def main():
         results = []
         for phase_num in sorted(PHASE_MAP.keys()):
             fn = PHASE_MAP[phase_num]
-            if phase_num == 3:
-                result = fn(sweep_count=args.sweep_count)
+            if phase_num == 2:
+                result = fn(model_index=args.model_index)
+            elif phase_num == 3:
+                result = fn(sweep_count=args.sweep_count, model_index=args.model_index)
             else:
                 result = fn()
             results.append(result)
-        Path("runs/v8/pipeline_results.json").parent.mkdir(parents=True, exist_ok=True)
-        Path("runs/v8/pipeline_results.json").write_text(json.dumps(results, indent=2, default=str))
+        Path("runs/v8b/pipeline_results.json").parent.mkdir(parents=True, exist_ok=True)
+        Path("runs/v8b/pipeline_results.json").write_text(json.dumps(results, indent=2, default=str))
         print("\n" + "=" * 60)
-        print("  v8 PIPELINE COMPLETE")
+        print("  v8b PIPELINE COMPLETE")
         print("=" * 60)
     else:
         parser.print_help()

@@ -4,6 +4,15 @@ Fetches all CREs from the live opencre.org REST API, extracts LinkedTo links
 between standards (skipping AutomaticallyLinkedTo), and generates pairwise
 framework pairs from standards that share a CRE.
 
+In addition to gap=0 pairs (standards sharing the same CRE), the loader also
+generates hierarchy pairs:
+- **gap=1**: Standards linked to a parent CRE crossed with standards linked to
+  a direct child CRE (one "Contains" hop).
+- **gap=2**: Standards linked to a grandparent CRE crossed with standards linked
+  to a grandchild CRE (two "Contains" hops).
+
+When a pair appears at multiple gap levels, only the lowest gap is kept.
+
 Cache: data/opencre/opencre_all_cres.json
 Output: data/opencre/opencre_pairs.jsonl
 
@@ -17,6 +26,7 @@ import itertools
 import json
 import logging
 import time
+from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterator
 
@@ -291,6 +301,177 @@ def extract_pairs_from_cre(cre: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 # ---------------------------------------------------------------------------
+# CRE hierarchy helpers
+# ---------------------------------------------------------------------------
+
+def _build_cre_hierarchy(cres: list[dict[str, Any]]) -> dict[str, set[str]]:
+    """Build a parent -> set(child_ids) mapping from Contains / Is Part Of links.
+
+    Scans every CRE for:
+    - "Contains" links where the target doctype is "CRE" -> parent contains child
+    - "Is Part Of" links where the target doctype is "CRE" -> child is part of parent
+
+    Both directions encode the same relationship, so we merge them into a single
+    ``children[parent_id] = {child_id, ...}`` dict.
+
+    Parameters
+    ----------
+    cres:
+        Full list of CRE dicts (from cache or API).
+
+    Returns
+    -------
+    Dict mapping each parent CRE ID to a set of its direct child CRE IDs.
+    """
+    children: dict[str, set[str]] = defaultdict(set)
+
+    for cre in cres:
+        cre_id = str(cre.get("id", ""))
+        if not cre_id:
+            continue
+
+        for link in cre.get("links", []):
+            ltype = link.get("ltype", "")
+            doc = link.get("document", {})
+            doc_type = (doc.get("doctype") or "").upper()
+            linked_id = str(doc.get("id", ""))
+
+            if doc_type != "CRE" or not linked_id:
+                continue
+
+            if ltype == "Contains":
+                # This CRE is the parent; the linked CRE is the child
+                children[cre_id].add(linked_id)
+            elif ltype == "Is Part Of":
+                # This CRE is the child; the linked CRE is the parent
+                children[linked_id].add(cre_id)
+
+    return dict(children)
+
+
+def _extract_standards_from_cre(cre: dict[str, Any]) -> list[dict[str, Any]]:
+    """Extract LinkedTo standard nodes from a single CRE.
+
+    This is the same filtering logic used inside :func:`extract_pairs_from_cre`
+    but returns the intermediate standard list rather than pairs.
+
+    Parameters
+    ----------
+    cre:
+        A CRE dict with a ``links`` key.
+
+    Returns
+    -------
+    List of dicts with keys: node_id, text, framework, raw_framework, gap_penalty, fw_class.
+    """
+    standards: list[dict[str, Any]] = []
+    for link in cre.get("links", []):
+        ltype = link.get("ltype", "")
+        # Skip automatically-generated links
+        if ltype in ("AutomaticallyLinkedTo", "Automatically Linked To"):
+            continue
+        # Only include LinkedTo human-curated links
+        if ltype not in ("LinkedTo", "Linked To"):
+            continue
+
+        node = link.get("document", {})
+        if (node.get("doctype") or "").lower() != "standard":
+            continue
+
+        raw_fw = node.get("name", "")
+        display_name = node.get("section") or node.get("name") or ""
+        fw_key = _canonical_framework_key(raw_fw)
+        node_id = _make_node_id(
+            fw_key,
+            node.get("sectionID") or node.get("section"),
+            raw_fw,
+        )
+
+        standards.append({
+            "node_id": node_id,
+            "text": display_name,
+            "framework": fw_key,
+            "raw_framework": raw_fw,
+            "gap_penalty": 0,
+            "fw_class": classify_framework(raw_fw),
+        })
+
+    return standards
+
+
+def _generate_cross_cre_pairs(
+    cre_id_a: str,
+    cre_name_a: str,
+    standards_a: list[dict[str, Any]],
+    cre_id_b: str,
+    cre_name_b: str,
+    standards_b: list[dict[str, Any]],
+    gap_penalty: int,
+) -> list[dict[str, Any]]:
+    """Generate pairwise combinations between standards of two related CREs.
+
+    Parameters
+    ----------
+    cre_id_a, cre_name_a:
+        ID and name of the first CRE.
+    standards_a:
+        Standards extracted from the first CRE.
+    cre_id_b, cre_name_b:
+        ID and name of the second CRE.
+    standards_b:
+        Standards extracted from the second CRE.
+    gap_penalty:
+        Hierarchy gap level (1 = parent/child, 2 = grandparent/grandchild).
+
+    Returns
+    -------
+    List of pair dicts built via :func:`build_pair_row`.
+    """
+    pairs: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+
+    # Combined provenance CRE label
+    combined_cre_id = "+".join(sorted([cre_id_a, cre_id_b]))
+    combined_cre_name = f"{cre_name_a} → {cre_name_b}"
+
+    for a in standards_a:
+        for b in standards_b:
+            # Skip self-pairs
+            if a["node_id"] == b["node_id"]:
+                continue
+
+            # Canonical ordering
+            src, tgt = (a, b) if a["node_id"] <= b["node_id"] else (b, a)
+
+            key = (src["node_id"], tgt["node_id"])
+            if key in seen:
+                continue
+            seen.add(key)
+
+            psha = _provenance_sha(combined_cre_id, src["node_id"], tgt["node_id"])
+
+            pairs.append(
+                build_pair_row(
+                    source_node_id=src["node_id"],
+                    target_node_id=tgt["node_id"],
+                    source_text=src["text"],
+                    target_text=tgt["text"],
+                    source_framework=src["framework"],
+                    target_framework=tgt["framework"],
+                    cre_id=combined_cre_id,
+                    cre_name=combined_cre_name,
+                    gap_penalty=gap_penalty,
+                    fw_class_a=src["fw_class"],
+                    fw_class_b=tgt["fw_class"],
+                    provenance="opencre",
+                    provenance_sha=psha,
+                )
+            )
+
+    return pairs
+
+
+# ---------------------------------------------------------------------------
 # Pair row schema
 # ---------------------------------------------------------------------------
 
@@ -423,7 +604,17 @@ def _fetch_cre_detail(session: requests.Session, cre_id: str) -> dict[str, Any] 
 # ---------------------------------------------------------------------------
 
 def run_extraction(use_cache: bool = True) -> list[dict[str, Any]]:
-    """Fetch all CREs, extract pairs, write JSONL.
+    """Fetch all CREs, extract pairs (gap 0/1/2), write JSONL.
+
+    Gap levels:
+    - **0**: Standards both LinkedTo the same CRE (existing behaviour).
+    - **1**: Standards linked to a parent CRE crossed with standards linked
+      to a direct child CRE (one "Contains" hop).
+    - **2**: Standards linked to a grandparent CRE crossed with standards
+      linked to a grandchild CRE (two "Contains" hops).
+
+    When a pair (by ``source_node_id``, ``target_node_id``) appears at
+    multiple gap levels, only the **lowest** gap is kept.
 
     Parameters
     ----------
@@ -442,16 +633,144 @@ def run_extraction(use_cache: bool = True) -> list[dict[str, Any]]:
     cres = _fetch_all_cres(session, use_cache=use_cache)
     logger.info("Processing %d CREs …", len(cres))
 
-    all_pairs: list[dict[str, Any]] = []
-    seen_shas: set[str] = set()
+    # ------------------------------------------------------------------
+    # Gap-0 pairs: standards sharing the same CRE (unchanged logic)
+    # ------------------------------------------------------------------
+    gap0_pairs: list[dict[str, Any]] = []
+    gap0_shas: set[str] = set()
 
     for cre in cres:
         pairs = extract_pairs_from_cre(cre)
         for p in pairs:
             sha = p["provenance_sha"]
-            if sha not in seen_shas:
-                seen_shas.add(sha)
-                all_pairs.append(p)
+            if sha not in gap0_shas:
+                gap0_shas.add(sha)
+                gap0_pairs.append(p)
+
+    logger.info("Gap-0 pairs (same CRE): %d", len(gap0_pairs))
+
+    # ------------------------------------------------------------------
+    # Build CRE hierarchy and per-CRE standard caches
+    # ------------------------------------------------------------------
+    children = _build_cre_hierarchy(cres)
+
+    # Build a lookup: cre_id -> CRE dict for fast access
+    cre_by_id: dict[str, dict[str, Any]] = {}
+    for cre in cres:
+        cid = str(cre.get("id", ""))
+        if cid:
+            cre_by_id[cid] = cre
+
+    # Pre-extract standards per CRE (used for gap-1 and gap-2)
+    standards_cache: dict[str, list[dict[str, Any]]] = {}
+    for cid, cre in cre_by_id.items():
+        stds = _extract_standards_from_cre(cre)
+        if stds:
+            standards_cache[cid] = stds
+
+    # ------------------------------------------------------------------
+    # Gap-1 pairs: parent ←Contains→ child
+    # ------------------------------------------------------------------
+    gap1_pairs: list[dict[str, Any]] = []
+    gap1_shas: set[str] = set()
+
+    for parent_id, child_ids in children.items():
+        parent_stds = standards_cache.get(parent_id, [])
+        parent_cre = cre_by_id.get(parent_id, {})
+        parent_name = parent_cre.get("name", "")
+
+        if not parent_stds:
+            continue
+
+        for child_id in child_ids:
+            child_stds = standards_cache.get(child_id, [])
+            child_cre = cre_by_id.get(child_id, {})
+            child_name = child_cre.get("name", "")
+
+            if not child_stds:
+                continue
+
+            cross_pairs = _generate_cross_cre_pairs(
+                cre_id_a=parent_id,
+                cre_name_a=parent_name,
+                standards_a=parent_stds,
+                cre_id_b=child_id,
+                cre_name_b=child_name,
+                standards_b=child_stds,
+                gap_penalty=1,
+            )
+            for p in cross_pairs:
+                sha = p["provenance_sha"]
+                if sha not in gap1_shas:
+                    gap1_shas.add(sha)
+                    gap1_pairs.append(p)
+
+    logger.info("Gap-1 pairs (parent/child): %d", len(gap1_pairs))
+
+    # ------------------------------------------------------------------
+    # Gap-2 pairs: grandparent ←Contains→ child ←Contains→ grandchild
+    # ------------------------------------------------------------------
+    gap2_pairs: list[dict[str, Any]] = []
+    gap2_shas: set[str] = set()
+
+    for grandparent_id, child_ids in children.items():
+        gp_stds = standards_cache.get(grandparent_id, [])
+        gp_cre = cre_by_id.get(grandparent_id, {})
+        gp_name = gp_cre.get("name", "")
+
+        if not gp_stds:
+            continue
+
+        for child_id in child_ids:
+            grandchild_ids = children.get(child_id, set())
+            for gc_id in grandchild_ids:
+                gc_stds = standards_cache.get(gc_id, [])
+                gc_cre = cre_by_id.get(gc_id, {})
+                gc_name = gc_cre.get("name", "")
+
+                if not gc_stds:
+                    continue
+
+                cross_pairs = _generate_cross_cre_pairs(
+                    cre_id_a=grandparent_id,
+                    cre_name_a=gp_name,
+                    standards_a=gp_stds,
+                    cre_id_b=gc_id,
+                    cre_name_b=gc_name,
+                    standards_b=gc_stds,
+                    gap_penalty=2,
+                )
+                for p in cross_pairs:
+                    sha = p["provenance_sha"]
+                    if sha not in gap2_shas:
+                        gap2_shas.add(sha)
+                        gap2_pairs.append(p)
+
+    logger.info("Gap-2 pairs (grandparent/grandchild): %d", len(gap2_pairs))
+
+    # ------------------------------------------------------------------
+    # Merge and deduplicate: keep the LOWEST gap for each node-pair
+    # ------------------------------------------------------------------
+    # Key: (source_node_id, target_node_id) -> pair dict with lowest gap
+    best: dict[tuple[str, str], dict[str, Any]] = {}
+
+    # Process in gap order so lowest gap wins
+    for pair_list in (gap0_pairs, gap1_pairs, gap2_pairs):
+        for p in pair_list:
+            key = (p["source_node_id"], p["target_node_id"])
+            existing = best.get(key)
+            if existing is None or p["gap_penalty"] < existing["gap_penalty"]:
+                best[key] = p
+
+    all_pairs = list(best.values())
+
+    # Count per gap level for logging
+    gap_counts: dict[int, int] = defaultdict(int)
+    for p in all_pairs:
+        gap_counts[p["gap_penalty"]] += 1
+    for gap_level in sorted(gap_counts):
+        logger.info("Final gap-%d: %d pairs", gap_level, gap_counts[gap_level])
+    logger.info("Total unique pairs: %d", len(all_pairs))
 
     logger.info("Writing %d pairs to %s", len(all_pairs), OUTPUT_PATH)
     with OUTPUT_PATH.open("w") as fh:

@@ -102,7 +102,7 @@ def train_cross_encoder(
             chosen = dict(rows[0])
             chosen["soft_target"] = soft_target
             chosen["tier_label"] = max(range(4), key=lambda i: soft_target[i])
-        chosen["sample_weight"] = 1.0
+            chosen["sample_weight"] = total_w / len(rows)
         train_data.append(chosen)
 
     n_soft = sum(1 for r in train_data if "soft_target" in r)

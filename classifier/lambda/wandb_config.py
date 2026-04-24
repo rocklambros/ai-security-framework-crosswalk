@@ -48,7 +48,7 @@ CROSS_ENCODER_MODELS = [
 # v8 additions — OpenCRE integration
 # ---------------------------------------------------------------------------
 
-WANDB_PROJECT_V8 = "crosswalk-v8"
+WANDB_PROJECT_V8 = "crosswalk-v8b"
 
 V8_CE_SWEEP_CONFIG = {
     "method": "bayes",

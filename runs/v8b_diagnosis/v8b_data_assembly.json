@@ -1,0 +1,22 @@
+{
+  "elapsed_seconds": 0.5155456066131592,
+  "opencre_total": 13519,
+  "contaminated": 50,
+  "clean": 13469,
+  "v8_rows_added": 2046,
+  "skipped_by_cap": 11423,
+  "expert_train_original": 12176,
+  "v8_train_total": 14222,
+  "label_distribution": {
+    "EQUIVALENT": 683,
+    "RELATED": 673,
+    "PARTIAL": 690
+  },
+  "class_caps": {
+    "0": 997,
+    "1": 690,
+    "3": 683,
+    "2": 673
+  },
+  "output_path": "data/splits/v8b_train.jsonl"
+}

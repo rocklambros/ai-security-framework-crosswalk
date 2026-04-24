@@ -211,9 +211,9 @@ def train_cross_encoder(
                 optimizer.step()
             scheduler.step()
 
-            preds = logits.argmax(dim=1)
+            preds = logits.detach().argmax(dim=1)
             correct += (preds == labels).sum().item()
-            total += len(labels)
+            total += labels.size(0)
             epoch_loss += loss.item()
             max_grad_norm = max(max_grad_norm, grad_norm)
             n_batches += 1

@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 WANDB_PROJECT = "crosswalk-v7b"
-WANDB_ENTITY = None
+WANDB_ENTITY = "rockcyber"
 
 CE_SWEEP_CONFIG = {
     "method": "bayes",

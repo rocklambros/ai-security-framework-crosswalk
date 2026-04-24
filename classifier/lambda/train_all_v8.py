@@ -132,6 +132,7 @@ def phase3_cross_encoder_sweeps(sweep_count: int = 50, model_index: int | None =
 
         def train_fn():
             run = wandb.init()
+            wandb.config.update({"ce_model_name": name}, allow_val_change=True)
             config = wandb.config
 
             from classifier.ensemble.cross_encoder_trainer import train_cross_encoder
@@ -179,7 +180,7 @@ def phase3_cross_encoder_sweeps(sweep_count: int = 50, model_index: int | None =
     return {"phase": 3, "elapsed": elapsed, "results": results}
 
 
-def phase4_extract_embeddings() -> dict[str, Any]:
+def phase4_extract_embeddings(model_index: int | None = None) -> dict[str, Any]:
     """Extract CLS embeddings from best cross-encoder checkpoints."""
     print("\n" + "=" * 60)
     print("PHASE 4: Extract CLS embeddings")
@@ -191,14 +192,19 @@ def phase4_extract_embeddings() -> dict[str, Any]:
 
     from classifier.features.cls_extractor import extract_cls_features
 
-    for model_cfg in _wc.CROSS_ENCODER_MODELS:
+    models = _wc.CROSS_ENCODER_MODELS
+    if model_index is not None:
+        models = [models[model_index]]
+        print(f"  [phase4] single-model mode: index={model_index}")
+
+    for model_cfg in models:
         name = model_cfg["name"]
         best_dir = Path(f"runs/v8b/ce/{name}/best")
         if not best_dir.exists():
             import wandb
             api = wandb.Api()
-            runs = api.runs(f"{_wc.WANDB_ENTITY or ''}/{_wc.WANDB_PROJECT_V8}",
-                           filters={"config.model_name": name})
+            runs = api.runs(f"{_wc.WANDB_ENTITY}/{_wc.WANDB_PROJECT_V8}",
+                           filters={"config.ce_model_name": name})
             best_run = max(runs, key=lambda r: r.summary.get("combined_f1", 0), default=None)
             if best_run:
                 best_dir = Path(f"runs/v8b/ce/{name}/{best_run.id}")
@@ -209,6 +215,8 @@ def phase4_extract_embeddings() -> dict[str, Any]:
                 model_dir=str(best_dir),
                 output_path=f"data/processed/ce_features_v8b_{name}.npz",
             )
+        else:
+            print(f"  [phase4] WARNING: no checkpoint found for {name}")
 
     elapsed = time.time() - t0
     print(f"  [phase4] done in {elapsed:.1f}s")
@@ -396,6 +404,8 @@ def main():
             result = fn(model_index=args.model_index)
         elif args.phase == 3:
             result = fn(sweep_count=args.sweep_count, model_index=args.model_index)
+        elif args.phase == 4:
+            result = fn(model_index=args.model_index)
         else:
             result = fn()
         print(json.dumps(result, indent=2, default=str))
@@ -407,6 +417,8 @@ def main():
                 result = fn(model_index=args.model_index)
             elif phase_num == 3:
                 result = fn(sweep_count=args.sweep_count, model_index=args.model_index)
+            elif phase_num == 4:
+                result = fn(model_index=args.model_index)
             else:
                 result = fn()
             results.append(result)

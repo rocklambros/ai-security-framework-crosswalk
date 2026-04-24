@@ -231,8 +231,205 @@ def phase3_extract_embeddings(model_index: int | None = None):
 
 def phase4_stacker_sweep():
     """5-fold CV stacker sweep with Optuna."""
+    import logging
+    import warnings
+    import numpy as np
+    from classifier.ensemble.stacker import (
+        LGBMStacker,
+        tune_stacker,
+        train_and_evaluate,
+        FEATURE_COLS_VFINAL,
+        VFINAL_CE_MODEL_NAMES,
+        VFINAL_CE_CLS_SIM_COLS,
+    )
+
     print("Phase 4: Stacker sweep (5-fold CV, 10 Optuna trials)")
-    raise NotImplementedError("Wire up in Task 11")
+
+    TIER_MAP = {"Direct": 3, "Related": 2, "Tangential": 1, "None": 0}
+
+    # ------------------------------------------------------------------
+    # 1. Load feature npz files
+    # ------------------------------------------------------------------
+    print("  Loading feature npz files...")
+    feat_dir = Path("data/features")
+    npz: dict[str, dict[str, np.ndarray]] = {}
+    for model in VFINAL_CE_MODEL_NAMES:
+        npz[model] = {}
+        for split in ("train", "val"):
+            path = feat_dir / f"vfinal_{model}_{split}.npz"
+            data = np.load(str(path))
+            npz[model][split] = {"logits": data["logits"], "cls_emb": data["cls_emb"]}
+            n = data["logits"].shape[0]
+            print(f"    {model}/{split}: {n} rows, logits={data['logits'].shape}, cls={data['cls_emb'].shape}")
+
+    # ------------------------------------------------------------------
+    # 2. Cosine similarity helper
+    # ------------------------------------------------------------------
+    def _cosine_sim(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+        norm_a = np.linalg.norm(a, axis=1, keepdims=True)
+        norm_b = np.linalg.norm(b, axis=1, keepdims=True)
+        norm_a = np.where(norm_a == 0, 1, norm_a)
+        norm_b = np.where(norm_b == 0, 1, norm_b)
+        return (a * b).sum(axis=1) / (norm_a.squeeze() * norm_b.squeeze())
+
+    # Pairwise combos: (roberta, deberta_base), (roberta, bge), (deberta_base, bge)
+    # mapped to VFINAL_CE_CLS_SIM_COLS: ["roberta_cls_sim", "deberta_base_cls_sim", "bge_cls_sim"]
+    _cls_pairs = [
+        ("roberta", "deberta_base"),
+        ("roberta", "bge"),
+        ("deberta_base", "bge"),
+    ]
+
+    # ------------------------------------------------------------------
+    # 3. Load baseline features from JSONL
+    # ------------------------------------------------------------------
+    print("  Loading baseline features from JSONL splits...")
+
+    def _load_baseline(jsonl_path: Path) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+        """Returns (labels, bm25, bridge) arrays."""
+        labels, bm25_vals, bridge_vals = [], [], []
+        with jsonl_path.open() as fh:
+            for line in fh:
+                row = json.loads(line)
+                labels.append(TIER_MAP[row["tier_label"]])
+                bm25_vals.append(float(row.get("score_bm25", 0.0)))
+                bridge_vals.append(float(row.get("score_bridge", 0.0)))
+        return (
+            np.array(labels, dtype=np.int32),
+            np.array(bm25_vals, dtype=np.float32),
+            np.array(bridge_vals, dtype=np.float32),
+        )
+
+    y_train, bm25_train, bridge_train = _load_baseline(Path("data/splits/expert_train.jsonl"))
+    y_val, bm25_val, bridge_val = _load_baseline(Path("data/splits/expert_val.jsonl"))
+    print(f"    train labels: {len(y_train)}, val labels: {len(y_val)}")
+
+    # ------------------------------------------------------------------
+    # 4. Assemble 17-feature matrices
+    # ------------------------------------------------------------------
+    print("  Assembling 17-feature matrices...")
+
+    def _build_X(split: str, bm25: np.ndarray, bridge: np.ndarray) -> np.ndarray:
+        cols = []
+        # 12 logit features (3 models × 4 logits)
+        for model in VFINAL_CE_MODEL_NAMES:
+            cols.append(npz[model][split]["logits"])   # (n, 4)
+        # 3 pairwise CLS sim features
+        for m_a, m_b in _cls_pairs:
+            sim = _cosine_sim(
+                npz[m_a][split]["cls_emb"],
+                npz[m_b][split]["cls_emb"],
+            ).reshape(-1, 1)               # (n, 1)
+            cols.append(sim)
+        # 2 baseline features
+        cols.append(bm25.reshape(-1, 1))
+        cols.append(bridge.reshape(-1, 1))
+        X = np.hstack(cols)
+        assert X.shape[1] == len(FEATURE_COLS_VFINAL), (
+            f"Expected {len(FEATURE_COLS_VFINAL)} features, got {X.shape[1]}"
+        )
+        return X
+
+    X_train = _build_X("train", bm25_train, bridge_train)
+    X_val = _build_X("val", bm25_val, bridge_val)
+    print(f"    X_train: {X_train.shape}, X_val: {X_val.shape}")
+
+    # ------------------------------------------------------------------
+    # 5. Optuna sweep — 10 trials, 5-fold CV on train set
+    # ------------------------------------------------------------------
+    print("  Running Optuna sweep (10 trials, 5-fold CV)...")
+    best_params = tune_stacker(X_train, y_train, n_trials=10, n_splits=5)
+    print(f"  Best params: {best_params}")
+
+    # Save best params
+    params_dir = Path("runs/vfinal/stacker")
+    params_dir.mkdir(parents=True, exist_ok=True)
+    params_path = params_dir / "best_params.json"
+    params_path.write_text(json.dumps(best_params, indent=2))
+    print(f"  Saved best params → {params_path}")
+
+    # Log to wandb if active
+    try:
+        import wandb
+        if wandb.run is not None:
+            wandb.log({"stacker/best_params": best_params})
+    except ImportError:
+        pass
+
+    # ------------------------------------------------------------------
+    # 6. Train final stacker on full train set
+    # ------------------------------------------------------------------
+    print("  Training final stacker on full train set...")
+    run_dir = params_dir / "final_run"
+    metrics = train_and_evaluate(
+        X_train=X_train,
+        y_train=y_train,
+        X_val=X_val,
+        y_val=y_val,
+        params=best_params,
+        run_dir=run_dir,
+    )
+    stacker: LGBMStacker = metrics.pop("stacker")
+    print(f"  val_acc={metrics['val_acc']:.4f}, val_logloss={metrics['val_logloss']:.4f}")
+
+    # ------------------------------------------------------------------
+    # 7. Compute macro F1 on val and compare vs best single-model CE
+    # ------------------------------------------------------------------
+    from sklearn.metrics import f1_score as _f1_score
+
+    # Reload stacker predictions for macro F1
+    stacker_preds = stacker.predict(X_val)
+    stacker_macro_f1 = float(_f1_score(y_val, stacker_preds, average="macro"))
+    print(f"  Stacker val macro_f1={stacker_macro_f1:.4f}")
+
+    # Best single-CE macro F1: find best logit-only model on val
+    best_ce_f1 = 0.0
+    for model in VFINAL_CE_MODEL_NAMES:
+        ce_preds = np.argmax(npz[model]["val"]["logits"], axis=1)
+        ce_f1 = float(_f1_score(y_val, ce_preds, average="macro"))
+        print(f"    {model} single-model macro_f1={ce_f1:.4f}")
+        if ce_f1 > best_ce_f1:
+            best_ce_f1 = ce_f1
+
+    improvement_pp = (stacker_macro_f1 - best_ce_f1) * 100
+    if improvement_pp < 2.0:
+        warnings.warn(
+            f"Stacker macro_f1 ({stacker_macro_f1:.4f}) does NOT beat best single CE "
+            f"({best_ce_f1:.4f}) by >=2pp; delta={improvement_pp:.2f}pp",
+            stacklevel=2,
+        )
+        logging.getLogger(__name__).warning(
+            "Stacker improvement %.2fpp < 2pp threshold (stacker=%.4f, best_ce=%.4f)",
+            improvement_pp, stacker_macro_f1, best_ce_f1,
+        )
+    else:
+        print(f"  Stacker beats best CE by {improvement_pp:.2f}pp ✓")
+
+    metrics["val_macro_f1"] = stacker_macro_f1
+    metrics["best_ce_macro_f1"] = best_ce_f1
+    metrics["improvement_pp"] = improvement_pp
+
+    # Log to wandb if active
+    try:
+        import wandb
+        if wandb.run is not None:
+            wandb.log({
+                "stacker/val_macro_f1": stacker_macro_f1,
+                "stacker/best_ce_macro_f1": best_ce_f1,
+                "stacker/improvement_pp": improvement_pp,
+            })
+    except ImportError:
+        pass
+
+    # ------------------------------------------------------------------
+    # 8. Save final stacker model
+    # ------------------------------------------------------------------
+    model_save_path = params_dir / "stacker_final.txt"
+    stacker.save(model_save_path)
+    print(f"  Saved final stacker model → {model_save_path}")
+
+    print("Phase 4 complete.")
+    return metrics
 
 
 def phase5_conformal():

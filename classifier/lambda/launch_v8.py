@@ -78,6 +78,11 @@ def full_pipeline(sweep_count: int = 50, local_only: bool = False) -> None:
             wandb_key = _launch_v7._get_credential("wandb/api-key")
             env = {"WANDB_API_KEY": wandb_key}
 
+            log("Verifying code on pod...")
+            _launch_v7._ssh(ip, port,
+                "grep -n 'DebertaV2Tokenizer\\|use_fast\\|AutoTokenizer' /root/crosswalk/classifier/ensemble/contrastive_pretrain.py",
+                check=False)
+
             for phase_num, phase_name in [
                 (2, "Contrastive pre-training"),
                 (3, f"Cross-encoder sweeps ({sweep_count} trials/model)"),

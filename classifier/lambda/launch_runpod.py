@@ -43,7 +43,8 @@ def _scp_to(ip: str, port: int, local_path: str, remote_path: str) -> None:
 
 
 def _rsync_to(ip: str, port: int, local_path: str, remote_path: str) -> None:
-    cmd = f"rsync -avz -e 'ssh {SSH_OPTS} -p {port}' {local_path} root@{ip}:{remote_path}"
+    cmd = (f"rsync -avz --exclude='__pycache__' --exclude='*.pyc' --exclude='.git' "
+           f"-e 'ssh {SSH_OPTS} -p {port}' {local_path} root@{ip}:{remote_path}")
     print(f"  [rsync] {local_path} -> {remote_path}")
     subprocess.run(cmd, shell=True, check=True)
 

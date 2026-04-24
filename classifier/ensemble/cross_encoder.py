@@ -33,8 +33,11 @@ class CrossEncoderClassifier(nn.Module):
         self.head_type = head_type
 
         self.encoder = AutoModel.from_pretrained(model_name)
-        use_fast = "deberta" not in model_name.lower()
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=use_fast)
+        if "deberta" in model_name.lower():
+            from transformers import DebertaV2Tokenizer
+            self.tokenizer = DebertaV2Tokenizer.from_pretrained(model_name)
+        else:
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
         hidden_size = self.encoder.config.hidden_size
         self.dropout = nn.Dropout(dropout)

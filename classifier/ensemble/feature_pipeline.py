@@ -16,7 +16,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 
 
-MODEL_NAMES = ["deberta", "roberta", "electra"]
+MODEL_NAMES = ["roberta", "deberta_base", "bge"]
 
 
 def _corn_proba(logits: np.ndarray, n_classes: int = 4) -> np.ndarray:

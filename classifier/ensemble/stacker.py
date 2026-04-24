@@ -46,6 +46,17 @@ FEATURE_COLS_V2 = (
 GAP_PENALTY_COL = ["gap_penalty"]
 FEATURE_COLS_V3 = FEATURE_COLS_V2 + GAP_PENALTY_COL  # Total: 84
 
+# v_final features: 3 new models, no GAT
+VFINAL_CE_MODEL_NAMES = ["roberta", "deberta_base", "bge"]
+VFINAL_CE_LOGIT_COLS = [f"{m}_logit_{i}" for m in VFINAL_CE_MODEL_NAMES for i in range(4)]
+VFINAL_CE_CLS_SIM_COLS = [f"{m}_cls_sim" for m in VFINAL_CE_MODEL_NAMES]
+
+FEATURE_COLS_VFINAL = (
+    VFINAL_CE_LOGIT_COLS       # 12 (3 models x 4 logits)
+    + VFINAL_CE_CLS_SIM_COLS   # 3
+    + BASELINE_V2_COLS          # 2
+)  # Total: 17
+
 LABEL_COL = "label"
 N_CLASSES = 4
 REGISTRY_PATH = Path("runs/registry.jsonl")
@@ -59,7 +70,7 @@ class LGBMStacker:
         self.model: lgb.Booster | None = None
         self.run_id: str = ""
         self.version = version
-        _feature_map = {"v1": FEATURE_COLS, "v2": FEATURE_COLS_V2, "v3": FEATURE_COLS_V3}
+        _feature_map = {"v1": FEATURE_COLS, "v2": FEATURE_COLS_V2, "v3": FEATURE_COLS_V3, "vfinal": FEATURE_COLS_VFINAL}
         self.feature_cols = _feature_map.get(version, FEATURE_COLS_V2)
 
     def fit(

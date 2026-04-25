@@ -8,6 +8,12 @@ header-includes:
   - \usepackage{booktabs}
   - \usepackage{float}
   - \floatplacement{figure}{H}
+  - \usepackage{graphicx}
+  - \makeatletter
+  - \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+  - \makeatother
+  - \let\oldincludegraphics\includegraphics
+  - \renewcommand{\includegraphics}[2][]{\oldincludegraphics[width=\maxwidth,#1]{#2}}
 ---
 
 # AI Security Framework Crosswalk: From Baseline Failure to Ordinal Ensemble
@@ -137,7 +143,7 @@ DeBERTa-v3-large collapsed to predicting a single class on every pair. Every pre
 
 Figure 12 shows the class-distribution bar chart for DeBERTa-v3-large predictions vs. ground truth. The predicted bar is a single solid block; the ground truth bar has four segments.
 
-![Figure 12: DeBERTa-v3-large prediction collapse in v8b. The model predicts 100\% Unrelated on every test pair; the ground truth distribution has four classes.](figures/fig9_1_v8b_collapse.png)
+![Figure 12: DeBERTa-v3-large prediction collapse in v8b. The model predicts 100% Unrelated on every test pair; the ground truth distribution has four classes.](figures/fig9_1_v8b_collapse.png)
 
 The likely cause was the expanded Equivalent proxy labels. DeBERTa-v3-large is sensitive to label noise at high learning rates; adding hundreds of noisy Equivalent labels destabilized its fine-tuning trajectory. The collapse guard caught the symptom but not the underlying cause.
 
@@ -169,7 +175,7 @@ Three changes define v\_final relative to v8b.
 
 Figure 15 shows the before-and-after distribution for the validation split. Before deduplication, the validation set contains many pairs with near-identical counterparts in training; after, the split is genuinely held out.
 
-![Figure 15: Mapping-level deduplication effect on the validation split. Left: pre-dedup split with 56\% text-pair contamination from near-duplicate mappings. Right: clean split after deduplication on framework and control IDs.](figures/fig10_2_dedup_before_after.png)
+![Figure 15: Mapping-level deduplication effect on the validation split. Left: pre-dedup split with 56% text-pair contamination from near-duplicate mappings. Right: clean split after deduplication on framework and control IDs.](figures/fig10_2_dedup_before_after.png)
 
 **Ordinal loss functions.** Standard cross-entropy treats each misclassification equally: predicting Partial when the true label is Equivalent is penalized the same as predicting Unrelated when the true label is Equivalent. On a 4-class ordinal scale, that is wrong. An Unrelated $\rightarrow$ Equivalent error is a two-tier mistake; Partial $\rightarrow$ Equivalent is a one-tier mistake. I trained each model with three ordinal-aware losses: KL-divergence with ordinal smoothing (which places probability mass on adjacent classes), CORN ordinal regression (which decomposes the prediction into a sequence of binary comparisons), and focal loss with per-class reweighting (which down-weights confident predictions and up-weights rare classes). For each model, I selected the checkpoint that maximized validation macro F1.
 
@@ -195,15 +201,15 @@ The second was a CLS dimension mismatch. BGE-large-v1.5 produces 1,024-dimension
 
 The comparison across the three evaluated pipeline versions:
 
-| Metric | v7c | v8b$^*$ | v\_final |
+| Metric | v7c | v8b | v\_final |
 |---|---|---|---|
-| Exact accuracy | 81.0\% | --- | 79.9\% |
-| Adjacent accuracy | 94.4\% | --- | 92.2\% |
-| Macro F1 | 0.512 | --- | 0.558 |
+| Exact accuracy | 81.0% | -- | 79.9% |
+| Adjacent accuracy | 94.4% | -- | 92.2% |
+| Macro F1 | 0.512 | -- | 0.558 |
 | Equivalent F1 | 0.000 | 0.000 | 0.400 |
-| Conformal coverage ($\alpha$=0.10) | 91.6\% | --- | $\geq$90\% all classes |
+| Conformal coverage (alpha=0.10) | 91.6% | -- | 90%+ all classes |
 
-$^*$v8b results omitted because DeBERTa-large collapse invalidated the sweep.
+v8b results omitted because DeBERTa-large collapse invalidated the sweep.
 
 ### 7.2 The Equivalent Breakthrough
 
@@ -235,10 +241,10 @@ Before averaging, I evaluated each model independently on the frozen holdout:
 
 | Model | Macro F1 | Exact Accuracy |
 |---|---|---|
-| RoBERTa-large | 0.494 | 77.7\% |
-| DeBERTa-v3-base | 0.466 | 73.2\% |
-| BGE-large-v1.5 | 0.443 | 67.6\% |
-| **Ensemble (avg)** | **0.558** | **79.9\%** |
+| RoBERTa-large | 0.494 | 77.7% |
+| DeBERTa-v3-base | 0.466 | 73.2% |
+| BGE-large-v1.5 | 0.443 | 67.6% |
+| **Ensemble (avg)** | **0.558** | **79.9%** |
 
 The ensemble outperforms every individual model by at least 6.4 macro F1 points. Figure 19 shows the model progression from individual components to ensemble.
 
@@ -253,7 +259,7 @@ With 179 test pairs, point estimates carry substantial uncertainty. I computed 1
 
 The v7c macro F1 (0.512) falls inside the v\_final CI, which means I cannot claim statistical significance at $\alpha$=0.05 from this test set alone. The improvement is directionally consistent across all resamples, but the test set is too small for definitive separation. Figure 20 shows the bootstrap distribution for macro F1.
 
-![Figure 20: Bootstrap confidence intervals for v\_final macro F1 (10,000 resamples). The shaded 95\% CI spans 0.436--0.661; the v7c point estimate (0.512) falls inside the interval.](figures/fig11_4_bootstrap_ci.png)
+![Figure 20: Bootstrap confidence intervals for v\_final macro F1 (10,000 resamples). The shaded 95% CI spans 0.436--0.661; the v7c point estimate (0.512) falls inside the interval.](figures/fig11_4_bootstrap_ci.png)
 
 ### 7.8 Conformal Prediction Coverage
 
@@ -266,7 +272,7 @@ Split-conformal prediction wraps each point prediction in a set of plausible tie
 
 All four classes exceed the 90% target. The median prediction set size is 1 (a crisp single-class prediction); the mean is 1.56, meaning most predictions are confident but uncertain cases get a two-class set. Figure 21 shows per-class coverage against the 90% target line.
 
-![Figure 21: Conformal prediction coverage by class at $\alpha$=0.10. All four classes exceed the 90% target (dashed line). Equivalent achieves 100\% coverage.](figures/fig11_5_conformal.png)
+![Figure 21: Conformal prediction coverage by class at $\alpha$=0.10. All four classes exceed the 90% target (dashed line). Equivalent achieves 100% coverage.](figures/fig11_5_conformal.png)
 
 ### 7.9 Adjacent Error Analysis
 
@@ -284,16 +290,16 @@ After validating on the frozen holdout, I ran the v\_final ensemble over all 4,0
 
 | Tier | Count | Percentage |
 |---|---|---|
-| Unrelated | 3,585 | 89.6\% |
-| Partial | 136 | 3.4\% |
-| Related | 221 | 5.5\% |
-| Equivalent | 59 | 1.5\% |
+| Unrelated | 3,585 | 89.6% |
+| Partial | 136 | 3.4% |
+| Related | 221 | 5.5% |
+| Equivalent | 59 | 1.5% |
 
 The Unrelated dominance matches both the training distribution and the practical reality: most cross-framework control pairs are not meaningfully related. The 416 non-Unrelated predictions (10.4% of edges) identify the subset worth examining for control mapping.
 
 Figure 23 shows the full-graph prediction distribution.
 
-![Figure 23: Full-graph prediction distribution across all 4,001 crosswalk edges. The non-Unrelated slice (10.4\%) represents the actionable cross-framework mappings.](figures/fig12_1_full_graph_predictions.png)
+![Figure 23: Full-graph prediction distribution across all 4,001 crosswalk edges. The non-Unrelated slice (10.4%) represents the actionable cross-framework mappings.](figures/fig12_1_full_graph_predictions.png)
 
 ### 8.2 Coverage Gain
 

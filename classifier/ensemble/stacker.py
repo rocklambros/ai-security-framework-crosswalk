@@ -49,7 +49,7 @@ FEATURE_COLS_V3 = FEATURE_COLS_V2 + GAP_PENALTY_COL  # Total: 84
 # v_final features: 3 new models, no GAT
 VFINAL_CE_MODEL_NAMES = ["roberta", "deberta_base", "bge"]
 VFINAL_CE_LOGIT_COLS = [f"{m}_logit_{i}" for m in VFINAL_CE_MODEL_NAMES for i in range(4)]
-VFINAL_CE_CLS_SIM_COLS = [f"{m}_cls_sim" for m in VFINAL_CE_MODEL_NAMES]
+VFINAL_CE_CLS_SIM_COLS = ["roberta_deberta_logit_sim", "roberta_bge_logit_sim", "deberta_bge_logit_sim"]
 
 FEATURE_COLS_VFINAL = (
     VFINAL_CE_LOGIT_COLS       # 12 (3 models x 4 logits)
@@ -84,6 +84,7 @@ class LGBMStacker:
             "objective": "multiclass",
             "num_class": N_CLASSES,
             "metric": "multi_logloss",
+            "is_unbalance": True,
             "verbosity": -1,
             "num_threads": 4,
             "seed": 42,

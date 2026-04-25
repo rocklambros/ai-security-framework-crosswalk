@@ -75,7 +75,7 @@ One paragraph in the same > blockquote style: "I built a tool that compares secu
 **Section 9 (v8b) — 3 new code cells:**
 - DeBERTa-large collapse rate bar chart
 - Stacker probability histogram (99.8% mass at class 0)
-- Per-model validation loss line chart — REMOVED: no wandb/training logs on disk; replace with DeBERTa-large collapse bar chart showing 100% single-class prediction rate
+- Per-model validation loss line chart — pull from WandB API (project: rockcyber/crosswalk-v8b; runs have train_loss/val_kl_loss/combined_f1 per epoch). Show collapse runs (n_unique_preds=1, combined_f1=0) alongside successful runs
 
 **Section 11 (v_final Results) — 2 new code cells:**
 - Adjacent-error direction bar chart
@@ -84,10 +84,9 @@ One paragraph in the same > blockquote style: "I built a tool that compares secu
 **Section 12 (Deployment) — 1 new code cell:**
 - Framework-pair coverage improvement matrix (diff heatmap)
 
-**Section 12 (HuggingFace) — 3 narrative cells (no executable code — COMP 4433 forbids huggingface_hub):**
-- Markdown cell: HuggingFace repo URL, what's uploaded, link to model card
-- Markdown cell with fenced code block (NOT executed): how to load and run inference using the trained ensemble
-- Markdown cell: step-by-step instructions for training additional frameworks
+**Section 12 (HuggingFace) — 2 narrative cells (no code — just mention the model):**
+- Markdown cell: HuggingFace repo URL, what's uploaded, how to grab it and use it
+- Markdown cell: how to extend the crosswalk to new frameworks using the trained ensemble
 
 ### Visualization Compliance
 
@@ -249,9 +248,8 @@ model-index:
 
 New Section 12 subsection: "Model Availability and Reproducibility"
 
-- Markdown cell: states the HuggingFace repo URL, describes what's uploaded, links to the model card
-- Markdown cell with fenced Python code block (NOT executed — huggingface_hub violates COMP 4433 library restriction): demonstrates loading the model and running inference on a sample pair
-- Markdown cell: "Training Additional Frameworks" — step-by-step instructions for extending the crosswalk to new frameworks (prepare nodes.json, generate candidate pairs, run predict_edges.py, evaluate)
+- Markdown cell: states the HuggingFace repo URL, describes what's uploaded, tells reader where to grab it and how to use it
+- Markdown cell: "Training Additional Frameworks" — step-by-step instructions for extending the crosswalk to new frameworks
 
 ### Report Section for HuggingFace
 

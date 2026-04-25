@@ -6,6 +6,13 @@ import plotly.graph_objects as go
 from dash import Input, Output, State, callback, dcc, html
 
 from components.badge_tooltips import badge_with_tooltip
+from components.classifier_badge import (
+    TIER_COLORS,
+    TIER_FILTER_OPTIONS,
+    TIER_NAMES,
+    classifier_badge,
+    filter_edges_by_tier,
+)
 from components.data_loader import get_edges_df, get_framework_stats, get_nodes_df, get_pairwise_reachability
 from components.framework_colors import (
     FRAMEWORK_KEYS,
@@ -506,6 +513,40 @@ layout = dbc.Container([
         ], md=8),
     ], className="mb-3"),
 
+    # Classifier tier filter row
+    dbc.Row([
+        dbc.Col([
+            dbc.Label([
+                "ML Classifier Tier ",
+                html.I(className="bi bi-info-circle", id="classifier-tier-tooltip-target",
+                       style={"cursor": "pointer", "color": "#d4a017"}),
+            ], html_for="landscape-classifier-tier",
+                      className="text-muted", style={"fontSize": "0.8rem"}),
+            dbc.Tooltip(
+                [
+                    html.Div("A fine-tuned transformer ensemble (RoBERTa + DeBERTa + BGE) classifies "
+                             "each edge into one of four semantic similarity tiers.", style={"marginBottom": "6px"}),
+                    html.Div([html.Strong("Equivalent"), ": Controls address the same concern with the same scope."], style={"marginBottom": "3px"}),
+                    html.Div([html.Strong("Related"), ": Controls address overlapping concerns."], style={"marginBottom": "3px"}),
+                    html.Div([html.Strong("Partial"), ": One control partially covers the other."], style={"marginBottom": "3px"}),
+                    html.Div([html.Strong("Unrelated"), ": No meaningful semantic overlap."]),
+                ],
+                target="classifier-tier-tooltip-target",
+                placement="bottom",
+                style={"maxWidth": "380px", "textAlign": "left"},
+            ),
+            dbc.RadioItems(
+                id="landscape-classifier-tier",
+                options=TIER_FILTER_OPTIONS,
+                value="any",
+                inline=True,
+                className="mb-2",
+                inputStyle={"marginRight": "4px"},
+                labelStyle={"marginRight": "16px", "fontSize": "0.85rem"},
+            ),
+        ], md=12),
+    ], className="mb-3"),
+
     # Selected framework state for network highlighting
     dcc.Store(id="landscape-selected-fw", data=None),
 
@@ -566,6 +607,38 @@ layout = dbc.Container([
         html.Div(id="landscape-stats", className="mt-3"),
     )),
 
+    # ML Classifier Analysis (collapsible)
+    dbc.Row(dbc.Col([
+        html.Hr(style={"borderColor": "#21262d", "margin": "1.5rem 0 0.5rem"}),
+        html.A([
+            html.H5([
+                "ML Classifier Analysis ",
+                html.Small("(click to expand)", className="text-muted",
+                           style={"fontSize": "0.75rem"}),
+            ], className="mb-0", style={"color": "#d4a017"}),
+        ], id="landscape-classifier-toggle",
+           style={"cursor": "pointer", "textDecoration": "none"}),
+        html.P(
+            "A fine-tuned ensemble of three transformer models (RoBERTa-large, DeBERTa-base, "
+            "BGE-large-v1.5) classifies each mapping edge into four semantic similarity tiers. "
+            "The classifier achieves 80% tier accuracy and 0.56 macro F1 on expert-labeled test pairs.",
+            className="text-muted mb-2",
+            style={"fontSize": "0.85rem"},
+        ),
+        dbc.Collapse([
+            dbc.Row([
+                dbc.Col(dcc.Loading(dcc.Graph(
+                    id="landscape-classifier-histogram",
+                    config={"displayModeBar": False},
+                )), md=6),
+                dbc.Col(dcc.Loading(dcc.Graph(
+                    id="landscape-classifier-tier-bar",
+                    config={"displayModeBar": False},
+                )), md=6),
+            ]),
+        ], id="landscape-classifier-collapse", is_open=False),
+    ])),
+
 ], fluid=True)
 
 
@@ -578,8 +651,9 @@ layout = dbc.Container([
     Input("landscape-selected-fw", "data"),
     Input("theme-store", "data"),
     Input("landscape-heatmap-scope", "value"),
+    Input("landscape-classifier-tier", "value"),
 )
-def update_landscape(confidence, edge_type, selected_fw, theme, heatmap_scope):
+def update_landscape(confidence, edge_type, selected_fw, theme, heatmap_scope, classifier_tier):
     edges_df = get_edges_df()
     stats = get_framework_stats()
 
@@ -597,6 +671,8 @@ def update_landscape(confidence, edge_type, selected_fw, theme, heatmap_scope):
         ]
     elif edge_type == "category":
         edges_df = edges_df[edges_df["rationale_code"] == "CROSS_FRAMEWORK_CATEGORY"]
+
+    edges_df = filter_edges_by_tier(edges_df, classifier_tier or "any")
 
     cross = edges_df[edges_df["source_framework"] != edges_df["target_framework"]]
 
@@ -655,6 +731,125 @@ def handle_network_click(click_data, current_selected):
 )
 def toggle_landscape_learn_more(n_clicks, is_open):
     return not is_open
+
+
+@callback(
+    Output("landscape-classifier-collapse", "is_open"),
+    Input("landscape-classifier-toggle", "n_clicks"),
+    State("landscape-classifier-collapse", "is_open"),
+    prevent_initial_call=True,
+)
+def toggle_classifier_section(n_clicks, is_open):
+    return not is_open
+
+
+def _build_confidence_histogram(edges_df, theme="dark"):
+    """Histogram of classifier confidence scores, colored by predicted tier."""
+    fig = go.Figure()
+    for tier in [3, 2, 1, 0]:
+        name = TIER_NAMES[tier]
+        color = TIER_COLORS[tier]
+        subset = edges_df[edges_df["classifier_tier"] == tier]
+        if subset.empty:
+            continue
+        fig.add_trace(go.Histogram(
+            x=subset["classifier_confidence"],
+            name=name,
+            marker_color=color,
+            opacity=0.75,
+            nbinsx=30,
+        ))
+    fig.update_layout(
+        template=get_template(theme),
+        barmode="overlay",
+        height=400,
+        title=dict(text="Confidence Distribution by Tier", font=dict(size=13)),
+        xaxis_title="Classifier Confidence",
+        yaxis_title="Edge Count",
+        legend=dict(orientation="h", yanchor="bottom", y=-0.25),
+        margin=dict(t=40, b=60),
+    )
+    return fig
+
+
+def _build_tier_by_fw_pair(edges_df, theme="dark"):
+    """Stacked bar: tier counts for each cross-framework pair."""
+    from collections import Counter
+
+    cross = edges_df[
+        (edges_df["source_framework"] != edges_df["target_framework"])
+        & (edges_df["classifier_tier"] >= 0)
+    ]
+    pair_tier_counts: dict[tuple, Counter] = {}
+    for _, row in cross.iterrows():
+        pair = tuple(sorted([row["source_framework"], row["target_framework"]]))
+        tier = int(row["classifier_tier"])
+        if pair not in pair_tier_counts:
+            pair_tier_counts[pair] = Counter()
+        pair_tier_counts[pair][tier] += 1
+
+    pairs_sorted = sorted(
+        pair_tier_counts.keys(),
+        key=lambda p: sum(pair_tier_counts[p][t] for t in [1, 2, 3]),
+        reverse=True,
+    )[:15]
+    pair_labels = [f"{get_short_name(p[0])} × {get_short_name(p[1])}" for p in pairs_sorted]
+
+    fig = go.Figure()
+    for tier in [3, 2, 1, 0]:
+        counts = [pair_tier_counts[p].get(tier, 0) for p in pairs_sorted]
+        fig.add_trace(go.Bar(
+            y=pair_labels,
+            x=counts,
+            name=TIER_NAMES[tier],
+            orientation="h",
+            marker_color=TIER_COLORS[tier],
+        ))
+    fig.update_layout(
+        template=get_template(theme),
+        barmode="stack",
+        height=400,
+        title=dict(text="Tier Distribution by Framework Pair", font=dict(size=13)),
+        xaxis_title="Edge Count",
+        yaxis=dict(categoryorder="array", categoryarray=list(reversed(pair_labels))),
+        legend=dict(orientation="h", yanchor="bottom", y=-0.25),
+        margin=dict(t=40, b=60),
+    )
+    return fig
+
+
+@callback(
+    Output("landscape-classifier-histogram", "figure"),
+    Output("landscape-classifier-tier-bar", "figure"),
+    Input("landscape-classifier-collapse", "is_open"),
+    Input("landscape-confidence", "value"),
+    Input("landscape-edge-type", "value"),
+    Input("theme-store", "data"),
+)
+def update_classifier_charts(is_open, confidence, edge_type, theme):
+    if not is_open:
+        empty = go.Figure()
+        empty.update_layout(height=100)
+        return empty, empty
+
+    edges_df = get_edges_df()
+    if confidence != "any":
+        conf_order = ["authoritative", "expert", "suggestive", "unvalidated"]
+        min_idx = conf_order.index(confidence)
+        allowed = set(conf_order[:min_idx + 1])
+        edges_df = edges_df[edges_df["confidence"].isin(allowed)]
+    if edge_type == "rationale":
+        edges_df = edges_df[
+            ~edges_df["rationale_code"].isin(["CROSS_FRAMEWORK_CATEGORY", "PARENT", None])
+            & edges_df["rationale_code"].notna()
+        ]
+    elif edge_type == "category":
+        edges_df = edges_df[edges_df["rationale_code"] == "CROSS_FRAMEWORK_CATEGORY"]
+
+    return (
+        _build_confidence_histogram(edges_df, theme),
+        _build_tier_by_fw_pair(edges_df, theme),
+    )
 
 
 def _render_heatmap_detail(fw_y, fw_x, pair_df, shown_count):
@@ -717,6 +912,7 @@ def _render_heatmap_detail(fw_y, fw_x, pair_df, shown_count):
             html.Span(" "),
             badge_with_tooltip(conf_val, color=conf_badge_color, class_name="ms-1"),
             rationale_badge,
+            classifier_badge(row.get("classifier_tier"), row.get("classifier_confidence")),
         ], className="mb-1"))
 
     remaining = total_count - shown_count

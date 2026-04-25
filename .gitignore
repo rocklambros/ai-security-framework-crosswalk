@@ -9,6 +9,7 @@ venv/
 
 # Jupyter
 .ipynb_checkpoints/
+project1/Untitled.ipynb
 
 # Environment and secrets
 .env
@@ -33,6 +34,9 @@ data/processed/ce_features_*.npz
 runs/ce_v2/
 runs/stacker/
 runs/stacker_v2/
+runs/v8/
+runs/v8b/
+runs/vfinal/ce/
 runs/runpod_status.json
 results/v7_phase11_downstream.json
 
@@ -51,6 +55,7 @@ deep_dive_*.jpeg
 explorer_check.jpeg
 heatmap-*.png
 landscape_*.png
+sankey_*.png
 
 # Project 2 QA screenshots
 project2/screenshots/

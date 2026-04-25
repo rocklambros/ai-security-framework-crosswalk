@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from dash import ALL, Input, Output, State, callback, ctx, dcc, html
 
 from components.badge_tooltips import badge_with_tooltip
+from components.classifier_badge import classifier_badge
 from components.data_loader import (
     get_mappings_for_node,
     get_node_by_id,
@@ -458,6 +459,7 @@ def _build_mapping_cards(mappings, source_node):
                         class_name="ms-auto me-1",
                     ),
                     badge_with_tooltip(rationale, color="dark") if rationale else None,
+                    classifier_badge(d.get("classifier_tier"), d.get("classifier_confidence")),
                 ], style={"marginLeft": "auto", "display": "flex"}),
             ], className="d-flex align-items-center",
                id={"type": "card-header", "index": card_id},
@@ -1228,6 +1230,7 @@ def neighborhood_node_click(click_data, source_node_id):
                           style={"fontSize": "0.7rem"}) if rationale else None,
                 html.Small(rationale_label, className="text-muted ms-1",
                            style={"fontSize": "0.75rem"}) if rationale_label else None,
+                classifier_badge(edge_meta.get("classifier_tier"), edge_meta.get("classifier_confidence")),
             ], className="d-flex align-items-center flex-wrap gap-1"),
             html.P(rationale_note,
                    className="mt-1 mb-0",

@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 from dash import Input, Output, State, callback, ctx, dcc, html
 
 from components.badge_tooltips import badge_with_tooltip
+from components.classifier_badge import classifier_badge
 from components.data_loader import (
     get_edges_df,
     get_framework_stats,
@@ -807,6 +808,7 @@ def _build_target_fw_detail(source_node_id, target_fw, source_framework):
                         badge_with_tooltip(conf, color={"authoritative": "success", "expert": "primary",
                                   "suggestive": "warning"}.get(conf, "secondary"), class_name="ms-2"),
                         badge_with_tooltip(rationale, color="dark", class_name="ms-1") if rationale else None,
+                        classifier_badge(d.get("classifier_tier"), d.get("classifier_confidence")),
                     ], style={"marginLeft": "auto"}),
                 ], className="py-2 d-flex align-items-center"),
                 dbc.CardBody([

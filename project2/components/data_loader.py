@@ -41,6 +41,22 @@ _transitive_mappings = _load_json(os.path.join(_DERIVED_DIR, "transitive_mapping
 _graph_metrics = _load_json(os.path.join(_DERIVED_DIR, "graph_metrics.json"))
 _pairwise_reachability = _load_json(os.path.join(_DERIVED_DIR, "pairwise_reachability.json"))
 
+# Build classifier score lookup from enriched edges and inject into transitive mappings
+_classifier_lookup: dict[tuple[str, str], dict] = {}
+for _e in _edges:
+    _src, _tgt = _e.get("source_node_id"), _e.get("target_node_id")
+    if _src and _tgt and _e.get("classifier_tier") is not None:
+        _cls = {"classifier_tier": _e["classifier_tier"], "classifier_confidence": _e.get("classifier_confidence")}
+        _classifier_lookup[(_src, _tgt)] = _cls
+        _classifier_lookup[(_tgt, _src)] = _cls
+
+for _nid, _maps in _transitive_mappings.items():
+    for _d in _maps.get("direct", []):
+        _key = (_nid, _d["target_node_id"])
+        _cls = _classifier_lookup.get(_key)
+        if _cls:
+            _d.update(_cls)
+
 
 def get_nodes_df() -> pd.DataFrame:
     return _nodes_df

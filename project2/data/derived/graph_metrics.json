@@ -3705,14 +3705,14 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.M0000": {
-      "out_degree": 8,
+      "out_degree": 9,
       "in_degree": 2,
       "cross_out": 1,
       "cross_in": 2
     },
     "mitre_atlas:AML.M0001": {
       "out_degree": 6,
-      "in_degree": 2,
+      "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
     },
@@ -3753,20 +3753,20 @@
       "cross_in": 0
     },
     "mitre_atlas:AML.M0008": {
-      "out_degree": 8,
+      "out_degree": 9,
       "in_degree": 0,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.M0009": {
-      "out_degree": 3,
+      "out_degree": 4,
       "in_degree": 0,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.M0010": {
       "out_degree": 8,
-      "in_degree": 0,
+      "in_degree": 1,
       "cross_out": 0,
       "cross_in": 0
     },
@@ -3789,14 +3789,14 @@
       "cross_in": 2
     },
     "mitre_atlas:AML.M0014": {
-      "out_degree": 6,
+      "out_degree": 8,
       "in_degree": 0,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.M0015": {
       "out_degree": 11,
-      "in_degree": 4,
+      "in_degree": 5,
       "cross_out": 2,
       "cross_in": 4
     },
@@ -3831,20 +3831,20 @@
       "cross_in": 10
     },
     "mitre_atlas:AML.M0021": {
-      "out_degree": 9,
+      "out_degree": 10,
       "in_degree": 4,
       "cross_out": 2,
       "cross_in": 4
     },
     "mitre_atlas:AML.M0022": {
       "out_degree": 7,
-      "in_degree": 0,
+      "in_degree": 1,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.M0023": {
-      "out_degree": 7,
-      "in_degree": 2,
+      "out_degree": 8,
+      "in_degree": 3,
       "cross_out": 0,
       "cross_in": 2
     },
@@ -3856,37 +3856,37 @@
     },
     "mitre_atlas:AML.M0025": {
       "out_degree": 5,
-      "in_degree": 2,
+      "in_degree": 4,
       "cross_out": 0,
       "cross_in": 2
     },
     "mitre_atlas:AML.M0026": {
-      "out_degree": 7,
+      "out_degree": 9,
       "in_degree": 0,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.M0027": {
-      "out_degree": 7,
-      "in_degree": 0,
+      "out_degree": 8,
+      "in_degree": 1,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.M0028": {
       "out_degree": 5,
-      "in_degree": 0,
+      "in_degree": 2,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.M0029": {
-      "out_degree": 3,
+      "out_degree": 4,
       "in_degree": 0,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.M0030": {
       "out_degree": 3,
-      "in_degree": 0,
+      "in_degree": 1,
       "cross_out": 0,
       "cross_in": 0
     },
@@ -4077,7 +4077,7 @@
       "cross_in": 2
     },
     "mitre_atlas:AML.T0010.003": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 8,
       "cross_out": 0,
       "cross_in": 2
@@ -4191,7 +4191,7 @@
       "cross_in": 1
     },
     "mitre_atlas:AML.T0018.000": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 6,
       "cross_out": 0,
       "cross_in": 0
@@ -4216,7 +4216,7 @@
     },
     "mitre_atlas:AML.T0020": {
       "out_degree": 1,
-      "in_degree": 11,
+      "in_degree": 13,
       "cross_out": 1,
       "cross_in": 3
     },
@@ -4227,25 +4227,25 @@
       "cross_in": 1
     },
     "mitre_atlas:AML.T0024": {
-      "out_degree": 4,
+      "out_degree": 6,
       "in_degree": 7,
       "cross_out": 1,
       "cross_in": 3
     },
     "mitre_atlas:AML.T0024.000": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 4,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.T0024.001": {
       "out_degree": 0,
-      "in_degree": 4,
+      "in_degree": 5,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.T0024.002": {
-      "out_degree": 0,
+      "out_degree": 1,
       "in_degree": 6,
       "cross_out": 0,
       "cross_in": 2
@@ -4294,13 +4294,13 @@
     },
     "mitre_atlas:AML.T0035": {
       "out_degree": 0,
-      "in_degree": 5,
+      "in_degree": 6,
       "cross_out": 0,
       "cross_in": 0
     },
     "mitre_atlas:AML.T0036": {
       "out_degree": 0,
-      "in_degree": 1,
+      "in_degree": 2,
       "cross_out": 0,
       "cross_in": 0
     },
@@ -4492,7 +4492,7 @@
     },
     "mitre_atlas:AML.T0057": {
       "out_degree": 0,
-      "in_degree": 7,
+      "in_degree": 8,
       "cross_out": 0,
       "cross_in": 2
     },

@@ -104,8 +104,8 @@
   },
   "mitre_atlas": {
     "node_count": 218,
-    "edge_count_out": 441,
-    "edge_count_in": 563,
+    "edge_count_out": 458,
+    "edge_count_in": 580,
     "entry_type_counts": {
       "mitigation": 35,
       "technique": 167,

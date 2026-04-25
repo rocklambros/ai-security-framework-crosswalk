@@ -746,7 +746,7 @@ def merge_vfinal_scores(edges, repo_root):
 
     matched = 0
     for e in edges:
-        key = e.get("pair_key", f"{e.get('source_node_id', '')}_{e.get('target_node_id', '')}")
+        key = e.get("edge_id") or e.get("pair_key", f"{e.get('source_node_id', '')}_{e.get('target_node_id', '')}")
         if key in predictions:
             pred = predictions[key]
             e["classifier_tier"] = pred["tier"]

@@ -36,13 +36,13 @@ The final ensemble achieves macro F1 = 0.558, with Equivalent F1 rising from 0.0
 
 The v7c pipeline extracts 50 features per node pair and feeds them into a regularized logistic regression classifier. The 50 features break into three groups: 35 from a graph attention network (GAT) trained on the crosswalk topology, 12 from three cross-encoder transformers (RoBERTa-large, DeBERTa-v3-large, DeBERTa-v3-base), and 3 baseline signals (BGE cosine similarity, BM25 lexical overlap, two-hop bridge count). The second stage is logistic regression with $L_2$ regularization at C=0.01, selected by cross-validation on 477 calibration pairs.
 
-The feature extraction is what makes v7c interesting relative to earlier versions. Figure 1 shows the per-feature distributions across the four classes---the violin plots reveal that cross-encoder scores separate Equivalent pairs from Unrelated pairs, but the Equivalent distribution overlaps heavily with Related.
+The feature extraction is what makes v7c interesting relative to earlier versions. Figure 5.1 shows the per-feature distributions across the four classes---the violin plots reveal that cross-encoder scores separate Equivalent pairs from Unrelated pairs, but the Equivalent distribution overlaps heavily with Related.
 
-![Figure 1: Per-feature distributions by class (violin plot). Cross-encoder scores show the clearest Unrelated--Equivalent separation, but Equivalent and Related distributions overlap substantially.](figures/fig5_1_feature_violins.png)
+![Figure 5.1: Per-feature distributions by class (violin plot). Cross-encoder scores show the clearest Unrelated--Equivalent separation, but Equivalent and Related distributions overlap substantially.](figures/fig5_1_feature_violins.png)
 
-Figure 2 ranks the 50 features by logistic regression coefficient magnitude. The three cross-encoder outputs dominate the top positions; BGE cosine and BM25 contribute meaningfully; most GAT features rank in the lower half.
+Figure 5.2 ranks the 50 features by logistic regression coefficient magnitude. The three cross-encoder outputs dominate the top positions; BGE cosine and BM25 contribute meaningfully; most GAT features rank in the lower half.
 
-![Figure 2: Feature importance by logistic regression coefficient magnitude. Cross-encoder outputs from RoBERTa-large and DeBERTa-v3-large hold the top positions.](figures/fig5_2_feature_importance.png)
+![Figure 5.2: Feature importance by logistic regression coefficient magnitude. Cross-encoder outputs from RoBERTa-large and DeBERTa-v3-large hold the top positions.](figures/fig5_2_feature_importance.png)
 
 ### 2.2 Results and the Equivalent Blind Spot
 
@@ -57,15 +57,15 @@ On the 179-pair frozen holdout, v7c achieved:
 
 The accuracy number looked reasonable. The per-class breakdown told a different story. Unrelated (130 of 179 test pairs) scored F1 = 0.938---the classifier learned that defaulting toward Unrelated is usually correct. Partial (18 pairs) and Related (24 pairs) each scored F1 = 0.556. Equivalent (7 pairs) scored F1 = 0.000. The model produced zero Equivalent predictions on the test set.
 
-Figure 3 makes the failure visible. The confusion matrix shows the bottom row of the Equivalent class is entirely empty in the predicted column---every one of the 7 Equivalent pairs was classified as something lower.
+Figure 5.4 makes the failure visible. The confusion matrix shows the bottom row of the Equivalent class is entirely empty in the predicted column---every one of the 7 Equivalent pairs was classified as something lower.
 
-![Figure 3: v7c confusion matrix on the 179-pair frozen holdout. The Equivalent column contains zero predictions; all 7 Equivalent pairs were classified into lower tiers.](figures/fig5_4_confusion_matrix.png)
+![Figure 5.4: v7c confusion matrix on the 179-pair frozen holdout. The Equivalent column contains zero predictions; all 7 Equivalent pairs were classified into lower tiers.](figures/fig5_4_confusion_matrix.png)
 
 This is not surprising in isolation. With only a handful of Equivalent examples in training and a regularized classifier that leans toward the majority class, Equivalent gets suppressed. What it told me was that fixing macro F1 meant fixing Equivalent, which meant finding more data or changing the loss function.
 
-Figure 4 shows the v7c headline accuracy in context, placing it against a zero-shot cosine baseline (14.5%) and a random classifier. v7c is not a trivial result---it is a well-calibrated 4-class classifier---but its macro F1 of 0.512 reflects the Equivalent blind spot directly.
+Figure 5.5 shows the v7c headline accuracy in context, placing it against a zero-shot cosine baseline (14.5%) and a random classifier. v7c is not a trivial result---it is a well-calibrated 4-class classifier---but its macro F1 of 0.512 reflects the Equivalent blind spot directly.
 
-![Figure 4: v7c headline accuracy against comparison baselines. The classifier substantially outperforms zero-shot cosine similarity but fails on the Equivalent class.](figures/fig5_5_headline_accuracy.png)
+![Figure 5.5: v7c headline accuracy against comparison baselines. The classifier substantially outperforms zero-shot cosine similarity but fails on the Equivalent class.](figures/fig5_5_headline_accuracy.png)
 
 ## 3. OpenCRE Discovery
 
@@ -73,37 +73,37 @@ Figure 4 shows the v7c headline accuracy in context, placing it against a zero-s
 
 The Open Common Requirements Enumeration is a community-maintained database that links security controls from dozens of standards at the control level. It organizes controls around CRE hub nodes---abstract requirements that multiple standards share. Two controls that both link to the same CRE hub are semantically close; controls separated by multiple hops through the CRE graph are more loosely connected.
 
-I found 13,519 cross-framework pairs in OpenCRE that involved controls from at least two different frameworks in my dataset. The link types are labeled: Contains (a CRE hub containing a specific control), Related (a lateral connection between hubs), and Linked To (a direct cross-standard mapping). Figure 5 shows the distribution of these link types across all 13,519 pairs.
+I found 13,519 cross-framework pairs in OpenCRE that involved controls from at least two different frameworks in my dataset. The link types are labeled: Contains (a CRE hub containing a specific control), Related (a lateral connection between hubs), and Linked To (a direct cross-standard mapping). Figure 7.2 shows the distribution of these link types across all 13,519 pairs.
 
-![Figure 5: Distribution of OpenCRE link types across 13,519 framework pairs. Linked To dominates; Contains and Related are less frequent.](figures/fig7_2_link_types.png)
+![Figure 7.2: Distribution of OpenCRE link types across 13,519 framework pairs. Linked To dominates; Contains and Related are less frequent.](figures/fig7_2_link_types.png)
 
 ### 3.2 Hop-Distance Mapping to Ordinal Tiers
 
 The graph distance between two controls in the CRE graph encodes rough similarity. I mapped hop distances to ordinal tiers: 0 hops maps to Equivalent, 1 hop maps to Related, 2 hops maps to Partial, and 3 or more hops maps to Unrelated. This is a proxy, not a ground truth---but it is an expert-curated proxy backed by a large community of security professionals.
 
-Figure 6 shows the distribution of hop distances across the 13,519 pairs. The bar at 0 hops is the tightest pairing group; the tail extends to 4 hops. Most pairs cluster at 1--2 hops, which maps to the Related/Partial range.
+Figure 7.1 shows the distribution of hop distances across the 13,519 pairs. The bar at 0 hops is the tightest pairing group; the tail extends to 4 hops. Most pairs cluster at 1--2 hops, which maps to the Related/Partial range.
 
-![Figure 6: Distribution of OpenCRE hop distances across 13,519 pairs. The 0-hop bin represents controls that share a CRE hub directly; longer distances represent looser relationships.](figures/fig7_1_hop_distance.png)
+![Figure 7.1: Distribution of OpenCRE hop distances across 13,519 pairs. The 0-hop bin represents controls that share a CRE hub directly; longer distances represent looser relationships.](figures/fig7_1_hop_distance.png)
 
-Figure 7 shows the joint distribution of hop distances and ordinal tiers in a heatmap. The diagonal pattern confirms that the hop-distance mapping aligns with the ordinal structure: 0-hop pairs concentrate at tier 3 (Equivalent), 1-hop pairs concentrate at tier 2 (Related), and so on.
+Figure 7.4 shows the joint distribution of hop distances and ordinal tiers in a heatmap. The diagonal pattern confirms that the hop-distance mapping aligns with the ordinal structure: 0-hop pairs concentrate at tier 3 (Equivalent), 1-hop pairs concentrate at tier 2 (Related), and so on.
 
-![Figure 7: Hop-distance vs. ordinal tier heatmap. The diagonal structure confirms that CRE graph distance is a meaningful proxy for the 4-class ordinal scale.](figures/fig7_4_hop_tier_heatmap.png)
+![Figure 7.4: Hop-distance vs. ordinal tier heatmap. The diagonal structure confirms that CRE graph distance is a meaningful proxy for the 4-class ordinal scale.](figures/fig7_4_hop_tier_heatmap.png)
 
 ### 3.3 Framework Coverage
 
 Only 6 of the 9 frameworks in my dataset have representation in OpenCRE's catalog. NIST AI RMF and OWASP AI Exchange dominate the coverage; AIUC-1, CoSAI Risk Map, and CSA AICM have zero representation. This means OpenCRE cannot help with roughly a third of my framework pairs.
 
-Figure 8 shows the coverage matrix: which framework pairs have OpenCRE data and how many pairs each combination contributes.
+Figure 7.3 shows the coverage matrix: which framework pairs have OpenCRE data and how many pairs each combination contributes.
 
-![Figure 8: OpenCRE framework coverage matrix. Six of the nine frameworks appear; three have no coverage. NIST AI RMF and OWASP AI Exchange contribute the most pairs.](figures/fig7_3_opencre_coverage.png)
+![Figure 7.3: OpenCRE framework coverage matrix. Six of the nine frameworks appear; three have no coverage. NIST AI RMF and OWASP AI Exchange contribute the most pairs.](figures/fig7_3_opencre_coverage.png)
 
 ### 3.4 Contamination Firewall
 
 Before using any OpenCRE pairs for training, I checked for overlap with the 179-pair frozen holdout. Any OpenCRE pair that shared a node identifier with the test set had to be removed---using it for training would contaminate the evaluation. I found 34 such pairs. Removing them left 6,200 clean pairs available for augmentation.
 
-Figure 9 shows the contamination firewall as a flow: 13,519 OpenCRE pairs intersect my 9 frameworks, of which 6,200 pass the 6-of-9 framework filter, and 34 are removed for test-set overlap.
+Figure 7.5 shows the contamination firewall as a flow: 13,519 OpenCRE pairs intersect my 9 frameworks, of which 6,200 pass the 6-of-9 framework filter, and 34 are removed for test-set overlap.
 
-![Figure 9: Contamination firewall flow. Of the OpenCRE pairs that intersect my frameworks, 34 share node IDs with the frozen test set and are removed, leaving 6,200 clean pairs.](figures/fig7_5_contamination_firewall.png)
+![Figure 7.5: Contamination firewall flow. Of the OpenCRE pairs that intersect my frameworks, 34 share node IDs with the frozen test set and are removed, leaving 6,200 clean pairs.](figures/fig7_5_contamination_firewall.png)
 
 The firewall is not optional. Even a single test pair leaking into training would invalidate the frozen holdout protocol I had maintained throughout the project. Those 34 pairs are discarded.
 
@@ -119,13 +119,13 @@ The selection criterion I chose was disagreement: pairs where the v7c classifier
 
 I scored all 6,200 clean OpenCRE pairs through the v7c pipeline. The classifier and the OpenCRE label disagreed on 3,285 of them---53% of the candidate pool. From those 3,285 disagreements, I selected 673 Related-class pairs. I chose Related rather than Equivalent because Related had more disagreement candidates and because Equivalent has only 7 test examples; adding noisy Equivalent proxy labels risked introducing more harm than benefit.
 
-Figure 10 shows the training composition change from v7c to v8. The stacked bars show expert-labeled pairs vs. augmented pairs; the augmented slice grows from zero (v7c) to 673 (v8).
+Figure 8.1 shows the training composition change from v7c to v8. The stacked bars show expert-labeled pairs vs. augmented pairs; the augmented slice grows from zero (v7c) to 673 (v8).
 
-![Figure 10: Training composition across pipeline versions. v8 adds 673 disagreement-mined pairs to the expert-labeled base; v8b adds 2,046 OpenCRE pairs with per-class caps.](figures/fig8_1_training_composition.png)
+![Figure 8.1: Training composition across pipeline versions. v8 adds 673 disagreement-mined pairs to the expert-labeled base; v8b adds 2,046 OpenCRE pairs with per-class caps.](figures/fig8_1_training_composition.png)
 
-Figure 11 shows the disagreement mining funnel: 6,200 candidate pairs, 3,285 disagreements, 673 selected. The funnel shape communicates the selection rate at each stage.
+Figure 8.2 shows the disagreement mining funnel: 6,200 candidate pairs, 3,285 disagreements, 673 selected. The funnel shape communicates the selection rate at each stage.
 
-![Figure 11: Disagreement mining funnel. Starting from 6,200 clean OpenCRE pairs, 3,285 show v7c--OpenCRE disagreement, and 673 Related-class pairs are selected for augmentation.](figures/fig8_2_disagreement_mining.png)
+![Figure 8.2: Disagreement mining funnel. Starting from 6,200 clean OpenCRE pairs, 3,285 show v7c--OpenCRE disagreement, and 673 Related-class pairs are selected for augmentation.](figures/fig8_2_disagreement_mining.png)
 
 The v8 total training set was 12,849 pairs. The GAT could not compute graph features for OpenCRE-format pairs that existed outside the crosswalk topology, so BGE-large cosine similarity served as a fallback scorer for those pairs.
 
@@ -141,9 +141,9 @@ I ran a three-model sweep (DeBERTa-v3-large, RoBERTa-large, DeBERTa-v3-base) wit
 
 DeBERTa-v3-large collapsed to predicting a single class on every pair. Every prediction was Unrelated, regardless of input. The collapse guard I had built triggered at epoch 4 in every training run, but the model never recovered after the guard fired. 120 of the 130 Unrelated pairs in the test set were correctly labeled, but every Partial, Related, and Equivalent pair was called Unrelated.
 
-Figure 12 shows the class-distribution bar chart for DeBERTa-v3-large predictions vs. ground truth. The predicted bar is a single solid block; the ground truth bar has four segments.
+Figure 9.1 shows the class-distribution bar chart for DeBERTa-v3-large predictions vs. ground truth. The predicted bar is a single solid block; the ground truth bar has four segments.
 
-![Figure 12: DeBERTa-v3-large prediction collapse in v8b. The model predicts 100% Unrelated on every test pair; the ground truth distribution has four classes.](figures/fig9_1_v8b_collapse.png)
+![Figure 9.1: DeBERTa-v3-large prediction collapse in v8b. The model predicts 100% Unrelated on every test pair; the ground truth distribution has four classes.](figures/fig9_1_v8b_collapse.png)
 
 The likely cause was the expanded Equivalent proxy labels. DeBERTa-v3-large is sensitive to label noise at high learning rates; adding hundreds of noisy Equivalent labels destabilized its fine-tuning trajectory. The collapse guard caught the symptom but not the underlying cause.
 
@@ -151,13 +151,13 @@ The likely cause was the expanded Equivalent proxy labels. DeBERTa-v3-large is s
 
 The LightGBM stacker showed a different failure mode: train accuracy of 1.000 with validation accuracy of 0.528---a 47-point train-validation gap. The stacker memorized the training set completely. With 14,222 training pairs and a gradient boosted tree with default hyperparameters, the stacker had enough capacity to overfit.
 
-Figure 13 shows the training vs. validation accuracy curves for the LightGBM stacker across iterations. Training accuracy reaches 1.0 at iteration 30 and stays there; validation accuracy plateaus at 0.528 and begins declining.
+Figure 9.2 shows the training vs. validation accuracy curves for the LightGBM stacker across iterations. Training accuracy reaches 1.0 at iteration 30 and stays there; validation accuracy plateaus at 0.528 and begins declining.
 
-![Figure 13: LightGBM stacker overfitting in v8b. Training accuracy reaches 1.0; validation accuracy plateaus at 0.528 and declines. The 47-point gap indicates memorization.](figures/fig9_2_stacker_overfitting.png)
+![Figure 9.2: LightGBM stacker overfitting in v8b. Training accuracy reaches 1.0; validation accuracy plateaus at 0.528 and declines. The 47-point gap indicates memorization.](figures/fig9_2_stacker_overfitting.png)
 
-Figure 14 shows the W\&B training loss curves for the three transformer models in v8b. DeBERTa-large's loss drops sharply and then becomes erratic; RoBERTa-large and DeBERTa-base show more stable but still noisy curves.
+Figure 9.3 shows the W\&B training loss curves for the three transformer models in v8b. DeBERTa-large's loss drops sharply and then becomes erratic; RoBERTa-large and DeBERTa-base show more stable but still noisy curves.
 
-![Figure 14: W\&B training loss curves for the three v8b transformer models. DeBERTa-v3-large shows erratic behavior after epoch 4; the other models show instability at higher learning rates.](figures/fig9_3_wandb_loss_curves.png)
+![Figure 9.3: W\&B training loss curves for the three v8b transformer models. DeBERTa-v3-large shows erratic behavior after epoch 4; the other models show instability at higher learning rates.](figures/fig9_3_wandb_loss_curves.png)
 
 ### 5.4 Root Causes
 
@@ -173,9 +173,9 @@ Three changes define v\_final relative to v8b.
 
 **Mapping-level deduplication.** The v7c and v8b pipelines deduplicated training data at the text-pair level: if two rows had identical text strings, one was removed. This missed a subtler problem: many pairs shared the same underlying mapping (the same two controls, just with minor text variation from preprocessing). After deduplication at the mapping level---matching on framework IDs and control IDs rather than text---56% of the training set's text-pair contamination was removed. The result was a cleaner validation estimate, because validation pairs were no longer near-duplicates of training pairs.
 
-Figure 15 shows the before-and-after distribution for the validation split. Before deduplication, the validation set contains many pairs with near-identical counterparts in training; after, the split is genuinely held out.
+Figure 10.2 shows the before-and-after distribution for the validation split. Before deduplication, the validation set contains many pairs with near-identical counterparts in training; after, the split is genuinely held out.
 
-![Figure 15: Mapping-level deduplication effect on the validation split. Left: pre-dedup split with 56% text-pair contamination from near-duplicate mappings. Right: clean split after deduplication on framework and control IDs.](figures/fig10_2_dedup_before_after.png)
+![Figure 10.2: Mapping-level deduplication effect on the validation split. Left: pre-dedup split with 56% text-pair contamination from near-duplicate mappings. Right: clean split after deduplication on framework and control IDs.](figures/fig10_2_dedup_before_after.png)
 
 **Ordinal loss functions.** Standard cross-entropy treats each misclassification equally: predicting Partial when the true label is Equivalent is penalized the same as predicting Unrelated when the true label is Equivalent. On a 4-class ordinal scale, that is wrong. An Unrelated $\rightarrow$ Equivalent error is a two-tier mistake; Partial $\rightarrow$ Equivalent is a one-tier mistake. I trained each model with three ordinal-aware losses: KL-divergence with ordinal smoothing (which places probability mass on adjacent classes), CORN ordinal regression (which decomposes the prediction into a sequence of binary comparisons), and focal loss with per-class reweighting (which down-weights confident predictions and up-weights rare classes). For each model, I selected the checkpoint that maximized validation macro F1.
 
@@ -183,9 +183,9 @@ Figure 15 shows the before-and-after distribution for the validation split. Befo
 
 ### 6.2 Architecture Overview
 
-Figure 16 shows the v\_final inference pipeline. Three transformer encoders (RoBERTa-large, DeBERTa-v3-base, BGE-large-v1.5) each produce a 4-class softmax probability vector. The three vectors are averaged, and the final prediction is the argmax of the average.
+Figure 10.1 shows the v\_final inference pipeline. Three transformer encoders (RoBERTa-large, DeBERTa-v3-base, BGE-large-v1.5) each produce a 4-class softmax probability vector. The three vectors are averaged, and the final prediction is the argmax of the average.
 
-![Figure 16: v\_final inference architecture. Three transformer encoders produce independent probability distributions; the ensemble averages them without any learned combination weights.](figures/fig10_1_architecture.png)
+![Figure 10.1: v\_final inference architecture. Three transformer encoders produce independent probability distributions; the ensemble averages them without any learned combination weights.](figures/fig10_1_architecture.png)
 
 ### 6.3 Infrastructure Challenges
 
@@ -225,15 +225,15 @@ This is a real trade-off, not a bug. On an ordinal scale, the question is whethe
 
 ### 7.4 Confusion Matrix Comparison
 
-Figure 17 places the v7c and v\_final confusion matrices side by side. The v7c matrix has an empty Equivalent column; the v\_final matrix has 4 correct Equivalent predictions and a shifted distribution in the Related row.
+Figure 11.1 places the v7c and v\_final confusion matrices side by side. The v7c matrix has an empty Equivalent column; the v\_final matrix has 4 correct Equivalent predictions and a shifted distribution in the Related row.
 
-![Figure 17: Confusion matrices for v7c (left) and v\_final (right). v\_final gains correct Equivalent predictions; the Related row shifts upward toward Equivalent due to the ordinal losses.](figures/fig11_1_confusion_comparison.png)
+![Figure 11.1: Confusion matrices for v7c (left) and v\_final (right). v\_final gains correct Equivalent predictions; the Related row shifts upward toward Equivalent due to the ordinal losses.](figures/fig11_1_confusion_comparison.png)
 
 ### 7.5 Per-Class F1 Progression
 
-Figure 18 shows per-class F1 for v7c and v\_final side by side. Equivalent jumps from 0.000 to 0.400; Partial improves from 0.556 to 0.622; Related drops from 0.556 to 0.378; Unrelated remains stable at 0.938 vs. 0.910.
+Figure 11.2 shows per-class F1 for v7c and v\_final side by side. Equivalent jumps from 0.000 to 0.400; Partial improves from 0.556 to 0.622; Related drops from 0.556 to 0.378; Unrelated remains stable at 0.938 vs. 0.910.
 
-![Figure 18: Per-class F1 comparison between v7c and v\_final. Equivalent and Partial improve; Related drops due to boundary shift toward the Equivalent class.](figures/fig11_2_per_class_f1.png)
+![Figure 11.2: Per-class F1 comparison between v7c and v\_final. Equivalent and Partial improve; Related drops due to boundary shift toward the Equivalent class.](figures/fig11_2_per_class_f1.png)
 
 ### 7.6 Individual Model and Ensemble Comparison
 
@@ -246,9 +246,9 @@ Before averaging, I evaluated each model independently on the frozen holdout:
 | BGE-large-v1.5 | 0.443 | 67.6% |
 | **Ensemble (avg)** | **0.558** | **79.9%** |
 
-The ensemble outperforms every individual model by at least 6.4 macro F1 points. Figure 19 shows the model progression from individual components to ensemble.
+The ensemble outperforms every individual model by at least 6.4 macro F1 points. Figure 11.3 shows the model progression from individual components to ensemble.
 
-![Figure 19: Individual model vs. ensemble macro F1. The ensemble (rightmost bar) exceeds every component model; model diversity is the driver of the gain.](figures/fig11_3_model_progression.png)
+![Figure 11.3: Individual model vs. ensemble macro F1. The ensemble (rightmost bar) exceeds every component model; model diversity is the driver of the gain.](figures/fig11_3_model_progression.png)
 
 ### 7.7 Bootstrap Confidence Intervals
 
@@ -257,9 +257,9 @@ With 179 test pairs, point estimates carry substantial uncertainty. I computed 1
 - **Exact accuracy:** 73.7%--86.0% (point: 79.9%)
 - **Macro F1:** 0.436--0.661 (point: 0.558)
 
-The v7c macro F1 (0.512) falls inside the v\_final CI, which means I cannot claim statistical significance at $\alpha$=0.05 from this test set alone. The improvement is directionally consistent across all resamples, but the test set is too small for definitive separation. Figure 20 shows the bootstrap distribution for macro F1.
+The v7c macro F1 (0.512) falls inside the v\_final CI, which means I cannot claim statistical significance at $\alpha$=0.05 from this test set alone. The improvement is directionally consistent across all resamples, but the test set is too small for definitive separation. Figure 11.4 shows the bootstrap distribution for macro F1.
 
-![Figure 20: Bootstrap confidence intervals for v\_final macro F1 (10,000 resamples). The shaded 95% CI spans 0.436--0.661; the v7c point estimate (0.512) falls inside the interval.](figures/fig11_4_bootstrap_ci.png)
+![Figure 11.4: Bootstrap confidence intervals for v\_final macro F1 (10,000 resamples). The shaded 95% CI spans 0.436--0.661; the v7c point estimate (0.512) falls inside the interval.](figures/fig11_4_bootstrap_ci.png)
 
 ### 7.8 Conformal Prediction Coverage
 
@@ -270,15 +270,15 @@ Split-conformal prediction wraps each point prediction in a set of plausible tie
 - Related: 91.7%
 - Equivalent: 100.0%
 
-All four classes exceed the 90% target. The median prediction set size is 1 (a crisp single-class prediction); the mean is 1.56, meaning most predictions are confident but uncertain cases get a two-class set. Figure 21 shows per-class coverage against the 90% target line.
+All four classes exceed the 90% target. The median prediction set size is 1 (a crisp single-class prediction); the mean is 1.56, meaning most predictions are confident but uncertain cases get a two-class set. Figure 11.5 shows per-class coverage against the 90% target line.
 
-![Figure 21: Conformal prediction coverage by class at $\alpha$=0.10. All four classes exceed the 90% target (dashed line). Equivalent achieves 100% coverage.](figures/fig11_5_conformal.png)
+![Figure 11.5: Conformal prediction coverage by class at $\alpha$=0.10. All four classes exceed the 90% target (dashed line). Equivalent achieves 100% coverage.](figures/fig11_5_conformal.png)
 
 ### 7.9 Adjacent Error Analysis
 
-Errors that are off by one ordinal tier (e.g., predicting Related when the true label is Equivalent) are less costly than errors spanning two or more tiers. Figure 22 breaks down the v\_final errors by adjacency. Most errors are adjacent; non-adjacent errors are rare.
+Errors that are off by one ordinal tier (e.g., predicting Related when the true label is Equivalent) are less costly than errors spanning two or more tiers. Figure 11.6 breaks down the v\_final errors by adjacency. Most errors are adjacent; non-adjacent errors are rare.
 
-![Figure 22: Adjacent vs. non-adjacent error breakdown for v\_final. The majority of misclassifications are off by one ordinal tier; large errors (two or more tiers) are uncommon.](figures/fig11_6_adjacent_errors.png)
+![Figure 11.6: Adjacent vs. non-adjacent error breakdown for v\_final. The majority of misclassifications are off by one ordinal tier; large errors (two or more tiers) are uncommon.](figures/fig11_6_adjacent_errors.png)
 
 The adjacent accuracy for v\_final is 92.2% (165 of 179 pairs predicted within one tier of the true label). This is the operationally relevant number for organizations using the crosswalk: even when the classifier misses the exact tier, it rarely places a pair at the wrong end of the scale.
 
@@ -297,15 +297,15 @@ After validating on the frozen holdout, I ran the v\_final ensemble over all 4,0
 
 The Unrelated dominance matches both the training distribution and the practical reality: most cross-framework control pairs are not meaningfully related. The 416 non-Unrelated predictions (10.4% of edges) identify the subset worth examining for control mapping.
 
-Figure 23 shows the full-graph prediction distribution.
+Figure 12.1 shows the full-graph prediction distribution.
 
-![Figure 23: Full-graph prediction distribution across all 4,001 crosswalk edges. The non-Unrelated slice (10.4%) represents the actionable cross-framework mappings.](figures/fig12_1_full_graph_predictions.png)
+![Figure 12.1: Full-graph prediction distribution across all 4,001 crosswalk edges. The non-Unrelated slice (10.4%) represents the actionable cross-framework mappings.](figures/fig12_1_full_graph_predictions.png)
 
 ### 8.2 Coverage Gain
 
-The 59 Equivalent predictions across the full graph represent controls that organizations could treat as direct substitutes. The 221 Related predictions represent controls that address the same threat or risk from different angles. Figure 24 shows the per-framework-pair coverage gain---how many new non-Unrelated edges each framework combination gains from the v\_final predictions.
+The 59 Equivalent predictions across the full graph represent controls that organizations could treat as direct substitutes. The 221 Related predictions represent controls that address the same threat or risk from different angles. Figure 12.2 shows the per-framework-pair coverage gain---how many new non-Unrelated edges each framework combination gains from the v\_final predictions.
 
-![Figure 24: Coverage gain by framework pair. Each cell shows how many non-Unrelated predictions connect the two frameworks. Framework pairs with prior zero coverage benefit most.](figures/fig12_2_coverage_gain.png)
+![Figure 12.2: Coverage gain by framework pair. Each cell shows how many non-Unrelated predictions connect the two frameworks. Framework pairs with prior zero coverage benefit most.](figures/fig12_2_coverage_gain.png)
 
 The three frameworks with no OpenCRE representation (AIUC-1, CoSAI Risk Map, CSA AICM) still receive predictions in the full-graph deployment, because v\_final learned from the other six frameworks' expert-labeled data and can generalize to new framework combinations.
 

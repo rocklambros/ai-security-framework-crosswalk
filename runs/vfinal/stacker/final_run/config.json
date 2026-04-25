@@ -1,0 +1,23 @@
+{
+  "component": "stacker",
+  "metrics": {
+    "train_acc": 0.5956081081081082,
+    "train_logloss": 0.6883125006664894,
+    "val_acc": 0.32857142857142857,
+    "val_logloss": 1.1254627754154252
+  },
+  "model_path": "runs/vfinal/stacker/final_run/model.txt",
+  "params": {
+    "colsample_bytree": 0.6598559738117218,
+    "learning_rate": 0.06228953204969383,
+    "min_child_samples": 46,
+    "n_estimators": 156,
+    "num_leaves": 8,
+    "reg_alpha": 7.516175168681228,
+    "reg_lambda": 1.3946121636008391e-06,
+    "subsample": 0.7047212662914893
+  },
+  "run_id": "stacker-456af134-20260425T023122",
+  "status": "completed",
+  "utc": "2026-04-25T02:31:23.143586+00:00"
+}

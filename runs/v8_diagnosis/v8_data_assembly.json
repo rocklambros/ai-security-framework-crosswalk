@@ -1,0 +1,15 @@
+{
+  "elapsed_seconds": 222.53054237365723,
+  "opencre_total": 6234,
+  "contaminated": 34,
+  "clean": 6200,
+  "disagreements": 3285,
+  "selected": 2000,
+  "v8_rows_added": 673,
+  "expert_train_original": 12176,
+  "v8_train_total": 12849,
+  "label_distribution": {
+    "RELATED": 673
+  },
+  "output_path": "data/splits/v8_train.jsonl"
+}

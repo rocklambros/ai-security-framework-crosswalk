@@ -1,0 +1,19 @@
+[2026-04-24 17:29:11] ============================================================
+[2026-04-24 17:29:11] v_final PARALLEL GPU PIPELINE
+[2026-04-24 17:29:11]   3 models, 25 trials each, parallel pods
+[2026-04-24 17:29:11] ============================================================
+[2026-04-24 17:29:11] Phase 0: Rebuild clean splits
+[2026-04-24 17:47:43] ============================================================
+[2026-04-24 17:47:43] v_final GPU-ONLY PIPELINE (skipping phases 0-1)
+[2026-04-24 17:47:43]   3 models, 25 trials each, parallel H100 pods
+[2026-04-24 17:47:43] ============================================================
+[2026-04-24 17:47:43] Provisioning 3 pods...
+[2026-04-24 17:47:43] Selected GPU: NVIDIA H100 80GB HBM3
+[2026-04-24 17:48:02] Pod 0 (roberta) ready: 9iob9altvcesev @ 103.207.149.114:12339
+[2026-04-24 17:48:20] Pod 1 (deberta_base) ready: qcmpg5a3utr69f @ 64.247.201.47:14707
+[2026-04-24 17:48:53] Pod 2 (bge) ready: w9uxfk6627ir3z @ 216.243.220.221:12457
+[2026-04-24 17:48:53] Bootstrapping 3 pods in parallel...
+[2026-04-24 17:48:53] Bootstrapping pod 0 (roberta)...
+[2026-04-24 17:48:53] Bootstrapping pod 1 (deberta_base)...
+[2026-04-24 17:48:53] Bootstrapping pod 2 (bge)...
+[2026-04-24 17:59:47] Pod 1 bootstrapped

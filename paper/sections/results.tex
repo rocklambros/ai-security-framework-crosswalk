@@ -134,62 +134,76 @@ with a mean set size of only 1.56.}
 
 \subsection{v\_final Results}
 
-\textit{Note: v\_final training is in progress. Metric placeholders
-below will be populated by the finalization script once training
-completes.}
-
 \subsubsection{Overall Metrics}
 
 Table~\ref{tab:main_results} includes v\_final rows alongside the v7c
-baseline. The v\_final stacker achieves:
+baseline. The v\_final softmax averaging ensemble achieves:
 
 \begin{itemize}
-    \item \textbf{Tier accuracy:} \textbf{TBD} (95\% CI \textbf{[TBD, TBD]})
-    \item \textbf{Macro F1:} \textbf{TBD} (95\% CI \textbf{[TBD, TBD]})
-    \item \textbf{Adjacent accuracy:} \textbf{TBD}
-    \item \textbf{Binary accuracy:} \textbf{TBD}
+    \item \textbf{Tier accuracy:} 0.799 (95\% CI [0.737, 0.860])
+    \item \textbf{Macro F1:} 0.558 (95\% CI [0.436, 0.661])
+    \item \textbf{Adjacent accuracy:} 0.922, meaning 92\% of predictions
+          fall within one tier of the ground-truth label
 \end{itemize}
 
 \subsubsection{Comparison to v7c Baseline}
 
-The v\_final architecture replaces the 22-feature LightGBM stacker
-with a 17-feature neural meta-stacker built atop three fine-tuned
-transformers. The primary expected gains stem from two sources:
-(1)~the neural encoders capture richer semantic representations than
-the BGE cosine similarity and BM25 features used in v7c, and
-(2)~clean mapping-level validation deduplication removes the 56\%
-text-pair contamination that inflated v7c validation metrics.
+The v\_final architecture replaces the v7c logistic regression stacker
+over GAT and cross-encoder features with a simple softmax averaging
+ensemble over three independently fine-tuned transformers (RoBERTa-large,
+DeBERTa-base, BGE-large-v1.5), each trained with three loss functions
+(KL ordinal, CORN ordinal, focal). Clean mapping-level validation
+deduplication removes the 56\% text-pair contamination that inflated
+v7c validation metrics.
 
 \begin{itemize}
-    \item Tier accuracy change vs.\ v7c (0.810): \textbf{TBD}
-    \item Macro F1 change vs.\ v7c (0.512): \textbf{TBD}
-    \item Adjacent accuracy change vs.\ v7c (0.944): \textbf{TBD}
+    \item Tier accuracy change vs.\ v7c (0.810): $-$0.011 (within CI overlap)
+    \item Macro F1 change vs.\ v7c (0.512): \textbf{+0.046}
+    \item Adjacent accuracy change vs.\ v7c (0.944): $-$0.022
 \end{itemize}
+
+The macro F1 improvement of +4.6 percentage points is driven entirely
+by the Equivalent class, which rises from F1 = 0.000 to 0.400. This
+represents a qualitative shift: v7c could not detect any Equivalent
+pairs, while v\_final correctly identifies 4 of 7 (recall = 0.571).
+The trade-off is a modest decline in Related-class F1, which drops
+from 0.556 to 0.378 as the model redistributes probability mass
+toward the Equivalent tier.
 
 \subsubsection{Per-Class F1}
 
-The Equivalent class (F1 = 0.000 in v7c) is the primary target for
-improvement. The ordinal-aware loss functions (KL ordinal, CORN) are
-expected to encourage the model to assign non-negligible probability
-mass to the Equivalent tier even for ambiguous pairs, rather than
-collapsing predictions to the Related tier.
-
 \begin{itemize}
-    \item \textbf{Unrelated F1:} \textbf{TBD} (v7c: 0.938)
-    \item \textbf{Partial F1:} \textbf{TBD} (v7c: 0.556)
-    \item \textbf{Related F1:} \textbf{TBD} (v7c: 0.556)
-    \item \textbf{Equivalent F1:} \textbf{TBD} (v7c: 0.000)
+    \item \textbf{Unrelated F1:} 0.928 [0.895, 0.959] (v7c: 0.938)
+    \item \textbf{Partial F1:} 0.526 [0.320, 0.710] (v7c: 0.556)
+    \item \textbf{Related F1:} 0.378 [0.177, 0.571] (v7c: 0.556)
+    \item \textbf{Equivalent F1:} \textbf{0.400} [0.100, 0.667] (v7c: 0.000)
 \end{itemize}
+
+The ordinal-aware loss functions (KL ordinal, CORN) successfully
+encouraged the model to assign non-negligible probability mass to the
+Equivalent tier. The wide confidence intervals for minority classes
+(Equivalent: 7 samples, Related: 24 samples) reflect the small test
+set size and motivate future evaluation on larger expert-labeled corpora.
+
+\subsubsection{Ensemble vs.\ Stacker}
+
+A LightGBM stacker over the 17-feature set (12 logits + 3 pairwise
+logit cosine similarities + 2 baseline features) collapsed to
+predicting the majority Unrelated class for all test instances
+(macro F1 = 0.210), despite class-balanced training. The simple
+softmax averaging ensemble proved more robust to the 72.6\%
+class imbalance in the test set, achieving macro F1 = 0.558.
+This result suggests that with only 17 input features and
+heavy class skew, a non-parametric ensemble is preferable to
+a learned meta-classifier.
 
 \begin{figure}[t]
 \centering
-% \includegraphics[width=\linewidth]{fig_vfinal_confusion_matrix}
-\fbox{\parbox{\linewidth}{\centering\vspace{2em}
-v\_final confusion matrix --- to be generated after training\vspace{2em}}}
-\caption{v\_final ensemble performance on the frozen test set.
+\includegraphics[width=\linewidth]{fig_vfinal_confusion_matrix}
+\caption{v\_final ensemble performance on the frozen test set ($n=179$).
 (A)~Confusion matrix showing predicted vs.\ true tier labels.
 (B)~Per-class F1 comparison between v7c and v\_final, highlighting
-improvements in the Equivalent and boundary-tier classes.}
+the +0.400 improvement in the Equivalent class.}
 \label{fig:vfinal_confusion_matrix}
 \end{figure}
 

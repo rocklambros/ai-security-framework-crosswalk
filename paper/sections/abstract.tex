@@ -7,19 +7,17 @@ controls across nine major AI security and governance frameworks,
 constructing a heterogeneous knowledge graph of 983 control nodes
 integrated from four complementary data sources: within-framework
 hierarchies, community-contributed upstream mappings, cross-reference
-tables, and bootstrap-pruned anchor pairs. Our method combines LLM-derived
-similarity features with structural graph features and calibrated
-LLM-as-judge tier scores, feeding a LightGBM stacker that classifies
+tables, and bootstrap-pruned anchor pairs. Our method fine-tunes three transformer architectures
+(RoBERTa-large, DeBERTa-base, BGE-large-v1.5) with ordinal-aware loss
+functions, combining their predictions via softmax averaging to classify
 control pairs into four tiers: \emph{equivalent}, \emph{related},
 \emph{partial}, and \emph{unrelated}. Mondrian conformal prediction
-provides per-class coverage guarantees, and a KL-divergence router
-flags uncertain predictions for human review. On 400 expert-labeled
-frozen test pairs the system achieves tier accuracy of 0.53 (95\% CI
-[0.485, 0.580]), macro F1 of 0.49, and adjacent accuracy of 0.84.
-Conformal prediction attains 93.8\% empirical coverage at
-$\alpha = 0.10$ with a mean prediction set size of 3.2. Ablation
-analysis confirms that each feature family contributes complementary
-signal, with Opus tier scores providing the strongest individual
-channel. All code, data splits, and model weights are released under
+provides per-class coverage guarantees. On 179 expert-labeled
+frozen test pairs the system achieves tier accuracy of 0.799 (95\% CI
+[0.737, 0.860]), macro F1 of 0.558 (95\% CI [0.436, 0.661]), and
+adjacent accuracy of 0.922. Ablation analysis confirms that the
+ensemble of diverse architectures and loss functions provides robust
+probability estimates, with the ordinal losses enabling detection of
+the rare Equivalent class (F1 = 0.400, up from 0.000 in v7c). All code, data splits, and model weights are released under
 Apache-2.0 with a one-command reproducibility target.
 \end{abstract}

@@ -566,7 +566,7 @@ def phase6_sacred_eval():
         b_method = methods.get("B_full_pipeline", {})
         if b_method:
             v7c = {
-                "exact_acc": b_method.get("accuracy"),
+                "exact_acc": b_method.get("tier_accuracy"),
                 "macro_f1": b_method.get("macro_f1"),
                 "adjacent_acc": b_method.get("adjacent_accuracy"),
             }

@@ -1,6 +1,6 @@
 {
   "version": "vfinal",
-  "timestamp": "2026-04-24T20:34:18",
+  "timestamp": "2026-04-24T20:39:08",
   "test_size": 179,
   "exact_acc": 0.7988826815642458,
   "exact_acc_ci": [
@@ -96,12 +96,12 @@
     "zero_shot_bge_macro_f1": 0.10345238095238095
   },
   "v7c_comparison": {
-    "exact_acc": null,
+    "exact_acc": 0.8100558659217877,
     "macro_f1": 0.5121527777777778,
     "adjacent_acc": 0.9441340782122905
   },
   "improvement_over_v7c": {
-    "exact_acc_delta": null,
+    "exact_acc_delta": -0.011173184357541888,
     "macro_f1_delta": 0.04595992768333668
   }
 }

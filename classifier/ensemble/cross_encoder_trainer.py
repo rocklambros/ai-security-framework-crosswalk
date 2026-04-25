@@ -222,7 +222,8 @@ def train_cross_encoder(
     is_deberta = "deberta" in init_from.lower()
     is_bi_encoder = "bge" in model_name.lower() or "e5" in model_name.lower()
     use_amp = device.type == "cuda"
-    amp_dtype = torch.bfloat16 if (is_deberta or is_bi_encoder) else torch.float16
+    has_bf16 = use_amp and torch.cuda.is_bf16_supported()
+    amp_dtype = torch.bfloat16 if (has_bf16 or is_deberta or is_bi_encoder) else torch.float16
 
     head_type = "corn" if loss_type == "corn" else "kl"
 
@@ -245,7 +246,7 @@ def train_cross_encoder(
         )
     model = model.to(device)
 
-    skip_scaler = is_deberta or is_bi_encoder
+    skip_scaler = is_deberta or is_bi_encoder or has_bf16
     scaler = torch.amp.GradScaler("cuda") if (use_amp and not skip_scaler) else None
 
     raw_data = []

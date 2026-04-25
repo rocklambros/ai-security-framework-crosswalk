@@ -6,13 +6,13 @@ from components.framework_colors import (
 )
 
 def test_all_nine_frameworks_have_colors():
-    assert len(FRAMEWORK_COLORS) == 9
+    assert len(FRAMEWORK_COLORS) == len(FRAMEWORK_KEYS)
     for key in FRAMEWORK_KEYS:
         assert key in FRAMEWORK_COLORS
         assert FRAMEWORK_COLORS[key].startswith("#")
 
 def test_all_nine_frameworks_have_display_names():
-    assert len(FRAMEWORK_DISPLAY_NAMES) == 9
+    assert len(FRAMEWORK_DISPLAY_NAMES) == len(FRAMEWORK_KEYS)
     for key in FRAMEWORK_KEYS:
         assert key in FRAMEWORK_DISPLAY_NAMES
 

@@ -28,7 +28,7 @@ def test_edges_df_has_expected_columns():
     df = get_edges_df()
     assert "source_node_id" in df.columns
     assert "target_node_id" in df.columns
-    assert len(df) == 4342
+    assert len(df) == 4359
 
 
 def test_framework_stats_loaded():

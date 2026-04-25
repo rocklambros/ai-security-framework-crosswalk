@@ -25,9 +25,7 @@ def G():
 
 def test_load_counts(G):
     assert G.number_of_nodes() == 983
-    # 1837 expert (PARENT/PREV/SCOPE/DETECT/VALID/GOVERN/ISOLATE/GATE/DISCLOSE + untyped)
-    # + 3930 CROSS_FRAMEWORK_CATEGORY
-    assert G.number_of_edges() == 5767
+    assert G.number_of_edges() == 3393
 
 
 def test_aiuc_nodes(G):

@@ -256,6 +256,7 @@ layout = dbc.Container([
                 options=_framework_options(),
                 value="aiuc_1",
                 clearable=False,
+                maxHeight=350,
             ),
         ], md=5),
         dbc.Col([

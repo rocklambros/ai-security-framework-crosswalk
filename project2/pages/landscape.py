@@ -26,7 +26,9 @@ dash.register_page(__name__, path="/", name="Landscape", order=0)
 
 # --- Narrative ---
 INTRO_TEXT = (
-    "The AI security standards landscape at a glance. Nine frameworks, 983 controls, "
+    "Organizations adopting AI systems must navigate overlapping security standards "
+    "from OWASP, NIST, MITRE, CSA, and others, with no machine-readable crosswalks "
+    "between them. This tool bridges that gap. Nine frameworks, 983 controls, "
     "6,154 relationship edges. Node size encodes framework breadth; edge width encodes "
     "cross-framework mapping density."
 )
@@ -383,6 +385,7 @@ def _build_heatmap_figure(edges_df, theme="dark", scope="direct"):
             x=short_names,
             y=short_names,
             colorscale=colorscale,
+            colorbar=dict(title="Node pairs"),
             hovertext=hover_text,
             hovertemplate="%{hovertext}<extra></extra>",
         ))
@@ -392,6 +395,7 @@ def _build_heatmap_figure(edges_df, theme="dark", scope="direct"):
             x=short_names,
             y=short_names,
             colorscale=colorscale,
+            colorbar=dict(title="Node pairs"),
             hovertemplate=(
                 "<b>%{y}</b> - <b>%{x}</b><br>"
                 "Unique node pairs: %{z}<br>"

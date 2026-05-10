@@ -632,6 +632,7 @@ layout = dbc.Container([
                 options=_framework_options(),
                 value="owasp_agentic",
                 clearable=False,
+                maxHeight=350,
             ),
         ], md=3),
         dbc.Col([
@@ -667,6 +668,7 @@ layout = dbc.Container([
                 type="text",
                 placeholder="Filter by keyword...",
                 debounce=True,
+                value="",
                 className="form-control",
             ),
         ], md=2),

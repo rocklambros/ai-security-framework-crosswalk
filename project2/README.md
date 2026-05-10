@@ -45,13 +45,7 @@ python app.py            # Start the app at http://localhost:8050
 
 ### Requirements
 
-```
-dash>=2.14
-dash-bootstrap-components>=1.5
-plotly>=5.18
-pandas>=2.0
-networkx>=3.0
-```
+All dependencies are pinned in `requirements.txt`. Core libraries: Dash, Plotly, dash-bootstrap-components, pandas, NetworkX, PyYAML.
 
 ## Application pages
 

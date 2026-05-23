@@ -27,25 +27,70 @@ The application visualizes a knowledge graph of **983 controls, risks, and techn
 | OWASP LLM Top 10 | 10 | Top 10 risks for LLM applications |
 | OWASP Agentic Top 10 | 10 | Top 10 risks for agentic AI systems |
 
-## Setup
+## Quick Start
 
 ### Prerequisites
 
-- Python 3.10+
-- pip
+- **Python 3.10 or higher** (tested on 3.12)
+- **pip** (included with Python)
+- A modern web browser (Chrome, Firefox, Edge, or Safari)
 
-### Installation
+### Step-by-step setup
 
 ```bash
-cd project2
+# 1. Clone the repository (skip if you already have it)
+git clone https://github.com/rocklambros/ai-security-framework-crosswalk.git
+cd ai-security-framework-crosswalk/project2
+
+# 2. Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate            # macOS / Linux
+# venv\Scripts\activate             # Windows (Command Prompt)
+# venv\Scripts\Activate.ps1         # Windows (PowerShell)
+
+# 3. Install dependencies
 pip install -r requirements.txt
-python prepare_data.py   # Pre-compute derived data (takes ~30 seconds)
-python app.py            # Start the app at http://localhost:8050
+
+# 4. Launch the application
+python app.py
 ```
+
+### Verification
+
+When the app starts successfully, you will see this message in your terminal:
+
+```
+Dash is running on http://127.0.0.1:8050/
+
+ * Serving Flask app 'app'
+ * Debug mode: on
+```
+
+Open **http://localhost:8050** in your browser. You should see the **Framework Landscape** page with an interactive network graph and a 9x9 heatmap.
+
+All derived data files are pre-computed and included in the repository. You do **not** need to run `prepare_data.py` unless you modify the source data in `data/nodes.json` or `data/edges.json`.
+
+### Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| `python3: command not found` | Try `python` instead of `python3`, or install Python 3.10+ from [python.org](https://www.python.org/downloads/) |
+| `ModuleNotFoundError: No module named 'dash'` | Make sure your virtual environment is activated and re-run `pip install -r requirements.txt` |
+| Port 8050 already in use | Stop the other process using port 8050, or edit `app.py` line 36 to change the port number |
+| Blank page in browser | Clear browser cache or try a different browser. Check the terminal for error messages |
 
 ### Requirements
 
-All dependencies are pinned in `requirements.txt`. Core libraries: Dash, Plotly, dash-bootstrap-components, pandas, NetworkX, PyYAML.
+All dependencies are pinned in `requirements.txt`:
+
+| Package | Version | Purpose |
+|---|---|---|
+| dash | 2.18.2 | Web application framework |
+| dash-bootstrap-components | 1.6.0 | Bootstrap-styled UI components |
+| plotly | 5.24.1 | Interactive charting library |
+| pandas | 2.3.3 | Data manipulation |
+| networkx | 3.6.1 | Graph analysis |
+| pyyaml | 6.0.3 | YAML configuration parsing |
 
 ## Application pages
 

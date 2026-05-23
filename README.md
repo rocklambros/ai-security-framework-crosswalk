@@ -206,7 +206,7 @@ Every chart follows Cleveland & McGill (1984), Borner et al. (2019), Borland & T
 
 **Page 4: Coverage Analysis.** Radar chart (total vs. direct-only coverage) and stacked bar chart (direct + transitive + gap = 100%). Percentage annotations use ordinal blue luminance to encode coverage quality.
 
-Setup: `cd project2 && pip install -r requirements.txt && python prepare_data.py && python app.py`. See `project2/README.md` for full details including the data pipeline, visualization design rationale, and architecture diagram.
+**To run:** clone this repo, `cd project2`, create a virtual environment, `pip install -r requirements.txt`, and `python app.py`. Open http://localhost:8050. All derived data is pre-included. See [`project2/README.md`](project2/README.md) for step-by-step setup, verification, and troubleshooting.
 
 ## Repository layout
 
@@ -262,27 +262,39 @@ ai-security-framework-crosswalk/
 
 ## Getting started
 
+### Project 2: Interactive Dash Application (COMP 4433 deliverable)
+
 ```bash
-# 1. Clone and install
+# 1. Clone the repository
 git clone https://github.com/rocklambros/ai-security-framework-crosswalk.git
-cd ai-security-framework-crosswalk
-pip install -r requirements.txt
+cd ai-security-framework-crosswalk/project2
 
-# 2. Open the Project 1 notebook (no GPU needed)
-jupyter lab project1/COMP_4433_RockLambros_project1_crosswalk_eda.ipynb
+# 2. Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate            # macOS / Linux
+# venv\Scripts\activate             # Windows (Command Prompt)
+# venv\Scripts\Activate.ps1         # Windows (PowerShell)
 
-# 3. Or run the Project 2 Dash app
-cd project2
+# 3. Install dependencies and launch
 pip install -r requirements.txt
-python prepare_data.py
 python app.py
-# Open http://localhost:8050
-
-# 4. Or run the full test suite
-pytest mapping_engine/ -q
 ```
 
-The notebook runs with matplotlib, seaborn, pandas, numpy, and scikit-learn only and does not require a GPU. The Dash app runs on CPU with Plotly. The classifier training pipeline requires GPU (H100 80GB preferred) and is orchestrated via Lambda Labs or RunPod.
+Open **http://localhost:8050** in your browser. You should see the Framework Landscape page with an interactive network graph and heatmap. All derived data is pre-computed and included in the repository. See [`project2/README.md`](project2/README.md) for full setup details, verification steps, and troubleshooting.
+
+### Project 1: Scientific Notebook
+
+```bash
+# From the repository root (not project2/)
+pip install -r requirements.txt
+jupyter lab project1/COMP_4433_RockLambros_project1_crosswalk_eda.ipynb
+```
+
+The notebook runs with matplotlib, seaborn, pandas, numpy, and scikit-learn only and does not require a GPU.
+
+### Other components
+
+The Dash app runs on CPU with Plotly. The classifier training pipeline requires GPU (H100 80GB preferred) and is orchestrated via Lambda Labs or RunPod. To run the test suite: `pytest mapping_engine/ -q`.
 
 ## Session history
 
